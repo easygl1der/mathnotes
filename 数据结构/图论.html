@@ -1,0 +1,1042 @@
+<!DOCTYPE html> <html><head>
+		<title>图论</title>
+		<base href="../">
+		<meta id="root-path" root-path="../">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0">
+		<meta charset="UTF-8">
+		<meta name="description" content="大二下作业 - 图论">
+		<meta property="og:title" content="图论">
+		<meta property="og:description" content="大二下作业 - 图论">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="数据结构/图论.html">
+		<meta property="og:image" content="undefined">
+		<meta property="og:site_name" content="大二下作业">
+		<link rel="alternate" type="application/rss+xml" title="RSS Feed" href="lib/rss.xml"><script async="" id="webpage-script" src="lib/scripts/webpage.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script type="module" async="" id="graph-view-script" src="lib/scripts/graph-view.js"></script><script async="" id="graph-wasm-script" src="lib/scripts/graph-wasm.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-render-worker-script" src="lib/scripts/graph-render-worker.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="tinycolor-script" src="lib/scripts/tinycolor.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="pixi-script" src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.0/pixi.min.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="minisearch-script" src="https://cdn.jsdelivr.net/npm/minisearch@6.3.0/dist/umd/index.min.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><link rel="icon" href="lib/media/favicon.png"><script async="" id="graph-data-script" src="lib/scripts/graph-data.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><style>body{--line-width:40em;--line-width-adaptive:40em;--file-line-width:40em;--sidebar-width:min(20em, 80vw);--collapse-arrow-size:11px;--tree-horizontal-spacing:0.6em;--tree-vertical-spacing:0.6em;--sidebar-margin:12px}.sidebar{height:100%;min-width:calc(var(--sidebar-width) + var(--divider-width-hover));max-width:calc(var(--sidebar-width) + var(--divider-width-hover));font-size:14px;z-index:10;position:relative;overflow:hidden;transition:min-width ease-in-out,max-width ease-in-out;transition-duration:.2s;contain:size}.sidebar-left{left:0}.sidebar-right{right:0}.sidebar.is-collapsed{min-width:0;max-width:0}body.floating-sidebars .sidebar{position:absolute}.sidebar-content{height:100%;min-width:calc(var(--sidebar-width) - var(--divider-width-hover));top:0;padding:var(--sidebar-margin);padding-top:4em;line-height:var(--line-height-tight);background-color:var(--background-secondary);transition:background-color,border-right,border-left,box-shadow;transition-duration:var(--color-fade-speed);transition-timing-function:ease-in-out;position:absolute;display:flex;flex-direction:column}.sidebar:not(.is-collapsed) .sidebar-content{min-width:calc(max(100%,var(--sidebar-width)) - 3px);max-width:calc(max(100%,var(--sidebar-width)) - 3px)}.sidebar-left .sidebar-content{left:0;border-top-right-radius:var(--radius-l);border-bottom-right-radius:var(--radius-l)}.sidebar-right .sidebar-content{right:0;border-top-left-radius:var(--radius-l);border-bottom-left-radius:var(--radius-l)}.sidebar:has(.sidebar-content:empty):has(.topbar-content:empty){display:none}.sidebar-topbar{height:2em;width:var(--sidebar-width);top:var(--sidebar-margin);padding-inline:var(--sidebar-margin);z-index:1;position:fixed;display:flex;align-items:center;transition:width ease-in-out;transition-duration:inherit}.sidebar.is-collapsed .sidebar-topbar{width:calc(2.3em + var(--sidebar-margin) * 2)}.sidebar .sidebar-topbar.is-collapsed{width:0}.sidebar-left .sidebar-topbar{left:0}.sidebar-right .sidebar-topbar{right:0}.topbar-content{overflow:hidden;overflow:clip;width:100%;height:100%;display:flex;align-items:center;transition:inherit}.sidebar.is-collapsed .topbar-content{width:0;transition:inherit}.clickable-icon.sidebar-collapse-icon{background-color:transparent;color:var(--icon-color-focused);padding:0!important;margin:0!important;height:100%!important;width:2.3em!important;margin-inline:0.14em!important;position:absolute}.sidebar-left .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);right:var(--sidebar-margin)}.sidebar-right .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);left:var(--sidebar-margin)}.clickable-icon.sidebar-collapse-icon svg.svg-icon{width:100%;height:100%}.sidebar-section-header{margin:0 0 1em 0;text-transform:uppercase;letter-spacing:.06em;font-weight:600}body{transition:background-color var(--color-fade-speed) ease-in-out}.webpage-container{display:flex;flex-direction:row;height:100%;width:100%;align-items:stretch;justify-content:center}.document-container{opacity:1;flex-basis:100%;max-width:100%;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;transition:opacity .2s ease-in-out;contain:inline-size}.hide{opacity:0;transition:opacity .2s ease-in-out}.document-container>.markdown-preview-view{margin:var(--sidebar-margin);margin-bottom:0;width:100%;width:-webkit-fill-available;width:-moz-available;width:fill-available;background-color:var(--background-primary);transition:background-color var(--color-fade-speed) ease-in-out;border-top-right-radius:var(--window-radius,var(--radius-m));border-top-left-radius:var(--window-radius,var(--radius-m));overflow-x:hidden!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;contain:inline-size}.document-container>.markdown-preview-view>.markdown-preview-sizer{padding-bottom:80vh!important;width:100%!important;max-width:var(--line-width)!important;flex-basis:var(--line-width)!important;transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}.markdown-rendered img:not([width]),.view-content img:not([width]){max-width:100%;outline:0}.document-container>.view-content.embed{display:flex;padding:1em;height:100%;width:100%;align-items:center;justify-content:center}.document-container>.view-content.embed>*{max-width:100%;max-height:100%;object-fit:contain}:has(> :is(.math,table)){overflow-x:auto!important}.document-container>.view-content{overflow-x:auto;contain:content;padding:0;margin:0;height:100%}.scroll-highlight{position:absolute;width:100%;height:100%;pointer-events:none;z-index:1000;background-color:hsla(var(--color-accent-hsl),.25);opacity:0;padding:1em;inset:50%;translate:-50% -50%;border-radius:var(--radius-s)}</style><script defer="">async function loadIncludes(){if("file:"!=location.protocol){let e=document.querySelectorAll("include");for(let t=0;t<e.length;t++){let o=e[t],l=o.getAttribute("src");try{const e=await fetch(l);if(!e.ok){console.log("Could not include file: "+l),o?.remove();continue}let t=await e.text(),n=document.createRange().createContextualFragment(t),i=Array.from(n.children);for(let e of i)e.classList.add("hide"),e.style.transition="opacity 0.5s ease-in-out",setTimeout((()=>{e.classList.remove("hide")}),10);o.before(n),o.remove(),console.log("Included file: "+l)}catch(e){o?.remove(),console.log("Could not include file: "+l,e);continue}}}else{if(document.querySelectorAll("include").length>0){var e=document.createElement("div");e.id="error",e.textContent="Web server exports must be hosted on an http / web server to be viewed correctly.",e.style.position="fixed",e.style.top="50%",e.style.left="50%",e.style.transform="translate(-50%, -50%)",e.style.fontSize="1.5em",e.style.fontWeight="bold",e.style.textAlign="center",document.body.appendChild(e),document.querySelector(".document-container")?.classList.remove("hide")}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script"))),l=0;!function e(){let n=o[l];l++,n&&"true"!=n.getAttribute("loaded")||l<o.length&&e(),l<o.length?n.addEventListener("load",e):t()}()}</script><link rel="stylesheet" href="lib/styles/obsidian.css"><link rel="preload" href="lib/styles/other-plugins.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/other-plugins.css"></noscript><link rel="stylesheet" href="lib/styles/theme.css"><link rel="preload" href="lib/styles/global-variable-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/global-variable-styles.css"></noscript><link rel="preload" href="lib/styles/main-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/main-styles.css"></noscript></head><body class="publish css-settings-manager theme-dark show-inline-title show-ribbon math-booster-preview-enabled h2-underline"><script defer="">let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script><div class="webpage-container workspace"><div class="sidebar-left sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><label class="theme-toggle-container" for="theme_toggle"><input class="theme-toggle-input" type="checkbox" id="theme_toggle"><div class="toggle-background"></div></label></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content"><div class="search-input-container"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div class="search-input-clear-button" aria-label="Clear search"></div></div><include src="lib/html/file-tree.html"></include></div><script defer="">let ls = document.querySelector(".sidebar-left"); ls.classList.add("is-collapsed"); if (window.innerWidth > 768) ls.classList.remove("is-collapsed"); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div><div class="document-container markdown-reading-view hide"><div class="markdown-preview-view markdown-rendered allow-fold-headings allow-fold-lists is-readable-line-width"><style id="MJX-CHTML-styles">mjx-c.mjx-c1D432.TEX-B::before { padding: 0.444em 0.607em 0.2em 0px; content: "y"; }
+mjx-c.mjx-c2ACB.TEX-A::before { padding: 0.752em 0.778em 0.332em 0px; content: ""; }
+mjx-c.mjx-c1D704.TEX-I::before { padding: 0.442em 0.354em 0.01em 0px; content: "ι"; }
+mjx-c.mjx-c1D400.TEX-B::before { padding: 0.698em 0.869em 0px 0px; content: "A"; }
+mjx-c.mjx-c1D427.TEX-B::before { padding: 0.45em 0.639em 0px 0px; content: "n"; }
+mjx-c.mjx-c1D41E.TEX-B::before { padding: 0.452em 0.527em 0.006em 0px; content: "e"; }
+mjx-c.mjx-c1D40F.TEX-B::before { padding: 0.686em 0.786em 0px 0px; content: "P"; }
+mjx-c.mjx-c2C6.TEX-S3::before { padding: 0.772em 1.444em 0px 0px; content: "ˆ"; }
+mjx-c.mjx-c2C6.TEX-S4::before { padding: 0.845em 1.902em 0px 0px; content: "ˆ"; }
+mjx-c.mjx-c2C6.TEX-S2::before { padding: 0.772em 1em 0px 0px; content: "ˆ"; }
+mjx-c.mjx-c53.TEX-C::before { padding: 0.705em 0.642em 0.022em 0px; content: "S"; }
+mjx-c.mjx-c1D431.TEX-B::before { padding: 0.444em 0.607em 0px 0px; content: "x"; }
+mjx-c.mjx-c1D489.TEX-BI::before { padding: 0.694em 0.668em 0.008em 0px; content: "h"; }
+mjx-c.mjx-c2D9::before { padding: 0.669em 0.5em 0px 0px; content: "˙"; }
+mjx-c.mjx-c1D74B.TEX-BI::before { padding: 0.452em 0.747em 0.216em 0px; content: "φ"; }
+mjx-stretchy-v.mjx-c2016 mjx-ext mjx-c::before { content: "∥"; width: 0.556em; }
+mjx-c.mjx-c1D409.TEX-B::before { padding: 0.686em 0.594em 0.011em 0px; content: "J"; }
+mjx-c.mjx-c3A8::before { padding: 0.683em 0.778em 0px 0px; content: "Ψ"; }
+mjx-c.mjx-c1D708.TEX-I::before { padding: 0.442em 0.53em 0px 0px; content: "ν"; }
+mjx-c.mjx-c46.TEX-C::before { padding: 0.683em 0.829em 0.032em 0px; content: "F"; }
+mjx-c.mjx-c45.TEX-C::before { padding: 0.705em 0.564em 0.022em 0px; content: "E"; }
+mjx-c.mjx-c1D46D.TEX-BI::before { padding: 0.68em 0.809em 0px 0px; content: "F"; }
+mjx-c.mjx-c2207::before { padding: 0.683em 0.833em 0.033em 0px; content: "∇"; }
+mjx-c.mjx-c1D48A.TEX-BI::before { padding: 0.694em 0.405em 0.008em 0px; content: "i"; }
+mjx-c.mjx-c1D48B.TEX-BI::before { padding: 0.694em 0.471em 0.202em 0px; content: "j"; }
+mjx-c.mjx-c1D48C.TEX-BI::before { padding: 0.694em 0.604em 0.008em 0px; content: "k"; }
+mjx-c.mjx-c1D482.TEX-BI::before { padding: 0.452em 0.633em 0.008em 0px; content: "a"; }
+mjx-c.mjx-c1D483.TEX-BI::before { padding: 0.694em 0.521em 0.008em 0px; content: "b"; }
+mjx-c.mjx-c1D49B.TEX-BI::before { padding: 0.452em 0.555em 0.008em 0px; content: "z"; }
+mjx-c.mjx-c46::before { padding: 0.68em 0.653em 0px 0px; content: "F"; }
+mjx-c.mjx-c1D491.TEX-BI::before { padding: 0.452em 0.601em 0.194em 0px; content: "p"; }
+mjx-c.mjx-c1D46E.TEX-BI::before { padding: 0.703em 0.887em 0.016em 0px; content: "G"; }
+mjx-c.mjx-c1D46F.TEX-BI::before { padding: 0.686em 1.027em 0px 0px; content: "H"; }
+mjx-c.mjx-c1D488.TEX-BI::before { padding: 0.452em 0.545em 0.202em 0px; content: "g"; }
+mjx-c.mjx-c1D478.TEX-BI::before { padding: 0.703em 0.869em 0.194em 0px; content: "Q"; }
+mjx-c.mjx-c2212.TEX-B::before { padding: 0.281em 0.894em 0px 0px; content: "−"; }
+mjx-c.mjx-c1D499.TEX-BI::before { padding: 0.452em 0.659em 0.008em 0px; content: "x"; }
+mjx-c.mjx-c1D493.TEX-BI::before { padding: 0.452em 0.529em 0.008em 0px; content: "r"; }
+mjx-c.mjx-c1D477.TEX-BI::before { padding: 0.686em 0.847em 0px 0px; content: "P"; }
+mjx-c.mjx-c1D48E.TEX-BI::before { padding: 0.452em 1.032em 0.008em 0px; content: "m"; }
+mjx-c.mjx-c1D7D0.TEX-B::before { padding: 0.654em 0.575em 0px 0px; content: "2"; }
+mjx-c.mjx-c1D48F.TEX-BI::before { padding: 0.452em 0.713em 0.008em 0px; content: "n"; }
+mjx-c.mjx-c1D468.TEX-BI::before { padding: 0.711em 0.869em 0px 0px; content: "A"; }
+mjx-c.mjx-c1D492.TEX-BI::before { padding: 0.452em 0.542em 0.194em 0px; content: "q"; }
+mjx-c.mjx-c2D::before { padding: 0.252em 0.333em 0px 0px; content: "-"; }
+mjx-c.mjx-c2247.TEX-A::before { padding: 0.652em 0.778em 0.155em 0px; content: "≆"; }
+mjx-c.mjx-c2289.TEX-A::before { padding: 0.801em 0.778em 0.303em 0px; content: "⊉"; }
+mjx-c.mjx-c2262::before { padding: 0.716em 0.778em 0.215em 0px; content: "≢"; }
+mjx-c.mjx-c25C3::before { padding: 0.505em 0.5em 0.005em 0px; content: "◃"; }
+mjx-c.mjx-c27E8.TEX-S4::before { padding: 1.75em 0.806em 1.248em 0px; content: "⟨"; }
+mjx-c.mjx-c27E9.TEX-S4::before { padding: 1.75em 0.806em 1.248em 0px; content: "⟩"; }
+mjx-c.mjx-c7E::before { padding: 0.318em 0.5em 0px 0px; content: "~"; }
+mjx-c.mjx-c2DC.TEX-S2::before { padding: 0.75em 1em 0px 0px; content: "˜"; }
+mjx-c.mjx-c1D497.TEX-BI::before { padding: 0.453em 0.567em 0.008em 0px; content: "v"; }
+mjx-c.mjx-c22EE::before { padding: 1.3em 0.278em 0.03em 0px; content: "⋮"; }
+mjx-c.mjx-c1D7CE.TEX-B::before { padding: 0.654em 0.575em 0.01em 0px; content: "0"; }
+mjx-c.mjx-c6A::before { padding: 0.669em 0.306em 0.205em 0px; content: "j"; }
+mjx-c.mjx-c2DC::before { padding: 0.668em 0.5em 0px 0px; content: "˜"; }
+mjx-c.mjx-c1D52D.TEX-FR::before { padding: 0.541em 0.5em 0.212em 0px; content: "p"; }
+mjx-c.mjx-c4D::before { padding: 0.683em 0.917em 0px 0px; content: "M"; }
+mjx-c.mjx-c50.TEX-C::before { padding: 0.683em 0.733em 0.057em 0px; content: "P"; }
+mjx-c.mjx-c1D7D1.TEX-B::before { padding: 0.655em 0.575em 0.011em 0px; content: "3"; }
+mjx-c.mjx-c1D7D3.TEX-B::before { padding: 0.655em 0.575em 0.011em 0px; content: "5"; }
+mjx-c.mjx-c4F::before { padding: 0.705em 0.778em 0.022em 0px; content: "O"; }
+mjx-c.mjx-c22F1::before { padding: 1.52em 1.282em 0px 0px; content: "⋱"; }
+mjx-c.mjx-c2288.TEX-A::before { padding: 0.801em 0.778em 0.303em 0px; content: "⊈"; }
+mjx-c.mjx-c2244::before { padding: 0.716em 0.778em 0.215em 0px; content: "≄"; }
+mjx-c.mjx-c27E8.TEX-S2::before { padding: 1.15em 0.611em 0.649em 0px; content: "⟨"; }
+mjx-c.mjx-c27E9.TEX-S2::before { padding: 1.15em 0.611em 0.649em 0px; content: "⟩"; }
+mjx-c.mjx-c27E8.TEX-S3::before { padding: 1.45em 0.75em 0.95em 0px; content: "⟨"; }
+mjx-c.mjx-c27E9.TEX-S3::before { padding: 1.45em 0.75em 0.949em 0px; content: "⟩"; }
+mjx-c.mjx-c1D422.TEX-B::before { padding: 0.695em 0.319em 0px 0px; content: "i"; }
+mjx-c.mjx-c3A6::before { padding: 0.683em 0.722em 0px 0px; content: "Φ"; }
+mjx-stretchy-h.mjx-c2192 mjx-ext mjx-c::before { content: "−"; padding: 0.583em 0px 0.082em; }
+mjx-stretchy-h.mjx-c2192 mjx-end mjx-c::before { content: "→"; padding: 0.583em 0px 0.082em; }
+mjx-c.mjx-c43::before { padding: 0.705em 0.722em 0.021em 0px; content: "C"; }
+mjx-c.mjx-c2224.TEX-A::before { padding: 0.75em 0.297em 0.252em 0px; content: "∤"; }
+mjx-c.mjx-c1D402.TEX-B::before { padding: 0.697em 0.831em 0.011em 0px; content: "C"; }
+mjx-c.mjx-c1D70F.TEX-I::before { padding: 0.431em 0.517em 0.013em 0px; content: "τ"; }
+mjx-c.mjx-c1D405.TEX-B::before { padding: 0.68em 0.724em 0px 0px; content: "F"; }
+mjx-c.mjx-c22CA.TEX-A::before { padding: 0.492em 0.778em 0px 0px; content: "⋊"; }
+mjx-c.mjx-c1D419.TEX-B::before { padding: 0.686em 0.703em 0px 0px; content: "Z"; }
+mjx-c.mjx-c21D0::before { padding: 0.525em 1em 0.024em 0px; content: "⇐"; }
+mjx-c.mjx-c1D52A.TEX-FR::before { padding: 0.475em 0.767em 0.026em 0px; content: "m"; }
+mjx-c.mjx-c1D51E.TEX-FR::before { padding: 0.47em 0.5em 0.035em 0px; content: "a"; }
+mjx-c.mjx-c2A01.TEX-S1::before { padding: 0.75em 1.111em 0.25em 0px; content: "⨁"; }
+mjx-c.mjx-c1D49A.TEX-BI::before { padding: 0.452em 0.59em 0.202em 0px; content: "y"; }
+mjx-c.mjx-c1D487.TEX-BI::before { padding: 0.701em 0.624em 0.201em 0px; content: "f"; }
+mjx-c.mjx-c228A.TEX-A::before { padding: 0.635em 0.778em 0.241em 0px; content: "⊊"; }
+mjx-c.mjx-c2131.TEX-SC::before { padding: 0.735em 0.99em 0.036em 0px; content: "F"; }
+mjx-c.mjx-c1D4A2.TEX-SC::before { padding: 0.717em 0.738em 0.037em 0px; content: "G"; }
+mjx-c.mjx-c2113::before { padding: 0.705em 0.417em 0.02em 0px; content: "ℓ"; }
+mjx-c.mjx-c222C.TEX-S2::before { padding: 1.36em 1.472em 0.862em 0px; content: "∬"; }
+mjx-mlabeledtr { display: table-row; text-align: left; }
+mjx-mlabeledtr[rowalign="top"] > mjx-mtd { vertical-align: top; }
+mjx-mlabeledtr[rowalign="center"] > mjx-mtd { vertical-align: middle; }
+mjx-mlabeledtr[rowalign="bottom"] > mjx-mtd { vertical-align: bottom; }
+mjx-mlabeledtr[rowalign="baseline"] > mjx-mtd { vertical-align: baseline; }
+mjx-mlabeledtr[rowalign="axis"] > mjx-mtd { vertical-align: 0.25em; }
+mjx-stretchy-v.mjx-c221A mjx-beg mjx-c::before { content: ""; padding: 0.605em 1.056em 0.014em 0px; }
+mjx-stretchy-v.mjx-c221A mjx-ext mjx-c::before { content: ""; width: 1.056em; }
+mjx-stretchy-v.mjx-c221A mjx-end mjx-c::before { content: "⎷"; padding: 0.935em 1.056em 0.885em 0px; }
+mjx-stretchy-v.mjx-c221A > mjx-end { margin-top: -1.82em; }
+mjx-stretchy-v.mjx-c221A > mjx-ext { border-top-width: 0.589em; border-bottom-width: 1.79em; }
+mjx-c.mjx-c221A.TEX-S3::before { padding: 1.45em 1.02em 0.95em 0px; content: "√"; }
+mjx-c.mjx-c221A.TEX-S4::before { padding: 1.75em 1.02em 1.25em 0px; content: "√"; }
+mjx-c.mjx-c2220::before { padding: 0.694em 0.722em 0px 0px; content: "∠"; }
+mjx-c.mjx-c221A.TEX-S1::before { padding: 0.85em 1.02em 0.35em 0px; content: "√"; }
+mjx-c.mjx-c1D442.TEX-I::before { padding: 0.704em 0.763em 0.022em 0px; content: "O"; }
+mjx-c.mjx-c1D53B.TEX-A::before { padding: 0.683em 0.722em 0px 0px; content: "D"; }
+mjx-c.mjx-c50::before { padding: 0.683em 0.681em 0px 0px; content: "P"; }
+mjx-c.mjx-c56::before { padding: 0.683em 0.75em 0.022em 0px; content: "V"; }
+mjx-mroot { display: inline-block; text-align: left; }
+mjx-root { display: inline-block; white-space: nowrap; }
+mjx-surd { display: inline-block; vertical-align: top; }
+mjx-sqrt { display: inline-block; padding-top: 0.07em; }
+mjx-sqrt > mjx-box { border-top: 0.07em solid; }
+mjx-sqrt.mjx-tall > mjx-box { padding-left: 0.3em; margin-left: -0.3em; }
+mjx-c.mjx-c21CD.TEX-A::before { padding: 0.534em 1em 0.035em 0px; content: "⇍"; }
+mjx-c.mjx-c220F.TEX-S1::before { padding: 0.75em 0.944em 0.25em 0px; content: "∏"; }
+mjx-c.mjx-c49::before { padding: 0.683em 0.361em 0px 0px; content: "I"; }
+mjx-c.mjx-c3A9::before { padding: 0.704em 0.722em 0px 0px; content: "Ω"; }
+mjx-c.mjx-c1D6FE.TEX-I::before { padding: 0.441em 0.543em 0.216em 0px; content: "γ"; }
+mjx-c.mjx-c2248::before { padding: 0.483em 0.778em 0px 0px; content: "≈"; }
+mjx-c.mjx-c5B.TEX-S2::before { padding: 1.15em 0.472em 0.649em 0px; content: "["; }
+mjx-c.mjx-c5D.TEX-S2::before { padding: 1.15em 0.472em 0.649em 0px; content: "]"; }
+mjx-c.mjx-c222E.TEX-S2::before { padding: 1.36em 0.944em 0.862em 0px; content: "∮"; }
+mjx-c.mjx-c2297::before { padding: 0.583em 0.778em 0.083em 0px; content: "⊗"; }
+mjx-c.mjx-c27F6::before { padding: 0.511em 1.638em 0.011em 0px; content: "⟶"; }
+mjx-c.mjx-c1D6FD.TEX-I::before { padding: 0.705em 0.566em 0.194em 0px; content: "β"; }
+mjx-c.mjx-c1D53D.TEX-A::before { padding: 0.683em 0.611em 0px 0px; content: "F"; }
+mjx-c.mjx-c22B2.TEX-A::before { padding: 0.539em 0.778em 0.041em 0px; content: "⊲"; }
+mjx-c.mjx-c41::before { padding: 0.716em 0.75em 0px 0px; content: "A"; }
+mjx-c.mjx-c6B::before { padding: 0.694em 0.528em 0px 0px; content: "k"; }
+mjx-c.mjx-c3F::before { padding: 0.705em 0.472em 0px 0px; content: "?"; }
+mjx-c.mjx-c2A01.TEX-S2::before { padding: 0.949em 1.511em 0.449em 0px; content: "⨁"; }
+mjx-c.mjx-c212C.TEX-SC::before { padding: 0.708em 0.928em 0.028em 0px; content: "B"; }
+mjx-c.mjx-c1D70C.TEX-I::before { padding: 0.442em 0.517em 0.216em 0px; content: "ρ"; }
+mjx-c.mjx-c22A5::before { padding: 0.668em 0.778em 0px 0px; content: "⊥"; }
+mjx-c.mjx-c47::before { padding: 0.705em 0.785em 0.022em 0px; content: "G"; }
+mjx-c.mjx-c27E8.TEX-S1::before { padding: 0.85em 0.472em 0.35em 0px; content: "⟨"; }
+mjx-c.mjx-c27E9.TEX-S1::before { padding: 0.85em 0.472em 0.35em 0px; content: "⟩"; }
+mjx-c.mjx-c55::before { padding: 0.683em 0.75em 0.022em 0px; content: "U"; }
+mjx-c.mjx-c2295::before { padding: 0.583em 0.778em 0.083em 0px; content: "⊕"; }
+mjx-c.mjx-c1D713.TEX-I::before { padding: 0.694em 0.651em 0.205em 0px; content: "ψ"; }
+mjx-c.mjx-c2243::before { padding: 0.464em 0.778em 0px 0px; content: "≃"; }
+mjx-c.mjx-c3A3::before { padding: 0.683em 0.722em 0px 0px; content: "Σ"; }
+mjx-c.mjx-c1D53C.TEX-A::before { padding: 0.683em 0.667em 0px 0px; content: "E"; }
+mjx-c.mjx-c21::before { padding: 0.716em 0.278em 0px 0px; content: "!"; }
+mjx-c.mjx-c1D701.TEX-I::before { padding: 0.704em 0.471em 0.204em 0px; content: "ζ"; }
+mjx-c.mjx-c1D44C.TEX-I::before { padding: 0.683em 0.763em 0px 0px; content: "Y"; }
+mjx-c.mjx-c1D449.TEX-I::before { padding: 0.683em 0.769em 0.022em 0px; content: "V"; }
+mjx-c.mjx-c55.TEX-C::before { padding: 0.683em 0.687em 0.028em 0px; content: "U"; }
+mjx-c.mjx-c1D719.TEX-I::before { padding: 0.694em 0.596em 0.205em 0px; content: "ϕ"; }
+mjx-c.mjx-c2102.TEX-A::before { padding: 0.702em 0.722em 0.019em 0px; content: "C"; }
+mjx-c.mjx-c2013::before { padding: 0.285em 0.5em 0px 0px; content: "–"; }
+mjx-c.mjx-c1D462.TEX-I::before { padding: 0.442em 0.572em 0.011em 0px; content: "u"; }
+mjx-c.mjx-c1D463.TEX-I::before { padding: 0.443em 0.485em 0.011em 0px; content: "v"; }
+mjx-stretchy-v.mjx-c7C mjx-ext mjx-c::before { content: "∣"; width: 0.333em; }
+mjx-c.mjx-c67::before { padding: 0.453em 0.5em 0.206em 0px; content: "g"; }
+mjx-c.mjx-c25B3::before { padding: 0.716em 0.889em 0px 0px; content: "△"; }
+mjx-c.mjx-c1D709.TEX-I::before { padding: 0.704em 0.438em 0.205em 0px; content: "ξ"; }
+mjx-c.mjx-c225C.TEX-A::before { padding: 0.859em 0.778em 0px 0px; content: "≜"; }
+mjx-c.mjx-c1D40D.TEX-B::before { padding: 0.686em 0.9em 0px 0px; content: "N"; }
+mjx-c.mjx-c1D447.TEX-I::before { padding: 0.677em 0.704em 0px 0px; content: "T"; }
+mjx-c.mjx-c1D410.TEX-B::before { padding: 0.696em 0.864em 0.193em 0px; content: "Q"; }
+mjx-c.mjx-c1D7CF.TEX-B::before { padding: 0.655em 0.575em 0px 0px; content: "1"; }
+mjx-c.mjx-c1D4AE.TEX-SC::before { padding: 0.708em 1.016em 0.036em 0px; content: "S"; }
+mjx-c.mjx-c54::before { padding: 0.677em 0.722em 0px 0px; content: "T"; }
+mjx-c.mjx-c44::before { padding: 0.683em 0.764em 0px 0px; content: "D"; }
+mjx-c.mjx-c21C9.TEX-A::before { padding: 0.583em 1em 0.083em 0px; content: "⇉"; }
+mjx-c.mjx-c2261::before { padding: 0.464em 0.778em 0px 0px; content: "≡"; }
+mjx-c.mjx-c21CF.TEX-A::before { padding: 0.534em 1em 0.035em 0px; content: "⇏"; }
+mjx-c.mjx-c77::before { padding: 0.431em 0.722em 0.011em 0px; content: "w"; }
+mjx-c.mjx-c219B.TEX-A::before { padding: 0.437em 1em 0px 0px; content: "↛"; }
+mjx-c.mjx-c2DC.TEX-S1::before { padding: 0.722em 0.556em 0px 0px; content: "˜"; }
+mjx-c.mjx-c1D44D.TEX-I::before { padding: 0.683em 0.723em 0px 0px; content: "Z"; }
+mjx-c.mjx-c2A06.TEX-S2::before { padding: 0.95em 1.111em 0.45em 0px; content: "⨆"; }
+mjx-c.mjx-c1D44A.TEX-I::before { padding: 0.683em 1.048em 0.022em 0px; content: "W"; }
+mjx-c.mjx-c42.TEX-C::before { padding: 0.705em 0.657em 0.022em 0px; content: "B"; }
+mjx-c.mjx-c44.TEX-C::before { padding: 0.683em 0.771em 0px 0px; content: "D"; }
+mjx-c.mjx-c5D.TEX-S1::before { padding: 0.85em 0.417em 0.349em 0px; content: "]"; }
+mjx-c.mjx-c1D444.TEX-I::before { padding: 0.704em 0.791em 0.194em 0px; content: "Q"; }
+mjx-c.mjx-c27F9::before { padding: 0.525em 1.638em 0.024em 0px; content: "⟹"; }
+mjx-c.mjx-c2191::before { padding: 0.694em 0.5em 0.193em 0px; content: "↑"; }
+mjx-c.mjx-c76::before { padding: 0.431em 0.528em 0.011em 0px; content: "v"; }
+mjx-c.mjx-c62::before { padding: 0.694em 0.556em 0.011em 0px; content: "b"; }
+mjx-c.mjx-c1D6FC.TEX-I::before { padding: 0.442em 0.64em 0.011em 0px; content: "α"; }
+mjx-c.mjx-c27FA::before { padding: 0.525em 1.858em 0.024em 0px; content: "⟺"; }
+mjx-c.mjx-c2287::before { padding: 0.636em 0.778em 0.138em 0px; content: "⊇"; }
+mjx-stretchy-v.mjx-c28 mjx-beg mjx-c::before { content: "⎛"; padding: 1.154em 0.875em 0.655em 0px; }
+mjx-stretchy-v.mjx-c28 mjx-ext mjx-c::before { content: "⎜"; width: 0.875em; }
+mjx-stretchy-v.mjx-c28 mjx-end mjx-c::before { content: "⎝"; padding: 1.165em 0.875em 0.644em 0px; }
+mjx-stretchy-v.mjx-c28 > mjx-end { margin-top: -1.809em; }
+mjx-stretchy-v.mjx-c28 > mjx-ext { border-top-width: 1.779em; border-bottom-width: 1.779em; }
+mjx-stretchy-v.mjx-c29 mjx-beg mjx-c::before { content: "⎞"; padding: 1.154em 0.875em 0.655em 0px; }
+mjx-stretchy-v.mjx-c29 mjx-ext mjx-c::before { content: "⎟"; width: 0.875em; }
+mjx-stretchy-v.mjx-c29 mjx-end mjx-c::before { content: "⎠"; padding: 1.165em 0.875em 0.644em 0px; }
+mjx-stretchy-v.mjx-c29 > mjx-end { margin-top: -1.809em; }
+mjx-stretchy-v.mjx-c29 > mjx-ext { border-top-width: 1.779em; border-bottom-width: 1.779em; }
+mjx-c.mjx-c2034::before { padding: 0.56em 0.825em 0px 0px; content: "′′′"; }
+mjx-c.mjx-c43.TEX-C::before { padding: 0.705em 0.527em 0.025em 0px; content: "C"; }
+mjx-c.mjx-c37::before { padding: 0.676em 0.5em 0.022em 0px; content: "7"; }
+mjx-c.mjx-c38::before { padding: 0.666em 0.5em 0.022em 0px; content: "8"; }
+mjx-c.mjx-c35::before { padding: 0.666em 0.5em 0.022em 0px; content: "5"; }
+mjx-c.mjx-cB1::before { padding: 0.666em 0.778em 0px 0px; content: "±"; }
+mjx-c.mjx-c34::before { padding: 0.677em 0.5em 0px 0px; content: "4"; }
+mjx-c.mjx-c5B.TEX-S1::before { padding: 0.85em 0.417em 0.349em 0px; content: "["; }
+mjx-c.mjx-c1D43D.TEX-I::before { padding: 0.683em 0.633em 0.022em 0px; content: "J"; }
+mjx-c.mjx-c394::before { padding: 0.716em 0.833em 0px 0px; content: "Δ"; }
+mjx-c.mjx-c211B.TEX-SC::before { padding: 0.717em 0.887em 0.017em 0px; content: "R"; }
+mjx-c.mjx-c2020::before { padding: 0.705em 0.444em 0.216em 0px; content: "†"; }
+mjx-c.mjx-c1D4AC.TEX-SC::before { padding: 0.717em 0.883em 0.017em 0px; content: "Q"; }
+mjx-c.mjx-c393::before { padding: 0.68em 0.625em 0px 0px; content: "Γ"; }
+mjx-c.mjx-cAF::before { padding: 0.59em 0.5em 0px 0px; content: "¯"; }
+mjx-c.mjx-c21AA::before { padding: 0.511em 1.126em 0.011em 0px; content: "↪"; }
+mjx-c.mjx-c27FC::before { padding: 0.511em 1.638em 0.011em 0px; content: "⟼"; }
+mjx-c.mjx-c1D715::before { padding: 0.715em 0.566em 0.022em 0px; content: "∂"; }
+mjx-c.mjx-c2DA::before { padding: 0.715em 0.5em 0px 0px; content: "˚"; }
+mjx-c.mjx-c1D467.TEX-I::before { padding: 0.442em 0.465em 0.011em 0px; content: "z"; }
+mjx-c.mjx-c2C6::before { padding: 0.694em 0.5em 0px 0px; content: "ˆ"; }
+mjx-c.mjx-c4F.TEX-C::before { padding: 0.705em 0.796em 0.022em 0px; content: "O"; }
+mjx-c.mjx-c1D714.TEX-I::before { padding: 0.443em 0.622em 0.011em 0px; content: "ω"; }
+mjx-c.mjx-c1D49C.TEX-SC::before { padding: 0.717em 1.016em 0.008em 0px; content: "A"; }
+mjx-c.mjx-c221A::before { padding: 0.8em 0.853em 0.2em 0px; content: "√"; }
+mjx-c.mjx-c1D443.TEX-I::before { padding: 0.683em 0.751em 0px 0px; content: "P"; }
+mjx-c.mjx-c220F.TEX-S2::before { padding: 0.95em 1.278em 0.45em 0px; content: "∏"; }
+mjx-c.mjx-c2124.TEX-A::before { padding: 0.683em 0.667em 0px 0px; content: "Z"; }
+mjx-c.mjx-c23::before { padding: 0.694em 0.833em 0.194em 0px; content: "#"; }
+mjx-c.mjx-c2033::before { padding: 0.56em 0.55em 0px 0px; content: "′′"; }
+mjx-c.mjx-c1D448.TEX-I::before { padding: 0.683em 0.767em 0.022em 0px; content: "U"; }
+mjx-c.mjx-c1D4AB.TEX-SC::before { padding: 0.716em 1.031em 0.037em 0px; content: "P"; }
+mjx-c.mjx-c41.TEX-C::before { padding: 0.728em 0.819em 0.05em 0px; content: "A"; }
+mjx-c.mjx-c3D.TEX-MI::before { padding: 0.367em 0.767em 0px 0px; content: "="; }
+mjx-c.mjx-c1D411.TEX-B::before { padding: 0.686em 0.862em 0.011em 0px; content: "R"; }
+.mjx-stretched mjx-c.mjx-c2013::before { content: "–"; }
+mjx-stretchy-h.mjx-c2013 mjx-ext mjx-c::before { content: "–"; padding: 0.285em 0px 0px; }
+mjx-c.mjx-c70::before { padding: 0.442em 0.556em 0.194em 0px; content: "p"; }
+mjx-c.mjx-c7D.TEX-S3::before { padding: 1.45em 0.75em 0.949em 0px; content: "}"; }
+mjx-c.mjx-c1D457.TEX-I::before { padding: 0.661em 0.412em 0.204em 0px; content: "j"; }
+mjx-c.mjx-c3B::before { padding: 0.43em 0.278em 0.194em 0px; content: ";"; }
+mjx-c.mjx-c2006::before { padding: 0px 0.167em 0px 0px; content: ""; }
+mjx-c.mjx-c7B.TEX-S1::before { padding: 0.85em 0.583em 0.349em 0px; content: "{"; }
+mjx-c.mjx-c7D.TEX-S1::before { padding: 0.85em 0.583em 0.349em 0px; content: "}"; }
+mjx-c.mjx-c2205.TEX-A::before { padding: 0.587em 0.778em 0px 0px; content: "∅"; }
+mjx-c.mjx-c68::before { padding: 0.694em 0.556em 0px 0px; content: "h"; }
+mjx-c.mjx-c1D43E.TEX-I::before { padding: 0.683em 0.889em 0px 0px; content: "K"; }
+mjx-c.mjx-c211A.TEX-A::before { padding: 0.701em 0.778em 0.181em 0px; content: "Q"; }
+mjx-c.mjx-c1D44F.TEX-I::before { padding: 0.694em 0.429em 0.011em 0px; content: "b"; }
+mjx-c.mjx-c2294::before { padding: 0.598em 0.667em 0px 0px; content: "⊔"; }
+mjx-c.mjx-c1D437.TEX-I::before { padding: 0.683em 0.828em 0px 0px; content: "D"; }
+mjx-c.mjx-c2245::before { padding: 0.589em 0.778em 0px 0px; content: "≅"; }
+mjx-c.mjx-c2241.TEX-A::before { padding: 0.467em 0.778em 0px 0px; content: "≁"; }
+mjx-c.mjx-c1D43C.TEX-I::before { padding: 0.683em 0.504em 0px 0px; content: "I"; }
+mjx-c.mjx-c7B.TEX-S4::before { padding: 1.75em 0.806em 1.249em 0px; content: "{"; }
+mjx-c.mjx-c2286::before { padding: 0.636em 0.778em 0.138em 0px; content: "⊆"; }
+mjx-c.mjx-c7D.TEX-S4::before { padding: 1.75em 0.806em 1.249em 0px; content: "}"; }
+mjx-c.mjx-c4C::before { padding: 0.683em 0.625em 0px 0px; content: "L"; }
+mjx-c.mjx-c48::before { padding: 0.683em 0.75em 0px 0px; content: "H"; }
+mjx-c.mjx-c53::before { padding: 0.705em 0.556em 0.022em 0px; content: "S"; }
+mjx-c.mjx-c52::before { padding: 0.683em 0.736em 0.022em 0px; content: "R"; }
+mjx-c.mjx-c1D43A.TEX-I::before { padding: 0.705em 0.786em 0.022em 0px; content: "G"; }
+mjx-c.mjx-c1D70E.TEX-I::before { padding: 0.431em 0.571em 0.011em 0px; content: "σ"; }
+mjx-c.mjx-c1D446.TEX-I::before { padding: 0.705em 0.645em 0.022em 0px; content: "S"; }
+mjx-c.mjx-c1D44E.TEX-I::before { padding: 0.441em 0.529em 0.01em 0px; content: "a"; }
+mjx-c.mjx-c2135::before { padding: 0.694em 0.611em 0px 0px; content: "ℵ"; }
+mjx-c.mjx-c22EF::before { padding: 0.31em 1.172em 0px 0px; content: "⋯"; }
+mjx-c.mjx-c7B.TEX-S2::before { padding: 1.15em 0.667em 0.649em 0px; content: "{"; }
+mjx-c.mjx-c7D.TEX-S2::before { padding: 1.15em 0.667em 0.649em 0px; content: "}"; }
+mjx-msqrt { display: inline-block; text-align: left; }
+mjx-root { display: inline-block; white-space: nowrap; }
+mjx-surd { display: inline-block; vertical-align: top; }
+mjx-sqrt { display: inline-block; padding-top: 0.07em; }
+mjx-sqrt > mjx-box { border-top: 0.07em solid; }
+mjx-sqrt.mjx-tall > mjx-box { padding-left: 0.3em; margin-left: -0.3em; }
+mjx-c.mjx-c39::before { padding: 0.666em 0.5em 0.022em 0px; content: "9"; }
+mjx-c.mjx-c2C6.TEX-S1::before { padding: 0.744em 0.556em 0px 0px; content: "ˆ"; }
+mjx-c.mjx-c1D461.TEX-I::before { padding: 0.626em 0.361em 0.011em 0px; content: "t"; }
+mjx-c.mjx-c1D445.TEX-I::before { padding: 0.683em 0.759em 0.021em 0px; content: "R"; }
+mjx-c.mjx-c1D436.TEX-I::before { padding: 0.705em 0.76em 0.022em 0px; content: "C"; }
+mjx-c.mjx-c1D43B.TEX-I::before { padding: 0.683em 0.888em 0px 0px; content: "H"; }
+mjx-c.mjx-c221A.TEX-S2::before { padding: 1.15em 1.02em 0.65em 0px; content: "√"; }
+mjx-c.mjx-c2217::before { padding: 0.465em 0.5em 0px 0px; content: "∗"; }
+mjx-c.mjx-c65::before { padding: 0.448em 0.444em 0.011em 0px; content: "e"; }
+mjx-c.mjx-c36::before { padding: 0.666em 0.5em 0.022em 0px; content: "6"; }
+mjx-c.mjx-c75::before { padding: 0.442em 0.556em 0.011em 0px; content: "u"; }
+mjx-c.mjx-c66::before { padding: 0.705em 0.372em 0px 0px; content: "f"; }
+mjx-c.mjx-c72::before { padding: 0.442em 0.392em 0px 0px; content: "r"; }
+mjx-c.mjx-c79::before { padding: 0.431em 0.528em 0.204em 0px; content: "y"; }
+mjx-c.mjx-c20::before { padding: 0px 0.25em 0px 0px; content: " "; }
+mjx-c.mjx-c223C::before { padding: 0.367em 0.778em 0px 0px; content: "∼"; }
+mjx-c.mjx-c1D702.TEX-I::before { padding: 0.442em 0.497em 0.216em 0px; content: "η"; }
+mjx-c.mjx-c1D434.TEX-I::before { padding: 0.716em 0.75em 0px 0px; content: "A"; }
+mjx-c.mjx-c4D.TEX-C::before { padding: 0.705em 1.201em 0.05em 0px; content: "M"; }
+mjx-c.mjx-c22C3.TEX-S1::before { padding: 0.75em 0.833em 0.249em 0px; content: "⋃"; }
+mjx-c.mjx-c2283::before { padding: 0.54em 0.778em 0.04em 0px; content: "⊃"; }
+mjx-stretchy-v.mjx-c7B mjx-beg mjx-c::before { content: "⎧"; padding: 0.899em 0.889em 0.01em 0px; }
+mjx-stretchy-v.mjx-c7B mjx-ext mjx-c::before { content: "⎪"; width: 0.889em; }
+mjx-stretchy-v.mjx-c7B mjx-end mjx-c::before { content: "⎩"; padding: 0.01em 0.889em 0.899em 0px; }
+mjx-stretchy-v.mjx-c7B mjx-mid mjx-c::before { content: "⎨"; padding: 1.16em 0.889em 0.66em 0px; }
+mjx-stretchy-v.mjx-c7B > mjx-mid { margin-top: -0.91em; margin-bottom: -0.91em; }
+mjx-stretchy-v.mjx-c7B > mjx-end { margin-top: -0.909em; }
+mjx-stretchy-v.mjx-c7B > mjx-ext { height: 50%; border-top-width: 0.879em; border-bottom-width: 0.879em; }
+mjx-stretchy-h.mjx-c23DF mjx-beg mjx-c::before { content: ""; padding: 0.32em 0px 0.2em; }
+mjx-stretchy-h.mjx-c23DF mjx-ext mjx-c::before { content: ""; padding: 0.32em 0px 0.2em; }
+mjx-stretchy-h.mjx-c23DF mjx-end mjx-c::before { content: ""; padding: 0.32em 0px 0.2em; }
+mjx-stretchy-h.mjx-c23DF mjx-mid mjx-c::before { content: ""; padding: 0.32em 0px 0.2em; }
+mjx-stretchy-h.mjx-c23DF > mjx-ext { width: 50%; }
+mjx-c.mjx-c1D439.TEX-I::before { padding: 0.68em 0.749em 0px 0px; content: "F"; }
+mjx-c.mjx-c210E.TEX-I::before { padding: 0.694em 0.576em 0.011em 0px; content: "h"; }
+mjx-c.mjx-c2260::before { padding: 0.716em 0.778em 0.215em 0px; content: "≠"; }
+mjx-c.mjx-c1D440.TEX-I::before { padding: 0.683em 1.051em 0px 0px; content: "M"; }
+mjx-c.mjx-c1D458.TEX-I::before { padding: 0.694em 0.521em 0.011em 0px; content: "k"; }
+mjx-c.mjx-c1D44B.TEX-I::before { padding: 0.683em 0.852em 0px 0px; content: "X"; }
+mjx-c.mjx-c52.TEX-C::before { padding: 0.682em 0.848em 0.022em 0px; content: "R"; }
+mjx-c.mjx-c1D707.TEX-I::before { padding: 0.442em 0.603em 0.216em 0px; content: "μ"; }
+mjx-c.mjx-c1D716.TEX-I::before { padding: 0.431em 0.406em 0.011em 0px; content: "ϵ"; }
+mjx-c.mjx-c2218::before { padding: 0.444em 0.5em 0px 0px; content: "∘"; }
+mjx-c.mjx-c222A::before { padding: 0.598em 0.667em 0.022em 0px; content: "∪"; }
+mjx-c.mjx-c22C2.TEX-S1::before { padding: 0.75em 0.833em 0.249em 0px; content: "⋂"; }
+mjx-c.mjx-c28.TEX-S4::before { padding: 1.75em 0.792em 1.249em 0px; content: "("; }
+mjx-c.mjx-c22C2.TEX-S2::before { padding: 0.949em 1.111em 0.45em 0px; content: "⋂"; }
+mjx-c.mjx-c29.TEX-S4::before { padding: 1.75em 0.792em 1.249em 0px; content: ")"; }
+mjx-c.mjx-c7B.TEX-S3::before { padding: 1.45em 0.75em 0.949em 0px; content: "{"; }
+mjx-c.mjx-c2265::before { padding: 0.636em 0.778em 0.138em 0px; content: "≥"; }
+mjx-c.mjx-c22C3.TEX-S2::before { padding: 0.95em 1.111em 0.449em 0px; content: "⋃"; }
+mjx-c.mjx-c2211.TEX-S1::before { padding: 0.75em 1.056em 0.25em 0px; content: "∑"; }
+mjx-c.mjx-c2A06.TEX-S1::before { padding: 0.75em 0.833em 0.249em 0px; content: "⨆"; }
+mjx-c.mjx-c1D45C.TEX-I::before { padding: 0.441em 0.485em 0.011em 0px; content: "o"; }
+mjx-c.mjx-c21D4::before { padding: 0.526em 1em 0.025em 0px; content: "⇔"; }
+mjx-c.mjx-c2223::before { padding: 0.75em 0.278em 0.249em 0px; content: "∣"; }
+mjx-c.mjx-c2209::before { padding: 0.716em 0.667em 0.215em 0px; content: "∉"; }
+mjx-c.mjx-c1D70B.TEX-I::before { padding: 0.431em 0.57em 0.011em 0px; content: "π"; }
+mjx-c.mjx-c1D435.TEX-I::before { padding: 0.683em 0.759em 0px 0px; content: "B"; }
+mjx-c.mjx-c1D466.TEX-I::before { padding: 0.442em 0.49em 0.205em 0px; content: "y"; }
+mjx-c.mjx-c1D459.TEX-I::before { padding: 0.694em 0.298em 0.011em 0px; content: "l"; }
+mjx-msubsup { display: inline-block; text-align: left; }
+mjx-script { display: inline-block; padding-right: 0.05em; padding-left: 0.033em; }
+mjx-script > mjx-spacer { display: block; }
+mjx-mfrac { display: inline-block; text-align: left; }
+mjx-frac { display: inline-block; vertical-align: 0.17em; padding: 0px 0.22em; }
+mjx-frac[type="d"] { vertical-align: 0.04em; }
+mjx-frac[delims] { padding: 0px 0.1em; }
+mjx-frac[atop] { padding: 0px 0.12em; }
+mjx-frac[atop][delims] { padding: 0px; }
+mjx-dtable { display: inline-table; width: 100%; }
+mjx-dtable > * { font-size: 2000%; }
+mjx-dbox { display: block; font-size: 5%; }
+mjx-num { display: block; text-align: center; }
+mjx-den { display: block; text-align: center; }
+mjx-mfrac[bevelled] > mjx-num { display: inline-block; }
+mjx-mfrac[bevelled] > mjx-den { display: inline-block; }
+mjx-den[align="right"], mjx-num[align="right"] { text-align: right; }
+mjx-den[align="left"], mjx-num[align="left"] { text-align: left; }
+mjx-nstrut { display: inline-block; height: 0.054em; width: 0px; vertical-align: -0.054em; }
+mjx-nstrut[type="d"] { height: 0.217em; vertical-align: -0.217em; }
+mjx-dstrut { display: inline-block; height: 0.505em; width: 0px; }
+mjx-dstrut[type="d"] { height: 0.726em; }
+mjx-line { display: block; box-sizing: border-box; min-height: 1px; height: 0.06em; border-top: 0.06em solid; margin: 0.06em -0.1em; overflow: hidden; }
+mjx-line[type="d"] { margin: 0.18em -0.1em; }
+mjx-mspace { display: inline-block; text-align: left; }
+mjx-mtext { display: inline-block; text-align: left; }
+mjx-mtable { display: inline-block; text-align: center; vertical-align: 0.25em; position: relative; box-sizing: border-box; border-spacing: 0px; border-collapse: collapse; }
+mjx-mstyle[size="s"] mjx-mtable { vertical-align: 0.354em; }
+mjx-labels { position: absolute; left: 0px; top: 0px; }
+mjx-table { display: inline-block; vertical-align: -0.5ex; box-sizing: border-box; }
+mjx-table > mjx-itable { vertical-align: middle; text-align: left; box-sizing: border-box; }
+mjx-labels > mjx-itable { position: absolute; top: 0px; }
+mjx-mtable[justify="left"] { text-align: left; }
+mjx-mtable[justify="right"] { text-align: right; }
+mjx-mtable[justify="left"][side="left"] { padding-right: 0px !important; }
+mjx-mtable[justify="left"][side="right"] { padding-left: 0px !important; }
+mjx-mtable[justify="right"][side="left"] { padding-right: 0px !important; }
+mjx-mtable[justify="right"][side="right"] { padding-left: 0px !important; }
+mjx-mtable[align] { vertical-align: baseline; }
+mjx-mtable[align="top"] > mjx-table { vertical-align: top; }
+mjx-mtable[align="bottom"] > mjx-table { vertical-align: bottom; }
+mjx-mtable[side="right"] mjx-labels { min-width: 100%; }
+mjx-mtr { display: table-row; text-align: left; }
+mjx-mtr[rowalign="top"] > mjx-mtd { vertical-align: top; }
+mjx-mtr[rowalign="center"] > mjx-mtd { vertical-align: middle; }
+mjx-mtr[rowalign="bottom"] > mjx-mtd { vertical-align: bottom; }
+mjx-mtr[rowalign="baseline"] > mjx-mtd { vertical-align: baseline; }
+mjx-mtr[rowalign="axis"] > mjx-mtd { vertical-align: 0.25em; }
+mjx-mtd { display: table-cell; text-align: center; padding: 0.215em 0.4em; }
+mjx-mtd:first-child { padding-left: 0px; }
+mjx-mtd:last-child { padding-right: 0px; }
+mjx-mtable > * > mjx-itable > :first-child > mjx-mtd { padding-top: 0px; }
+mjx-mtable > * > mjx-itable > :last-child > mjx-mtd { padding-bottom: 0px; }
+mjx-tstrut { display: inline-block; height: 1em; vertical-align: -0.25em; }
+mjx-labels[align="left"] > mjx-mtr > mjx-mtd { text-align: left; }
+mjx-labels[align="right"] > mjx-mtr > mjx-mtd { text-align: right; }
+mjx-mtd[extra] { padding: 0px; }
+mjx-mtd[rowalign="top"] { vertical-align: top; }
+mjx-mtd[rowalign="center"] { vertical-align: middle; }
+mjx-mtd[rowalign="bottom"] { vertical-align: bottom; }
+mjx-mtd[rowalign="baseline"] { vertical-align: baseline; }
+mjx-mtd[rowalign="axis"] { vertical-align: 0.25em; }
+mjx-munderover { display: inline-block; text-align: left; }
+mjx-munderover:not([limits="false"]) { padding-top: 0.1em; }
+mjx-munderover:not([limits="false"]) > * { display: block; }
+mjx-mpadded { display: inline-block; text-align: left; }
+mjx-rbox { display: inline-block; position: relative; }
+mjx-mover { display: inline-block; text-align: left; }
+mjx-mover:not([limits="false"]) { padding-top: 0.1em; }
+mjx-mover:not([limits="false"]) > * { display: block; text-align: left; }
+mjx-stretchy-v.mjx-c5B mjx-beg mjx-c::before { content: "⎡"; padding: 1.154em 0.667em 0.645em 0px; }
+mjx-stretchy-v.mjx-c5B mjx-ext mjx-c::before { content: "⎢"; width: 0.667em; }
+mjx-stretchy-v.mjx-c5B mjx-end mjx-c::before { content: "⎣"; padding: 1.155em 0.667em 0.644em 0px; }
+mjx-stretchy-v.mjx-c5B > mjx-end { margin-top: -1.799em; }
+mjx-stretchy-v.mjx-c5B > mjx-ext { border-top-width: 1.769em; border-bottom-width: 1.769em; }
+mjx-stretchy-h.mjx-c23DE mjx-beg mjx-c::before { content: ""; padding: 0.32em 0px 0.2em; }
+mjx-stretchy-h.mjx-c23DE mjx-ext mjx-c::before { content: ""; padding: 0.32em 0px 0.2em; }
+mjx-stretchy-h.mjx-c23DE mjx-end mjx-c::before { content: ""; padding: 0.32em 0px 0.2em; }
+mjx-stretchy-h.mjx-c23DE mjx-mid mjx-c::before { content: ""; padding: 0.32em 0px 0.2em; }
+mjx-stretchy-h.mjx-c23DE > mjx-ext { width: 50%; }
+mjx-stretchy-v.mjx-c5D mjx-beg mjx-c::before { content: "⎤"; padding: 1.154em 0.667em 0.645em 0px; }
+mjx-stretchy-v.mjx-c5D mjx-ext mjx-c::before { content: "⎥"; width: 0.667em; }
+mjx-stretchy-v.mjx-c5D mjx-end mjx-c::before { content: "⎦"; padding: 1.155em 0.667em 0.644em 0px; }
+mjx-stretchy-v.mjx-c5D > mjx-end { margin-top: -1.799em; }
+mjx-stretchy-v.mjx-c5D > mjx-ext { border-top-width: 1.769em; border-bottom-width: 1.769em; }
+mjx-c.mjx-c2264::before { padding: 0.636em 0.778em 0.138em 0px; content: "≤"; }
+mjx-c.mjx-c32::before { padding: 0.666em 0.5em 0px 0px; content: "2"; }
+mjx-c.mjx-c2282::before { padding: 0.54em 0.778em 0.04em 0px; content: "⊂"; }
+mjx-c.mjx-c2016::before { padding: 0.75em 0.5em 0.25em 0px; content: "∥"; }
+mjx-c.mjx-c5B::before { padding: 0.75em 0.278em 0.25em 0px; content: "["; }
+mjx-c.mjx-c5D::before { padding: 0.75em 0.278em 0.25em 0px; content: "]"; }
+mjx-c.mjx-c1D45F.TEX-I::before { padding: 0.442em 0.451em 0.011em 0px; content: "r"; }
+mjx-c.mjx-c2229::before { padding: 0.598em 0.667em 0.022em 0px; content: "∩"; }
+mjx-c.mjx-c1D460.TEX-I::before { padding: 0.442em 0.469em 0.01em 0px; content: "s"; }
+mjx-c.mjx-c1D706.TEX-I::before { padding: 0.694em 0.583em 0.012em 0px; content: "λ"; }
+mjx-c.mjx-c22C5::before { padding: 0.31em 0.278em 0px 0px; content: "⋅"; }
+mjx-c.mjx-c61::before { padding: 0.448em 0.5em 0.011em 0px; content: "a"; }
+mjx-c.mjx-c78::before { padding: 0.431em 0.528em 0px 0px; content: "x"; }
+mjx-c.mjx-c2026::before { padding: 0.12em 1.172em 0px 0px; content: "…"; }
+mjx-c.mjx-c2112.TEX-SC::before { padding: 0.717em 1.035em 0.017em 0px; content: "L"; }
+mjx-c.mjx-c1D464.TEX-I::before { padding: 0.443em 0.716em 0.011em 0px; content: "w"; }
+mjx-c.mjx-c222B.TEX-S1::before { padding: 0.805em 0.61em 0.306em 0px; content: "∫"; }
+mjx-c.mjx-c64::before { padding: 0.694em 0.556em 0.011em 0px; content: "d"; }
+mjx-c.mjx-c5B.TEX-S3::before { padding: 1.45em 0.528em 0.949em 0px; content: "["; }
+mjx-c.mjx-c5D.TEX-S3::before { padding: 1.45em 0.528em 0.949em 0px; content: "]"; }
+mjx-c.mjx-c2225::before { padding: 0.75em 0.5em 0.25em 0px; content: "∥"; }
+mjx-c.mjx-c6E::before { padding: 0.442em 0.556em 0px 0px; content: "n"; }
+mjx-c.mjx-cA0::before { padding: 0px 0.25em 0px 0px; content: " "; }
+mjx-c.mjx-c2200::before { padding: 0.694em 0.556em 0.022em 0px; content: "∀"; }
+mjx-c.mjx-c2203::before { padding: 0.694em 0.556em 0px 0px; content: "∃"; }
+mjx-c.mjx-c1D452.TEX-I::before { padding: 0.442em 0.466em 0.011em 0px; content: "e"; }
+mjx-c.mjx-c73::before { padding: 0.448em 0.394em 0.011em 0px; content: "s"; }
+mjx-c.mjx-c2E::before { padding: 0.12em 0.278em 0px 0px; content: "."; }
+mjx-c.mjx-c74::before { padding: 0.615em 0.389em 0.01em 0px; content: "t"; }
+mjx-c.mjx-c28.TEX-S3::before { padding: 1.45em 0.736em 0.949em 0px; content: "("; }
+mjx-c.mjx-c29.TEX-S3::before { padding: 1.45em 0.736em 0.949em 0px; content: ")"; }
+mjx-c.mjx-c28.TEX-S2::before { padding: 1.15em 0.597em 0.649em 0px; content: "("; }
+mjx-c.mjx-c29.TEX-S2::before { padding: 1.15em 0.597em 0.649em 0px; content: ")"; }
+mjx-c.mjx-c28.TEX-S1::before { padding: 0.85em 0.458em 0.349em 0px; content: "("; }
+mjx-c.mjx-c29.TEX-S1::before { padding: 0.85em 0.458em 0.349em 0px; content: ")"; }
+mjx-c.mjx-c1D441.TEX-I::before { padding: 0.683em 0.888em 0px 0px; content: "N"; }
+mjx-c.mjx-c4E::before { padding: 0.683em 0.75em 0px 0px; content: "N"; }
+mjx-c.mjx-c33::before { padding: 0.665em 0.5em 0.022em 0px; content: "3"; }
+mjx-c.mjx-c2211.TEX-S2::before { padding: 0.95em 1.444em 0.45em 0px; content: "∑"; }
+mjx-c.mjx-c1D712.TEX-I::before { padding: 0.442em 0.626em 0.204em 0px; content: "χ"; }
+mjx-c.mjx-c29F8.TEX-I::before { padding: 0.716em 0.778em 0.215em 0px; content: "/"; }
+mjx-c.mjx-c21D2::before { padding: 0.525em 1em 0.024em 0px; content: "⇒"; }
+mjx-c.mjx-c2032::before { padding: 0.56em 0.275em 0px 0px; content: "′"; }
+mjx-c.mjx-c5B.TEX-S4::before { padding: 1.75em 0.583em 1.249em 0px; content: "["; }
+mjx-c.mjx-c5D.TEX-S4::before { padding: 1.75em 0.583em 1.249em 0px; content: "]"; }
+mjx-c.mjx-c27E8::before { padding: 0.75em 0.389em 0.25em 0px; content: "⟨"; }
+mjx-c.mjx-c27E9::before { padding: 0.75em 0.389em 0.25em 0px; content: "⟩"; }
+mjx-c.mjx-cD7::before { padding: 0.491em 0.778em 0px 0px; content: "×"; }
+mjx-c.mjx-c211D.TEX-A::before { padding: 0.683em 0.722em 0px 0px; content: "R"; }
+mjx-c.mjx-c21A6::before { padding: 0.511em 1em 0.011em 0px; content: "↦"; }
+mjx-c.mjx-c63::before { padding: 0.448em 0.444em 0.011em 0px; content: "c"; }
+mjx-c.mjx-c6F::before { padding: 0.448em 0.5em 0.01em 0px; content: "o"; }
+mjx-c.mjx-c2061::before { padding: 0px; content: ""; }
+mjx-c.mjx-c1D703.TEX-I::before { padding: 0.705em 0.469em 0.01em 0px; content: "θ"; }
+mjx-c.mjx-c1D711.TEX-I::before { padding: 0.442em 0.654em 0.218em 0px; content: "φ"; }
+mjx-c.mjx-c1D456.TEX-I::before { padding: 0.661em 0.345em 0.011em 0px; content: "i"; }
+mjx-c.mjx-c2115.TEX-A::before { padding: 0.683em 0.722em 0.02em 0px; content: "N"; }
+mjx-c.mjx-c1D450.TEX-I::before { padding: 0.442em 0.433em 0.011em 0px; content: "c"; }
+mjx-c.mjx-c1D454.TEX-I::before { padding: 0.442em 0.477em 0.205em 0px; content: "g"; }
+mjx-c.mjx-c1D43F.TEX-I::before { padding: 0.683em 0.681em 0px 0px; content: "L"; }
+mjx-c.mjx-c1D45E.TEX-I::before { padding: 0.442em 0.46em 0.194em 0px; content: "q"; }
+mjx-c.mjx-c2F::before { padding: 0.75em 0.5em 0.25em 0px; content: "/"; }
+mjx-container[jax="CHTML"] { line-height: 0; }
+mjx-container [space="1"] { margin-left: 0.111em; }
+mjx-container [space="2"] { margin-left: 0.167em; }
+mjx-container [space="3"] { margin-left: 0.222em; }
+mjx-container [space="4"] { margin-left: 0.278em; }
+mjx-container [space="5"] { margin-left: 0.333em; }
+mjx-container [rspace="1"] { margin-right: 0.111em; }
+mjx-container [rspace="2"] { margin-right: 0.167em; }
+mjx-container [rspace="3"] { margin-right: 0.222em; }
+mjx-container [rspace="4"] { margin-right: 0.278em; }
+mjx-container [rspace="5"] { margin-right: 0.333em; }
+mjx-container [size="s"] { font-size: 70.7%; }
+mjx-container [size="ss"] { font-size: 50%; }
+mjx-container [size="Tn"] { font-size: 60%; }
+mjx-container [size="sm"] { font-size: 85%; }
+mjx-container [size="lg"] { font-size: 120%; }
+mjx-container [size="Lg"] { font-size: 144%; }
+mjx-container [size="LG"] { font-size: 173%; }
+mjx-container [size="hg"] { font-size: 207%; }
+mjx-container [size="HG"] { font-size: 249%; }
+mjx-container [width="full"] { width: 100%; }
+mjx-box { display: inline-block; }
+mjx-block { display: block; }
+mjx-itable { display: inline-table; }
+mjx-row { display: table-row; }
+mjx-row > * { display: table-cell; }
+mjx-mtext { display: inline-block; }
+mjx-mstyle { display: inline-block; }
+mjx-merror { display: inline-block; color: red; background-color: yellow; }
+mjx-mphantom { visibility: hidden; }
+mjx-assistive-mml { top: 0px; left: 0px; clip: rect(1px, 1px, 1px, 1px); user-select: none; position: absolute !important; padding: 1px 0px 0px !important; border: 0px !important; display: block !important; width: auto !important; overflow: hidden !important; }
+mjx-assistive-mml[display="block"] { width: 100% !important; }
+mjx-math { display: inline-block; text-align: left; line-height: 0; text-indent: 0px; font-style: normal; font-weight: normal; font-size: 100%; letter-spacing: normal; border-collapse: collapse; overflow-wrap: normal; word-spacing: normal; white-space: nowrap; direction: ltr; padding: 1px 0px; }
+mjx-container[jax="CHTML"][display="true"] { display: block; text-align: center; margin: 1em 0px; }
+mjx-container[jax="CHTML"][display="true"][width="full"] { display: flex; }
+mjx-container[jax="CHTML"][display="true"] mjx-math { padding: 0px; }
+mjx-container[jax="CHTML"][justify="left"] { text-align: left; }
+mjx-container[jax="CHTML"][justify="right"] { text-align: right; }
+mjx-mrow { display: inline-block; text-align: left; }
+mjx-mo { display: inline-block; text-align: left; }
+mjx-stretchy-h { display: inline-table; width: 100%; }
+mjx-stretchy-h > * { display: table-cell; width: 0px; }
+mjx-stretchy-h > * > mjx-c { display: inline-block; transform: scaleX(1); }
+mjx-stretchy-h > * > mjx-c::before { display: inline-block; width: initial; }
+mjx-stretchy-h > mjx-ext { overflow: clip visible; width: 100%; }
+mjx-stretchy-h > mjx-ext > mjx-c::before { transform: scaleX(500); }
+mjx-stretchy-h > mjx-ext > mjx-c { width: 0px; }
+mjx-stretchy-h > mjx-beg > mjx-c { margin-right: -0.1em; }
+mjx-stretchy-h > mjx-end > mjx-c { margin-left: -0.1em; }
+mjx-stretchy-v { display: inline-block; }
+mjx-stretchy-v > * { display: block; }
+mjx-stretchy-v > mjx-beg { height: 0px; }
+mjx-stretchy-v > mjx-end > mjx-c { display: block; }
+mjx-stretchy-v > * > mjx-c { transform: scaleY(1); transform-origin: left center; overflow: hidden; }
+mjx-stretchy-v > mjx-ext { display: block; height: 100%; box-sizing: border-box; border: 0px solid transparent; overflow: visible clip; }
+mjx-stretchy-v > mjx-ext > mjx-c::before { width: initial; box-sizing: border-box; }
+mjx-stretchy-v > mjx-ext > mjx-c { transform: scaleY(500) translateY(0.075em); overflow: visible; }
+mjx-mark { display: inline-block; height: 0px; }
+mjx-c { display: inline-block; }
+mjx-utext { display: inline-block; padding: 0.75em 0px 0.2em; }
+mjx-msub { display: inline-block; text-align: left; }
+mjx-mi { display: inline-block; text-align: left; }
+mjx-mn { display: inline-block; text-align: left; }
+mjx-munder { display: inline-block; text-align: left; }
+mjx-over { text-align: left; }
+mjx-munder:not([limits="false"]) { display: inline-table; }
+mjx-munder > mjx-row { text-align: left; }
+mjx-under { padding-bottom: 0.1em; }
+mjx-texatom { display: inline-block; text-align: left; }
+mjx-msup { display: inline-block; text-align: left; }
+mjx-c::before { display: block; width: 0px; }
+.MJX-TEX { font-family: MJXZERO, MJXTEX; }
+.TEX-B { font-family: MJXZERO, MJXTEX-B; }
+.TEX-I { font-family: MJXZERO, MJXTEX-I; }
+.TEX-MI { font-family: MJXZERO, MJXTEX-MI; }
+.TEX-BI { font-family: MJXZERO, MJXTEX-BI; }
+.TEX-S1 { font-family: MJXZERO, MJXTEX-S1; }
+.TEX-S2 { font-family: MJXZERO, MJXTEX-S2; }
+.TEX-S3 { font-family: MJXZERO, MJXTEX-S3; }
+.TEX-S4 { font-family: MJXZERO, MJXTEX-S4; }
+.TEX-A { font-family: MJXZERO, MJXTEX-A; }
+.TEX-C { font-family: MJXZERO, MJXTEX-C; }
+.TEX-CB { font-family: MJXZERO, MJXTEX-CB; }
+.TEX-FR { font-family: MJXZERO, MJXTEX-FR; }
+.TEX-FRB { font-family: MJXZERO, MJXTEX-FRB; }
+.TEX-SS { font-family: MJXZERO, MJXTEX-SS; }
+.TEX-SSB { font-family: MJXZERO, MJXTEX-SSB; }
+.TEX-SSI { font-family: MJXZERO, MJXTEX-SSI; }
+.TEX-SC { font-family: MJXZERO, MJXTEX-SC; }
+.TEX-T { font-family: MJXZERO, MJXTEX-T; }
+.TEX-V { font-family: MJXZERO, MJXTEX-V; }
+.TEX-VB { font-family: MJXZERO, MJXTEX-VB; }
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c { font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A !important; }
+@font-face { font-family: MJXZERO; src: url("lib/fonts/mathjax_zero.woff") format("woff"); }
+@font-face { font-family: MJXTEX; src: url("lib/fonts/mathjax_main-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-B; src: url("lib/fonts/mathjax_main-bold.woff") format("woff"); }
+@font-face { font-family: MJXTEX-I; src: url("lib/fonts/mathjax_math-italic.woff") format("woff"); }
+@font-face { font-family: MJXTEX-MI; src: url("lib/fonts/mathjax_main-italic.woff") format("woff"); }
+@font-face { font-family: MJXTEX-BI; src: url("lib/fonts/mathjax_math-bolditalic.woff") format("woff"); }
+@font-face { font-family: MJXTEX-S1; src: url("lib/fonts/mathjax_size1-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-S2; src: url("lib/fonts/mathjax_size2-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-S3; src: url("lib/fonts/mathjax_size3-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-S4; src: url("lib/fonts/mathjax_size4-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-A; src: url("lib/fonts/mathjax_ams-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-C; src: url("lib/fonts/mathjax_calligraphic-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-CB; src: url("lib/fonts/mathjax_calligraphic-bold.woff") format("woff"); }
+@font-face { font-family: MJXTEX-FR; src: url("lib/fonts/mathjax_fraktur-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-FRB; src: url("lib/fonts/mathjax_fraktur-bold.woff") format("woff"); }
+@font-face { font-family: MJXTEX-SS; src: url("lib/fonts/mathjax_sansserif-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-SSB; src: url("lib/fonts/mathjax_sansserif-bold.woff") format("woff"); }
+@font-face { font-family: MJXTEX-SSI; src: url("lib/fonts/mathjax_sansserif-italic.woff") format("woff"); }
+@font-face { font-family: MJXTEX-SC; src: url("lib/fonts/mathjax_script-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-T; src: url("lib/fonts/mathjax_typewriter-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-V; src: url("lib/fonts/mathjax_vector-regular.woff") format("woff"); }
+@font-face { font-family: MJXTEX-VB; src: url("lib/fonts/mathjax_vector-bold.woff") format("woff"); }
+mjx-c.mjx-c7B::before { padding: 0.75em 0.5em 0.25em 0px; content: "{"; }
+mjx-c.mjx-c1D453.TEX-I::before { padding: 0.705em 0.55em 0.205em 0px; content: "f"; }
+mjx-c.mjx-c1D45B.TEX-I::before { padding: 0.442em 0.6em 0.011em 0px; content: "n"; }
+mjx-c.mjx-c7D::before { padding: 0.75em 0.5em 0.25em 0px; content: "}"; }
+mjx-c.mjx-c1D438.TEX-I::before { padding: 0.68em 0.764em 0px 0px; content: "E"; }
+mjx-c.mjx-c1D45D.TEX-I::before { padding: 0.442em 0.503em 0.194em 0px; content: "p"; }
+mjx-c.mjx-c28::before { padding: 0.75em 0.389em 0.25em 0px; content: "("; }
+mjx-c.mjx-c31::before { padding: 0.666em 0.5em 0px 0px; content: "1"; }
+mjx-c.mjx-c2A7D.TEX-A::before { padding: 0.636em 0.778em 0.138em 0px; content: "⩽"; }
+mjx-c.mjx-c3C::before { padding: 0.54em 0.778em 0.04em 0px; content: "<"; }
+mjx-c.mjx-c2B::before { padding: 0.583em 0.778em 0.082em 0px; content: "+"; }
+mjx-c.mjx-c221E::before { padding: 0.442em 1em 0.011em 0px; content: "∞"; }
+mjx-c.mjx-c29::before { padding: 0.75em 0.389em 0.25em 0px; content: ")"; }
+mjx-c.mjx-c6C::before { padding: 0.694em 0.278em 0px 0px; content: "l"; }
+mjx-c.mjx-c69::before { padding: 0.669em 0.278em 0px 0px; content: "i"; }
+mjx-c.mjx-c6D::before { padding: 0.442em 0.833em 0px 0px; content: "m"; }
+mjx-c.mjx-c2192::before { padding: 0.511em 1em 0.011em 0px; content: "→"; }
+mjx-c.mjx-c1D465.TEX-I::before { padding: 0.442em 0.572em 0.011em 0px; content: "x"; }
+mjx-c.mjx-c3D::before { padding: 0.583em 0.778em 0.082em 0px; content: "="; }
+mjx-c.mjx-c2208::before { padding: 0.54em 0.667em 0.04em 0px; content: "∈"; }
+mjx-c.mjx-c1D6FF.TEX-I::before { padding: 0.717em 0.444em 0.01em 0px; content: "δ"; }
+mjx-c.mjx-c3E::before { padding: 0.54em 0.778em 0.04em 0px; content: ">"; }
+mjx-c.mjx-c30::before { padding: 0.666em 0.5em 0.022em 0px; content: "0"; }
+mjx-c.mjx-c1D45A.TEX-I::before { padding: 0.442em 0.878em 0.011em 0px; content: "m"; }
+mjx-c.mjx-c2216::before { padding: 0.75em 0.5em 0.25em 0px; content: "∖"; }
+mjx-c.mjx-c1D700.TEX-I::before { padding: 0.452em 0.466em 0.022em 0px; content: "ε"; }
+mjx-c.mjx-c2C::before { padding: 0.121em 0.278em 0.194em 0px; content: ","; }
+mjx-c.mjx-c3A::before { padding: 0.43em 0.278em 0px 0px; content: ":"; }
+mjx-c.mjx-c7C::before { padding: 0.75em 0.278em 0.249em 0px; content: "|"; }
+mjx-c.mjx-c2212::before { padding: 0.583em 0.778em 0.082em 0px; content: "−"; }
+mjx-c.mjx-c2A7E.TEX-A::before { padding: 0.636em 0.778em 0.138em 0px; content: "⩾"; }
+mjx-c.mjx-c222B.TEX-S2::before { padding: 1.36em 0.944em 0.862em 0px; content: "∫"; }
+mjx-c.mjx-c1D451.TEX-I::before { padding: 0.694em 0.52em 0.01em 0px; content: "d"; }
+</style><div class="markdown-preview-sizer markdown-preview-section"><h1 class="page-title heading inline-title" id="图论"><p dir="auto">图论</p></h1><div class="el-h2 heading-wrapper"><h2 data-heading="图论全面复习 ：概念、表示、算法与C++实现" dir="auto" class="heading" id="图论全面复习_：概念、表示、算法与C++实现"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>图论全面复习 ：概念、表示、算法与C++实现</h2><div class="heading-children"><div class="el-p"><p dir="auto">本复习资料旨在为学习数据结构与算法课程的本科生提供一份关于图论的全面指导。内容涵盖图的基本概念、常用表示方法、核心遍历算法、最小生成树、最短路径问题、拓扑排序以及环检测等。每个主题都配有生动详尽的说明和C++代码示例，以帮助深入理解并有效备考。</p></div><div class="el-p"><p dir="auto">I. 图论基础 (Introduction to Graphs)</p></div><div class="el-p"><p dir="auto">图论是计算机科学中一个至关重要的分支，它为建模和解决涉及对象及其关系的问题提供了一个强大的数学框架。</p></div><div class="el-p"><p dir="auto">A. 什么是图？ (What is a Graph?)</p></div><div class="el-p"><p dir="auto">顶点 (Vertices) 与边 (Edges)：从根本上说，一个图 (Graph) 是由两个集合组成的：一个非空顶点集合 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> (Vertices 或 Nodes) 和一个边集合 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> (Edges)。数学上，一个图 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43A TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 可以表示为 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43A TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span>. 顶点代表图中的基本单元或实体，例如城市、人或网页。边则代表这些实体之间的连接或关系，例如连接城市的道路、人与人之间的友谊或网页之间的超链接。理解这两个基本构成元素——顶点和边——是掌握后续所有图论概念和算法的基石。</p></div><div class="el-p"><p dir="auto">图的实际应用举例：图的抽象模型使其能够广泛应用于现实世界的多种场景中。例如：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">社交网络：用户是顶点，用户之间的好友或关注关系是边。</li>
+<li data-line="1" dir="auto">交通网络：城市或交叉路口是顶点，连接它们的公路或航线是边，边的权重可以表示距离或时间。</li>
+<li data-line="2" dir="auto">万维网：网页是顶点，网页之间的超链接是边。</li>
+<li data-line="3" dir="auto">任务调度：项目中的各个任务是顶点，任务之间的依赖关系（例如，任务A必须在任务B开始前完成）是边。这类问题常通过拓扑排序解决。</li>
+<li data-line="4" dir="auto">生物信息学：蛋白质或基因是顶点，它们之间的相互作用是边。</li>
+</ul></div><div class="el-p"><p dir="auto">这些例子揭示了图作为一种通用建模工具的强大能力，能够将复杂系统简化为可分析的结构。</p></div><div class="el-p"><p dir="auto">B. 图的种类 (Types of Graphs)</p></div><div class="el-p"><p dir="auto">根据边的特性和图的结构，图可以分为多种类型，理解这些类型对于选择合适的算法至关重要。</p></div><div class="el-p"><p dir="auto">无向图 (Undirected Graphs) 与 有向图 (Directed Graphs / Digraphs)：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">无向图：边没有方向。如果顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 和顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 之间有一条边，那么这条边既可以看作从 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 到 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>，也可以看作从 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 到 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>。这种关系是双向的，例如Facebook上的好友关系。</li>
+<li data-line="1" dir="auto">有向图 (也称有向图)：边具有明确的方向。一条从 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 指向 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的边表示存在从 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 到 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的关系，但不一定存在从 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 到 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的关系。例如Twitter上的关注关系，用户A关注用户B，不代表用户B也关注用户A。边的方向性是图的一个核心属性，它直接影响路径、连通性等概念以及算法的选择。</li>
+</ul></div><div class="el-p"><p dir="auto">无权图 (Unweighted Graphs) 与 加权图 (Weighted Graphs)：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">无权图：图中的所有边都没有关联的权重或成本，每条边都被认为是等价的。</li>
+<li data-line="1" dir="auto">加权图：图中的每条边都关联一个数值，称为权重 (Weight) 或成本 (Cost)。权重可以表示多种含义，如距离、时间、容量、费用等。例如，在地图应用中，连接两个城市的边的权重可以表示它们之间的实际距离。加权图为模拟更复杂的现实场景提供了可能，许多重要的图算法，如Dijkstra最短路径算法和Prim最小生成树算法，都是针对加权图设计的。</li>
+</ul></div><div class="el-p"><p dir="auto">简单图 (Simple Graphs), 多重图 (Multigraphs), 自环 (Loops)：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">简单图：一个图如果任意两个顶点之间最多只有一条边相连，并且图中不包含自环（即连接顶点到其自身的边），则称其为简单图。大多数基础的图算法，如简单路径查找，通常是在简单图的背景下讨论的。</li>
+<li data-line="1" dir="auto">多重图：允许在同一对顶点之间存在多条平行的边。例如，两个数据中心之间可能有多条光纤连接。</li>
+<li data-line="2" dir="auto">自环 (Loop)：一条连接顶点到其自身的边。例如，在状态图中，一个状态可以通过某个操作转换回自身。在邻接矩阵表示法中，自环对应于主对角线上的非零元素。</li>
+</ul></div><div class="el-p"><p dir="auto">其他常见类型 (Brief mention)：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">完全图 (Complete Graph)：在一个无向简单图中，如果每对不同的顶点之间都恰好存在一条边，则称该图为完全图。若有 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 个顶点，则完全图有 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-texatom texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2F"></mjx-c></mjx-mo></mjx-texatom><mjx-mn class="mjx-n"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-math></mjx-container></span> 条边。</li>
+<li data-line="1" dir="auto">二分图 (Bipartite Graph)：图的顶点集可以被划分为两个没有交集的子集 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D448 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 和 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>，使得图中的每一条边都连接 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D448 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 中的一个顶点和 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 中的一个顶点。例如，任务分配问题中，一组顶点代表人，另一组顶点代表任务，边表示某人可以执行某任务。</li>
+</ul></div><div class="el-p"><p dir="auto">C. 图的基本术语 (Basic Graph Terminology)</p></div><div class="el-p"><p dir="auto">掌握图论的基本术语对于理解和交流图算法至关重要。</p></div><div class="el-p"><p dir="auto">顶点的度 (Degree of a Vertex), 入度 (In-degree), 出度 (Out-degree)：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">
+<p>在无向图中，一个顶点的度是指与该顶点相关联（或称入射）的边的数量。在一个不包含自环的简单图中，一个顶点的度最大为 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-math></mjx-container></span>，其中 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 是顶点总数。</p>
+</li>
+<li data-line="1" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<p>在有向图中，一个顶点的度分为入度和出度。</p>
+<ul>
+<li data-line="3" dir="auto">入度 (In-degree)：指向该顶点的边的数量。</li>
+<li data-line="4" dir="auto">出度 (Out-degree)：从该顶点指出的边的数量。</li>
+</ul>
+</li>
+</ul></div><div class="el-p"><p dir="auto">顶点的度（或入度/出度）是衡量其连接性的基本指标，并在多种算法（如Kahn拓扑排序算法依赖入度）中扮演关键角色。</p></div><div class="el-p"><p dir="auto">邻接顶点 (Adjacent Vertices / Neighbors)： 如果两个顶点之间存在一条边，则称这两个顶点是邻接的，它们互为邻居。</p></div><div class="el-p"><p dir="auto">路径 (Path)： 路径是从一个顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D460 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container></span> 到另一个顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D461 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container></span> 的一个顶点序列 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2E"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2E"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2E"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D458 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span>，其中 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c30"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D460 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container></span>, <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D458 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D461 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math></mjx-container></span>，并且对于所有 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2264"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="4"><mjx-c class="mjx-c1D458 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>, <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-texatom size="s" texclass="ORD"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-texatom></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 都是图中的一条边。路径的长度在无权图中通常指边的数量，在加权图中通常指路径上所有边的权重之和。</p></div><div class="el-p"><p dir="auto">闭合路径 (Closed Path)： 如果一条路径的起始顶点与终止顶点相同，则称其为闭合路径。</p></div><div class="el-p"><p dir="auto">简单路径 (Simple Path)： 如果一条路径中所有的顶点都是唯一的（除了可能的起始顶点和终止顶点相同的情况），则称其为简单路径。</p></div><div class="el-p"><p dir="auto">环路 (Cycle)： 一条简单路径，其第一个和最后一个顶点相同，并且路径中不包含重复的边（除了连接起点和终点的那条边，如果路径长度大于1）。严格来说，一个环路通常要求至少包含3条边（在简单图中）以避免退化情况。环路是图论中的一个核心概念，许多问题（如环检测、拓扑排序）都与之相关。</p></div><div class="el-p"><p dir="auto">连通图 (Connected Graphs) 与 连通分量 (Connected Components)：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">连通图 (特指无向图)：如果一个无向图中任意两个不同的顶点之间都至少存在一条路径，则称该图是连通图。</li>
+<li data-line="1" dir="auto">连通分量 (特指无向图)：无向图的极大连通子图。这意味着一个连通分量本身是连通的，并且如果将原图中不在此分量内的任何其他顶点加入该分量，它将不再连通。一个非连通图可以分解为若干个连通分量。</li>
+</ul></div><div class="el-p"><p dir="auto">对于有向图，连通性有更细致的划分，如弱连通（忽略边的方向后是连通的）和强连通（任意两个顶点之间都存在双向路径）。</p></div><div class="el-p"><p dir="auto">连通性描述了图的“整体性”。许多图算法的正确执行依赖于图的连通性，或者需要对图的每个连通分量分别应用算法。</p></div><div class="el-p"><p dir="auto">图的定义、类型以及相关的基本术语构成了图算法世界的“词汇表”和“语法规则”。对这些基础知识的精确掌握是理解和实现复杂图算法的前提。例如，一个算法的描述可能指定它适用于“加权无向连通图”，如果对这些术语理解不清，就无法正确应用该算法。图的抽象性使其具有极强的建模能力，能够将不同领域的问题（如社交网络分析、物流路径优化、任务依赖管理）统一到同一个数学框架下进行研究和求解。因此，学习图论不仅是掌握一组特定的算法，更是获得一种强大的分析和解决问题的思维模式。</p></div><div class="el-p"><p dir="auto">II. 图的表示方法 (Graph Representations)</p></div><div class="el-p"><p dir="auto">要在计算机中处理图，首先需要一种方式来存储图的结构，即顶点和它们之间的连接关系。选择合适的表示方法对算法的效率和实现复杂度有显著影响。主要有两种标准的图表示方法：邻接矩阵和邻接表。</p></div><div class="el-p"><p dir="auto">A. 邻接矩阵 (Adjacency Matrix)</p></div><div class="el-p"><p dir="auto">概念与结构：邻接矩阵是一种通过二维数组来表示图中顶点间连接关系的方法。对于一个包含 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 个顶点的图，邻接矩阵是一个 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-cD7"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的方阵，记为 <code>adjMatrix</code>。</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<p>如果顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 和顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 之间存在一条边：</p>
+<ul>
+<li data-line="2" dir="auto">对于无权图，<code>adjMatrix[i][j]</code> 的值通常设为 1。</li>
+<li data-line="3" dir="auto">对于加权图，<code>adjMatrix[i][j]</code> 的值设为连接顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 和 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的边的权重。</li>
+</ul>
+</li>
+<li data-line="4" dir="auto">
+<p>如果顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 和顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 之间不存在边，则 <code>adjMatrix[i][j]</code> 的值通常设为 0 (对于无权图或表示不存在连接)，或者在某些算法（如最短路径算法）的初始化阶段设为一个特殊值（如无穷大）来表示不直接连通。</p>
+</li>
+<li data-line="5" dir="auto">
+<p>对于无向图，由于边 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 和 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D457 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 是同一条边，所以邻接矩阵是关于主对角线对称的，即 <code>adjMatrix[i][j] = adjMatrix[j][i]</code>。</p>
+</li>
+<li data-line="6" dir="auto">
+<p>如果图中存在自环（即从顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 到其自身的边），则邻接矩阵的主对角线元素 <code>adjMatrix[i][i]</code> 将为非零值（1或权重）。若不允许自环的简单图，主对角线元素通常为0。</p>
+</li>
+</ul></div><div class="el-p"><p dir="auto">邻接矩阵是一种非常直观的表示方式，易于理解和实现。</p></div><div class="el-p"><p dir="auto">C++ 代码示例：下面是一个使用 <code>std::vector&lt;std::vector&lt;int&gt;&gt;</code> 实现邻接矩阵的C++类示例，用于表示一个无权图。它可以很容易地修改以支持加权图（将矩阵元素类型改为权重类型，并将1替换为权重值）。</p></div><div class="el-pre"><pre class="language-cpp" tabindex="0"><code data-line="0" class="language-cpp is-loaded"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;stdexcept&gt;</span> <span class="token comment">// For std::out_of_range</span></span>
+
+<span class="token keyword">class</span> <span class="token class-name">GraphAdjMatrix</span> <span class="token punctuation">{</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> numVertices<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span>std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;&gt;</span> adjMatrix<span class="token punctuation">;</span>
+    <span class="token keyword">bool</span> isDirected<span class="token punctuation">;</span> <span class="token comment">// 图是否有向</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token comment">// 构造函数：初始化顶点数量和邻接矩阵</span>
+    <span class="token function">GraphAdjMatrix</span><span class="token punctuation">(</span><span class="token keyword">int</span> V<span class="token punctuation">,</span> <span class="token keyword">bool</span> directed <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">numVertices</span><span class="token punctuation">(</span>V<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">isDirected</span><span class="token punctuation">(</span>directed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>V <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">invalid_argument</span><span class="token punctuation">(</span><span class="token string">"Number of vertices must be positive."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 初始化V x V的邻接矩阵，所有元素为0</span>
+        adjMatrix<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span>numVertices<span class="token punctuation">,</span> std<span class="token double-colon punctuation">::</span><span class="token generic-function"><span class="token function">vector</span><span class="token generic class-name"><span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span></span></span><span class="token punctuation">(</span>numVertices<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Initialized Adjacency Matrix for "</span> <span class="token operator">&lt;&lt;</span> numVertices <span class="token operator">&lt;&lt;</span> <span class="token string">" vertices."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 添加边 (u, v)</span>
+    <span class="token comment">// 对于加权图，可以增加一个weight参数，并将矩阵值设为weight</span>
+    <span class="token keyword">void</span> <span class="token function">addEdge</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">,</span> <span class="token keyword">int</span> weight <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 默认为无权图，权重为1</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>u <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> u <span class="token operator">&lt;</span> numVertices <span class="token operator">&amp;&amp;</span> v <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> v <span class="token operator">&lt;</span> numVertices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            adjMatrix<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> weight<span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isDirected<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 如果是无向图，对称地添加边</span>
+                adjMatrix<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> weight<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Added edge between "</span> <span class="token operator">&lt;&lt;</span> u <span class="token operator">&lt;&lt;</span> <span class="token string">" and "</span> <span class="token operator">&lt;&lt;</span> v <span class="token operator">&lt;&lt;</span> <span class="token string">" with weight "</span> <span class="token operator">&lt;&lt;</span> weight <span class="token operator">&lt;&lt;</span> <span class="token string">"."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">out_of_range</span><span class="token punctuation">(</span><span class="token string">"Vertex out of bounds."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 移除边 (u, v)</span>
+    <span class="token keyword">void</span> <span class="token function">removeEdge</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>u <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> u <span class="token operator">&lt;</span> numVertices <span class="token operator">&amp;&amp;</span> v <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> v <span class="token operator">&lt;</span> numVertices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            adjMatrix<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">[</span>v<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 或表示无穷大的值</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isDirected<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                adjMatrix<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">[</span>u<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Removed edge between "</span> <span class="token operator">&lt;&lt;</span> u <span class="token operator">&lt;&lt;</span> <span class="token string">" and "</span> <span class="token operator">&lt;&lt;</span> v <span class="token operator">&lt;&lt;</span> <span class="token string">"."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">out_of_range</span><span class="token punctuation">(</span><span class="token string">"Vertex out of bounds."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 检查顶点u和v之间是否存在边</span>
+    <span class="token keyword">bool</span> <span class="token function">hasEdge</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>u <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> u <span class="token operator">&lt;</span> numVertices <span class="token operator">&amp;&amp;</span> v <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> v <span class="token operator">&lt;</span> numVertices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> adjMatrix<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// 对于加权图，只要不是0或无穷大就认为有边</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">out_of_range</span><span class="token punctuation">(</span><span class="token string">"Vertex out of bounds."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 打印邻接矩阵</span>
+    <span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\nAdjacency Matrix:"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numVertices<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> numVertices<span class="token punctuation">;</span> <span class="token operator">++</span>j<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> adjMatrix<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 析构函数 (std::vector 会自动管理内存，如果用裸指针则需要手动释放)</span>
+    <span class="token operator">~</span><span class="token function">GraphAdjMatrix</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Adjacency Matrix Graph destroyed."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 主函数示例</span>
+<span class="token comment">// int main() {</span>
+<span class="token comment">//     try {</span>
+<span class="token comment">//         GraphAdjMatrix g(4, false); // 创建一个4个顶点的无向图</span>
+<span class="token comment">//         g.addEdge(0, 1);</span>
+<span class="token comment">//         g.addEdge(0, 2);</span>
+<span class="token comment">//         g.addEdge(1, 2);</span>
+<span class="token comment">//         g.addEdge(2, 3);</span>
+<span class="token comment">//         g.display();</span>
+<span class="token comment">// </span>
+<span class="token comment">//         GraphAdjMatrix dg(3, true); // 创建一个3个顶点的有向图</span>
+<span class="token comment">//         dg.addEdge(0, 1, 5); // 加权边</span>
+<span class="token comment">//         dg.addEdge(1, 2, 3);</span>
+<span class="token comment">//         dg.addEdge(0, 2, 10);</span>
+<span class="token comment">//         dg.display();</span>
+<span class="token comment">//         std::cout &lt;&lt; "Edge (0,1) exists: " &lt;&lt; dg.hasEdge(0,1) &lt;&lt; std::endl;</span>
+<span class="token comment">//         std::cout &lt;&lt; "Edge (1,0) exists: " &lt;&lt; dg.hasEdge(1,0) &lt;&lt; std::endl;</span>
+<span class="token comment">// </span>
+<span class="token comment">//     } catch (const std::exception&amp; e) {</span>
+<span class="token comment">//         std::cerr &lt;&lt; "Exception: " &lt;&lt; e.what() &lt;&lt; std::endl;</span>
+<span class="token comment">//     }</span>
+<span class="token comment">//     return 0;</span>
+<span class="token comment">// }</span>
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">在上述代码中，构造函数初始化一个全零的矩阵。addEdge 方法根据图是否有向来设置矩阵元素。hasEdge 方法可以快速检查边的存在性。</p></div><div class="el-p"><p dir="auto">优缺点分析：邻接矩阵的主要优点包括：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">快速判断边的存在性：检查顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 和 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 之间是否存在边（即 <code>adjMatrix[u][v]</code> 是否非零）只需要 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 的时间。</li>
+<li data-line="1" dir="auto">添加或删除边操作高效：如果顶点已知，添加或删除一条边也只需要 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 的时间（修改矩阵中的一个元素）。</li>
+<li data-line="2" dir="auto">对于稠密图（图中边的数量 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 接近于 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math></mjx-container></span>），邻接矩阵的空间效率相对可以接受，并且其操作速度较快。</li>
+</ul></div><div class="el-p"><p dir="auto">然而，邻接矩阵也有一些显著的缺点：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">空间复杂度高：它总是需要 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 的空间，其中 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 是顶点数。对于稀疏图（边的数量 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 远小于 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math></mjx-container></span>），这将导致大量的空间浪费，因为矩阵中的大部分元素都会是0。</li>
+<li data-line="1" dir="auto">遍历顶点的邻接点效率低：要找到一个特定顶点的所有邻接点，需要遍历矩阵中的整行（或整列），这需要 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 的时间。</li>
+<li data-line="2" dir="auto">添加或删除顶点操作成本高：这些操作通常需要重新分配和复制整个矩阵，或者至少是 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 级别的调整，因此非常耗时。</li>
+</ul></div><div class="el-p"><p dir="auto">空间与时间复杂度总结：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">空间复杂度：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></li>
+<li data-line="1" dir="auto">添加顶点：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (由于矩阵重建)</li>
+<li data-line="2" dir="auto">添加边：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></li>
+<li data-line="3" dir="auto">删除顶点：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (由于矩阵重建)</li>
+<li data-line="4" dir="auto">删除边：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></li>
+<li data-line="5" dir="auto">查询边 (u,v) 是否存在：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></li>
+<li data-line="6" dir="auto">获取顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的所有邻接点：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></li>
+</ul></div><div class="el-p"><p dir="auto">B. 邻接表 (Adjacency List)</p></div><div class="el-p"><p dir="auto">概念与结构：邻接表是另一种常用的图表示方法，尤其适用于稀疏图。它由一个包含 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 个列表（通常是链表或动态数组，如C++中的 <code>std::vector</code>）的数组（或向量）构成。数组的第 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 个索引（或元素）对应图中的第 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 个顶点，该索引处的列表存储了所有与顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 直接邻接的顶点。</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">对于无权图，列表中通常只存储邻接顶点的编号。</li>
+<li data-line="1" dir="auto">对于加权图，列表中的每个元素通常是一个序对 (pair)，例如 <code>std::pair&lt;int, int&gt;</code>，其中第一个元素是邻接顶点的编号，第二个元素是连接当前顶点与该邻接顶点的边的权重。</li>
+</ul></div><div class="el-p"><p dir="auto">由于图的结构可能非常复杂，任意两个顶点之间都可能存在关系，这种任意的逻辑关系使得图无法简单地通过固定的存储位置来表示其连接性，而邻接表恰好提供了这种所需的灵活性。</p></div><div class="el-p"><p dir="auto">C++ 代码示例：下面是一个使用 <code>std::vector&lt;std::vector&lt;std::pair&lt;int, int&gt;&gt;&gt;</code> 实现邻接表的C++类示例，用于表示一个加权图。对于无权图，可以将 pair 替换为单个 int 来存储邻接顶点。</p></div><div class="el-pre"><pre class="language-cpp" tabindex="0"><code data-line="0" class="language-cpp is-loaded"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;list&gt;</span>   <span class="token comment">// 可选，如果想用链表代替vector作为邻接列表</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;algorithm&gt;</span> <span class="token comment">// For std::remove_if for removeEdge</span></span>
+
+<span class="token comment">// 对于加权图，边信息可以包含目标顶点和权重</span>
+<span class="token keyword">struct</span> <span class="token class-name">EdgeNode</span> <span class="token punctuation">{</span>
+    <span class="token keyword">int</span> to_vertex<span class="token punctuation">;</span>
+    <span class="token keyword">int</span> weight<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">GraphAdjList</span> <span class="token punctuation">{</span>
+<span class="token keyword">private</span><span class="token operator">:</span>
+    <span class="token keyword">int</span> numVertices<span class="token punctuation">;</span>
+    std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span>std<span class="token double-colon punctuation">::</span>list<span class="token operator">&lt;</span>EdgeNode<span class="token operator">&gt;&gt;</span> adjList<span class="token punctuation">;</span> <span class="token comment">// 使用list作为邻接列表，方便删除边</span>
+    <span class="token keyword">bool</span> isDirected<span class="token punctuation">;</span>
+
+<span class="token keyword">public</span><span class="token operator">:</span>
+    <span class="token comment">// 构造函数</span>
+    <span class="token function">GraphAdjList</span><span class="token punctuation">(</span><span class="token keyword">int</span> V<span class="token punctuation">,</span> <span class="token keyword">bool</span> directed <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token function">numVertices</span><span class="token punctuation">(</span>V<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">isDirected</span><span class="token punctuation">(</span>directed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>V <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">invalid_argument</span><span class="token punctuation">(</span><span class="token string">"Number of vertices must be positive."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        adjList<span class="token punctuation">.</span><span class="token function">resize</span><span class="token punctuation">(</span>numVertices<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Initialized Adjacency List for "</span> <span class="token operator">&lt;&lt;</span> numVertices <span class="token operator">&lt;&lt;</span> <span class="token string">" vertices."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 添加边 (u, v) 权重为 weight</span>
+    <span class="token keyword">void</span> <span class="token function">addEdge</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">,</span> <span class="token keyword">int</span> weight<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>u <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> u <span class="token operator">&lt;</span> numVertices <span class="token operator">&amp;&amp;</span> v <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> v <span class="token operator">&lt;</span> numVertices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            adjList<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token punctuation">{</span>v<span class="token punctuation">,</span> weight<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isDirected<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// 如果是无向图，对称地添加边</span>
+                adjList<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push_back</span><span class="token punctuation">(</span><span class="token punctuation">{</span>u<span class="token punctuation">,</span> weight<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Added edge between "</span> <span class="token operator">&lt;&lt;</span> u <span class="token operator">&lt;&lt;</span> <span class="token string">" and "</span> <span class="token operator">&lt;&lt;</span> v <span class="token operator">&lt;&lt;</span> <span class="token string">" with weight "</span> <span class="token operator">&lt;&lt;</span> weight <span class="token operator">&lt;&lt;</span> <span class="token string">"."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">out_of_range</span><span class="token punctuation">(</span><span class="token string">"Vertex out of bounds."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 移除边 (u, v)</span>
+    <span class="token comment">// 注意：对于多重图，这会移除第一个匹配的边。如果需要移除所有匹配边，需修改。</span>
+    <span class="token keyword">void</span> <span class="token function">removeEdge</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>u <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> u <span class="token operator">&lt;</span> numVertices <span class="token operator">&amp;&amp;</span> v <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> v <span class="token operator">&lt;</span> numVertices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            adjList<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">remove_if</span><span class="token punctuation">(</span><span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">const</span> EdgeNode<span class="token operator">&amp;</span> edge<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token keyword">return</span> edge<span class="token punctuation">.</span>to_vertex <span class="token operator">==</span> v<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>isDirected<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                adjList<span class="token punctuation">[</span>v<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">remove_if</span><span class="token punctuation">(</span><span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token keyword">const</span> EdgeNode<span class="token operator">&amp;</span> edge<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token keyword">return</span> edge<span class="token punctuation">.</span>to_vertex <span class="token operator">==</span> u<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Attempted to remove edge(s) between "</span> <span class="token operator">&lt;&lt;</span> u <span class="token operator">&lt;&lt;</span> <span class="token string">" and "</span> <span class="token operator">&lt;&lt;</span> v <span class="token operator">&lt;&lt;</span> <span class="token string">"."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">out_of_range</span><span class="token punctuation">(</span><span class="token string">"Vertex out of bounds."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 检查顶点u和v之间是否存在边</span>
+    <span class="token keyword">bool</span> <span class="token function">hasEdge</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">,</span> <span class="token keyword">int</span> v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>u <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> u <span class="token operator">&lt;</span> numVertices <span class="token operator">&amp;&amp;</span> v <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> v <span class="token operator">&lt;</span> numVertices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">auto</span><span class="token operator">&amp;</span> edge <span class="token operator">:</span> adjList<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>edge<span class="token punctuation">.</span>to_vertex <span class="token operator">==</span> v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">out_of_range</span><span class="token punctuation">(</span><span class="token string">"Vertex out of bounds."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// 打印邻接表</span>
+    <span class="token keyword">void</span> <span class="token function">display</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"\nAdjacency List:"</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numVertices<span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Vertex "</span> <span class="token operator">&lt;&lt;</span> i <span class="token operator">&lt;&lt;</span> <span class="token string">":"</span><span class="token punctuation">;</span>
+            <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">auto</span><span class="token operator">&amp;</span> edge <span class="token operator">:</span> adjList<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">" -&gt; ("</span> <span class="token operator">&lt;&lt;</span> edge<span class="token punctuation">.</span>to_vertex <span class="token operator">&lt;&lt;</span> <span class="token string">", w:"</span> <span class="token operator">&lt;&lt;</span> edge<span class="token punctuation">.</span>weight <span class="token operator">&lt;&lt;</span> <span class="token string">")"</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// 获取顶点的邻接点列表 (只读访问)</span>
+    <span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>list<span class="token operator">&lt;</span>EdgeNode<span class="token operator">&gt;</span><span class="token operator">&amp;</span> <span class="token function">getNeighbors</span><span class="token punctuation">(</span><span class="token keyword">int</span> u<span class="token punctuation">)</span> <span class="token keyword">const</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>u <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> u <span class="token operator">&lt;</span> numVertices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> adjList<span class="token punctuation">[</span>u<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">throw</span> std<span class="token double-colon punctuation">::</span><span class="token function">out_of_range</span><span class="token punctuation">(</span><span class="token string">"Vertex out of bounds."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token operator">~</span><span class="token function">GraphAdjList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Adjacency List Graph destroyed."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 主函数示例</span>
+<span class="token comment">// int main() {</span>
+<span class="token comment">//     try {</span>
+<span class="token comment">//         GraphAdjList g(4, false); // 4个顶点的无向加权图</span>
+<span class="token comment">//         g.addEdge(0, 1, 10);</span>
+<span class="token comment">//         g.addEdge(0, 2, 5);</span>
+<span class="token comment">//         g.addEdge(1, 2, 2);</span>
+<span class="token comment">//         g.addEdge(2, 3, 1);</span>
+<span class="token comment">//         g.display();</span>
+<span class="token comment">// </span>
+<span class="token comment">//         std::cout &lt;&lt; "Neighbors of vertex 0:" &lt;&lt; std::endl;</span>
+<span class="token comment">//         for (const auto&amp; edge : g.getNeighbors(0)) {</span>
+<span class="token comment">//             std::cout &lt;&lt; "  To: " &lt;&lt; edge.to_vertex &lt;&lt; ", Weight: " &lt;&lt; edge.weight &lt;&lt; std::endl;</span>
+<span class="token comment">//         }</span>
+<span class="token comment">// </span>
+<span class="token comment">//         std::cout &lt;&lt; "Edge (0,1) exists: " &lt;&lt; g.hasEdge(0,1) &lt;&lt; std::endl;</span>
+<span class="token comment">//         g.removeEdge(0,1);</span>
+<span class="token comment">//         std::cout &lt;&lt; "Edge (0,1) exists after removal: " &lt;&lt; g.hasEdge(0,1) &lt;&lt; std::endl;</span>
+<span class="token comment">//         g.display();</span>
+<span class="token comment">// </span>
+<span class="token comment">//     } catch (const std::exception&amp; e) {</span>
+<span class="token comment">//         std::cerr &lt;&lt; "Exception: " &lt;&lt; e.what() &lt;&lt; std::endl;</span>
+<span class="token comment">//     }</span>
+<span class="token comment">//     return 0;</span>
+<span class="token comment">// }</span>
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">在此示例中，adjList 是一个 <code>std::vector</code>，其每个元素是一个 <code>std::list&lt;EdgeNode&gt;</code>。EdgeNode 结构体存储了目标顶点和边的权重。addEdge 方法将新的邻接信息添加到相应顶点的列表中。</p></div><div class="el-p"><p dir="auto">优缺点分析：邻接表的主要优点包括：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">空间效率高：特别是对于稀疏图，邻接表的空间复杂度为 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span>，其中 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 是顶点数，<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 是边数。这是因为它只存储实际存在的边。</li>
+<li data-line="1" dir="auto">高效遍历顶点的邻接点：获取并遍历一个特定顶点的所有邻接点非常高效，时间复杂度与其度数成正比。这对于像深度优先搜索 (DFS) 和广度优先搜索 (BFS) 这样的图遍历算法非常有利。</li>
+<li data-line="2" dir="auto">添加顶点操作相对高效：向图中添加一个新顶点（不包括其边）通常是 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 操作（即在表示邻接表的数组/向量末尾添加一个新列表）。</li>
+<li data-line="3" dir="auto">添加边操作高效：向现有顶点的邻接列表中添加一条边通常是 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> （摊销时间，如果使用 <code>std::vector::push_back</code> 或链表头插）。</li>
+</ul></div><div class="el-p"><p dir="auto">邻接表的缺点主要有：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">判断边的存在性较慢：要检查顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 和 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 之间是否存在边，最坏情况下需要遍历顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> (或 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>) 的整个邻接列表，时间复杂度为 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mtext class="mjx-n"><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span>，其中 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mtext class="mjx-n"><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 是顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的度。在稠密图中，这可能接近 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span>。</li>
+<li data-line="1" dir="auto">删除边操作可能较慢：与查询类似，删除一条边 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 需要先在顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的邻接列表中找到并移除 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>（对于无向图，还需要在 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的列表中找到并移除 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span>），这同样可能需要 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mtext class="mjx-n"><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 的时间。</li>
+</ul></div><div class="el-p"><p dir="auto">根据 61 的观点，邻接链表（一种邻接表的实现方式）在边的读写上可能比矩阵表示稍慢，因为链表中的指针在内存中可能不是连续存储的，这可能影响缓存性能。</p></div><div class="el-p"><p dir="auto">空间与时间复杂度总结：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">空间复杂度：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></li>
+<li data-line="1" dir="auto">添加顶点：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (仅指为新顶点创建空邻接列表)</li>
+<li data-line="2" dir="auto">添加边：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (摊销)</li>
+<li data-line="3" dir="auto">删除顶点：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (最坏情况，因为需要遍历所有其他顶点的邻接列表以移除与被删除顶点相关的边)</li>
+<li data-line="4" dir="auto">删除边 (u,v)：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mtext class="mjx-n"><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (对于有向图，或无向图中从 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 到 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的部分) 或 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mtext class="mjx-n"><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mtext class="mjx-n" space="3"><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D463 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (对于无向图的完整删除)</li>
+<li data-line="5" dir="auto">查询边 (u,v) 是否存在：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mtext class="mjx-n"><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 或 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></li>
+<li data-line="6" dir="auto">获取顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的所有邻接点：<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mtext class="mjx-n"><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></li>
+</ul></div><div class="el-p"><p dir="auto">C. 如何选择合适的表示方法 (Choosing the Right Representation)</p></div><div class="el-p"><p dir="auto">选择邻接矩阵还是邻接表，主要取决于图的特性（特别是密度）和应用中所需执行的主要操作类型。</p></div><div class="el-p"><p dir="auto">图的密度：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">稠密图 (Dense Graphs)：当边的数量 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 接近于 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math></mjx-container></span> 的上限时，图被认为是稠密的。在这种情况下，邻接矩阵的 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 空间开销与 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 相差不大，其 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 的边查询速度可能成为优势。</li>
+<li data-line="1" dir="auto">稀疏图 (Sparse Graphs)：当边的数量 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 远小于 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup></mjx-math></mjx-container></span>（例如 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 与 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 成线性关系）时，图被认为是稀疏的。此时，邻接表的 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 空间复杂度远优于邻接矩阵，是首选的表示方法。21 甚至探讨了对稀疏有向图的邻接矩阵进行压缩存储的方法，以缓解其空间浪费问题，这反过来也强调了邻接表在稀疏图上的自然优势。</li>
+</ul></div><div class="el-p"><p dir="auto">主要操作需求：</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">如果算法需要频繁地检查任意两个顶点之间是否存在边，邻接矩阵的 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 查询时间非常有利。</li>
+<li data-line="1" dir="auto">如果算法需要频繁地遍历一个顶点的所有邻接点（例如在DFS、BFS等图遍历算法中），邻接表则更为高效，因为它直接提供了邻接点列表。</li>
+<li data-line="2" dir="auto">如果图中顶点的添加和删除操作非常频繁，需要仔细评估两种方法。邻接矩阵的顶点增删成本很高 (<span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span>)，而邻接表在添加顶点本身时较快，但删除顶点时仍需处理相关的边，可能达到 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span>。</li>
+</ul></div><div class="el-h5 heading-wrapper"><h5 data-heading="Table 1: 邻接矩阵与邻接表对比" dir="auto" class="heading" id="Table_1:_邻接矩阵与邻接表对比"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Table 1: 邻接矩阵与邻接表对比</h5><div class="heading-children"><div class="el-p"><p dir="auto">下表总结了邻接矩阵和邻接表在各种操作上的性能特点：</p></div><div class="el-table" dir="ltr" style="overflow-x: auto;"><table>
+<thead>
+<tr>
+<th align="left" dir="ltr">特性 (Feature)</th>
+<th align="left" dir="ltr">邻接矩阵 (Adjacency Matrix)</th>
+<th align="left" dir="ltr">邻接表 (Adjacency List)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" dir="ltr">空间复杂度 (Space Complexity)</td>
+<td align="left" dir="auto"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></td>
+<td align="left" dir="auto"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></td>
+</tr>
+<tr>
+<td align="left" dir="ltr">添加顶点 (Add Vertex)</td>
+<td align="left" dir="ltr"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (通常需要重建)</td>
+<td align="left" dir="ltr"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (为新顶点创建空列表)</td>
+</tr>
+<tr>
+<td align="left" dir="ltr">添加边 (Add Edge)</td>
+<td align="left" dir="auto"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></td>
+<td align="left" dir="ltr"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (摊销)</td>
+</tr>
+<tr>
+<td align="left" dir="ltr">删除顶点 (Remove Vertex)</td>
+<td align="left" dir="ltr"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (通常需要重建)</td>
+<td align="left" dir="ltr"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> (需从其他邻接列表移除相关边)</td>
+</tr>
+<tr>
+<td align="left" dir="ltr">删除边 (Remove Edge)</td>
+<td align="left" dir="auto"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></td>
+<td align="left" dir="ltr"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mtext class="mjx-n"><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 或 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> （需搜索列表）</td>
+</tr>
+<tr>
+<td align="left" dir="ltr">查询两点是否邻接 (Query Adjacency)</td>
+<td align="left" dir="auto"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></td>
+<td align="left" dir="ltr"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mtext class="mjx-n"><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 或 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> （需搜索列表）</td>
+</tr>
+<tr>
+<td align="left" dir="ltr">遍历某顶点的所有邻接点 (Iterate Neighbors)</td>
+<td align="left" dir="auto"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></td>
+<td align="left" dir="auto"><span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mtext class="mjx-n"><mjx-c class="mjx-c64"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c67"></mjx-c><mjx-c class="mjx-c72"></mjx-c><mjx-c class="mjx-c65"></mjx-c><mjx-c class="mjx-c65"></mjx-c></mjx-mtext><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span></td>
+</tr>
+<tr>
+<td align="left" dir="ltr">适用图类型 (Suited Graph Type)</td>
+<td align="left" dir="ltr">稠密图 (Dense)</td>
+<td align="left" dir="ltr">稀疏图 (Sparse)</td>
+</tr>
+</tbody>
+</table></div><div class="el-p"><p dir="auto">数据来源：基于 14 及其他相关片段的分析。</p></div><div class="el-p"><p dir="auto">此表格清晰地展示了两种表示方法的权衡。在实际应用和算法竞赛中，由于现实世界中的许多大型图（如社交网络、网页图）通常是稀疏的，邻接表因其空间效率和对遍历操作的良好支持而更为常用。</p></div><div class="el-p"><p dir="auto">图的表示方法是图算法得以高效执行的基石。一种算法的理论时间复杂度往往是基于某种特定的图表示（通常是邻接表，因为它对稀疏图更友好）推导出来的。例如，标准的BFS和DFS算法的 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="3"><mjx-c class="mjx-c1D438 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 时间复杂度就是假设图是用邻接表表示的。如果用邻接矩阵，由于查找一个顶点的所有邻居需要 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 时间，这些遍历算法的复杂度可能会变成 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msup><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D449 TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: 0.363em; margin-left: 0.059em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msup><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span>。这凸显了数据结构选择对算法性能的深远影响。此外，C++标准模板库 (STL) 中的 <code>std::vector</code> 和 <code>std::list</code>（以及用于加权图的 <code>std::pair</code>）为实现邻接表提供了极大的便利，使得开发者可以专注于算法逻辑本身，而不必过多地纠缠于底层数据结构的细节实现。然而，理解这些STL容器大致的性能特征（例如 <code>std::vector::push_back</code> 的摊销 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D442 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-math></mjx-container></span> 复杂度）对于准确分析算法性能仍然是重要的。最终，选择哪种表示方法是一个需要在空间效率、时间效率以及特定操作需求之间进行权衡的决策。</p></div><div class="el-p"><p dir="auto">III. 图的遍历算法 (Graph Traversal Algorithms)</p></div><div class="el-p"><p dir="auto">图的遍历是指按照某种特定的顺序访问图中的每一个顶点，并且每个顶点仅访问一次。这是许多更复杂图算法的基础。最核心的两种遍历算法是广度优先搜索 (BFS) 和深度优先搜索 (DFS)。</p></div><div class="el-p"><p dir="auto">A. 广度优先搜索 (BFS - Breadth-First Search)</p></div><div class="el-p"><p dir="auto">算法思想与直观理解：广度优先搜索 (BFS) 是一种系统性地探索图中顶点的方法。它从一个指定的源顶点开始，首先访问所有与源顶点直接相邻的顶点（可以看作是第一层或距离为1的层）。然后，对于第一层中所有已被访问的顶点，BFS会继续访问它们所有未被访问过的邻接点（构成第二层或距离为2的层）。这个过程逐层向外扩展，直到所有从源顶点可达的顶点都被访问过为止。可以将BFS的过程想象成在平静的水面上投下一颗石子，产生的波纹会以石子落点为中心，一圈一圈地向外均匀扩散。BFS的这种“逐层”或“按距离远近”的访问特性，使其天然适用于寻找无权图中的最短路径（以边的数量衡量）。</p></div><div class="el-p"><p dir="auto">为了实现这种逐层访问的顺序，BFS通常使用一个队列 (Queue) 数据结构。队列的先进先出 (FIFO) 特性保证了先发现的顶点（离源点更近的顶点）其邻接点会被优先探索。同时，为了避免重复访问同一个顶点（尤其是在包含环的图中可能导致无限循环），BFS会使用一个布尔数组 <code>visited</code> 来标记每个顶点是否已经被访问过。</p></div><div class="el-p"><p dir="auto">C++ 代码示例：以下是一个基于邻接表实现的BFS算法的C++代码示例。假设图用 <code>std::vector&lt;std::vector&lt;int&gt;&gt; adjList</code> 表示（对于无权图），其中 <code>adjList[u]</code> 包含了顶点 <span class="math math-inline is-loaded"><mjx-container class="MathJax" jax="CHTML"><mjx-math class="MJX-TEX"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D462 TEX-I"></mjx-c></mjx-mi></mjx-math></mjx-container></span> 的所有邻接顶点。</p></div><div class="el-pre"><pre class="language-cpp" tabindex="0"><code data-line="0" class="language-cpp is-loaded"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;vector&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;queue&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;list&gt;</span> <span class="token comment">// GraphAdjList 使用了 list</span></span>
+
+<span class="token comment">// (假设 GraphAdjList 类如前文定义，这里仅展示BFS成员函数)</span>
+<span class="token comment">// 或者可以是一个独立的BFS函数，接收邻接表和起始顶点作为参数</span>
+
+<span class="token comment">// 独立BFS函数版本</span>
+<span class="token keyword">void</span> <span class="token function">bfs_standalone</span><span class="token punctuation">(</span><span class="token keyword">int</span> startVertex<span class="token punctuation">,</span> <span class="token keyword">int</span> numVertices<span class="token punctuation">,</span> <span class="token keyword">const</span> std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span>std<span class="token double-colon punctuation">::</span>list<span class="token operator">&lt;</span>EdgeNode<span class="token operator">&gt;&gt;</span><span class="token operator">&amp;</span> adjList<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>startVertex <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">||</span> startVertex <span class="token operator">&gt;=</span> numVertices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        std<span class="token double-colon punctuation">::</span>cerr <span class="token operator">&lt;&lt;</span> <span class="token string">"Error: Start vertex is out of bounds."</span> <span class="token operator">&lt;&lt;</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    std<span class="token double-colon punctuation">::</span>vector<span class="token operator">&lt;</span><span class="token keyword">bool</span><span class="token operator">&gt;</span> <span class="token function">visited</span><span class="token punctuation">(</span>numVertices<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 标记顶点是否被访问过</span>
+    std<span class="token double-colon punctuation">::</span>queue<span class="token operator">&lt;</span><span class="token keyword">int</span><span class="token operator">&gt;</span> q<span class="token punctuation">;</span>                             <span class="token comment">// 辅助队列</span>
+
+    <span class="token comment">// 1. 将起始顶点标记为已访问，并将其入队</span>
+    visited<span class="token punctuation">[</span>startVertex<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    q<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>startVertex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> <span class="token string">"BFS traversal starting from vertex "</span> <span class="token operator">&lt;&lt;</span> startVertex <span class="token operator">&lt;&lt;</span> <span class="token string">": "</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 2. 当队列不为空时，循环继续</span>
+    <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">!</span>q<span class="token punctuation">.</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 3. 从队列中取出一个顶点</span>
+        <span class="token keyword">int</span> u <span class="token operator">=</span> q<span class="token punctuation">.</span><span class="token function">front</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        q<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 4. 访问该顶点 (例如，打印)</span>
+        std<span class="token double-colon punctuation">::</span>cout <span class="token operator">&lt;&lt;</span> u <span class="token operator">&lt;&lt;</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// 5. 遍历该顶点的所有邻</span>
+
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="mod-footer mod-ui"></div></div></div></div></div></div></div></div><div class="sidebar-right sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content"><div class="graph-view-wrapper"><div class="sidebar-section-header">Interactive Graph</div><div class="graph-view-placeholder">
+		<div class="graph-view-container">
+			<div class="graph-icon graph-expand" role="button" aria-label="Expand" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+			<canvas id="graph-canvas" class="hide" width="512px" height="512px"></canvas>
+		</div>
+		</div></div><div class="tree-container mod-root nav-folder tree-item outline-tree" data-depth="0"><div class="tree-header"><span class="sidebar-section-header">Table Of Contents</span><button class="clickable-icon collapse-tree-button" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-scroll-area tree-item-children nav-folder-children"><div class="tree-item mod-tree-folder nav-folder mod-collapsible is-collapsed" style="display: none;"></div><div class="tree-item" data-depth="1"><a class="tree-link" href="数据结构\图论.html#图论"><div class="tree-item-contents heading-link" heading-name="图论"><span class="tree-item-title">图论</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-link" href="数据结构\图论.html#图论全面复习_：概念、表示、算法与C++实现"><div class="tree-item-contents heading-link" heading-name="图论全面复习 ：概念、表示、算法与C++实现"><div class="collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><span class="tree-item-title">图论全面复习 ：概念、表示、算法与C++实现</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item" data-depth="5"><a class="tree-link" href="数据结构\图论.html#Table_1:_邻接矩阵与邻接表对比"><div class="tree-item-contents heading-link" heading-name="Table 1: 邻接矩阵与邻接表对比"><span class="tree-item-title">Table 1: 邻接矩阵与邻接表对比</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div></div></div></div></div></div><script defer="">let rs = document.querySelector(".sidebar-right"); rs.classList.add("is-collapsed"); if (window.innerWidth > 768) rs.classList.remove("is-collapsed"); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></body></html>
