@@ -1,0 +1,2511 @@
+{
+  "vaultName": "大二下作业",
+  "lastExport": 1747989582318,
+  "pluginVersion": "1.8.01",
+  "validBodyClasses": "publish css-settings-manager theme-dark show-inline-title show-ribbon math-booster-preview-enabled",
+  "useCustomHeadContent": false,
+  "useCustomFavicon": false,
+  "files": [
+    "实变函数/教材/实变函数简明教程 (邓东皋,常心怡) (Z-Library).pdf",
+    "实变函数/教材/实变函数简明教程习题解答 (邓东皋,常心怡) (Z-Library).pdf",
+    "实变函数/includes/不同意义收敛的函数序列.tex",
+    "实变函数/includes/函数空间.tex",
+    "实变函数/includes/积分理论.tex",
+    "实变函数/includes/Cardinality.tex",
+    "实变函数/includes/Construction of measure.tex",
+    "实变函数/includes/Construction-of-measure.tex",
+    "实变函数/includes/hw1.tex",
+    "实变函数/includes/hw2.tex",
+    "实变函数/includes/hw3.tex",
+    "实变函数/includes/hw4.tex",
+    "实变函数/includes/hw5.tex",
+    "实变函数/includes/hw6.tex",
+    "实变函数/includes/hw7.tex",
+    "实变函数/includes/hw8.tex",
+    "实变函数/includes/hw9.tex",
+    "实变函数/includes/hw10.tex",
+    "实变函数/includes/hw11.tex",
+    "实变函数/includes/hw12.tex",
+    "实变函数/includes/Lebesgue测度-可测集-测度-Borel集.tex",
+    "实变函数/includes/Topological-preliminaries.tex",
+    "实变函数/不同意义收敛的函数序列.md",
+    "实变函数/第1次作业-乐绎华-23363017.pdf",
+    "实变函数/第2次作业-乐绎华-23363017.pdf",
+    "实变函数/第3次作业-乐绎华-23363017.pdf",
+    "实变函数/函数空间.md",
+    "实变函数/积分理论.md",
+    "实变函数/可测函数列的收敛.md",
+    "实变函数/细节.md",
+    "实变函数/周民强.md",
+    "实变函数/Cardinality.md",
+    "实变函数/Compile.cmd",
+    "实变函数/Construction-of-measure.md",
+    "实变函数/hw1.md",
+    "实变函数/hw2.md",
+    "实变函数/hw3.md",
+    "实变函数/HW3.pdf",
+    "实变函数/hw4.md",
+    "实变函数/HW4.pdf",
+    "实变函数/hw5.md",
+    "实变函数/hw6.md",
+    "实变函数/hw7.md",
+    "实变函数/hw8.md",
+    "实变函数/hw9.md",
+    "实变函数/hw10.md",
+    "实变函数/hw11.md",
+    "实变函数/hw12.md",
+    "实变函数/Invariance of measure.md",
+    "实变函数/Lebesgue测度-可测集-测度-Borel集.md",
+    "实变函数/positive-definite-function.md",
+    "实变函数/real-analysis.tex",
+    "实变函数/real-analysis.pdf",
+    "实变函数/real-analysis.synctex.gz",
+    "实变函数/real-analysis.synctex.gz.sum.synctex",
+    "实变函数/Topological preliminaries.pdf",
+    "实变函数/Topological-preliminaries.md",
+    "lib/media/不同意义收敛的函数序列-2025040522.png",
+    "lib/media/1-不同意义收敛的函数序列-2025040522.png",
+    "lib/media/函数空间-2025040523.png",
+    "lib/media/1-函数空间-2025040523.png",
+    "lib/media/2-函数空间-2025040523.png",
+    "lib/media/3-函数空间-2025040523.png",
+    "lib/media/积分理论-2025040600.png",
+    "lib/media/1-积分理论-2025040600.png",
+    "lib/media/cardinality-20250312.png",
+    "lib/media/construction-of-measure-2025032810.png",
+    "lib/media/1-construction-of-measure-2025032811.png",
+    "lib/media/2-construction-of-measure-2025032811.png",
+    "lib/media/3-construction-of-measure-2025032811.png",
+    "lib/media/4-construction-of-measure-2025032811.png",
+    "lib/media/5-construction-of-measure-2025032811.png",
+    "lib/media/6-construction-of-measure-2025032811.png",
+    "lib/media/7-construction-of-measure-2025032811.png",
+    "lib/media/8-construction-of-measure-2025032811.png",
+    "lib/media/9-construction-of-measure-2025032811.png",
+    "lib/media/10-construction-of-measure-2025032811.png",
+    "lib/media/11-construction-of-measure-2025032811.png",
+    "lib/media/12-construction-of-measure-2025032811.png",
+    "lib/media/13-construction-of-measure-2025032811.png",
+    "lib/media/14-construction-of-measure-2025032811.png",
+    "lib/media/15-construction-of-measure-2025032811.png",
+    "lib/media/16-construction-of-measure-2025032811.png",
+    "lib/media/20-construction-of-measure-2025032811.png",
+    "lib/media/18-construction-of-measure-2025032811.png",
+    "lib/media/19-construction-of-measure-2025032811.png",
+    "lib/media/21-construction-of-measure-2025032811.png",
+    "lib/media/22-construction-of-measure-2025032811.png",
+    "lib/media/hw1-20250307.png",
+    "lib/media/1-hw1-20250307.png",
+    "lib/media/2-hw1-20250307.png",
+    "lib/media/3-hw1-20250307.png",
+    "lib/media/4-hw1-20250307.png",
+    "lib/media/5-hw1-20250307.png",
+    "lib/media/6-hw1-20250307.png",
+    "lib/media/7-hw1-20250307.png",
+    "lib/media/hw2-20250312.png",
+    "lib/media/2-hw2-20250312.png",
+    "lib/media/hw3-20250323.png",
+    "lib/media/hw3-2025032323.png",
+    "lib/media/hw3-2025032400.png",
+    "lib/media/1-hw3-2025032400.png",
+    "lib/media/2-hw3-2025032400.png",
+    "lib/media/3-hw3-2025032400.png",
+    "lib/media/hw4-2025032809.png",
+    "lib/media/1-hw4-2025032809.png",
+    "lib/media/2-hw4-2025032809.png",
+    "lib/media/3-hw4-2025032809.png",
+    "lib/media/hw4-2025032810.png",
+    "lib/media/1-hw4-2025032810.png",
+    "lib/media/2-hw4-2025032810.png",
+    "lib/media/hw4-2025032812.png",
+    "lib/media/hw4-2025032819.png",
+    "lib/media/1-hw4-2025032819.png",
+    "lib/media/2-hw4-2025032819.png",
+    "lib/media/hw5-2025040310.png",
+    "lib/media/2-hw5-2025040310.png",
+    "lib/media/hw5-2025040311.png",
+    "lib/media/1-hw5-2025040311.png",
+    "lib/media/2-hw5-2025040311.png",
+    "lib/media/3-hw5-2025040311.png",
+    "lib/media/4-hw5-2025040311.png",
+    "lib/media/5-hw5-2025040311.png",
+    "lib/media/6-hw5-2025040311.png",
+    "lib/media/7-hw5-2025040311.png",
+    "lib/media/8-hw5-2025040311.png",
+    "lib/media/9-hw5-2025040311.png",
+    "lib/media/10-hw5-2025040311.png",
+    "lib/media/11-hw5-2025040311.png",
+    "lib/media/12-hw5-2025040311.png",
+    "lib/media/hw6-2025041520.png",
+    "lib/media/1-hw6-2025041520.png",
+    "lib/media/2-hw6-2025041520.png",
+    "lib/media/hw6-2025041600.png",
+    "lib/media/1-hw6-2025041600.png",
+    "lib/media/2-hw6-2025041600.png",
+    "lib/media/3-hw6-2025041600.png",
+    "lib/media/hw6-2025041601.png",
+    "lib/media/1-hw6-2025041608.png",
+    "lib/media/hw6-2025041608.png",
+    "lib/media/hw6-2025041609.png",
+    "lib/media/1-hw6-2025041609.png",
+    "lib/media/hw6-2025041611.png",
+    "lib/media/1-hw6-2025041611.png",
+    "lib/media/hw6-2025041612.png",
+    "lib/media/1-hw6-2025041612.png",
+    "lib/media/2-hw6-2025041612.png",
+    "lib/media/3-hw6-2025041612.png",
+    "lib/media/4-hw6-2025041612.png",
+    "lib/media/5-hw6-2025041612.png",
+    "lib/media/6-hw6-2025041612.png",
+    "lib/media/7-hw6-2025041612.png",
+    "lib/media/2-hw7-2025042112.png",
+    "lib/media/4-hw7-2025042112.png",
+    "lib/media/5-hw7-2025042112.png",
+    "lib/media/6-hw7-2025042112.png",
+    "lib/media/15-hw7-2025042112.png",
+    "lib/media/7-hw7-2025042112.png",
+    "lib/media/16-hw7-2025042112.png",
+    "lib/media/8-hw7-2025042112.png",
+    "lib/media/9-hw7-2025042112.png",
+    "lib/media/10-hw7-2025042112.png",
+    "lib/media/11-hw7-2025042112.png",
+    "lib/media/1-hw7-2025042211.png",
+    "lib/media/12-hw7-2025042112.png",
+    "lib/media/13-hw7-2025042112.png",
+    "lib/media/14-hw7-2025042112.png",
+    "lib/media/1-hw8-2025042920.png",
+    "lib/media/2-hw8-2025042920.png",
+    "lib/media/3-hw8-2025042920.png",
+    "lib/media/hw8-2025042923.png",
+    "lib/media/1-hw8-2025042923.png",
+    "lib/media/4-hw8-2025042920.png",
+    "lib/media/5-hw8-2025042920.png",
+    "lib/media/hw8-2025043009.png",
+    "lib/media/6-hw8-2025042920.png",
+    "lib/media/7-hw8-2025042920.png",
+    "lib/media/8-hw8-2025042920.png",
+    "lib/media/9-hw8-2025042920.png",
+    "lib/media/10-hw8-2025042920.png",
+    "lib/media/11-hw8-2025042920.png",
+    "lib/media/12-hw8-2025042920.png",
+    "lib/media/13-hw8-2025042920.png",
+    "lib/media/1-hw8-2025043012.png",
+    "lib/media/hw9-2025050523.png",
+    "lib/media/1-hw9-2025050523.png",
+    "lib/media/2-hw9-2025050523.png",
+    "lib/media/3-hw9-2025050523.png",
+    "lib/media/4-hw9-2025050523.png",
+    "lib/media/6-hw9-2025050523.png",
+    "lib/media/7-hw9-2025050523.png",
+    "lib/media/8-hw9-2025050523.png",
+    "lib/media/11-hw9-2025050523.png",
+    "lib/media/9-hw9-2025050523.png",
+    "lib/media/10-hw9-2025050523.png",
+    "lib/media/hw10-2025051210.png",
+    "lib/media/1-hw10-2025051210.png",
+    "lib/media/3-hw10-2025051210.png",
+    "lib/media/4-hw10-2025051210.png",
+    "lib/media/5-hw10-2025051210.png",
+    "lib/media/6-hw10-2025051210.png",
+    "lib/media/7-hw10-2025051210.png",
+    "lib/media/8-hw10-2025051210.png",
+    "lib/media/9-hw10-2025051210.png",
+    "lib/media/hw11-2025052017.png",
+    "lib/media/1-hw11-2025052017.png",
+    "lib/media/2-hw11-2025052017.png",
+    "lib/media/3-hw11-2025052017.png",
+    "lib/media/4-hw11-2025052017.png",
+    "lib/media/5-hw11-2025052017.png",
+    "lib/media/6-hw11-2025052017.png",
+    "lib/media/7-hw11-2025052017.png",
+    "lib/media/8-hw11-2025052017.png",
+    "lib/media/9-hw11-2025052017.png",
+    "lib/media/hw11-2025052023.png",
+    "lib/media/4-hw11-2025052023.png",
+    "lib/media/5-hw11-2025052023.png",
+    "lib/media/6-hw11-2025052023.png",
+    "lib/media/7-hw11-2025052023.png",
+    "lib/media/8-hw11-2025052023.png",
+    "lib/media/hw12-2025052108.png",
+    "lib/media/1-hw12-2025052108.png",
+    "lib/media/2-hw12-2025052108.png",
+    "lib/media/3-hw12-2025052108.png",
+    "lib/media/5-hw12-2025052108.png",
+    "lib/media/6-hw12-2025052108.png",
+    "lib/media/7-hw12-2025052108.png",
+    "lib/media/8-hw12-2025052108.png",
+    "lib/media/9-hw12-2025052108.png",
+    "lib/media/10-hw12-2025052108.png",
+    "lib/media/11-hw12-2025052108.png",
+    "lib/media/topological-preliminaries-20250322.png",
+    "lib/media/1-topological-preliminaries-20250322.png",
+    "lib/media/2-topological-preliminaries-20250322.png",
+    "lib/media/10-topological-preliminaries-20250322.png",
+    "lib/media/11-topological-preliminaries-20250322.png",
+    "lib/media/16-topological-preliminaries-20250322.png",
+    "lib/media/6-topological-preliminaries-20250322.png",
+    "lib/media/8-topological-preliminaries-20250322.png",
+    "lib/media/9-topological-preliminaries-20250322.png",
+    "lib/media/4-topological-preliminaries-20250322.png",
+    "lib/media/5-topological-preliminaries-20250322.png",
+    "lib/media/12-topological-preliminaries-20250322.png",
+    "lib/media/13-topological-preliminaries-20250322.png",
+    "lib/media/15-topological-preliminaries-20250322.png",
+    "lib/media/17-topological-preliminaries-20250322.png",
+    "lib/media/18-topological-preliminaries-20250322.png",
+    "lib/media/19-topological-preliminaries-20250322.png",
+    "lib/media/20-topological-preliminaries-20250322.png",
+    "lib/media/21-topological-preliminaries-20250322.png",
+    "lib/media/22-topological-preliminaries-20250322.png",
+    "lib/media/23-topological-preliminaries-20250322.png",
+    "lib/media/24-topological-preliminaries-20250322.png",
+    "lib/media/25-topological-preliminaries-20250322.png",
+    "lib/media/26-topological-preliminaries-20250322.png",
+    "lib/media/27-topological-preliminaries-20250322.png",
+    "lib/media/28-topological-preliminaries-20250322.png",
+    "lib/media/29-topological-preliminaries-20250322.png",
+    "lib/media/30-topological-preliminaries-20250322.png",
+    "lib/media/31-topological-preliminaries-20250322.png",
+    "lib/media/32-topological-preliminaries-20250322.png",
+    "lib/media/33-topological-preliminaries-20250322.png",
+    "lib/media/34-topological-preliminaries-20250322.png",
+    "lib/media/35-topological-preliminaries-20250322.png",
+    "lib/media/36-topological-preliminaries-20250322.png",
+    "lib/scripts/graph-wasm.wasm",
+    "lib/fonts/94f2f163d4b698242fef.otf",
+    "lib/fonts/72505e6a122c6acd5471.woff2",
+    "lib/fonts/2d5198822ab091ce4305.woff2",
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+    "lib/fonts/cb10ffd7684cd9836a05.woff2",
+    "lib/fonts/b5f0f109bc88052d4000.woff2",
+    "lib/fonts/cbe0ae49c52c920fd563.woff2",
+    "lib/fonts/535a6cf662596b3bd6a6.woff2",
+    "lib/fonts/70cc7ff27245e82ad414.ttf",
+    "lib/fonts/454577c22304619db035.ttf",
+    "lib/fonts/52ac8f3034507f1d9e53.ttf",
+    "lib/fonts/05b618077343fbbd92b7.ttf",
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+    "lib/media/6155340132a851f6089e.svg",
+    "lib/fonts/mathjax_zero.woff",
+    "lib/fonts/mathjax_main-regular.woff",
+    "lib/fonts/mathjax_main-bold.woff",
+    "lib/fonts/mathjax_math-italic.woff",
+    "lib/fonts/mathjax_main-italic.woff",
+    "lib/fonts/mathjax_math-bolditalic.woff",
+    "lib/fonts/mathjax_size1-regular.woff",
+    "lib/fonts/mathjax_size2-regular.woff",
+    "lib/fonts/mathjax_size3-regular.woff",
+    "lib/fonts/mathjax_size4-regular.woff",
+    "lib/fonts/mathjax_ams-regular.woff",
+    "lib/fonts/mathjax_calligraphic-regular.woff",
+    "lib/fonts/mathjax_calligraphic-bold.woff",
+    "lib/fonts/mathjax_fraktur-regular.woff",
+    "lib/fonts/mathjax_fraktur-bold.woff",
+    "lib/fonts/mathjax_sansserif-regular.woff",
+    "lib/fonts/mathjax_sansserif-bold.woff",
+    "lib/fonts/mathjax_sansserif-italic.woff",
+    "lib/fonts/mathjax_script-regular.woff",
+    "lib/fonts/mathjax_typewriter-regular.woff",
+    "lib/fonts/mathjax_vector-regular.woff",
+    "lib/fonts/mathjax_vector-bold.woff",
+    "lib/html/file-tree.html",
+    "lib/scripts/webpage.js",
+    "lib/scripts/graph-view.js",
+    "lib/scripts/graph-wasm.js",
+    "lib/scripts/graph-render-worker.js",
+    "lib/scripts/tinycolor.js",
+    "lib/scripts/pixi.js",
+    "lib/scripts/minisearch.js",
+    "lib/media/favicon.png",
+    "lib/scripts/graph-data.js",
+    "lib/styles/obsidian.css",
+    "lib/styles/other-plugins.css",
+    "lib/styles/theme.css",
+    "lib/styles/global-variable-styles.css",
+    "lib/styles/main-styles.css"
+  ],
+  "mainDependencies": [
+    "lib/scripts/graph-wasm.wasm",
+    "lib/fonts/94f2f163d4b698242fef.otf",
+    "lib/fonts/72505e6a122c6acd5471.woff2",
+    "lib/fonts/2d5198822ab091ce4305.woff2",
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+    "lib/fonts/cb10ffd7684cd9836a05.woff2",
+    "lib/fonts/b5f0f109bc88052d4000.woff2",
+    "lib/fonts/cbe0ae49c52c920fd563.woff2",
+    "lib/fonts/535a6cf662596b3bd6a6.woff2",
+    "lib/fonts/70cc7ff27245e82ad414.ttf",
+    "lib/fonts/454577c22304619db035.ttf",
+    "lib/fonts/52ac8f3034507f1d9e53.ttf",
+    "lib/fonts/05b618077343fbbd92b7.ttf",
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+    "lib/media/6155340132a851f6089e.svg",
+    "lib/fonts/mathjax_zero.woff",
+    "lib/fonts/mathjax_main-regular.woff",
+    "lib/fonts/mathjax_main-bold.woff",
+    "lib/fonts/mathjax_math-italic.woff",
+    "lib/fonts/mathjax_main-italic.woff",
+    "lib/fonts/mathjax_math-bolditalic.woff",
+    "lib/fonts/mathjax_size1-regular.woff",
+    "lib/fonts/mathjax_size2-regular.woff",
+    "lib/fonts/mathjax_size3-regular.woff",
+    "lib/fonts/mathjax_size4-regular.woff",
+    "lib/fonts/mathjax_ams-regular.woff",
+    "lib/fonts/mathjax_calligraphic-regular.woff",
+    "lib/fonts/mathjax_calligraphic-bold.woff",
+    "lib/fonts/mathjax_fraktur-regular.woff",
+    "lib/fonts/mathjax_fraktur-bold.woff",
+    "lib/fonts/mathjax_sansserif-regular.woff",
+    "lib/fonts/mathjax_sansserif-bold.woff",
+    "lib/fonts/mathjax_sansserif-italic.woff",
+    "lib/fonts/mathjax_script-regular.woff",
+    "lib/fonts/mathjax_typewriter-regular.woff",
+    "lib/fonts/mathjax_vector-regular.woff",
+    "lib/fonts/mathjax_vector-bold.woff",
+    "lib/html/file-tree.html",
+    "lib/scripts/webpage.js",
+    "lib/scripts/graph-view.js",
+    "lib/scripts/graph-wasm.js",
+    "lib/scripts/graph-render-worker.js",
+    "lib/scripts/tinycolor.js",
+    "lib/scripts/pixi.js",
+    "lib/scripts/minisearch.js",
+    "lib/media/favicon.png",
+    "lib/scripts/graph-data.js",
+    "lib/styles/obsidian.css",
+    "lib/styles/other-plugins.css",
+    "lib/styles/theme.css",
+    "lib/styles/global-variable-styles.css",
+    "lib/styles/main-styles.css"
+  ],
+  "fileInfo": {
+    "实变函数/教材/实变函数简明教程 (邓东皋,常心怡) (Z-Library).pdf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 21781994,
+      "exportedPath": "实变函数/教材/实变函数简明教程-(邓东皋,常心怡)-(z-library).pdf",
+      "dependencies": []
+    },
+    "实变函数/教材/实变函数简明教程习题解答 (邓东皋,常心怡) (Z-Library).pdf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 541276,
+      "exportedPath": "实变函数/教材/实变函数简明教程习题解答-(邓东皋,常心怡)-(z-library).pdf",
+      "dependencies": []
+    },
+    "实变函数/includes/不同意义收敛的函数序列.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 1984,
+      "exportedPath": "实变函数/includes/不同意义收敛的函数序列.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/函数空间.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 8395,
+      "exportedPath": "实变函数/includes/函数空间.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/积分理论.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 8558,
+      "exportedPath": "实变函数/includes/积分理论.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/Cardinality.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 2717,
+      "exportedPath": "实变函数/includes/cardinality.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/Construction of measure.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 7624,
+      "exportedPath": "实变函数/includes/construction-of-measure.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/Construction-of-measure.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 7624,
+      "exportedPath": "实变函数/includes/construction-of-measure.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw1.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 11243,
+      "exportedPath": "实变函数/includes/hw1.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw2.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 9004,
+      "exportedPath": "实变函数/includes/hw2.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw3.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 9445,
+      "exportedPath": "实变函数/includes/hw3.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw4.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 9388,
+      "exportedPath": "实变函数/includes/hw4.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw5.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 9228,
+      "exportedPath": "实变函数/includes/hw5.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw6.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 15568,
+      "exportedPath": "实变函数/includes/hw6.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw7.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 9790,
+      "exportedPath": "实变函数/includes/hw7.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw8.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 13867,
+      "exportedPath": "实变函数/includes/hw8.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw9.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 22853,
+      "exportedPath": "实变函数/includes/hw9.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw10.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 8925,
+      "exportedPath": "实变函数/includes/hw10.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw11.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 13985,
+      "exportedPath": "实变函数/includes/hw11.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/hw12.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 8547,
+      "exportedPath": "实变函数/includes/hw12.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/Lebesgue测度-可测集-测度-Borel集.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 13643,
+      "exportedPath": "实变函数/includes/lebesgue测度-可测集-测度-borel集.tex",
+      "dependencies": []
+    },
+    "实变函数/includes/Topological-preliminaries.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 11989,
+      "exportedPath": "实变函数/includes/topological-preliminaries.tex",
+      "dependencies": []
+    },
+    "实变函数/不同意义收敛的函数序列.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 1694,
+      "exportedPath": "实变函数/不同意义收敛的函数序列.html",
+      "dependencies": [
+        "lib/media/不同意义收敛的函数序列-2025040522.png",
+        "lib/media/1-不同意义收敛的函数序列-2025040522.png"
+      ]
+    },
+    "实变函数/第1次作业-乐绎华-23363017.pdf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 485358,
+      "exportedPath": "实变函数/第1次作业-乐绎华-23363017.pdf",
+      "dependencies": []
+    },
+    "实变函数/第2次作业-乐绎华-23363017.pdf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 564213,
+      "exportedPath": "实变函数/第2次作业-乐绎华-23363017.pdf",
+      "dependencies": []
+    },
+    "实变函数/第3次作业-乐绎华-23363017.pdf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 415526,
+      "exportedPath": "实变函数/第3次作业-乐绎华-23363017.pdf",
+      "dependencies": []
+    },
+    "实变函数/函数空间.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 7714,
+      "exportedPath": "实变函数/函数空间.html",
+      "dependencies": [
+        "lib/media/函数空间-2025040523.png",
+        "lib/media/1-函数空间-2025040523.png",
+        "lib/media/2-函数空间-2025040523.png",
+        "lib/media/3-函数空间-2025040523.png"
+      ]
+    },
+    "实变函数/积分理论.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 8088,
+      "exportedPath": "实变函数/积分理论.html",
+      "dependencies": [
+        "lib/media/积分理论-2025040600.png",
+        "lib/media/1-积分理论-2025040600.png"
+      ]
+    },
+    "实变函数/可测函数列的收敛.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 2515,
+      "exportedPath": "实变函数/可测函数列的收敛.html",
+      "dependencies": []
+    },
+    "实变函数/细节.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 1197,
+      "exportedPath": "实变函数/细节.html",
+      "dependencies": []
+    },
+    "实变函数/周民强.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 69,
+      "exportedPath": "实变函数/周民强.html",
+      "dependencies": []
+    },
+    "实变函数/Cardinality.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 2547,
+      "exportedPath": "实变函数/cardinality.html",
+      "dependencies": [
+        "lib/media/cardinality-20250312.png"
+      ]
+    },
+    "实变函数/Compile.cmd": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 477,
+      "exportedPath": "实变函数/compile.cmd",
+      "dependencies": []
+    },
+    "实变函数/Construction-of-measure.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 5193,
+      "exportedPath": "实变函数/construction-of-measure.html",
+      "dependencies": [
+        "lib/media/construction-of-measure-2025032810.png",
+        "lib/media/1-construction-of-measure-2025032811.png",
+        "lib/media/2-construction-of-measure-2025032811.png",
+        "lib/media/3-construction-of-measure-2025032811.png",
+        "lib/media/4-construction-of-measure-2025032811.png",
+        "lib/media/5-construction-of-measure-2025032811.png",
+        "lib/media/6-construction-of-measure-2025032811.png",
+        "lib/media/7-construction-of-measure-2025032811.png",
+        "lib/media/8-construction-of-measure-2025032811.png",
+        "lib/media/9-construction-of-measure-2025032811.png",
+        "lib/media/10-construction-of-measure-2025032811.png",
+        "lib/media/11-construction-of-measure-2025032811.png",
+        "lib/media/12-construction-of-measure-2025032811.png",
+        "lib/media/13-construction-of-measure-2025032811.png",
+        "lib/media/14-construction-of-measure-2025032811.png",
+        "lib/media/15-construction-of-measure-2025032811.png",
+        "lib/media/16-construction-of-measure-2025032811.png",
+        "lib/media/20-construction-of-measure-2025032811.png",
+        "lib/media/18-construction-of-measure-2025032811.png",
+        "lib/media/19-construction-of-measure-2025032811.png",
+        "lib/media/21-construction-of-measure-2025032811.png",
+        "lib/media/22-construction-of-measure-2025032811.png"
+      ]
+    },
+    "实变函数/hw1.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 10519,
+      "exportedPath": "实变函数/hw1.html",
+      "dependencies": [
+        "lib/media/hw1-20250307.png",
+        "lib/media/1-hw1-20250307.png",
+        "lib/media/2-hw1-20250307.png",
+        "lib/media/3-hw1-20250307.png",
+        "lib/media/4-hw1-20250307.png",
+        "lib/media/5-hw1-20250307.png",
+        "lib/media/6-hw1-20250307.png",
+        "lib/media/7-hw1-20250307.png"
+      ]
+    },
+    "实变函数/hw2.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 8615,
+      "exportedPath": "实变函数/hw2.html",
+      "dependencies": [
+        "lib/media/hw2-20250312.png",
+        "lib/media/2-hw2-20250312.png"
+      ]
+    },
+    "实变函数/hw3.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 8709,
+      "exportedPath": "实变函数/hw3.html",
+      "dependencies": [
+        "lib/media/hw3-20250323.png",
+        "lib/media/hw3-2025032323.png",
+        "lib/media/hw3-2025032400.png",
+        "lib/media/1-hw3-2025032400.png",
+        "lib/media/2-hw3-2025032400.png",
+        "lib/media/3-hw3-2025032400.png"
+      ]
+    },
+    "实变函数/HW3.pdf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 392131,
+      "exportedPath": "实变函数/hw3.pdf",
+      "dependencies": []
+    },
+    "实变函数/hw4.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 8364,
+      "exportedPath": "实变函数/hw4.html",
+      "dependencies": [
+        "lib/media/hw4-2025032809.png",
+        "lib/media/1-hw4-2025032809.png",
+        "lib/media/2-hw4-2025032809.png",
+        "lib/media/3-hw4-2025032809.png",
+        "lib/media/hw4-2025032810.png",
+        "lib/media/1-hw4-2025032810.png",
+        "lib/media/2-hw4-2025032810.png",
+        "lib/media/hw4-2025032812.png",
+        "lib/media/hw4-2025032819.png",
+        "lib/media/1-hw4-2025032819.png",
+        "lib/media/2-hw4-2025032819.png"
+      ]
+    },
+    "实变函数/HW4.pdf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 380153,
+      "exportedPath": "实变函数/hw4.pdf",
+      "dependencies": []
+    },
+    "实变函数/hw5.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 7779,
+      "exportedPath": "实变函数/hw5.html",
+      "dependencies": [
+        "lib/media/hw5-2025040310.png",
+        "lib/media/2-hw5-2025040310.png",
+        "lib/media/hw5-2025040311.png",
+        "lib/media/1-hw5-2025040311.png",
+        "lib/media/2-hw5-2025040311.png",
+        "lib/media/3-hw5-2025040311.png",
+        "lib/media/4-hw5-2025040311.png",
+        "lib/media/5-hw5-2025040311.png",
+        "lib/media/6-hw5-2025040311.png",
+        "lib/media/7-hw5-2025040311.png",
+        "lib/media/8-hw5-2025040311.png",
+        "lib/media/9-hw5-2025040311.png",
+        "lib/media/10-hw5-2025040311.png",
+        "lib/media/11-hw5-2025040311.png",
+        "lib/media/12-hw5-2025040311.png"
+      ]
+    },
+    "实变函数/hw6.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 13231,
+      "exportedPath": "实变函数/hw6.html",
+      "dependencies": [
+        "lib/media/hw6-2025041520.png",
+        "lib/media/1-hw6-2025041520.png",
+        "lib/media/2-hw6-2025041520.png",
+        "lib/media/hw6-2025041600.png",
+        "lib/media/1-hw6-2025041600.png",
+        "lib/media/2-hw6-2025041600.png",
+        "lib/media/3-hw6-2025041600.png",
+        "lib/media/hw6-2025041601.png",
+        "lib/media/1-hw6-2025041608.png",
+        "lib/media/hw6-2025041608.png",
+        "lib/media/hw6-2025041609.png",
+        "lib/media/1-hw6-2025041609.png",
+        "lib/media/hw6-2025041611.png",
+        "lib/media/1-hw6-2025041611.png",
+        "lib/media/hw6-2025041612.png",
+        "lib/media/1-hw6-2025041612.png",
+        "lib/media/2-hw6-2025041612.png",
+        "lib/media/3-hw6-2025041612.png",
+        "lib/media/4-hw6-2025041612.png",
+        "lib/media/5-hw6-2025041612.png",
+        "lib/media/6-hw6-2025041612.png",
+        "lib/media/7-hw6-2025041612.png"
+      ]
+    },
+    "实变函数/hw7.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 8189,
+      "exportedPath": "实变函数/hw7.html",
+      "dependencies": [
+        "lib/media/2-hw7-2025042112.png",
+        "lib/media/4-hw7-2025042112.png",
+        "lib/media/5-hw7-2025042112.png",
+        "lib/media/6-hw7-2025042112.png",
+        "lib/media/15-hw7-2025042112.png",
+        "lib/media/7-hw7-2025042112.png",
+        "lib/media/16-hw7-2025042112.png",
+        "lib/media/8-hw7-2025042112.png",
+        "lib/media/9-hw7-2025042112.png",
+        "lib/media/10-hw7-2025042112.png",
+        "lib/media/11-hw7-2025042112.png",
+        "lib/media/1-hw7-2025042211.png",
+        "lib/media/12-hw7-2025042112.png",
+        "lib/media/13-hw7-2025042112.png",
+        "lib/media/14-hw7-2025042112.png"
+      ]
+    },
+    "实变函数/hw8.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 12086,
+      "exportedPath": "实变函数/hw8.html",
+      "dependencies": [
+        "lib/media/1-hw8-2025042920.png",
+        "lib/media/2-hw8-2025042920.png",
+        "lib/media/3-hw8-2025042920.png",
+        "lib/media/hw8-2025042923.png",
+        "lib/media/1-hw8-2025042923.png",
+        "lib/media/4-hw8-2025042920.png",
+        "lib/media/5-hw8-2025042920.png",
+        "lib/media/hw8-2025043009.png",
+        "lib/media/6-hw8-2025042920.png",
+        "lib/media/7-hw8-2025042920.png",
+        "lib/media/8-hw8-2025042920.png",
+        "lib/media/9-hw8-2025042920.png",
+        "lib/media/10-hw8-2025042920.png",
+        "lib/media/11-hw8-2025042920.png",
+        "lib/media/12-hw8-2025042920.png",
+        "lib/media/13-hw8-2025042920.png",
+        "lib/media/1-hw8-2025043012.png"
+      ]
+    },
+    "实变函数/hw9.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 21372,
+      "exportedPath": "实变函数/hw9.html",
+      "dependencies": [
+        "lib/media/hw9-2025050523.png",
+        "lib/media/1-hw9-2025050523.png",
+        "lib/media/2-hw9-2025050523.png",
+        "lib/media/3-hw9-2025050523.png",
+        "lib/media/4-hw9-2025050523.png",
+        "lib/media/6-hw9-2025050523.png",
+        "lib/media/7-hw9-2025050523.png",
+        "lib/media/8-hw9-2025050523.png",
+        "lib/media/11-hw9-2025050523.png",
+        "lib/media/9-hw9-2025050523.png",
+        "lib/media/10-hw9-2025050523.png"
+      ]
+    },
+    "实变函数/hw10.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 7921,
+      "exportedPath": "实变函数/hw10.html",
+      "dependencies": [
+        "lib/media/hw10-2025051210.png",
+        "lib/media/1-hw10-2025051210.png",
+        "lib/media/3-hw10-2025051210.png",
+        "lib/media/4-hw10-2025051210.png",
+        "lib/media/5-hw10-2025051210.png",
+        "lib/media/6-hw10-2025051210.png",
+        "lib/media/7-hw10-2025051210.png",
+        "lib/media/8-hw10-2025051210.png",
+        "lib/media/9-hw10-2025051210.png"
+      ]
+    },
+    "实变函数/hw11.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 12282,
+      "exportedPath": "实变函数/hw11.html",
+      "dependencies": [
+        "lib/media/hw11-2025052017.png",
+        "lib/media/1-hw11-2025052017.png",
+        "lib/media/2-hw11-2025052017.png",
+        "lib/media/3-hw11-2025052017.png",
+        "lib/media/4-hw11-2025052017.png",
+        "lib/media/5-hw11-2025052017.png",
+        "lib/media/6-hw11-2025052017.png",
+        "lib/media/7-hw11-2025052017.png",
+        "lib/media/8-hw11-2025052017.png",
+        "lib/media/9-hw11-2025052017.png",
+        "lib/media/hw11-2025052023.png",
+        "lib/media/4-hw11-2025052023.png",
+        "lib/media/5-hw11-2025052023.png",
+        "lib/media/6-hw11-2025052023.png",
+        "lib/media/7-hw11-2025052023.png",
+        "lib/media/8-hw11-2025052023.png"
+      ]
+    },
+    "实变函数/hw12.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 7283,
+      "exportedPath": "实变函数/hw12.html",
+      "dependencies": [
+        "lib/media/hw12-2025052108.png",
+        "lib/media/1-hw12-2025052108.png",
+        "lib/media/2-hw12-2025052108.png",
+        "lib/media/3-hw12-2025052108.png",
+        "lib/media/5-hw12-2025052108.png",
+        "lib/media/6-hw12-2025052108.png",
+        "lib/media/7-hw12-2025052108.png",
+        "lib/media/8-hw12-2025052108.png",
+        "lib/media/9-hw12-2025052108.png",
+        "lib/media/10-hw12-2025052108.png",
+        "lib/media/11-hw12-2025052108.png"
+      ]
+    },
+    "实变函数/Invariance of measure.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 23,
+      "exportedPath": "实变函数/invariance-of-measure.html",
+      "dependencies": []
+    },
+    "实变函数/Lebesgue测度-可测集-测度-Borel集.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 13386,
+      "exportedPath": "实变函数/lebesgue测度-可测集-测度-borel集.html",
+      "dependencies": []
+    },
+    "实变函数/positive-definite-function.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 7200,
+      "exportedPath": "实变函数/positive-definite-function.html",
+      "dependencies": []
+    },
+    "实变函数/real-analysis.tex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 160,
+      "exportedPath": "实变函数/real-analysis.tex",
+      "dependencies": []
+    },
+    "实变函数/real-analysis.pdf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 763813,
+      "exportedPath": "实变函数/real-analysis.pdf",
+      "dependencies": []
+    },
+    "实变函数/real-analysis.synctex.gz": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 34694,
+      "exportedPath": "实变函数/real-analysis.synctex.gz",
+      "dependencies": []
+    },
+    "实变函数/real-analysis.synctex.gz.sum.synctex": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 79768,
+      "exportedPath": "实变函数/real-analysis.synctex.gz.sum.synctex",
+      "dependencies": []
+    },
+    "实变函数/Topological preliminaries.pdf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 3110167,
+      "exportedPath": "实变函数/topological-preliminaries.pdf",
+      "dependencies": []
+    },
+    "实变函数/Topological-preliminaries.md": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 7960,
+      "exportedPath": "实变函数/topological-preliminaries.html",
+      "dependencies": [
+        "lib/media/topological-preliminaries-20250322.png",
+        "lib/media/1-topological-preliminaries-20250322.png",
+        "lib/media/2-topological-preliminaries-20250322.png",
+        "lib/media/10-topological-preliminaries-20250322.png",
+        "lib/media/11-topological-preliminaries-20250322.png",
+        "lib/media/16-topological-preliminaries-20250322.png",
+        "lib/media/6-topological-preliminaries-20250322.png",
+        "lib/media/8-topological-preliminaries-20250322.png",
+        "lib/media/9-topological-preliminaries-20250322.png",
+        "lib/media/4-topological-preliminaries-20250322.png",
+        "lib/media/5-topological-preliminaries-20250322.png",
+        "lib/media/12-topological-preliminaries-20250322.png",
+        "lib/media/13-topological-preliminaries-20250322.png",
+        "lib/media/15-topological-preliminaries-20250322.png",
+        "lib/media/17-topological-preliminaries-20250322.png",
+        "lib/media/18-topological-preliminaries-20250322.png",
+        "lib/media/19-topological-preliminaries-20250322.png",
+        "lib/media/20-topological-preliminaries-20250322.png",
+        "lib/media/21-topological-preliminaries-20250322.png",
+        "lib/media/22-topological-preliminaries-20250322.png",
+        "lib/media/23-topological-preliminaries-20250322.png",
+        "lib/media/24-topological-preliminaries-20250322.png",
+        "lib/media/25-topological-preliminaries-20250322.png",
+        "lib/media/26-topological-preliminaries-20250322.png",
+        "lib/media/27-topological-preliminaries-20250322.png",
+        "lib/media/28-topological-preliminaries-20250322.png",
+        "lib/media/29-topological-preliminaries-20250322.png",
+        "lib/media/30-topological-preliminaries-20250322.png",
+        "lib/media/31-topological-preliminaries-20250322.png",
+        "lib/media/32-topological-preliminaries-20250322.png",
+        "lib/media/33-topological-preliminaries-20250322.png",
+        "lib/media/34-topological-preliminaries-20250322.png",
+        "lib/media/35-topological-preliminaries-20250322.png",
+        "lib/media/36-topological-preliminaries-20250322.png"
+      ]
+    },
+    "lib/media/不同意义收敛的函数序列-2025040522.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 84247,
+      "exportedPath": "lib/media/不同意义收敛的函数序列-2025040522.png",
+      "dependencies": []
+    },
+    "lib/media/1-不同意义收敛的函数序列-2025040522.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 61919,
+      "exportedPath": "lib/media/1-不同意义收敛的函数序列-2025040522.png",
+      "dependencies": []
+    },
+    "lib/media/函数空间-2025040523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 101580,
+      "exportedPath": "lib/media/函数空间-2025040523.png",
+      "dependencies": []
+    },
+    "lib/media/1-函数空间-2025040523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 66848,
+      "exportedPath": "lib/media/1-函数空间-2025040523.png",
+      "dependencies": []
+    },
+    "lib/media/2-函数空间-2025040523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 23895,
+      "exportedPath": "lib/media/2-函数空间-2025040523.png",
+      "dependencies": []
+    },
+    "lib/media/3-函数空间-2025040523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 169258,
+      "exportedPath": "lib/media/3-函数空间-2025040523.png",
+      "dependencies": []
+    },
+    "lib/media/积分理论-2025040600.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 67991,
+      "exportedPath": "lib/media/积分理论-2025040600.png",
+      "dependencies": []
+    },
+    "lib/media/1-积分理论-2025040600.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 200549,
+      "exportedPath": "lib/media/1-积分理论-2025040600.png",
+      "dependencies": []
+    },
+    "lib/media/cardinality-20250312.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 208886,
+      "exportedPath": "lib/media/cardinality-20250312.png",
+      "dependencies": []
+    },
+    "lib/media/construction-of-measure-2025032810.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 132243,
+      "exportedPath": "lib/media/construction-of-measure-2025032810.png",
+      "dependencies": []
+    },
+    "lib/media/1-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 339805,
+      "exportedPath": "lib/media/1-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/2-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 82568,
+      "exportedPath": "lib/media/2-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/3-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 162453,
+      "exportedPath": "lib/media/3-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/4-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 108173,
+      "exportedPath": "lib/media/4-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/5-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 40593,
+      "exportedPath": "lib/media/5-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/6-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 122059,
+      "exportedPath": "lib/media/6-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/7-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 136618,
+      "exportedPath": "lib/media/7-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/8-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 100540,
+      "exportedPath": "lib/media/8-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/9-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 49847,
+      "exportedPath": "lib/media/9-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/10-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 31002,
+      "exportedPath": "lib/media/10-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/11-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 87084,
+      "exportedPath": "lib/media/11-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/12-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 286971,
+      "exportedPath": "lib/media/12-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/13-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 92553,
+      "exportedPath": "lib/media/13-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/14-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 118695,
+      "exportedPath": "lib/media/14-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/15-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 52978,
+      "exportedPath": "lib/media/15-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/16-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 87521,
+      "exportedPath": "lib/media/16-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/20-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 63751,
+      "exportedPath": "lib/media/20-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/18-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 159895,
+      "exportedPath": "lib/media/18-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/19-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 219754,
+      "exportedPath": "lib/media/19-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/21-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 74660,
+      "exportedPath": "lib/media/21-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/22-construction-of-measure-2025032811.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 188095,
+      "exportedPath": "lib/media/22-construction-of-measure-2025032811.png",
+      "dependencies": []
+    },
+    "lib/media/hw1-20250307.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 190593,
+      "exportedPath": "lib/media/hw1-20250307.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw1-20250307.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 157349,
+      "exportedPath": "lib/media/1-hw1-20250307.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw1-20250307.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 41663,
+      "exportedPath": "lib/media/2-hw1-20250307.png",
+      "dependencies": []
+    },
+    "lib/media/3-hw1-20250307.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 84457,
+      "exportedPath": "lib/media/3-hw1-20250307.png",
+      "dependencies": []
+    },
+    "lib/media/4-hw1-20250307.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 83015,
+      "exportedPath": "lib/media/4-hw1-20250307.png",
+      "dependencies": []
+    },
+    "lib/media/5-hw1-20250307.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 83780,
+      "exportedPath": "lib/media/5-hw1-20250307.png",
+      "dependencies": []
+    },
+    "lib/media/6-hw1-20250307.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 71581,
+      "exportedPath": "lib/media/6-hw1-20250307.png",
+      "dependencies": []
+    },
+    "lib/media/7-hw1-20250307.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 56034,
+      "exportedPath": "lib/media/7-hw1-20250307.png",
+      "dependencies": []
+    },
+    "lib/media/hw2-20250312.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 233768,
+      "exportedPath": "lib/media/hw2-20250312.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw2-20250312.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 273087,
+      "exportedPath": "lib/media/2-hw2-20250312.png",
+      "dependencies": []
+    },
+    "lib/media/hw3-20250323.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 79083,
+      "exportedPath": "lib/media/hw3-20250323.png",
+      "dependencies": []
+    },
+    "lib/media/hw3-2025032323.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 61205,
+      "exportedPath": "lib/media/hw3-2025032323.png",
+      "dependencies": []
+    },
+    "lib/media/hw3-2025032400.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 37227,
+      "exportedPath": "lib/media/hw3-2025032400.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw3-2025032400.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 39817,
+      "exportedPath": "lib/media/1-hw3-2025032400.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw3-2025032400.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 45677,
+      "exportedPath": "lib/media/2-hw3-2025032400.png",
+      "dependencies": []
+    },
+    "lib/media/3-hw3-2025032400.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 68721,
+      "exportedPath": "lib/media/3-hw3-2025032400.png",
+      "dependencies": []
+    },
+    "lib/media/hw4-2025032809.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 140107,
+      "exportedPath": "lib/media/hw4-2025032809.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw4-2025032809.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 48842,
+      "exportedPath": "lib/media/1-hw4-2025032809.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw4-2025032809.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 95209,
+      "exportedPath": "lib/media/2-hw4-2025032809.png",
+      "dependencies": []
+    },
+    "lib/media/3-hw4-2025032809.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 43703,
+      "exportedPath": "lib/media/3-hw4-2025032809.png",
+      "dependencies": []
+    },
+    "lib/media/hw4-2025032810.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 9829,
+      "exportedPath": "lib/media/hw4-2025032810.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw4-2025032810.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 65916,
+      "exportedPath": "lib/media/1-hw4-2025032810.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw4-2025032810.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 34325,
+      "exportedPath": "lib/media/2-hw4-2025032810.png",
+      "dependencies": []
+    },
+    "lib/media/hw4-2025032812.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 62325,
+      "exportedPath": "lib/media/hw4-2025032812.png",
+      "dependencies": []
+    },
+    "lib/media/hw4-2025032819.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 14351,
+      "exportedPath": "lib/media/hw4-2025032819.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw4-2025032819.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 13024,
+      "exportedPath": "lib/media/1-hw4-2025032819.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw4-2025032819.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 53649,
+      "exportedPath": "lib/media/2-hw4-2025032819.png",
+      "dependencies": []
+    },
+    "lib/media/hw5-2025040310.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 95231,
+      "exportedPath": "lib/media/hw5-2025040310.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw5-2025040310.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 18634,
+      "exportedPath": "lib/media/2-hw5-2025040310.png",
+      "dependencies": []
+    },
+    "lib/media/hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 33321,
+      "exportedPath": "lib/media/hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 25419,
+      "exportedPath": "lib/media/1-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 18552,
+      "exportedPath": "lib/media/2-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/3-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 36429,
+      "exportedPath": "lib/media/3-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/4-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 19178,
+      "exportedPath": "lib/media/4-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/5-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 45918,
+      "exportedPath": "lib/media/5-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/6-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 18319,
+      "exportedPath": "lib/media/6-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/7-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 54339,
+      "exportedPath": "lib/media/7-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/8-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 11858,
+      "exportedPath": "lib/media/8-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/9-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 68571,
+      "exportedPath": "lib/media/9-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/10-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 35321,
+      "exportedPath": "lib/media/10-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/11-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 66133,
+      "exportedPath": "lib/media/11-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/12-hw5-2025040311.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 52005,
+      "exportedPath": "lib/media/12-hw5-2025040311.png",
+      "dependencies": []
+    },
+    "lib/media/hw6-2025041520.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 207956,
+      "exportedPath": "lib/media/hw6-2025041520.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw6-2025041520.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 222915,
+      "exportedPath": "lib/media/1-hw6-2025041520.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw6-2025041520.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 104402,
+      "exportedPath": "lib/media/2-hw6-2025041520.png",
+      "dependencies": []
+    },
+    "lib/media/hw6-2025041600.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 285185,
+      "exportedPath": "lib/media/hw6-2025041600.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw6-2025041600.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 71201,
+      "exportedPath": "lib/media/1-hw6-2025041600.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw6-2025041600.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 20136,
+      "exportedPath": "lib/media/2-hw6-2025041600.png",
+      "dependencies": []
+    },
+    "lib/media/3-hw6-2025041600.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 73410,
+      "exportedPath": "lib/media/3-hw6-2025041600.png",
+      "dependencies": []
+    },
+    "lib/media/hw6-2025041601.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 46285,
+      "exportedPath": "lib/media/hw6-2025041601.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw6-2025041608.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 49301,
+      "exportedPath": "lib/media/1-hw6-2025041608.png",
+      "dependencies": []
+    },
+    "lib/media/hw6-2025041608.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 16993,
+      "exportedPath": "lib/media/hw6-2025041608.png",
+      "dependencies": []
+    },
+    "lib/media/hw6-2025041609.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 89730,
+      "exportedPath": "lib/media/hw6-2025041609.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw6-2025041609.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 147103,
+      "exportedPath": "lib/media/1-hw6-2025041609.png",
+      "dependencies": []
+    },
+    "lib/media/hw6-2025041611.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 60463,
+      "exportedPath": "lib/media/hw6-2025041611.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw6-2025041611.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 10079,
+      "exportedPath": "lib/media/1-hw6-2025041611.png",
+      "dependencies": []
+    },
+    "lib/media/hw6-2025041612.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 57674,
+      "exportedPath": "lib/media/hw6-2025041612.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw6-2025041612.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 81677,
+      "exportedPath": "lib/media/1-hw6-2025041612.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw6-2025041612.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 291628,
+      "exportedPath": "lib/media/2-hw6-2025041612.png",
+      "dependencies": []
+    },
+    "lib/media/3-hw6-2025041612.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 193261,
+      "exportedPath": "lib/media/3-hw6-2025041612.png",
+      "dependencies": []
+    },
+    "lib/media/4-hw6-2025041612.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 189494,
+      "exportedPath": "lib/media/4-hw6-2025041612.png",
+      "dependencies": []
+    },
+    "lib/media/5-hw6-2025041612.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 206231,
+      "exportedPath": "lib/media/5-hw6-2025041612.png",
+      "dependencies": []
+    },
+    "lib/media/6-hw6-2025041612.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 127811,
+      "exportedPath": "lib/media/6-hw6-2025041612.png",
+      "dependencies": []
+    },
+    "lib/media/7-hw6-2025041612.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 104154,
+      "exportedPath": "lib/media/7-hw6-2025041612.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 42408,
+      "exportedPath": "lib/media/2-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/4-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 31246,
+      "exportedPath": "lib/media/4-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/5-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 47663,
+      "exportedPath": "lib/media/5-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/6-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 75933,
+      "exportedPath": "lib/media/6-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/15-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 205793,
+      "exportedPath": "lib/media/15-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/7-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 69046,
+      "exportedPath": "lib/media/7-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/16-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 187336,
+      "exportedPath": "lib/media/16-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/8-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 58106,
+      "exportedPath": "lib/media/8-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/9-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 54793,
+      "exportedPath": "lib/media/9-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/10-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 43264,
+      "exportedPath": "lib/media/10-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/11-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 63746,
+      "exportedPath": "lib/media/11-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw7-2025042211.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 145099,
+      "exportedPath": "lib/media/1-hw7-2025042211.png",
+      "dependencies": []
+    },
+    "lib/media/12-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 42701,
+      "exportedPath": "lib/media/12-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/13-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 50113,
+      "exportedPath": "lib/media/13-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/14-hw7-2025042112.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 26868,
+      "exportedPath": "lib/media/14-hw7-2025042112.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 75395,
+      "exportedPath": "lib/media/1-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 28274,
+      "exportedPath": "lib/media/2-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/3-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 171505,
+      "exportedPath": "lib/media/3-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/hw8-2025042923.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 251817,
+      "exportedPath": "lib/media/hw8-2025042923.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw8-2025042923.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 39461,
+      "exportedPath": "lib/media/1-hw8-2025042923.png",
+      "dependencies": []
+    },
+    "lib/media/4-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 89275,
+      "exportedPath": "lib/media/4-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/5-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 51182,
+      "exportedPath": "lib/media/5-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/hw8-2025043009.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 400580,
+      "exportedPath": "lib/media/hw8-2025043009.png",
+      "dependencies": []
+    },
+    "lib/media/6-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 94419,
+      "exportedPath": "lib/media/6-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/7-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 125080,
+      "exportedPath": "lib/media/7-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/8-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 175263,
+      "exportedPath": "lib/media/8-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/9-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 163423,
+      "exportedPath": "lib/media/9-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/10-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 128030,
+      "exportedPath": "lib/media/10-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/11-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 25855,
+      "exportedPath": "lib/media/11-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/12-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 120523,
+      "exportedPath": "lib/media/12-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/13-hw8-2025042920.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 215840,
+      "exportedPath": "lib/media/13-hw8-2025042920.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw8-2025043012.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 64902,
+      "exportedPath": "lib/media/1-hw8-2025043012.png",
+      "dependencies": []
+    },
+    "lib/media/hw9-2025050523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 23828,
+      "exportedPath": "lib/media/hw9-2025050523.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw9-2025050523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 35796,
+      "exportedPath": "lib/media/1-hw9-2025050523.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw9-2025050523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 26812,
+      "exportedPath": "lib/media/2-hw9-2025050523.png",
+      "dependencies": []
+    },
+    "lib/media/3-hw9-2025050523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 8907,
+      "exportedPath": "lib/media/3-hw9-2025050523.png",
+      "dependencies": []
+    },
+    "lib/media/4-hw9-2025050523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 30994,
+      "exportedPath": "lib/media/4-hw9-2025050523.png",
+      "dependencies": []
+    },
+    "lib/media/6-hw9-2025050523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 62925,
+      "exportedPath": "lib/media/6-hw9-2025050523.png",
+      "dependencies": []
+    },
+    "lib/media/7-hw9-2025050523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 26944,
+      "exportedPath": "lib/media/7-hw9-2025050523.png",
+      "dependencies": []
+    },
+    "lib/media/8-hw9-2025050523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 95731,
+      "exportedPath": "lib/media/8-hw9-2025050523.png",
+      "dependencies": []
+    },
+    "lib/media/11-hw9-2025050523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 33188,
+      "exportedPath": "lib/media/11-hw9-2025050523.png",
+      "dependencies": []
+    },
+    "lib/media/9-hw9-2025050523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 20316,
+      "exportedPath": "lib/media/9-hw9-2025050523.png",
+      "dependencies": []
+    },
+    "lib/media/10-hw9-2025050523.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 20674,
+      "exportedPath": "lib/media/10-hw9-2025050523.png",
+      "dependencies": []
+    },
+    "lib/media/hw10-2025051210.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 94564,
+      "exportedPath": "lib/media/hw10-2025051210.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw10-2025051210.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 45794,
+      "exportedPath": "lib/media/1-hw10-2025051210.png",
+      "dependencies": []
+    },
+    "lib/media/3-hw10-2025051210.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 33421,
+      "exportedPath": "lib/media/3-hw10-2025051210.png",
+      "dependencies": []
+    },
+    "lib/media/4-hw10-2025051210.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 55342,
+      "exportedPath": "lib/media/4-hw10-2025051210.png",
+      "dependencies": []
+    },
+    "lib/media/5-hw10-2025051210.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 26637,
+      "exportedPath": "lib/media/5-hw10-2025051210.png",
+      "dependencies": []
+    },
+    "lib/media/6-hw10-2025051210.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 73443,
+      "exportedPath": "lib/media/6-hw10-2025051210.png",
+      "dependencies": []
+    },
+    "lib/media/7-hw10-2025051210.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 39971,
+      "exportedPath": "lib/media/7-hw10-2025051210.png",
+      "dependencies": []
+    },
+    "lib/media/8-hw10-2025051210.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 31009,
+      "exportedPath": "lib/media/8-hw10-2025051210.png",
+      "dependencies": []
+    },
+    "lib/media/9-hw10-2025051210.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 34935,
+      "exportedPath": "lib/media/9-hw10-2025051210.png",
+      "dependencies": []
+    },
+    "lib/media/hw11-2025052017.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 19419,
+      "exportedPath": "lib/media/hw11-2025052017.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw11-2025052017.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 51297,
+      "exportedPath": "lib/media/1-hw11-2025052017.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw11-2025052017.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 25541,
+      "exportedPath": "lib/media/2-hw11-2025052017.png",
+      "dependencies": []
+    },
+    "lib/media/3-hw11-2025052017.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 18460,
+      "exportedPath": "lib/media/3-hw11-2025052017.png",
+      "dependencies": []
+    },
+    "lib/media/4-hw11-2025052017.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 24235,
+      "exportedPath": "lib/media/4-hw11-2025052017.png",
+      "dependencies": []
+    },
+    "lib/media/5-hw11-2025052017.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 23711,
+      "exportedPath": "lib/media/5-hw11-2025052017.png",
+      "dependencies": []
+    },
+    "lib/media/6-hw11-2025052017.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 35043,
+      "exportedPath": "lib/media/6-hw11-2025052017.png",
+      "dependencies": []
+    },
+    "lib/media/7-hw11-2025052017.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 10874,
+      "exportedPath": "lib/media/7-hw11-2025052017.png",
+      "dependencies": []
+    },
+    "lib/media/8-hw11-2025052017.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 54750,
+      "exportedPath": "lib/media/8-hw11-2025052017.png",
+      "dependencies": []
+    },
+    "lib/media/9-hw11-2025052017.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 44529,
+      "exportedPath": "lib/media/9-hw11-2025052017.png",
+      "dependencies": []
+    },
+    "lib/media/hw11-2025052023.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 47229,
+      "exportedPath": "lib/media/hw11-2025052023.png",
+      "dependencies": []
+    },
+    "lib/media/4-hw11-2025052023.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 52050,
+      "exportedPath": "lib/media/4-hw11-2025052023.png",
+      "dependencies": []
+    },
+    "lib/media/5-hw11-2025052023.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 394768,
+      "exportedPath": "lib/media/5-hw11-2025052023.png",
+      "dependencies": []
+    },
+    "lib/media/6-hw11-2025052023.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 27212,
+      "exportedPath": "lib/media/6-hw11-2025052023.png",
+      "dependencies": []
+    },
+    "lib/media/7-hw11-2025052023.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 54981,
+      "exportedPath": "lib/media/7-hw11-2025052023.png",
+      "dependencies": []
+    },
+    "lib/media/8-hw11-2025052023.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 278849,
+      "exportedPath": "lib/media/8-hw11-2025052023.png",
+      "dependencies": []
+    },
+    "lib/media/hw12-2025052108.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 82189,
+      "exportedPath": "lib/media/hw12-2025052108.png",
+      "dependencies": []
+    },
+    "lib/media/1-hw12-2025052108.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 60022,
+      "exportedPath": "lib/media/1-hw12-2025052108.png",
+      "dependencies": []
+    },
+    "lib/media/2-hw12-2025052108.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 59362,
+      "exportedPath": "lib/media/2-hw12-2025052108.png",
+      "dependencies": []
+    },
+    "lib/media/3-hw12-2025052108.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 106309,
+      "exportedPath": "lib/media/3-hw12-2025052108.png",
+      "dependencies": []
+    },
+    "lib/media/5-hw12-2025052108.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 111365,
+      "exportedPath": "lib/media/5-hw12-2025052108.png",
+      "dependencies": []
+    },
+    "lib/media/6-hw12-2025052108.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 64549,
+      "exportedPath": "lib/media/6-hw12-2025052108.png",
+      "dependencies": []
+    },
+    "lib/media/7-hw12-2025052108.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 92400,
+      "exportedPath": "lib/media/7-hw12-2025052108.png",
+      "dependencies": []
+    },
+    "lib/media/8-hw12-2025052108.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 51854,
+      "exportedPath": "lib/media/8-hw12-2025052108.png",
+      "dependencies": []
+    },
+    "lib/media/9-hw12-2025052108.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 46134,
+      "exportedPath": "lib/media/9-hw12-2025052108.png",
+      "dependencies": []
+    },
+    "lib/media/10-hw12-2025052108.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 39731,
+      "exportedPath": "lib/media/10-hw12-2025052108.png",
+      "dependencies": []
+    },
+    "lib/media/11-hw12-2025052108.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 35227,
+      "exportedPath": "lib/media/11-hw12-2025052108.png",
+      "dependencies": []
+    },
+    "lib/media/topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 150866,
+      "exportedPath": "lib/media/topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/1-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 226808,
+      "exportedPath": "lib/media/1-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/2-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 82596,
+      "exportedPath": "lib/media/2-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/10-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 74856,
+      "exportedPath": "lib/media/10-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/11-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 63499,
+      "exportedPath": "lib/media/11-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/16-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 74611,
+      "exportedPath": "lib/media/16-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/6-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 270504,
+      "exportedPath": "lib/media/6-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/8-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 36453,
+      "exportedPath": "lib/media/8-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/9-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 282156,
+      "exportedPath": "lib/media/9-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/4-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 40258,
+      "exportedPath": "lib/media/4-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/5-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 41541,
+      "exportedPath": "lib/media/5-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/12-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 105175,
+      "exportedPath": "lib/media/12-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/13-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 108017,
+      "exportedPath": "lib/media/13-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/15-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 56284,
+      "exportedPath": "lib/media/15-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/17-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 352005,
+      "exportedPath": "lib/media/17-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/18-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 85008,
+      "exportedPath": "lib/media/18-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/19-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 49715,
+      "exportedPath": "lib/media/19-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/20-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 56601,
+      "exportedPath": "lib/media/20-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/21-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 42976,
+      "exportedPath": "lib/media/21-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/22-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 41244,
+      "exportedPath": "lib/media/22-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/23-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 96810,
+      "exportedPath": "lib/media/23-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/24-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 65067,
+      "exportedPath": "lib/media/24-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/25-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 75585,
+      "exportedPath": "lib/media/25-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/26-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 55061,
+      "exportedPath": "lib/media/26-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/27-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 25587,
+      "exportedPath": "lib/media/27-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/28-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 47151,
+      "exportedPath": "lib/media/28-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/29-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 41425,
+      "exportedPath": "lib/media/29-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/30-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 18369,
+      "exportedPath": "lib/media/30-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/31-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 40719,
+      "exportedPath": "lib/media/31-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/32-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 28429,
+      "exportedPath": "lib/media/32-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/33-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 43630,
+      "exportedPath": "lib/media/33-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/34-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 43600,
+      "exportedPath": "lib/media/34-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/35-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 51681,
+      "exportedPath": "lib/media/35-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/media/36-topological-preliminaries-20250322.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 35813,
+      "exportedPath": "lib/media/36-topological-preliminaries-20250322.png",
+      "dependencies": []
+    },
+    "lib/scripts/graph-wasm.wasm": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 23377,
+      "exportedPath": "lib/scripts/graph-wasm.wasm",
+      "dependencies": []
+    },
+    "lib/fonts/94f2f163d4b698242fef.otf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 66800,
+      "exportedPath": "lib/fonts/94f2f163d4b698242fef.otf",
+      "dependencies": []
+    },
+    "lib/fonts/72505e6a122c6acd5471.woff2": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 104232,
+      "exportedPath": "lib/fonts/72505e6a122c6acd5471.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/2d5198822ab091ce4305.woff2": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 104332,
+      "exportedPath": "lib/fonts/2d5198822ab091ce4305.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/c8ba52b05a9ef10f4758.woff2": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 98868,
+      "exportedPath": "lib/fonts/c8ba52b05a9ef10f4758.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/cb10ffd7684cd9836a05.woff2": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 106876,
+      "exportedPath": "lib/fonts/cb10ffd7684cd9836a05.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/b5f0f109bc88052d4000.woff2": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 105804,
+      "exportedPath": "lib/fonts/b5f0f109bc88052d4000.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/cbe0ae49c52c920fd563.woff2": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 106108,
+      "exportedPath": "lib/fonts/cbe0ae49c52c920fd563.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/535a6cf662596b3bd6a6.woff2": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 111708,
+      "exportedPath": "lib/fonts/535a6cf662596b3bd6a6.woff2",
+      "dependencies": []
+    },
+    "lib/fonts/70cc7ff27245e82ad414.ttf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 192740,
+      "exportedPath": "lib/fonts/70cc7ff27245e82ad414.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/454577c22304619db035.ttf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 161376,
+      "exportedPath": "lib/fonts/454577c22304619db035.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/52ac8f3034507f1d9e53.ttf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 191568,
+      "exportedPath": "lib/fonts/52ac8f3034507f1d9e53.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/05b618077343fbbd92b7.ttf": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 155288,
+      "exportedPath": "lib/fonts/05b618077343fbbd92b7.ttf",
+      "dependencies": []
+    },
+    "lib/fonts/4bb6ac751d1c5478ff3a.woff2": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 7876,
+      "exportedPath": "lib/fonts/4bb6ac751d1c5478ff3a.woff2",
+      "dependencies": []
+    },
+    "lib/media/6155340132a851f6089e.svg": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 315,
+      "exportedPath": "lib/media/6155340132a851f6089e.svg",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_zero.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 1368,
+      "exportedPath": "lib/fonts/mathjax_zero.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_main-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 34160,
+      "exportedPath": "lib/fonts/mathjax_main-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_main-bold.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 34464,
+      "exportedPath": "lib/fonts/mathjax_main-bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_math-italic.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 19360,
+      "exportedPath": "lib/fonts/mathjax_math-italic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_main-italic.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 20832,
+      "exportedPath": "lib/fonts/mathjax_main-italic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_math-bolditalic.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 19776,
+      "exportedPath": "lib/fonts/mathjax_math-bolditalic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_size1-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 5792,
+      "exportedPath": "lib/fonts/mathjax_size1-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_size2-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 5464,
+      "exportedPath": "lib/fonts/mathjax_size2-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_size3-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 3244,
+      "exportedPath": "lib/fonts/mathjax_size3-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_size4-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 5148,
+      "exportedPath": "lib/fonts/mathjax_size4-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_ams-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 40808,
+      "exportedPath": "lib/fonts/mathjax_ams-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_calligraphic-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 9600,
+      "exportedPath": "lib/fonts/mathjax_calligraphic-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_calligraphic-bold.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 9908,
+      "exportedPath": "lib/fonts/mathjax_calligraphic-bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_fraktur-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 21480,
+      "exportedPath": "lib/fonts/mathjax_fraktur-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_fraktur-bold.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 22340,
+      "exportedPath": "lib/fonts/mathjax_fraktur-bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_sansserif-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 12660,
+      "exportedPath": "lib/fonts/mathjax_sansserif-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_sansserif-bold.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 15944,
+      "exportedPath": "lib/fonts/mathjax_sansserif-bold.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_sansserif-italic.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 14628,
+      "exportedPath": "lib/fonts/mathjax_sansserif-italic.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_script-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 11852,
+      "exportedPath": "lib/fonts/mathjax_script-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_typewriter-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 17604,
+      "exportedPath": "lib/fonts/mathjax_typewriter-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_vector-regular.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 1136,
+      "exportedPath": "lib/fonts/mathjax_vector-regular.woff",
+      "dependencies": []
+    },
+    "lib/fonts/mathjax_vector-bold.woff": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 1116,
+      "exportedPath": "lib/fonts/mathjax_vector-bold.woff",
+      "dependencies": []
+    },
+    "lib/html/file-tree.html": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 21990,
+      "exportedPath": "lib/html/file-tree.html",
+      "dependencies": []
+    },
+    "lib/scripts/webpage.js": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 47290,
+      "exportedPath": "lib/scripts/webpage.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-view.js": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 15519,
+      "exportedPath": "lib/scripts/graph-view.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-wasm.js": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 14021,
+      "exportedPath": "lib/scripts/graph-wasm.js",
+      "dependencies": []
+    },
+    "lib/scripts/graph-render-worker.js": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 5179,
+      "exportedPath": "lib/scripts/graph-render-worker.js",
+      "dependencies": []
+    },
+    "lib/scripts/tinycolor.js": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 29832,
+      "exportedPath": "lib/scripts/tinycolor.js",
+      "dependencies": []
+    },
+    "lib/scripts/pixi.js": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 449509,
+      "exportedPath": "lib/scripts/pixi.js",
+      "dependencies": []
+    },
+    "lib/scripts/minisearch.js": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 29422,
+      "exportedPath": "lib/scripts/minisearch.js",
+      "dependencies": []
+    },
+    "lib/media/favicon.png": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 1105,
+      "exportedPath": "lib/media/favicon.png",
+      "dependencies": []
+    },
+    "lib/scripts/graph-data.js": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 1147,
+      "exportedPath": "lib/scripts/graph-data.js",
+      "dependencies": []
+    },
+    "lib/styles/obsidian.css": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 138359,
+      "exportedPath": "lib/styles/obsidian.css",
+      "dependencies": []
+    },
+    "lib/styles/other-plugins.css": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 26160,
+      "exportedPath": "lib/styles/other-plugins.css",
+      "dependencies": []
+    },
+    "lib/styles/theme.css": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 5527,
+      "exportedPath": "lib/styles/theme.css",
+      "dependencies": []
+    },
+    "lib/styles/global-variable-styles.css": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 322,
+      "exportedPath": "lib/styles/global-variable-styles.css",
+      "dependencies": []
+    },
+    "lib/styles/main-styles.css": {
+      "modifiedTime": 1747989582318,
+      "sourceSize": 23130,
+      "exportedPath": "lib/styles/main-styles.css",
+      "dependencies": []
+    }
+  }
+}

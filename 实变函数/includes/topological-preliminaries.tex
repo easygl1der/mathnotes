@@ -1,0 +1,383 @@
+\section{Topological preliminaries}
+
+\subsection{Definition of topology}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{General definitions of closed, closure, compact, neighborhood, Hausdorff space, locally compact, separated and connected sets}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+Open sets remains to be open under arbitrary unions, while closed sets remains to be closed under arbitrary intersections. Imagine the special case of intervals to remember it.
+
+The definition of compact is not technique to prove a set compact but a property.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{10-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{11-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+Another definition of closure:
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{16-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Metric definition of neighborhood, limit point, closed, interior point, open, complement, perfect, bounded, dense}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{definition}[relatively open]
+Suppose $E\subset Y\subset X$, where $X$ is a metric space. Motivated by the idea that $Y$ can also be a metric space, we say $E$ is \textbf{open relative} to $Y$ if to each $p\in E$ there is associated an $r>0$ such that $q\in E$ whenever $d(p,q)<r$ and $q\in Y$.
+\end{definition}
+A set may be open relative to $Y$ without being an open subset of $X$, e.g. $(a,b)\subset \mathbb{R}\subset \mathbb{R}^{2}$.
+
+\begin{theorem}
+Suppose $Y\subset X$. A subset $E$ of $Y$ is open relative to $Y$ iff $E=Y\cap G$ for some open subset $G$ of $X$.\label{27f07d}
+\end{theorem}
+
+\cref{27f07d}  can be another definition of \textbf{relatively open}.
+
+\subsection{Some properties in metric spaces}
+
+\begin{itemize}
+	\item Every neighborhood is an open set.
+	\item If $p$ is a limit point of a set $E$, then every neighborhood of $p$ contains infinitely many points of $E$.
+	\item A finite point set has no limit points.
+	\item Closed subsets of compact sets are compact.
+	\item Perfect set in $\mathbb{R}^{k}$ is uncountable.
+	\item If $\{ K_{\alpha} \}$ is a collection of compact subsets of a metric space $X$ such that the intersection of every finite subcollection of $\{ K_{\alpha} \}$ is nonempty, then $\bigcap K_{\alpha}$ is nonempty.
+	\item If $\{ K_n \}$ is a decreasing sequence of nonempty compact sets, then $\bigcap_{n=1}^{\infty}K_n$ is not empty.
+\end{itemize}
+
+\subsection{Examples}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{9-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Heine-Borel theorem}
+
+\begin{theorem}[Heine-Borel theorem]
+The compact subsets of a enclidean space $\mathbb{R}^{n}$ are precisely those that are closed and bounded.
+\end{theorem}
+Moreover, the theorem is true for any locally compact Hausdorff space. Note that metric spaces are locally compact Hausdorff space.
+
+\begin{theorem}[Closed subsets of compact sets are compact.]
+Suppoes $K$ is compact and $F$ is closed, in a topological space $X$. If $F\subset K$ then $F$ is compact.
+\end{theorem}
+\begin{proof}
+If $\{ V_{\alpha} \}$ is an open cover of $F$ and $W=F^{c}$ then $W\cup \bigcup_{\alpha}V_{\alpha}$ covers $X$; hence there is a finite collection $\{ V_{\alpha _i} \}$ such that
+\[
+K\subset W\cup V_{\alpha_1}\cup\dots \cup V_{\alpha _n}
+\]
+Then $F\subset V_{\alpha_1}\cup\dots \cup V_{\alpha _n}$.
+\end{proof}
+
+\begin{corollary}
+If $A\subset B$ and if $B$ has compact closure, so does $A$.
+\end{corollary}
+\begin{theorem}
+$X$ hausdorff, $K\subset X$, $K$ compact, and $p\in K^{c}$. Then there are open sets $U$ and $W$ such that $p\in U$, $K\subset W$, and $U\cap W=\varnothing$.
+\end{theorem}
+\begin{proof}
+If $q\in K$, the Hausdorff separation axiom implies the existence of disjoint open sets $U_{q}$ and $V_{q}$ such that $p\in U_{q}$ and $q\in V_{q}$. Since $K$ is compact, there are points $q_1,\dots, q_n\in K$ such that
+\[
+K\subset V_{q_1}\cup\dots \cup V_{q_n}
+\]
+Our requirements are then satisfied by the sets
+\[
+U=U_{q_1}\cap\dots \cap U_{q_n}\qquad W=V_{q_1}\cup\dots \cup V_{q_n}
+\]
+\end{proof}
+
+\begin{corollary}
+Compact subsets of Hausdorff spaces are closed. (the inverse is not true.)
+\end{corollary}
+\begin{corollary}
+If $F$ closed, $K$ compact in a Hausdorff space, then $F\cap K$ is compact.
+\end{corollary}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+Use the definition of compact set.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+Use the definition of compact set.
+
+\section{General properties}
+
+See Royden Chapter 11.
+
+\subsection{Bases and subbases}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{12-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{13-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{15-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Separation properties}
+
+\begin{itemize}
+	\item \textbf{The Tychonoff Separation Property}:
+	\begin{itemize}
+		\item For each two points $u$ and $v$ in $X$, there is a neighborhood of $u$ that does not contain $v$ and a neighborhood of $v$ that does not contain $u$.
+	\end{itemize}
+	\item \textbf{The Hausdorff Separation Property}:
+	\begin{itemize}
+		\item Each two points in $X$ can be separated by disjoint neighborhoods.
+	\end{itemize}
+	\item \textbf{The Regular Separation Property}:
+	\begin{itemize}
+		\item The Tychonoff separation property holds and, moreover, each closed set and point not in the set can be separated by disjoint neighborhoods.
+	\end{itemize}
+	\item \textbf{The Normal Separation Property}:
+	\begin{itemize}
+		\item The Tychonoff separation property holds and, moreover, each two disjoint closed sets can be separated by disjoint neighborhoods.
+	\end{itemize}
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{17-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{proposition}
+A topological space $X$ is a Tychonoff space iff every set consisting of a single point is closed.
+\end{proposition}
+\begin{proposition}
+Every metric space is normal.
+\end{proposition}
+\begin{proposition}
+Let $X$ be Tychonoff. Then $X$ is normal iff whenever $\mathcal{U}$ is a neighborhood of a closed subset $F$ of $X$, there is another neighborhood of $F$ whose closure is contained in $\mathcal{U}$, that is, there is an open set $\mathcal{O}$ for which
+\[
+F\subseteq \mathcal{O}\subseteq  \overline{\mathcal{O}}\subseteq \mathcal{U}
+\]
+\end{proposition}
+\subsection{Countablity and Separability}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{18-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{19-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+In a topological space that is not first countable, it is possible for a point to be a point of closure of a set and yet no sequence in the set converges to the point.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{20-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{21-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Strong, weak topology, induced topology, homeomorphism}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{22-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{23-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{24-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Compact and Sequentially Compact topological spaces}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{25-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+In view of the definition of the subspace topology, a subset $K$ of $X$ is compact provided every covering of $K$ by a collection of open subsets of $X$ has a finite subcover.
+
+\begin{definition}[finite intersection property]
+A collection of sets is said to be \textbf{finite intersection property} provided every finite subcollection has nonempty intersection.
+\end{definition}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{26-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{27-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{28-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{29-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{30-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{31-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+Additionally, homeomorphism requires continuous inverse, so hypothesis upon space is neccessary.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{32-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+Regard a compact set as a compact topological space...
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{33-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{definition}[countably compact]
+A topological space is said to be \textbf{countably compact} provided every countable open cover has a finite subcover.
+\end{definition}
+\subsection{Separate, Connected, Intermediate value property}
+
+\begin{definition}[separate]
+Two nonempty open subsets of a topological spaces $X$ are said to \textbf{separate} $X$ if they are disjoint and their union is $X$.
+\end{definition}
+\begin{definition}[connected]
+A topological space which cannot be separated by such a pair is said to be \textbf{connected}.
+\end{definition}
+Connectness is preserved under continuous mapping.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{34-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+For a set $C$ of real number, the following are equivalent:
+
+\begin{itemize}
+	\item $C$ is an interval.
+	\item $C$ is convex.
+	\item $C$ is connected.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{35-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{36-Topological preliminaries-20250322.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\section{Three Fundamental Theorems}
