@@ -1,0 +1,194 @@
+\section{Appendix}
+
+Some results about the integration and differentiation of Banach-space valued functions of a single variable.
+Vector-valued integrals of integrable functions have similar properties, often with similar proofs, to scalar-valued $\displaystyle L^{1}$ -integrals.
+The existence of different topologies (such as the weak and strong topologies) in the range space of integrals that take values in an \textbf{infinite-dimensional} Banach space introduces significant new issues that do not arise in the scalar-valued case.
+
+Suppose $X$ a real Banach space with $\lVert \cdot \rVert$ and dual space $X'$.
+
+\subsection{Vector-Valued functions}
+
+\subsubsection{Measurability}
+
+\begin{definition}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{definition}
+\begin{definition}[strongly measurable]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Parabolic equations-20250306.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{definition}
+Measurability is preserved under natural operations on functions.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Parabolic equations-20250306.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{definition}[weakly measurable]
+A function $\displaystyle f:(0,T)\to X$ is said to be \textbf{weakly measurable} if the real-valued function $\displaystyle \left< \omega,f \right>:(0,T)\to \mathbb{R}$ is measurable for every $\displaystyle \omega\in X'$.
+\end{definition}
+This amounts to a 'coordinatewise' defintion of measurablility, in which we represent a vector-valued function by its ral-valued coordinate functions.
+For finite-dimensional, or separable, Banach spaces these definitions coincide, but for non-separable sapces a weakly measurable function need not be strongly measurable.
+The relationship between weak and strong measurability is given by the following Pettis theorem.
+
+\begin{definition}[almost separably valued]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Parabolic equations-20250306.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{definition}
+\begin{theorem}[Pettis theorem]
+A function $\displaystyle f:(0,T)\to X$ is strongly measurable iff it is weakly measurable and almost separably valued.
+\end{theorem}
+\begin{definition}[weak continuous]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-Parabolic equations-20250306.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{definition}
+Since a continuous function is measurable, every almost separably valued, weakly continuous function is strongly measurable.
+
+\begin{example}[weak but not strong measurable]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-154640.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{example}
+\begin{example}[$L^{2}$ separable but $L^{\infty}$ not]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-154653.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{example}
+\subsubsection{Integration}
+
+The definition of the Lebesgue integral as a supremum of integrals of simple functions does not extend directly to vector-valued integrals because it uses the ordering properties of $\mathbb{R}$ in and essential way.
+
+One can use duality to define $X$ -valued integrals $\int f\,dt$ in terms of the corresponding real-valued integrals $\int\left< \omega,f \right>\, dt$ where $\omega\in X'$, but we will not consider such weak definitions of an integral here.
+
+Instead, we define the integral of vector-valued functions by completing the space of simple functinos with respect to the $L^{1}(0,T;X)$ -norm. The resulting integral is called the Bochner integral, and its properties are similar to those of the Lebesgue integral of integrable real-valued functions.
+
+\begin{definition}[simple function]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-155025.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{definition}
+\begin{definition}[Bochner integral]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-154834.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{definition}
+The value of the Bochner integral of $f$ is independent of the sequence $\left\{f_n\right\}$ of approximating simple functions, and
+\[
+\left\|\int_0^T f d t\right\| \leq \int_0^T\|f\| d t
+\]
+Moreover, if $A: X \rightarrow Y$ is a bounded linear operator between Banach spaces $X, Y$ and $f:(0, T) \rightarrow X$ is integrable, then $A f:(0, T) \rightarrow Y$ is integrable and
+\[
+A\left(\int_0^T f d t\right)=\int_0^T A f d t
+\]
+More generally, this equality holds whenever $A: \mathcal{D}(A) \subset X \rightarrow Y$ is a \textbf{closed} linear operator and $f:(0, T) \rightarrow \mathcal{D}(A)$, in which case $\int_0^T f d t \in \mathcal{D}(A)$.
+
+\begin{definition}[closed linear operater]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-155321.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{definition}
+\begin{example}[$\left< \omega,\cdot \right>$ as an operator]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-155441.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{example}
+\begin{theorem}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-155608.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{theorem}
+The DCT for Bochner integrals with proof same as the scalar-valued case omitted.
+
+\begin{theorem}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-155856.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{theorem}
+The definition and properties of $L^{p}$ -spaces of $X$ -valued functions are analogous to the case of real-valued functions.
+
+\begin{definition}[$L^{p}(0,T;X)$]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-160128.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{definition}
+As usual, functions equal pointwise a.e. are regarded equivalent.
+
+\begin{theorem}
+If $X$ is a Banach space and $1\leq p\leq \infty$ then $L^{p}(0,T;X)$ is a Banach space.
+\end{theorem}
+Simple functions of the form $f(t)=\sum_{i=1}^{n}c_i\chi_{E_i}(t)$ are dense in $L^{p}(0,T;X)$. By mollifying these functions with respect to $t$, we get the following density result.
+
+\begin{theorem}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-160610.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{theorem}
+\begin{theorem}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-160834.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{theorem}
+The proof is more complicated than in the scalar case and some condition on $X$ is required. Reflexivity is sufficient.
+
+\subsubsection{Differentiability}
+
+\begin{definition}[strong continuous and strong differentiable]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Parabolic equations-20250306-161157.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{definition}

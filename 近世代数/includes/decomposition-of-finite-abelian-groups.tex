@@ -1,0 +1,116 @@
+\section{Decomposition of Finite Abelian Groups}
+
+\href{https://kconrad.math.uconn.edu/blurbs/grouptheory/finite-abelian.pdf}{finite-abelian.pdf}
+
+\begin{definition}[indecomposable]
+Let $A$ be a nontrivial finite abelian group. Call $A$ \textbf{indecomposable} if we can't write $A=B \oplus C$ for some nontrivial subgroups $B$ and $C$. Call $A$ \textbf{decomposable} if we can write $A=B \oplus C$ for two nontrivial subgroups $B$ and $C$.
+\end{definition}
+\begin{itemize}
+	\item A group of prime order is abelian (it's cyclic) and is indecomposable.
+	\item \textbf{A cyclic group of prime-power order is indecomposable} because if it could be decomposed into $B\oplus C$ for some nontrivial subgroups $B$ and $C$, both $B$ and $C$ would contain a subgroup of order $p$. This would imply that the original group $A$ has more than one subgroup of order $p$, contradicting the property that a \textbf{cyclic group has at most one subgroup of each size}.
+\end{itemize}
+
+\begin{theorem}
+Let $G$ be a cyclic group. Then, for every divisor $d$ of $|G|$, there is a \textbf{unique} subgroup of $G$ of order $d$.\label{602dc5}
+\end{theorem}
+
+\begin{proof}
+Let $G=\langle a\rangle$ and $|G|=n$. Suppose that $d \mid n$, and let $n=d k$. Then $\left|a^k\right|=d$, and so $\left\langle a^k\right\rangle$ is a subgroup of $G$ of order $d$.
+
+Now suppose that $H$ is any subgroup of $G$ of order $d$. Then $H=\left\langle a^m\right\rangle$ for some integer $m$. Also, $a^{m d}=e$, and so $n \mid m d$. Thus, $m d=n t$ for some integer $t$, and so $m d=d k t$. Therefore, $m=k t$, and so $H=\left\langle a^m\right\rangle=\left\langle a^{k t}\right\rangle=\left\langle a^k\right\rangle$.
+\end{proof}
+
+\begin{remark}
+The groups $\mathbf{Z} /(4)$ and $\mathbf{Z} /(2) \oplus \mathbf{Z} /(2)$ are not isomorphic since $\mathbf{Z} /(4)$ is indecomposable. Or since $\mathbf{Z} /(4)$ has an element of order 4 and $\mathbf{Z} /(2) \oplus \mathbf{Z} /(2)$ does not.
+\end{remark}
+\begin{theorem}[Theorem 2.5]
+A nontrivial finite abelian group is a direct sum of indecomposable subgroups.
+\end{theorem}
+\begin{note}
+The proof is trivial.
+\end{note}
+\begin{proof}
+This argument will be the same as the standard proof of the existence of prime factorization in the positive integers. We argue by induction on the order $n$ of the group.
+
+For the base case $n=2$, abelian groups of order 2 are indecomposable since 2 is prime. Suppose $n>2$ and each nontrivial abelian group of order less than $n$ is a direct sum of indecomposable subgroups. Let $A$ be abelian of order $n$.
+
+Case 1: $A$ is indecomposable. We are done, since $A$ is a direct sum of itself (one term).
+
+Case 2: $A$ is decomposable. We have $A=B \oplus C$ for nontrivial subgroups $B$ and $C$. Then $n=|B||C|$ with $|B|$ and $|C|$ being greater than 1 , so they are less than $n$. By induction,
+\[
+B=P_1 \oplus \cdots \oplus P_r, \quad C=Q_1 \oplus \cdots \oplus Q_s
+\]
+for indecomposable $P_i$ and $Q_j$. Then $A=P_1 \oplus \cdots \oplus P_r \oplus Q_1 \oplus \cdots \oplus Q_s$.
+\end{proof}
+
+\subsection{Classification of indecomposable finite abelian groups}
+
+\begin{lemma}
+If $A$ is an abelian group and $|A|=m n$ where $(m, n)=1$ then $A=A_m \oplus A_n$ for the subgroups $A_m=\{a \in A: m a=0\}$ and $A_n=\{a \in A: n a=0\}$.\label{897c32}
+\end{lemma}
+
+\begin{proof}
+The subsets $A_m$ and $A_n$ are subgroups because $A$ is abelian, e.g., if $m a=0$ and $m a^{\prime}=0$ then $m\left(a+a^{\prime}\right)=m a+m a^{\prime}=0+0=0$. Using multiplicative notation for a moment, we have $(g h)^m=g^m h^m$ when $g h=h g$, but it might not be true if $g h \neq h g$.
+
+To show $A=A_m+A_n$, write $1=m x+n y$ for $x, y \in \mathbf{Z}$ since $(m, n)=1$. For all $a \in A$,
+\[
+a=1 \cdot a=(m x+n y) a=(m x) a+(n y) a .
+\]
+We have $(n y) a \in A_m$ since $m((n y) a)=(m n)(y a)=|A| y a=0$, and similarly $(m x) a \in A_n$. Thus $A=A_m+A_n$.
+
+To show $A_m \cap A_n=\{0\}$, if $a \in A_m \cap A_n$ then $m a=0$ and $n a=0$, so $a=(m x+n y) a=$ $x(m a)+y(n a)=0+0=0$. Alternatively, the order of $a$ divides $m$ and $n$, so the order divides $(m, n)=1$ and thus $a=0$.
+
+We have shown $A=A_m+A_n$ and $A_m \cap A_n=\{0\}$, so $A=A_m \oplus A_n$.
+\end{proof}
+
+\begin{remark}
+\cref{897c32}  has a uniqueness aspect: $\left|A_m\right|=m,\left|A_n\right|=n$, and these are the unique subgroups of $A$ with orders $m$ and $n$. We will not need this.
+\end{remark}
+\begin{theorem}
+An indecomposable finite abelian group has prime-power order.
+\end{theorem}
+\begin{proof}
+Let $A$ be a nontrivial abelian group. We will prove the contrapositive of the theorem for $A$ : if $|A|$ is not a prime power then $A$ is decomposable. By \cref{897c32}, we are done.
+\end{proof}
+
+\begin{lemma}[3.4]
+A nontrivial finite abelian $p$-group with a unique subgroup of order $p$ is cyclic.\label{4f15a0}
+\end{lemma}
+
+\begin{proof}
+Let $A$ be a finite abelian $p$-group with a unique subgroup of order $p$ and let $p^m$ be the largest order of the elements of $A$. Then $m \geq 1$ and each element of $A$ has order $p^j$ where $j \leq m$ ( $A$ is a $p$-group and $p^m$ is the maximal order), so all elements of $A$ have order dividing $p^m: p^m A=\{0\}$.
+
+Let $a \in A$ have order $p^m$. Since $p^{m-1} a$ has order $p,\left\langle p^{m-1} a\right\rangle$ is a subgroup of order $p$, so it is the only one by assumption. To prove $A=\langle a\rangle$, we'll assume $A \neq\langle a\rangle$ and get a contradiction.
+
+The quotient group $A /\langle a\rangle$ (this makes sense since $A$ is abelian) is nontrivial, abelian, and of $p$ -power order. By Cauchy's theorem, $A /\langle a\rangle$ has an element of order $p$, say $b$. That means $b \notin\langle a\rangle$ and $p b \in\langle a\rangle$. So we can write
+\[
+p b=j a
+\]
+for some $j \in \mathbf{Z}$. Since $p^m b=0$ (all elements of $A$ have order dividing $p^m$ ) and $m \geq 1$,
+\[
+0=p^m b=p^{m-1}(p b)=p^{m-1}(j a)=\left(p^{m-1} j\right) a .
+\]
+Since $a$ has order $p^m, p^m \mid p^{m-1} j$, so $p \mid j$. Thus $j=p n$ for some $n \in \mathbf{Z}$, so $p b=(p n) a$. Rewrite that as $p(b-n a)=0$. The only subgroup of order $p$ is in $\langle a\rangle$, so $b \in n a+\langle a\rangle \subset\langle a\rangle$. This contradicts $b \notin\langle a\rangle$, so $A=\langle a\rangle$.
+\end{proof}
+
+\begin{remark}
+\cref{4f15a0}  is true without assuming $A$ is abelian when $p>2$, but the quaternion group $Q_8$ has a unique subgroup of order 2 and is not cyclic.
+\end{remark}
+\begin{theorem}
+Let $G$ be a finite abelian group and let $g \in G$ have maximal order in $G$. There is a subgroup $H \subset G$ such that $G \cong H \times\langle g\rangle$.
+\end{theorem}
+\begin{note}
+See r.f. \href{https://kconrad.math.uconn.edu/blurbs/grouptheory/charthy.pdf}{charthy.pdf} section 5.
+\end{note}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Decomposition-of-Finite-Abelian-Groups-2025041818.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Decomposition-of-Finite-Abelian-Groups-2025041818.png}
+% \caption{}
+\label{}
+\end{figure}

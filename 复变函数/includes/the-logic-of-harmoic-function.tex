@@ -1,0 +1,33 @@
+\section{The logic of Harmoic function}
+\textbf{Suppose} $f$ a complex function defined in a plane open set $\Omega$, regarding $f$ a transformation which maps $\Omega$ into $\mathbf{R}^{2}$. Suppose $f$ differentiable at $z_0=0$, WLOG $f(z_0)=0$, then
+\[
+f(z)=\alpha x+\beta y+\eta(z)z\qquad (z=x+iy) \qquad \eta(z)\to0\text{ as }z\to0
+\]
+Since $2x=z+\bar{z},2iy=z-\bar{z}$, then
+\[
+f(z)=\frac{\alpha-i\beta}{2}z+\frac{\alpha+i\beta}{2}\bar{z}+\eta(z)z
+\]
+which suggests the introduction of the differential operators
+\[
+\partial =\frac{1}{2}\left( \frac{ \partial   }{ \partial x } -i\frac{ \partial   }{ \partial y }  \right),\qquad \overline{\partial }=\frac{1}{2}\left( \frac{ \partial   }{ \partial x } +i\frac{ \partial   }{ \partial y }  \right)
+\]
+Now
+\[
+f(z)=(\partial f)(0)z+(\overline{\partial }f)(0)\overline{z}+\eta(z)z\qquad z\neq 0
+\]
+If $f\in D(\Omega)$, then $f\in H(\Omega)$ iff the Cauchy-Riemann equation
+\[
+(\overline{\partial }f)(z)=0
+\]
+holds for every $z\in \Omega$. In that case we have
+\[
+f'(z)=(\partial f)(z)\qquad z\in \Omega
+\]
+If $f=u+iv$, $u$ and $v$ real. Then $(\overline{\partial }f)(z)=0$ splits into $u_{x}=v_{y},u_{y}=-v_{x}$.
+The laplacian of $f$ is defined to be
+\[
+\Delta f=f_{xx}+f_{yy}
+\]
+If $f$ is continuous in $\Omega$ and if $\Delta f=0$ then $f$ is said to be \textit{harmonic} in $\Omega$.
+Note that $\Delta f=4\partial  \overline{\partial}f$. If $f$ is holomorphic then $\overline{\partial}f=0$, $f$ has continuous deivarives of all orders and $\Delta f=0$, which means "Holomorphic functinos are harmonic."
+Every real harmonic function is locally the real part of a holomorphic function, and it will yield information about the boundary behavior of certain classes of holomorphic functions in open discs.

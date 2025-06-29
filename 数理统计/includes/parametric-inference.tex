@@ -1,0 +1,172 @@
+\section{Parametric Inference}
+
+See All of Statistic Chap 9
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Parametric-Inference-2025041715.png}
+% \caption{}
+\label{}
+\end{figure}
+There are two methods for estimating $\theta$, the method of moments and the method of maximum likelihood.
+
+\subsection{Parameter of Interest}
+
+When estimating a parameter $\theta$, we may only be interested in a function $T(\theta)$, called the \textbf{parameter of interest}. Other components of $\theta$ are \textbf{nuisance parameters}. For instance, if $X \sim N(\mu, \sigma^2)$ and we want to estimate $\mu$, then $\mu = T(\theta)$ is the \underline{parameter of interest}, with $\sigma$ being the \underline{nuisance parameter}. As an example, if $X_1, \ldots, X_n \sim \operatorname{Normal}(\mu, \sigma^2)$ and we want to know the fraction $\tau$ of the population with test scores larger than 1, then $\tau = T(\mu, \sigma) = 1 - \Phi((1-\mu) / \sigma)$.
+
+\subsection{The Method of Moment}
+
+Suppose that the parameter $\theta=\left(\theta_1, \ldots, \theta_k\right)$ has $k$ components. For $1 \leq$ $j \leq k$, define the $j^{\text {th }}$ moment
+\[
+\alpha_j \equiv \alpha_j(\theta)=\mathbb{E}_\theta\left(X^j\right)=\int x^j d F_\theta(x)
+\]
+and the $j^{\text {th }}$ sample moment
+\[
+\widehat{\alpha}_j=\frac{1}{n} \sum_{i=1}^n X_i^j .
+\]
+\begin{definition}[method of moments estimator]
+The \textbf{method of moments estimator} $\widehat{\theta}_n$ is defined to be the value of $\theta$ such that
+\begin{equation}
+\begin{aligned}
+\alpha_1\left(\widehat{\theta}_n\right) & =\widehat{\alpha}_1 \\
+\alpha_2\left(\widehat{\theta}_n\right) & =\widehat{\alpha}_2 \\
+ &\vdots \\
+\alpha_k\left(\widehat{\theta}_n\right) & =\widehat{\alpha}_k .
+\end{aligned}
+\label{2f0756}
+\end{equation}
+\end{definition}
+
+\subsubsection{Example 1}
+
+Let $X_1,\dots X_n\sim b(1,p)$. Then $\alpha_1(p)=\alpha_1=\mathbb{E}_{p}(X)=p$, and $\widehat{\alpha}_{1}=n^{-1}\sum_{i=1}^{n}X_i$. By \cref{2f0756},
+\[
+\widehat{p}_n=\alpha_1(\widehat{p}_n)=\widehat{\alpha}_{1}=n^{-1}\sum_{i=1}^{n} X_i
+\]
+\subsubsection{Example 2}
+
+Let $X_1,\dots,X_n\sim N(\mu,\sigma^{2})$. Then $\alpha_1=\mathbb{E}_{\theta}(X_1)=\mu,\alpha_2=\mathbb{E}_{\theta}(X^2_{1})=\sigma^{2}+\mu^{2}$. We need to solve the quations
+\[
+\begin{aligned}
+\widehat{\mu} & =n^{-1}\sum_{i=1}^{n} X_i \\
+\widehat{\sigma}^2+\widehat{\mu}^2 & =n^{-1}\sum_{i=1}^{n} X_i^2
+\end{aligned}
+\]
+The solution is
+\[
+\widehat{\mu}=\overline{X}_n \qquad \widehat{\sigma}^2=n^{-1}\sum_{i=1}^{n} (X_i-\overline{X}_n)^2
+\]
+\begin{theorem}[Theorem 9.6]
+Let $\widehat{\theta}_n$ denote the method of moments estimator. Under appropriate conditions on the model, the following statements hold:
+	\begin{enumerate}
+		\item The estimate $\widehat{\theta}_n$ exists with probability tending to 1.
+		\item The estimate is consistent: $\widehat{\theta}_n \xrightarrow{\mathrm{P}} \theta$.
+		\item The estimate is asymptotically Normal:
+	\end{enumerate}
+\[
+\sqrt{n}\left(\widehat{\theta}_n-\theta\right) \rightsquigarrow N(0, \Sigma)
+\]where
+\[
+\begin{gathered}
+\Sigma=g \mathbb{E}_\theta\left(Y Y^T\right) g^T 
+\end{gathered}
+\]$Y=\left(X, X^2, \ldots, X^k\right)^T, g=\left(g_1, \ldots, g_k\right)$ and $g_j=\partial \alpha_j^{-1}(\theta) / \partial \theta$
+\end{theorem}
+\subsection{Maximum Likelihood Method}
+
+Let $X_1,\dots,X_n$ i.i.d. with pdf $f(x;\theta)$.
+
+\begin{definition}[Likelihood function]
+The \textbf{likelihood function} is defined by
+\[
+\mathcal{L}_n(\theta)=\prod_{i=1}^n f\left(X_i ; \theta\right)
+\]The \textbf{log-likelihood function} is defined by $\ell_n(\theta)=\log \mathcal{L}_n(\theta)$.
+\end{definition}
+The likelihood function is just the \textbf{joint density of the data} $(x_1,\dots,x_n)$, except that we treat it is a function of the parameter $\theta$. Thus, $\mathcal{L}_n: \Theta \rightarrow[0, \infty)$.
+
+\begin{definition}[maximum likelihood estimator]
+The \textbf{maximum likelihood estimator MLE}, denoted by $\widehat{\theta}_n$, is the value of $\theta$ that maximizes $\mathcal{L}_n(\theta)$.
+\end{definition}
+\begin{note}
+Often, it is easier to work with the log-likelihood.
+\end{note}
+\begin{remark}
+If we multiply $\mathcal{L}_n(\theta)$ by any positive constant $c$ (not depending on $\theta$ ) then this will not change the mle. Hence, \textbf{we shall often drop constants} in the likelihood function.
+\end{remark}
+\subsubsection{Example 1}
+
+Let $X_1, \ldots, X_n \sim N\left(\mu, \sigma^2\right)$. The parameter is $\theta=(\mu, \sigma)$, and the likelihood function (ignoring some constants) is:
+\[
+\begin{aligned}
+\mathcal{L}_n(\mu, \sigma) & =\prod_i \frac{1}{\sigma} \exp \left\{-\frac{1}{2 \sigma^2}\left(X_i-\mu\right)^2\right\} \\
+& =\sigma^{-n} \exp \left\{-\frac{1}{2 \sigma^2} \sum_i\left(X_i-\mu\right)^2\right\} \\
+& =\sigma^{-n} \exp \left\{-\frac{n S^2}{2 \sigma^2}\right\} \exp \left\{-\frac{n(\overline{X}-\mu)^2}{2 \sigma^2}\right\}
+\end{aligned}
+\]
+where $\overline{X}=n^{-1} \sum_i X_i$ is the sample mean and $S^2=n^{-1} \sum_i\left(X_i-\overline{X}\right)^2$. The last equality above follows from the fact that $\sum_i\left(X_i-\mu\right)^2=n S^2+n(\overline{X}-\mu)^2$, which can be verified by writing $\sum_i\left(X_i-\mu\right)^2=\sum_i\left(X_i-\overline{X}+\overline{X}-\mu\right)^2$ and then expanding the square.
+
+The log-likelihood is
+\[
+\ell(\mu, \sigma)=-n \log \sigma-\frac{n S^2}{2 \sigma^2}-\frac{n(\overline{X}-\mu)^2}{2 \sigma^2}
+\]
+Solving the equations
+\[
+\frac{\partial \ell(\mu, \sigma)}{\partial \mu}=0 \quad \text { and } \quad \frac{\partial \ell(\mu, \sigma)}{\partial \sigma}=0
+\]
+we conclude that $\widehat{\mu}=\overline{X}$ and $\widehat{\sigma}=S$. It can be verified that these are indeed global maxima of the likelihood.
+
+\subsubsection{Example 2: A Hard Example}
+
+Here is an example that many people find confusing. Let $X_1, \ldots, X_n \sim \operatorname{Unif}(0, \theta)$. Recall that
+\[
+f(x ; \theta)= \begin{cases}1 / \theta & 0 \leq x \leq \theta \\ 0 & \text { otherwise }\end{cases}
+\]
+Consider a fixed value of $\theta$. Suppose $\theta<X_i$ for some $i$. Then, $f(X_i ; \theta)=0$ and hence $\mathcal{L}_n(\theta)=\prod_i f(X_i ; \theta)=0$. It follows that $\mathcal{L}_n(\theta)=0$ if any $X_i>\theta$. Therefore, $\mathcal{L}_n(\theta)=0$ if $\theta<X_{(n)}$ where $X_{(n)}=\max \left\{X_1, \ldots, X_n\right\}$.
+
+Now consider any $\theta \geq X_{(n)}$. For every $X_i$ we then have that $f(X_i ; \theta)=1 / \theta$ so that $\mathcal{L}_n(\theta)=\prod_i f(X_i ; \theta)=\theta^{-n}$. In conclusion,
+\[
+\mathcal{L}_n(\theta)= \begin{cases}\left(\frac{1}{\theta}\right)^n & \theta \geq X_{(n)} \\ 0 & \theta<X_{(n)}\end{cases}
+\]
+Now $\mathcal{L}_n(\theta)$ is strictly decreasing over the interval $\left[X_{(n)}, \infty\right)$. Hence, $\widehat{\theta}_n=X_{(n)}$.
+
+\subsection{Properties of Maximum Likelihood Estimators}
+
+The MLE $\widehat{\theta}_n$ possesses many properties that make it an appealing choice choice of estimator
+
+\begin{enumerate}
+	\item The MLE is \textbf{consistent}: $\widehat{\theta}_n \xrightarrow{\mathrm{P}} \theta_{\star}$ where $\theta_{\star}$ denotes the true value of the parameter $\theta$;
+	\item The MLE is \textbf{equivariant}: if $\widehat{\theta}_n$ is the MLE of $\theta$ then $g\left(\widehat{\theta}_n\right)$ is the MLE of $g(\theta)$;\footnote{when $g$ admits an inverse.}
+	\item The MLE is \textbf{asymptotically Normal}: $\left(\widehat{\theta}-\theta_{\star}\right) / \widehat{\mathrm{se}} \rightsquigarrow N(0,1)$; also, the estimated standard error se can often be computed analytically;
+	\item The MLE is \textbf{asymptotically optimal} or \textbf{efficient}: roughly, this means that among all well-behaved estimators, the MLE has the smallest variance, at least for large samples;
+	\item The MLE is approximately the Bayes estimator. (This point will be explained later.)
+\end{enumerate}
+
+In sufficiently complicated problems, the MLE will no longer be a good estimator.
+
+We focus on the simpler situations where the MLE works well, assuming that the model satisfies certain regularity conditions, which are essentially smoothness conditions on $f(x ; \theta)$.
+
+\subsection{Consistency of Maximum Likelihood Estimators}
+
+Consistency means that the mle converges in probability to the true value.
+
+\begin{definition}[Kullback-Leibler distance]
+If $f$ and $g$ are pdf's, define the \textbf{Kullback-Leibler distance}\footnote{This is not a distance in the formal sense because $D(f, g)$ is not symmetric.} between $f$ and $g$ to be
+\[
+D(f, g)=\int f(x) \log \left(\frac{f(x)}{g(x)}\right) d x
+\]It can be shown that $D(f, g) \geq 0$ and $D(f, f)=0$. For any $\theta, \psi \in \Theta$ write $D(\theta, \psi)$ to mean $D(f(x ; \theta), f(x ; \psi))$.
+\end{definition}
+We will say that the model $\mathfrak{F}$ is \textbf{identifiable} if $\theta \neq \psi$ implies that $D(\theta, \psi)>$ 0. This means that different values of the parameter correspond to different distributions.
+
+\begin{theorem}
+Let $\theta_{\star}$ denote the true value of $\theta$. Define
+\[
+M_n(\theta)=\frac{1}{n} \sum_i \log \frac{f\left(X_i ; \theta\right)}{f\left(X_i ; \theta_{\star}\right)}
+\]and $M(\theta)=-D\left(\theta_{\star}, \theta\right)$. Suppose that
+\[
+\sup _{\theta \in \Theta}\left|M_n(\theta)-M(\theta)\right| \xrightarrow{\mathrm{P}} 0
+\]and that, for every $\epsilon>0$,
+\[
+\sup _{\theta:\left|\theta-\theta_{\star}\right| \geq \epsilon} M(\theta)<M\left(\theta_{\star}\right) .
+\]Let $\widehat{\theta}_n$ denote the MLE. Then $\widehat{\theta}_n \xrightarrow{\mathrm{P}} \theta_{\star}$.
+\end{theorem}
+\subsection{Asymptotic Normality}

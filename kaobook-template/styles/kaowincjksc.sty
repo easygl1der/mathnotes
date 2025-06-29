@@ -1,0 +1,552 @@
+\ProvidesPackage{styles/kaoWinCJKsc}
+
+\RequirePackage{kvoptions} % Handle package options
+\RequirePackage{needspace}
+\SetupKeyvalOptions{
+	family = kaowincjksc,
+	prefix = kaowincjksc@
+}
+
+\DeclareBoolOption{testMathBox}% If true, put theorems into colorful boxes, otherwise write them like normal text
+
+\ProcessKeyvalOptions{kaowincjksc}
+
+%----------------------------------------------------------------------------------------
+% 加载包用于字体设置与选择整个文档的默认字体
+\RequirePackage{xeCJK}
+
+% 检查可用中文字体名：fc-list -f "%{family}\n" :lang=zh > zh-font.txt
+\setCJKmainfont[BoldFont=LXGW WenKai GB Bold,AutoFakeSlant]{LXGW WenKai GB}
+\setCJKsansfont[BoldFont=Noto Sans CJK SC Bold,AutoFakeSlant]{Noto Sans CJK SC}
+\setCJKmonofont[BoldFont=LXGW WenKai GB Bold,AutoFakeSlant]{LXGW WenKai Mono GB}
+
+%----------------------------------------------------------------------------------------
+% 加载包用于首行缩进
+\RequirePackage{indentfirst}
+\setlength{\parindent}{2em} % 首行缩进两个汉字或四个字母
+
+%----------------------------------------------------------------------------------------
+% 文本颜色
+\RequirePackage{xcolor}
+% 中文数字日期格式
+\RequirePackage{zhnumber}
+
+%----------------------------------------------------------------------------------------
+% Win10 平台中文字体集合
+\setCJKfamilyfont{nosat}{Noto Sans CJK SC Thin}
+\newcommand{\nosat}{\CJKfamily{nosat}}
+\setCJKfamilyfont{dx}{DengXian}                             %等线  dx
+\newcommand{\dx}{\CJKfamily{dx}}
+\setCJKfamilyfont{song}{SimSun}                             %宋体  song
+\newcommand{\song}{\CJKfamily{song}}
+\setCJKfamilyfont{xs}{NSimSun}                              %新宋体  xs
+\newcommand{\xs}{\CJKfamily{xs}}
+\setCJKfamilyfont{fs}{FangSong}                             %仿宋  fs
+\newcommand{\fs}{\CJKfamily{fs}}
+\setCJKfamilyfont{yh}{FZLanTingHei-R-GBK}                      %方正兰亭黑  yh
+\newcommand{\yh}{\CJKfamily{yh}}
+\setCJKfamilyfont{hei}{SimHei}                              %黑体  hei
+\newcommand{\hei}{\CJKfamily{hei}}
+\setCJKfamilyfont{kai}{KaiTi_GB2312}                               %楷体  kai
+\newcommand{\kai}{\CJKfamily{kai}}
+\setCJKfamilyfont{li}{FZLiShu-S01}                                 %隶书  li
+\newcommand{\li}{\CJKfamily{li}}
+\setCJKfamilyfont{yy}{Yuanti SC}                              %幼圆  yy
+\newcommand{\yy}{\CJKfamily{yy}}
+\setCJKfamilyfont{hwsong}{STFangsong}                           %华文宋体  hwsong
+\newcommand{\hwsong}{\CJKfamily{hwsong}}
+\setCJKfamilyfont{hwzs}{FZShuSong-Z01S}                        %华文中宋  hwzs
+\newcommand{\hwzs}{\CJKfamily{hwzs}}
+\setCJKfamilyfont{hwfs}{FZFangSong-Z02S}                         %华文仿宋  hwfs
+\newcommand{\hwfs}{\CJKfamily{hwfs}}
+\setCJKfamilyfont{hwxh}{Heiti SC Medium}                            %黑体简  hwxh
+\newcommand{\hwxh}{\CJKfamily{hwxh}}
+\setCJKfamilyfont{hwl}{FZLiShu-S01S}                              %方正隶书  hwl
+\newcommand{\hwl}{\CJKfamily{hwl}}
+\setCJKfamilyfont{hwxw}{STXinwei}                           %华文新魏  hwxw
+\newcommand{\hwxw}{\CJKfamily{hwxw}}
+\setCJKfamilyfont{hwk}{STKaiti}                             %楷体-简  hwk
+\newcommand{\hwk}{\CJKfamily{hwk}}
+\setCJKfamilyfont{hwxk}{STXingkai}                          %行楷-简  hwxk
+\newcommand{\hwxk}{\CJKfamily{hwxk}}
+\setCJKfamilyfont{hwcy}{STCaiyun}                           %华文彩云  hwcy
+\newcommand{\hwcy}{\CJKfamily{hwcy}}
+\setCJKfamilyfont{hwhp}{STHupo}                             %华文琥珀  hwhp
+\newcommand{\hwhp}{\CJKfamily{hwhp}}
+\setCJKfamilyfont{fzs}{FZShuTi-S05S}                             %方正舒体  fzs
+\newcommand{\fzs}{\CJKfamily{fzs}}
+\setCJKfamilyfont{fzy}{FZYaoTi-M06S}                             %方正姚体  fzy
+\newcommand{\fzy}{\CJKfamily{fzy}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 彩色盒子
+\ifkaowincjksc@testMathBox
+\RequirePackage{tikz} % Required by mdframed
+\RequirePackage[framemethod=TikZ]{mdframed} % Required for colorful boxes
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Theorem
+% define a counter for continuous numbering of the environment
+% by chapter or by section
+% 定义定理环境计数器，按节重置
+\newcounter{theo}[chapter] \setcounter{theo}{0}
+%\renewcommand{\thetheo}{\arabic{chapter}.\arabic{theo}} %显示章节名
+\renewcommand{\thetheo}{\arabic{theo}} %不显示章节名
+% 定义定理环境，参数1为可选标题，参数2为标签
+\newenvironment{theo}[2][]{%
+\refstepcounter{theo}% 计数器递增
+\ifstrempty{#1}% 判断是否提供了标题
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Theorem~\thetheo};}}
+}% 无标题情况
+{\mdfsetup{%
+frametitle={%
+\tikz[baseline=(current bounding box.east),outer sep=0pt]
+\node[anchor=east,rectangle,fill=blue!20]
+{\strut Theorem~\thetheo:~#1};}}% 有标题情况
+}%
+\mdfsetup{innertopmargin=10pt,linecolor=blue!20,% 设置内部上边距和线条颜色
+linewidth=2pt,topline=true,% 设置线宽和顶部线条
+frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+}
+
+\begin{mdframed}[]\relax% 开始带框架的环境
+\label{#2}}{\end{mdframed}}% 结束环境并设置标签
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义引理环境
+% \newcounter{lem}[chapter] \setcounter{lem}{0}
+% \renewcommand{\thelem}{\arabic{lem}}
+% \newenvironment{lem}[2][]{%
+% \refstepcounter{lem}% 计数器递增
+% \ifstrempty{#1}% 判断是否提供了标题
+% {\mdfsetup{%
+% frametitle={%
+% \tikz[baseline=(current bounding box.east),outer sep=0pt]
+% \node[anchor=east,rectangle,fill=green!20]
+% {\strut Lemma~\thelem};}}
+% }% 无标题情况
+% {\mdfsetup{%
+% frametitle={%
+% \tikz[baseline=(current bounding box.east),outer sep=0pt]
+% \node[anchor=east,rectangle,fill=green!20]
+% {\strut Lemma~\thelem:~#1};}}% 有标题情况
+% }%
+% \mdfsetup{innertopmargin=10pt,linecolor=green!20,% 设置内部上边距和线条颜色
+% linewidth=2pt,topline=true,% 设置线宽和顶部线条
+% frametitleaboveskip=\dimexpr-\ht\strutbox\relax
+% }
+% \begin{mdframed}[]\relax% 开始带框架的环境
+% \label{#2}}
+% {\end{mdframed}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义证明环境
+% [begin]define a new environment for proof
+\newenvironment{prf}[1][]{%
+    % 框架样式设置
+    \ifstrempty{#1}
+    % 无标题情况
+    {
+        \mdfsetup{%
+        frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=red!20]
+        {\strut Preuve~};}}
+    }% 有标题情况
+    {
+        \mdfsetup{%
+        frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=red!20]
+        {\strut Preuve~:~#1};}}%
+    }%
+    % 两种情况共有的设置
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=red!20,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+        skipabove=\smallskipamount,
+        skipbelow=\smallskipamount
+    }
+
+    % 开始带框架的环境
+    
+    \begin{mdframed}[]\relax%
+}
+{\qed\end{mdframed}}% 结束环境并添加证明完毕符号
+\crefname{prf}{Preuve}{Preuves}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义解答环境
+% [begin]define a new environment for proof
+\newenvironment{soln}[1][]{%
+    % 框架样式设置
+    \ifstrempty{#1}
+    % 无标题情况
+    {
+        \mdfsetup{%
+        frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=red!20]
+        {\strut Solution~};}}
+    }% 有标题情况
+    {
+        \mdfsetup{%
+        frametitle={%
+        \tikz[baseline=(current bounding box.east),outer sep=0pt]
+        \node[anchor=east,rectangle,fill=red!20]
+        {\strut Solution~:~#1};}}%
+    }%
+    % 两种情况共有的设置
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=red!20,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+        skipabove=\smallskipamount,
+        skipbelow=\smallskipamount
+    }
+
+    % 开始带框架的环境
+    
+    \begin{mdframed}[]\relax%
+}
+{\qed\end{mdframed}}% 结束环境并添加证明完毕符号
+\crefname{soln}{Solution}{Solutions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义练习环境
+% [begin]define a new environment for exercise
+\newcounter{exr}[chapter] \setcounter{exr}{0}
+\renewcommand{\theexr}{\arabic{exr}}
+\newenvironment{exr}[1][]{%
+    \refstepcounter{exr}% 计数器递增
+    \ifstrempty{#1}% 无标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=blue!20]
+    {\strut Exercice~\theexr};}}
+    }% 有标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=blue!20]
+    {\strut Exercice~\theexr:~#1};}}
+    }%
+    % 设置环境样式
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=blue!20,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+        skipabove=\smallskipamount,
+        skipbelow=\smallskipamount
+    }   
+    % 开始带框架的环境
+    
+    \begin{mdframed}[]\relax%
+}
+{\end{mdframed}}% 结束环境
+\crefname{exr}{Exercice}{Exercices}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义定理环境
+\newcounter{thm}[chapter] \setcounter{thm}{0}
+\renewcommand{\thethm}{\arabic{thm}}
+\newenvironment{thm}[1][]{%
+    \refstepcounter{thm}% 计数器递增
+    \ifstrempty{#1}% 无标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=cyan!20]
+    {\strut Théorème~\thethm};}}
+    }% 有标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=cyan!20]
+    {\strut Théorème~\thethm:~#1};}}
+    }%
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=cyan!20,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+        skipabove=\smallskipamount,
+        skipbelow=\smallskipamount
+    }
+    
+    \begin{mdframed}[]\relax%
+}
+{\end{mdframed}}
+\crefname{thm}{Théorème}{Théorèmes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义性质环境
+\newcounter{ppt}[chapter] \setcounter{ppt}{0}
+\renewcommand{\theppt}{\arabic{ppt}}
+\newenvironment{ppt}[1][]{%
+    \refstepcounter{ppt}% 计数器递增
+    \ifstrempty{#1}% 无标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=magenta!20]
+    {\strut Propriété~\theppt};}}
+    }% 有标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=magenta!20]
+    {\strut Propriété~\theppt:~#1};}}
+    }%
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=magenta!20,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+        skipabove=\smallskipamount,
+        skipbelow=\smallskipamount
+    }
+    
+    \begin{mdframed}[]\relax%
+}
+{\end{mdframed}}
+\crefname{ppt}{Propriété}{Propriétés}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义引理环境
+\newcounter{lem}[chapter] \setcounter{lem}{0}
+\renewcommand{\thelem}{\arabic{lem}}
+\newenvironment{lem}[1][]{%
+    \refstepcounter{lem}% 计数器递增
+    \ifstrempty{#1}% 无标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=purple!20]
+    {\strut Lemme~\thelem};}}
+    }% 有标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=purple!20]
+    {\strut Lemme~\thelem:~#1};}}
+    }%
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=purple!20,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+        skipabove=\smallskipamount,
+        skipbelow=\smallskipamount
+    }
+    
+    \begin{mdframed}[]\relax%
+}
+{\end{mdframed}}
+\crefname{lem}{Lemme}{Lemmes}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义命题环境
+\newcounter{prop}[chapter] \setcounter{prop}{0}
+\renewcommand{\theprop}{\arabic{prop}}
+\newenvironment{prop}[1][]{%
+    \refstepcounter{prop}% 计数器递增
+    \ifstrempty{#1}% 无标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=orange!20]
+    {\strut Proposition~\theprop};}}
+    }% 有标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=orange!20]
+    {\strut Proposition~\theprop:~#1};}}
+    }%
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=orange!20,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+        skipabove=\smallskipamount,
+        skipbelow=\smallskipamount
+    }
+    
+    \begin{mdframed}[]\relax%
+}
+{\end{mdframed}}
+\crefname{prop}{Proposition}{Propositions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义推论环境
+\newcounter{cor}[chapter] \setcounter{cor}{0}
+\renewcommand{\thecor}{\arabic{cor}}
+\newenvironment{cor}[1][]{%
+    \refstepcounter{cor}% 计数器递增
+    \ifstrempty{#1}% 无标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=teal!20]
+    {\strut Corollaire~\thecor};}}
+    }% 有标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=teal!20]
+    {\strut Corollaire~\thecor:~#1};}}
+    }%
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=teal!20,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+        skipabove=\smallskipamount,
+        skipbelow=\smallskipamount
+    }
+    
+    \begin{mdframed}[]\relax%
+}
+{\end{mdframed}}
+\crefname{cor}{Corollaire}{Corollaires}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义定义环境
+\newcounter{defi}[chapter] \setcounter{defi}{0}
+\renewcommand{\thedefi}{\arabic{defi}}
+\newenvironment{defi}[1][]{%
+    \refstepcounter{defi}% 计数器递增
+    \ifstrempty{#1}% 无标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=green!20]
+    {\strut Définition~\thedefi};}}
+    }% 有标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=green!20]
+    {\strut Définition~\thedefi:~#1};}}
+    }%
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=green!20,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+        skipabove=\smallskipamount,
+        skipbelow=\smallskipamount
+    }
+    
+    \begin{mdframed}[]\relax%
+}
+{\end{mdframed}}
+\crefname{defi}{Définition}{Définitions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义rmk环境
+\newcounter{rmk}[chapter] \setcounter{rmk}{0}
+\renewcommand{\thermk}{\arabic{rmk}}
+\newenvironment{rmk}[1][]{%
+    \refstepcounter{rmk}% 计数器递增
+    \ifstrempty{#1}% 无标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=gray!20]
+    {\strut Remarque~\thermk};}}
+    }% 有标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=gray!20]
+    {\strut Remarque~\thermk:~#1};}}
+    }%
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=gray!20,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+        skipabove=\smallskipamount,
+        skipbelow=\smallskipamount
+    }
+    
+    \begin{mdframed}[]\relax%
+}
+{\end{mdframed}}
+\crefname{rmk}{Remarque}{Remarques}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 定义例子环境
+\newcounter{expl}[chapter] \setcounter{expl}{0}
+\renewcommand{\theexpl}{\arabic{expl}}
+\newenvironment{expl}[1][]{%
+    \refstepcounter{expl}% 计数器递增
+    \ifstrempty{#1}% 无标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=yellow!20]
+    {\strut Exemple~\theexpl};}}
+    }% 有标题情况
+    {\mdfsetup{%
+    frametitle={%
+    \tikz[baseline=(current bounding box.east),outer sep=0pt]
+    \node[anchor=east,rectangle,fill=yellow!20]
+    {\strut Exemple~\theexpl:~#1};}}
+    }%
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=yellow!20,%
+        linewidth=2pt,topline=true,%
+        frametitleaboveskip=\dimexpr-\ht\strutbox\relax,%
+        skipabove=\smallskipamount,
+        skipbelow=\smallskipamount
+    }
+    
+    \begin{mdframed}[]\relax%
+}
+{\end{mdframed}}
+\crefname{expl}{Exemple}{Exemples}
+
+\fi
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 高等数学风格
+% \usepackage{amsthm}
+% \usepackage{thmtools}
+% \usepackage[unq]{unique}
+
+% \declaretheoremstyle[%
+%     headindent=\parindent,
+%     headfont=\normalfont\bfseries,%
+%     notefont=\normalfont\bfseries, notebraces={(}{)},
+%     bodyfont=\normalfont,
+%     postheadspace=1em,%
+%     %qed=\qedsymbol,%空心
+%     qed=$\blacksquare$,%实心
+%     headpunct={}
+% ]{mathstyle}
+
+% \theoremstyle{mathstyle}
+% % 使用 amsthm 定义
+% \newtheorem*{Definition*}{定义}
+% \newtheorem{Definition}{定义}[section]
+% \renewcommand{\theDefinition}{\arabic{Definition}}
+
+% \newtheorem*{Theorem*}{定理}
+% \newtheorem{Theorem}{定理}[section]
+% \renewcommand{\theTheorem}{\arabic{Theorem}}
+
+% \newtheorem{Corollary}{推论}
+% \renewcommand{\theCorollary}{\arabic{Corollary}}
+
+% \newtheorem*{Lemma*}{引理}
+% \newtheorem{Lemma}{引理}[section]
+% \renewcommand{\theLemma}{\arabic{Lemma}}
+
+% \newtheorem*{Proposition*}{命题}
+% \newtheorem{Proposition}{命题}[section]
+% \renewcommand{\theProposition}{\arabic{Proposition}}
+
+% \newtheorem*{Proof*}{证}
+% \newtheorem{Proof}{证}[section]
+% \renewcommand{\theProof}{\arabic{Proof}}
+
+% \newtheorem*{Example*}{例}
+% \newtheorem{Example}{例}[section]
+% \renewcommand{\theExample}{\arabic{Example}}
+
+% \newtheorem*{Solution*}{解}
+% \newtheorem{Solution}{解}[section]
+% \renewcommand{\theSolution}{\arabic{Solution}}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+

@@ -1,0 +1,76 @@
+\contentsline {part}{I\hspace {1em}Probability Theory}{8}{part.1}%
+\contentsline {section}{\numberline {1}Probability Theory Foundations}{8}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Probability Space and Random Variables}{8}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Expectation and Moments}{8}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Independence and Conditional Probability}{9}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Variance, Covariance, and Correlation}{10}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Multivariate Distributions}{10}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Characteristic Functions and Moment Generating Functions}{11}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}Modes of Convergence}{11}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.8}Bayes' Formula and Conditional Probability}{12}{subsection.1.8}%
+\contentsline {subsection}{\numberline {1.9}Laws of Large Numbers}{12}{subsection.1.9}%
+\contentsline {subsection}{\numberline {1.10}Central Limit Theorems}{13}{subsection.1.10}%
+\contentsline {subsection}{\numberline {1.11}Martingales}{13}{subsection.1.11}%
+\contentsline {subsection}{\numberline {1.12}Markov Chains}{15}{subsection.1.12}%
+\contentsline {subsection}{\numberline {1.13}Continuous-Time Stochastic Processes}{17}{subsection.1.13}%
+\contentsline {subsection}{\numberline {1.14}Poisson Processes}{17}{subsection.1.14}%
+\contentsline {subsection}{\numberline {1.15}Brownian Motion}{18}{subsection.1.15}%
+\contentsline {subsection}{\numberline {1.16}Example Problems and Solutions}{19}{subsection.1.16}%
+\contentsline {subsection}{\numberline {1.17}Advanced Probability Inequalities}{20}{subsection.1.17}%
+\contentsline {subsection}{\numberline {1.18}Advanced Problem Set}{21}{subsection.1.18}%
+\contentsline {subsection}{\numberline {1.19}Measure-Theoretic Foundations}{23}{subsection.1.19}%
+\contentsline {subsection}{\numberline {1.20}Advanced Convergence Theorems}{24}{subsection.1.20}%
+\contentsline {subsection}{\numberline {1.21}Conditional Expectation - Advanced Theory}{25}{subsection.1.21}%
+\contentsline {subsection}{\numberline {1.22}Martingale Theory - Advanced Results}{25}{subsection.1.22}%
+\contentsline {subsection}{\numberline {1.23}Stochastic Processes - Detailed Theory}{26}{subsection.1.23}%
+\contentsline {subsection}{\numberline {1.24}Advanced Distribution Theory}{27}{subsection.1.24}%
+\contentsline {subsection}{\numberline {1.25}Extreme Value Theory}{27}{subsection.1.25}%
+\contentsline {subsection}{\numberline {1.26}Large Deviations Theory}{28}{subsection.1.26}%
+\contentsline {subsection}{\numberline {1.27}Empirical Processes}{28}{subsection.1.27}%
+\contentsline {subsection}{\numberline {1.28}Functional Central Limit Theorem}{29}{subsection.1.28}%
+\contentsline {subsection}{\numberline {1.29}Detailed Examples and Applications}{29}{subsection.1.29}%
+\contentsline {subsection}{\numberline {1.30}Additional Advanced Probability Topics}{32}{subsection.1.30}%
+\contentsline {part}{II\hspace {1em}Statistical Theory}{34}{part.2}%
+\contentsline {section}{\numberline {2}Distribution Theory and Fundamental Statistics}{34}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Continuous Distribution Families}{34}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Normal Distribution Family}{34}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Chi-Square Distribution}{35}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Student's t-Distribution}{36}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}F-Distribution}{37}{subsubsection.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.1.5}Gamma Distribution Family}{37}{subsubsection.2.1.5}%
+\contentsline {subsubsection}{\numberline {2.1.6}Beta Distribution}{38}{subsubsection.2.1.6}%
+\contentsline {subsection}{\numberline {2.2}Discrete Distribution Families}{39}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Multinomial Distribution}{39}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Poisson Distribution}{40}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Negative Binomial Distribution}{40}{subsubsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.3}Fundamental Statistics and Sample Properties}{41}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Testing Theory}{41}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Neyman-Pearson Paradigm}{41}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Likelihood Ratio Tests}{42}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Common Statistical Tests}{43}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Tests for Normal Populations}{43}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Chi-Square Tests}{44}{subsubsection.3.3.2}%
+\contentsline {section}{\numberline {4}Parameter Estimation Theory}{44}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Maximum Likelihood Estimation}{44}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Method of Moments}{46}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Sufficient Statistics}{46}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Confidence Intervals}{47}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Bayesian Statistics}{47}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Fundamental Concepts}{47}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Conjugate Priors}{48}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Bayesian Inference}{49}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Large Sample Theory}{49}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Modes of Convergence}{49}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Law of Large Numbers}{50}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Central Limit Theorem}{50}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Delta Method}{51}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Asymptotic Properties of Estimators}{51}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Chi-Square Approximations}{52}{subsection.6.6}%
+\contentsline {section}{\numberline {7}Advanced Topics and Applications}{52}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Exponential Families}{52}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Generalized Linear Models}{53}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Robust Statistics}{53}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Competition Problem-Solving Strategies}{54}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Common Problem Types}{54}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Key Formulas and Results}{55}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Problem-Solving Checklist}{55}{subsection.8.3}%

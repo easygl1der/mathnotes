@@ -1,0 +1,248 @@
+\section{Sylow 定理习题}
+
+Dummit\&Foote 4.5
+
+\begin{exercise}
+Prove that if $P \in S y l_P(G)$ and $H$ is a subgroup of $G$ containing $P$, then $P \in S y l_P(H)$. Give an example to show that, in general, a Sylow $p$-subgroup of a subgroup of $G$ need not be a Sylow $\boldsymbol{p}$-subgroup of $\boldsymbol{G}$.
+\end{exercise}
+
+\begin{proof}
+We are given $P \leq H \leq G$ with $|P|=p^\alpha$ and $|G|=p^\alpha m$ such that $p \nmid  m$. As $|P|||H|$, we get that $| H \mid=\boldsymbol{p}^\alpha k$ for some $k \in \mathbb{N}$.
+Moreover, $|H|||G|$ and thus, $k| m$. As $p \nmid  m$, we get that $p \nmid  k$.
+Thus, $P$ is a Sylow $\boldsymbol{p}$-subgroup of $\boldsymbol{H}$.
+
+For the second part, consider $G=\mathbb{Z}_4$ and $H=\{\overline{0}, \overline{2}\}$. Then $P=H$ is a Sylow 2subgroup of $\boldsymbol{H}$ but not one of $\boldsymbol{G}$.
+\end{proof}
+
+
+\begin{exercise}
+Prove that if $H$ is a subgroup of $G$ and $Q \in S y l_p(H)$ then $g Q g^{-1} \in S y l_p\left(g H g^{-1}\right)$ for all $g \in G$.
+\end{exercise}
+
+\begin{proof}
+We first note that $\boldsymbol{g Q g ^ { - 1 }}$ is indeed a subgroup of $\boldsymbol{g H} \boldsymbol{g}^{-1}$.
+The assertion follows from the fact that $\left|g Q q^{-1}\right|=|Q|$ and $\left|\boldsymbol{g H} g^{-1}\right|=|H|$.
+\end{proof}
+
+\begin{exercise}
+Use Sylow's theorem to prove Cauchy's theorem.
+\end{exercise}
+
+\begin{proof}
+Recall that Cauchy's theorem says that if $G$ is a finite group such that $p||G|$ for some prime $p$, then $G$ has an element of order $p$.
+
+To prove this, let $G$ and $p$ be as above and $P$ be a Sylow $p$-subgroup of $G$. (Existence of $P$ is given by the Sylow theorems.)
+
+Let $G=p^\alpha m$ with usual meanings. Then, $|P|=p^\alpha$.
+
+Consider $x \in P$ such that $x \neq 1$. Then, the order of $x$ is $p^\beta$ for some $1 \leq \beta \leq \alpha$. Consider $y=x^{p^{\beta-1}}$. Then, order of $y$ is $p$. (How? It is clear that $y^p=1$. Thus, the only other possibility for the order is 1 but that is not possible since $y \neq 1$ as $p^{\beta-1}<p^\beta$, the order of $\boldsymbol{x}$.)
+\end{proof}
+
+\begin{exercise}
+    Exhibit all Sylow 2-subgroups and Sylow 3-subgroups of $D_{12}$ and $S_3 \times S_3$.
+\end{exercise}  
+
+\begin{proof}
+    $D_{12}$ :
+    Note that $\left|D_{12}\right|=12=2^2 \cdot 3$. Thus, the Sylow 2-subgroup(s) will have order 4 and Sylow 3-subgroup(s) will have order 3 .
+    
+    Sylow 3:
+    Note that a Sylow 3 -subgroup must necessarily be isomorphic to $\mathbb{Z}_3$. Since \underline{all elements not of the form $r^k$ have order 2}, we just find powers of $r$ which have order 3. These turn out to be $r^2$ and $r^4$. As $\left\langle r^2\right\rangle=\left\langle r^4\right\rangle$, we have a unique Sylow 3-subgroup:
+    
+    $$
+    \left\langle r^2\right\rangle
+    $$
+    
+    
+    Sylow 2:
+    Note that no element of $D_{12}$ has order 4. (Any such element would have to be a power of $r$ but 4 does not divide 6, the order of $\boldsymbol{r}$.)
+    Thus, any Sylow 2-subgroup must be isomorphic to $\mathbb{Z}_2 \times \mathbb{Z}_2$.
+    Every element of this group must have order 2. $r^3$ is the only power of $r$ which has order 2. Thus, the other two elements must be of the form $s r^k$. Noting that the multiplication of two such elements is:
+    
+    $$
+    s r^k \cdot s r^{k^{\prime}}=r^{k^{\prime}-k}
+    $$
+    
+    we get that $\left|k-k^{\prime}\right|=3$. This gives us three such groups which are all the Sylow 2subgroups:
+    
+    $$
+    \underbrace{\left\langle s, s r^3\right\rangle}_{\left\langle s\right\rangle\times \left\langle r^3\right\rangle},\underbrace{\left\langle s r, s r^4\right\rangle}_{\left\langle s r\right\rangle\times \left\langle r^3\right\rangle},\underbrace{\left\langle s r^2, s r^5\right\rangle}_{\left\langle s r^2\right\rangle\times \left\langle r^3\right\rangle} .
+    $$
+    
+    (It can be checked that all of these are distinct subgroups.)
+    $S_3 \times S_3:$
+    The order of the group is $36=2^2 \cdot 3^2$. Thus, the Sylow 2-subgroup(s) will have order 4 and Sylow 3-subgroup(s) will have order 9.
+    
+    Sylow 2:
+    Note that there are three subgroups of order 2 of $S_3:\langle(12)\rangle,\langle(13)\rangle,\langle (23)\rangle$. Let these be $H_1, H_2, H_3$. (Note that these are indeed distinct.)
+    Then, the nine products:
+    
+    $$
+    H_i \times H_j \quad i, j \in\{1,2,3\}
+    $$
+    
+    are subgroups of $S_3 \times S_3$ have order 4. This gives us nine Sylow 2-subgroups. However, by the Sylow theorems, $n_2 \mid 9$ and thus, there can't be any more.
+
+    Sylow 3:
+    Let $P$ be a Sylow 3-subgroup. Note that no element of $S_3 \times S_3$ has order 9 . Thus, every non-identity element of $\boldsymbol{P}$ must have order 3 . Now, note that the order of an element $(\sigma, \tau) \in S_3 \times S_3$ is the lcm of the orders of $\sigma$ and $\tau$. This gives us that there are 8 elements of order 3 . These elements together with the identity do form a subgroup and moreover, there can't be any other. Thus, there is a unique Sylow 3-subgroup which is:
+    
+    $$
+    \langle(123)\rangle \times\langle(123)\rangle .
+    $$    
+\end{proof}
+
+
+\begin{exercise}
+Show that a Sylow $p$-subgroup of $D_{2 n}$ is cyclic and normal for every odd prime $p$.
+\end{exercise}
+
+
+\begin{proof}
+Let $2 n=p^\alpha m$ as usual. As $p$ is odd and $2 n$ is even, we must have that $\boldsymbol{m}=\mathbf{2} \boldsymbol{m}^{\prime}$ for some $\boldsymbol{m} \in \mathbb{N}$. Thus, $\boldsymbol{n}=\boldsymbol{p}^\alpha \boldsymbol{m}^{\prime}$ with $\boldsymbol{p} \nmid  \boldsymbol{m}^{\prime}$.
+
+Note that $r$ has order $n$ and hence, $\boldsymbol{r}^{m^{\prime}}$ has order $\boldsymbol{p}^\alpha$. Hence, $\left\langle\boldsymbol{r}^{m^{\prime}}\right\rangle$ is Sylow p-subgroup of $D_{2 n}$
+
+We now show that is normal. To do this, it is enough to work with the generators of $D_{2 n}$. Clearly, $r\left(r^{m^{\prime}}\right) r^{-1} \in\left\langle r^{m^{\prime}}\right\rangle$. Also, $s\left(r^{m^{\prime}}\right) s^{-1}=s^2 r^{-m^{\prime}}=r^{-m^{\prime}} \in\left\langle r^{m^{\prime}}\right\rangle$. Thus, $\left\langle r^{m^{\prime}}\right\rangle$ is normal.
+
+As all Sylow p-subgroups are conjugates, we get that the above Sylow p-subgroup is the unique Sylow p-subgroup. As it is cyclic and normal, we are done.
+\end{proof}
+
+
+\begin{exercise}
+Exhibit all Sylow 3-subgroups of $\boldsymbol{A}_4$ and all Sylow 3-subgroups of $S_4$.
+\end{exercise}
+
+\begin{proof}
+$A_4$ : Clearly, $\boldsymbol{n}_{\mathbf{3}} \mid 4$. We exhibit 4 such Sylow 3 -subgroups now:
+
+$$
+\langle(123)\rangle,\langle(124)\rangle,\langle(134)\rangle,\langle(234)\rangle .
+$$
+
+(Note that these are indeed distinct subgroups.)
+
+These were easy to find as a Sylow 3-subgroup must have order 3 and thus, must be isomorphic to $\mathbb{Z}_3$. It was then a matter of finding elements of order 3 .
+
+$S_4$ : Same as earlier. Note that there are 8 elements of order 3. If we consider all the 8 subgroups generated by them, we see that we get \underline{only four distinct ones}, listed above.
+\end{proof}
+
+
+\begin{exercise}
+Exhibit all Sylow 2-subgroups of $S_4$ and find elements of $S_4$ which conjugate one of these into each of the others.
+\end{exercise}
+
+\begin{proof}
+A little bit of experimenting with elements of order 2 and 4 gives the following subgroups:
+$$
+\langle(1234),(13)\rangle,\langle(1243),(14)\rangle,\langle(1324),(12)\rangle .
+$$
+It can be verified that these are distinct. (For example, the 2 cycles listed in the generators don't appear in any of the other subgroups.) It can also be verified that all of these have order 8. Moreover, there can't be any more as $\boldsymbol{n}_2 \mid 3$.
+
+As for the conjugation question, (34) conjugates the first to the second and (24) the second to the third.\footnote{Note that the conjugate of $D_{2n}$ works by transforming the places of the elements.}
+\end{proof}
+
+
+\begin{exercise}
+Exhibit two distinct Sylow 2-subgroups of $S_5$ and an element of $S_5$ that conjugates one into the other.
+\end{exercise}
+
+\begin{proof}
+Note that $\left|S_5\right|=2^3 \cdot 15$ and thus, any two of the Sylow 2 -subgroups listed earlier will work again. (With the understanding that the elements are now elements of $S_5$)
+\end{proof}
+
+\begin{lemma}
+    The order of $\mathrm{GL}_2(\mathbb{F}_q)$ is $(q^2-1)(q^2-q)$.
+\end{lemma}
+
+\begin{proof}
+    Consider the choice of the first column. There are $q^2-1$ choices for the first column. The second column must be a vector \underline{independent} of the first column. There are $q^2-q$ choices for the second column.
+\end{proof}
+
+\begin{exercise}
+Exhibit all Sylow 3-subgroups of $S L_2\left(\mathbb{F}_3\right)$.
+\end{exercise}
+
+\begin{proof}
+Note that the order of $G L_2\left(\mathbb{F}_3\right)$ is $\left(3^2-1\right)\left(3^2-3\right)=48$. It can be easily shown that the order of $S L_2$ is half of that.
+Thus, $n_3=1$ or 4 . Also, note that any Sylow 3 -subgroup will have order 3 and hence, is isomorphic to $\mathbb{Z}_3$.
+It is easy to find two distinct subgroups of order 3 by observing the following matrices to have order 3:
+
+$$
+\left(\begin{array}{ll}
+1 & 1 \\
+0 & 1
+\end{array}\right),\left(\begin{array}{ll}
+1 & 0 \\
+1 & 1
+\end{array}\right)
+$$
+
+
+Also, these matrices generate distinct subgroups. Thus, $n_3>1$ which forces $n_3=4$. \textbf{We may now conjugate the above matrices to get the other two.} In any case, we are left with the following:
+
+$$
+\left\langle\left(\begin{array}{ll}
+1 & 1 \\
+0 & 1
+\end{array}\right)\right\rangle,\left\langle\left(\begin{array}{ll}
+0 & 1 \\
+1 & 1
+\end{array}\right)\right\rangle,\left\langle\left(\begin{array}{ll}
+0 & 1 \\
+2 & 2
+\end{array}\right)\right\rangle,\left\langle\left(\begin{array}{ll}
+2 & 1 \\
+2 & 0
+\end{array}\right)\right\rangle .
+$$
+\end{proof}
+
+
+\begin{exercise}
+Prove that the subgroup of $S L_2\left(\mathbb{F}_3\right)$ generated by $\left(\begin{array}{cc}0 & -1 \\ 1 & 0\end{array}\right)$ and $\left(\begin{array}{cc}1 & 1 \\ 1 & -1\end{array}\right)$ is the unique Sylow 2-subgroup of $S L_2\left(\mathbb{F}_3\right)$.
+\end{exercise}
+
+\begin{proof}
+    Hmm.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,105 @@
+\documentclass[12pt,a4paper]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{tikz}
+\usepackage{algorithm,algcompatible,amssymb,amsmath}
+\renewcommand{\COMMENT}[2][.5\linewidth]{%
+  \leavevmode\hfill\makebox[#1][l]{//~#2}}
+\algnewcommand\algorithmicto{\textbf{to}}
+\algnewcommand\TO{\textbf{ to }}
+\algnewcommand\AND{\textbf{ and }}
+\algnewcommand\RETURN{\State \textbf{return} }
+\usepackage{float}
+\usepackage{listings}
+\usepackage[table]{xcolor}
+\usepackage{caption}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[hidelinks,bookmarksnumbered,bookmarksopen,colorlinks=true,linkcolor=red,urlcolor=red,citecolor=red]{hyperref}
+
+\usepackage{xeCJK}
+\usepackage{docmute}  % 关键宏包：自动忽略被包含文件的前言部分
+\setCJKmainfont{LXGW WenKai}
+% Define custom colors
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\renewcommand{\arraystretch}{1.5}
+
+% 代码高亮设置
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    tabsize=4,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false
+}
+
+% 定理环境
+\newtheorem{definition}{定义}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{example}{例题}[section]
+\newtheorem{property}{性质}[section]
+
+% TikZ库
+\usetikzlibrary{positioning,arrows,automata,calc,shapes,patterns}
+
+\title{\textbf{数据结构 - 合并版复习资料}}
+\author{复习资料}
+\date{\today. \textit{Author}: 乐绎华}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+% 使用docmute宏包后，可以直接包含完整的.tex文件
+% docmute会自动忽略被包含文件的\documentclass、\begin{document}、\end{document}等
+\part{线性表}
+\input{线性表复习资料}
+\part{栈和队列}
+\input{栈和队列复习资料}
+\part{字符串和多维数组}
+\input{字符串和多维数组复习资料}
+\part{二叉树}
+\input{二叉树复习资料}
+\part{图论}
+\input{图论复习总结}
+\part{查找技术}
+\input{查找技术复习资料}
+\part{排序技术}
+\input{排序技术复习资料}
+
+
+
+
+
+
+
+
+% 如果你有其他.tex文件，也可以直接包含：
+% \input{树结构复习资料}
+% \input{图论复习资料}
+% \input{算法复习资料}
+
+\end{document} 

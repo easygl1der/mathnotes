@@ -1,0 +1,51 @@
+The prototypical example of a hyperbolic PDE is the wave equation
+\begin{equation}
+u_{tt}=\Delta u
+\label{4f0e56}
+\end{equation}
+
+To begin with, consider the one-dimensional wave equation on $\mathbb{R}$
+\[
+u_{tt}=u_{xx}
+\]
+The general solution is the \textbf{d'Alembert solution}
+\[
+u(x,t)=f(x-t)+g(x+t)
+\]
+where $f$, $g$ are arbitrary functions. This solution describes a superposition of two traveling waves with arbitrary profiles, one propagating with speed one to the right, the other with speed one to the left.
+Let us compare this solution with the general solution of the one-dimensional heat equation
+\[
+u_{t}=u_{x x}
+\]
+which is given for $t>0$ by
+\[
+u(x,t)=\frac{1}{\sqrt{ 4\pi t }}\int_{\mathbb{R}}^{} e^{ -(x-y)^{2}/4t }f(y) \, dy
+\]
+Some of the qualitative properties of the wave equation that differ from those of the heat equaion, which are evident from these solutions.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Hyperbolic equations-20250312-005414.png}
+% \caption{}
+\label{}
+\end{figure}
+
+To obtain the basic energy estimatie for the wave equation, we multiple \cref{4f0e56} ny $u_{t}$ and write
+\[
+\begin{aligned}
+u_{t}u_{tt} & =\left( \frac{1}{2}u_{t}^{2} \right)_{t} \\
+u_{t}\Delta u & =\mathrm{div}(u_{t}Du)-Du\cdot Du_{t}=\mathrm{div}(u_{t}Du)-\left( \frac{1}{2}\lvert Du \rvert ^{2} \right)_{t}
+\end{aligned}
+\]
+to get
+\[
+\left( \frac{1}{2}u_{t}^{2}+\frac{1}{2}\lvert Du \rvert ^{2} \right)-\mathrm{div}(u_{t}Du)=0
+\]
+This is the differential form of conservation of energy. The quantity $\frac{1}{2}u_{t}^{2}+\frac{1}{2}\lvert Du \rvert ^{2}$ is the energy density and $-u_{t}Du$ is the energy flux.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Hyperbolic equations-20250312.png}
+% \caption{}
+\label{}
+\end{figure}

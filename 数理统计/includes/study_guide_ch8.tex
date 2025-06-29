@@ -1,0 +1,1740 @@
+\documentclass[12pt, a4paper]{amsart}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{xeCJK}
+\usepackage{tikz}  % 添加TikZ包
+\usepackage{pgfplots} % 添加pgfplots包用于绘制统计图形
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+\usetikzlibrary{shapes,arrows,positioning,fit,calc}
+\usepackage{multirow} % 添加multirow包用于表格中的多行单元格
+\usepackage{colortbl} % 添加colortbl包用于表格单元格的背景色
+\setCJKmainfont{LXGW WenKai}
+
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm}
+\newtheorem{theorem}{定理}
+\title{\textbf{第八章：方差分析与回归分析 \\ 深度学习讲义}}
+\author{乐绎华}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+% \tableofcontents
+% \newpage
+
+\section{引言：我们为什么要学习方差分析？}
+
+同学们好！在之前的学习中，我们已经掌握了如何对一个或两个总体的均值进行假设检验（例如，使用 $t$ 检验）。但是，在现实世界中，我们经常需要比较的不是两个，而是三个、四个甚至更多的组。比如：
+\begin{itemize}
+    \item \textbf{农业：} 比较四种不同肥料对小麦产量的影响。
+    \item \textbf{医学：} 评估三种不同药物对降低血压的效果。
+    \item \textbf{制造业：} 检验五条不同生产线的次品率是否存在显著差异。
+\end{itemize}
+面对这些"多组比较"的问题，如果我们两两使用 $t$ 检验，不仅计算繁琐，更重要的是会大大增加犯"第一类错误"的概率。想象一下，如果有5个组，你需要做 $C_5^2 = 10$ 次 $t$ 检验，每次检验的显著性水平为 $\alpha = 0.05$，那么至少犯一次错误的概率将远大于0.05。
+
+为了解决这个问题，统计学大师费希尔（R.A. Fisher）开发了一种强大的工具——\textbf{方差分析（Analysis of Variance, ANOVA）}。它的核心思想非常巧妙：\textbf{通过分析数据的总变异来源，来推断各组的均值是否存在显著差异。}
+
+本章，我们将系统地学习方差分析与回归分析，而今天的重点是单因子方差分析。
+
+\section{§8.1 单因子方差分析 (One-Way ANOVA)}
+
+\subsection{8.1.1 核心问题与关键示例}
+
+\subsubsection{定义：什么是"单因子"？}
+在方差分析中，我们把研究中影响我们观察结果的"原因"或"条件"称为\textbf{因子（Factor）}。而因子的不同状态或类别，称为\textbf{水平（Level）}。
+
+\begin{itemize}
+    \item \textbf{单因子方差分析}：指的是我们只关心 \textbf{一个} 因素对结果的影响。
+\end{itemize}
+
+\subsubsection{关键示例：三种鸡饲料的增重效果比较}
+为了让大家更好地理解，我们贯穿始终地使用教材中的这个经典例子（例8.1.1）。
+
+\begin{itemize}
+    \item \textbf{研究目的}：比较三种不同饲料对雏鸡增肥效果的影响。
+    \item \textbf{因子（Factor）}：饲料类型（记为因子 $A$）。这是我们研究的唯一影响因素。
+    \item \textbf{水平（Levels）}：因子 $A$ 有3个水平，分别是：
+    \begin{itemize}
+        \item $A_1$：鱼粉为主的饲料
+        \item $A_2$：槐米粉为主的饲料
+        \item $A_3$：苜蓿粉为主的饲料
+    \end{itemize}
+    \item \textbf{试验数据}：选择了24只雏鸡，随机均分为三组，每组8只，分别喂养三种饲料。60天后，记录它们的质量（单位：g）。如下表所示：
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\caption{鸡饲料试验数据}
+\begin{tabular}{ccccccccc}
+\toprule
+\textbf{饲料水平} & \multicolumn{8}{c}{\textbf{鸡的质量 (g)}} \\
+\midrule
+$A_1$ & 1073 & 1009 & 1060 & 1001 & 1002 & 1012 & 1009 & 1028 \\
+$A_2$ & 1107 & 1092 & 990 & 1109 & 1090 & 1074 & 1122 & 1001 \\
+$A_3$ & 1093 & 1029 & 1080 & 1021 & 1022 & 1032 & 1029 & 1048 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+我们的核心问题就是：这三种饲料的增重效果真的有区别吗？还是说，观察到的数据差异仅仅是由随机波动引起的？这就是方差分析要回答的问题。
+
+\subsection{8.1.2 单因子方差分析的统计模型}
+为了用数学语言来描述这个问题，我们需要建立一个统计模型。这个模型是进行一切分析的基础。
+
+\subsubsection{模型的三大基本假定}
+在进行方差分析前，我们必须做出以下三个重要的假定。这些假定是模型成立的前提，在实际应用中需要进行检验。
+\begin{enumerate}
+    \item \textbf{正态性 (Normality)}：每一个水平下的观测数据都来自一个正态分布总体。即，对于第 $i$ 个水平，$Y_{ij} \sim N(\mu_i, \sigma^2)$。
+    \item \textbf{方差齐性 (Homoscedasticity)}：所有总体的方差都是相同的，即 $\sigma_1^2 = \sigma_2^2 = \dots = \sigma_r^2 = \sigma^2$。
+    \item \textbf{独立性 (Independence)}：所有观测值都是相互独立的。这通常通过实验的随机化设计来保证。
+\end{enumerate}
+
+\subsubsection{模型的建立：效应模型}
+我们将第 $i$ 个水平下的第 $j$ 次观测值记为 $y_{ij}$。这个观测值可以被分解为几个部分。
+
+首先，一个直观的模型是：
+$$ y_{ij} = \mu_i + \varepsilon_{ij} $$
+其中，$\mu_i$ 是第 $i$ 个水平的真实平均效应（比如，长期使用 $A_1$ 饲料的鸡的平均体重），而 $\varepsilon_{ij}$ 是随机误差，它代表了除了因子水平不同之外，其他所有偶然因素（如个体差异、测量误差等）带来的影响。根据我们的假定，$\varepsilon_{ij}$ 相互独立，且都服从 $N(0, \sigma^2)$。
+
+为了更好地分析"差异"，我们引入\textbf{总均值}和\textbf{水平效应}的概念，将模型进一步深化。
+
+\begin{itemize}
+    \item \textbf{总均值 $\mu$}：所有水平真实均值的平均值，$\mu = \frac{1}{r} \sum_{i=1}^{r} \mu_i$。它代表了本次试验所有条件下的一个"一般水平"。
+    \item \textbf{水平效应 $a_i$}：第 $i$ 个水平的特殊效应，定义为该水平的均值与总均值的离差，即 $a_i = \mu_i - \mu$。它反映了第 $i$ 个处理相比于"一般水平"的优劣程度。
+\end{itemize}
+
+一个重要的性质是：所有水平效应的总和为零，$\sum_{i=1}^{r} a_i = 0$。
+
+由此，我们可以得到单因子方差分析的\textbf{效应模型（Effects Model）}：
+$$ y_{ij} = \mu + a_i + \varepsilon_{ij} $$
+
+这个模型非常优雅地告诉我们：\textbf{任何一次观测值 = 整体平均水平 + 该处理的特殊效应 + 随机误差}。
+
+\subsubsection{假设检验的数学表达}
+有了模型，我们就可以把最初模糊的问题"三种饲料效果是否相同"，转化为一个精确的数学假设。
+$$ H_0: \mu_1 = \mu_2 = \dots = \mu_r $$
+$$ H_1: \mu_1, \mu_2, \dots, \mu_r \text{ 不全相等} $$
+利用效应模型，这个假设可以等价地写成：
+$$ H_0: a_1 = a_2 = \dots = a_r = 0 $$
+$$ H_1: a_1, a_2, \dots, a_r \text{ 不全为 0} $$
+原假设 $H_0$ 成立，意味着所有水平的特殊效应都是0，因子 $A$ 的不同水平之间没有显著差异。反之，$H_1$ 成立则意味着至少有一个水平的效应与其他水平不同。
+
+\subsection{8.1.3 思想核心：平方和分解 (Sum of Squares Decomposition)}
+方差分析的精髓在于，它将数据总的变异"分解"为来自不同源头的部分。
+
+\subsubsection{三种变异的来源}
+我们先定义一些基本符号，假设有 $r$ 个水平，每个水平有 $m$ 次观测。
+\begin{itemize}
+    \item $\bar{y}_{i\cdot}$: 第 $i$ 组的样本均值, $\bar{y}_{i\cdot} = \frac{1}{m} \sum_{j=1}^{m} y_{ij}$
+    \item $\bar{y}_{\cdot\cdot}$: 所有数据的总样本均值, $\bar{y}_{\cdot\cdot} = \frac{1}{rm} \sum_{i=1}^{r} \sum_{j=1}^{m} y_{ij}$
+\end{itemize}
+
+总的变异，可以用每个数据点到总均值的离差平方和来度量，称为\textbf{总平方和（Total Sum of Squares, SST）}。
+$$ \text{SST} = \sum_{i=1}^{r} \sum_{j=1}^{m} (y_{ij} - \bar{y}_{\cdot\cdot})^2 $$
+SST 反映了全部数据的离散程度。
+
+现在，我们来看这个总变异是由什么构成的。通过一个简单的代数恒等式：
+$$ (y_{ij} - \bar{y}_{\cdot\cdot}) = (y_{ij} - \bar{y}_{i\cdot}) + (\bar{y}_{i\cdot} - \bar{y}_{\cdot\cdot}) $$
+将这个式子两边平方再求和，经过推导可以得到一个非常关键的定理。
+
+\subsubsection{定理：平方和分解定理}
+$$ \sum_{i=1}^{r} \sum_{j=1}^{m} (y_{ij} - \bar{y}_{\cdot\cdot})^2 = \sum_{i=1}^{r} \sum_{j=1}^{m} (y_{ij} - \bar{y}_{i\cdot})^2 + m \sum_{i=1}^{r} (\bar{y}_{i\cdot} - \bar{y}_{\cdot\cdot})^2 $$
+这个公式可以简洁地写成：
+$$ \text{SST} = \text{SSE} + \text{SSA} $$
+
+% \begin{center}
+% \begin{tikzpicture}[scale=0.9]
+%     % 定义点和坐标
+%     \def\yg{1045.125}  % 总均值
+%     \def\ygone{1024.25}  % 组1均值
+%     \def\ygtwo{1073.125} % 组2均值
+%     \def\ygthree{1038}     % 组3均值
+%     \def\pone{1009}      % 组1中的一个点
+%     \def\ptwo{1092}      % 组2中的一个点
+%     \def\pthree{1029}      % 组3中的一个点
+    
+%     % 定义坐标轴
+%     \draw[->] (0,0) -- (12,0) node[right] {组别};
+%     \draw[->] (0,0) -- (0,12) node[above] {质量 (g)};
+    
+%     % 在坐标轴上标注刻度
+%     \draw (0,10.4) node[left] {1040};
+%     \draw (0,12) node[left] {1060};
+%     \draw (0,8.8) node[left] {1020};
+%     \draw (0,7.2) node[left] {1000};
+    
+%     % 绘制总均值水平线
+%     \draw[red, thick, dashed] (0,\yg/100) -- (12,\yg/100) node[right] {$\bar{y}_{\cdot\cdot}=1045.125$};
+    
+%     % 绘制各组均值水平线
+%     \draw[blue, thick] (1,\ygone/100) -- (3,\ygone/100) node[right] {$\bar{y}_{1\cdot}=1024.25$};
+%     \draw[blue, thick] (5,\ygtwo/100) -- (7,\ygtwo/100) node[right] {$\bar{y}_{2\cdot}=1073.125$};
+%     \draw[blue, thick] (9,\ygthree/100) -- (11,\ygthree/100) node[right] {$\bar{y}_{3\cdot}=1038$};
+    
+%     % 绘制数据点
+%     \filldraw (2,\pone/100) circle (2pt) node[above right] {$y_{1j}=1009$};
+%     \filldraw (6,\ptwo/100) circle (2pt) node[above right] {$y_{2j}=1092$};
+%     \filldraw (10,\pthree/100) circle (2pt) node[above right] {$y_{3j}=1029$};
+    
+%     % 绘制SST(总平方和)箭头：点到总均值的距离
+%     \draw[<->, green!70!black, thick] (1.7,\pone/100) -- (1.7,\yg/100) node[midway, left] {SST的一部分};
+%     \draw[<->, green!70!black, thick] (5.7,\ptwo/100) -- (5.7,\yg/100) node[midway, left] {SST的一部分};
+%     \draw[<->, green!70!black, thick] (9.7,\pthree/100) -- (9.7,\yg/100) node[midway, left] {SST的一部分};
+    
+%     % 绘制SSE(组内平方和)箭头：点到组均值的距离
+%     \draw[<->, orange, thick] (2.3,\pone/100) -- (2.3,\ygone/100) node[midway, right] {SSE的一部分};
+%     \draw[<->, orange, thick] (6.3,\ptwo/100) -- (6.3,\ygtwo/100) node[midway, right] {SSE的一部分};
+%     \draw[<->, orange, thick] (10.3,\pthree/100) -- (10.3,\ygthree/100) node[midway, right] {SSE的一部分};
+    
+%     % 绘制SSA(组间平方和)箭头：组均值到总均值的距离
+%     \draw[<->, purple, thick] (3.3,\ygone/100) -- (3.3,\yg/100) node[midway, right] {SSA的一部分};
+%     \draw[<->, purple, thick] (7.3,\ygtwo/100) -- (7.3,\yg/100) node[midway, right] {SSA的一部分};
+%     \draw[<->, purple, thick] (11.3,\ygthree/100) -- (11.3,\yg/100) node[midway, right] {SSA的一部分};
+    
+%     % 添加组别标签
+%     \node at (2,-0.5) {组1 ($A_1$)};
+%     \node at (6,-0.5) {组2 ($A_2$)};
+%     \node at (10,-0.5) {组3 ($A_3$)};
+    
+%     % 添加图例
+%     \node at (6,-1.5) {平方和分解示意图: SST = SSE + SSA};
+% \end{tikzpicture}
+% \end{center}
+
+我们来解读一下这个核心公式：
+\begin{itemize}
+    \item \textbf{SST (Total Sum of Squares)}：\textbf{总离差平方和}。
+    \item \textbf{SSE (Error Sum of Squares)}：\textbf{误差平方和}，也叫\textbf{组内平方和}。
+        $$ \text{SSE} = \sum_{i=1}^{r} \sum_{j=1}^{m} (y_{ij} - \bar{y}_{i\cdot})^2 $$
+        它度量的是每个组\textbf{内部}的数据波动。因为组内所有成员接受的处理是相同的，所以这种波动只能归因于随机误差。
+    \item \textbf{SSA (Factor A Sum of Squares)}：\textbf{因子A平方和}，也叫\textbf{组间平方和}。
+        $$ \text{SSA} = m \sum_{i=1}^{r} (\bar{y}_{i\cdot} - \bar{y}_{\cdot\cdot})^2 $$
+        它度量的是各组的均值与总均值之间的差异。这种差异可能来自两方面：一是因子A的水平效应（如果$H_0$为假），二是随机误差。
+\end{itemize}
+
+\textbf{知识脉络解读：}
+这个分解是方差分析的灵魂！它把一个复杂的问题（总变异SST）拆解成了两个有明确来源的部分：
+\begin{enumerate}
+    \item \textbf{组内变异SSE}：纯粹由随机性导致。
+    \item \textbf{组间变异SSA}：可能由"处理效应 + 随机性"导致。
+\end{enumerate}
+接下来，我们的逻辑就是：如果组间变异"显著地"大于组内变异，我们就有理由相信，这种超出部分是由处理效应引起的，从而拒绝原假设 $H_0$。
+
+\subsection{方差分析表与F检验}
+如何衡量"显著地大"？我们需要构建一个检验统计量。
+
+\subsubsection{均方 (Mean Square)}
+为了消除样本量对平方和大小的影响，我们用平方和除以其对应的\textbf{自由度（degrees of freedom, df）}，得到\textbf{均方（Mean Square, MS）}。
+\begin{itemize}
+    \item \textbf{因子A的均方 (MSA)}: $ \text{MSA} = \frac{\text{SSA}}{\text{df}_A} = \frac{\text{SSA}}{r-1} $
+    \item \textbf{误差均方 (MSE)}: $ \text{MSE} = \frac{\text{SSE}}{\text{df}_E} = \frac{\text{SSE}}{r(m-1)} $
+\end{itemize}
+MSA可以看作是组间变异的平均度量，MSE可以看作是组内变异的平均度量，并且可以证明，\textbf{MSE是总体方差 $\sigma^2$ 的无偏估计}，即 $E(\text{MSE}) = \sigma^2$。
+
+\subsubsection{F-统计量的构建}
+我们构造如下的 F 统计量：
+$$ F = \frac{\text{MSA}}{\text{MSE}} $$
+这个统计量的直观意义是：
+$$ F = \frac{\text{（可能由处理效应+随机误差引起的）组间变异}}{\text{（仅由随机误差引起的）组内变异}} $$
+\begin{itemize}
+    \item 如果原假设 $H_0$ 为真（即 $a_i=0$），那么MSA和MSE都只反映了随机误差，它们的期望是相等的，所以 $F$ 的值应该在 1 附近。
+    \item 如果原假设 $H_0$ 为假（即 $a_i$ 不全为0），那么MSA的期望会大于MSE的期望（因为它包含了处理效应），所以 $F$ 的值会倾向于变得比较大。
+\end{itemize}
+
+可以证明，在 $H_0$ 成立的条件下，该统计量服从\textbf{F分布}：
+$$ F = \frac{\text{MSA}}{\text{MSE}} \sim F(r-1, r(m-1)) $$
+其中 $df_1 = r-1$ 是第一自由度（分子的自由度），$df_2 = r(m-1)$ 是第二自由度（分母的自由度）。
+
+\subsubsection{方差分析表 (ANOVA Table)}
+我们通常把所有的计算结果整理在一张标准化的表格里，这就是方差分析表。
+\begin{table}[h!]
+\centering
+\caption{单因子方差分析表}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{变异来源} & \textbf{平方和(SS)} & \textbf{自由度(df)} & \textbf{均方(MS)} & \textbf{F统计量} \\
+\midrule
+组间 (因子A) & SSA & $r-1$ & MSA & $F = \frac{\text{MSA}}{\text{MSE}}$ \\
+组内 (误差)   & SSE & $r(m-1)$ & MSE & \\
+\midrule
+总计 & SST & $rm-1$ & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{决策规则：}
+给定显著性水平 $\alpha$（如0.05），我们去查 F 分布表，得到一个临界值 $F_\alpha(r-1, r(m-1))$。
+\begin{itemize}
+    \item 如果计算得到的 $F > F_\alpha(r-1, r(m-1))$，则拒绝 $H_0$，认为各水平的效应有显著差异。
+    \item 如果 $F \le F_\alpha(r-1, r(m-1))$，则不拒绝 $H_0$，尚无足够证据认为各水平效应有差异。
+\end{itemize}
+在软件输出中，我们通常直接看 P-value。如果 P-value $< \alpha$，则拒绝 $H_0$。
+
+\section{计算实践：鸡饲料案例全流程分析}
+
+理论是指导，实践是目的。现在我们来对鸡饲料数据进行一次完整的方差分析。
+
+\subsection{数据回顾与预处理}
+首先，让我们回顾一下我们的数据：
+
+\begin{table}[h!]
+\centering
+\caption{鸡饲料试验数据回顾}
+\begin{tabular}{ccccccccc}
+\toprule
+\textbf{饲料水平} & \multicolumn{8}{c}{\textbf{鸡的质量 (g)}} \\
+\midrule
+$A_1$ (鱼粉) & 1073 & 1009 & 1060 & 1001 & 1002 & 1012 & 1009 & 1028 \\
+$A_2$ (槐米粉) & 1107 & 1092 & 990 & 1109 & 1090 & 1074 & 1122 & 1001 \\
+$A_3$ (苜蓿粉) & 1093 & 1029 & 1080 & 1021 & 1022 & 1032 & 1029 & 1048 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    boxplot/draw direction=y,
+    ylabel={鸡的质量 (g)},
+    height=7cm,
+    width=10cm,
+    xtick={1,2,3},
+    xticklabels={$A_1$ (鱼粉), $A_2$ (槐米粉), $A_3$ (苜蓿粉)},
+    x tick label style={rotate=0, anchor=north},
+    title={三种饲料条件下鸡质量的箱线图}
+]
+\addplot[boxplot, fill=blue!30] table[row sep=\\, y index=0] {
+    data\\
+    1073\\
+    1009\\
+    1060\\
+    1001\\
+    1002\\
+    1012\\
+    1009\\
+    1028\\
+};
+\addplot[boxplot, fill=red!30] table[row sep=\\, y index=0] {
+    data\\
+    1107\\
+    1092\\
+    990\\
+    1109\\
+    1090\\
+    1074\\
+    1122\\
+    1001\\
+};
+\addplot[boxplot, fill=green!30] table[row sep=\\, y index=0] {
+    data\\
+    1093\\
+    1029\\
+    1080\\
+    1021\\
+    1022\\
+    1032\\
+    1029\\
+    1048\\
+};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+从箱线图中，我们可以直观地看到三种饲料组的分布情况。$A_2$组（槐米粉）的均值似乎高于其他两组，但我们需要通过方差分析来确定这种差异是否具有统计显著性。
+
+\subsection{第一步：计算基本统计量}
+首先，我们需要计算各组的总和、均值，以及所有数据的总和、总均值。
+\begin{itemize}
+    \item 因子 $A$ 的水平数 $r=3$。
+    \item 每个水平的重复数 $m=8$。
+    \item 总观测数 $n = rm = 24$。
+\end{itemize}
+
+\textbf{数据汇总表：}
+\begin{table}[h!]
+\centering
+\caption{鸡饲料试验的基本统计量}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{饲料水平} & \textbf{样本量} & \textbf{总和} & \textbf{均值} & \textbf{样本方差} \\
+\midrule
+$A_1$ (鱼粉) & 8 & 8194 & 1024.25 & 902.5 \\
+$A_2$ (槐米粉) & 8 & 8585 & 1073.125 & 1793.8 \\
+$A_3$ (苜蓿粉) & 8 & 8354 & 1038.00 & 942.9 \\
+\midrule
+总计 & 24 & 25083 & 1045.125 & - \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{各组总和 $T_{i\cdot} = \sum_{j=1}^{8} y_{ij}$ 与均值 $\bar{y}_{i\cdot} = T_{i\cdot}/8$}：
+\begin{align*}
+    T_{1\cdot} &= 1073 + 1009 + 1060 + 1001 + 1002 + 1012 + 1009 + 1028 = 8194 \\
+    \bar{y}_{1\cdot} &= 8194 / 8 = 1024.25 \\
+    T_{2\cdot} &= 1107 + 1092 + 990 + 1109 + 1090 + 1074 + 1122 + 1001 = 8585 \\
+    \bar{y}_{2\cdot} &= 8585 / 8 = 1073.125 \\
+    T_{3\cdot} &= 1093 + 1029 + 1080 + 1021 + 1022 + 1032 + 1029 + 1048 = 8354 \\
+    \bar{y}_{3\cdot} &= 8354 / 8 = 1038
+\end{align*}
+\textbf{总和 $T = \sum T_{i\cdot}$ 与总均值 $\bar{y}_{\cdot\cdot} = T/n$}：
+\begin{align*}
+    T &= 8194 + 8585 + 8354 = 25083 \\
+    \bar{y}_{\cdot\cdot} &= 25083 / 24 \approx 1045.125
+\end{align*}
+
+\subsection{第二步：计算平方和 (SS)}
+这是计算的核心部分。为了简化手算，通常会使用所谓的"修正项"法，这里我们直接使用定义式来突出概念。
+
+\textbf{原始数据及均值再次提示：}
+\begin{itemize}
+    \item 总均值 $\bar{y}_{\cdot\cdot} = 1045.125$
+    \item 组1均值 $\bar{y}_{1\cdot} = 1024.25$
+    \item 组2均值 $\bar{y}_{2\cdot} = 1073.125$
+    \item 组3均值 $\bar{y}_{3\cdot} = 1038$
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{总平方和 (SST)}:
+    \begin{align*}
+    \text{SST} &= \sum_{i=1}^{3} \sum_{j=1}^{8} (y_{ij} - \bar{y}_{\cdot\cdot})^2 \\
+               &= (1073 - 1045.125)^2 + (1009 - 1045.125)^2 + \ldots + (1048 - 1045.125)^2 \\
+               &= 28638.96
+    \end{align*}
+    \item \textbf{组间平方和 (SSA)}:
+    \begin{align*}
+    \text{SSA} &= m \sum_{i=1}^{3} (\bar{y}_{i\cdot} - \bar{y}_{\cdot\cdot})^2 \\
+               &= 8 \times [ (1024.25 - 1045.125)^2 + (1073.125 - 1045.125)^2 + (1038 - 1045.125)^2 ] \\
+               &= 8 \times [ (-20.875)^2 + (28.0)^2 + (-7.125)^2 ] \\
+               &= 8 \times [ 435.76 + 784 + 50.76 ] = 8 \times 1270.52 = 10164.16
+    \end{align*}
+    \item \textbf{组内平方和 (SSE)}: 我们可以利用 SST = SSA + SSE 来计算。
+    \begin{align*}
+    \text{SSE} &= \text{SST} - \text{SSA} \\
+               &= 28638.96 - 10164.16 = 18474.8
+    \end{align*}
+\end{itemize}
+
+\subsection{第三步：构建方差分析表并进行F检验}
+现在，我们将所有计算结果填入方差分析表。
+
+\textbf{已计算的关键值汇总：}
+\begin{itemize}
+    \item 总平方和：SST = 28638.96
+    \item 组间平方和：SSA = 10164.16
+    \item 组内平方和：SSE = 18474.8
+\end{itemize}
+
+\begin{itemize}
+    \item \textbf{自由度}:
+    \begin{itemize}
+        \item 组间自由度 $\text{df}_A = r-1 = 3-1 = 2$
+        \item 组内自由度 $\text{df}_E = r(m-1) = 3(8-1) = 21$
+        \item 总自由度 $\text{df}_T = n-1 = 24-1 = 23$ (检查: $2+21=23$)
+    \end{itemize}
+    \item \textbf{均方 (MS)}:
+    \begin{itemize}
+        \item $\text{MSA} = \text{SSA} / \text{df}_A = 10164.16 / 2 = 5082.08$
+        \item $\text{MSE} = \text{SSE} / \text{df}_E = 18474.8 / 21 = 879.75$
+    \end{itemize}
+    \item \textbf{F统计量}:
+    \begin{itemize}
+        \item $F = \text{MSA} / \text{MSE} = 5082.08 / 879.75 \approx 5.78$
+    \end{itemize}
+\end{itemize}
+
+\textbf{完整的方差分析表：}
+\begin{table}[h!]
+\centering
+\caption{鸡饲料案例的方差分析表}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{变异来源} & \textbf{平方和(SS)} & \textbf{自由度(df)} & \textbf{均方(MS)} & \textbf{F统计量} \\
+\midrule
+饲料 (组间) & 10164.16 & 2 & 5082.08 & 5.78 \\
+误差 (组内) & 18474.80 & 21 & 879.75 & \\
+\midrule
+总计 & 28638.96 & 23 & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{第四步：统计决策与结论}
+\begin{itemize}
+    \item \textbf{确定显著性水平}: 我们取 $\alpha = 0.05$。
+    \item \textbf{查找临界值}: 我们需要查找F分布表中对应于 $F_{0.05}(2, 21)$ 的临界值。查表可得，$F_{0.05}(2, 21) = 3.47$。
+    \item \textbf{比较与决策}: 我们计算得到的 $F$ 值为 5.78。因为 $5.78 > 3.47$，所以我们的检验统计量落在了拒绝域中。因此，我们\textbf{拒绝原假设 $H_0$}。
+\end{itemize}
+
+\textbf{结论}:
+在 $\alpha=0.05$ 的显著性水平下，我们有充分的统计证据表明，三种饲料配方对雏鸡的增重效果存在显著差异，效果不全相同。
+
+\subsection{分析后的思考}
+方差分析告诉我们"有差异"，但它没有告诉我们"谁和谁有差异"。我们只知道这三种饲料不全相同，但具体是 $A_2$ 显著优于 $A_1$ 和 $A_3$ 吗？还是三者两两之间都有显著差异？要回答这些更具体的问题，就需要进行\textbf{多重比较（Multiple Comparisons）}或\textbf{事后检验（Post-Hoc Tests）}，比如 Tukey's HSD 检验或者 Bonferroni 校正等。这通常是方差分析之后的下一步探索。
+
+\section{§8.2 多重比较 (Multiple Comparisons)}
+\subsection{引言：F检验之后，我们该做什么？}
+同学们，在上一节的鸡饲料案例中，F检验告诉我们一个重要的结论：三种饲料的增重效果\textbf{不全相同}。这是一个"总体性"的结论。但这并没有回答我们更关心的问题：
+\begin{itemize}
+    \item 究竟是哪几种饲料之间存在差异？
+    \item 是$A_2$比$A_1$好？还是$A_2$比$A_3$好？或者两者都成立？
+    \item $A_1$和$A_3$之间有差异吗？
+\end{itemize}
+为了回答这些问题，我们需要在F检验显著后，进行所谓的\textbf{多重比较}或\textbf{事后检验 (Post-hoc test)}。它的目的是在控制总体错误率的前提下，对所有处理均值进行两两比较。
+
+一个常见的误区是：为什么不直接对每一对都做t检验呢？我们在引言中提过，这样做会急剧增加犯第一类错误的概率。多重比较方法就是为了解决这个问题而设计的。
+
+\subsection{单对均值差的置信区间}
+在深入多重比较方法前，我们首先要掌握如何对\textbf{指定的一对}均值差（如 $\mu_i - \mu_j$）进行区间估计。这是t检验思想在方差分析框架下的延伸。
+
+
+\begin{theorem}[均值差的t分布]
+在方差分析的基本假定下，对于任意两组 $i$ 和 $j$，有
+$$ \frac{(\bar{y}_{i\cdot} - \bar{y}_{j\cdot}) - (\mu_i - \mu_j)}{\sqrt{(\frac{1}{m_i} + \frac{1}{m_j})\text{MSE}}} \sim t(f_e) $$
+其中 $f_e$ 是误差自由度，$m_i, m_j$ 是两组的样本量，MSE是均方误差。
+\end{theorem}
+根据此定理，我们可以推导出 $\mu_i - \mu_j$ 的 $1-\alpha$ 置信区间：
+\begin{equation}
+\left[ (\bar{y}_{i\cdot} - \bar{y}_{j\cdot}) \pm t_{\alpha/2}(f_e) \sqrt{\text{MSE}(\frac{1}{m_i} + \frac{1}{m_j})} \right]
+\label{eq:ci_pair}
+\end{equation}
+\textbf{注意}：这个公式与我们之前学的双样本t检验非常相似，但关键区别在于，这里的方差估计MSE使用了\textbf{所有组}的信息，因此更稳健。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    xlabel={组别},
+    ylabel={测量值},
+    xmin=0.5, xmax=3.5,
+    ymin=0, ymax=12,
+    xtick={1,2,3},
+    xticklabels={$A_1$, $A_2$, $A_3$},
+    ytick={0,2,4,6,8,10,12},
+    title={多重比较中的单对均值差及其置信区间},
+    grid=both,
+    legend pos=north west
+]
+
+% 绘制三组的均值和误差条
+\addplot[only marks, mark=*, blue, error bars/.cd, y dir=both, y explicit] 
+    coordinates {
+    (1, 5) +- (0, 0.9)
+    (2, 8) +- (0, 1.1)
+    (3, 6) +- (0, 0.8)
+};
+\addlegendentry{各组均值及标准误};
+
+% 绘制均值水平线
+\draw[blue, thick] (0.7, 5) -- (1.3, 5);
+\draw[blue, thick] (1.7, 8) -- (2.3, 8);
+\draw[blue, thick] (2.7, 6) -- (3.3, 6);
+
+% 标记均值差
+\draw[<->, red, thick] (1, 5) -- (2, 8) node[midway, above] {$\bar{y}_{2\cdot} - \bar{y}_{1\cdot} = 3$};
+\draw[<->, orange, thick] (1, 5) -- (3, 6) node[midway, above] {$\bar{y}_{3\cdot} - \bar{y}_{1\cdot} = 1$};
+\draw[<->, purple, thick] (2, 8) -- (3, 6) node[midway, above] {$\bar{y}_{2\cdot} - \bar{y}_{3\cdot} = 2$};
+
+% 在图下方绘制置信区间
+\draw[|-|, red, thick] (1.5, 0.8) -- (1.5, 5.2) node[midway, right] {95\% CI for $\mu_2 - \mu_1$};
+\draw[|-|, orange, thick] (2, 0.3) -- (2, 1.7) node[midway, right] {95\% CI for $\mu_3 - \mu_1$};
+\draw[|-|, purple, thick] (2.5, 0.5) -- (2.5, 3.5) node[midway, right] {95\% CI for $\mu_2 - \mu_3$};
+
+% 在图上标注零线
+\draw[black, dashed] (0.5, 0) -- (3.5, 0) node[right] {0};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\textbf{图解说明：}
+\begin{itemize}
+    \item 图中展示了三个组（$A_1$, $A_2$, $A_3$）的样本均值及其标准误（误差条）。
+    \item 三条彩色箭头表示三对可能的均值差：$\bar{y}_{2\cdot} - \bar{y}_{1\cdot}$, $\bar{y}_{3\cdot} - \bar{y}_{1\cdot}$, $\bar{y}_{2\cdot} - \bar{y}_{3\cdot}$。
+    \item 图下方的三条线段表示对应的95\%置信区间。注意到：
+        \begin{itemize}
+            \item $\mu_2 - \mu_1$的置信区间不包含0，说明这两组的差异在统计上是显著的。
+            \item $\mu_3 - \mu_1$的置信区间包含0，说明这两组的差异在统计上不显著。
+            \item $\mu_2 - \mu_3$的置信区间不包含0，说明这两组的差异在统计上是显著的。
+        \end{itemize}
+\end{itemize}
+
+然而，如果我们对所有可能的组合都使用这个公式，就会遇到第一类错误率累积的问题。这正是多重比较方法要解决的核心。
+
+\subsection{Tukey's HSD (Honestly Significant Difference) 方法}
+Tukey's HSD法，简称T法，是当各组样本容量相等时最常用的一种多重比较方法。
+
+\subsubsection{核心思想与统计量}
+T法引入了一个新的统计量，称为\textbf{学生化极差统计量 (Studentized Range Statistic)}，记为 $q$。它的核心思想是，我们不再孤立地看某两组均值的差，而是看所有组均值中的\textbf{最大值与最小值之差}。
+我们计算一个"诚实显著性差异"（HSD）的临界值，任何两组均值差的绝对值如果超过这个临界值，就被认为是显著的。
+
+\subsubsection{计算步骤 (以样本量相等为例)}
+\begin{enumerate}
+    \item \textbf{确定参数}:
+        \begin{itemize}
+            \item 显著性水平 $\alpha$ (例如 0.05)
+            \item 处理组数量 $r$
+            \item 误差自由度 $df_E = r(m-1)$
+        \end{itemize}
+    \item \textbf{查找临界值}: 查阅学生化极差分布表（q-table），找到临界值 $q_{\alpha}(r, df_E)$。
+    \item \textbf{计算HSD临界值}:
+        \begin{equation}
+        \text{HSD} = q_{\alpha}(r, df_E) \sqrt{\frac{\text{MSE}}{m}}
+        \label{eq:hsd}
+        \end{equation}
+        其中 MSE 是我们从ANOVA表中得到的均方误差，m是每组的样本量。
+    \item \textbf{进行比较}: 比较任意两组的均值差 $|\bar{y}_{i\cdot} - \bar{y}_{j\cdot}|$ 与 HSD 的大小。
+        \begin{itemize}
+            \item 如果 $|\bar{y}_{i\cdot} - \bar{y}_{j\cdot}| \geq \text{HSD}$，则我们宣布 $\mu_i$ 和 $\mu_j$ 之间存在显著差异。
+            \item 如果 $|\bar{y}_{i\cdot} - \bar{y}_{j\cdot}| < \text{HSD}$，则我们认为两组均值之间没有显著差异。
+        \end{itemize}
+\end{enumerate}
+
+\subsubsection{应用：鸡饲料案例的多重比较}
+让我们回到鸡饲料的例子：
+\begin{itemize}
+    \item $\alpha=0.05, r=3, m=8, df_E=21, \text{MSE}=879.75$。
+    \item 查q表得 $q_{0.05}(3, 21) \approx 3.58$。
+    \item 计算HSD：
+    $$ \text{HSD} = 3.58 \times \sqrt{\frac{879.75}{8}} \approx 3.58 \times 10.486 = 37.54 $$
+    \item 比较均值差：
+        \begin{itemize}
+            \item $|\bar{y}_{1\cdot} - \bar{y}_{2\cdot}| = |1024.25 - 1073.125| = 48.875 > 37.54$ \textbf{(显著)}
+            \item $|\bar{y}_{1\cdot} - \bar{y}_{3\cdot}| = |1024.25 - 1038| = 13.75 < 37.54$ (不显著)
+            \item $|\bar{y}_{2\cdot} - \bar{y}_{3\cdot}| = |1073.125 - 1038| = 35.125 < 37.54$ (不显著)
+        \end{itemize}
+\end{itemize}
+\textbf{多重比较结论}：通过Tukey's HSD检验，我们可以更精确地指出：饲料 $A_2$（槐米粉）的增重效果显著优于饲料 $A_1$（鱼粉）。而 $A_1$ 与 $A_3$（苜蓿粉），以及 $A_2$ 与 $A_3$ 之间的效果差异在统计上并不显著。这为我们选择饲料提供了更具体的指导。
+
+\subsection{Scheffé 法 (S 法)}
+当各组样本容量\textbf{不相等}时，Tukey's HSD不再适用。此时，我们可以使用更为通用的Scheffé法。S法是所有多重比较方法中最保守的，即最不容易发现显著差异，但它的优点是可以用于检验样本均值的任意线性组合，功能更强大。
+
+\subsubsection{理论基础}
+Scheffé法基于F分布，其理论基础是：对于任意的线性组合 $L = \sum_{i=1}^{r} c_i \mu_i$（其中 $\sum c_i = 0$），有：
+\begin{equation}
+P\left(\frac{(L - \hat{L})^2}{\text{MSE} \cdot \sum_{i=1}^{r} \frac{c_i^2}{m_i}} < (r-1)F_{\alpha}(r-1, f_e), \forall L \right) = 1 - \alpha
+\end{equation}
+其中 $\hat{L} = \sum_{i=1}^{r} c_i \bar{y}_{i\cdot}$。
+
+对于均值差 $\mu_i - \mu_j$，我们可以将其表示为线性组合，其中 $c_i = 1$, $c_j = -1$，其他 $c_k = 0$。
+
+\subsubsection{检验方法与计算步骤}
+对于任意两组 $i$ 和 $j$ 的均值差，我们计算一个临界值 $S_{ij}$:
+\begin{equation}
+S_{ij} = \sqrt{(r-1)F_{\alpha}(r-1, f_e)} \cdot \sqrt{\text{MSE}(\frac{1}{m_i} + \frac{1}{m_j})}
+\label{eq:scheffe}
+\end{equation}
+其中，$F_{\alpha}(r-1, f_e)$ 是F分布在上$\alpha$分位点的值。
+
+\textbf{决策规则}:
+\begin{itemize}
+    \item 如果 $|\bar{y}_{i\cdot} - \bar{y}_{j\cdot}| \geq S_{ij}$，则认为 $\mu_i$ 和 $\mu_j$ 之间存在显著差异。
+    \item 否则，认为两者无显著差异。
+\end{itemize}
+
+同样地，Scheffé法也可以用来构造置信区间。对于任意两组 $i$ 和 $j$，$\mu_i - \mu_j$ 的 $(1-\alpha)$ 置信区间为：
+\begin{equation}
+(\bar{y}_{i\cdot} - \bar{y}_{j\cdot}) \pm S_{ij}
+\end{equation}
+
+\subsubsection{示例计算：样本量不等的情况}
+假设有三个组，样本量分别为 $m_1=5, m_2=8, m_3=6$，组均值分别为 $\bar{y}_{1\cdot}=10.2, \bar{y}_{2\cdot}=12.5, \bar{y}_{3\cdot}=9.8$，MSE=4.5，误差自由度 $f_e=16$。
+
+使用Scheffé法进行多重比较（$\alpha=0.05$）：
+\begin{enumerate}
+    \item 查找F分布临界值：$F_{0.05}(2, 16) = 3.63$
+    \item 计算三对比较的Scheffé临界值：
+    \begin{align*}
+S_{12} &= \sqrt{(3-1) \times 3.63} \times \sqrt{4.5 \times (\frac{1}{5} + \frac{1}{8})} \\
+&= \sqrt{7.26} \times \sqrt{4.5 \times 0.325} \\
+&= 2.695 \times 1.208 = 3.256
+\end{align*}
+    
+    \begin{align*}
+S_{13} &= \sqrt{(3-1) \times 3.63} \times \sqrt{4.5 \times (\frac{1}{5} + \frac{1}{6})} \\
+&= 2.695 \times \sqrt{4.5 \times 0.367} \\
+&= 2.695 \times 1.284 = 3.460
+\end{align*}
+    
+    \begin{align*}
+S_{23} &= \sqrt{(3-1) \times 3.63} \times \sqrt{4.5 \times (\frac{1}{8} + \frac{1}{6})} \\
+&= 2.695 \times \sqrt{4.5 \times 0.292} \\
+&= 2.695 \times 1.146 = 3.088
+\end{align*}
+    
+    \item 计算各对均值差的绝对值并与相应的 $S_{ij}$ 比较：
+    \begin{align*}
+|\bar{y}_{1\cdot} - \bar{y}_{2\cdot}| &= |10.2 - 12.5| = 2.3 < S_{12} = 3.256 \quad \text{(不显著)} \\
+|\bar{y}_{1\cdot} - \bar{y}_{3\cdot}| &= |10.2 - 9.8| = 0.4 < S_{13} = 3.460 \quad \text{(不显著)} \\
+|\bar{y}_{2\cdot} - \bar{y}_{3\cdot}| &= |12.5 - 9.8| = 2.7 < S_{23} = 3.088 \quad \text{(不显著)}
+\end{align*}
+\end{enumerate}
+
+多重比较结论：根据Scheffé法，在 $\alpha=0.05$ 的显著性水平下，三组均值之间的差异均不显著。注意到，如果使用单对t检验，可能会得出不同结论，因为Scheffé法考虑了多重比较问题，更为保守。
+
+\subsubsection{与Tukey法的比较}
+当样本容量相等时，Tukey法和Scheffé法都可以使用。一般来说，Tukey法更有效（检验功效更高），而Scheffé法则更为保守。这是因为：
+
+\begin{itemize}
+    \item Tukey法：专门针对均值间的两两比较设计，临界值基于学生化极差分布。
+    \item Scheffé法：能够处理任意线性组合的比较，不仅限于两两比较，因此必须更为"保守"来控制总体错误率。
+\end{itemize}
+
+\textbf{判断选择}：
+\begin{itemize}
+    \item 如果只关心均值的两两比较且样本量相等，选择Tukey法。
+    \item 如果样本量不等或需要检验复杂的线性组合（如"第一组均值是否等于第二组和第三组均值的平均"），选择Scheffé法。
+\end{itemize}
+
+\section{§8.3 方差齐性检验 (Test for Homogeneity of Variances)}
+\subsection{回顾：为什么要做这个检验？}
+我们再三强调，方差分析和t检验都有一个重要的前提假定：\textbf{方差齐性}，即所有比较的组都来自方差相等的总体。
+
+理论研究表明，F检验对于偏离正态性的情况具有一定的"稳健性"（Robustness），即影响不大。但是，F检验对于\textbf{方差不齐}的情况则比较\textbf{敏感}。如果各组方差相差很大，那么我们算出的F值和P值的可靠性就会大大降低，可能导致我们做出错误的结论。
+因此，在进行方差分析之前，进行一次方差齐性检验，是严谨的数据分析流程中必不可少的一步。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    boxplot/draw direction=y,
+    ylabel={观测值},
+    height=6cm,
+    width=12cm,
+    title={不同方差齐性情况下的数据分布},
+    xtick={1,2,3,4,5,6},
+    xticklabels={A组, B组, C组, D组, E组, F组},
+    x tick label style={rotate=0, anchor=north},
+    ytick={0,5,10,15,20},
+    grid=major
+]
+% 方差齐性良好的组
+\addplot[boxplot, fill=blue!30] table[row sep=\\, y index=0] {
+    data\\
+    8\\
+    10\\
+    7\\
+    9\\
+    11\\
+    6\\
+    8.5\\
+    9.5\\
+};
+\addplot[boxplot, fill=blue!30] table[row sep=\\, y index=0] {
+    data\\
+    12\\
+    14\\
+    11\\
+    13\\
+    15\\
+    10\\
+    12.5\\
+    13.5\\
+};
+\addplot[boxplot, fill=blue!30] table[row sep=\\, y index=0] {
+    data\\
+    5\\
+    7\\
+    4\\
+    6\\
+    8\\
+    3\\
+    5.5\\
+    6.5\\
+};
+
+% 方差不齐的组
+\addplot[boxplot, fill=red!30] table[row sep=\\, y index=0] {
+    data\\
+    8\\
+    9\\
+    7.5\\
+    8.5\\
+    9.5\\
+    7\\
+    8.2\\
+    8.8\\
+};
+\addplot[boxplot, fill=red!30] table[row sep=\\, y index=0] {
+    data\\
+    7\\
+    18\\
+    3\\
+    15\\
+    20\\
+    2\\
+    5\\
+    14\\
+};
+\addplot[boxplot, fill=red!30] table[row sep=\\, y index=0] {
+    data\\
+    6\\
+    6.2\\
+    5.8\\
+    6.1\\
+    6.3\\
+    5.9\\
+    6.05\\
+    6.15\\
+};
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=6cm,
+    xlabel={观测值},
+    ylabel={频率密度},
+    title={方差齐性与方差不齐的概率密度函数对比},
+    xmin=-5, xmax=25,
+    ymin=0, ymax=0.5,
+    samples=100,
+    domain=-5:25,
+    legend pos=north west,
+    grid=both
+]
+% 方差齐性良好的情况（三个正态分布具有相同的方差）
+\addplot[blue, thick] {1/(2*sqrt(2*pi))*exp(-(x-5)^2/(2*4))};
+\addlegendentry{$A_1$：$N(5, 2^2)$};
+
+\addplot[blue, thick] {1/(2*sqrt(2*pi))*exp(-(x-10)^2/(2*4))};
+\addlegendentry{$A_2$：$N(10, 2^2)$};
+
+\addplot[blue, thick] {1/(2*sqrt(2*pi))*exp(-(x-15)^2/(2*4))};
+\addlegendentry{$A_3$：$N(15, 2^2)$};
+
+% 方差不齐的情况（三个正态分布具有不同的方差）
+\addplot[red, thick, dashed] {1/(1*sqrt(2*pi))*exp(-(x-5)^2/(2*1))};
+\addlegendentry{$B_1$：$N(5, 1^2)$};
+
+\addplot[red, thick, dashed] {1/(4*sqrt(2*pi))*exp(-(x-10)^2/(2*16))};
+\addlegendentry{$B_2$：$N(10, 4^2)$};
+
+\addplot[red, thick, dashed] {1/(0.5*sqrt(2*pi))*exp(-(x-15)^2/(2*0.25))};
+\addlegendentry{$B_3$：$N(15, 0.5^2)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\textbf{图解说明：}
+\begin{itemize}
+    \item 上图中，A、B、C三组具有相似的方差（箱线图的高度相近），符合方差齐性假设；而D、E、F三组的方差相差很大，违反了方差齐性假设。
+    \item 下图展示了方差齐性和方差不齐两种情况下的概率密度函数。蓝色实线表示三个均值不同但方差相同的正态分布，符合方差齐性假设；红色虚线表示三个均值不同且方差也不同的正态分布，违反了方差齐性假设。
+    \item 当方差不齐时，我们无法确定组间差异是由均值不同还是由方差不同引起的，这会导致F检验的结果不可靠。
+\end{itemize}
+
+\subsection{Bartlett 检验}
+Bartlett检验是一种常用的方差齐性检验方法，它适用于各组样本量相等或不等的场合，但要求每个样本量最好不低于5。
+
+\subsubsection{检验统计量与步骤}
+\begin{itemize}
+    \item \textbf{原假设与备择假设}:
+        $$ H_0: \sigma_1^2 = \sigma_2^2 = \dots = \sigma_r^2 $$
+        $$ H_1: \text{至少有两个 } \sigma_i^2 \text{ 不相等} $$
+\end{itemize}
+
+检验的核心是构造Bartlett统计量，其计算步骤如下：
+\begin{enumerate}
+    \item 对于第 $i$ 组 ($i=1, \dots, r$)，计算其样本量 $m_i$ 和样本方差 $s_i^2$。令 $f_i = m_i - 1$ 为其自由度。
+    \item 计算合并方差 (Pooled Variance) $s_p^2$:
+    \begin{equation}
+    s_p^2 = \frac{\sum_{i=1}^{r} (m_i-1)s_i^2}{\sum_{i=1}^{r} (m_i-1)} = \frac{\sum_{i=1}^{r} f_i s_i^2}{\sum f_i}
+    \end{equation}
+    \item 计算Bartlett统计量 $M^2$ (在某些文献中也记为B或$\chi^2$):
+    \begin{equation}
+    M^2 = (\sum f_i) \ln(s_p^2) - \sum_{i=1}^{r} f_i \ln(s_i^2)
+    \end{equation}
+    \item 计算修正系数 $C$:
+    \begin{equation}
+    C = 1 + \frac{1}{3(r-1)} \left( \sum_{i=1}^{r} \frac{1}{f_i} - \frac{1}{\sum f_i} \right)
+    \end{equation}
+    \item 最终的检验统计量为 $B = M^2/C$。在原假设$H_0$成立时，该统计量近似服从自由度为 $r-1$ 的卡方分布，即 $B \sim \chi^2(r-1)$。
+\end{enumerate}
+
+\subsubsection{修正的Bartlett检验}
+当样本容量较小时，上述Bartlett检验的近似效果可能不够理想。此时可以采用修正的Bartlett检验，该检验将统计量转化为F统计量：
+
+\begin{theorem}[修正的Bartlett检验]
+对于样本容量较小的情况，我们可以构造以下统计量：
+\begin{equation}
+B' = \frac{f_2 \cdot B \cdot C}{r-1}\cdot\frac{1}{A - B \cdot C}
+\end{equation}
+其中:
+\begin{equation}
+f_2 = \frac{r+1}{(C-1)^2}
+\end{equation}
+\begin{equation}
+A = \frac{f_2}{r-1-C+\frac{2}{f_2}}
+\end{equation}
+
+在原假设$H_0$成立的条件下，$B'$近似服从自由度为 $(r-1, f_2)$ 的F分布，即 $B' \sim F(r-1, f_2)$。
+\end{theorem}
+
+\textbf{决策规则}：
+\begin{itemize}
+    \item 若 $B' \geq F_{1-\alpha}(r-1, f_2)$，则拒绝$H_0$，认为各总体方差不全相等；
+    \item 若 $B' < F_{1-\alpha}(r-1, f_2)$，则接受$H_0$，认为各总体方差相等。
+\end{itemize}
+
+\textbf{计算实例：} 以下是绿茶叶酸含量数据的方差齐性检验。
+
+我们收集了四种不同产地的绿茶叶样本，每种产地取5个样本，测量其中的茶多酚含量（单位：%）。数据如下：
+
+\begin{table}[h!]
+\centering
+\caption{四种产地绿茶叶酸含量数据}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{样本编号} & \textbf{产地1} & \textbf{产地2} & \textbf{产地3} & \textbf{产地4} \\
+\midrule
+1 & 5.23 & 5.42 & 5.87 & 5.31 \\
+2 & 5.65 & 5.68 & 5.54 & 5.85 \\
+3 & 5.08 & 5.35 & 5.32 & 5.45 \\
+4 & 5.45 & 5.51 & 5.78 & 6.12 \\
+5 & 5.27 & 5.29 & 5.92 & 5.95 \\
+\midrule
+均值 $\bar{y}_i$ & 5.34 & 5.45 & 5.69 & 5.74 \\
+方差 $s_i^2$ & 0.231 & 0.153 & 0.277 & 0.346 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+已知：
+\begin{itemize}
+    \item 四组数据的样本方差分别为：$s_1^2 = 0.231$, $s_2^2 = 0.153$, $s_3^2 = 0.277$, $s_4^2 = 0.346$
+    \item 每组样本量均为 $m_i = 5$，因此自由度 $f_i = 4$，总自由度 $\sum f_i = 16$
+\end{itemize}
+
+首先，计算合并方差 $s_p^2$：
+\begin{align*}
+s_p^2 &= \frac{\sum_{i=1}^{4} f_i s_i^2}{\sum f_i} \\
+&= \frac{4 \times 0.231 + 4 \times 0.153 + 4 \times 0.277 + 4 \times 0.346}{16} \\
+&= \frac{0.924 + 0.612 + 1.108 + 1.384}{16} \\
+&= \frac{4.028}{16} \\
+&= 0.252
+\end{align*}
+
+接下来，计算Bartlett统计量 $M^2$：
+\begin{align*}
+M^2 &= (\sum f_i) \ln(s_p^2) - \sum_{i=1}^{4} f_i \ln(s_i^2) \\
+&= 16 \times \ln(0.252) - [4 \times \ln(0.231) + 4 \times \ln(0.153) + 4 \times \ln(0.277) + 4 \times \ln(0.346)] \\
+&= 16 \times (-1.378) - [4 \times (-1.466) + 4 \times (-1.877) + 4 \times (-1.283) + 4 \times (-1.061)] \\
+&= -22.048 - [-5.864 - 7.508 - 5.132 - 4.244] \\
+&= -22.048 - [-22.748] \\
+&= -22.048 + 22.748 \\
+&= 0.700
+\end{align*}
+
+计算修正系数 $C$：
+\begin{align*}
+C &= 1 + \frac{1}{3(4-1)} \left( \sum_{i=1}^{4} \frac{1}{4} - \frac{1}{16} \right) \\
+&= 1 + \frac{1}{9} \left( 1 - \frac{1}{16} \right) \\
+&= 1 + \frac{1}{9} \cdot \frac{15}{16} \\
+&= 1 + \frac{15}{144} \\
+&= 1.104
+\end{align*}
+
+计算修正后的Bartlett统计量：
+\begin{align*}
+B &= \frac{M^2}{C} = \frac{0.700}{1.104} = 0.634
+\end{align*}
+
+对于样本容量较小的情况，计算修正的F统计量：
+\begin{align*}
+f_2 &= \frac{4+1}{(1.104-1)^2} = \frac{5}{0.104^2} = 462.5 \\
+A &= \frac{462.5}{4-1-1.104+\frac{2}{462.5}} = \frac{462.5}{1.9} = 243.4 \\
+B' &= \frac{462.5 \times 0.634 \times 1.104}{3(243.4 - 0.634 \times 1.104)} = \frac{323.4}{728.0} = 0.444
+\end{align*}
+
+查表得 $F_{0.95}(3, 462.5) \approx F_{0.95}(3, \infty) = 2.61$。由于 $B' = 0.444 < 2.61$，故接受原假设$H_0$，认为四个水平下的方差间无显著差异，满足方差齐性假设。
+
+进一步绘制箱线图可以直观地观察四组数据的方差相似性：
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    boxplot/draw direction=y,
+    ylabel={茶多酚含量 (\%)},
+    height=7cm,
+    width=10cm,
+    xtick={1,2,3,4},
+    xticklabels={产地1, 产地2, 产地3, 产地4},
+    title={四种产地绿茶叶茶多酚含量箱线图}
+]
+\addplot[boxplot, fill=green!30] table[row sep=\\, y index=0] {
+    data\\
+    5.23\\
+    5.65\\
+    5.08\\
+    5.45\\
+    5.27\\
+};
+\addplot[boxplot, fill=green!30] table[row sep=\\, y index=0] {
+    data\\
+    5.42\\
+    5.68\\
+    5.35\\
+    5.51\\
+    5.29\\
+};
+\addplot[boxplot, fill=green!30] table[row sep=\\, y index=0] {
+    data\\
+    5.87\\
+    5.54\\
+    5.32\\
+    5.78\\
+    5.92\\
+};
+\addplot[boxplot, fill=green!30] table[row sep=\\, y index=0] {
+    data\\
+    5.31\\
+    5.85\\
+    5.45\\
+    6.12\\
+    5.95\\
+};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+从图中可以看出，四组数据的箱体高度（表示四分位距IQR）相对接近，支持了方差齐性的结论。虽然产地4的数据分散程度略大，但整体上四组数据的方差差异不足以拒绝方差齐性假设。
+
+\subsection{Hartley检验（最大方差比检验）}
+当各组样本容量相等时，可以使用Hartley提出的最大方差比检验（F-max test）。这是一种简便易行的方法。
+
+\subsubsection{检验统计量}
+设有 $r$ 个总体，每个总体有 $m$ 个观测值（样本容量相等），$s_i^2$ 是第 $i$ 个样本的方差。Hartley统计量定义为：
+\begin{equation}
+H = \frac{\max_{1 \leq i \leq r} s_i^2}{\min_{1 \leq i \leq r} s_i^2}
+\end{equation}
+即最大样本方差与最小样本方差之比。
+
+\textbf{决策规则}：
+\begin{itemize}
+    \item 若 $H > H_{\alpha}(r, m-1)$，则拒绝$H_0$，认为各总体方差不全相等；
+    \item 若 $H \leq H_{\alpha}(r, m-1)$，则接受$H_0$，认为各总体方差相等。
+\end{itemize}
+其中 $H_{\alpha}(r, m-1)$ 是显著性水平为 $\alpha$ 时Hartley分布的临界值。
+
+\textbf{计算实例：} 考虑鸡饲料试验中的三个组，我们可以计算其样本方差：
+\begin{align*}
+s_1^2 &= \frac{1}{7}\sum_{j=1}^{8}(y_{1j}-\bar{y}_{1\cdot})^2 = 902.5 \\
+s_2^2 &= \frac{1}{7}\sum_{j=1}^{8}(y_{2j}-\bar{y}_{2\cdot})^2 = 1793.8 \\
+s_3^2 &= \frac{1}{7}\sum_{j=1}^{8}(y_{3j}-\bar{y}_{3\cdot})^2 = 942.9
+\end{align*}
+Hartley统计量为：
+\begin{align*}
+H = \frac{\max(s_1^2, s_2^2, s_3^2)}{\min(s_1^2, s_2^2, s_3^2)} = \frac{1793.8}{902.5} = 1.99
+\end{align*}
+查Hartley分布表得 $H_{0.05}(3, 7) = 8.44$。由于 $H = 1.99 < 8.44$，故接受原假设$H_0$，认为三个饲料水平下的方差无显著差异。
+
+\subsection{方差不齐时的处理方法}
+当方差齐性检验的结果为"方差不齐"时，我们有几种处理选择：
+
+\begin{enumerate}
+    \item \textbf{数据变换}: 通过适当的变换使得变换后的数据满足方差齐性假定。常用的变换包括：
+    \begin{itemize}
+        \item 对数变换: $Y' = \log(Y)$ 或 $Y' = \ln(Y)$
+        \item 平方根变换: $Y' = \sqrt{Y}$
+        \item 倒数变换: $Y' = 1/Y$
+        \item Box-Cox变换: $Y' = \frac{Y^\lambda - 1}{\lambda}$ (当 $\lambda \neq 0$) 或 $Y' = \ln(Y)$ (当 $\lambda = 0$)
+    \end{itemize}
+    \item \textbf{使用稳健的方差分析方法}: 例如Welch's ANOVA，它是标准ANOVA的一种修正，不要求方差齐性。
+    \item \textbf{使用非参数方法}: 如Kruskal-Wallis检验，它不需要数据满足正态性和方差齐性的假定。
+    \item \textbf{独立进行双样本比较}: 但要注意多重比较问题，需要进行显著性水平的调整。
+\end{enumerate}
+
+\textbf{知识脉络解读：} 8.2节和8.3节分别是方差分析的"后处理"和"前处理"。8.3节的方差齐性检验是\textbf{前提诊断}，确保我们的分析方法是可靠的；8.2节的多重比较是\textbf{结果深化}，让我们的结论更具体、更有指导意义。
+
+\newpage
+\section{§8.4 一元线性回归分析 (Simple Linear Regression)}
+
+\subsection{引言：从"差异"到"关系"}
+同学们，方差分析帮助我们判断不同类别（因子水平）之间是否存在均值上的显著差异。现在，我们要进入一个新的领域：\textbf{回归分析}。
+
+回归分析探讨的是变量之间的\textbf{关系}。我们不再是比较离散的组别，而是研究一个或多个自变量（Independent Variable, $x$）的变化如何影响另一个因变量（Dependent Variable, $y$）的变化。
+
+\begin{itemize}
+    \item \textbf{核心问题}：我们能否用一个数学模型来描述并量化 $x$ 和 $y$ 之间的依赖关系？
+    \item \textbf{最终目的}：利用这个模型，通过已知的 $x$ 值来\textbf{预测}未知的 $y$ 值。
+\end{itemize}
+
+例如：广告投入（$x$）与销售额（$y$）的关系；房价（$y$）与房屋面积（$x$）的关系。本节我们从最简单，也是最基础的\textbf{一元线性回归}开始。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    xlabel={广告投入 (万元)},
+    ylabel={销售额 (万元)},
+    title={广告投入与销售额关系的散点图},
+    xmin=0, xmax=12,
+    ymin=0, ymax=25,
+    grid=both,
+    legend pos=north west
+]
+
+% 生成一些具有线性关系的散点数据
+\addplot[only marks, mark=*, blue] coordinates {
+    (1,5) (2,6.5) (3,8) (4,10.2) (5,11.5)
+    (6,13) (7,15) (8,17.2) (9,18.5) (10,20.8)
+};
+\addlegendentry{观测数据};
+
+% 绘制回归线
+\addplot[red, thick, domain=0:12] {2 + 1.8*x};
+\addlegendentry{回归线: $\hat{y} = 2 + 1.8x$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection{一元线性回归模型}
+
+\subsubsection{模型设定}
+我们假设变量 $y$ 与 $x$ 之间的关系可以用一条直线来近似描述。当然，现实中的数据点不会完美地落在一条直线上，总会有随机的波动。因此，我们建立如下模型：
+$$ y_i = \beta_0 + \beta_1 x_i + \varepsilon_i $$
+其中：
+\begin{itemize}
+    \item $y_i$ 是第 $i$ 个观测的因变量值。
+    \item $x_i$ 是第 $i$ 个观测的自变量值。
+    \item $\beta_0$ 是\textbf{截距 (Intercept)}，表示当 $x=0$ 时，$y$ 的期望值。
+    \item $\beta_1$ 是\textbf{斜率 (Slope)}，表示 $x$ 每增加一个单位，$y$ 的期望值平均增加的数量。这是我们最关心的参数，它代表了 $x$ 对 $y$ 的影响强度和方向。
+    \item $\varepsilon_i$ 是\textbf{随机误差项}，代表了除 $x$ 之外所有能影响 $y$ 的未被观测的因素。
+\end{itemize}
+
+\textbf{模型基本假定} (与方差分析类似):
+\begin{enumerate}
+    \item 误差项的期望为0, $E(\varepsilon_i) = 0$。
+    \item 误差项的方差为常数（方差齐性）, $\text{Var}(\varepsilon_i) = \sigma^2$。
+    \item 不同的误差项之间相互独立, $\text{Cov}(\varepsilon_i, \varepsilon_j) = 0$ for $i \neq j$。
+    \item （用于区间估计和假设检验）误差项服从正态分布, $\varepsilon_i \sim N(0, \sigma^2)$。
+\end{enumerate}
+
+\subsubsection{参数估计：最小二乘法 (Least Squares Method)}
+我们如何根据样本数据 $(x_1, y_1), (x_2, y_2), \dots, (x_n, y_n)$ 来估计出真实的 $\beta_0$ 和 $\beta_1$ 呢？
+最小二乘法的思想是：找到一条直线 $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$，使得所有观测点到这条直线的\textbf{垂直距离的平方和}最小。这个平方和称为\textbf{残差平方和 (Sum of Squared Residuals, SSE)}。
+$$ Q(\beta_0, \beta_1) = \sum_{i=1}^{n} (y_i - \hat{y}_i)^2 = \sum_{i=1}^{n} (y_i - (\beta_0 + \beta_1 x_i))^2 $$
+通过对 $Q$ 分别求关于 $\beta_0$ 和 $\beta_1$ 的偏导数并令其为0，可以解得 $\beta_0$ 和 $\beta_1$ 的估计值 $\hat{\beta}_0$ 和 $\hat{\beta}_1$：
+
+$$ \hat{\beta}_1 = \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2} = \frac{L_{xy}}{L_{xx}} $$
+$$ \hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x} $$
+其中 $L_{xx}$ 和 $L_{xy}$ 是常用的简记符号。得到的回归方程为 $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$。
+
+\subsection{回归方程的显著性检验}
+
+我们找到了最佳的直线，但这条直线真的有用吗？$x$ 和 $y$ 之间真的存在线性关系吗？或者观察到的关系仅仅是抽样造成的偶然？这就是回归的显著性检验要回答的问题。
+
+核心是检验斜率 $\beta_1$ 是否显著不为0。
+$$ H_0: \beta_1 = 0 \quad \text{vs} \quad H_1: \beta_1 \neq 0 $$
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=7cm,
+    xlabel={$x$},
+    ylabel={$y$},
+    title={回归方程显著性检验的两种可能情况},
+    xmin=0, xmax=10,
+    ymin=0, ymax=10,
+    grid=both,
+    legend pos=north west
+]
+
+% 绘制第一组数据（有显著线性关系）
+\addplot[only marks, mark=*, blue] coordinates {
+    (1,1.5) (2,2.2) (3,3.3) (4,4.1) (5,5.2)
+    (6,5.8) (7,6.9) (8,7.7) (9,8.5) (10,9.2)
+};
+\addplot[blue, thick, domain=0:10] {0.5 + 0.9*x};
+\node at (axis cs:2,8) {\textcolor{blue}{$H_0$被拒绝：$\beta_1 \neq 0$}};
+\node at (axis cs:2,7.5) {\textcolor{blue}{存在显著的线性关系}};
+
+% 绘制第二组数据（无显著线性关系）
+\addplot[only marks, mark=square*, red] coordinates {
+    (1,5.1) (2,3.8) (3,5.9) (4,3.2) (5,4.7)
+    (6,6.1) (7,4.3) (8,5.5) (9,3.9) (10,5.8)
+};
+\addplot[red, thick, domain=0:10] {5 + 0*x};
+\node at (axis cs:7,2) {\textcolor{red}{$H_0$不被拒绝：$\beta_1 = 0$}};
+\node at (axis cs:7,1.5) {\textcolor{red}{不存在显著的线性关系}};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{检验方法一：F检验 (回归的方差分析)}
+与ANOVA类似，我们也可以对回归进行平方和分解。
+$$ \text{SST} = \text{SSR} + \text{SSE} $$
+\begin{itemize}
+    \item \textbf{SST (总平方和)}: $\sum (y_i - \bar{y})^2$。度量了 $y$ 的总变异。
+    \item \textbf{SSR (回归平方和)}: $\sum (\hat{y}_i - \bar{y})^2$。度量了能被回归模型解释的 $y$ 的变异。
+    \item \textbf{SSE (误差平方和/残差平方和)}: $\sum (y_i - \hat{y}_i)^2$。度量了模型\textbf{不能}解释的 $y$ 的变异。
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    xlabel={$x$},
+    ylabel={$y$},
+    title={回归中的平方和分解},
+    xmin=0, xmax=10,
+    ymin=0, ymax=10,
+    grid=both,
+    legend pos=south east
+]
+
+% 绘制数据点和回归线
+\addplot[only marks, mark=*, blue] coordinates {
+    (2,3) (4,5) (6,7) (8,8)
+};
+\addlegendentry{观测数据 $(x_i, y_i)$};
+
+\addplot[red, thick, domain=0:10] {1 + 0.9*x};
+\addlegendentry{回归线 $\hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x$};
+
+% 平均值
+\def\ybar{5.75}
+\draw[green!70!black, dashed] (0,\ybar) -- (10,\ybar) node[right] {$\bar{y}=5.75$};
+
+% 标记特定点及其预测值和残差
+\coordinate (p1) at (axis cs:2,3);
+\coordinate (p1fit) at (axis cs:2,1+0.9*2);
+\coordinate (p1mean) at (axis cs:2,\ybar);
+
+\coordinate (p2) at (axis cs:6,7);
+\coordinate (p2fit) at (axis cs:6,1+0.9*6);
+\coordinate (p2mean) at (axis cs:6,\ybar);
+
+% 绘制SST, SSE, SSR箭头
+\draw[<->, orange, thick] (p1) -- (p1fit) node[midway, right] {SSE};
+\draw[<->, purple, thick] (p1fit) -- (p1mean) node[midway, right] {SSR};
+\draw[<->, green!70!black, thick] (p1) -- (p1mean) node[midway, left] {SST};
+
+\draw[<->, orange, thick] (p2) -- (p2fit) node[midway, right] {SSE};
+\draw[<->, purple, thick] (p2fit) -- (p2mean) node[midway, right] {SSR};
+\draw[<->, green!70!black, thick] (p2) -- (p2mean) node[midway, left] {SST};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\textbf{图中关系说明：}
+\begin{itemize}
+    \item \textbf{SST}：从观测点 $(x_i, y_i)$ 到总均值 $\bar{y}$ 的距离，表示总变异。
+    \item \textbf{SSE}：从观测点 $(x_i, y_i)$ 到拟合值 $\hat{y}_i$ 的距离，表示未被解释的变异。
+    \item \textbf{SSR}：从拟合值 $\hat{y}_i$ 到总均值 $\bar{y}$ 的距离，表示被回归解释的变异。
+    \item 关键关系：SST = SSE + SSR，这种分解是回归分析和方差分析共有的核心思想。
+\end{itemize}
+
+我们可以构建一个类似于ANOVA的方差分析表：
+\begin{table}[h!]
+\centering
+\caption{一元线性回归的方差分析表}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{变异来源} & \textbf{平方和(SS)} & \textbf{自由度(df)} & \textbf{均方(MS)} & \textbf{F统计量} \\
+\midrule
+回归 (Regression) & SSR & 1 & MSR = SSR/1 & $F = \frac{\text{MSR}}{\text{MSE}}$ \\
+误差 (Error) & SSE & $n-2$ & MSE = SSE/(n-2) & \\
+\midrule
+总计 (Total) & SST & $n-1$ & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+在 $H_0: \beta_1=0$ 成立的条件下，$F = \frac{\text{MSR}}{\text{MSE}} \sim F(1, n-2)$。如果 $F$ 值足够大（大于临界值，或P-value足够小），我们就拒绝 $H_0$，认为回归关系显著。
+
+\subsubsection{检验方法二：t检验}
+对于一元线性回归，检验 $H_0: \beta_1 = 0$ 也可以用 t 检验。检验统计量为：
+$$ t = \frac{\hat{\beta}_1 - 0}{\text{SE}(\hat{\beta}_1)} = \frac{\hat{\beta}_1}{\hat{\sigma}/\sqrt{L_{xx}}} $$
+其中 $\text{SE}(\hat{\beta}_1)$ 是 $\hat{\beta}_1$ 的标准误，$\hat{\sigma} = \sqrt{\text{MSE}}$。在 $H_0$ 成立时，$t \sim t(n-2)$。
+
+\textbf{知识脉络解读：} 在一元线性回归中，F检验和t检验是\textbf{等价}的！可以证明 $F = t^2$。所以用哪种方法结论都一样。但在多元回归中（多个x），F检验用于检验整个模型的显著性，而t检验用于检验单个回归系数的显著性，两者的作用就分开了。
+
+\subsection{估计与预测}
+当回归方程被检验为显著后，它就成了一个有用的工具。我们可以用它来做两件重要的事情：
+\begin{itemize}
+    \item \textbf{估计 (Estimation)}：估计在某个给定的 $x_0$ 值下，\textbf{所有} $y$ 的\textbf{平均值} $E(y_0) = \beta_0 + \beta_1 x_0$。
+    \item \textbf{预测 (Prediction)}：预测在某个给定的 $x_0$ 值下，一个\textbf{单独}的 $y$ 的\textbf{观测值} $y_0$。
+\end{itemize}
+
+\subsubsection{均值的置信区间}
+对于 $E(y_0)$，它的点估计是 $\hat{y}_0 = \hat{\beta}_0 + \hat{\beta}_1 x_0$。其 $1-\alpha$ 的置信区间为：
+$$ \hat{y}_0 \pm t_{\alpha/2, n-2} \cdot \hat{\sigma} \sqrt{\frac{1}{n} + \frac{(x_0 - \bar{x})^2}{L_{xx}}} $$
+
+\subsubsection{个体的预测区间}
+对于单个值 $y_0$，它的点预测也是 $\hat{y}_0$。但由于单个值比均值有更大的不确定性（需要考虑个体的随机误差 $\varepsilon_0$），所以它的预测区间会更宽。其 $1-\alpha$ 的预测区间为：
+$$ \hat{y}_0 \pm t_{\alpha/2, n-2} \cdot \hat{\sigma} \sqrt{1 + \frac{1}{n} + \frac{(x_0 - \bar{x})^2}{L_{xx}}} $$
+**注意关键差异**：预测区间的根号下多了一个"1"，这代表了个体本身的不确定性。
+
+\textbf{重要观察}：无论是置信区间还是预测区间，其宽度都依赖于 $(x_0 - \bar{x})^2$。这意味着，当 $x_0$ 离样本均值 $\bar{x}$ 越远，我们的估计和预测就越不准，区间就越宽。这提醒我们，用回归模型进行"外推"（即预测远离我们数据范围的点）是需要非常谨慎的。
+
+\section{§8.5 一元非线性回归分析}
+\subsection{当关系不是一条直线时}
+到目前为止，我们讨论的回归都是线性的。但在现实世界中，很多变量之间的关系并非简单的直线。例如：
+\begin{itemize}
+    \item 药效随时间的变化（先增强后减弱）
+    \item 学习新技能的进步速度（先快后慢，趋于平缓）
+    \item 物质的衰变过程（指数下降）
+\end{itemize}
+当散点图呈现出明显的曲线趋势时，强行使用线性模型会产生巨大的误差，得到无用的结论。此时，我们就需要进入\textbf{非线性回归}的领域。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    xlabel={时间},
+    ylabel={学习效果},
+    title={学习新技能的进步曲线示例},
+    xmin=0, xmax=10,
+    ymin=0, ymax=10,
+    grid=both,
+    legend pos=south east
+]
+
+% 绘制数据点
+\addplot[only marks, mark=*, blue] coordinates {
+    (1,1.2) (2,2.8) (3,4.1) (4,5.0) (5,5.7)
+    (6,6.2) (7,6.6) (8,6.9) (9,7.1) (10,7.2)
+};
+\addlegendentry{观测数据};
+
+% 线性拟合（不适合）
+\addplot[red, dashed, domain=0:10] {0.62 + 0.72*x};
+\addlegendentry{线性模型（不适合）};
+
+% 对数拟合（更适合）
+\addplot[green!60!black, thick, domain=0:10] {0.1 + 3.2*ln(x)};
+\addlegendentry{对数模型（更适合）};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection{非线性回归的数学模型}
+非线性回归模型的一般形式为：
+\begin{equation}
+y_i = f(x_i; \beta_1, \beta_2, \ldots, \beta_p) + \varepsilon_i, \quad i = 1, 2, \ldots, n
+\end{equation}
+其中：
+\begin{itemize}
+    \item $f(x_i; \beta_1, \beta_2, \ldots, \beta_p)$ 是一个非线性函数
+    \item $\beta_1, \beta_2, \ldots, \beta_p$ 是待估计的参数
+    \item $\varepsilon_i$ 是随机误差项，假定 $\varepsilon_i \sim N(0, \sigma^2)$
+\end{itemize}
+
+直接估计非线性模型的参数通常比较复杂，需要采用迭代方法求解。然而，许多常见的非线性模型可以通过变量变换转化为线性模型，这是一种被称为"线性化"的强大技术。
+
+\subsection{核心策略："掰弯"化"直"}
+处理非线性回归的一个非常强大且常用的策略是：通过\textbf{变量变换}，将非线性的关系转化为我们已经熟悉的线性关系，然后使用标准的线性回归方法进行分析。这个过程就像是把弯曲的尺子掰直了再用。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=6cm,
+    xlabel={$x$},
+    ylabel={$y$},
+    title={非线性关系（指数函数）的线性化变换示例},
+    xmin=0, xmax=5,
+    ymin=0, ymax=150,
+    grid=both,
+    legend pos=north west
+]
+
+% 绘制指数函数数据点
+\addplot[only marks, mark=*, blue] coordinates {
+    (0.5,5) (1,10) (1.5,18) (2,33) (2.5,55) (3,90) (3.5,122) (4,140)
+};
+\addlegendentry{原始数据: $y = ae^{bx}$};
+
+% 拟合的指数曲线
+\addplot[red, thick, domain=0:5] {5*exp(0.8*x)};
+\addlegendentry{指数拟合: $y = 5e^{0.8x}$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=6cm,
+    xlabel={$x$},
+    ylabel={$\ln(y)$},
+    title={变换后的线性关系: $\ln(y) = \ln(a) + bx$},
+    xmin=0, xmax=5,
+    ymin=0, ymax=6,
+    grid=both,
+    legend pos=north west
+]
+
+% 绘制变换后的数据点
+\addplot[only marks, mark=*, blue] coordinates {
+    (0.5,1.61) (1,2.30) (1.5,2.89) (2,3.50) (2.5,4.01) (3,4.50) (3.5,4.80) (4,4.94)
+};
+\addlegendentry{变换后数据: $\ln(y)$ vs $x$};
+
+% 拟合的直线
+\addplot[red, thick, domain=0:5] {1.61 + 0.8*x};
+\addlegendentry{线性拟合: $\ln(y) = 1.61 + 0.8x$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{常见可线性化的曲线模型与变换公式}
+以下是一些常见的、可以通过变换化为线性模型的曲线类型及其详细变换方法：
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=12cm,
+    height=8cm,
+    xlabel={$x$},
+    ylabel={$y$},
+    title={常见非线性函数关系图},
+    xmin=0, xmax=10,
+    ymin=0, ymax=20,
+    grid=both,
+    legend pos=north west,
+    legend style={nodes={scale=0.8, transform shape}}
+]
+
+% 幂函数
+\addplot[domain=0.1:10, samples=100, blue, thick] {2*x^1.5};
+\addlegendentry{幂函数: $y = ax^b$};
+
+% 指数函数
+\addplot[domain=0:10, samples=100, red, thick] {1*exp(0.3*x)};
+\addlegendentry{指数函数: $y = ae^{bx}$};
+
+% 对数函数
+\addplot[domain=0.1:10, samples=100, green!60!black, thick] {5 + 3*ln(x)};
+\addlegendentry{对数函数: $y = a + b\ln(x)$};
+
+% 双曲线
+\addplot[domain=0.1:10, samples=100, purple, thick] {1 + 10/x};
+\addlegendentry{双曲线: $y = a + \frac{b}{x}$};
+
+% S型曲线（Logistic函数）
+\addplot[domain=0:10, samples=100, orange, thick] {15/(1 + 5*exp(-x))};
+\addlegendentry{S型曲线: $y = \frac{1}{a+be^{-x}}$};
+
+% 分数线性函数
+\addplot[domain=0:10, samples=100, cyan, thick] {x/(0.2+0.15*x)};
+\addlegendentry{分数线性函数: $y = \frac{x}{a+bx}$};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\textbf{不同非线性函数的特点：}
+\begin{itemize}
+    \item \textbf{幂函数}($y = ax^b$)：当$b > 1$时曲线上凸，当$0 < b < 1$时曲线下凸。适用于描述物理量的标度关系。
+    \item \textbf{指数函数}($y = ae^{bx}$)：增长率与函数值成正比，适合描述具有"复利效应"的现象，如人口增长、细胞繁殖。
+    \item \textbf{对数函数}($y = a + b\ln(x)$)：随$x$增大，$y$增长速率减慢，适合描述边际递减现象。
+    \item \textbf{双曲线}($y = a + \frac{b}{x}$)：随$x$增大迅速接近水平渐近线，适合描述衰减过程。
+    \item \textbf{S型曲线}($y = \frac{1}{a+be^{-x}}$)：有上下限的增长过程，如技术扩散、学习曲线。
+    \item \textbf{分数线性函数}($y = \frac{x}{a+bx}$)：适合描述反应速率、吸附过程等。
+\end{itemize}
+
+\begin{table}[h!]
+\centering
+\caption{常见的可线性化非线性模型及其变换方法}
+\begin{tabular}{lllll}
+\toprule
+\textbf{函数名称} & \textbf{原始模型} & \textbf{变量变换} & \textbf{线性化后模型} & \textbf{参数关系} \\
+\midrule
+双曲线 & $y = a + \frac{b}{x}$ & $u=\frac{1}{x}, v=y$ & $v = a + bu$ & 直接对应 \\
+幂函数 & $y = ax^b$ & $u=\ln(x), v=\ln(y)$ & $v = \ln(a) + bu$ & $\alpha = \ln(a), \beta = b$ \\
+指数函数 & $y = ae^{bx}$ & $u=x, v=\ln(y)$ & $v = \ln(a) + bu$ & $\alpha = \ln(a), \beta = b$ \\
+对数函数 & $y = a + b\ln(x)$ & $u=\ln(x), v=y$ & $v = a + bu$ & 直接对应 \\
+S型曲线 & $y = \frac{1}{a+be^{-x}}$ & $u=e^{-x}, v=\frac{1}{y}$ & $v = a + bu$ & 直接对应 \\
+修正指数曲线 & $y = a + be^{cx}$ & $y_{i+1} - y_i = k(y_i - y_{i-1})$ & 特殊处理 & $k = e^c$ \\
+分数线性函数 & $y = \frac{x}{a+bx}$ & $u=x, v=\frac{x}{y}$ & $v = a + bu$ & 直接对应 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+这些非线性关系通过适当的变量变换，都可以转化为线性关系进行分析。例如，对指数函数取对数后，可得到线性关系：$\ln(y) = \ln(a) + bx$。
+
+\section{本章总结与知识网络}
+同学们，第八章我们学习了两个强大的统计工具：方差分析和回归分析。它们看似不同，但内在联系紧密。
+\begin{itemize}
+    \item \textbf{核心思想的共性}：两者都运用了\textbf{变异分解}的思想。通过将总变异（SST）分解为模型可以解释的部分（SSA或SSR）和模型不能解释的残差部分（SSE），来构建检验统计量（F统计量）。
+    \item \textbf{研究问题的侧重}：
+        \begin{itemize}
+            \item \textbf{方差分析}：处理的自变量是\textbf{定性/分类型}的（如不同的饲料、不同的产地）。它关心的是"不同组之间，均值有无差异？"
+            \item \textbf{回归分析}：处理的自变量是\textbf{定量/连续型}的（如温度、面积、投入资本）。它关心的是"因变量如何随着自变量的变化而变化？它们的关系是怎样的？"
+        \end{itemize}
+\end{itemize}
+实际上，方差分析可以被看作是一种特殊的回归分析，其中的分类型自变量可以用"虚拟变量"来表示。掌握了这两个工具，你们就具备了分析实验数据和探寻变量关系的核心能力。
+
+\subsection{关键公式汇总}
+
+\subsubsection{单因子方差分析}
+\begin{align*}
+\text{SST} &= \sum_{i=1}^{r} \sum_{j=1}^{m} (y_{ij} - \bar{y}_{\cdot\cdot})^2 & \text{总平方和} \\
+\text{SSA} &= m \sum_{i=1}^{r} (\bar{y}_{i\cdot} - \bar{y}_{\cdot\cdot})^2 & \text{组间平方和} \\
+\text{SSE} &= \sum_{i=1}^{r} \sum_{j=1}^{m} (y_{ij} - \bar{y}_{i\cdot})^2 & \text{组内平方和} \\
+F &= \frac{\text{MSA}}{\text{MSE}} = \frac{\text{SSA}/(r-1)}{\text{SSE}/[r(m-1)]} & \text{F统计量}
+\end{align*}
+
+\subsubsection{多重比较}
+\begin{align*}
+\text{HSD} &= q_{\alpha}(r, df_E) \cdot \sqrt{\frac{\text{MSE}}{m}} & \text{Tukey's HSD临界值} \\
+S_{ij} &= \sqrt{(r-1)F_{\alpha}(r-1, f_e)} \cdot \sqrt{\text{MSE}(\frac{1}{m_i} + \frac{1}{m_j})} & \text{Scheffé临界值}
+\end{align*}
+
+\subsubsection{方差齐性检验}
+\begin{align*}
+H &= \frac{\max_{1 \leq i \leq r} s_i^2}{\min_{1 \leq i \leq r} s_i^2} & \text{Hartley统计量} \\
+B &= \frac{M^2}{C} = \frac{(\sum f_i) \ln(s_p^2) - \sum_{i=1}^{r} f_i \ln(s_i^2)}{C} & \text{Bartlett统计量}
+\end{align*}
+
+\subsubsection{线性回归}
+\begin{align*}
+\hat{\beta}_1 &= \frac{\sum_{i=1}^{n} (x_i - \bar{x})(y_i - \bar{y})}{\sum_{i=1}^{n} (x_i - \bar{x})^2} = \frac{L_{xy}}{L_{xx}} & \text{斜率估计} \\
+\hat{\beta}_0 &= \bar{y} - \hat{\beta}_1 \bar{x} & \text{截距估计} \\
+R^2 &= 1 - \frac{\sum(y_i - \hat{y}_i)^2}{\sum(y_i - \bar{y})^2} = \frac{\text{SSR}}{\text{SST}} & \text{决定系数}
+\end{align*}
+
+希望这份讲义能帮助大家更好地理解和掌握本章内容。请务必多加练习，将理论与实际问题联系起来！
+
+% \appendix
+\section{双因子方差分析 (Two-Way ANOVA)}
+
+\subsection{引言}
+在实际研究中，我们常常需要同时考察两个因素对结果的影响。例如，研究不同肥料（因子A）和不同灌溉方式（因子B）对作物产量的影响。双因子方差分析（Two-Way ANOVA）正是用来解决这类问题的统计方法。
+
+\subsection{双因子方差分析模型}
+
+\begin{table}[h!]
+\centering
+\caption{双因子方差分析中的符号说明}
+\begin{tabular}{ll}
+\toprule
+\textbf{符号} & \textbf{含义} \\
+\midrule
+$y_{ijk}$ & 第$i$个A水平、第$j$个B水平下的第$k$次观测值 \\
+$\bar{y}_{ij\cdot}$ & 第$i$个A水平、第$j$个B水平下的平均值（$\frac{1}{n}\sum_{k=1}^{n}y_{ijk}$） \\
+$\bar{y}_{i\cdot\cdot}$ & 第$i$个A水平下的总平均值（$\frac{1}{bn}\sum_{j=1}^{b}\sum_{k=1}^{n}y_{ijk}$） \\
+$\bar{y}_{\cdot j\cdot}$ & 第$j$个B水平下的总平均值（$\frac{1}{an}\sum_{i=1}^{a}\sum_{k=1}^{n}y_{ijk}$） \\
+$\bar{y}_{\cdot\cdot\cdot}$ & 总体平均值（$\frac{1}{abn}\sum_{i=1}^{a}\sum_{j=1}^{b}\sum_{k=1}^{n}y_{ijk}$） \\
+\bottomrule
+\end{tabular}
+\end{table}
+\begin{table}[h!]
+\centering
+\caption{双因子方差分析数据结构示例（$a=3$, $b=2$, $n=2$）}
+\begin{tabular}{c|cc|c}
+\toprule
+\multirow{2}{*}{\textbf{因子A}} & \multicolumn{2}{c|}{\textbf{因子B}} & \multirow{2}{*}{\textbf{行均值}} \\
+\cline{2-3}
+& $B_1$ & $B_2$ & \\
+\midrule
+\multirow{2}{*}{$A_1$} & \cellcolor{blue!10}$y_{111}$, \cellcolor{blue!10}$y_{112}$ & \cellcolor{green!10}$y_{121}$, \cellcolor{green!10}$y_{122}$ & \multirow{2}{*}{$\bar{y}_{1\cdot\cdot}$} \\
+& \cellcolor{blue!10}$\bar{y}_{11\cdot}$ & \cellcolor{green!10}$\bar{y}_{12\cdot}$ & \\
+\hline
+\multirow{2}{*}{$A_2$} & \cellcolor{blue!20}$y_{211}$, \cellcolor{blue!20}$y_{212}$ & \cellcolor{green!20}$y_{221}$, \cellcolor{green!20}$y_{222}$ & \multirow{2}{*}{$\bar{y}_{2\cdot\cdot}$} \\
+& \cellcolor{blue!20}$\bar{y}_{21\cdot}$ & \cellcolor{green!20}$\bar{y}_{22\cdot}$ & \\
+\hline
+\multirow{2}{*}{$A_3$} & \cellcolor{blue!30}$y_{311}$, \cellcolor{blue!30}$y_{312}$ & \cellcolor{green!30}$y_{321}$, \cellcolor{green!30}$y_{322}$ & \multirow{2}{*}{$\bar{y}_{3\cdot\cdot}$} \\
+& \cellcolor{blue!30}$\bar{y}_{31\cdot}$ & \cellcolor{green!30}$\bar{y}_{32\cdot}$ & \\
+\hline
+\textbf{列均值} & \cellcolor{yellow!15}$\bar{y}_{\cdot 1\cdot}$ & \cellcolor{yellow!15}$\bar{y}_{\cdot 2\cdot}$ & \cellcolor{orange!15}$\bar{y}_{\cdot\cdot\cdot}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+假设有因子A（$a$个水平）和因子B（$b$个水平），每个处理组合有$n$次重复观测。我们用$y_{ijk}$表示第$i$个A水平、第$j$个B水平下的第$k$次观测值。双因子方差分析的数学模型为：
+
+$$y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \varepsilon_{ijk}$$
+
+其中：
+\begin{itemize}
+    \item $\mu$：总体均值，可以通过所有观测值的平均$\bar{y}_{\cdot\cdot\cdot}$估计
+    \item $\alpha_i$：因子A的第$i$个水平的主效应，$\sum_{i=1}^{a} \alpha_i = 0$，可以通过$\hat{\alpha}_i = \bar{y}_{i\cdot\cdot} - \bar{y}_{\cdot\cdot\cdot}$估计
+    \item $\beta_j$：因子B的第$j$个水平的主效应，$\sum_{j=1}^{b} \beta_j = 0$，可以通过$\hat{\beta}_j = \bar{y}_{\cdot j\cdot} - \bar{y}_{\cdot\cdot\cdot}$估计
+    \item $(\alpha\beta)_{ij}$：A和B的交互效应，$\sum_{i=1}^{a} (\alpha\beta)_{ij} = \sum_{j=1}^{b} (\alpha\beta)_{ij} = 0$，可以通过$\widehat{(\alpha\beta)}_{ij} = \bar{y}_{ij\cdot} - \bar{y}_{i\cdot\cdot} - \bar{y}_{\cdot j\cdot} + \bar{y}_{\cdot\cdot\cdot}$估计
+    \item $\varepsilon_{ijk}$：随机误差，假定$\varepsilon_{ijk} \sim N(0, \sigma^2)$且相互独立，可以通过$\hat{\varepsilon}_{ijk} = y_{ijk} - \bar{y}_{ij\cdot}$估计
+\end{itemize}
+
+\subsection{平方和分解}
+双因子方差分析中，总平方和SST可以分解为：
+$$\text{SST} = \text{SSA} + \text{SSB} + \text{SSAB} + \text{SSE}$$
+
+其中：
+\begin{itemize}
+    \item SSA：因子A的平方和，反映A的主效应
+    \item SSB：因子B的平方和，反映B的主效应
+    \item SSAB：交互作用的平方和，反映A和B的交互效应
+    \item SSE：误差平方和，反映随机误差
+\end{itemize}
+
+计算公式如下：
+\begin{align*}
+\text{SSA} &= bn\sum_{i=1}^{a} (\bar{y}_{i\cdot\cdot} - \bar{y}_{\cdot\cdot\cdot})^2 \\
+\text{SSB} &= an\sum_{j=1}^{b} (\bar{y}_{\cdot j\cdot} - \bar{y}_{\cdot\cdot\cdot})^2 \\
+\text{SSAB} &= n\sum_{i=1}^{a}\sum_{j=1}^{b} (\bar{y}_{ij\cdot} - \bar{y}_{i\cdot\cdot} - \bar{y}_{\cdot j\cdot} + \bar{y}_{\cdot\cdot\cdot})^2 \\
+\text{SSE} &= \sum_{i=1}^{a}\sum_{j=1}^{b}\sum_{k=1}^{n} (y_{ijk} - \bar{y}_{ij\cdot})^2
+\end{align*}
+
+各项自由度为：
+\begin{align*}
+df_A &= a - 1 \\
+df_B &= b - 1 \\
+df_{AB} &= (a-1)(b-1) \\
+df_E &= ab(n-1) \\
+df_T &= abn - 1
+\end{align*}
+
+\subsection{检验的构建}
+在双因子方差分析中，我们关心三个基本假设：
+
+\begin{enumerate}
+    \item $H_0^{A}$：因子A没有主效应，即$\alpha_1 = \alpha_2 = \ldots = \alpha_a = 0$
+    \item $H_0^{B}$：因子B没有主效应，即$\beta_1 = \beta_2 = \ldots = \beta_b = 0$
+    \item $H_0^{AB}$：因子A和B之间没有交互效应，即$(\alpha\beta)_{ij} = 0$ 对所有 $i,j$
+\end{enumerate}
+
+分别计算：
+\begin{align*}
+F_A &= \frac{\text{MSA}}{\text{MSE}} = \frac{\text{SSA}/df_A}{\text{SSE}/df_E} \sim F(df_A, df_E) \\
+F_B &= \frac{\text{MSB}}{\text{MSE}} = \frac{\text{SSB}/df_B}{\text{SSE}/df_E} \sim F(df_B, df_E) \\
+F_{AB} &= \frac{\text{MSAB}}{\text{MSE}} = \frac{\text{SSAB}/df_{AB}}{\text{SSE}/df_E} \sim F(df_{AB}, df_E)
+\end{align*}
+
+\begin{table}[h!]
+\centering
+\caption{双因子方差分析表}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{变异来源} & \textbf{平方和(SS)} & \textbf{自由度(df)} & \textbf{均方(MS)} & \textbf{F值} & \textbf{P值} \\
+\midrule
+因子A & SSA & $a-1$ & MSA & $F_A$ & $P_A$ \\
+因子B & SSB & $b-1$ & MSB & $F_B$ & $P_B$ \\
+交互作用A×B & SSAB & $(a-1)(b-1)$ & MSAB & $F_{AB}$ & $P_{AB}$ \\
+误差 & SSE & $ab(n-1)$ & MSE & & \\
+\midrule
+总计 & SST & $abn-1$ & & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{交互作用的理解}
+交互作用是双因子方差分析中最重要的概念之一。当交互作用显著时，一个因子的效应取决于另一个因子处于什么水平。例如，某种肥料的效果可能在湿润条件下很好，但在干旱条件下效果不佳。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    width=10cm,
+    height=6cm,
+    xlabel={因子B的水平},
+    ylabel={响应变量 $y$},
+    title={交互作用示意图},
+    symbolic x coords={B1, B2, B3},
+    xtick=data,
+    ymin=0, ymax=10,
+    legend pos=north west
+]
+
+% 无交互作用
+\addplot[mark=square*, blue, thick] coordinates {
+    (B1, 3) (B2, 5) (B3, 7)
+};
+\addlegendentry{A1 (无交互)};
+
+\addplot[mark=triangle*, blue, thick, dashed] coordinates {
+    (B1, 5) (B2, 7) (B3, 9)
+};
+\addlegendentry{A2 (无交互)};
+
+% 有交互作用
+\addplot[mark=square*, red, thick] coordinates {
+    (B1, 2) (B2, 7) (B3, 5)
+};
+\addlegendentry{A1 (有交互)};
+
+\addplot[mark=triangle*, red, thick, dashed] coordinates {
+    (B1, 8) (B2, 6) (B3, 9)
+};
+\addlegendentry{A2 (有交互)};
+
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+图中，蓝线表示无交互作用的情况：两条线平行，表示因子A的两个水平下，响应变量y随着因子B水平变化的趋势相同。红线表示有交互作用的情况：两条线不平行甚至交叉，表示因子A的不同水平下，响应变量y随因子B变化的趋势不同。
+
+\subsection{案例分析：农作物产量研究}
+考虑一个研究不同肥料类型（因子A，3个水平）和灌溉频率（因子B，2个水平）对小麦产量的影响的实验。每个处理组合重复4次，得到如下数据（单位：kg/plot）：
+
+\begin{table}[h!]
+\centering
+\caption{小麦产量数据（kg/plot）}
+\begin{tabular}{c|cc|cc|cc}
+\toprule
+\multirow{2}{*}{\textbf{重复}} & \multicolumn{2}{c|}{\textbf{肥料A1}} & \multicolumn{2}{c|}{\textbf{肥料A2}} & \multicolumn{2}{c}{\textbf{肥料A3}} \\
+& \textbf{灌溉B1} & \textbf{灌溉B2} & \textbf{灌溉B1} & \textbf{灌溉B2} & \textbf{灌溉B1} & \textbf{灌溉B2} \\
+\midrule
+1 & 32.4 & 40.3 & 37.2 & 45.3 & 29.8 & 42.6 \\
+2 & 30.1 & 38.9 & 35.5 & 44.1 & 28.7 & 41.8 \\
+3 & 33.6 & 41.2 & 38.1 & 46.5 & 30.2 & 43.5 \\
+4 & 31.5 & 39.5 & 36.8 & 44.9 & 29.5 & 42.3 \\
+\midrule
+平均值 & 31.9 & 40.0 & 36.9 & 45.2 & 29.5 & 42.6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+经过方差分析计算，我们得到：
+
+\begin{table}[h!]
+\centering
+\caption{小麦产量的双因子方差分析表}
+\begin{tabular}{lccccc}
+\toprule
+\textbf{变异来源} & \textbf{SS} & \textbf{df} & \textbf{MS} & \textbf{F} & \textbf{P} \\
+\midrule
+肥料(A) & 148.63 & 2 & 74.31 & 52.7 & $<0.001$ \\
+灌溉(B) & 648.45 & 1 & 648.45 & 460.3 & $<0.001$ \\
+交互作用(A×B) & 19.22 & 2 & 9.61 & 6.8 & $0.006$ \\
+误差 & 25.34 & 18 & 1.41 & & \\
+\midrule
+总计 & 841.64 & 23 & & & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{结论}：
+\begin{itemize}
+    \item 肥料类型对产量有显著影响（$F=52.7, p<0.001$）
+    \item 灌溉频率对产量有显著影响（$F=460.3, p<0.001$）
+    \item 肥料类型和灌溉频率之间存在显著的交互作用（$F=6.8, p=0.006$）
+\end{itemize}
+
+交互作用的存在表明：不同肥料的效果取决于灌溉条件。从数据可以看出，肥料A2在两种灌溉条件下都产量最高，但在高频灌溉(B2)条件下，三种肥料的差异变得更加明显。
+
+\subsection{无重复情况}
+当每个处理组合只有一次观测（无重复）时，我们无法估计交互效应和误差项。此时，通常假设交互效应不存在，并用交互效应的平方和代替误差平方和。这种情况下的方差分析称为\textbf{无重复双因子方差分析}。
+
+\subsection{结语}
+双因子方差分析是单因子方差分析的自然扩展，它允许我们同时考察两个因素及其交互作用对响应变量的影响。这种分析方法在农业、医学、心理学、工业等领域有广泛应用。
+
+在实际研究中，我们可能需要考虑三个或更多因素的影响，这就引出了多因子方差分析（Multi-Way ANOVA）。随着因素数量的增加，交互效应的解释和计算会变得更加复杂，通常需要借助统计软件来完成。
+
+\end{document} 

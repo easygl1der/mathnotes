@@ -1,0 +1,364 @@
+\section{Diffusion}
+
+See Partial Differential Equations in Action, Complements and Exercises.
+
+The \textbf{diffusion equation} (heat equation) is
+\[
+u_{t}-\underbrace{ D }_{ \text{const.} }\Delta u=f
+\]
+defined on a cylindrical domain $Q_{T}=\Omega \times(0,T)$, where $\Omega$ is a domain\footnote{connected, open subset} of $\mathbb{R}^{n}$, and the Laplacian $\Delta$ is taken w.r.t. the spatial variables $\mathbf{x}$ only.
+
+\subsection{Cauchy-Dirichlet}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Diffusion-2025050311.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Diffusion-2025050311.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Diffusion-2025050311.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Diffusion-2025050311.png}
+% \caption{}
+\label{}
+\end{figure}
+
+为了保证一个函数的傅里叶级数收敛，该函数需要满足一定的条件。以下是一些常见的条件：
+
+\begin{enumerate}
+	\item \textbf{狄利克雷条件（Dirichlet Conditions）：}
+一个周期为 $2\pi$ 的函数 $f(x)$，如果满足以下条件，则其傅里叶级数收敛：
+	\begin{itemize}
+		\item 在任何有限区间内，$f(x)$ 只有有限个不连续点。
+		\item 在任何有限区间内，$f(x)$ 只有有限个极大值和极小值。
+		\item $f(x)$ 在任何有限区间内是绝对可积的，即 $\int_{-\pi}^{\pi} |f(x)| dx < \infty$。
+	\end{itemize}
+如果 $f(x)$ 在 $x$ 处连续，则傅里叶级数收敛到 $f(x)$；如果 $f(x)$ 在 $x$ 处有跳跃不连续点，则傅里叶级数收敛到 $\frac{f(x^+) + f(x^-)}{2}$，其中 $f(x^+)$ 和 $f(x^-)$ 分别表示 $f(x)$ 在 $x$ 处的右极限和左极限。
+	\item \textbf{更强的条件：}
+	\begin{itemize}
+		\item 如果 $f(x)$ 是连续的，并且 $f'(x)$ 存在且连续，那么 $f(x)$ 的傅里叶级数一致收敛到 $f(x)$。
+		\item 如果 $f(x)$ 是平方可积的，即 $\int_{-\pi}^{\pi} |f(x)|^2 dx < \infty$，那么 $f(x)$ 的傅里叶级数在均方意义下收敛到 $f(x)$。
+	\end{itemize}
+\end{enumerate}
+
+总的来说，狄利克雷条件是最经典和常用的判断傅里叶级数收敛的条件。
+
+\subsection{Cauchy-Neumann}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-Diffusion-2025050311.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-Diffusion-2025050311.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-Diffusion-2025050311.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-Diffusion-2025050311.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{definition}[Bessel's equality]
+令$H$是一个希尔伯特空间，并设$\left\{e_{k}\right\}_{k=1}^{\infty}$是$H$的一个正交基。那么，对于$H$中的任何$x$，\textbf{Bessel 不等式}成立
+\[
+\|x\|^{2}=\sum_{k=1}^{\infty}\left|\left\langle x, e_{k}\right\rangle\right|^{2}
+\]
+\end{definition}
+\begin{definition}[Bessel's equality]
+Let $f$ be a function on $[-\pi, \pi]$ such that $\int_{-\pi}^\pi |f(x)|^2 dx < \infty$. Then
+\[
+\frac{1}{2 \pi} \int_{-\pi}^\pi |f(x)|^2 dx = |a_0|^2 + \sum_{n=1}^\infty (|a_n|^2 + |b_n|^2)
+\]where
+\[
+a_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \cos(nx) dx, \quad b_n = \frac{1}{\pi} \int_{-\pi}^\pi f(x) \sin(nx) dx
+\]
+\end{definition}
+\begin{theorem}[Poincaré's inequality]
+设 $\Omega \subset \mathbb{R}^n$ 是一个有界开集。存在一个常数 $C$，使得对于所有 $u \in H_0^1(\Omega)$，有
+\[
+\|u\|_{L^2(\Omega)} \leq C\|\nabla u\|_{L^2(\Omega)}.
+\]
+\end{theorem}
+\begin{proof}
+设 $\Omega \subset \mathbb{R}^n$ 是一个有界开集。那么存在一个 $R > 0$，使得 $\Omega \subset B(0, R)$。设 $u \in H_0^1(\Omega)$。我们可以将 $u$ 延拓到 $B(0, R)$ 上，使得 $u \in H_0^1(B(0, R))$。那么 $u$ 在 $\partial B(0, R)$ 上为 0。因此，我们可以将 $u$ 延拓到 $\mathbb{R}^n$ 上，使得 $u \in H^1(\mathbb{R}^n)$。
+
+对于 $x \in \mathbb{R}^n$，有
+\[
+u(x) = \int_{-\infty}^{x_1} \frac{\partial u}{\partial x_1}(y_1, x_2, \ldots, x_n) dy_1.
+\]
+因此，
+\[
+|u(x)| \leq \int_{-\infty}^{\infty} \left|\frac{\partial u}{\partial x_1}(y_1, x_2, \ldots, x_n)\right| dy_1.
+\]
+利用 Cauchy-Schwarz 不等式，我们有
+\[
+|u(x)|^2 \leq \left(\int_{-\infty}^{\infty} \left|\frac{\partial u}{\partial x_1}(y_1, x_2, \ldots, x_n)\right|^2 dy_1\right) \left(\int_{-\infty}^{\infty} 1 dy_1\right).
+\]
+由于 $\Omega$ 是有界的，所以 $\int_{-\infty}^{\infty} 1 dy_1 < \infty$。因此，
+\[
+|u(x)|^2 \leq C \int_{-\infty}^{\infty} \left|\frac{\partial u}{\partial x_1}(y_1, x_2, \ldots, x_n)\right|^2 dy_1.
+\]
+在 $\Omega$ 上积分，我们有
+\[
+\int_{\Omega} |u(x)|^2 dx \leq C \int_{\Omega} \int_{-\infty}^{\infty} \left|\frac{\partial u}{\partial x_1}(y_1, x_2, \ldots, x_n)\right|^2 dy_1 dx.
+\]
+因此，
+\[
+\|u\|_{L^2(\Omega)}^2 \leq C \int_{\Omega} |\nabla u(x)|^2 dx = C \|\nabla u\|_{L^2(\Omega)}^2.
+\]
+取平方根，我们有
+\[
+\|u\|_{L^2(\Omega)} \leq C \|\nabla u\|_{L^2(\Omega)}.
+\]
+\end{proof}
+
+\begin{theorem}[Poincaré不等式（n=1）]
+设$u \in H_{0}^{1}(a, b)$，其中$-\infty<a<b<\infty$。那么
+\[
+\|u\|_{L^{2}(a, b)} \leq \frac{b-a}{\pi}\left\|u^{\prime}\right\|_{L^{2}(a, b)}
+\]
+\end{theorem}
+\begin{proof}
+通过延拓$u$为$[-\ell, \ell]$上的奇函数，其中$\ell = (b-a)/2$，我们有$u(-\ell)=u(\ell)=0$。因此，$u$的傅里叶级数为
+\[
+u(x)=\sum_{n=1}^{\infty} a_{n} \sin \left(\frac{n \pi x}{\ell}\right)
+\]
+其中
+\[
+a_{n}=\frac{2}{\ell} \int_{0}^{\ell} u(x) \sin \left(\frac{n \pi x}{\ell}\right) d x .
+\]
+Parseval恒等式给出
+\[
+\int_{-\ell}^{\ell}|u(x)|^{2} d x=\frac{\ell}{2} \sum_{n=1}^{\infty}\left|a_{n}\right|^{2} .
+\]
+此外，形式上的导数为
+\[
+u^{\prime}(x)=\sum_{n=1}^{\infty} a_{n} \frac{n \pi}{\ell} \cos \left(\frac{n \pi x}{\ell}\right)
+\]
+因此
+\[
+\int_{-\ell}^{\ell}\left|u^{\prime}(x)\right|^{2} d x=\frac{\ell}{2} \sum_{n=1}^{\infty}\left|a_{n}\right|^{2} \frac{n^{2} \pi^{2}}{\ell^{2}} .
+\]
+由于$n \geq 1$，我们有
+\[
+\int_{-\ell}^{\ell}|u(x)|^{2} d x \leq \frac{\ell^{2}}{\pi^{2}} \int_{-\ell}^{\ell}\left|u^{\prime}(x)\right|^{2} d x
+\]
+或者
+\[
+\|u\|_{L^{2}(-\ell, \ell)} \leq \frac{\ell}{\pi}\left\|u^{\prime}\right\|_{L^{2}(-\ell, \ell)} .
+\]
+由于$u$在$(a,b)$外为零，且$\ell = (b-a)/2$，我们得到
+\[
+\|u\|_{L^{2}(a, b)} \leq \frac{b-a}{2 \pi}\left\|u^{\prime}\right\|_{L^{2}(a, b)} .
+\]
+\end{proof}
+
+\subsection{Cauchy-Neumann; non-homogeneous equation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Diffusion-2025050312.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Diffusion-2025050312.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-Diffusion-2025050312.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Non-homogeneous Neumann}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Diffusion-2025050312.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Diffusion-2025050312.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Diffusion-2025050312.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Maximum principle}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Diffusion-2025050315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+If $u_{t}-D\Delta u=0$ on $\Omega$, then $u$ reaches its maximum and minimum on the boundary $\partial_{p}\Omega$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Diffusion-2025050315.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Diffusion-2025050315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Asumptotic behaviour}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Diffusion-2025050315.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Diffusion-2025050315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Applying the notion of fundamental solution}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-Diffusion-2025050315.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-Diffusion-2025050315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Problems on the half-line; reflection method}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-Diffusion-2025050316.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-Diffusion-2025050316.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-Diffusion-2025050316.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{9-Diffusion-2025050316.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Use of Fourier and Laplace transforms}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-Diffusion-2025050315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Fourier sine transform}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-Diffusion-2025050315.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{10-Diffusion-2025050315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Problems in dimension higher than one}
+
+We separate the variables twice.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Diffusion-2025050316.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Diffusion-2025050316.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Diffusion-2025050316.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Fourier transform on the half-plane}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Diffusion-2025050316.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-Diffusion-2025050316.png}
+% \caption{}
+\label{}
+\end{figure}

@@ -1,0 +1,94 @@
+\section{Poincare Inequality}
+
+庞加莱不等式（Poincaré Inequality）通常叙述于有界区域上。对于整个 $\mathbb{R}^n$ 空间，标准形式的庞加莱不等式（即 $\|u\|_{L^p} \le C \|\nabla u\|_{L^p}$）通常不成立，除非对函数 $u$ 施加特定条件，例如具有紧支撑（compact support）或者属于特定的加权 Sobolev 空间。
+
+一个在 $\mathbb{R}^n$ 上下文中最直接理解的庞加莱不等式版本是针对具有紧支撑的函数。我们将证明这个版本。
+
+\begin{theorem}[$\mathbb{R}^n$ 上的庞加莱不等式 - 紧支撑函数版本]
+设 $u \in C_c^1(\mathbb{R}^n)$，即 $u$ 是 $\mathbb{R}^n$ 上具有紧支撑的连续可微函数（也可以推广到 Sobolev 空间 $W_c^{1,p}(\mathbb{R}^n)$）。令 $\text{supp}(u)$ 表示 $u$ 的支撑集。则存在一个常数 $C > 0$，使得
+\[
+\|u\|_{L^p(\mathbb{R}^n)} \le C \|\nabla u\|_{L^p(\mathbb{R}^n)}
+\]
+其中常数 $C$ 依赖于 $u$ 的支撑集的大小（例如，其直径或包含该支撑集的某个立方体的边长）。
+\end{theorem}
+为了简便，我们考虑 $p \ge 1$ 的情况。
+因为 $u$ 具有紧支撑，所以存在一个足够大的开立方体 $Q = (-M, M)^n \subset \mathbb{R}^n$，使得 $\text{supp}(u) \subset Q$。这意味着 $u$ 在 $Q$ 的边界 $\partial Q$ 上为零。立方体的边长为 $L=2M$。
+
+对于任意 $x = (x_1, x_2, \dots, x_n) \in Q$，由于 $u(-M, x_2, \dots, x_n) = 0$（因为点 $(-M, x_2, \dots, x_n)$ 在 $Q$ 的边界上，而 $u$ 在边界外为零），我们可以沿 $x_1$ 方向使用微积分基本定理：
+\[
+u(x_1, x_2, \dots, x_n) = \int_{-M}^{x_1} \frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n) \, d\xi_1
+\]
+取绝对值：
+\[
+|u(x_1, x_2, \dots, x_n)| \le \int_{-M}^{x_1} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right| \, d\xi_1
+\]
+由于积分区间 $[-M, x_1]$ 包含于 $[-M, M]$，并且被积函数非负，我们可以扩大积分区间：
+\[
+|u(x)| \le \int_{-M}^{M} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right| \, d\xi_1
+\]
+现在，我们对 $|u(x)|^p$ 在立方体 $Q$ 上积分。首先固定 $x_2, \dots, x_n$，对 $x_1$ 积分：
+\[
+\int_{-M}^{M} |u(x_1, x_2, \dots, x_n)|^p \, dx_1 \le \int_{-M}^{M} \left( \int_{-M}^{M} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right| \, d\xi_1 \right)^p \, dx_1
+\]
+令 $K(x_2, \dots, x_n) = \int_{-M}^{M} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right| \, d\xi_1$。这是一个关于 $x_1$ 的常数。
+所以，
+\[
+\int_{-M}^{M} |u(x_1, x_2, \dots, x_n)|^p \, dx_1 \le K(x_2, \dots, x_n)^p \int_{-M}^{M} \, dx_1 = (2M) \cdot K(x_2, \dots, x_n)^p
+\]
+现在应用 Jensen 不等式（或 Hölder 不等式：$\int f \cdot 1 \le (\int f^p)^{1/p} (\int 1^q)^{1/q}$，这里 $f = |\frac{\partial u}{\partial \xi_1}|$，$1/p + 1/q = 1$）：
+对于 $K(x_2, \dots, x_n) = \int_{-M}^{M} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right| \, d\xi_1$，我们有
+\[
+K(x_2, \dots, x_n)^p = \left( \int_{-M}^{M} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right| \cdot 1 \, d\xi_1 \right)^p
+\]
+\[
+\le \left( \left( \int_{-M}^{M} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right|^p \, d\xi_1 \right)^{1/p} \left( \int_{-M}^{M} 1^q \, d\xi_1 \right)^{1/q} \right)^p
+\]
+\[
+= \left( \int_{-M}^{M} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right|^p \, d\xi_1 \right) \cdot (2M)^{p/q}
+\]
+由于 $1/p + 1/q = 1$, $p/q = p(1-1/p) = p-1$。
+所以，
+\[
+K(x_2, \dots, x_n)^p \le (2M)^{p-1} \int_{-M}^{M} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right|^p \, d\xi_1
+\]
+代回到关于 $x_1$ 的积分不等式：
+\[
+\int_{-M}^{M} |u(x_1, x_2, \dots, x_n)|^p \, dx_1 \le (2M) \cdot (2M)^{p-1} \int_{-M}^{M} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right|^p \, d\xi_1
+\]
+\[
+= (2M)^p \int_{-M}^{M} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right|^p \, d\xi_1
+\]
+现在，我们在 $Q$ 的其余维度上积分 (即对 $dx_2 \dots dx_n$ 积分)：
+\[
+\int_{(-M,M)^{n-1}} \left( \int_{-M}^{M} |u(x_1, \dots, x_n)|^p \, dx_1 \right) \, dx_2 \dots dx_n
+\]
+\[
+\le \int_{(-M,M)^{n-1}} (2M)^p \left( \int_{-M}^{M} \left|\frac{\partial u}{\partial \xi_1}(\xi_1, x_2, \dots, x_n)\right|^p \, d\xi_1 \right) \, dx_2 \dots dx_n
+\]
+这给出：
+\[
+\int_Q |u(x)|^p \, dx \le (2M)^p \int_Q \left|\frac{\partial u}{\partial x_1}(x)\right|^p \, dx
+\]
+由于 $\left|\frac{\partial u}{\partial x_1}(x)\right|^p \le |\nabla u(x)|^p = \sum_{i=1}^n \left|\frac{\partial u}{\partial x_i}(x)\right|^p$，我们可以得到：
+\[
+\int_Q |u(x)|^p \, dx \le (2M)^p \int_Q |\nabla u(x)|^p \, dx
+\]
+因为 $\text{supp}(u) \subset Q$，所以 $u$ 在 $Q$ 之外为零，$\nabla u$ 也在 $Q$ 之外（几乎处处）为零。因此，积分可以扩展到整个 $\mathbb{R}^n$：
+\[
+\|u\|_{L^p(\mathbb{R}^n)}^p \le (2M)^p \|\nabla u\|_{L^p(\mathbb{R}^n)}^p
+\]
+取 $p$ 次根：
+\[
+\|u\|_{L^p(\mathbb{R}^n)} \le (2M) \|\nabla u\|_{L^p(\mathbb{R}^n)}
+\]
+这里的常数 $C = 2M = L$ 是包含 $u$ 支撑集的立方体的边长。更一般地，常数 $C$ 可以取为 $u$ 支撑集在某个方向上的最大长度，或者其直径。
+
+重要说明：
+
+\begin{enumerate}
+	\item \textbf{常数的依赖性：} 这个版本的庞加莱不等式的常数 $C$ 依赖于函数 $u$ 支撑集的大小。对于支撑集越来越大的函数序列，这个常数会趋于无穷，这与有界区域上的庞加莱不等式常数仅依赖于区域的几何性质不同。
+	\item \textbf{一般 $\mathbb{R}^n$ 情况：} 如果不对 $u$ 的行为（如紧支撑或在无穷远处衰减）做任何假设，标准形式的庞加莱不等式在 $\mathbb{R}^n$ 上是不成立的。例如，一个非零常数函数 $u(x)=c \neq 0$ 的梯度为零，但其 $L^p(\mathbb{R}^n)$ 范数为无穷大。
+	\item \textbf{相关不等式：} 在 $\mathbb{R}^n$ 上，与函数及其梯度相关且不依赖于支撑集大小（或具有不同类型依赖）的更典型不等式是 Sobolev 不等式（例如 Gagliardo-Nirenberg-Sobolev 不等式），它通常将 $W^{1,p}(\mathbb{R}^n)$ 空间嵌入到某个 $L^q(\mathbb{R}^n)$ 空间中，其中 $q$ 可能不等于 $p$。
+\end{enumerate}
+
+上面证明的是在 $\mathbb{R}^n$ 上针对紧支撑函数最直接和常见的“庞加莱不等式”形式。

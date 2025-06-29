@@ -1,0 +1,246 @@
+\section{Outer measure: to construct Lebesgue measure}
+
+$\{ I_k \}_{k=1}^{\infty}$ is a countable collection of nonempty open, bounded intervals that covers $A$. Define the \textbf{outer measure} of $A$ to be
+\[
+m^{*}(A)\coloneqq \inf \left\{  \sum_{k=1}^{\infty} l(I_k):A\subseteq \bigcup_{k=1}^{\infty} I_k  \right\}
+\]
+The proof of countably subadditivity is very classic, i.e. check that
+\[
+m^{*}\left( \bigcup_{k=1}^{\infty} E_k \right)\leq \sum_{k=1}^{\infty} m^{*}(E_k)
+\]
+By the definition of outer measure, for any given $\epsilon>0$, there is a collection $\{ I_{k,i} \}_{i=1}^{\infty}$ for each $k$, such that
+\[
+m^{*}(E_k)\leq \sum_{i=1}^{\infty} l(I_{k,i})+\epsilon/2^{k}
+\]
+Then $\{ I_{k,i} \}_{k,i}$ is a open cover of $\bigcup_{k=1}^{\infty}E_k$, thus by the definition of $m^{*}\left( \bigcup_{k=1}^{\infty}E_k \right)$,
+\[
+m^{*}\left( \bigcup_{k=1}^{\infty} E_k \right)\leq \sum_{i,k}l(I_{k,i})+\epsilon=\sum_{k=1}^{\infty} \left( \sum_{i=1}^{\infty} l(I_{k,i})+\epsilon/2^{k} \right)=\sum_{k=1}^{\infty} m^{*}(E_k)
+\]
+\subsection{Definition of measurable set}
+
+A set $E$ is said to be \textbf{measurable} provided for any set $A$,
+\[
+m^{*}(A)=m^{*}(A\cap E)+m^{*}(A\cap E^{C})
+\]
+Clearly, $\text{LHS}\leq \text{RHS}$, it suffices to check that
+\[
+m^{*}(A)\geq m^{*}(A\cap E)+m^{*}(A\cap E^{C})
+\]
+Clearly any set of outer measure 0 is measurable, since $m^{*}(A\cap E)\leq m^{*}(E)=0$, $m^{*}(A\cap E^{C})\leq m^{*}(A)$.
+
+The proof of measurablity preserving under countable union is classic. Let $E$ be a countable union of measurable sets $\{ E_k \}_{k=1}^{\infty}$. WLOG, assume that $\{ E_k \}$ are disjoint, then the proof is routine.
+
+The collection $\mathcal{M}$ of measurable sets is a sigma-alegbra containing all the Borel sets, i.e. each $G_{\delta}$ and $F_{\sigma}$ sets.
+
+\subsection{Excision property}
+
+If $A$ is a \underline{measurable} set of finite outer measure contained in $B$, then
+\[
+\underbrace{ m^{*}(B\sim A) }_{ =m^{*}(B\cap A^{C}) }=m^{*}(B)-\underbrace{ m^{*}(A) }_{ =m^{*}(B\cap A) }
+\]
+\subsection{Measurablility: Approximation by \texorpdfstring{$G_{\delta}$}{G_delta} (outer) and \texorpdfstring{$F_{\sigma}$}{F_sigma} (inner) sets}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Construction of measure-2025032810.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Definition of Lebesgue measure}
+
+If $E$ is a measurable set then its Lebesgue measure is defined by
+\[
+m(E)=m^{*}(E)
+\]
+i.e.
+\[
+m=\left.m^{*}\right|_{\mathcal{M}}
+\]
+\subsection{Nonmeasurable sets}
+
+It's natural to be interested about the sets that is not measurable.
+
+\begin{theorem}[Vitali]
+Any set $E$ of real numbers with positive outer measure contains a subset that fails to be measurable.
+\end{theorem}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\section{General Measure Spaces}
+
+\subsection{Definition of measurable space}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Properties: Finite Additivity, Monotonicity, Excision, Countable Monotonicity, Continuity of Measure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Borel-Cantelli Lemma}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Definition of \texorpdfstring{$\sigma$}{sigma} -finite, complete}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+For example, $(-\infty,\infty)$ is $\sigma$ -finite under the Lebesgue measure on $\mathbb{R}^{1}$.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{9-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+The Lebesgue measure restricted to Borel sets on $\mathbb{R}^{1}$ is not complete, since a Borel sets with measure zero contains a subsets that is not Borel, see royden page 52.
+
+\subsection{Signed measure}
+
+See evans 偏微分方程笔记 Chap 3 Appendix Measures.
+
+\section{The Carathéodory measure induced by a outer measure}
+
+We now define the general concept of an outer measure and of measurability of a set with respect to an outer measure, and show that the Carathéodory strategy for the construction of Lebesgue measure on the real line is feasible in general.
+
+\subsection{Definition of outer measure, measurable sets}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{10-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{11-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+The union of a countable collection of measurable sets is measurable.
+
+\subsection{Construction by restriction}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{12-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{The Construction of Outer Measure}
+
+The definition of outer measure before in this section is by properties, while the following is by construction. We can construct $\mu^{*}$ by a \underline{set function} (not measure) $\mu$.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{13-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsubsection{Carathéodory measure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{14-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Defintion of premeasure, closed collection, semiring}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{15-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{16-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{20-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Carathéodory extension of set function}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{18-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{19-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Unique extension to a premeasure}
+
+We show that a \underline{semiring} $S$ has the property that every premeasure on $S$ has a unique extension to a \underline{premeasure} on a collection of sets that is \underline{closed} with respect to the formation of relative complements.
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{21-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsubsection{The Carathéodory-Hahn Theorem}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{22-Construction of measure-2025032811.png}
+% \caption{}
+\label{}
+\end{figure}

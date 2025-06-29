@@ -1,0 +1,466 @@
+\section{Chapter 9 Summary: Inferences About Normal Linear Models}
+
+This chapter covers analysis of variance (ANOVA), regression, and related inference procedures for normal linear models. These are among the most widely used statistical methods.
+
+\subsection{9.1 Introduction}
+
+\begin{itemize}
+	\item \textbf{Linear Models:} Models where the mean response is linear in parameters (even if nonlinear in variables)
+	\item \textbf{Quadratic Forms:} Used extensively in ANOVA theory
+	\begin{itemize}
+		\item General form: \[
+q(X_1, \ldots, X_n) = \sum_{i=1}^n \sum_{j=1}^n X_i a_{ij} X_j
+\]
+		\item Sample variance is a quadratic form: \[
+(n-1)S^2 = \sum_{i=1}^n X_i^2 - \frac{1}{n}\left(\sum_{i=1}^n X_i\right)^2
+\]
+	\end{itemize}
+\end{itemize}
+
+\subsection{9.2 One-Way ANOVA}
+
+\subsubsection{Model}
+\[
+X_{ij} = \mu_j + e_{ij}, \quad i=1,\ldots,n_j, \; j=1,\ldots,b
+\]
+where $e_{ij} \sim \text{iid } N(0, \sigma^2)$.
+
+\subsubsection{Hypotheses}
+\[
+H_0: \mu_1 = \mu_2 = \cdots = \mu_b \quad \text{vs} \quad H_1: \mu_j \neq \mu_{j'} \text{ for some } j \neq j'
+\]
+
+\begin{theorem}[\textbf{One-Way ANOVA F-Test}]
+The test statistic is:
+\[
+F = \frac{Q_4/(b-1)}{Q_3/(n-b)}
+\]
+where:
+	\begin{itemize}
+		\item $Q_4 = \sum_{j=1}^b n_j(\bar{X}_{\cdot j} - \bar{X}_{\cdot \cdot})^2$ (between groups sum of squares)
+		\item $Q_3 = \sum_{j=1}^b \sum_{i=1}^{n_j}(X_{ij} - \bar{X}_{\cdot j})^2$ (within groups sum of squares)
+	\end{itemize}
+Under $H_0$: $F \sim F(b-1, n-b)$
+\end{theorem}
+\subsubsection{Problem-Solving Approach}
+
+\begin{enumerate}
+	\item \textbf{Check assumptions:} Normality, equal variances, independence
+	\item \textbf{Compute group means:} $\bar{X}_{\cdot j} = \frac{1}{n_j}\sum_{i=1}^{n_j} X_{ij}$
+	\item \textbf{Calculate sums of squares:}
+	\begin{itemize}
+		\item Total: $Q = \sum_{j=1}^b \sum_{i=1}^{n_j}(X_{ij} - \bar{X}_{\cdot \cdot})^2$
+		\item Between: $Q_4 = \sum_{j=1}^b n_j(\bar{X}_{\cdot j} - \bar{X}_{\cdot \cdot})^2$
+		\item Within: $Q_3 = Q - Q_4$
+	\end{itemize}
+	\item \textbf{Identity:} $Q = Q_3 + Q_4$ (total = within + between)
+\end{enumerate}
+
+\subsection{9.3 Noncentral \texorpdfstring{$\chi^2$}{chi^2} and \texorpdfstring{$F$}{F}-Distributions}
+
+\subsubsection{Noncentral Chi-Square}
+
+\begin{definition}[\textbf{Noncentral $\chi^2$ Distribution}]
+A random variable has $\chi^2(r, \theta)$ distribution if its mgf is:
+\[
+M(t) = \frac{1}{(1-2t)^{r/2}} e^{t\theta/(1-2t)}, \quad t < \frac{1}{2}
+\]
+where $r$ = degrees of freedom, $\theta$ = noncentrality parameter.
+\end{definition}
+\begin{itemize}
+	\item \textbf{Mean:} $E(Y) = r + \theta$
+	\item \textbf{When $\theta = 0$:} Reduces to central $\chi^2(r)$
+	\item \textbf{Noncentrality parameter:} $\theta = \frac{1}{\sigma^2}\sum_{i=1}^n \mu_i^2$ for $\sum X_i^2/\sigma^2$ where $X_i \sim N(\mu_i, \sigma^2)$
+\end{itemize}
+
+\subsubsection{Noncentral F-Distribution}
+
+If $U \sim \chi^2(r_1, \theta)$ and $V \sim \chi^2(r_2)$ independently, then:
+\[
+F = \frac{r_2 U}{r_1 V} \sim F(r_1, r_2, \theta)
+\]
+
+\textbf{Power Analysis:} Use noncentral distributions to compute power of ANOVA tests.
+
+\subsection{9.4 Multiple Comparisons}
+
+When making multiple pairwise comparisons, need to control overall error rate.
+
+\subsubsection{Bonferroni Procedure}
+
+\begin{definition}[\textbf{Bonferroni Correction}]
+For $k$ comparisons at overall level $\alpha$, use individual level $\alpha/k$:
+\[
+\bar{X}_{\cdot j} - \bar{X}_{\cdot j'} \pm t_{\alpha/(2k), n-b} \hat{\sigma}_\Omega \sqrt{\frac{1}{n_j} + \frac{1}{n_{j'}}}
+\]
+\end{definition}
+\subsubsection{Tukey's Procedure}
+
+\begin{definition}[\textbf{Tukey-Kramer Method}]
+Uses studentized range distribution:
+\[
+\bar{X}_{\cdot j} - \bar{X}_{\cdot j'} \pm \frac{q_{1-\alpha,b,n-b}}{\sqrt{2}} \hat{\sigma}_\Omega \sqrt{\frac{1}{n_j} + \frac{1}{n_{j'}}}
+\]
+\end{definition}
+\subsubsection{Fisher's PLSD}
+
+Two-stage procedure:
+
+\begin{enumerate}
+	\item \textbf{Stage 1:} Overall F-test at level $\alpha$
+	\item \textbf{Stage 2:} If reject, use standard t-intervals for all pairs
+\end{enumerate}
+
+\subsection{9.5 Two-Way ANOVA}
+
+\subsubsection{Additive Model}
+\[
+\mu_{ij} = \mu + \alpha_i + \beta_j
+\]
+where $\sum_{i=1}^a \alpha_i = 0$, $\sum_{j=1}^b \beta_j = 0$.
+
+\subsubsection{Interaction Model}
+\[
+\mu_{ij} = \mu + \alpha_i + \beta_j + \gamma_{ij}
+\]
+where additionally $\sum_{i=1}^a \gamma_{ij} = \sum_{j=1}^b \gamma_{ij} = 0$.
+
+\subsubsection{Hypotheses and Tests}
+
+\begin{enumerate}
+	\item \textbf{Interaction:} $H_{0AB}: \gamma_{ij} = 0$ for all $i,j$
+\[
+F_{AB} = \frac{\text{MS}_{AB}}{\text{MS}_E} \sim F((a-1)(b-1), ab(c-1))
+\]
+	\item \textbf{Main Effects (if no interaction):}
+	\begin{itemize}
+		\item Factor A: $H_{0A}: \alpha_i = 0$ for all $i$
+		\item Factor B: $H_{0B}: \beta_j = 0$ for all $j$
+	\end{itemize}
+\end{enumerate}
+
+\subsubsection{Diagnostic Tools}
+
+\begin{itemize}
+	\item \textbf{Mean Profile Plots:} Parallel lines indicate no interaction
+	\item \textbf{Residual Analysis:} Check model assumptions
+\end{itemize}
+
+\subsection{9.6 Regression Analysis}
+
+\subsubsection{Simple Linear Model}
+\[
+Y_i = \alpha + \beta(x_i - \bar{x}) + e_i, \quad e_i \sim \text{iid } N(0, \sigma^2)
+\]
+
+\subsubsection{Maximum Likelihood/Least Squares Estimates}
+
+\begin{theorem}[\textbf{Regression Estimates}]
+\[
+\hat{\alpha} = \bar{Y}
+\]
+\[
+\hat{\beta} = \frac{\sum_{i=1}^n (Y_i - \bar{Y})(x_i - \bar{x})}{\sum_{i=1}^n (x_i - \bar{x})^2}
+\]
+\[
+\hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n (Y_i - \hat{\alpha} - \hat{\beta}(x_i - \bar{x}))^2
+\]
+\end{theorem}
+\subsubsection{Distributions of Estimators}
+\[
+\begin{pmatrix} \hat{\alpha} \\ \hat{\beta} \end{pmatrix} \sim N_2\left(\begin{pmatrix} \alpha \\ \beta \end{pmatrix}, \sigma^2 \begin{pmatrix} \frac{1}{n} & 0 \\ 0 & \frac{1}{\sum(x_i-\bar{x})^2} \end{pmatrix}\right)
+\]
+
+\subsubsection{Inference for Parameters}
+
+\begin{theorem}[\textbf{t-Statistics for Regression}]
+\[
+T_1 = \frac{\hat{\alpha} - \alpha}{\sqrt{\hat{\sigma}^2/(n-2)}} \sim t(n-2)
+\]
+\[
+T_2 = \frac{\hat{\beta} - \beta}{\sqrt{n\hat{\sigma}^2/[(n-2)\sum(x_i-\bar{x})^2]}} \sim t(n-2)
+\]
+\end{theorem}
+\subsubsection{Prediction and Confidence Intervals}
+
+\begin{itemize}
+	\item \textbf{Confidence interval for mean at $x_0$:}
+\[
+\hat{\eta}_0 \pm t_{\alpha/2,n-2} \sqrt{\hat{\sigma}^2\left[\frac{1}{n} + \frac{(x_0-\bar{x})^2}{\sum(x_i-\bar{x})^2}\right]}
+\]
+	\item \textbf{Prediction interval for new observation:}
+\[
+\hat{Y}_0 \pm t_{\alpha/2,n-2} \sqrt{\hat{\sigma}^2\left[1 + \frac{1}{n} + \frac{(x_0-\bar{x})^2}{\sum(x_i-\bar{x})^2}\right]}
+\]
+\end{itemize}
+
+\subsubsection{Residual Analysis}
+
+\begin{itemize}
+	\item \textbf{Fitted values:} $\hat{y}_i = \hat{\alpha} + \hat{\beta}(x_i - \bar{x})$
+	\item \textbf{Residuals:} $\hat{e}_i = y_i - \hat{y}_i$
+	\item \textbf{Diagnostic plot:} Plot residuals vs fitted values for model checking
+\end{itemize}
+
+\subsection{9.7 Test of Independence (Correlation)}
+
+\subsubsection{Sample Correlation Coefficient}
+\[
+R = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{\sqrt{\sum_{i=1}^n (X_i - \bar{X})^2 \sum_{i=1}^n (Y_i - \bar{Y})^2}}
+\]
+
+\subsubsection{Test for Independence}
+
+\begin{theorem}[\textbf{Test for $\rho = 0$}]
+Under $H_0: \rho = 0$:
+\[
+T = \frac{R\sqrt{n-2}}{\sqrt{1-R^2}} \sim t(n-2)
+\]
+Reject $H_0$ if $|T| \geq t_{\alpha/2, n-2}$
+\end{theorem}
+\subsubsection{Asymptotic Methods}
+
+For large $n$, use Fisher's z-transformation:
+\[
+W = \frac{1}{2}\log\left(\frac{1+R}{1-R}\right) \approx N\left(\frac{1}{2}\log\left(\frac{1+\rho}{1-\rho}\right), \frac{1}{n-3}\right)
+\]
+
+\subsection{Problem-Solving Strategies}
+
+\subsubsection{1. ANOVA Problems}
+
+\begin{itemize}
+	\item \textbf{Check assumptions:} Use residual plots, normality tests
+	\item \textbf{Choose appropriate model:} One-way, two-way, interaction
+	\item \textbf{Multiple comparisons:} Consider family-wise error rate
+	\item \textbf{Effect sizes:} Practical vs statistical significance
+\end{itemize}
+
+\subsubsection{2. Regression Problems}
+
+\begin{itemize}
+	\item \textbf{Model adequacy:} Residual plots are crucial
+	\item \textbf{Outliers and influence:} Check for unusual observations
+	\item \textbf{Prediction vs confidence intervals:} Different purposes
+	\item \textbf{Assumptions:} Linearity, normality, equal variance, independence
+\end{itemize}
+
+\subsubsection{3. General Linear Model Approach}
+
+\begin{itemize}
+	\item \textbf{Matrix formulation:} $\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \mathbf{e}$
+	\item \textbf{Least squares:} $\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}$
+	\item \textbf{Geometry:} Projection onto column space of $\mathbf{X}$
+\end{itemize}
+
+\subsection{9.8 The Distributions of Certain Quadratic Forms}
+
+\subsubsection{Definition and Properties}
+
+\begin{definition}[\textbf{Quadratic Form}]
+Let $\mathbf{X} = (X_1, \ldots, X_n)'$ be an $n$-dimensional random vector and $\mathbf{A}$ be a real $n \times n$ symmetric matrix. Then:
+\[
+Q = \mathbf{X}'\mathbf{A}\mathbf{X} = \sum_{i=1}^n \sum_{j=1}^n a_{ij}X_i X_j
+\]
+\end{definition}
+\subsubsection{Trace Operator}
+\[
+\text{tr}(\mathbf{A}) = \sum_{i=1}^n a_{ii}
+\]
+
+\textbf{Properties:}
+
+\begin{itemize}
+	\item \textbf{Linearity:} $\text{tr}(a\mathbf{A} + b\mathbf{B}) = a\text{tr}(\mathbf{A}) + b\text{tr}(\mathbf{B})$
+	\item \textbf{Cyclic property:} $\text{tr}(\mathbf{ABC}) = \text{tr}(\mathbf{BCA}) = \text{tr}(\mathbf{CAB})$
+\end{itemize}
+
+\subsubsection{Mean of Quadratic Forms}
+
+\begin{theorem}[\textbf{Theorem 9.8.1}]
+If $\mathbf{X}$ has mean $\boldsymbol{\mu}$ and covariance matrix $\boldsymbol{\Sigma}$, then:
+\[
+E(Q) = \text{tr}(\mathbf{A}\boldsymbol{\Sigma}) + \boldsymbol{\mu}'\mathbf{A}\boldsymbol{\mu}
+\]
+\end{theorem}
+\subsubsection{MGF of Quadratic Forms in Normal Variables}
+
+\begin{theorem}[\textbf{Theorem 9.8.2}]
+Let $\mathbf{X}' = (X_1, \ldots, X_n)$ where $X_i \sim \text{iid } N(0, \sigma^2)$. For $Q = \sigma^{-2}\mathbf{X}'\mathbf{A}\mathbf{X}$ with $\mathbf{A}$ symmetric of rank $r$:
+\[
+M_Q(t) = \prod_{i=1}^r (1-2t\lambda_i)^{-1/2} = |\mathbf{I} - 2t\mathbf{A}|^{-1/2}
+\]
+where $\lambda_1, \ldots, \lambda_r$ are the nonzero eigenvalues of $\mathbf{A}$.
+\end{theorem}
+\subsubsection{Idempotent Matrices}
+
+\begin{definition}[\textbf{Idempotent Matrix}]
+A symmetric matrix $\mathbf{A}$ is idempotent if $\mathbf{A}^2 = \mathbf{A}$.
+\end{definition}
+\textbf{Key Properties:}
+
+\begin{itemize}
+	\item Eigenvalues are only 0 or 1
+	\item $\text{rank}(\mathbf{A}) = \text{tr}(\mathbf{A})$ for idempotent matrices
+	\item Example: $\mathbf{I} - \frac{1}{n}\mathbf{J}$ (centering matrix)
+\end{itemize}
+
+\subsubsection{Chi-Square Distribution Characterization}
+
+\begin{theorem}[\textbf{Theorem 9.8.4}]
+Let $\mathbf{X}' = (X_1, \ldots, X_n)$ where $X_i \sim \text{iid } N(0, \sigma^2)$. For $Q = \sigma^{-2}\mathbf{X}'\mathbf{A}\mathbf{X}$ with symmetric $\mathbf{A}$ of rank $r$:
+$Q \sim \chi^2(r)$ \textbf{if and only if} $\mathbf{A}$ is idempotent.
+\end{theorem}
+\subsubsection{Applications}
+
+\textbf{Sample Variance:}
+\[
+\frac{(n-1)S^2}{\sigma^2} = \sigma^{-2}\mathbf{X}'(\mathbf{I} - \frac{1}{n}\mathbf{J})\mathbf{X} \sim \chi^2(n-1)
+\]
+
+\textbf{Noncentral Case:}
+
+\begin{itemize}
+	\item When $\mathbf{X} \sim N_n(\boldsymbol{\mu}, \sigma^2\mathbf{I})$ and $\mathbf{A}^2 = \mathbf{A}$:
+	\item $Q/\sigma^2 \sim \chi^2(r, \theta)$ where $\theta = \boldsymbol{\mu}'\mathbf{A}\boldsymbol{\mu}/\sigma^2$
+\end{itemize}
+
+\subsection{9.9 Independence of Certain Quadratic Forms}
+
+\subsubsection{Main Independence Theorem}
+
+\begin{theorem}[\textbf{Theorem 9.9.1}]
+Let $X_1, \ldots, X_n$ be iid $N(0, \sigma^2)$. Let $Q_1 = \mathbf{X}'\mathbf{A}\mathbf{X}$ and $Q_2 = \mathbf{X}'\mathbf{B}\mathbf{X}$ be quadratic forms with symmetric matrices $\mathbf{A}$ and $\mathbf{B}$.
+Then $Q_1$ and $Q_2$ are independent \textbf{if and only if} $\mathbf{AB} = \mathbf{0}$.
+\end{theorem}
+\textbf{Proof Strategy:}
+
+\begin{itemize}
+	\item Uses MGF method with spectral decomposition
+	\item Shows that $\mathbf{AB} = \mathbf{0}$ implies factorization of joint MGF
+	\item Geometric interpretation: orthogonal projections
+\end{itemize}
+
+\subsubsection{Extensions of Independence}
+
+\begin{theorem}[\textbf{Theorem 9.9.2 (Hogg and Craig)}]
+Define $Q = Q_1 + \cdots + Q_k$ where all are quadratic forms in a sample from $N(0, \sigma^2)$.
+If:
+	\begin{itemize}
+		\item $Q/\sigma^2 \sim \chi^2(r)$
+		\item $Q_i/\sigma^2 \sim \chi^2(r_i)$ for $i = 1, \ldots, k-1$
+		\item $Q_k \geq 0$
+	\end{itemize}
+Then $Q_1, \ldots, Q_k$ are independent and $Q_k/\sigma^2 \sim \chi^2(r_k)$ where $r_k = r - r_1 - \cdots - r_{k-1}$.
+\end{theorem}
+\subsubsection{Cochran's Theorem}
+
+\begin{theorem}[\textbf{Theorem 9.9.3 (Cochran)}]
+Let $X_1, \ldots, X_n \sim \text{iid } N(0, \sigma^2)$ and suppose:
+\[
+\sum_{i=1}^n X_i^2 = Q_1 + Q_2 + \cdots + Q_k
+\]
+where each $Q_j$ is a quadratic form with matrix $\mathbf{A}_j$ of rank $r_j$.
+Then $Q_1, \ldots, Q_k$ are independent and $Q_j/\sigma^2 \sim \chi^2(r_j)$ \textbf{if and only if} $\sum_{j=1}^k r_j = n$.
+\end{theorem}
+\subsubsection{Applications in Linear Models}
+
+\textbf{ANOVA Decomposition:}
+In one-way ANOVA:
+\[
+\sum_{i,j}(X_{ij} - \bar{X}_{..})^2 = \sum_{i,j}(X_{ij} - \bar{X}_{.j})^2 + \sum_j n_j(\bar{X}_{.j} - \bar{X}_{..})^2
+\]
+
+\begin{itemize}
+	\item Within-groups SS and between-groups SS are independent
+	\item Each divided by $\sigma^2$ follows chi-square distributions
+	\item Enables F-test construction
+\end{itemize}
+
+\textbf{Regression Analysis:}
+\[
+\sum_{i=1}^n (Y_i - \bar{Y})^2 = \sum_{i=1}^n (Y_i - \hat{Y}_i)^2 + \sum_{i=1}^n (\hat{Y}_i - \bar{Y})^2
+\]
+
+\begin{itemize}
+	\item Residual SS and regression SS are independent
+	\item Forms basis for regression F-tests and confidence intervals
+\end{itemize}
+
+\subsubsection{Problem-Solving with Quadratic Forms}
+
+\begin{enumerate}
+	\item \textbf{Identify the matrices:} Express quadratic forms as $\mathbf{X}'\mathbf{A}\mathbf{X}$
+	\item \textbf{Check idempotency:} For chi-square, verify $\mathbf{A}^2 = \mathbf{A}$
+	\item \textbf{Verify independence:} Check if $\mathbf{AB} = \mathbf{0}$ for independence
+	\item \textbf{Count degrees of freedom:} Use $\text{rank}(\mathbf{A}) = \text{tr}(\mathbf{A})$ for idempotent matrices
+	\item \textbf{Apply Cochran's theorem:} Verify rank condition $\sum r_j = n$
+\end{enumerate}
+
+\subsubsection{General Linear Model Context}
+
+For the model $\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \mathbf{e}$ where $\mathbf{e} \sim N_n(\mathbf{0}, \sigma^2\mathbf{I})$:
+
+\textbf{Key Quadratic Forms:}
+
+\begin{itemize}
+	\item \textbf{Total SS:} $\mathbf{Y}'\mathbf{Y}$
+	\item \textbf{Regression SS:} $\hat{\boldsymbol{\beta}}'\mathbf{X}'\mathbf{X}\hat{\boldsymbol{\beta}}$
+	\item \textbf{Error SS:} $(\mathbf{Y} - \mathbf{X}\hat{\boldsymbol{\beta}})'(\mathbf{Y} - \mathbf{X}\hat{\boldsymbol{\beta}})$
+\end{itemize}
+
+\textbf{Independence Results:}
+
+\begin{itemize}
+	\item $\hat{\boldsymbol{\beta}}$ and error SS are independent
+	\item Enables construction of t and F statistics
+	\item Foundation for confidence intervals and hypothesis tests
+\end{itemize}
+
+\subsection{Key Distributions and Tests}
+
+\subsubsection{F-Tests}
+
+\begin{itemize}
+	\item One-way ANOVA: $F(b-1, n-b)$
+	\item Two-way main effects: $F(a-1, ab(c-1))$, $F(b-1, ab(c-1))$
+	\item Two-way interaction: $F((a-1)(b-1), ab(c-1))$
+	\item Regression overall: $F(p-1, n-p)$
+\end{itemize}
+
+\subsubsection{t-Tests}
+
+\begin{itemize}
+	\item Regression coefficients: $t(n-2)$ for simple regression
+	\item Pairwise comparisons in ANOVA
+	\item Correlation coefficient test
+\end{itemize}
+
+\subsubsection{Chi-Square Tests}
+
+\begin{itemize}
+	\item Variance estimation: $\chi^2(n-2)$ in regression
+	\item Goodness of fit tests
+\end{itemize}
+
+\subsection{Applications and Extensions}
+
+\subsubsection{Practical Considerations}
+
+\begin{enumerate}
+	\item \textbf{Sample size planning:} Use power analysis
+	\item \textbf{Robust methods:} When assumptions violated
+	\item \textbf{Transformation:} Achieve normality and equal variance
+	\item \textbf{Model selection:} Balance complexity and interpretability
+\end{enumerate}
+
+\subsubsection{Advanced Topics}
+
+\begin{itemize}
+	\item \textbf{Nonparametric alternatives:} When normality fails
+	\item \textbf{Mixed effects models:} Random factors
+	\item \textbf{Multiple regression:} More than one predictor
+	\item \textbf{Analysis of covariance (ANCOVA):} Combining categorical and continuous predictors
+\end{itemize}
+
+This chapter provides the foundation for most applied statistical analysis involving normal linear models, from basic ANOVA to regression analysis and correlation studies. The theory of quadratic forms in normal variables underpins the distributional results that enable inference in these models.

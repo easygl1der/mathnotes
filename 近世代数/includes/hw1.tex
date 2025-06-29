@@ -1,0 +1,146 @@
+\begin{lstlisting}
+习题1.2第11、12、16、22题
+习题1.3第1、3、7(1)（2）题
+\end{lstlisting}
+\begin{exercise}
+习题2．11．设 $A, B, H$ 是群 $G$ 的子群，且 $H \subseteq A \cup B$ ．证明 $H \subseteq A$ 或者 $H \subseteq B$.
+\end{exercise}
+Assume that $H\not\subseteq A$ and $H\not\subseteq B$, combined with the fact that $H\subseteq A\cup B$, we have an element $a\in A\setminus B$ and an element $b\in B\setminus A$. Since $a, b\in H$, then $ab\in H=A\cup B$. If $ab\in A$ then $ab=a'$ for some $a'\in A$, thus $b=a^{-1}a'\in A$, which contradicts the fact $b\in B\setminus A$. If $ab\in B$ then $ab=b'\in B$, thus $a=b'b^{-1}\in B$, which contradicts the fact $a\in A\setminus B$. Hence $H\subseteq A$ or $H\subseteq B$.
+
+\begin{exercise}
+习题2．12．在偶数阶群 $G$ 中，方程 $x^2=1$ 总有偶数个解．
+\end{exercise}
+$\#G$ is even. If $g^{2}\neq1$ then $g\neq g^{-1}$, $(g^{-1})^{2}\neq1$. Thus $\#\{ g\in G:g^{2}\neq1 \}$ is even. Therefore $\#\{ g\in G:g^{2}=1 \}=\#G- \#\{ g\in G:g^{2}\neq1 \}$ is even too.
+
+\begin{exercise}
+习题2．16．设 $A, B$ 是群 $G$ 的两个子群．试证 $A B$ 是 $G$ 的子群当且仅当 $A B=B A$.
+\end{exercise}
+\[
+\begin{aligned}
+AB\leq G & \iff a_1b_1 (a_2b_2)^{-1}\in AB,\forall a_1, a_2\in A, b_1, b_2\in B \\
+ & \iff a_1b_1b_2 ^{-1}a_2 ^{-1}=a_3b_3\quad \text{for some }a_3\in A,b_3\in B \\
+\end{aligned}
+\]
+($\Rightarrow$) If $AB\leq G$ then for any $a\in A, b\in B$, let $a_1=a_3a$, $b_1=bb_2$ thus
+\[
+a_3abb_2b_2 ^{-1} a_2^{-1}=a_3b_3\Rightarrow ab=b_3a_2\in BA\Rightarrow AB\subset BA
+\]
+Let $a_2=a^{-1},b_1=bb_2$ then
+\[
+a_1b b_2 b_2 ^{-1}(a^{-1})^{-1}=a_3b_3\Rightarrow ba=a_1 ^{-1}a_3b_3\in AB\Rightarrow BA\subset AB
+\]
+Hence $AB=BA$.
+
+($\Leftarrow$) If $AB=BA$ then for any $a\in A, b\in B$, we have $ab=b'a'$ for some $a'\in A, b'\in B$. Therefore for any $a_1, a_2\in A, b_1, b_2\in B$, we have
+\[
+a_1b_1(a_2b_2)^{-1}=a_1\underbrace{ b_1b_2^{-1} }_{ b }a_2 ^{-1}=\underbrace{ a_1a_2' }_{ a' }b'=a'b'\in AB
+\]
+Hence $AB\leq G$.
+
+\begin{exercise}
+习题2．22．证明有理数加法群 $\mathbb{Q}$ 和乘法群 $\mathbb{Q}^{\times}$不同构．
+\end{exercise}
+If $\mathbb{Q}\simeq \mathbb{Q}^{\times}$ then there is an isomorphism $f$ from $\mathbb{Q}$ to $\mathbb{Q}^{\times}$. Since $f$ is isomorphism, it's a bijective homomorphism. Then there exists an element $a$ in $\mathbb{Q}$ such that $f(a)=2$, then
+\[
+2=f(a)=f\left( \frac{a}{2} \right)\cdot f\left( \frac{a}{2} \right)=\left( f\left( \frac{a}{2} \right) \right)^{2}
+\]
+Then $f\left( \frac{a}{2} \right)=\sqrt{ 2 }\not\in \mathbb{Q}$, which is a contradiction. Hence $\mathbb{Q}\not\simeq \mathbb{Q}^{\times}$.
+
+\begin{exercise}
+习题 3．1．设
+\[
+A=\left(\begin{array}{cc}
+0 & -1 \\
+1 & 0
+\end{array}\right), \quad B=\left(\begin{array}{cc}
+0 & 1 \\
+-1 & -1
+\end{array}\right) .
+\]试求 $A, B, A B$ 和 $B A$ 在 $\mathrm{GL}_2(\mathbb{R})$ 中的阶．
+\end{exercise}
+\[
+A=\begin{pmatrix}
+0 & -1  \\
+1 & 0 
+\end{pmatrix},\quad A^{2}=\begin{pmatrix}
+-1 & 0 \\
+0 & -1
+\end{pmatrix},\quad A^{3}=\begin{pmatrix}
+0 & 1 \\
+-1 & 0
+\end{pmatrix},\quad A^{4}=\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+\]
+\[
+B=\begin{pmatrix}
+0 & 1 \\
+-1 & -1
+\end{pmatrix},\quad B^{2}=\begin{pmatrix}
+-1 & -1 \\
+1 &  0
+\end{pmatrix},\quad B^{3}=\begin{pmatrix}
+1 & 0 \\
+0 & 1
+\end{pmatrix}
+\]
+\[
+AB=\begin{pmatrix}
+1 & 1 \\
+0 & 1
+\end{pmatrix},\quad (AB)^{2}=\begin{pmatrix}
+1 & 2  \\
+0 & 1
+\end{pmatrix},\dots,(AB)^{n}=\begin{pmatrix}
+1 & n  \\
+0 & 1
+\end{pmatrix}
+\]
+\[
+BA=\begin{pmatrix}
+1 & 0 \\
+-1 & 1
+\end{pmatrix},\quad (BA)^{2}=\begin{pmatrix}
+1 & 0 \\
+-2 & 1
+\end{pmatrix},\dots,(BA)^{n}=\begin{pmatrix}
+1 & 0 \\
+-n & 1
+\end{pmatrix}
+\]
+Then $\lvert A \rvert=4,\lvert B \rvert=3,\lvert AB \rvert=\lvert BA \rvert=\infty$.
+
+\begin{exercise}
+习题 3．3．设 $a, b$ 是群 $G$ 的两个元素，$a$ 的阶是 7 且 $a^3 b=b a^3$ ．证明 $a b=b a$ ．
+\end{exercise}
+\[
+ab=a^{15}b=b a^{15}=ba
+\]
+\begin{exercise}
+习题3．7．（1）$S^1$ 的任意有限阶子群均为循环群．
+（2） $\mathbb{Q}$ 不是循环群，但它的任意有限生成子群都是循环群．
+\end{exercise}
+(1)
+
+$S^{1}=\{ z\in \mathbb{C} :\lvert z \rvert=1\}=\{ e^{ i\theta }:\theta\in[0,2\pi) \}$. For any subgroup $G\leq S^{1}$ with finite order, pick $g\in G$, then $O(g)$ is finite. ($O(g)$ denotes the order of $g$.) WLOG, let $g$ be the element with largest order $n$, and let $g=e^{ 2\pi i /n }$. We need to show that
+\[
+G=\{ 1,e^{ 2\pi i/n  },e^{ 4\pi i/n  },\dots,e^{ 2\pi i(n-1)/n } \}
+\]
+If $h=e^{ 2\pi i\alpha },\alpha\in[0,1)$ is an element in $G$ but $\alpha\neq0,\frac{1 }{n},\dots,\frac{n-1}{n}$. If $\alpha \not\in \mathbb{Q}$, then $\lvert \left< e^{ 2\pi i\alpha } \right> \rvert=\infty$ while $\left< e^{ 2\pi i\alpha } \right>\subset G$, which means $\lvert G \rvert=\infty$. Thus $\alpha\in \mathbb{Q}$, denoted by $\frac{p}{q}$, where $p, q\in \mathbb{N},(p,q)=1$. $\frac{p}{q}\in\left( \frac{k}{n},\frac{k+1}{n} \right)$ for some $k\in \{ 0,1,\dots,n-1 \}$. Then
+\[
+e^{ 2\pi i \left( \alpha-\frac{k}{n} \right) }=e^{ 2\pi i\alpha  }\cdot e^{ -2\pi i\frac{k}{n} }\in S^{1}
+\]
+$\alpha-\frac{k}{n}\in \mathbb{Q}$ and $\alpha-\frac{k}{n}<\frac{1}{n}$, thus $\left\lvert  \left< e^{ 2\pi i\left( \alpha-\frac{k}{n} \right) } \right>  \right\rvert>n$, $g$ is not the element with largest order in $G$.
+
+Hence $S^{1}$ is cyclic.
+
+(2)
+
+If  $\mathbb{Q}$ is cyclic group generated by $a$, then $\left< \frac{a}{2} \right>$ is also a generator and $\frac{a}{2}\not\in\left< a \right>$. Hence $\mathbb{Q}$ is not cyclic.
+
+For $S=\{ s_1,s_2,\dots,s_n \}\subset \mathbb{Q}$, where $s_k=\frac{p_k}{q_k}$, $p_k, q_k\in \mathbb{Q}$, $(p_k,q_k)=1$. Obviously,
+\[
+\left< S \right>\subset\left< \frac{1}{\mathrm{lcd}(q_1,q_2,\dots,q_n)}  \right>
+\]
+$\left< S \right>$ is a subgroup of a cyclic group, thus a cyclic group.

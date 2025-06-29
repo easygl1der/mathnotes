@@ -1,0 +1,59 @@
+\section{傅里叶变换的一致连续性}
+
+\begin{definition}
+设 $f \in L^1(\mathbb{R}^n)$, 即 $\int_{\mathbb{R}^n} |f(x)| dx < \infty$. 其\textbf{傅里叶变换} $\widehat{f}: \mathbb{R}^n \to \mathbb{C}$ 定义为:
+\[
+\widehat{f}(\xi) = \int_{\mathbb{R}^n} f(x) e^{-2\pi i \langle x, \xi \rangle} dx
+\]其中 $\langle x, \xi \rangle$ 表示 $x$ 和 $\xi$ 在 $\mathbb{R}^n$ 中的标准内积（点积）。
+\end{definition}
+我们要证明 $\widehat{f}$ 在 $\mathbb{R}^n$ 上是一致连续的。也就是说，对于任意的 $\epsilon > 0$, 存在一个 $\delta > 0$, 使得对于所有 $\xi, \eta \in \mathbb{R}^n$, 若 $|\xi - \eta| < \delta$, 则 $|\widehat{f}(\xi) - \widehat{f}(\eta)| < \epsilon$.
+
+\begin{proof}
+考虑差值 $|\widehat{f}(\xi) - \widehat{f}(\eta)|$:
+\[
+\begin{aligned}
+|\widehat{f}(\xi) - \widehat{f}(\eta)| & = \left| \int_{\mathbb{R}^n} f(x) e^{-2\pi i \langle x, \xi \rangle} dx - \int_{\mathbb{R}^n} f(x) e^{-2\pi i \langle x, \eta \rangle} dx \right| \\
+& = \left| \int_{\mathbb{R}^n} f(x) (e^{-2\pi i \langle x, \xi \rangle} - e^{-2\pi i \langle x, \eta \rangle}) dx \right| \\
+& = \left| \int_{\mathbb{R}^n} f(x) e^{-2\pi i \langle x, \eta \rangle} (e^{-2\pi i \langle x, \xi - \eta \rangle} - 1) dx \right|.
+\end{aligned}
+\]
+由于 $|e^{-2\pi i \langle x, \eta \rangle}| = 1$, 我们可以得到:
+\[
+|\widehat{f}(\xi) - \widehat{f}(\eta)| \le \int_{\mathbb{R}^n} |f(x) e^{-2\pi i \langle x, \eta \rangle} (e^{-2\pi i \langle x, \xi - \eta \rangle} - 1)| dx
+\]
+\[
+|\widehat{f}(\xi) - \widehat{f}(\eta)| \le \int_{\mathbb{R}^n} |f(x)| |e^{-2\pi i \langle x, \xi - \eta \rangle} - 1| dx
+\]
+令 $h = \xi - \eta$. 我们的目标是证明当 $|h| \to 0$ 时,
+\[
+\int_{\mathbb{R}^n} |f(x)| |e^{-2\pi i \langle x, h \rangle} - 1| dx \to 0.
+\]
+我们使用勒贝格控制收敛定理 (Lebesgue's Dominated Convergence Theorem)。定义函数序列（或族） $g_h(x) = |f(x)| |e^{-2\pi i \langle x, h \rangle} - 1|$.
+
+\begin{enumerate}
+	\item \textbf{逐点收敛 (Pointwise Convergence):}
+对于任意固定的 $x \in \mathbb{R}^n$, 当 $|h| \to 0$ 时, $\langle x, h \rangle \to 0$. 因此, $e^{-2\pi i \langle x, h \rangle} \to e^0 = 1$. 所以, $|e^{-2\pi i \langle x, h \rangle} - 1| \to |1 - 1| = 0$. 从而, $g_h(x) = |f(x)| |e^{-2\pi i \langle x, h \rangle} - 1| \to |f(x)| \cdot 0 = 0$ 对于几乎所有的 $x \in \mathbb{R}^n$（在 $f(x)$ 定义的意义上）。
+	\item \textbf{控制函数 (Dominating Function):}
+对于任意 $x \in \mathbb{R}^n$ 和任意 $h \in \mathbb{R}^n$, 我们有:
+$|e^{-2\pi i \langle x, h \rangle} - 1| \le |e^{-2\pi i \langle x, h \rangle}| + |-1| = 1 + 1 = 2$. 因此, $g_h(x) = |f(x)| |e^{-2\pi i \langle x, h \rangle} - 1| \le 2|f(x)|$. 由于 $f \in L^1(\mathbb{R}^n)$, 函数 $2|f(x)|$ 在 $\mathbb{R}^n$ 上是可积的, 即 $\int_{\mathbb{R}^n} 2|f(x)| dx = 2\|f\|_1 < \infty$.
+\end{enumerate}
+
+根据勒贝格控制收敛定理，由于 $g_h(x)$ 逐点收敛到 $0$ 并且被一个可积函数 $2|f(x)|$ 控制，我们有:
+\[
+\lim_{|h| \to 0} \int_{\mathbb{R}^n} g_h(x) dx = \int_{\mathbb{R}^n} \lim_{|h| \to 0} g_h(x) dx
+\]
+\[
+\lim_{|h| \to 0} \int_{\mathbb{R}^n} |f(x)| |e^{-2\pi i \langle x, h \rangle} - 1| dx = \int_{\mathbb{R}^n} 0 \, dx = 0
+\]
+这意味着，对于任意 $\epsilon > 0$, 存在一个 $\delta > 0$, 使得只要 $|h| < \delta$, 就有
+\[
+\int_{\mathbb{R}^n} |f(x)| |e^{-2\pi i \langle x, h \rangle} - 1| dx < \epsilon
+\]
+将 $h = \xi - \eta$ 代回，如果 $|\xi - \eta| < \delta$, 则
+\[
+|\widehat{f}(\xi) - \widehat{f}(\eta)| \le \int_{\mathbb{R}^n} |f(x)| |e^{-2\pi i \langle x, \xi - \eta \rangle} - 1| dx < \epsilon
+\]
+这正是函数 $\widehat{f}$ 在 $\mathbb{R}^n$ 上一致连续的定义。
+\end{proof}
+
+因此, $\mathbb{R}^n$ 上的 $L^1$ 函数的傅里叶变换是一致连续函数。这个性质也被称为 Riemann-Lebesgue 引理的一个推论或相关性质（尽管 Riemann-Lebesgue 引理本身通常指 $\widehat{f}(\xi) \to 0$ 当 $|\xi| \to \infty$）。

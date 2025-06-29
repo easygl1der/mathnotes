@@ -1,0 +1,58 @@
+\section{The standard machine: approximate Borel function by simple functions}
+
+If we want to verify a property that holds for general Borel-measurable function $f$, we can follow four steps as below.
+
+\begin{itemize}
+	\item Verify the property when $f$ is indicator function.
+	\item Verify the property when $f$ is nonnegative simple function.
+	\item Verify the property when $f$ is Borel-measurable function
+	\item Verify the property when $f$ is General Borel-measurable function
+\end{itemize}
+
+An example is as follow.
+
+\subsection{Example}
+
+\begin{theorem}
+Let $X$ be a random variable on a probability space $(\Omega,\mathcal{F},\mathbb{P})$ and let $g$ be a Borel-measurable function on $\mathbb{R}$. Then
+\[
+\mathbb{E}\lvert g(X) \rvert =\int_{\mathbb{R}}^{} \lvert g(x) \rvert  \, d\mu_{X}(x) 
+\]
+and if this quantity is finite, then
+\[
+\mathbb{E}g(X)=\int_{\mathbb{R}}^{} g(x) \, d\mu_{X}(x) 
+\]
+\end{theorem}
+\begin{proof}
+Step 1. Indicator functions. (Omitted)
+
+Step 2. Nonnegative simple functions. (Trivial because of the linearity)
+
+Step 3. Nonnegative Borel-measurable functions. Let $g(x)$ be an arbitraty nonnegative Borel-measurable function defined on $\mathbb{R}$. For each positive integer $n$, define the sets
+\[
+B_{k,n}=\left\{  x;\frac{k}{2^{n}} \leq g(x)<\frac{k+1}{2^{n}}  \right\},\qquad k=0,1,2,\dots,4^{n}-1
+\]
+\begin{remark}
+这样的定义是为了保证在 $n\to \infty$ 时，每个划分越来越细，同时 $\bigcup_{k=1}^{4^{n}-1}B_{k,n}\to[0,+\infty)$. 而且对于任意 $n$，$\{ B_{k,n+1} \}$ 是 $\{ B_{k,n} \}$ 的加细（$B_{k,n}$ 的划分点都包含在 $B_{k,n+1}$ 的划分点集内）
+\end{remark}
+For eac fixed $n$, the sets $B_{0,n},B_{1,n},\dots,B_{4^{n}-1,n}$ correspond to the partition
+\[
+0<\frac{1}{2^{n}}<\frac{2}{2^{n}}<\dots<\frac{4^{n}}{2^{n}}=2^{n}.
+\]
+At the next stage $n+1$, the partition points include all those at stage $n$ and new partition points at the midpoints between te old ones. Because of this fact, the simple functions
+\[
+g_n(x)=\sum_{k=0}^{4^{n}-1} \frac{k}{2^{n}}\mathbb{I}_{B_{k,n}}(x)
+\]
+satisfy $0\leq g_1\leq g_2\leq\dots\leq g$. Furthermore, these functions become more and more accurate approximations of $g$ as $n$ becomes larger; indeed $\lim_{ n \to \infty }g_n(x)=g(x)$ for every $x\in \mathbb{R}$. From Step 2, we knoe that
+\[
+\mathbb{E}g_n(X)=\int_{\mathbb{R}}^{} g_n(x) \, d\mu_{X}(x)
+\]
+for every $n$. Letting $n\to \infty$ and using the Monotone Convergence Theorem, on both sides of the equation, we obtain
+\[
+\mathbb{E}g(X)=\lim_{ n \to \infty } \mathbb{E}g_n(X)=\lim_{ n \to \infty } \int_{\mathbb{R}}^{} g_n(x) \, d\mu_{X}(x)=\int_{\mathbb{R}}^{} g(x) \, d\mu_{X}(x)
+\]
+This proves when $g$ is a nonnegative Borel-measurable function.
+
+Step 4. General Borel-measurable function. (consider $g=g^{+}-g^{-}$ where $g^{+}$ and $g^{-}$ are both nonnegative Borel-measurable functions)
+
+\end{proof}

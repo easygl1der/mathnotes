@@ -1,0 +1,43 @@
+\section{Permutation-Groups}
+
+See 丘维声, 肖梁, dummit\&foote.
+
+\begin{theorem}
+Any permutation can be decomposited to disjoint transpositions. (Unique without considering the order)
+\end{theorem}
+\subsection{Decompostion of the permutation}
+\[
+(1\quad 2\quad 3)=(1\quad 3)\circ (1\quad 2)
+\]
+And
+\[
+(1\quad 2\quad 3)=(2\quad 3\quad 1)=(2\quad 1)\circ (2\quad 3)
+\]
+Generally,
+\[
+(1\quad 2\quad \dots \quad n)=(1\quad n)\circ (1\quad n-1)\circ \dots \circ (1\quad 2)
+\]
+Since
+\[
+(i\quad j)=(1\quad i)\circ (1\quad j)\circ (1\quad i)
+\]
+Then
+\[
+S_n= \left< (12),(13),\dots,(1n) \right>
+\]
+\subsection{Alternating group \texorpdfstring{$A_n$}{A_n}}
+
+When $n=4$,
+\[
+S_4= \left< e,(12),(13),(14) \right>
+\]
+\[
+A_4=\left< e,(12)(13),(12)(14),\underbrace{ (13)(14) }_{ =\underbrace{ (13)(12) }_{ =((12)(13))^{-1} }(12)(14) } \right>= \left< e,\underbrace{ (12)(13) }_{ =(132) },\underbrace{ (12)(14) }_{ =(142) } \right>
+\]
+When $n\geq3$,
+\[
+A_n=\left< (123),(124),\dots,(12n) \right>
+\]
+\begin{remark}
+\textbf{An element of odd order in a symmetric group is an even permutation, i.e. lies in $A_n$.} That's because the odd permutation can be decomposed to product of even transformations.
+\end{remark}

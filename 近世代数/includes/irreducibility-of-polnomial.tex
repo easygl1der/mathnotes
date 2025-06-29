@@ -1,0 +1,17 @@
+\section{Irreducibility of Polynomial}
+
+\textbf{Task:} For a general field $F$ there is no simple way to determine if an arbitrary polynomial in $F[T]$ is irreducible. Here we will focus on the case $F=\mathbf{Q}$ and describe two useful irreducibility tests in $\mathbf{Q}[T]$ for monic polynomials in $\mathbf{Z}[T]$. Let
+\[
+f(T)=T^n+a_{n-1} T^{n-1}+\cdots+a_1 T+a_0 \in \mathbf{Z}[T] .
+\]
+The two tests are
+
+\begin{enumerate}
+	\item Reduction $\bmod p$ : for a prime $p$, reducing coefficients of $f(T)$ modulo $p$ leads to
+\[
+\overline{f}(T)=T^n+\overline{a}_{n-1} T^{n-1}+\cdots+\overline{a}_0 \in(\mathbf{Z} / p \mathbf{Z})[T] .
+\]If $\overline{f}(T)$ is irreducible in $(\mathbf{Z} / p \mathbf{Z})[T]$ for some $p$, then $f$ is irreducible in $\mathbf{Q}[T]$.
+	\item Eisenstein criterion: call $f(T)$ Eisenstein at $p$ if $p \mid a_i$ for all $i$ and $p^2 \nmid  a_0$. If $f$ is Eisenstein for some $p$, then $f$ is irreducible in $\mathbf{Q}[T]$.
+\end{enumerate}
+
+These tests each depend on a choice of a prime number, but they use the prime number in different ways.

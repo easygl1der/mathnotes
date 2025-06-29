@@ -1,0 +1,204 @@
+\section{Maximum Likelihood Estimation}
+
+\subsection{Rao-Cramer Lower Bound and Efficiency}
+
+We need some regularity conditions.
+
+\subsubsection{Regularity conditions}
+
+\begin{definition}[Assumptions 6.1.1 (Regularity Conditions)]
+Regularity conditions (R0)-(R5) are
+	\begin{enumerate}
+		\item \textbf{(R0)} The cdfs are distinct; i.e., $\theta \neq \theta^{\prime} \Longrightarrow F(x_i ; \theta) \neq F(x_i ; \theta^{\prime})$.
+		\item \textbf{(R1)} The pdfs have common support for all $\theta$.
+		\item \textbf{(R2)} The point $\theta_0$ is an interior point in $\Omega$.
+		\item \textbf{(R3)} The pdf $f(x ; \theta)$ is twice differentiable as a function of $\theta$.
+		\item \textbf{(R4)} The integral $\int f(x ; \theta) d x$ can be differentiated twice under the integral sign as a function of $\theta$.
+		\item \textbf{(R5)} The pdf $f(x ; \theta)$ is three times differentiable as a function of $\theta$. Further, for all $\theta \in \Omega$, there exist a constant $c$ and a function $M(x)$ such that
+	\end{enumerate}
+\[
+\left|\frac{\partial^3}{\partial \theta^3} \log f(x ; \theta)\right| \leq M(x),
+\]with $\mathbb{E}_{\theta_0}[M(X)]<\infty$, for all $\theta_0-c<\theta<\theta_0+c$ and all $x$ in the support of $X$.
+\end{definition}
+\subsubsection{Fisher information}
+
+Since
+\[
+1=\int_{-\infty}^{\infty} f(x;\theta) \, \mathrm{d}x \implies 0=\int_{-\infty}^{\infty} \frac{ \partial f(x;\theta) }{ \partial \theta }  \, \mathrm{d}x =\int_{-\infty}^{\infty} \frac{ \partial \log f(x;\theta) }{ \partial \theta } f(x;\theta) \, \mathrm{d}x 
+\]
+thus
+\[
+\mathbb{E}_{\theta}\left[ \frac{ \partial \log f(X;\theta) }{ \partial \theta }  \right]=0
+\]
+Apply $\frac{ \partial   }{ \partial \theta }$ again,
+\[
+0=\underbrace{ \int_{-\infty}^{\infty} \frac{ \partial^2\log f(x;\theta) }{ \partial \theta ^2 } f(x;\theta) \, \mathrm{d}x }_{ =-\mathbb{E}_{\theta}\left[ \frac{ \partial^2 \log f(X;\theta) }{ \partial \theta ^2 }  \right] } +\underbrace{ \int_{-\infty}^{\infty} \frac{ \partial \log f(x;\theta) }{ \partial \theta } \frac{ \partial \log f(x;\theta) }{ \partial \theta } f(x;\theta) \, \mathrm{d}x }_{ =\mathbb{E}_{\theta}\left[ \left( \frac{ \partial \log f(X;\theta) }{ \partial \theta }  \right)^2 \right] }
+\]
+We define the \textbf{Fisher information}:
+\[
+I(\theta)=\mathbb{E}_{\theta}\left[ \left( \frac{ \partial \log f(X;\theta) }{ \partial \theta }  \right)^2 \right]=-\mathbb{E}_{\theta}\left[ \frac{ \partial^2 \log f(X;\theta) }{ \partial \theta ^2 }  \right]\overset{ \mathbb{E}_{\theta}\left[ \frac{ \partial \log f(X;\theta) }{ \partial \theta }  \right]=0 }{ = }\mathrm{Var}\left( \frac{ \partial \log f(X;\theta) }{ \partial \theta }  \right)
+\]
+The function $\frac{ \partial \log f(x;\theta) }{ \partial \theta }$ is called the \textbf{score function}. Recall the calculation of MLE, the mle $\widehat{\theta}$ solves
+\[
+\sum_{i=1}^{n} \frac{ \partial \log f(x_i;\theta) }{ \partial \theta }=0
+\]
+\subsubsection{Rao-Cramer Lower Bound, efficient estimator, efficiency}
+
+\begin{theorem}[Rao-Cramér Lower Bound]
+Let $X_1, \ldots, X_n$ be iid with common pdf $f(x ; \theta)$ for $\theta \in \Omega$. Assume that the regularity conditions (R0)-(R4) hold. Let $Y=u\left(X_1, X_2, \ldots, X_n\right)$ be a statistic with mean $\mathbb{E}(Y)=\mathbb{E}\left[u\left(X_1, X_2, \ldots, X_n\right)\right]\eqqcolon k(\theta)$. Then
+\begin{equation}
+\operatorname{Var}(Y) \geq \frac{\left[k^{\prime}(\theta)\right]^2}{n I(\theta)}
+\label{a64f1e}
+\end{equation}
+\end{theorem}
+
+\begin{corollary}
+Under the assumptions of \cref{a64f1e} , if $Y=u(X_1, \ldots, X_n)$ is an unbiased estimator of $\theta$, so that $k(\theta)=\theta$, then the Rao-Cramér inequality becomes
+\begin{equation}
+\operatorname{Var}(Y) \geq \frac{1}{n I(\theta)}
+\label{08320e}
+\end{equation}
+\end{corollary}
+
+\begin{definition}[Efficiency]
+The \textbf{efficiency} of that estimator is
+\[
+e(\widehat{\theta})\coloneqq \frac{(k'(\theta))^2}{nI(\theta)\cdot \mathrm{Var}(\widehat{\theta})}
+\]
+\end{definition}
+\begin{definition}[Efficient Estimator]
+Let $Y$ be an unbiased estimator of a parameter $\theta$. The statistic $Y$ is called an \textbf{efficient estimator} of $\theta$ iff
+\[
+\mathrm{Var}(Y)=\frac{1}{nI(\theta)}\qquad \text{or}\qquad e(\widehat{\theta})=1
+\]
+\end{definition}
+\begin{theorem}
+Assume $X_1, \ldots, X_n$ are iid with pdf $f\left(x ; \theta_0\right)$ for $\theta_0 \in \Omega$ such that the regularity conditions (R0)-(R5) are satisfied. Suppose further that the Fisher information satisfies $0<I\left(\theta_0\right)<\infty$. Then any consistent sequence of solutions of the mle equations satisfies
+\[
+\sqrt{n}\left(\widehat{\theta}-\theta_0\right) \xrightarrow{D} N\left(0, \frac{1}{I\left(\theta_0\right)}\right) .
+\]
+\end{theorem}
+\begin{definition}
+Let $X_1, \ldots, X_n$ be independent and identically distributed with probability density function $f(x ; \theta)$. Suppose $\widehat{\theta}_{1 n}=\widehat{\theta}_{1 n}\left(X_1, \ldots, X_n\right)$ is an estimator of $\theta_0$ such that $\sqrt{n}\left(\widehat{\theta}_{1 n}-\theta_0\right) \xrightarrow{D} N\left(0, \sigma_{\widehat{\theta}_{1 n}}^2\right)$. Then
+	\begin{enumerate}
+		\item The \textbf{asymptotic efficiency} of $\widehat{\theta}_{1 n}$ is defined to be
+	\end{enumerate}
+\[
+e\left(\widehat{\theta}_{1 n}\right)=\frac{1 / I\left(\theta_0\right)}{\sigma_{\widehat{\theta}_{1 n}}^2} .
+\]	\begin{enumerate}
+		\item The estimator $\widehat{\theta}_{1 n}$ is said to be \textbf{asymptotically efficient} if the ratio in part (a) is 1 .
+		\item Let $\widehat{\theta}_{2 n}$ be another estimator such that $\sqrt{n}\left(\widehat{\theta}_{2 n}-\theta_0\right) \xrightarrow{D} N\left(0, \sigma_{\widehat{\theta}_{2 n}}^2\right)$. Then the \textbf{asymptotic relative efficiency} $(A R E)$ of $\widehat{\theta}_{1 n}$ to $\widehat{\theta}_{2 n}$ is the reciprocal of the ratio of their respective asymptotic variances; i.e.,
+	\end{enumerate}
+\[
+e\left(\widehat{\theta}_{1 n}, \widehat{\theta}_{2 n}\right)=\frac{\sigma_{\widehat{\theta}_{2 n}}^2}{\sigma_{\widehat{\theta}_{1 n}}^2} .
+\]
+\end{definition}
+\section{The Likelihood Ratio Test}
+
+See All of statistic.
+
+\begin{definition}[likelihood ratio test]
+Consider testing
+\[
+H_0: \theta \in \Theta_0 \quad \text { versus } \quad H_1: \theta \notin \Theta_0 .
+\]The \textbf{likelihood ratio statistic} is
+\[
+\lambda=2 \log \left(\frac{\sup _{\theta \in \Theta} \mathcal{L}(\theta)}{\sup _{\theta \in \Theta_0} \mathcal{L}(\theta)}\right)=2 \log \left(\frac{\mathcal{L}(\widehat{\theta})}{\mathcal{L}\left(\widehat{\theta}_0\right)}\right)
+\]where $\widehat{\theta}$ is the MLE and $\widehat{\theta}_0$ is the MLE when $\theta$ is restricted to lie in $\Theta_0$.
+\end{definition}
+When $\dim\Theta_0=1$, $\Lambda\coloneqq\frac{\mathcal{L}(\theta_0)}{\mathcal{L}(\widehat{\theta})}=\frac{\sup_{\theta\in\Theta_0}\mathcal{L}(\theta_0)}{\sup_{\theta\in\Theta}\mathcal{L}(\theta)}$.\footnote{Defined in Hogg} We have
+\[
+\lambda\overset{ \mathcal{D} }{ \to }\chi^{2}(1)
+\]
+\begin{itemize}
+	\item The $p$ -value for the test is $\mathbb{P}(\chi^{2}_{1}>\lambda)$, where $\lambda$ is the observed value. We reject $H_0$ at level $\alpha$ if $\alpha\geq$ $p$ -value.
+	\item We reject $H_0$ at level $\alpha$ when $\lambda\geq \chi^{2}_{1,\alpha}$, where $\alpha=\mathbb{P}(\chi^{2}(1)\geq\chi^{2}_{1,\alpha})$.
+\end{itemize}
+
+Consider another statistic
+\[
+\chi^{2}_{W}=\{ \sqrt{ nI(\widehat{\theta}) }(\widehat{\theta}-\theta_0) \}^{2}=nI(\widehat{\theta})\cdot(\widehat{\theta}-\theta_0)^2
+\]
+Under $H_0$, $\chi^{2}_{W}\overset{ \mathcal{D} }{ \to }\chi^{2}(1)$, then we construct a test\footnote{This test is often referred to as a \textbf{Wald}-type test.}
+\[
+\text { Reject } H_0 \text { in favor of } H_1 \text { if } \chi_W^2 \geq \chi_\alpha^2(1) \text {. }
+\]
+Note that under $H_0$, $\chi^{2}_{W}-\lambda\overset{ P }{ \to }0$.
+
+The third test is called \textbf{Rao's score test}. The \textbf{scores} are
+\[
+\mathbf{S}(\theta)=\left( \frac{ \partial \log f(X_1;t) }{ \partial \theta } ,\dots,\frac{ \partial \log f(X_n;\theta) }{ \partial \theta }  \right)'
+\]
+Define the statistic
+\[
+\chi^{2}_{R}=\left( \frac{l'(\theta)}{\sqrt{ nI(\theta_0) }} \right)^2
+\]
+Recall that
+\[
+l'(\theta)=\frac{ \partial   }{ \partial \theta } \left( \sum_{i=1}^{n} \log f(X_i;\theta) \right)=\sum_{i=1}^{n} \frac{ \partial \log f(X_i;\theta) }{ \partial \theta }
+\]
+\subsection{Multiparameter Case: Estimation}
+
+Assume that $\boldsymbol{\theta}\in\Theta \subset \mathbf{R}^{p}$. Then the \textbf{Fisher information} is given by
+\[
+\mathbf{I}(\boldsymbol{\theta})=\mathrm{Cov}(\nabla \log f(X;\boldsymbol{\theta}))=\left[ \mathrm{Cov}\left( \frac{ \partial   }{ \partial \theta _j } \log f(X;\boldsymbol{\theta}),\frac{ \partial   }{ \partial \theta _k } \log f(X;\boldsymbol{\theta}) \right) \right]_{j,k=1}^{p}
+\]
+Recall that
+\[
+\mathrm{Cov}(X,Y)=\mathbb{E}[(X-\mathbb{E}X)(Y-\mathbb{E}Y)],\qquad \mathrm{Cov}(\mathbf{X},\mathbf{Y})=\mathbb{E}[(\mathbf{X}-\mathbb{E}\mathbf{X})(\mathbf{Y}-\mathbb{E}\mathbf{Y})]
+\]
+We also have
+\[
+\mathbb{E}\left[\frac{\partial}{\partial \theta_j} \log f(X ; \boldsymbol{\theta}) \frac{\partial}{\partial \theta_k} \log f(X ; \boldsymbol{\theta})\right]=-\mathbb{E}\left[\frac{\partial^2}{\partial \theta_j \partial \theta_k} \log f(X ; \boldsymbol{\theta})\right] .
+\]
+The diagonal entries of $\mathbf{I}(\boldsymbol{\theta})$ are
+\[
+I_{ii}(\boldsymbol{\theta})=\mathrm{Var}\left[ \frac{ \partial \log f(X;\boldsymbol{\theta}) }{ \partial \theta _i }  \right]=-\mathbb{E}\left[ \frac{ \partial^2   }{ \partial \theta _i^2 }\log f(X_i;\boldsymbol{\theta})  \right]
+\]
+Similar to \cref{08320e}, if $Y_j=u_j(\mathbf{X})$ is an unbiased estimate of $\theta _j$, then
+\[
+\mathrm{Var}(Y_j)\geq \frac{1}{n}[\mathbf{I}^{-1}(\boldsymbol{\theta})]_{jj}
+\]
+We call it \textbf{efficient} if attaining the lower bound.
+
+\begin{note}
+$[\mathbf{I}^{-1}(\boldsymbol{\theta})]_{jj}=(\mathbf{I}(\theta))_{jj}^{-1}$ if $\mathbf{I}(\boldsymbol{\theta})$ is diagonal.
+\end{note}
+\subsubsection{Asymptotic behavior}
+
+\begin{theorem}
+Let $X_1, \ldots, X_n$ be iid with pdf $f(x ; \boldsymbol{\theta})$ for $\boldsymbol{\theta} \in \Omega$. Assume the regularity conditions hold. Then
+	\begin{enumerate}
+		\item The likelihood equation,
+	\end{enumerate}
+\[
+\frac{\partial}{\partial \boldsymbol{\theta}} l(\boldsymbol{\theta})=\mathbf{0}
+\]has a solution $\widehat{\boldsymbol{\theta}}_n$ such that $\widehat{\boldsymbol{\theta}}_n \xrightarrow{P} \boldsymbol{\theta}$.
+2. For any sequence that satisfies (1),
+\[
+\sqrt{n}\left(\widehat{\boldsymbol{\theta}}_n-\boldsymbol{\theta}\right) \xrightarrow{D} N_p\left(\mathbf{0}, \mathbf{I}^{-1}(\boldsymbol{\theta})\right) .
+\]
+\end{theorem}
+For $\boldsymbol{\eta}=\mathbf{g}(\boldsymbol{\theta})=(g_1(\boldsymbol{\theta}),\dots,g_k(\boldsymbol{\theta}))$, we have
+\[
+\sqrt{ n }(\widehat{\boldsymbol{\eta}}-\boldsymbol{\eta})\overset{ \mathcal{D} }{ \to }N_k(\mathbf{0},\mathbf{B}\mathbf{I}^{-1}(\boldsymbol{\theta})\mathbf{B}')
+\]
+where
+\[
+\mathbf{B}=\left[ \frac{ \partial g_i }{ \partial \theta _j }  \right]\qquad i=1,\dots,k,\ j=1,\dots,p.
+\]
+\subsubsection{Example: MLE Under the Normal Model}
+
+Suppose $X_1,\dots,X_n$ are i.i.d. $N(\mu,\sigma^{2})$. In this case $\boldsymbol{\theta}=(\mu,\sigma^{2})'$ and $\Omega=(-\infty,\infty)\times(0,\infty)$. Then
+\[
+l(\mu,\sigma^{2})=-\frac{n}{2}\log2\pi-n\log\sigma-\frac{1}{2\sigma^{2}}\sum_{i=1}^{n} (X_i-\mu)^2
+\]
+Then
+\[
+\frac{ \partial   }{ \partial \boldsymbol{\theta} } l(\boldsymbol{\theta})=\left( \frac{1}{\sigma^{2}}\sum_{i=1}^{n} (X_i-\mu),-\frac{n}{\sigma}+\frac{1}{\sigma^{3}}\sum_{i=1}^{n} (X_i-\mu)^2 \right)
+\]
+Let $\frac{ \partial   }{ \partial \boldsymbol{\theta} }l(\boldsymbol{\theta})=0$, then
+\[
+\widehat{\mu}=\overline{X}=\frac{1}{n}\sum_{i=1}^{n} X_i \qquad \widehat{\sigma}=\sqrt{ \frac{1}{n}\sum_{i=1}^{n} (X_i-\overline{X})^2 }
+\]
+Note that $\widehat{\mu}$ is unbiased, $\widehat{\sigma}^2$ is biased.

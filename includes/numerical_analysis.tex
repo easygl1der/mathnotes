@@ -1,0 +1,972 @@
+\setchapterimage[8cm]{Paul Pastourmatzis Unsplash}
+\setchapterpreamble[u]{\margintoc}
+\chapter{数值分析}
+\labch{numerical_analysis}
+
+\section{误差分析}
+绝对误差
+\[
+    \Delta x = |x - x^*|
+\]
+相对误差
+\[
+    r_{x^*} = \frac{\Delta x}{x^*} = \frac{|x - x^*|}{x^*}
+\]
+若实数 $a= \pm a_0 a_1 \cdots a_m \cdot a_{m+1} \cdots$($ a_n a_{n+1} \cdots(a_i \in\{0,1, \cdots, 9\})$ ，且当 $m \neq 0$ 时 $a_0 \neq 0$ )的近似 $\bar{a}$ 取为
+$$
+\bar{a}= \begin{cases} \pm a_0 a_1 \cdots a_m \cdot a_{m+1} \cdots a_n, & a_{n+1} \leq 4 \\ \pm\left(a_0 a_1 \cdots a_m \cdot a_{m+1} \cdots a_n+10^{-(n-m)}\right), & a_{n+1} \geq 5\end{cases}
+$$
+此时，
+\begin{equation}\label{eq:rounding_error}
+    \left|e_{\bar{a}}\right|=|a-\bar{a}| \leq \frac{1}{2} \times 10^{-(n-m)}
+\end{equation}
+把 $e_{\bar{a}}$ 叫做\textcolor{red}{舍入误差}．
+
+若 $\bar{a}$ 的绝对误差满足式\ref{eq:rounding_error}，$a_s$ 是 $\bar{a}$ 的从左到右第一位非零数字，则自 $a_s$ 起到最右边的数字为止，所有的数字都叫 $\bar{a}$ 的有效数字，并且说 $a$ 是具有 $(n+1-s)$ 位有效数字的有效数．
+
+
+
+\section{Gauss消去法}
+
+Gauss消去法就是将矩阵$A$化为上三角矩阵，然后回代求解。
+
+
+\section{（矩阵）直接三角分解方法}
+
+\subsection{Doolittle分解}
+设系数矩阵 $\boldsymbol{A}=\left[a_{i j}\right] \in \mathbb{R}^{n \times n}$, 它的顺序主子式 $\Delta_i \neq 0, i=1,2, \cdots, n$. 有\textcolor{red}{定理}可以保证如下分解
+{\small
+\[
+    \left[\begin{array}{cccc}
+            a_{11}  & a_{12}  & \cdots & a_{1 n} \\
+            a_{21}  & a_{22}  & \cdots & a_{2 n} \\
+            \vdots  & \vdots  &        & \vdots  \\
+            a_{n 1} & a_{n 2} & \cdots & a_{n n}
+        \end{array}\right]=\left[\begin{array}{cccc}
+            1       &         &        &   \\
+            l_{21}  & 1       &        &   \\
+            \vdots  & \vdots  & \ddots &   \\
+            l_{n 1} & l_{n 2} & \cdots & 1
+        \end{array}\right]\left[\begin{array}{cccc}
+            u_{11} & u_{12} & \cdots & u_{1 n} \\
+                   & u_{22} & \cdots & u_{2 n} \\
+                   &        & \ddots & \vdots  \\
+                   &        &        & u_{n n}
+        \end{array}\right]=: \boldsymbol{L}\boldsymbol{U}
+\]}
+\begin{note}
+    具体求解这个分解，可以直接硬算.
+\end{note}
+于是我们只需要求解方程组$LUx=b$，就可以得到$x$的解.
+\subsection{对称矩阵的三角分解、Cholesky方法}
+
+\begin{theorem}[对称正定矩阵的 Cholesky 分解定理]\label{thm:cholesky_decomposition}
+    $A \in \mathbb{R}^{n \times n}$, 假设 $A$ 对称正定, 则存在唯一的对角元素为正数的下三角形矩阵 $\boldsymbol{L}$, 使
+    \[
+        \boldsymbol{A}=\boldsymbol{L} \boldsymbol{L}^{\top} .
+    \]
+\end{theorem}
+\begin{proof}
+    证明考虑归纳法.
+\end{proof}
+接下来我们介绍Cholesky分解的算法.
+
+对于系数矩阵对称正定的方程组$Ax=b$，利用定理\ref{thm:cholesky_decomposition}的因式分解求解的方法被称为Cholesky方法.
+\[
+    \boldsymbol{A}=\left[\begin{array}{cccc}
+            l_{11}  &         &        &         \\
+            l_{21}  & l_{22}  &        &         \\
+            \vdots  & \vdots  & \ddots &         \\
+            l_{n 1} & l_{n 2} & \cdots & l_{n n}
+        \end{array}\right]\left[\begin{array}{cccc}
+            l_{11} & l_{21} & \cdots & l_{n 1} \\
+                   & l_{22} & \cdots & l_{n 2} \\
+                   &        & \ddots & \vdots  \\
+                   &        &        & l_{n n}
+        \end{array}\right] =: \boldsymbol{L}\boldsymbol{L}^{\top}
+\]
+\begin{note}
+    具体求解这个分解，可以直接硬算. 先从$l_{11}=\sqrt{a_{11}}$开始，然后$l_{21}l_{11}=a_{21}$，以此类推.
+\end{note}
+
+\subsection{对称非定矩阵}
+可以利用三角分解方法解决一半的工作量和存储空间. 我们有如下定理：
+\begin{theorem}
+    $\boldsymbol{A} \in \mathbb{R}^{n \times n}$, 设 $\boldsymbol{A}$ 对称, 且 $\boldsymbol{A}$ 的顺序主子式 $\Delta_i \neq 0, i=1,2, \cdots, n$, 则存在唯一的单位下三角形矩阵 $\boldsymbol{L}$ 和对角矩阵 $\boldsymbol{D}$, 使
+    \[
+        \boldsymbol{A}=\boldsymbol{L} \boldsymbol{D} \boldsymbol{L}^{\top} .
+    \]
+\end{theorem}
+\section{带状矩阵方程组的直接方法}
+
+
+\section{条件与条件数}
+
+\begin{definition}[矩阵的条件数]
+    将矩阵$\boldsymbol{A}$关于范数$\lVert\cdot\rVert$的条件数记为$\kappa(\boldsymbol{A})$\footnote{也记为$\operatorname{cond}(\boldsymbol{A})$}.
+    \[
+        \kappa(\boldsymbol{A})=\lVert \boldsymbol{A}\rVert\lVert \boldsymbol{A}^{-1}\rVert
+    \]
+\end{definition}
+
+\begin{property}
+    条件数的性质：
+    \begin{enumerate}
+        \item 对任何非奇异矩阵 $\boldsymbol{A}$, 都有 $\operatorname{cond}(\boldsymbol{A})_v \geqslant 1$\sidenote{这里的$\lVert\cdot\rVert_v$表示某种范数，通常$v=1,2,\infty$}. 事实上,
+              $$
+                  \operatorname{cond}(\boldsymbol{A})_v=\left\|\boldsymbol{A}^{-1}\right\|_v\|\boldsymbol{A}\|_v \geqslant\left\|\boldsymbol{A}^{-1} \boldsymbol{A}\right\|_v=1
+              $$
+        \item 设 $\boldsymbol{A}$ 为非奇异阵且 $c \neq 0$ (常数), 则
+              $$
+                  \operatorname{cond}(c \boldsymbol{A})_v=\operatorname{cond}(\boldsymbol{A})_v
+              $$
+        \item 如果 $\boldsymbol{A}$ 为正交矩阵, 则 $\operatorname{cond}(\boldsymbol{A})_2=1$; 如果 $\boldsymbol{A}$ 为非奇异矩阵, $\boldsymbol{R}$ 为正交矩阵, 则
+              $$
+                  \operatorname{cond}(\boldsymbol{R} \boldsymbol{A})_2=\operatorname{cond}(\boldsymbol{A} \boldsymbol{R})_2=\operatorname{cond}(\boldsymbol{A})_2
+              $$
+    \end{enumerate}
+\end{property}
+
+下面介绍三种常用的范数：
+\begin{itemize}
+    \item 1-范数\sidenote{1-范数也称为列和范数，表示矩阵列向量绝对值之和的最大值}：
+          \[
+              \lVert \boldsymbol{A}\rVert_1=\max_{1\leqslant j\leqslant n}\sum_{i=1}^n|a_{ij}|
+          \]
+    \item $\infty$-范数\sidenote{$\infty$-范数也称为行和范数，表示矩阵行向量绝对值之和的最大值}：
+          \[
+              \lVert \boldsymbol{A}\rVert_\infty=\max_{1\leqslant i\leqslant n}\sum_{j=1}^n|a_{ij}|
+          \]
+    \item 2-范数\sidenote{2-范数也称为谱范数，表示矩阵特征值的平方和的最大值}：
+          \[
+              \lVert \boldsymbol{A}\rVert_2=\sqrt{\lambda_{\max}(\boldsymbol{A}^*\boldsymbol{A})}
+          \]
+          \marginnote[1cm]{$\boldsymbol{A}$的谱条件数为
+              \[
+                  \kappa_2(\boldsymbol{A})=\frac{\lVert \boldsymbol{A}\rVert_2}{\lVert \boldsymbol{A}^{-1}\rVert_2}=\sqrt{\frac{\lambda_{\max}(\boldsymbol{A}^*\boldsymbol{A})}{\lambda_{\min}(\boldsymbol{A}^*\boldsymbol{A})}}
+              \]
+              当$\boldsymbol{A}$为对称矩阵时
+              \[
+                  \kappa_2(\boldsymbol{A})=\frac{\lVert \boldsymbol{A}\rVert_2}{\lVert \boldsymbol{A}^{-1}\rVert_2}=\sqrt{\frac{\lambda_{\max}(\boldsymbol{A})}{\lambda_{\min}(\boldsymbol{A})}}
+              \]
+          }
+\end{itemize}
+
+\begin{property}[范数运算法则]
+    设$\lVert\cdot\rVert$为任意一种范数，则
+    \begin{enumerate}[label=\roman*)]
+        \item $\lVert \boldsymbol{A}\rVert\geqslant 0$，且$\lVert \boldsymbol{A}\rVert=0$当且仅当$\boldsymbol{A}=0$；
+        \item $\lVert \alpha \boldsymbol{A}\rVert=\lvert\alpha\rvert\lVert \boldsymbol{A}\rVert$，其中$\alpha$为常数；
+        \item $\lVert \boldsymbol{A}+\boldsymbol{B}\rVert\leqslant \lVert \boldsymbol{A}\rVert+\lVert \boldsymbol{B}\rVert$；
+        \item $\lVert \boldsymbol{A}\boldsymbol{B}\rVert\leqslant \lVert \boldsymbol{A}\rVert\lVert \boldsymbol{B}\rVert$。
+    \end{enumerate}
+\end{property}
+
+\begin{theorem}\label{norm_approximation_of_inverse}
+    当$\lVert \boldsymbol{A}\rVert<1$时，
+    \[
+        \lVert (\boldsymbol{I}\pm \boldsymbol{A})^{-1}\rVert \leqslant \frac{1}{1-\lVert \boldsymbol{A}\rVert}
+    \]
+\end{theorem}
+
+
+有了上述定义和性质，接下来我们研究参数的扰动对于如下方程解的影响.\marginnote{来源：\href{https://math.ecnu.edu.cn/~sfzhu/course/NumerAnal/ErrorAnalysis.pdf}{5.4 误差分析–矩阵的条件数·朱升峰·华东师范大学·数学科学学院}}
+\begin{equation}\label{eq:linear_system}
+    \boldsymbol{A}\boldsymbol{x}=\boldsymbol{b}
+\end{equation}
+设$\boldsymbol{b}$有微小扰动$\delta \boldsymbol{b}$，则解$\boldsymbol{x}$的扰动为$\delta \boldsymbol{x}$，满足
+\[
+    \boldsymbol{A}(\boldsymbol{x}+\delta \boldsymbol{x})=\boldsymbol{b}+\delta \boldsymbol{b}\overset{\boldsymbol{A}\boldsymbol{x}=\boldsymbol{b}}{\implies} \delta \boldsymbol{x}=\boldsymbol{A}^{-1}\delta \boldsymbol{b}
+\]
+于是
+\[
+    \lVert \delta \boldsymbol{x}\rVert\leqslant \lVert \boldsymbol{A}^{-1}\rVert\lVert\delta \boldsymbol{b}\rVert
+\]
+又由线性方程组\ref{eq:linear_system}，有
+\[
+    \lVert \boldsymbol{b}\rVert\leqslant \lVert \boldsymbol{A}\rVert\lVert \boldsymbol{x}\rVert\implies \frac{1}{\lVert \boldsymbol{x}\rVert}\leqslant \frac{\lVert \boldsymbol{A}\rVert}{\lVert \boldsymbol{b}\rVert}\quad (\boldsymbol{b}\ne 0)
+\]
+从而有如下定理：
+\begin{theorem}
+    设$\boldsymbol{A}$为非奇异矩阵，$\boldsymbol{A}\boldsymbol{x}=\boldsymbol{b}\ne 0$，且
+    \[
+        \boldsymbol{A}(\boldsymbol{x}+\delta \boldsymbol{x})=\boldsymbol{b}+\delta \boldsymbol{b}
+    \]
+    则
+    \[
+        \frac{\lVert \delta \boldsymbol{x}\rVert}{\lVert \boldsymbol{x}\rVert}\leqslant \underbrace{\lVert \boldsymbol{A} \rVert\lVert \boldsymbol{A}^{-1}\rVert}_{\kappa(\boldsymbol{A})}\frac{\lVert \delta \boldsymbol{b}\rVert}{\lVert \boldsymbol{b}\rVert}
+    \]
+\end{theorem}
+
+设$\boldsymbol{A}$有微小扰动$\delta \boldsymbol{A}$，$\boldsymbol{b}$是精确值，则$(\boldsymbol{A}+\delta \boldsymbol{A})(\boldsymbol{x}+\delta \boldsymbol{x})=\boldsymbol{b}$，于是
+\begin{equation}\label{eq:perturbation_A}
+    (\boldsymbol{A}+\delta \boldsymbol{A})\delta \boldsymbol{x}=-(\delta \boldsymbol{A})\boldsymbol{x}
+\end{equation}
+如果$\delta \boldsymbol{A}$不加限制的话，$\boldsymbol{A}+\delta \boldsymbol{A}$可能成为奇异矩阵，而
+\[
+    (\boldsymbol{A}+\delta \boldsymbol{A})=\boldsymbol{A}(\boldsymbol{I}+\boldsymbol{A}^{-1}\delta \boldsymbol{A})
+\]
+由\ref{eq:perturbation_A}，当$\lVert\boldsymbol{A}^{-1}\delta \boldsymbol{A}\rVert<1$时，$(\boldsymbol{I}+\boldsymbol{A}^{-1}\delta \boldsymbol{A})^{-1}$存在，于是
+\[
+    \delta \boldsymbol{x} = -(\boldsymbol{I}+\boldsymbol{A}^{-1}\delta \boldsymbol{A})^{-1}\boldsymbol{A}^{-1}(\delta \boldsymbol{A}) \boldsymbol{x}
+\]
+因此
+\[
+    \lVert\delta \boldsymbol{x}\rVert\leqslant \lVert (\boldsymbol{I}+\boldsymbol{A}^{-1}\delta \boldsymbol{A})^{-1}\rVert\lVert \boldsymbol{A}^{-1}\rVert\lVert\delta \boldsymbol{A}\rVert\lVert \boldsymbol{x}\rVert\overset{\ref{norm_approximation_of_inverse}}{\leqslant} \frac{\lVert\delta \boldsymbol{A}\rVert\lVert \boldsymbol{A}^{-1}\rVert\lVert \boldsymbol{x}\rVert}{1-\lVert \boldsymbol{A}^{-1}(\delta \boldsymbol{A})\rVert}
+\]
+设$\lVert\delta \boldsymbol{A}^{-1}\rVert \lVert \delta \boldsymbol{A}\rVert<1$\sidenote{这将推出$\lVert \boldsymbol{A}^{-1}\delta \boldsymbol{A}\rVert\le \lVert\delta \boldsymbol{A}^{-1}\rVert\lVert\delta \boldsymbol{A}\rVert<1$}，则
+\[
+    \frac{\|\delta \boldsymbol{x}\|}{\|\boldsymbol{x}\|} \leqslant \frac{\left\|\boldsymbol{A}^{-1}\right\|\|\boldsymbol{A}\| \frac{\|\delta \boldsymbol{A}\|}{\|\boldsymbol{A}\|}}{1-\left\|\boldsymbol{A}^{-1}\right\|\|\boldsymbol{A}\| \frac{\|\delta \boldsymbol{A}\|}{\|\boldsymbol{A}\|}} .
+\]
+也就证明了如下定理：
+\begin{theorem}
+    设 $\boldsymbol{A}$ 为非奇异阵, $\boldsymbol{A x}=\boldsymbol{b} \neq 0$, 且
+
+    $$
+        (\boldsymbol{A}+\delta \boldsymbol{A})(\boldsymbol{x}+\delta \boldsymbol{x})=\boldsymbol{b}
+    $$
+    如果 $\left\|\boldsymbol{A}^{-1}\right\|\|\delta \boldsymbol{A}\|<1$, 则
+    $$
+        \frac{\|\delta \boldsymbol{x}\|}{\|\boldsymbol{x}\|} \leqslant \frac{\left\|\boldsymbol{A}^{-1}\right\|\|\boldsymbol{A}\| \frac{\|\delta \boldsymbol{A}\|}{\|\boldsymbol{A}\|}}{1-\left\|\boldsymbol{A}^{-1}\right\|\|\boldsymbol{A}\| \frac{\|\delta \boldsymbol{A}\|}{\|\boldsymbol{A}\|}} .
+    $$
+\end{theorem}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{线性代数方程组的迭代解法}
+
+\subsection{迭代公式的构造}
+
+对于方程组
+\begin{equation}\label{eq:iterative_method}
+    \boldsymbol{A}\boldsymbol{x}=\boldsymbol{b}
+\end{equation}
+其中$\boldsymbol{A}$为非奇异矩阵，$\boldsymbol{b}\in\mathbb{R}^n$. 将$\boldsymbol{A}$分解为
+\[
+    \boldsymbol{A}=\boldsymbol{M}-\boldsymbol{N}
+\]
+其中$\boldsymbol{M}$为非奇异矩阵. 则由\ref{eq:iterative_method}，有
+\begin{equation}\label{eq:iterative_method_decomposition}
+    \boldsymbol{x}=\boldsymbol{M}^{-1}\boldsymbol{N}\boldsymbol{x}+\boldsymbol{M}^{-1}\boldsymbol{b}
+\end{equation}
+令
+\begin{align*}
+    \boldsymbol{B} & =\boldsymbol{M}^{-1}\boldsymbol{N}=\boldsymbol{I}-\boldsymbol{M}^{-1}\boldsymbol{A} \\
+    \boldsymbol{f} & =\boldsymbol{M}^{-1}\boldsymbol{b}
+\end{align*}
+则迭代公式为
+\begin{equation}\label{eq:iterative_formula}
+    \boldsymbol{x}^{(k+1)}=\boldsymbol{B}\boldsymbol{x}^{(k)}+\boldsymbol{f}
+\end{equation}
+按照公式\ref{eq:iterative_formula}，我们可以构造出多种迭代方法，下面介绍几种常用的迭代方法。
+\subsubsection{Jacobi迭代法}
+设 $\boldsymbol{D}$ 非奇异, 即 $a_{i i} \neq 0, i=1,2, \cdots, n$. 将 $\boldsymbol{A}$ 分裂为 $\boldsymbol{A}=\boldsymbol{M} \boldsymbol{-} \boldsymbol{N}$, 其中 $\boldsymbol{M}=\boldsymbol{D}, \boldsymbol{N}=$ $\boldsymbol{L}+\boldsymbol{U}$, 可得到与\ref{eq:iterative_method}等价的方程组
+$$
+    \boldsymbol{x}=\boldsymbol{B}_J \boldsymbol{x}+\boldsymbol{f}_J .
+$$
+其中
+$$
+    \begin{aligned}
+         & \boldsymbol{B}_J=\boldsymbol{D}^{-1}(\boldsymbol{L}+\boldsymbol{U})=\boldsymbol{I}-\boldsymbol{D}^{-1} \boldsymbol{A}, \\
+         & \boldsymbol{f}_J=\boldsymbol{D}^{-1} \boldsymbol{b} .
+    \end{aligned}
+$$
+由此构造迭代法
+\begin{equation}\label{eq:jacobi_iterative_formula}
+    \boldsymbol{x}^{(k+1)}=\boldsymbol{B}_J \boldsymbol{x}^{(k)}+\boldsymbol{f}_J, \quad k=0,1, \cdots .
+\end{equation}
+这就是解方程组\ref{eq:iterative_method}的Jacobi迭代法, 简称J法. \ref{eq:jacobi_iterative_formula}式的分量形式是
+\begin{equation}\label{eq:jacobi_iterative_formula_component}
+    x_i^{(k+1)}=\frac{1}{a_{i i}}\left(b_i-\sum_{j=1}^{i-1} a_{i j} x_j^{(k)}-\sum_{j=i+1}^n a_{i j} x_j^{(k)}\right), \quad i=1,2, \cdots, n .
+\end{equation}
+\subsubsection{Gauss-Seidel迭代法}
+同样设 $\boldsymbol{D}$ 非奇异, 在 $\boldsymbol{A}$ 的分裂 $\boldsymbol{A}=\boldsymbol{M}-\boldsymbol{N}$ 中, 取 $\boldsymbol{M}=\boldsymbol{D - L}, \boldsymbol{N}=\boldsymbol{U}$, 得到等价方程组
+$$
+    \boldsymbol{x}=\boldsymbol{B}_G \boldsymbol{x}+\boldsymbol{f}_G,
+$$
+其中
+$$
+    \begin{aligned}
+         & \boldsymbol{B}_G=(\boldsymbol{D}-\boldsymbol{L})^{-1} \boldsymbol{U}=\boldsymbol{I}-(\boldsymbol{D}-\boldsymbol{L})^{-1} \boldsymbol{A}, \\
+         & \boldsymbol{f}_G=(\boldsymbol{D}-\boldsymbol{L})^{-1} \boldsymbol{b} .
+    \end{aligned}
+$$
+由此构造迭代法
+$$
+    \boldsymbol{x}^{(k+1)}=\boldsymbol{B}_G \boldsymbol{x}^{(k)}+\boldsymbol{f}_G, \quad k=0,1, \cdots .
+$$
+这称为 Gauss-Seidel 迭代法，简称 GS 法。它的分量形式是
+\begin{equation}\label{eq:gs_iterative_formula_component}
+    x_i^{(k+1)}=\frac{1}{a_{i i}}\left(b_i-\sum_{j=1}^{i-1} a_{i j} x_j^{(k+1)}-\sum_{j=i+1}^n a_{i j} x_j^{(k)}\right), \quad i=1,2, \cdots, n .
+\end{equation}
+区别是GS法计算$x_i^{(k+1)}$时，已经利用了$x_1^{(k+1)},\cdots,x_{i-1}^{(k+1)}$的最新值。
+
+\subsubsection{例子}
+下面举例说明Jacobi迭代法和Gauss-Seidel迭代法的构造。
+\begin{example}
+    方程组
+    $$
+        \left\{\begin{aligned}
+            10 x_1+3 x_2+x_3   & =14 \\
+            2 x_1-10 x_2+3 x_3 & =-5 \\
+            x_1+3 x_2+10 x_3   & =14
+        \end{aligned}\right.
+    $$
+    的解为$x=(1,1,1)^\top$.
+\end{example}
+在本例中，$\boldsymbol{A}$的分解为
+\[
+    \boldsymbol{A}=M-N=\begin{bmatrix}
+        10 & 0   & 0  \\
+        0  & -10 & 0  \\
+        0  & 0   & 10
+    \end{bmatrix}-\begin{bmatrix}
+        0  & -3 & -1 \\
+        -2 & 0  & -3 \\
+        -1 & -3 & 0
+    \end{bmatrix}
+\]
+于是
+\[
+    \boldsymbol{B}=\boldsymbol{M}^{-1}\boldsymbol{N}=\begin{bmatrix}
+        0             & -\frac{3}{10} & -\frac{1}{10} \\
+        \frac{1}{5}   & 0             & \frac{3}{10}  \\
+        -\frac{1}{10} & -\frac{3}{10} & 0
+    \end{bmatrix},\quad \boldsymbol{f}=\boldsymbol{M}^{-1}\boldsymbol{b}=\begin{bmatrix}
+        \frac{14}{10} \\
+        \frac{5}{10}  \\
+        \frac{14}{10}
+    \end{bmatrix}
+\]
+迭代法$x^{(k+1)}=\boldsymbol{B}x^{(k)}+\boldsymbol{f}$的迭代公式为
+\[
+    \begin{cases}
+        x_1^{(k+1)}=-\frac{3}{10}x_2^{(k)}-\frac{1}{10}x_3^{(k)}+\frac{14}{10} \\
+        x_2^{(k+1)}=\frac{1}{5}x_1^{(k)}-\frac{3}{10}x_3^{(k)}+\frac{5}{10}    \\
+        x_3^{(k+1)}=-\frac{1}{10}x_1^{(k)}-\frac{3}{10}x_2^{(k)}+\frac{14}{10}
+    \end{cases}
+\]
+以上是Jacobi迭代法的迭代公式，接下来我们构造Gauss-Seidel迭代法的迭代公式
+\[
+    \begin{cases}
+        x_1^{(k+1)}=-\frac{3}{10}x_2^{(k)}-\frac{1}{10}x_3^{(k)}+\frac{14}{10} \\
+        x_2^{(k+1)}=\frac{1}{5}x_1^{(k+1)}-\frac{3}{10}x_3^{(k)}+\frac{5}{10}  \\
+        x_3^{(k+1)}=-\frac{1}{10}x_1^{(k+1)}-\frac{3}{10}x_2^{(k+1)}+\frac{14}{10}
+    \end{cases}
+\]
+
+\subsection{Jacobi迭代法和Gauss-Seidel迭代法的收敛性}
+矩阵的谱半径，就是其特征值绝对值（复数取模）中的最大值.
+\[
+    \rho(\boldsymbol{B})\coloneqq \max_{1\le i\le n}|\lambda_i|
+\]
+形式上定义矩阵$\boldsymbol{B}$的谱半径为
+\[
+    \rho(\boldsymbol{B})\coloneqq \lim_{k\to\infty}\lVert \boldsymbol{B}^k\rVert^{1/k}
+\]
+\begin{theorem}[迭代法收敛的充要条件]\label{theorem:iterative_method_convergence}
+    迭代法 $\boldsymbol{x}^{(k+1)}=\boldsymbol{B} \boldsymbol{x}^{(k)}+\boldsymbol{f}(k=0,1, \cdots)$ 收敛的两个充分必要条件分别是：
+    \marginnote{
+        以下三个命题等价：
+        \begin{itemize}
+            \item $\lim _{k \rightarrow \infty} \boldsymbol{B}^k=\boldsymbol{O}$
+            \item $\rho(\boldsymbol{B})<1$
+            \item 至少存在一种矩阵从属范数 $\|\cdot\|$, 使 $\|\boldsymbol{B}\|<1$
+        \end{itemize}
+    }
+    \begin{enumerate}
+        \item $\rho(\boldsymbol{B})<1$;
+        \item 至少存在一种矩阵从属范数 $\|\cdot\|$, 使 $\|\boldsymbol{B}\|<1$.
+    \end{enumerate}
+\end{theorem}
+\begin{theorem}[迭代法的误差估计]
+    设 $\boldsymbol{x}^*$ 是方程组 $\boldsymbol{x}=\boldsymbol{B} \boldsymbol{x}+f$ 的唯一解, $\|\cdot\|$ 是一种向量范数, 从属于它的矩阵范数 $\|\boldsymbol{B}\|=q<1$, 则迭代法 $\boldsymbol{x}^{(k+1)}=\boldsymbol{B} \boldsymbol{x}^{(k)}+\boldsymbol{f}$ 收敛, 且
+    \[
+        \begin{aligned}
+             & \left\|\boldsymbol{x}^{(k)}-\boldsymbol{x}^{\cdot}\right\| \leqslant \frac{q}{1-q}\left\|\boldsymbol{x}^{(k)}-\boldsymbol{x}^{(k-1)}\right\|,  \\
+             & \left\|\boldsymbol{x}^{(k)}-\boldsymbol{x}^{\cdot}\right\| \leqslant \frac{q^k}{1-q}\left\|\boldsymbol{x}^{(1)}-\boldsymbol{x}^{(0)}\right\| .
+        \end{aligned}
+    \]
+\end{theorem}
+\begin{definition}
+    设迭代法 $\boldsymbol{x}^{(k+1)}=\boldsymbol{B} \boldsymbol{x}^{(k)}+\boldsymbol{f}$ 收敛，定义
+    \[
+        R(\boldsymbol{B})=-\ln \rho(\boldsymbol{B})
+    \]
+    称为迭代法\ref{eq:iterative_formula}的渐近收敛率，或称渐近收敛速度。
+\end{definition}
+由定理\ref{theorem:iterative_method_convergence}可知, J 法和 GS 法收敛的充分必要条件分别是 $\rho\left(\boldsymbol{B}_J\right)<1$ 和 $\rho\left(\boldsymbol{B}_G\right)<1$. 还可以把 $\left\|\boldsymbol{B}_J\right\|<1$ 和 $\left\|\boldsymbol{B}_G\right\|<1$ 分别作为 J 法和 GS 法收敛的充分条件, 这里的范数指任一种矩阵范数.下面给出一些容易验证的收敛充分条件.
+\begin{theorem}[对角占优矩阵的迭代法收敛性]\label{theorem:iterative_method_convergence_of_diagonally_dominant_matrix}
+    设 $\boldsymbol{A}$ 为严格对角占优矩阵, 或为不可约的弱对角占优矩阵, 则解方程组 $\boldsymbol{A x}=\boldsymbol{b}$ 的 Jacobi 迭代法和 Gauss-Seidel 迭代法都收敛.
+\end{theorem}
+\begin{theorem}[对称矩阵的Jacobi迭代法收敛条件]\label{theorem:iterative_method_convergence_of_symmetric_matrix}
+    设 $\boldsymbol{A}$ 对称, 且其对角元素 $a_{i i}>0, i=1,2, \cdots, n$, 则方程组 $\boldsymbol{A x}=\boldsymbol{b}$ 的Jacobi迭代法收敛的充分必要条件是 $\boldsymbol{A}$ 和 $2 \boldsymbol{D}-\boldsymbol{A}$ 均正定, 其中 $\boldsymbol{D}=\operatorname{diag}\left(a_{11}, a_{22}, \cdots, a_{n n}\right)$.
+\end{theorem}
+\begin{theorem}[对称正定矩阵的Gauss-Seidel迭代法收敛性]\label{theorem:gs_convergence_symmetric_positive_definite}
+    设 $\boldsymbol{A}$ 对称正定, 则方程组 $\boldsymbol{A x}=\boldsymbol{b}$ 的Gauss-Seidel迭代法收敛.
+\end{theorem}
+
+\begin{theorem}[Gauss-Seidel迭代法收敛的必要条件]\label{theorem:gs_convergence_necessary_condition}
+    设 $\boldsymbol{A} \in \mathbb{R}^{n \times n}$, $\boldsymbol{A}$ 对称、非奇异, 且对角元素 $a_{i i}>0, i=1,2, \cdots, n$. 若方程组 $\boldsymbol{A x}=\boldsymbol{b}$ 的Gauss-Seidel迭代法收敛, 则 $\boldsymbol{A}$ 正定.
+\end{theorem}
+
+\subsection{超松弛迭代法}
+
+同上节记 $\boldsymbol{A}=\boldsymbol{D}-\boldsymbol{L} \boldsymbol{-} \boldsymbol{U} . \mathrm{SOR}$ 法的分量形式 (3.1) 可以写成向量形式
+$$
+    \begin{gathered}
+        \boldsymbol{x}^{(k+1)}=(1-\omega) \boldsymbol{x}^{(k)}+\omega \boldsymbol{D}^{-1}\left(\boldsymbol{b}+\boldsymbol{L} \boldsymbol{x}^{(k+1)}+\boldsymbol{U} \boldsymbol{x}^{(k)}\right), \\
+        (\boldsymbol{D}-\omega \boldsymbol{L}) \boldsymbol{x}^{(k+1)}=[(1-\omega) \boldsymbol{D}+\omega \boldsymbol{U}] \boldsymbol{x}^{(k)}+\omega \boldsymbol{b} .
+    \end{gathered}
+$$
+整理成
+$$
+    \boldsymbol{x}^{(k+1)}=\mathscr{L}_\omega \boldsymbol{x}^{(k)}+\omega(\boldsymbol{D}-\omega \boldsymbol{L})^{-1} \boldsymbol{b},
+$$
+其中 $\mathscr{L}_\omega$ 为 SOR 法的迭代矩阵：
+$$
+    \mathscr{L}_\omega=(\boldsymbol{D}-\omega \boldsymbol{L})^{-1}[(1-\omega) \boldsymbol{D}+\omega \boldsymbol{U}] .
+$$
+
+\section{正交多项式}
+
+\begin{itemize}
+    \item Legendre多项式：$P_n(x)$
+          \[
+              P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} \left[(x^2 - 1)^n\right]
+          \]
+    \item Laguerre多项式：$L_n(x)$
+          \[
+              L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} \left(e^{-x} x^n\right)
+          \]
+    \item Hermite多项式：$H_n(x)$
+          \[
+              H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} \left(e^{-x^2}\right)
+          \]
+    \item Chebyshev多项式：$T_n(x)$
+          \[
+              T_n(x) = \cos(n \arccos(x))
+          \]
+\end{itemize}
+我们关心的是Legendre多项式和Chebyshev多项式.
+\subsection{Legendre多项式}
+Legendre多项式是以$[-1,1]$为定义域，以$1$为权函数的正交多项式。满足递推关系
+\[
+    (n+1)P_{n+1}(x)=(2n+1)xP_n(x)-nP_{n-1}(x),\quad P_0(x)=1,P_1(x)=x
+\]
+\subsection{Chebyshev多项式}
+Chebyshev多项式是以$[-1,1]$为定义域，以$1/\sqrt{1-x^2}$为权函数的正交多项式。满足递推关系
+\[
+    T_{n+1}(x)=2xT_n(x)-T_{n-1}(x),\quad T_0(x)=1,T_1(x)=x
+\]
+\subsection{最佳平方逼近}
+下面是一个在$[0,1]$上关于$\rho(x) \equiv 1$的最佳平方逼近的例子：
+\begin{example}
+    设 $f(x)=\sin \pi x, x \in[0,1]$ ，求 $f$ 在 $[0,1]$ 上关于 $\rho(x) \equiv 1, x \in[0,1]$ 在 $\mathscr{P}_2=\operatorname{span}\left\{1, x, x^2\right\}$ 中的最佳平方逼近多项式．
+\end{example}
+
+\begin{solution}
+    $$
+        \begin{aligned}
+             & \left(\varphi_0, \varphi_0\right)=\int_0^1 1 \mathrm{~d} x=1, \quad\left(\varphi_0, \varphi_1\right)=\int_0^1 x \mathrm{~d} x=\frac{1}{2},                   \\
+             & \left(\varphi_0, \varphi_2\right)=\int_0^1 x^2 \mathrm{~d} x=\frac{1}{3}, \quad\left(\varphi_1, \varphi_1\right)=\int_0^1 x^2 \mathrm{~d} x=\frac{1}{3},     \\
+             & \left(\varphi_1, \varphi_2\right)=\int_0^1 x^3 \mathrm{~d} x=\frac{1}{4}, \quad\left(\varphi_2, \varphi_2\right)=\int_0^1 x^4 \mathrm{~d} x=\frac{1}{5},     \\
+             & \left(f, \varphi_0\right)=\int_0^1 \sin \pi x \mathrm{~d} x=\frac{2}{\pi}, \quad\left(f, \varphi_1\right)=\int_0^1 x \sin \pi x \mathrm{~d} x=\frac{1}{\pi}, \\
+             & \left(f, \varphi_2\right)=\int_0^1 x^2 \sin \pi x \mathrm{~d} x=\frac{1}{\pi^3}\left(\pi^2-4\right) .
+        \end{aligned}
+    $$
+    法方程为
+    $$
+        \left[\begin{array}{ccc}
+                1           & \frac{1}{2} & \frac{1}{3} \\
+                \frac{1}{2} & \frac{1}{3} & \frac{1}{4} \\
+                \frac{1}{3} & \frac{1}{4} & \frac{1}{5}
+            \end{array}\right]\left[\begin{array}{c}
+                a_0 \\
+                a_1 \\
+                a_2
+            \end{array}\right]=\left[\begin{array}{c}
+                \frac{2}{\pi} \\
+                \frac{1}{\pi} \\
+                \frac{\pi^2-4}{\pi^3}
+            \end{array}\right]
+    $$
+    求解得到$a_0,a_1,a_2$，然后得到最佳平方逼近多项式：
+    \[
+        p(x)=a_0+a_1x+a_2x^2
+    \]
+\end{solution}
+\section{Lagrange插值多项式}
+
+对于给定的 $n+1$ 个节点 $x_i, i=0,1, \cdots, n$, 记
+$$
+    l_i(x)=\prod_{\substack{j=0 \\ j \neq i}}^n \frac{\left(x-x_j\right)}{\left(x_i-x_j\right)}, \quad i=0,1, \cdots, n .
+$$
+$l_i, i=0,1, \cdots, n$ 是 $n$ 次多项式并满足
+$$
+    l_i\left(x_j\right)= \begin{cases}1, & j=i, \\ 0, & j \neq i .\end{cases}
+$$
+令
+$$
+    L_n(x)=\sum_{i=0}^n f\left(x_i\right) l_i(x),
+$$
+显然, $L_n \in \mathscr{P}_n$, 并满足插值条件
+$$
+    L_n\left(x_j\right)=f\left(x_j\right), \quad j=0,1, \cdots, n .
+$$
+写成（1.3）形式的 $n$ 次插值多项式 $L_n$ 称为 $\boldsymbol{n}$ 次 Lagrange 插值多项式， $l_i \in$ $\mathscr{P}_n(i=0,1, \cdots, n)$ 称为 $\boldsymbol{n}$ 次 Lagrange 插值基函数.
+\begin{proposition}[零多项式定理]\label{proposition:zero_polynomial}
+    零点数大于$n$的$n$次多项式$P(x)$为零多项式。
+\end{proposition}
+\begin{proof}
+    设 $p(x)=\sum_{k=0}^n a_k x^k$, 若 $n=0$, 则显然有 $p(x) \equiv 0$. 用归纳法来证明. 假定 $n \geqslant 0$ 结论成立. 那么对于 $p \in \mathscr{P}_{n+1}$, 对 $x^k=[(x-\alpha)+\alpha]^k$ 用二项式公式, 有
+    $$
+        p(x)=\sum_{k=1}^{n+1} b_k(x-\alpha)^k+b_0 .
+    $$
+    其中系数 $b_0, b_1, \cdots, b_{n+1}$ 依赖于 $a_0, a_1, \cdots, a_{n+1}$ 和 $\alpha$.
+
+    如果 $\alpha$ 为 $p$ 的一个零点, 那么可以得到 $b_0=0$. 并且 $p(x)=(x-\alpha) q(x)$, $q \in \mathscr{P}_n$. 由于 $p \in \mathscr{P}_{n+1}$ 具有多于 $n+1$ 个零点, 所以 $q$ 具有多于 $n$ 个零点. 利用归纳假定, $q$ 恒为零, 从而 $p \in \mathscr{P}_{n+1}$ 恒为零.
+\end{proof}
+\begin{proposition}
+    Lagrange插值多项式唯一.
+\end{proposition}
+\begin{proof}
+    这是命题\ref{proposition:zero_polynomial}的直接推论.
+\end{proof}
+余项估计:
+\[R_n(x)=f(x)-L_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}\prod_{i=0}^n(x-x_i)\le \frac{M}{(n+1)!}\prod_{i=0}^n|x-x_i|\]
+其中$\xi=\xi(x)\in(a,b)$，$M=\max_{x\in[a,b]}|f^{(n+1)}(x)|$. $\xi$的得出考虑使用$K$值法并反复使用Rolle定理。
+\section{均差与Newton插值多项式}
+设函数 $f$ 在 $n+1$ 个不同节点 $x_0, x_1, \cdots, x_n$ 上的值为 $f\left(x_0\right), f\left(x_1\right), \cdots, f\left(x_n\right)$.分别称
+$$
+    \begin{aligned}
+         & f\left[x_k\right]=f\left(x_k\right),                                                                                    \\
+         & f\left[x_k, x_{k+1}\right]=\frac{f\left[x_{k+1}\right]-f\left[x_k\right]}{x_{k+1}-x_k},                                 \\
+         & \hat{f}\left[x_k, x_{k+1}, x_{k+2}\right]=\frac{f\left[x_{k+1}, x_{k+2}\right]-f\left[x_k, x_{k+1}\right]}{x_{k+2}-x_k}
+    \end{aligned}
+$$
+为 $f$ 在 $x_k$ 上的零阶均差, 在 $x_k, x_{k+1}$ 上的一阶均差和在 $x_k, x_{k+1}, x_{k+2}$ 上的二阶均差.一般的, 称
+$$
+    f\left[x_k, x_{k+1}, \cdots, x_{k+j}\right]=\frac{f\left[x_{k+1}, \cdots, x_{k+j}\right]-f\left[x_k, \cdots, x_{k+j-1}\right]}{x_{k+j}-x_k}
+$$
+为 $f$ 在节点 $x_k, x_{k+1}, \cdots, x_{k+j}$ 上的 $j$ 阶均差, 其中 $f\left[x_{k+1}, \cdots, x_{k+j}\right], f\left[x_k, \cdots, x_{k+j-1}\right]$ 分别为 $f$ 在节点 $x_{k+1}, \cdots, x_{k+j}$ 上和在节点 $x_k, \cdots, x_{k+j-1}$ 上的 $k-1$ 阶均差.
+\begin{proposition}
+    $k$ 阶均差 $f\left[x_0, x_1, \cdots, x_k\right]$ 是函数值 $f\left(x_0\right), f\left(x_1\right), \cdots, f\left(x_k\right)$ 的线性组合
+    $$
+        \begin{aligned}
+              & f\left[x_0, x_1, \cdots, x_k\right]                                                                                                                                 \\
+            = & \sum_{j=0}^k \frac{f\left(x_j\right)}{\left(x_j-x_0\right)\left(x_j-x_1\right) \cdots\left(x_j-x_{j-1}\right)\left(x_j-x_{j+1}\right) \cdots\left(x_j-x_k\right)} .
+        \end{aligned}
+    $$
+\end{proposition}
+\begin{proposition}[对称性]
+    任意交换均差中节点的次序，均差$f\left[x_0, x_1, \cdots, x_k\right]$不变。
+\end{proposition}
+\begin{proposition}
+    如果 $f\left[x, x_0, x_1, \cdots, x_k\right]$ 是 $x$ 的 $m$ 次多项式,那么 $f\left[x, x_0, x_1, \cdots, x_k, x_{k+1}\right]$ 是 $x$ 的 $m-1$ 次多项式.
+\end{proposition}
+\begin{corollary}
+    设 $f \in \mathscr{P}_n$, 那么 $f\left[x, x_0, x_1, \cdots, x_n\right]$ 恒等于零.
+\end{corollary}
+\begin{proposition}
+    设 $f \in C^n[a, b], x_j \in[a, b], j=0,1, \cdots, n$ 为相异节点, 则有
+    $$
+        f\left[x_0, x_1, \cdots, x_n\right]=\frac{1}{n!} f^{(n)}(\xi),
+    $$
+    其中 $\xi \in(a, b)$.
+\end{proposition}
+Newton插值多项式：
+\begin{align}
+    N_n(x)= & f\left(x_0\right)+f\left[x_0, x_1\right]\left(x-x_0\right)+f\left[x_0, x_1, x_2\right]\left(x-x_0\right)\left(x-x_1\right)+\cdots+ \\
+            & f\left[x_0, x_1, \cdots, x_n\right]\left(x-x_0\right)\left(x-x_1\right) \cdots\left(x-x_{n-1}\right) .
+\end{align}
+反复利用均差的定义可以得到
+\[
+    f(x)=N_n(x)+f\left[x, x_0, x_1, \cdots, x_n\right]\left(x-x_0\right)\left(x-x_1\right) \cdots\left(x-x_n\right) .
+\]
+简单计算可知$L_n=N_n$，所以Newton插值多项式是Lagrange插值多项式的另一种形式。
+
+所以他们的余项估计是相同的。
+\section{Hermite插值多项式}
+
+实际上, 最一般的情况是拟合闭区间 $[a, b]$ 中的 $m$ 个点 $a \leqslant x_1<x_2<\cdots<x_m \leqslant b$, 每个点要求拟合 $s_j \in \mathbb{N}_0, j=1,2, \cdots, m$ 阶导的情况，即
+\begin{equation}\label{eq:hermite_interpolation_condition}
+    p^{(i)}\left(x_j\right)=f^{(i)}\left(x_j\right), i=0,1, \cdots, s_j, j=1,2, \cdots, m .
+\end{equation}
+\begin{proposition}[Hermite 插值多项式的存在性和唯一性]
+    给定 $a \leqslant x_1<x_2<\cdots<x_m \leqslant b$ 和非负整数 $s_j, j=0,1,2, \cdots, m$. 设 $f \in D^{\max _{1 \leqslant j \leqslant m} s_j}[a, b]$.则存在唯一的次数不超过 $\sum_{j=1}^m\left(s_j+1\right)-1$ 的多项式 $p \in \mathbb{R}[x]$, 使得条件(10.5)成立.
+\end{proposition}
+\begin{theorem}[Hermite 插值定理]
+    给定 $a<x_1<x_2<\cdots<x_m<b$ 和非负整数 $s_j, j=0,1,2, \cdots, m$. 设 $f \in C^{\sum_{j=1}^m\left(s_j+1\right)-1}[a, b]$且 $f \in D^{\sum_{j=1}^m\left(s_j+1\right)}(a, b)$ 的满足条件\eqref{eq:hermite_interpolation_condition}的 Hermite 插值多项式为 $p$, 则对每个 $x \in[a, b]$, 都存在 $\theta \in\left(\min \left\{x, x_1\right\}, \max \left\{x, x_m\right\}\right)$ ，使得
+    $$
+        f(x)=p(x)+\frac{f^{\left(\sum_{j=1}^m\left(s_j+1\right)\right)}(\theta)}{\left(\sum_{j=1}^m\left(s_j+1\right)\right)!}\left(x-x_1\right)^{s_1+1}\left(x-x_2\right)^{s_2+1} \cdots\left(x-x_m\right)^{s_m+1} .
+    $$
+\end{theorem}
+为了计算Hermite插值多项式.\sidenote{\href{https://www.bilibili.com/video/BV1PS4y1U76c/?spm_id_from=333.337.search-card.all.click&vd_source=b55594d2ba73cdd7666e94ca2cf2fe93}{Fiddie的讲解}本质上就是先看题目中要求的次数，然后选择一组合适的基，待定系数算出来Hermite插值多项式。余项估计考虑用K值法算出余项，可以参考Fiddie的讲解，时间为20:20}
+
+设 $\Lambda \subset\{1,2, \cdots, m\}$. 若在条件\ref{eq:hermite_interpolation_condition}中, $s_j=1, j \in \Lambda, s_j=0, j \notin \Lambda$. 则插值多项式 $p$ 可以如下确定.设 $g=\sum_{j=1}^m \frac{\prod_{1 \leqslant i \leqslant m, i \neq j}\left(x-x_i\right)}{\prod_{1 \leqslant i}\left(x_j-x_i\right)} f\left(x_j\right)$ 是拉格朗日插值部分, 待定 $|\Lambda|-1$ 次多项式 $r$, 令
+\begin{equation}\label{eq:hermite_interpolation_polynomial}
+    p(x)=g(x)+r(x) \prod_{j=1}^m\left(x-x_j\right)
+\end{equation}
+在\ref{eq:hermite_interpolation_polynomial}中两边求导, 并由方程 $p^{\prime}\left(x_\lambda\right)=f^{\prime}\left(x_\lambda\right), \lambda \in \Lambda$ 唯一确定多项式 $r$, 则得 $p$.
+
+\begin{kaobox}
+    真正做题的时候不是这样插的，是先取一组合适的基，然后待定系数算出来Hermite插值多项式。
+\end{kaobox}
+
+\subsection{误差估计}
+对于三次Hermite插值多项式$H_3$，满足插值条件
+\begin{align*}
+    H_3(x_i)  & =f(x_i)              \\
+    H_3'(x_i) & =f'(x_i),\quad i=0,1
+\end{align*}
+根据Newton插值多项式，可以类似地有
+\[
+    R_3(x)=f(x)-H_3(x)=f[x_0,x_0,x_1,x_1,x](x-x_0)^2(x-x_1)^2
+\]
+如果$f\in C^4[x_0,x_1]$，则\sidenote{这是利用了均差的中值定理}
+\[
+    R_3(x)=\frac{f^{(4)}(\xi(x))}{4!}(x-x_0)^2(x-x_1)^2,\quad \xi(x)\in(x_0,x_1)
+\]
+于是
+\[
+    |f(x)-H_3(x)|\le \frac{1}{384}(x_1-x_0)^4\max_{x\in[x_0,x_1]}|f^{(4)}(x)|
+\]
+
+% \subsection{分段线性多项式插值}
+
+% \subsection{三次样条插值}
+
+\section{函数逼近}
+
+\subsection{最佳平方逼近}
+对于线性空间$\Phi=\mathrm{span} \left\{\varphi_0, \varphi_1, \cdots, \varphi_n\right\}$，记
+\[
+    \left(\varphi_k, \varphi_j\right)=\int_a^b \rho(x) \varphi_k(x) \varphi_j(x) \mathrm{d} x, \quad\left(f, \varphi_k\right)=\int_a^b \rho(x) f(x) \varphi_k(x) \mathrm{d} x .
+\]
+求解
+\[
+    \left[\begin{array}{cccc}
+            \left(\varphi_0, \varphi_0\right) & \left(\varphi_0, \varphi_1\right) & \cdots & \left(\varphi_0, \varphi_n\right) \\
+            \left(\varphi_1, \varphi_0\right) & \left(\varphi_1, \varphi_1\right) & \cdots & \left(\varphi_1, \varphi_n\right) \\
+            \vdots                            & \vdots                            &        & \vdots                            \\
+            \left(\varphi_n, \varphi_0\right) & \left(\varphi_n, \varphi_1\right) & \cdots & \left(\varphi_n, \varphi_n\right)
+        \end{array}\right]\begin{bmatrix}
+        c_0    \\
+        c_1    \\
+        \vdots \\
+        c_n
+    \end{bmatrix}=\begin{bmatrix}
+        (f, \varphi_0) \\
+        (f, \varphi_1) \\
+        \vdots         \\
+        (f, \varphi_n)
+    \end{bmatrix}
+\]
+得到$c_0,c_1,\cdots,c_n$，然后代入
+\[
+    p(x)=c_0\varphi_0(x)+c_1\varphi_1(x)+\cdots+c_n\varphi_n(x)
+\]
+得到最佳平方逼近多项式。
+
+\section{数值积分}
+
+可参考\href{https://www.bilibili.com/video/BV1jZ4y1B7w2?spm_id_from=333.788.videopod.sections&vd_source=b55594d2ba73cdd7666e94ca2cf2fe93}{Fiddie的讲解}
+
+\subsection{插值型求积公式}
+
+回顾前一章的插值求积公式，$f(x)$在$x_0,x_1,\cdots,x_n$上的Lagrange插值多项式$L_n(x)$为
+\[
+    L_n(x)=\sum_{i=0}^n f(x_i) l_i(x)
+\]
+其中
+\[
+    l_i(x)=\prod_{\substack{j=0 \\ j \neq i}}^n \frac{\left(x-x_j\right)}{\left(x_i-x_j\right)}, \quad i=0,1, \cdots, n .
+\]
+用$p(x)$来近似$f(x)$，则
+\[
+    \int_a^b f(x) \, dx \approx \int_a^b p(x) \, dx = \int_a^b \sum_{i=0}^n f(x_i) l_i(x) \, dx = \sum_{i=0}^n f(x_i) \int_a^b l_i(x) \, dx
+\]
+由于$l_i(x)$是$n$次多项式，所以它的积分很容易被求出来. 记$A_i=\int_a^b l_i(x) \, dx$，则积分公式可以改写为
+\[
+    \int_a^b f(x) \, dx \approx \sum_{i=0}^n f(x_i) A_i
+\]
+
+\subsubsection{复合梯形求积公式}
+
+将积分区间 $[a, b]$ 分为 $n$ 等份，$x_k=a+k h, h=\frac{b-a}{n}, k=0,1, \cdots, n$ ．在每个子区间 $\left[x_{k-1}, x_k\right](k=1,2, \cdots, n)$ 上采用梯形公式，那么有
+$$
+    \begin{aligned}
+        \int_a^b f(x) \mathrm{d} x & =\sum_{k=1}^n \int_{x_{k-1}}^{x_k} f(x) \mathrm{d} x                                               \\
+                                   & =\frac{h}{2} \sum_{k=1}^n\left[f\left(x_{k-1}\right)+f\left(x_k\right)\right]+\widetilde{E}_n(f) .
+    \end{aligned}
+$$
+令
+$$
+    \begin{aligned}
+        T_n(f) & =\frac{h}{2} \sum_{k=1}^n\left[f\left(x_{k-1}\right)+f\left(x_k\right)\right] \\
+               & =\frac{h}{2}\left[f(a)+2 \sum_{k=1}^{n-1} f\left(x_k\right)+f(b)\right],
+    \end{aligned}
+$$
+此公式称为复合梯形公式．
+
+\subsubsection{Simpson公式}
+
+Simpson公式是一种常用的数值积分方法，用于近似计算定积分。其基本思想是用二次多项式来逼近被积函数。Simpson公式的表达式如下：
+
+\[
+    \int_a^b f(x) \, dx \approx \frac{b-a}{6} \left[ f(a) + 4f\left( \frac{a+b}{2} \right) + f(b) \right]
+\]
+
+其中，$a$ 和 $b$ 是积分区间的端点，$f(x)$ 是被积函数。
+
+对于更高精度的计算，可以将积分区间分成多个小区间，应用复合Simpson公式：
+
+\[
+    \int_a^b f(x) \, dx \approx \frac{h}{3} \left[ f(x_0) + 4 \sum_{i=1,3,5,\ldots}^{n-1} f(x_i) + 2 \sum_{i=2,4,6,\ldots}^{n-2} f(x_i) + f(x_n) \right]
+\]
+
+其中，$h = \frac{b-a}{n}$，$x_i = a + ih$，$n$ 是偶数。
+
+Simpson公式具有较高的精度，适用于被积函数较为平滑的情况。
+
+\subsubsection{误差分析}
+
+\begin{theorem}[插值多项式误差定理]
+    设 $f$ 是 $C^{n+1}[a, b]$ 中的函数，多项式 $p$ 是函数 $f$ 在区间 $[a, b]$ 的 $n+1$ 个不同点 $x_0, \cdots, x_n$ 上次数不超过 $n$ 的插值多项式. 对 $[a, b]$ 中的每个 $x$, 都有 $(a, b)$ 中的一点 $\xi_x$ 与之对应, 使得
+    \[
+        f(x)-p(x)=\frac{1}{(n+1)!} f^{(n+1)}\left(\xi_x\right) w(x) .
+    \]
+    其中，$w(x) = (x - x_0)(x - x_1) \cdots (x - x_n)$.
+\end{theorem}
+对上式两端积分，得到误差项为
+\[
+    \int_a^b f(x) \, dx - \int_a^b p(x) \, dx = \frac{1}{(n+1)!}\int_a^b  f^{(n+1)}\left(\xi_x\right) w(x) \, dx
+\]
+
+
+\subsection{待定系数法}
+
+先待定系数，然后带入$\{ 1,x,x^2,\cdots,x^n \}$求解出来.
+\[
+    \int_a^b f(x)dx=\sum_{i=0}^n A_i f(x_i)
+\]
+其中$A_i$是待定系数，$x_i$是节点。
+
+代数精度：若对于$f(x)=x^k$，上式成立，但是对于$f(x)=x^{k+1}$不成立，则称该求积公式具有$k$次代数精度。
+
+% \section{数值微分}
+
+% \subsection{插值型数值微分公式}
+
+% \subsection{复化求导公式}
+
+% \subsection{Romberg求导公式}
+
+% \subsection{数值微分的误差估计}
+\section{期末练习}
+
+\begin{exercise}
+    已知$A\in \mathbb{R}^{n\times n}$，$I$为$n$阶单位矩阵，且$||A||<1$，证明$I+A$可逆，且
+    \[
+        ||(I+A)^{-1}||\leq \frac{1}{1-||A||}
+    \]
+\end{exercise}
+\begin{proof}
+    考虑反证，若$I+A$不可逆，则$\det(I+A)=0$，则$(I+A)x=0$有非零解。因此$\exists x_0\neq 0$，使得$(I+A)x_0=0$，即$x_0=-Ax_0$，即
+    \[
+        ||Ax_0||=||x_0||\implies ||A||\geq \frac{||Ax_0||}{||x_0||}=1
+    \]
+    这与$||A||<1$矛盾，因此$I+A$可逆。又因为$(I+A)(I+A)^{-1}=I$，有$(I+A)^{-1}=I-A(I+A)^{-1}$，因此
+    \[
+        ||(I+A)^{-1}||\leq ||I||+||A|||(I+A)^{-1}||\implies ||(I+A)^{-1}||\leq \frac{1}{1-||A||}
+    \]
+\end{proof}
+
+\begin{exercise}
+    严格对角占优矩阵非奇异。
+\end{exercise}
+\begin{proof}
+    只需证明严格对角占有矩阵的行列式不为零。
+
+    反证而设$A$奇异，则$Ax=0$有非零解，不妨设$Ax_0=0$，即$A$的特征值为0，于是有
+    \[
+        \sum_{j=1}^n a_{ij}x_j=0 \quad (i=1,2,\cdots,n)
+    \]
+    不妨设$x_i$为$x_0$中绝对值最大的分量，则有
+    \[
+        |a_{ii}x_i|\le \sum_{j=1,j\neq i}^n |a_{ij}x_j|\le \sum_{j=1,j\neq i}^n |a_{ij}| |x_i|\implies |a_{ii}|\le \sum_{j=1,j\neq i}^n |a_{ij}|
+    \]
+    这与$A$严格对角占优矛盾，因此$A$非奇异。
+\end{proof}
+
+\begin{exercise}
+    2．对 $n=0,1,2$ ，写出 n 次 Chebyshev 多项式的表达式，利用 Chebyshev 多项式的极小零偏差性质，求 $f(x)=5x^2-x+2$ 在 $[-1,1]$ 上的最佳一致逼近线性多项式（12 分）
+\end{exercise}
+\begin{solution}
+    \[
+        T_0(x)=1, \quad T_1(x)=x, \quad T_2(x)=2x^2-1
+    \]
+    假设$p(x)=ax+b$为最佳一致逼近线性多项式，则有
+    \[
+        \max_{x\in[-1,1]} |f(x)-p(x)|=\min_{P\in \mathcal{P}_1} (\max_{x\in[-1,1]} |f(x)-P(x)|)
+    \]
+    根据Chebyshev多项式的极小零偏差性质，有
+    \[
+        f(x)-p(x)=\frac{5}{2}T_2(x)=\frac{5}{2}(2x^2-1)
+    \]
+    此时多项式$f(x)-p(x)$的零偏差最小，于是
+    \[
+        p(x)=-x+\frac{9}{2}
+    \]
+\end{solution}
+
+\begin{exercise}
+    对权函数$\rho(x)=1+x^2$，区间$[-1,1]$，求首项系数为1的正交多项式$\Phi_n(x),n=0,1,2.$
+\end{exercise}
+\begin{solution}
+    采用正交化方法
+    \begin{align*}
+        \Phi_0(x) & =1                                                                                                               \\
+        \Phi_1(x) & =x-\frac{(x,\Phi_0)}{(1,\Phi_0)}\Phi_0=x-\frac{1}{2}                                                             \\
+        \Phi_2(x) & =x^2-\frac{(x^2,\Phi_0)}{(\Phi_0,\Phi_0)}\Phi_0(x)-\frac{(x^2,\Phi_1)}{(\Phi_1,\Phi_1)}\Phi_1(x)=x^2-\frac{2}{5}
+    \end{align*}
+\end{solution}
+
+\begin{exercise}
+    已知 $f(0)=3, f(1)=1, f^{\prime}(1)=-4, f(2)=-3$ ，求 $f$ 的 Hermite 型三次插值多项式．（6 分）
+\end{exercise}
+\begin{solution}
+    首先适当选取$\mathcal{P}_3$的基，我们取$1,x,x(x-1),x(x-1)^2$，设
+    \[
+        H(x)=c_0+c_1x+c_2x(x-1)+c_3x(x-1)^2
+    \]
+    带入$H(0)=f(0)=3,H(1)=f(1)=1,H'(1)=f'(1)=-4,H(2)=f(2)=-3$，可以得到
+    \[
+        \begin{cases}
+            c_0=3      \\
+            c_0+c_1=1  \\
+            c_1+c_2=-4 \\
+            c_0+2c_1+2c_2+2c_3=-3
+        \end{cases}\Rightarrow \begin{cases}
+            c_0=3  \\
+            c_1=-2 \\
+            c_2=-2 \\
+            c_3=1
+        \end{cases}
+    \]
+    因此，$H(x)=3-2x-2x(x-1)+x(x-1)^2$。
+\end{solution}
+
+\begin{exercise}
+    \marginnote{验证内积定义}对于$f,g\in C^1[0,1]$，定义
+    \[(f,g)\coloneqq \int_0^1f'(x)g'(x)dx+f(0)g(0)\]
+    验证其为内积。
+\end{exercise}
+\begin{solution}
+    验证内积定义的三个条件：
+    \begin{enumerate}
+        \item 正定性：$(f,f)=\int_0^1f'(x)^2dx+f(0)^2\geq 0$，且$(f,f)=0\Leftrightarrow f'(x)=0,f(x)=0$。\sidenote{这里利用到了$C^1$的性质，否则有反例Cantor-Lebesgue函数。}
+        \item 对称性：$(f,g)=(g,f)$。(显然)
+        \item 线性性：$(f+g,h)=(f,h)+(g,h),(\lambda f,g)=\lambda(f,g)$。(显然)
+    \end{enumerate}
+\end{solution}
+
+\begin{exercise}
+    \marginnote{插值多项式误差分析}确定下面的求积公式中的参数的值，使其代数精度尽可能高：
+    \[
+        \int_0^3f(x)dx\approx A_0f(0)+A_1f(1)+A_2f(3)
+    \]
+    确定该公式的代数精度，并写出误差估计式.
+\end{exercise}
+\begin{solution}
+    代入$1,x,x^2$可以解得$A_0=0,A_1=\frac{9}{4},A_2=\frac{3}{4}$，此时代数精度为2。接下来计算误差
+    \[
+        R[f]=kf'''(\xi)=\int_0^3f(x)dx-\frac{9}{4}f(1)-\frac{3}{4}f(3)
+    \]
+    带入$f(x)=x^3$，可以得到$k=-\frac{3}{8}$，因此误差估计式为
+    \[
+        R[f]=-\frac{3}{8}f'''(\xi),\quad \xi\in(0,3)
+    \]
+\end{solution}
+
+\begin{exercise}
+    \marginnote{条件数与矩阵范数}对矩阵
+    $$
+        A:=\left[\begin{array}{cc}
+                2 \lambda & \lambda \\
+                1         & 1
+            \end{array}\right],
+    $$
+    当入取什么值时 $\operatorname{cond}(A)_{\infty}$ 达到最小？（12 分）
+\end{exercise}
+\begin{solution}
+    利用公式$\operatorname{cond}(A)_{\infty}=\|A\|_{\infty}\|A^{-1}\|_{\infty}$，其中$\|\cdot\|_{\infty}$表示矩阵行向量绝对值之和的最大值. 接下来照章办事即可.
+\end{solution}
+
+\begin{exercise}
+    \marginnote{证明$LU$分解唯一性}设 $n$ 阶方阵 $A$ 的顺序主子式 $D_i \neq 0(i=1,2, \cdots, n-1)$ ，则其可分解为 $A=L U$ ，其中 $L$ 是单位下三角矩阵，$U$ 是上三角矩阵。分 $A$ 奇异和非奇异两种情况，证明 $A$ 的 $L U$ 分解是唯一的。
+\end{exercise}
+\begin{proof}
+    \begin{enumerate}
+        \item $A$ 为非奇异阵，设 $A=LU=L_1U_1$，$L, L_1$ 为单位下三角矩阵，$U, U_1$ 为上三角矩阵。由于 $U_1^{-1}$ 存在，故 $L^{-1}L_1=UU_1^{-1}$，等式左边为单位下三角矩阵，右边为上三角矩阵，故两侧为单位阵，$L=L_1, U=U_1$。
+        \item $A$ 为奇异矩阵，$n=2$ 时易于证明，设 $n-1$ 阶时成立，对于 $n$ 阶 $A=LV$，$L$ 为单位下三角矩阵，$V$ 形如
+              \[
+                  \begin{pmatrix}
+                      V & * \\
+                      0 & 0
+                  \end{pmatrix}
+              \]
+              设 $A=L_1U_1=L_2U_2$，令
+              \[
+                  L_1=\begin{pmatrix}
+                      A_1        & 0 \\
+                      x_1^{\top} & 1
+                  \end{pmatrix}, \quad
+                  L_2=\begin{pmatrix}
+                      A_2        & 0 \\
+                      x_2^{\top} & 1
+                  \end{pmatrix}, \quad
+                  U_1=\begin{pmatrix}
+                      B_1 & y_1 \\
+                      0   & 0
+                  \end{pmatrix}, \quad
+                  U_2=\begin{pmatrix}
+                      B_2 & y_2 \\
+                      0   & 0
+                  \end{pmatrix}
+              \]
+              因此
+              \[
+                  \begin{aligned}
+                      A_1B_1        & = A_2B_2        \\
+                      A_1y_1        & = A_2y_2        \\
+                      x_1^{\top}B_1 & = x_2^{\top}B_2
+                  \end{aligned}
+              \]
+              由于 $A_1B_1=A_2B_2=A_{n-1}$ 为 $n-1$ 阶非奇异矩阵，所以 $A_{n-1}$ 的 $LU$ 分解唯一，从而 $A_1=A_2, B_1=B_2, y_1=y_2, x_1^{\top}=x_2^{\top}$。
+    \end{enumerate}
+\end{proof}
+
+
+
+\begin{thebibliography}{99}
+    \bibitem{关治} 关治, 陆金甫. 数值分析基础（第三版）[M]. 高等教育出版社, 2008.
+    \bibitem{trefethen} Trefethen, L. N., \& Bau III, D. Numerical Linear Algebra[M]. SIAM, 1997.
+    \bibitem{林成森(上册)} 林成森. 数值计算方法（上册）[M]. 高等教育出版社, 1998.
+    \bibitem{林成森(下册)} 林成森. 数值计算方法（下册）[M]. 高等教育出版社, 1998.
+    \bibitem{Timothy Sauer} Numerical Analysis, 2nd Edition[M]. Pearson, 2011.
+\end{thebibliography}

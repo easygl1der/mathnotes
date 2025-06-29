@@ -1,0 +1,477 @@
+\chapter{根系统 Root Systems - 第三章要点总结}
+
+\section{第9节：公理化理论 Axiomatics}
+
+\subsection{9.1 欧几里得空间中的反射 Reflections in Euclidean Space}
+
+\subsubsection{定义 9.1.1 (反射 Reflection)}
+
+设 $E$ 是有限维实向量空间，带有正定对称双线性形式 $(\alpha, \beta)$。\textbf{反射 (Reflection)} 是可逆线性变换，满足：
+
+\begin{itemize}
+	\item 逐点固定某个超平面（余维数1的子空间）
+	\item 将该超平面的正交向量映为其负向量
+\end{itemize}
+
+\subsubsection{定义 9.1.2 (反射 \texorpdfstring{$\sigma_\alpha$}{sigma_alpha})}
+
+对任意非零向量 $\alpha \in E$，反射 $\sigma_\alpha$ 定义为：
+\[
+\sigma_\alpha(\beta) = \beta - \frac{2(\beta, \alpha)}{(\alpha, \alpha)} \alpha
+\]
+
+反射超平面为 $P_\alpha = \{\beta \in E \mid (\beta, \alpha) = 0\}$
+
+\subsubsection{记号}
+
+定义 $\langle\beta, \alpha\rangle = \frac{2(\beta, \alpha)}{(\alpha, \alpha)}$
+
+\textbf{重要}：$\langle\beta, \alpha\rangle$ 仅对第一个变量线性
+
+\subsubsection{引理 9.1.3 (反射的唯一性)}
+
+设 $\Phi$ 是有限集合且张成 $E$，所有反射 $\sigma_\alpha$ ($\alpha \in \Phi$) 保持 $\Phi$ 不变。若 $\sigma \in GL(E)$ 保持 $\Phi$ 不变，逐点固定超平面 $P$，并将某个非零 $\alpha \in \Phi$ 映为其负向量，则 $\sigma = \sigma_\alpha$。
+
+\subsection{9.2 根系统 Root Systems}
+
+\subsubsection{定义 9.2.1 (根系统 Root System)}
+
+欧几里得空间 $E$ 的子集 $\Phi$ 称为 \textbf{根系统 (Root System)}，若满足以下公理：
+
+\textbf{(R1)} $\Phi$ 有限，张成 $E$，且不含 0
+\textbf{(R2)} 若 $\alpha \in \Phi$，则 $\Phi$ 中 $\alpha$ 的倍数只有 $\pm\alpha$\textbf{(R3)} 若 $\alpha \in \Phi$，则反射 $\sigma_\alpha$ 保持 $\Phi$ 不变
+\textbf{(R4)} 若 $\alpha, \beta \in \Phi$，则 $\langle\beta, \alpha\rangle \in \mathbb{Z}$
+
+\textbf{注记}：(R2) 和 (R3) 均蕴含 $\Phi = -\Phi$
+
+\subsubsection{定义 9.2.2 (魏尔群 Weyl Group)}
+
+$\Phi$ 的 \textbf{魏尔群 (Weyl Group)} $\mathcal{W}$ 是由所有反射 $\sigma_\alpha$ ($\alpha \in \Phi$) 生成的 $GL(E)$ 的子群。
+
+由 (R3)，$\mathcal{W}$ 置换集合 $\Phi$；由 (R1)，$\mathcal{W}$ 有限。
+
+\subsubsection{引理 9.2.3 (自同构的性质)}
+
+设 $\Phi$ 是根系统，$\mathcal{W}$ 为其魏尔群。若 $\sigma \in GL(E)$ 保持 $\Phi$ 不变，则：
+
+\begin{enumerate}
+	\item $\sigma \sigma_\alpha \sigma^{-1} = \sigma_{\sigma(\alpha)}$ 对所有 $\alpha \in \Phi$
+	\item $\langle\beta, \alpha\rangle = \langle\sigma(\beta), \sigma(\alpha)\rangle$ 对所有 $\alpha, \beta \in \Phi$
+\end{enumerate}
+
+\subsubsection{定义 9.2.4 (对偶根系统 Dual Root System)}
+
+$\Phi$ 的 \textbf{对偶 (Dual)} 或 \textbf{逆 (Inverse)} 为 $\Phi^\vee = \{\alpha^\vee \mid \alpha \in \Phi\}$，其中 $\alpha^\vee = \frac{2\alpha}{(\alpha, \alpha)}$。
+
+\subsection{9.3 例子 Examples}
+
+\subsubsection{秩1：型 \texorpdfstring{$A_1$}{A_1}}
+
+$\Phi = \{\alpha, -\alpha\}$ 是唯一的秩1根系统
+
+\subsubsection{秩2：四种类型}
+
+\begin{enumerate}
+	\item \textbf{型 $A_1 \times A_1$}：两个正交的 $A_1$ 副本
+	\item \textbf{型 $A_2$}：$\Phi = \{\pm(\varepsilon_1 - \varepsilon_2), \pm(\varepsilon_2 - \varepsilon_3), \pm(\varepsilon_1 - \varepsilon_3)\}$
+	\item \textbf{型 $B_2$}：包含两种不同长度的根
+	\item \textbf{型 $G_2$}：包含两种长度的根，比例为 $\sqrt{3}$
+\end{enumerate}
+
+\subsection{9.4 根对 Pairs of Roots}
+
+\subsubsection{引理 9.4.1 (角度限制)}
+
+对不成比例的根 $\alpha, \beta$，$\langle\alpha, \beta\rangle\langle\beta, \alpha\rangle$ 的可能值为 0, 1, 2, 3，对应特定的角度和长度比：
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		$\langle\alpha, \beta\rangle$ & $\langle\beta, \alpha\rangle$ & $\|\beta\|^2/\|\alpha\|^2$ & $\theta$ \\
+		\hline
+		0 & 0 & 不定 & $\pi/2$ \\
+		\hline
+		1 & 1 & 1 & $\pi/3$ \\
+		\hline
+		-1 & -1 & 1 & $2\pi/3$ \\
+		\hline
+		1 & 2 & 2 & $\pi/4$ \\
+		\hline
+		-1 & -2 & 2 & $3\pi/4$ \\
+		\hline
+		1 & 3 & 3 & $\pi/6$ \\
+		\hline
+		-1 & -3 & 3 & $5\pi/6$ \\
+		\hline
+	\end{tabular}
+\end{table}
+\subsubsection{引理 9.4.2 (根的加法 Root Addition)}
+
+设 $\alpha, \beta$ 是不成比例的根：
+
+\begin{itemize}
+	\item 若 $(\alpha, \beta) > 0$（即角度严格锐角），则 $\alpha - \beta$ 是根
+	\item 若 $(\alpha, \beta) < 0$，则 $\alpha + \beta$ 是根
+\end{itemize}
+
+\subsubsection{根串 Root Strings}
+
+对不成比例的根 $\alpha, \beta$，通过 $\beta$ 的 \textbf{$\alpha$-串 ($\alpha$-string)} 由所有形如 $\beta + i\alpha$ ($i \in \mathbb{Z}$) 的根组成。设 $r, q \in \mathbb{Z}^+$ 是最大整数使得 $\beta - r\alpha \in \Phi$，$\beta + q\alpha \in \Phi$，则：
+
+\begin{enumerate}
+	\item $\alpha$-串是不间断的：$\beta - r\alpha, \beta - (r-1)\alpha, \ldots, \beta + q\alpha$
+	\item $r - q = \langle\beta, \alpha\rangle$
+	\item 根串长度至多为4
+\end{enumerate}
+
+
+\section{第10节：简单根与魏尔群 Simple Roots and Weyl Group}
+
+\subsection{10.1 基与魏尔腔 Bases and Weyl Chambers}
+
+\subsubsection{定义 10.1.1 (基 Base / 简单根 Simple Roots)}
+
+$\Phi$ 的子集 $\Delta$ 称为 \textbf{基 (Base)}，若满足：
+
+\textbf{(B1)} $\Delta$ 是 $E$ 的基\textbf{(B2)} 每个根 $\beta$ 可写成 $\beta = \sum k_\alpha \alpha$ ($\alpha \in \Delta$)，整系数 $k_\alpha$ 全非负或全非正
+
+$\Delta$ 中的根称为 \textbf{简单根 (Simple Roots)}
+
+\subsubsection{定义 10.1.2 (正根/负根，高度)}
+
+相对于基 $\Delta$：
+
+\begin{itemize}
+	\item 根 $\beta$ 是 \textbf{正的 (Positive)}（记作 $\beta \succ 0$）若所有 $k_\alpha \geq 0$
+	\item 根 $\beta$ 是 \textbf{负的 (Negative)}（记作 $\beta \prec 0$）若所有 $k_\alpha \leq 0$
+	\item $\beta$ 的 \textbf{高度 (Height)} 为 $\text{ht}(\beta) = \sum k_\alpha$
+\end{itemize}
+
+记 $\Phi^+ = \{\beta \in \Phi \mid \beta \succ 0\}$，$\Phi^- = \{\beta \in \Phi \mid \beta \prec 0\}$
+
+\subsubsection{引理 10.1.3 (简单根的角度性质)}
+
+若 $\Delta$ 是 $\Phi$ 的基，则对 $\Delta$ 中不同元素 $\alpha \neq \beta$：
+
+\begin{enumerate}
+	\item $(\alpha, \beta) \leq 0$
+	\item $\alpha - \beta$ 不是根
+\end{enumerate}
+
+\subsubsection{定义 10.1.4 (魏尔腔 Weyl Chambers)}
+
+超平面 $P_\alpha$ ($\alpha \in \Phi$) 将 $E$ 分割成有限多个区域。$E - \bigcup_\alpha P_\alpha$ 的连通分支称为 \textbf{魏尔腔 (Weyl Chambers)}。
+
+对正则向量 $\gamma \in E$（即不在任何 $P_\alpha$ 上），定义：
+
+\begin{itemize}
+	\item $\Phi^+(\gamma) = \{\alpha \in \Phi \mid (\gamma, \alpha) > 0\}$
+	\item $\Delta(\gamma)$ = $\Phi^+(\gamma)$ 中不可分解根的集合
+\end{itemize}
+
+\subsubsection{定理 10.1.5 (基的存在性)}
+
+\textbf{定理}：$\Phi$ 有基。
+
+\textbf{更精确地}：对任意正则 $\gamma \in E$，集合 $\Delta(\gamma)$ 是 $\Phi$ 的基，且每个基都以此方式得到。
+
+\subsection{10.2 关于简单根的引理 Lemmas on Simple Roots}
+
+\subsubsection{引理 10.2.1 (引理A)}
+
+若 $\alpha$ 是正根但非简单根，则对某个 $\beta \in \Delta$，$\alpha - \beta$ 是根（必为正根）。
+
+\subsubsection{引理 10.2.2 (引理B)}
+
+设 $\alpha$ 是简单根，则 $\sigma_\alpha$ 置换除 $\alpha$ 外的正根。
+
+\textbf{推论}：设 $\delta = \frac{1}{2}\sum_{\beta>0} \beta$，则对所有 $\alpha \in \Delta$：$\sigma_\alpha(\delta) = \delta - \alpha$
+
+\subsubsection{引理 10.2.3 (引理C)}
+
+设 $\alpha_1, \ldots, \alpha_t \in \Delta$（不必不同），记 $\sigma_i = \sigma_{\alpha_i}$。若 $\sigma_1 \cdots \sigma_{t-1}(\alpha_t)$ 是负根，则存在某个指标 $1 \leq s < t$ 使得：
+\[
+\sigma_1 \cdots \sigma_t = \sigma_1 \cdots \sigma_{s-1} \sigma_{s+1} \cdots \sigma_{t-1}
+\]
+
+\textbf{推论}：若 $\sigma = \sigma_1 \cdots \sigma_t$ 是 $\sigma \in \mathcal{W}$ 的最小表达式，则 $\sigma(\alpha_t) \prec 0$
+
+\subsection{10.3 魏尔群 The Weyl Group}
+
+\subsubsection{定理 10.3.1 (魏尔群的主要性质)}
+
+设 $\Delta$ 是 $\Phi$ 的基，则：
+
+\textbf{(a)} $\mathcal{W}$ 在魏尔腔上传递作用\textbf{(b)} $\mathcal{W}$ 在基上传递作用\textbf{(c)} 若 $\alpha$ 是任意根，存在 $\sigma \in \mathcal{W}$ 使得 $\sigma(\alpha) \in \Delta$\textbf{(d)} $\mathcal{W}$ 由 $\sigma_\alpha$ ($\alpha \in \Delta$) 生成\textbf{(e)} $\mathcal{W}$ 在基上单传递作用
+
+\subsubsection{定义 10.3.2 (长度函数 Length Function)}
+
+对 $\sigma \in \mathcal{W}$，\textbf{长度 (Length)} $\ell(\sigma)$ 是表示 $\sigma$ 所需简单反射的最少个数。
+
+\subsubsection{引理 10.3.3 (长度公式 Length Formula)}
+
+对所有 $\sigma \in \mathcal{W}$：$\ell(\sigma) = n(\sigma)$，其中 $n(\sigma)$ 是被 $\sigma$ 映为负根的正根个数。
+
+\subsubsection{引理 10.3.4 (基本域)}
+
+设 $\lambda, \mu \in \overline{\mathfrak{C}(\Delta)}$（基本魏尔腔的闭包）。若 $\sigma \lambda = \mu$ 对某个 $\sigma \in \mathcal{W}$，则 $\sigma$ 是固定 $\lambda$ 的简单反射的乘积；特别地，$\lambda = \mu$。
+
+\subsection{10.4 不可约根系统 Irreducible Root Systems}
+
+\subsubsection{定义 10.4.1 (不可约根系统)}
+
+$\Phi$ 是 \textbf{不可约的 (Irreducible)}，若不能分解为两个非平凡正交子集的并。
+
+\subsubsection{引理 10.4.2}
+
+$\Phi$ 不可约当且仅当 $\Delta$ 不能分解为正交子集。
+
+\subsubsection{引理 10.4.3 (唯一最高根)}
+
+设 $\Phi$ 不可约，则存在唯一最高根 $\beta$（相对于偏序 $\prec$），且若 $\beta = \sum k_\alpha \alpha$，则所有 $k_\alpha > 0$。
+
+\subsubsection{引理 10.4.4 (不可约作用)}
+
+设 $\Phi$ 不可约，则 $\mathcal{W}$ 在 $E$ 上不可约作用。特别地，根的 $\mathcal{W}$-轨道张成 $E$。
+
+\subsubsection{引理 10.4.5 (最多两种根长)}
+
+设 $\Phi$ 不可约，则 $\Phi$ 中最多出现两种根长，且给定长度的所有根在 $\mathcal{W}$ 下共轭。
+
+\textbf{注记}：若有两种根长，称为长根和短根。习惯上，若所有根等长，称为长根。
+
+
+\section{第11节：分类 Classification}
+
+\subsection{11.1 嘉当矩阵 Cartan Matrix}
+
+\subsubsection{定义 11.1.1 (嘉当矩阵)}
+
+对基 $\Delta = \{\alpha_1, \ldots, \alpha_\ell\}$，\textbf{嘉当矩阵 (Cartan Matrix)} 为 $(\langle\alpha_i, \alpha_j\rangle)$。
+
+其元素称为 \textbf{嘉当整数 (Cartan Integers)}。
+
+\subsubsection{命题 11.1.2 (嘉当矩阵确定同构类)}
+
+嘉当矩阵完全确定根系统的同构类。
+
+\textbf{证明思路}：相同嘉当矩阵的两个根系统间存在唯一向量空间同构，保持所有嘉当整数，从而扩展为根系统同构。
+
+\subsection{11.2 考克斯特图与戴金图}
+
+\subsubsection{定义 11.2.1 (考克斯特图 Coxeter Graph)}
+
+$\Phi$ 的 \textbf{考克斯特图 (Coxeter Graph)} 有 $\ell$ 个顶点，顶点 $i$ 和 $j$ ($i \neq j$) 之间有 $\langle\alpha_i, \alpha_j\rangle\langle\alpha_j, \alpha_i\rangle$ 条边。
+
+\subsubsection{定义 11.2.2 (戴金图 Dynkin Diagram)}
+
+当出现多重边时，加箭头指向较短根。这个 \textbf{戴金图 (Dynkin Diagram)} 完全确定嘉当矩阵。
+
+\subsection{11.3 不可约分解}
+
+\subsubsection{命题 11.3.1 (不可约分解)}
+
+$\Phi$ 唯一分解为不可约根系统 $\Phi_i$ 在正交子空间 $E_i$ 中的并，使得 $E = E_1 \oplus \cdots \oplus E_t$（正交直和）。
+
+\subsection{11.4 分类定理}
+
+\subsubsection{定理 11.4.1 (完全分类)}
+
+若 $\Phi$ 是秩 $\ell$ 的不可约根系统，其戴金图恰好是以下之一：
+
+\begin{itemize}
+	\item \textbf{$A_\ell$ 型} ($\ell \geq 1$)：$\circ - \circ - \cdots - \circ$ （直链）
+	\item \textbf{$B_\ell$ 型} ($\ell \geq 2$)：$\circ - \circ - \cdots - \circ \Rightarrow \circ$ （末端双边指向最后）
+	\item \textbf{$C_\ell$ 型} ($\ell \geq 3$)：$\circ - \circ - \cdots - \circ \Leftarrow \circ$ （末端双边指向倒数第二）
+	\item \textbf{$D_\ell$ 型} ($\ell \geq 4$)：分叉图
+	\item \textbf{$E_6, E_7, E_8$ 型}：例外情形
+	\item \textbf{$F_4$ 型}：$\circ - \circ \Rightarrow \circ - \circ$ （中间双边）
+	\item \textbf{$G_2$ 型}：$\circ \equiv \circ$ （三重边）
+\end{itemize}
+
+\textbf{证明策略}：
+
+\begin{enumerate}
+	\item 用几何约束分类可能的考克斯特图
+	\item 证明这些是"可容许"向量集的唯一连通图
+	\item 确定每个考克斯特图产生的戴金图
+\end{enumerate}
+
+
+\section{第12节：构造与自同构 Construction and Automorphisms}
+
+\subsection{12.1 A-G型的构造}
+
+\subsubsection{\texorpdfstring{$A_\ell$}{A_ell} 型 (\texorpdfstring{$\ell \geq 1$}{ell geq 1})}
+
+\begin{itemize}
+	\item $E = \mathbb{R}^{\ell+1}$ 中正交于 $\varepsilon_1 + \cdots + \varepsilon_{\ell+1}$ 的 $\ell$ 维子空间
+	\item $\Phi = \{\varepsilon_i - \varepsilon_j \mid i \neq j\}$
+	\item 基：$\{\varepsilon_1 - \varepsilon_2, \varepsilon_2 - \varepsilon_3, \ldots, \varepsilon_\ell - \varepsilon_{\ell+1}\}$
+	\item 魏尔群：$\mathcal{W} \cong S_{\ell+1}$（对称群）
+\end{itemize}
+
+\subsubsection{\texorpdfstring{$B_\ell$}{B_ell} 型 (\texorpdfstring{$\ell \geq 2$}{ell geq 2})}
+
+\begin{itemize}
+	\item $E = \mathbb{R}^\ell$
+	\item $\Phi = \{\pm\varepsilon_i, \pm(\varepsilon_i \pm \varepsilon_j) \mid i \neq j\}$
+	\item 基：$\{\varepsilon_1 - \varepsilon_2, \ldots, \varepsilon_{\ell-1} - \varepsilon_\ell, \varepsilon_\ell\}$
+	\item 魏尔群：$\mathcal{W} \cong (\mathbb{Z}/2\mathbb{Z})^\ell \rtimes S_\ell$
+\end{itemize}
+
+\subsubsection{\texorpdfstring{$C_\ell$}{C_ell} 型 (\texorpdfstring{$\ell \geq 3$}{ell geq 3})}
+
+可视为 $B_\ell$ 的对偶根系统，或：
+
+\begin{itemize}
+	\item $E = \mathbb{R}^\ell$
+	\item $\Phi = \{\pm 2\varepsilon_i, \pm(\varepsilon_i \pm \varepsilon_j) \mid i \neq j\}$
+	\item 基：$\{\varepsilon_1 - \varepsilon_2, \ldots, \varepsilon_{\ell-1} - \varepsilon_\ell, 2\varepsilon_\ell\}$
+\end{itemize}
+
+\subsubsection{\texorpdfstring{$D_\ell$}{D_ell} 型 (\texorpdfstring{$\ell \geq 4$}{ell geq 4})}
+
+\begin{itemize}
+	\item $E = \mathbb{R}^\ell$
+	\item $\Phi = \{\pm(\varepsilon_i \pm \varepsilon_j) \mid i \neq j\}$
+	\item 基：$\{\varepsilon_1 - \varepsilon_2, \ldots, \varepsilon_{\ell-1} - \varepsilon_\ell, \varepsilon_{\ell-1} + \varepsilon_\ell\}$
+	\item 魏尔群：$\mathcal{W} \cong (\mathbb{Z}/2\mathbb{Z})^{\ell-1} \rtimes S_\ell$
+\end{itemize}
+
+\subsubsection{例外型 (\texorpdfstring{$E_6, E_7, E_8, F_4, G_2$}{E_6, E_7, E_8, F_4, G_2})}
+
+通过在适当格中选取特定长度的向量构造。
+
+\subsection{12.2 自同构群}
+
+\subsubsection{定理 12.2.1 (自同构群结构)}
+
+$\text{Aut}(\Phi) = \mathcal{W} \rtimes \Gamma$，其中 $\Gamma$ 是图自同构群。
+
+对不可约 $\Phi$：
+
+\begin{itemize}
+	\item $\Gamma \cong \mathbb{Z}/2\mathbb{Z}$：$A_\ell$ ($\ell \geq 2$), $D_\ell$ ($\ell > 4$), $E_6$
+	\item $\Gamma \cong S_3$：$D_4$
+	\item $\Gamma = 1$：其他类型
+\end{itemize}
+
+
+\section{第13节：权的抽象理论 Abstract Theory of Weights}
+
+\subsection{13.1 权 Weights}
+
+\subsubsection{定义 13.1.1 (权格 Weight Lattice)}
+
+\textbf{权格 (Weight Lattice)} 为：
+\[
+\Lambda = \{\lambda \in E \mid \langle\lambda, \alpha\rangle \in \mathbb{Z} \text{ 对所有 } \alpha \in \Phi\}
+\]
+
+\subsubsection{定义 13.1.2 (基本权 Fundamental Weights)}
+
+\textbf{基本支配权 (Fundamental Dominant Weights)} $\lambda_1, \ldots, \lambda_\ell$ 是相对于内积对 $\{2\alpha_i/(\alpha_i, \alpha_i)\}$ 的对偶基：
+\[
+\frac{2(\lambda_i, \alpha_j)}{(\alpha_j, \alpha_j)} = \delta_{ij}
+\]
+
+\subsubsection{命题 13.1.3 (权格的结构)}
+
+$\Lambda$ 由基本权生成，且 $\Lambda/\Lambda_r$ 有限（称为 \textbf{基本群 (Fundamental Group)}），其中 $\Lambda_r$ 是 \textbf{根格 (Root Lattice)}。
+
+基本群的阶数等于嘉当矩阵的行列式。
+
+\subsection{13.2 支配权 Dominant Weights}
+
+\subsubsection{定义 13.2.1 (支配权)}
+
+$\lambda \in \Lambda$ 是 \textbf{支配的 (Dominant)}，若对所有 $\alpha \in \Delta$：$\langle\lambda, \alpha\rangle \geq 0$。
+
+$\lambda$ 是 \textbf{强支配的 (Strongly Dominant)}，若所有不等式严格成立。
+
+记 $\Lambda^+$ 为所有支配权的集合。
+
+\subsubsection{引理 13.2.2 (支配权的唯一性)}
+
+每个权都与唯一的支配权在 $\mathcal{W}$ 下共轭。若 $\lambda$ 支配，则对所有 $\sigma \in \mathcal{W}$：$\sigma \lambda \preceq \lambda$，且若 $\lambda$ 强支配，则 $\sigma \lambda = \lambda$ 仅当 $\sigma = 1$。
+
+\subsubsection{引理 13.2.3 (支配权的有界性)}
+
+设 $\lambda \in \Lambda^+$，则支配权 $\mu \prec \lambda$ 的个数有限。
+
+\subsection{13.3 权 \texorpdfstring{$\delta$}{delta}}
+
+\subsubsection{定义与性质}
+
+\textbf{权 $\delta$} 定义为：
+\[
+\delta = \frac{1}{2}\sum_{\alpha>0} \alpha = \sum_{i=1}^\ell \lambda_i
+\]
+
+\subsubsection{引理 13.3.1}
+
+$\delta$ 是强支配权，且对所有 $\alpha_i \in \Delta$：$\sigma_i(\delta) = \delta - \alpha_i$。
+
+\subsubsection{引理 13.3.2 (重要不等式)}
+
+设 $\mu \in \Lambda^+$，$\nu = \sigma^{-1}\mu$ ($\sigma \in \mathcal{W}$)，则：
+\[
+(\nu + \delta, \nu + \delta) \leq (\mu + \delta, \mu + \delta)
+\]
+等号成立当且仅当 $\nu = \mu$。
+
+\subsection{13.4 饱和权集 Saturated Sets of Weights}
+
+\subsubsection{定义 13.4.1 (饱和集)}
+
+$\Lambda$ 的子集 $\Pi$ 是 \textbf{饱和的 (Saturated)}，若对所有 $\lambda \in \Pi$，$\alpha \in \Phi$，$0 \leq i \leq \langle\lambda, \alpha\rangle$，都有 $\lambda - i\alpha \in \Pi$。
+
+\subsubsection{性质}
+
+\begin{itemize}
+	\item 任何饱和集自动在 $\mathcal{W}$ 下稳定
+	\item 饱和集有最高权 $\lambda$ 若 $\lambda \in \Pi$ 且对所有 $\mu \in \Pi$：$\mu \preceq \lambda$
+\end{itemize}
+
+\subsubsection{引理 13.4.1}
+
+有最高权 $\lambda$ 的饱和集必定有限。
+
+\subsubsection{引理 13.4.2 (饱和集的刻画)}
+
+设 $\Pi$ 饱和，有最高权 $\lambda$。若 $\mu \in \Lambda^+$ 且 $\mu \prec \lambda$，则 $\mu \in \Pi$。
+
+\subsubsection{定理 13.4.3 (饱和集的存在唯一性)}
+
+对每个 $\lambda \in \Lambda^+$，存在唯一有限饱和集以 $\lambda$ 为最高权，由所有支配权 $\mu \preceq \lambda$ 及其 $\mathcal{W}$-共轭组成。
+
+\subsubsection{引理 13.4.4 (弗罗伊登塔尔不等式)}
+
+设 $\Pi$ 饱和，有最高权 $\lambda$。若 $\mu \in \Pi$，则：
+\[
+(\mu + \delta, \mu + \delta) \leq (\lambda + \delta, \lambda + \delta)
+\]
+等号成立当且仅当 $\mu = \lambda$。
+
+
+\section{核心理论脉络与关键洞察}
+
+\subsection{逻辑发展}
+
+\begin{enumerate}
+	\item \textbf{公理 (R1)-(R4)} → \textbf{反射几何学} → \textbf{魏尔群的基本性质}
+	\item \textbf{基的存在性 (10.1.5)} → \textbf{正负根分解} → \textbf{简单根理论 (10.2)}
+	\item \textbf{魏尔群生成 (10.3.1d)} → \textbf{长度函数 (10.3.3)} → \textbf{约化表达式理论}
+	\item \textbf{不可约性概念 (10.4)} → \textbf{几何约束} → \textbf{图论分析} → \textbf{完全分类 (11.4.1)}
+	\item \textbf{嘉当矩阵理论 (11.1)} → \textbf{戴金图} → \textbf{同构类的完全刻画}
+	\item \textbf{显式构造 (12.1)} → \textbf{自同构群结构 (12.2.1)}
+	\item \textbf{权格理论 (13.1)} → \textbf{支配权 (13.2)} → \textbf{饱和集 (13.4)} → \textbf{表示论基础}
+\end{enumerate}
+
+\subsection{关键洞察}
+
+\textbf{根系统通过有限几何对象（反射、超平面配置、魏尔群）完全刻画了半单李代数的组合-几何结构，建立了代数结构与欧几里得几何的深刻联系，为李群表示论提供了坚实的组合基础。}
+
+\textbf{核心思想}：复杂的无穷代数结构可以通过有限的组合数据（戴金图）完全分类和理解。

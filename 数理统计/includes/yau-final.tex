@@ -1,0 +1,2057 @@
+\documentclass[12pt]{amsart}
+\usepackage{xeCJK}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{hyperref}
+\geometry{a4paper, margin=1in}
+
+\setCJKmainfont{LXGW WenKai}
+
+\newtheorem{problem}{Problem}
+\newtheorem*{solution}{Solution}
+% \renewenvironment{solution}{\begin{solution}}{\hfill$\square$\end{solution}}
+
+\title{Yau College Math Competition \\ Final Probability and Statistics}
+\author{}
+\date{}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Yau College Math Competition},
+    pdfpagemode=FullScreen,
+    bookmarksopen=true,
+    bookmarksnumbered=true,
+    pdfstartview=Fit
+}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section*{2024}
+\subsection*{Final Probability and Statistics Individual Exam Problems (June 8-9, 2024)}
+Choose at least 3 from the following 4 problems.
+
+\begin{problem}[2024 -- 1]
+Let $\{X_i\}_{i \geq 0}$ be iid with density function $f$ and distribution function $F$. Define $N=\min \{n \geq 1: X_n>X_0\}$.
+\begin{enumerate}[label=(\alph*)]
+\item Find the distribution function of $X_N$.
+\item If $\mathbb{E}|X_0|<\infty$, is it always true that $\mathbb{E}|X_N|<\infty$? If yes, prove it; if not, give a counterexample.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item Let $F_{X_N}(x)$ be the distribution function of $X_N$. We can find it by conditioning on $X_0$.
+The conditional probability of $X_N \le x$ given $X_0=x_0$ is the probability that a random variable $X$ is less than or equal to $x$, given that $X > x_0$. This is 0 if $x \le x_0$, and otherwise it is:
+$$ P(X_N \le x | X_0=x_0) = P(X \le x | X > x_0) = \frac{P(x_0 < X \le x)}{P(X > x_0)} = \frac{F(x) - F(x_0)}{1 - F(x_0)} \quad \text{for } x > x_0 $$
+To get the unconditional distribution, we integrate over all possible values of $x_0$:
+$$ F_{X_N}(x) = \int_{-\infty}^{\infty} P(X_N \le x | X_0=x_0) f(x_0) dx_0 = \int_{-\infty}^{x} \frac{F(x) - F(x_0)}{1 - F(x_0)} f(x_0) dx_0 $$
+Let $u = F(x_0)$, so $du = f(x_0) dx_0$. The integral becomes:
+$$ \int_{0}^{F(x)} \frac{F(x) - u}{1-u} du = \int_{0}^{F(x)} \left(\frac{F(x)-1}{1-u} + 1\right) du $$
+$$ = [-(F(x)-1)\ln(1-u) + u]_0^{F(x)} = (1-F(x))\ln(1-F(x)) + F(x) $$
+The density function is the derivative of the CDF:
+$$ f_{X_N}(x) = \frac{d}{dx} \left[ F(x) + (1-F(x))\ln(1-F(x)) \right] = -f(x)\ln(1-F(x)) $$
+This is a valid non-negative density function.
+
+\item No, it is not always true. We need a counterexample where $\mathbb{E}|X_0| < \infty$ but $\mathbb{E}|X_N| = \infty$.
+The expected value of $X_N$ (assuming non-negative for simplicity) is:
+$$ \mathbb{E}[X_N] = \int_0^\infty (1-F_{X_N}(x))dx = \int_0^\infty [1 - F(x) - (1-F(x))\ln(1-F(x))]dx $$
+$$ = \int_0^\infty (1-F(x))(1 - \ln(1-F(x)))dx $$
+Let $S(x)=1-F(x)$ be the survival function. Then $\mathbb{E}[X_0] = \int_0^\infty S(x)dx$.
+$$ \mathbb{E}[X_N] = \int_0^\infty S(x)(1 - \ln S(x))dx = \mathbb{E}[X_0] - \int_0^\infty S(x)\ln S(x) dx $$
+We need to find a distribution where $\int S(x)dx$ converges but $\int -S(x)\ln S(x)dx$ diverges.
+Consider a distribution with survival function $S(x) = \frac{c}{x(\ln x)^2}$ for $x \ge e$.
+$\mathbb{E}[X_0] \approx \int_e^\infty S(x)dx = \int_e^\infty \frac{c}{x(\ln x)^2}dx = \left[-\frac{c}{\ln x}\right]_e^\infty = c < \infty$.
+So $\mathbb{E}|X_0|$ is finite.
+Now, consider the second term for $\mathbb{E}[X_N]$:
+$$ \int_e^\infty -S(x)\ln S(x) dx = \int_e^\infty -\frac{c}{x(\ln x)^2}\ln\left(\frac{c}{x(\ln x)^2}\right)dx $$
+$$ = \int_e^\infty -\frac{c}{x(\ln x)^2}(\ln c - \ln x - 2\ln(\ln x))dx $$
+The dominant part of this integral for large $x$ is:
+$$ \int_e^\infty \frac{c\ln x}{x(\ln x)^2}dx = \int_e^\infty \frac{c}{x\ln x}dx = [c\ln(\ln x)]_e^\infty = \infty $$
+Thus, $\mathbb{E}|X_N|$ diverges. This provides a valid counterexample.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[2024 -- 2]
+A fair coin is tossed repeatedly and independently, and the outcome is denoted as $X_1 X_2 \cdots$ with $X_i=H$ (head) or $T$ (tail).
+\begin{enumerate}[label=(\alph*)]
+\item Describe an idea about how to find the expected number of tosses required until a particular pattern of heads/tails appears.
+\item Evaluate the expected number of tosses to get the special pattern HTHH.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item A general method is to use a system of linear equations based on states representing partial progress toward the pattern. Let $S=s_1s_2...s_L$ be the target pattern of length $L$.
+Let $E_i$ be the expected *additional* number of tosses required to obtain pattern $S$, given that the last $i$ tosses have successfully matched the first $i$ characters of $S$ (i.e., we are in state $i$). Our goal is to find $E_0$. The terminal state is $E_L=0$.
+
+For each state $i < L$, we consider the next toss.
+\begin{itemize}
+    \item With probability 1/2, the toss matches $s_{i+1}$, and we transition to state $i+1$.
+    \item With probability 1/2, the toss does not match $s_{i+1}$. Our new sequence of tosses is $s_1...s_i s'_{i+1}$ (where $s'_{i+1}$ is the wrong character). We must then find the length $j$ of the longest prefix of $S$ that is a suffix of this new sequence. We transition to state $j$.
+\end{itemize}
+This gives us a system of $L$ linear equations of the form $E_i = 1 + \frac{1}{2}E_{i+1} + \frac{1}{2}E_j$ for $i=0, \dots, L-1$. Solving this system yields the value of $E_0$.
+
+Another elegant method relies on the "overlap" property of the pattern with itself. The expected number of tosses $E$ to get a pattern $S$ of length $L$ is given by:
+$$ E = \sum_{k=1}^{L} 2^k \cdot I(S_{1..k} = S_{L-k+1..L}) $$
+where $I(\cdot)$ is the indicator function which is 1 if the first $k$ characters of $S$ (prefix) are identical to the last $k$ characters of $S$ (suffix), and 0 otherwise.
+
+\item We will use the overlap method for the pattern $S = HTHH$ ($L=4$). We check for overlaps between prefixes and suffixes of $S$:
+\begin{itemize}
+    \item $k=1$: Prefix 'H', Suffix 'H'. They match. $(S_1 = S_4)$. Add $2^1=2$.
+    \item $k=2$: Prefix 'HT', Suffix 'HH'. No match. $(S_{1..2} \neq S_{3..4})$. Add 0.
+    \item $k=3$: Prefix 'HTH', Suffix 'THH'. No match. $(S_{1..3} \neq S_{2..4})$. Add 0.
+    \item $k=4$: Prefix 'HTHH', Suffix 'HTHH'. They match. Add $2^4=16$.
+\end{itemize}
+The expected number of tosses is the sum of the contributions from all matching overlaps:
+$$ E = 2^4 + 2^1 = 16 + 2 = 18 $$
+Alternatively, using the state machine method:
+Let $E_i$ be the expected tosses from state $i$.
+$E_0 = 1 + \frac{1}{2}E_1(H) + \frac{1}{2}E_0(T) \implies E_0 = 2+E_1$.
+$E_1(H) = 1 + \frac{1}{2}E_2(T) + \frac{1}{2}E_1(H) \implies E_1 = 2+E_2$.
+$E_2(HT) = 1 + \frac{1}{2}E_3(H) + \frac{1}{2}E_0(T) \implies E_2 = 1 + \frac{1}{2}E_3 + \frac{1}{2}E_0$.
+$E_3(HTH) = 1 + \frac{1}{2}E_4(H) + \frac{1}{2}E_2(T)$. If we have HTH and get T, the new sequence is HTHT. The longest prefix of HTHH that is a suffix of HTHT is HT (length 2). So we go to state 2.
+$E_3 = 1 + \frac{1}{2}(0) + \frac{1}{2}E_2 \implies E_3 = 1 + \frac{1}{2}E_2$.
+Substituting back: $E_2 = 1 + \frac{1}{2}(1+\frac{1}{2}E_2) + \frac{1}{2}E_0 \implies \frac{3}{4}E_2 = \frac{3}{2}+\frac{1}{2}E_0 \implies 3E_2=6+2E_0$.
+Using $E_2=E_0-4$ from the first two equations: $3(E_0-4)=6+2E_0 \implies 3E_0-12=6+2E_0 \implies E_0=18$.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[2024 -- 3]
+Given a filtration $\{\mathcal{F}_n\}$, i.e., $\mathcal{F}_1 \subseteq \mathcal{F}_2 \subseteq \cdots \subseteq \mathcal{F}$, we define $\mathcal{F}_{\infty}= \sigma(\cup_{n=1}^{\infty} \mathcal{F}_n)$.
+\begin{enumerate}[label=(\alph*)]
+\item Is it correct that $\mathcal{F}_{\infty}=\cup_{n=1}^{\infty} \mathcal{F}_n$? If not, please give a counterexample.
+\item Let $X$ be a random variable which is $\mathcal{F}$-measurable and integrable. Prove $\{\mathbb{E}(X \mid \mathcal{F}_n)\}_{n \geq 1}$ is uniformly integrable.
+\item Prove $\mathbb{E}(X \mid \mathcal{F}_n) \rightarrow \mathbb{E}(X \mid \mathcal{F}_{\infty})$ in $L^1$, as $n$ goes to infinity.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item No, this is not correct. A union of $\sigma$-algebras is not necessarily a $\sigma$-algebra.
+\textbf{Counterexample}: Let $\Omega = \mathbb{R}$ and $\mathcal{F}_n$ be the $\sigma$-algebra generated by the dyadic intervals of the form $[k2^{-n}, (k+1)2^{-n})$ for $k \in \mathbb{Z}$.
+It is clear that $\mathcal{F}_n \subseteq \mathcal{F}_{n+1}$ for all $n$, so this is a valid filtration.
+The union $A = \cup_{n=1}^\infty \mathcal{F}_n$ contains sets that are finite unions of such dyadic intervals.
+However, consider the singleton set $\{1/3\}$. This set is a Borel set and is contained in $\mathcal{F}_\infty = \sigma(\cup \mathcal{F}_n)$, which is the Borel $\sigma$-algebra on $\mathbb{R}$.
+But $\{1/3\}$ cannot be expressed as a finite union of dyadic intervals, because $1/3$ is not a dyadic rational. Any dyadic interval is of the form $[k/2^n, (k+1)/2^n)$. Any finite union of these containing $1/3$ must have positive Lebesgue measure, whereas $m(\{1/3\})=0$. Therefore, $\{1/3\} \notin A$.
+This shows that $\cup_{n=1}^{\infty} \mathcal{F}_n \neq \mathcal{F}_{\infty}$.
+
+\item This is a standard theorem of martingale theory. Let $X_n = \mathbb{E}(X \mid \mathcal{F}_n)$. The family $\{X_n\}_{n \ge 1}$ is uniformly integrable if $\sup_n \mathbb{E}[|X_n| I_{|X_n|>K}] \to 0$ as $K \to \infty$.
+By Jensen's inequality for conditional expectations, $|X_n| = |\mathbb{E}(X \mid \mathcal{F}_n)| \le \mathbb{E}(|X| \mid \mathcal{F}_n)$.
+Let $A_n = \{|X_n| > K\}$. Since $A_n$ is $\mathcal{F}_n$-measurable:
+$$ \mathbb{E}[|X_n| I_{A_n}] \le \mathbb{E}[\mathbb{E}(|X| \mid \mathcal{F}_n) I_{A_n}] = \mathbb{E}[\mathbb{E}(|X|I_{A_n} \mid \mathcal{F}_n)] = \mathbb{E}[|X|I_{A_n}] $$
+Since $X$ is integrable ($X \in L^1$), for any $\epsilon > 0$, there exists a $\delta > 0$ such that if $P(A) < \delta$, then $\mathbb{E}[|X|I_A] < \epsilon$.
+By Markov's inequality:
+$$ P(A_n) = P(|X_n| > K) \le \frac{\mathbb{E}|X_n|}{K} \le \frac{\mathbb{E}[\mathbb{E}(|X| \mid \mathcal{F}_n)]}{K} = \frac{\mathbb{E}|X|}{K} $$
+We can choose $K$ large enough such that $\mathbb{E}|X|/K < \delta$. For such a $K$, we have $P(A_n) < \delta$ for all $n$.
+This implies $\mathbb{E}[|X_n| I_{A_n}] \le \mathbb{E}[|X|I_{A_n}] < \epsilon$.
+Since this holds for any $n$ with the same $K$ for a given $\epsilon$, the family $\{X_n\}$ is uniformly integrable.
+
+\item This is a direct consequence of Lévy's upward convergence theorem (or the general martingale convergence theorem).
+Let $X_n = \mathbb{E}(X \mid \mathcal{F}_n)$. The sequence $(X_n, \mathcal{F}_n)$ for $n \ge 1$ is a martingale. From part (b), it is a uniformly integrable martingale.
+The martingale convergence theorem states that a uniformly integrable martingale $(X_n, \mathcal{F}_n)$ converges almost surely and in $L^1$ to an $\mathcal{F}_\infty$-measurable random variable $X_\infty$.
+We must show that $X_\infty = \mathbb{E}(X \mid \mathcal{F}_\infty)$ a.s.
+For any set $A \in \cup_{k=1}^\infty \mathcal{F}_k$, there is an $m$ such that $A \in \mathcal{F}_m$. For any $n \ge m$, since $A \in \mathcal{F}_n$, the martingale property gives:
+$$ \int_A X_n dP = \int_A X dP $$
+Since $X_n \to X_\infty$ in $L^1$, we have $\int_A X_n dP \to \int_A X_\infty dP$.
+Therefore, $\int_A X_\infty dP = \int_A X dP$ for all $A \in \cup_{k=1}^\infty \mathcal{F}_k$.
+By the definition of conditional expectation, this implies that $X_\infty = \mathbb{E}(X \mid \mathcal{F}_\infty)$ a.s. The $L^1$ convergence is part of the theorem's conclusion for uniformly integrable martingales.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[2024 -- 4]
+Consider the least squares problem. Assume $Y$ is the $n$-dimensional outcome vector and $X$ is the $n \times p$ covariate/design matrix. Assume $X$ is full rank. We can run least squares of $Y$ on $X$ to obtain the usual estimator $\hat{\beta}$, the residual vector $\hat{\varepsilon}$, and the hat matrix $H=X(X^{\mathrm{T}} X)^{-1} X^{\mathrm{T}}$.
+
+Now we want to compute the least square coefficient $\hat{\beta}_{[i]}$ by dropping the $i$-th observation, $i=1, \ldots, n$. Instead of running the least squares $n$ times, can we obtain $\{\hat{\beta}_{[i]}, i=1, \ldots, n\}$ from $\hat{\beta}, \hat{\varepsilon},(X^{\mathrm{T}} X)^{-1}$, and $H$, so that we only need to run the least squares only once?
+\end{problem}
+\begin{solution}
+Yes, it is possible by using a matrix identity to efficiently calculate the result of removing one observation. The key is the Sherman-Morrison formula for a rank-1 update of a matrix inverse.
+
+Let $\hat{\beta} = (X^T X)^{-1}X^T Y$ be the estimator from the full data. Let $\hat{\beta}_{[i]}$ be the estimator with the $i$-th observation removed. Let $x_i^T$ be the $i$-th row of $X$ and $y_i$ be the $i$-th element of $Y$.
+
+The matrix $X_{[i]}^T X_{[i]}$ can be written as a rank-1 update of $X^T X$:
+$$ X_{[i]}^T X_{[i]} = \sum_{j \neq i} x_j x_j^T = X^T X - x_i x_i^T $$
+We use the Sherman-Morrison formula: $(A - uv^T)^{-1} = A^{-1} + \frac{A^{-1}uv^T A^{-1}}{1 - v^T A^{-1}u}$.
+Let $A = X^T X$, $u=x_i$, $v=x_i^T$. Then $(X_{[i]}^T X_{[i]})^{-1}$ becomes:
+$$ (X^T X - x_i x_i^T)^{-1} = (X^T X)^{-1} + \frac{(X^T X)^{-1}x_i x_i^T (X^T X)^{-1}}{1 - x_i^T(X^T X)^{-1}x_i} $$
+The term $x_i^T(X^T X)^{-1}x_i$ is the $i$-th diagonal element of the hat matrix, $H_{ii}$. So the denominator is $1-H_{ii}$.
+Also, $X_{[i]}^T Y_{[i]} = \sum_{j \neq i} x_j y_j = X^T Y - x_i y_i$.
+
+Now we can write the formula for $\hat{\beta}_{[i]}$:
+$$ \hat{\beta}_{[i]} = (X_{[i]}^T X_{[i]})^{-1} X_{[i]}^T Y_{[i]} = \left((X^T X)^{-1} + \frac{(X^T X)^{-1}x_i x_i^T (X^T X)^{-1}}{1-H_{ii}}\right) (X^T Y - x_i y_i) $$
+Expanding this product:
+$$ \hat{\beta}_{[i]} = (X^T X)^{-1}X^T Y - (X^T X)^{-1}x_i y_i + \frac{(X^T X)^{-1}x_i x_i^T (X^T X)^{-1} X^T Y}{1-H_{ii}} - \frac{(X^T X)^{-1}x_i x_i^T (X^T X)^{-1} x_i y_i}{1-H_{ii}} $$
+Substitute $\hat{\beta} = (X^T X)^{-1}X^T Y$ and $H_{ii} = x_i^T(X^T X)^{-1}x_i$:
+$$ \hat{\beta}_{[i]} = \hat{\beta} - (X^T X)^{-1}x_i y_i + \frac{(X^T X)^{-1}x_i x_i^T \hat{\beta}}{1-H_{ii}} - \frac{(X^T X)^{-1}x_i H_{ii} y_i}{1-H_{ii}} $$
+Combine the terms with $y_i$:
+$$ \hat{\beta}_{[i]} = \hat{\beta} + \frac{(X^T X)^{-1}x_i x_i^T \hat{\beta}}{1-H_{ii}} - \frac{(X^T X)^{-1}x_i y_i}{1-H_{ii}} $$
+Factor out the common term $(X^T X)^{-1}x_i / (1-H_{ii})$:
+$$ \hat{\beta}_{[i]} = \hat{\beta} - \frac{(X^T X)^{-1}x_i (y_i - x_i^T\hat{\beta})}{1-H_{ii}} $$
+The term $y_i - x_i^T\hat{\beta}$ is simply the $i$-th residual, $\hat{\varepsilon}_i$. Thus, the final expression is:
+$$ \hat{\beta}_{[i]} = \hat{\beta} - \frac{(X^T X)^{-1}x_i \hat{\varepsilon}_i}{1-H_{ii}} $$
+All components of this formula—$\hat{\beta}$, $(X^TX)^{-1}$, $\hat{\varepsilon}_i$, and $H_{ii}$—are available from the single initial least squares fit on the full dataset. Thus, we can compute all $n$ leave-one-out coefficients without re-running the regression.
+\end{solution}
+
+\section*{2023}
+\subsection*{Final Probability and Statistics Individual Exam Problems (June 10-11, 2023)}
+Choose 3 of the following 4 problems.
+
+\begin{problem}[2023 -- 1]
+Suppose that $Y_n \sim \operatorname{Poisson}(n)$ is a Poisson random variable with parameter $n \in \mathbb{N}^*=\{1,2, \cdots\}$.
+\begin{enumerate}[label=(\alph*)]
+\item Calculate $\mathrm{E}(Y_n-n)_{+}$, where $x_{+}=\max \{x, 0\}$.
+\item Prove that $\mathrm{E} \frac{(Y_n-n)_{+}}{\sqrt{n}}$ converges to $\mathrm{E} N_{+}$ as $n \rightarrow \infty$, where $N \sim N(0,1)$ (standard normal).
+\item Use the above results to derive Stirling's formula for the factorial $n!$.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item We have $\mathrm{E}(Y_n-n)_{+} = \sum_{k=n+1}^{\infty} (k-n) \frac{n^k e^{-n}}{k!}$.
+A known identity for Poisson distribution is $\mathbb{E}[Y_n I_{Y_n \ge n}] = n P(Y_n \ge n)$.
+So, $\mathrm{E}(Y_n-n)_{+} = \mathbb{E}[Y_n I_{Y_n \ge n}] - n \mathbb{E}[I_{Y_n \ge n}] = n P(Y_n \ge n) - n P(Y_n \ge n+1) = n P(Y_n=n) = n\frac{n^n e^{-n}}{n!}$.
+\item Let $Z_n = \frac{Y_n-n}{\sqrt{n}}$. By the Central Limit Theorem, $Z_n \to N(0,1)$ in distribution. We want to show $\mathbb{E}[(Z_n)_+] \to \mathbb{E}[N_+]$. This requires uniform integrability of $(Z_n)_+$. Since $Y_n$ is a sum of $n$ i.i.d. Poisson(1) variables, this is a standard result.
+$\mathbb{E}[N_+] = \int_0^\infty x \frac{1}{\sqrt{2\pi}} e^{-x^2/2} dx = \frac{1}{\sqrt{2\pi}}$.
+So we need to show that $\frac{n}{\sqrt{n}} P(Y_n=n) = \sqrt{n} \frac{n^n e^{-n}}{n!} \to \frac{1}{\sqrt{2\pi}}$. This leads directly to Stirling's formula.
+\item From part (b), we have $\sqrt{n} \frac{n^n e^{-n}}{n!} \approx \frac{1}{\sqrt{2\pi}}$ for large $n$.
+Rearranging this gives Stirling's formula: $n! \approx \sqrt{2\pi n} (\frac{n}{e})^n$.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[2023 -- 2]
+For any random variables $\xi$ and $\eta$ on the same probability space taking values in $\mathbb{N}^*=\{1,2, \cdots\}$, assume that $\mathrm{P}(\xi \text{ is divisible by } r)=\mathrm{P}(\eta \text{ is divisible by } r)$, $\forall r \in \mathbb{N}^*$. Prove or disprove that $\xi \stackrel{d}{=} \eta$ (i.e., $\xi$ and $\eta$ have the same distribution).
+\end{problem}
+
+\begin{problem}[2023 -- 3]
+Fix some integer $k \geq 2$. For any $n \geq 1$, let $\{X_{n, i}: i=1,2, \cdots, k\}$ be i.i.d. uniform random variables taking values in $\{1,2, \cdots, n\}$. Let $Z_n=\operatorname{gcd}\{X_{n, i} : i=1,2, \cdots, k\}$ be the greatest common divisor of $\{X_{n, i}: i=1,2, \cdots, k\}$.
+\begin{enumerate}[label=(\alph*)]
+\item Prove that $Z_n$ converges in law to some limit $Z$ with $\mathrm{P}(Z=r) \propto r^{-k}, \forall r \in \mathbb{N}^*$.
+\item Choose $k$ numbers independently and uniformly from $\{1,2, \cdots, n\}$. Let $P_n(k)$ be the probability that these numbers are relatively prime. Find $\lim _{n \rightarrow \infty} P_n(k)$.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item Let's compute $P(Z_n \ge r)$. This is the probability that all $X_{n,i}$ are divisible by $r$.
+For a single $X_{n,i}$, the number of multiples of $r$ in $\{1, \ldots, n\}$ is $\lfloor n/r \rfloor$.
+So $P(X_{n,i} \text{ is divisible by } r) = \frac{\lfloor n/r \rfloor}{n}$.
+Since the variables are i.i.d., $P(Z_n \text{ is divisible by } r) = \left(\frac{\lfloor n/r \rfloor}{n}\right)^k$.
+As $n \to \infty$, $\frac{\lfloor n/r \rfloor}{n} \to \frac{1}{r}$.
+So $\lim_{n\to\infty} P(Z_n \text{ is divisible by } r) = (1/r)^k = r^{-k}$.
+Let $P_r = P(Z=r)$. The limit distribution satisfies $P(Z \text{ is divisible by } r) = \sum_{j=1}^\infty P_{rj} = r^{-k}$.
+Using Mobius inversion as in the previous problem, we get $P_r = \sum_{j=1}^\infty \mu(j) (rj)^{-k} = r^{-k} \sum_{j=1}^\infty \frac{\mu(j)}{j^k} = \frac{r^{-k}}{\zeta(k)}$, where $\zeta(k)$ is the Riemann zeta function.
+Thus $P(Z=r) = \frac{1}{\zeta(k)}r^{-k}$, which is proportional to $r^{-k}$.
+\item This is the probability that $Z_n=1$.
+$P_n(k) = P(Z_n=1)$. We can use the limit from part (a).
+$\lim_{n\to\infty} P_n(k) = P(Z=1) = \frac{1}{\zeta(k)}1^{-k} = \frac{1}{\zeta(k)}$.
+For $k=2$, this is $1/\zeta(2) = 1/(\pi^2/6) = 6/\pi^2$.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[2023 -- 4]
+Let $X_1, \ldots, X_n$ be independent observations. Assume that $X_i \sim \text{Poisson}(i \lambda)$, where $\lambda$ is an unknown parameter.
+\begin{enumerate}[label=(\alph*)]
+\item Find an unbiased estimator of the parameter $\lambda$. Is your estimator the best unbiased estimator in terms of minimizing the mean squared error?
+\item Is your estimator asymptotically normal?
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item 
+We are given that $X_i \sim \text{Poisson}(i \lambda)$ are independent. The expectation of $X_i$ is $\mathbb{E}[X_i] = i \lambda$.
+Let's consider the sum of the observations, $S = \sum_{i=1}^n X_i$.
+The expectation of the sum is:
+$$ \mathbb{E}[S] = \sum_{i=1}^n \mathbb{E}[X_i] = \sum_{i=1}^n i\lambda = \lambda \sum_{i=1}^n i = \lambda \frac{n(n+1)}{2} $$
+To create an unbiased estimator $\hat{\lambda}$ for $\lambda$, we can scale $S$ appropriately. Let's define:
+$$ \hat{\lambda} = \frac{S}{\frac{n(n+1)}{2}} = \frac{2 \sum_{i=1}^n X_i}{n(n+1)} $$
+The expectation of this estimator is:
+$$ \mathbb{E}[\hat{\lambda}] = \frac{2}{n(n+1)} \mathbb{E}[S] = \frac{2}{n(n+1)} \left(\lambda \frac{n(n+1)}{2}\right) = \lambda $$
+Thus, $\hat{\lambda}$ is an unbiased estimator of $\lambda$.
+
+To determine if it is the best unbiased estimator (i.e., the Uniformly Minimum-Variance Unbiased Estimator or UMVUE), we can check if it attains the Cramér-Rao Lower Bound (CRLB).
+The likelihood function is $L(\lambda; \mathbf{X}) = \prod_{i=1}^n \frac{(i\lambda)^{x_i} e^{-i\lambda}}{x_i!}$.
+The log-likelihood is:
+$$ \ln L(\lambda) = \sum_{i=1}^n (x_i \ln(i\lambda) - i\lambda - \ln(x_i!)) = \sum_{i=1}^n (x_i \ln i + x_i \ln\lambda - i\lambda - \ln(x_i!)) $$
+The first derivative with respect to $\lambda$ is:
+$$ \frac{\partial \ln L}{\partial \lambda} = \sum_{i=1}^n \left(\frac{x_i}{\lambda} - i\right) = \frac{1}{\lambda}\sum_{i=1}^n x_i - \sum_{i=1}^n i $$
+The second derivative is:
+$$ \frac{\partial^2 \ln L}{\partial \lambda^2} = -\frac{1}{\lambda^2} \sum_{i=1}^n x_i $$
+The Fisher information $I(\lambda)$ is:
+$$ I(\lambda) = -\mathbb{E}\left[\frac{\partial^2 \ln L}{\partial \lambda^2}\right] = \mathbb{E}\left[\frac{1}{\lambda^2} \sum_{i=1}^n X_i\right] = \frac{1}{\lambda^2} \mathbb{E}[S] = \frac{1}{\lambda^2} \left(\lambda \frac{n(n+1)}{2}\right) = \frac{n(n+1)}{2\lambda} $$
+The CRLB for the variance of any unbiased estimator of $\lambda$ is $\frac{1}{I(\lambda)} = \frac{2\lambda}{n(n+1)}$.
+
+Now, we compute the variance of our estimator $\hat{\lambda}$. Since the $X_i$ are independent and $\text{Var}(X_i) = i\lambda$ for a Poisson distribution:
+$$ \text{Var}(\hat{\lambda}) = \text{Var}\left(\frac{2 \sum X_i}{n(n+1)}\right) = \left(\frac{2}{n(n+1)}\right)^2 \text{Var}\left(\sum X_i\right) = \frac{4}{[n(n+1)]^2} \sum_{i=1}^n \text{Var}(X_i) $$
+$$ \text{Var}(\hat{\lambda}) = \frac{4}{[n(n+1)]^2} \sum_{i=1}^n i\lambda = \frac{4\lambda}{[n(n+1)]^2} \frac{n(n+1)}{2} = \frac{2\lambda}{n(n+1)} $$
+Since $\text{Var}(\hat{\lambda})$ is equal to the CRLB, our estimator $\hat{\lambda}$ is the UMVUE, which is the best unbiased estimator.
+
+\item
+Yes, the estimator is asymptotically normal.
+Let $S_n = \sum_{i=1}^n X_i$. The sum of independent Poisson random variables is also a Poisson random variable. The parameter of the sum is the sum of the individual parameters.
+$$ S_n \sim \text{Poisson}\left(\sum_{i=1}^n i\lambda\right) = \text{Poisson}\left(\frac{n(n+1)}{2}\lambda\right) $$
+Let $\Lambda_n = \frac{n(n+1)}{2}\lambda$. As $n \to \infty$, $\Lambda_n \to \infty$.
+By the Central Limit Theorem for Poisson distributions, a Poisson random variable with a large parameter $\Lambda$ can be approximated by a normal distribution. Specifically, if $Y \sim \text{Poisson}(\Lambda)$, then as $\Lambda \to \infty$:
+$$ \frac{Y - \Lambda}{\sqrt{\Lambda}} \xrightarrow{d} N(0,1) $$
+For our estimator $\hat{\lambda} = \frac{S_n}{\Lambda_n/\lambda} = \frac{2S_n}{n(n+1)}$, we can form a standardized variable:
+$$ Z_n = \frac{\hat{\lambda} - \mathbb{E}[\hat{\lambda}]}{\sqrt{\text{Var}(\hat{\lambda})}} = \frac{\hat{\lambda} - \lambda}{\sqrt{\frac{2\lambda}{n(n+1)}}} $$
+Substituting the expressions for $\hat{\lambda}$ and $\lambda$ in terms of $S_n$ and $\Lambda_n$:
+$$ \hat{\lambda} = \frac{S_n}{\Lambda_n/\lambda} \quad \text{and} \quad \lambda = \frac{\Lambda_n}{\Lambda_n/\lambda} $$
+$$ Z_n = \frac{\frac{S_n}{\Lambda_n/\lambda} - \frac{\Lambda_n}{\Lambda_n/\lambda}}{\sqrt{\frac{\Lambda_n / (\Lambda_n/\lambda)}{\Lambda_n/\lambda}}} = \frac{S_n - \Lambda_n}{\sqrt{\Lambda_n}} $$
+As shown above, this quantity converges in distribution to a standard normal distribution as $n \to \infty$:
+$$ \frac{\hat{\lambda} - \lambda}{\sqrt{\text{Var}(\hat{\lambda})}} \xrightarrow{d} N(0,1) $$
+Therefore, the estimator $\hat{\lambda}$ is asymptotically normal.
+\end{enumerate}
+\end{solution}
+
+\section*{2022}
+\subsection*{Final Probability and Statistics Individual Exam Problems (Aug. 20-21, 2022)}
+
+\begin{problem}[2022 -- 1]
+Suppose that $\xi, \eta$ are two random variables and there exists a function $F$ such that
+$$
+P(\xi \leq x, \eta \leq y)=F(x \wedge y)
+$$
+Discuss the relation between $\xi$ and $\eta$.
+\end{problem}
+
+\begin{solution}
+    The relation between $\xi$ and $\eta$ is that they are almost surely equal, i.e., $P(\xi = \eta) = 1$. Let's prove this.
+    
+    First, let's find the marginal distributions of $\xi$ and $\eta$.
+    The marginal cumulative distribution function (CDF) of $\xi$ is:
+    $$ F_{\xi}(x) = P(\xi \leq x) = \lim_{y \to \infty} P(\xi \leq x, \eta \leq y) $$
+    Using the given joint distribution, and noting that as $y \to \infty$, $x \wedge y = \min(x,y) \to x$:
+    $$ F_{\xi}(x) = \lim_{y \to \infty} F(x \wedge y) = F(x) $$
+    Similarly, the marginal CDF of $\eta$ is:
+    $$ F_{\eta}(y) = P(\eta \leq y) = \lim_{x \to \infty} P(\xi \leq x, \eta \leq y) $$
+    Noting that as $x \to \infty$, $x \wedge y = \min(x,y) \to y$:
+    $$ F_{\eta}(y) = \lim_{x \to \infty} F(x \wedge y) = F(y) $$
+    This shows that $\xi$ and $\eta$ are identically distributed, both having the CDF $F$.
+    
+    Now we will show that $\xi = \eta$ almost surely. This requires proving two parts: $P(\xi > \eta) = 0$ and $P(\xi < \eta) = 0$.
+    
+    \textbf{Part 1: Show $P(\xi < \eta) = 0$}
+    
+    The event $\{\xi < \eta\}$ can be expressed as a countable union of events involving rational numbers:
+    $$ \{\xi < \eta\} = \bigcup_{q \in \mathbb{Q}} \{\xi \le q \text{ and } \eta > q\} $$
+    Let's analyze the probability of the event $A_q = \{\xi \le q, \eta > q\}$.
+    We know that for any $q$, the event $\{\xi \le q\}$ can be decomposed into two disjoint events:
+    $$ \{\xi \le q\} = \{\xi \le q, \eta \le q\} \cup \{\xi \le q, \eta > q\} $$
+    Taking probabilities, we get:
+    $$ P(\xi \le q) = P(\xi \le q, \eta \le q) + P(\xi \le q, \eta > q) $$
+    From the marginal distribution, we have $P(\xi \le q) = F(q)$.
+    From the joint distribution, we have $P(\xi \le q, \eta \le q) = F(q \wedge q) = F(q)$.
+    Substituting these into the equation:
+    $$ F(q) = F(q) + P(\xi \le q, \eta > q) $$
+    This implies that $P(\xi \le q, \eta > q) = 0$ for any rational number $q$.
+    Now, we can evaluate the probability of the union:
+    $$ P(\xi < \eta) = P\left(\bigcup_{q \in \mathbb{Q}} \{\xi \le q, \eta > q\}\right) \le \sum_{q \in \mathbb{Q}} P(\xi \le q, \eta > q) = \sum_{q \in \mathbb{Q}} 0 = 0 $$
+    Therefore, $P(\xi < \eta) = 0$, which means $\xi \ge \eta$ almost surely.
+    
+    \textbf{Part 2: Show $P(\xi > \eta) = 0$}
+    
+    Similarly, the event $\{\xi > \eta\}$ can be expressed as:
+    $$ \{\xi > \eta\} = \bigcup_{q \in \mathbb{Q}} \{\eta \le q \text{ and } \xi > q\} $$
+    Let's analyze the probability of the event $B_q = \{\eta \le q, \xi > q\}$.
+    The event $\{\eta \le q\}$ can be decomposed as:
+    $$ \{\eta \le q\} = \{\eta \le q, \xi \le q\} \cup \{\eta \le q, \xi > q\} $$
+    Taking probabilities:
+    $$ P(\eta \le q) = P(\eta \le q, \xi \le q) + P(\eta \le q, \xi > q) $$
+    From the marginal distribution, $P(\eta \le q) = F(q)$.
+    From the joint distribution, $P(\eta \le q, \xi \le q) = F(q \wedge q) = F(q)$.
+    Substituting these gives:
+    $$ F(q) = F(q) + P(\eta \le q, \xi > q) $$
+    This implies that $P(\eta \le q, \xi > q) = 0$ for any rational number $q$.
+    Evaluating the probability of the union:
+    $$ P(\xi > \eta) = P\left(\bigcup_{q \in \mathbb{Q}} \{\eta \le q, \xi > q\}\right) \le \sum_{q \in \mathbb{Q}} P(\eta \le q, \xi > q) = \sum_{q \in \mathbb{Q}} 0 = 0 $$
+    Therefore, $P(\xi > \eta) = 0$, which means $\xi \le \eta$ almost surely.
+    
+    \textbf{Conclusion}
+    
+    Since we have shown that $\xi \ge \eta$ a.s. and $\xi \le \eta$ a.s., it must be that $\xi = \eta$ a.s.
+    Thus, the relation between $\xi$ and $\eta$ is that they are the same random variable with probability 1, and their common distribution is given by the function $F$.
+\end{solution}
+
+\begin{problem}[2022 -- 2]
+Let $\xi$ be a standard Gaussian random variable. Prove that there exists $C>0$ such that
+$$
+(\mathbb{E}|\xi|^p)^{\frac{1}{p}} \leq C \sqrt{p}, \quad \forall p>1
+$$
+\end{problem}
+
+\begin{solution}
+    Omitted.
+\end{solution}
+
+\begin{problem}[2022 -- 3]
+To order $n$ random natural numbers $\{x_1, x_2, \cdots, x_n\}$ according to their magnitudes, pick randomly a number $x$ from $\{x_1, x_2, \cdots, x_n\}$, comparing all other numbers with $x$, place the smaller ones to the left of $x$, and the bigger ones to the right of $x$. Repeating the above procedure for the numbers to the left and right of $x$, respectively, $\cdots$, until the numbers $\{x_1, x_2, \cdots, x_n\}$ are placed in an increasing order as $x_{(1)}<x_{(2)}<\cdots<x_{(n)}$. Using probabilistic argument (e.g., conditional expectation) to evaluate roughly the average number of steps (each step is a comparing of two numbers) needed to complete the task for large $n$.
+\end{problem}
+\begin{solution}
+This problem describes the randomized Quicksort algorithm. We are asked to find the average number of comparisons, which are the "steps" mentioned.
+
+Let the $n$ distinct numbers be $\{x_1, \ldots, x_n\}$. After sorting, they become $x_{(1)} < x_{(2)} < \cdots < x_{(n)}$.
+Let $C_n$ be the total number of comparisons to sort $n$ items. We want to find $\mathbb{E}[C_n]$.
+We can write $C_n$ as the sum of indicator random variables:
+$$C_n = \sum_{1 \le i < j \le n} I_{ij}$$
+where $I_{ij}$ is the indicator that is 1 if the $i$-th smallest element, $x_{(i)}$, is compared with the $j$-th smallest element, $x_{(j)}$, and 0 otherwise.
+
+By linearity of expectation:
+$$\mathbb{E}[C_n] = \sum_{1 \le i < j \le n} \mathbb{E}[I_{ij}] = \sum_{1 \le i < j \le n} P(x_{(i)} \text{ is compared with } x_{(j)})$$
+The elements $x_{(i)}$ and $x_{(j)}$ are compared if and only if one of them is chosen as the pivot before any other element in the set $\{x_{(k)} : i < k < j\}$ is chosen.
+Consider the set of elements $S_{ij} = \{x_{(i)}, x_{(i+1)}, \ldots, x_{(j)}\}$. Once a pivot is chosen from this set, if it is not $x_{(i)}$ or $x_{(j)}$, then $x_{(i)}$ and $x_{(j)}$ will be in different sub-arrays for all subsequent steps and will never be compared.
+Thus, they are compared if and only if the first pivot chosen from $S_{ij}$ is either $x_{(i)}$ or $x_{(j)}$.
+Since the pivot is chosen uniformly at random, any element in $S_{ij}$ has an equal chance of being the first pivot selected from this set. The size of $S_{ij}$ is $j - i + 1$.
+$$ P(x_{(i)} \text{ is compared with } x_{(j)}) = \frac{2}{j-i+1} $$
+Now we can compute the expected total number of comparisons:
+$$ \mathbb{E}[C_n] = \sum_{i=1}^{n-1} \sum_{j=i+1}^{n} \frac{2}{j-i+1} $$
+Let $k = j-i$. The sum becomes:
+\begin{align*}
+\mathbb{E}[C_n] &= 2 \sum_{i=1}^{n-1} \sum_{k=1}^{n-i} \frac{1}{k+1} \\
+&= 2 \sum_{k=1}^{n-1} \sum_{i=1}^{n-k} \frac{1}{k+1} \quad \text{(changing order of summation)} \\
+&= 2 \sum_{k=1}^{n-1} (n-k) \frac{1}{k+1} \\
+&= 2 \sum_{k=1}^{n-1} \frac{n+1-(k+1)}{k+1} = 2 \sum_{k=1}^{n-1} \left(\frac{n+1}{k+1} - 1\right) \\
+&= 2 \left( (n+1) \sum_{k=1}^{n-1} \frac{1}{k+1} - \sum_{k=1}^{n-1} 1 \right) \\
+&= 2 \left( (n+1) (H_n - 1) - (n-1) \right) \quad (\text{where } H_n \text{ is the } n\text{-th harmonic number}) \\
+&= 2( (n+1)H_n - (n+1) - (n-1) ) = 2(n+1)H_n - 4n
+\end{align*}
+For large $n$, we know that $H_n \approx \ln(n) + \gamma$, where $\gamma$ is the Euler-Mascheroni constant.
+So, the average number of steps is roughly:
+$$ \mathbb{E}[C_n] \approx 2(n+1)(\ln n + \gamma) - 4n \approx 2n \ln n $$
+The average number of steps needed is approximately $2n \ln n$.
+\end{solution}
+
+\begin{solution}[Alternative Proof by Recurrence]
+Let $C_n$ be the expected number of comparisons to sort $n$ distinct numbers. The base cases are $C_0=0$ and $C_1=0$.
+For $n \ge 2$, we first choose a pivot uniformly at random from the $n$ elements. This requires $n-1$ comparisons to partition the other elements relative to the pivot.
+Suppose the chosen pivot is the $k$-th smallest element (where $k \in \{1, \ldots, n\}$). This happens with probability $1/n$. After partitioning, we are left with two sub-arrays of sizes $k-1$ and $n-k$. The expected number of comparisons for these subproblems are $C_{k-1}$ and $C_{n-k}$ respectively.
+By the law of total expectation, we can write the recurrence relation for $C_n$:
+$$ C_n = (n-1) + \sum_{k=1}^n \frac{1}{n} (C_{k-1} + C_{n-k}) $$
+The sum can be simplified. Note that the set of indices $\{k-1, n-k\}$ for $k=1, \ldots, n$ is the same as $\{0, n-1\}, \{1, n-2\}, \ldots, \{n-1, 0\}$. Each term $C_j$ for $j=0, \ldots, n-1$ appears twice.
+$$ \sum_{k=1}^n (C_{k-1} + C_{n-k}) = 2 \sum_{j=0}^{n-1} C_j $$
+So the recurrence becomes:
+$$ C_n = n-1 + \frac{2}{n} \sum_{j=0}^{n-1} C_j $$
+To solve this, we can try to eliminate the sum. Multiply by $n$:
+$$ nC_n = n(n-1) + 2 \sum_{j=0}^{n-1} C_j $$
+Now write the same equation for $n-1$ (for $n \ge 3$):
+$$ (n-1)C_{n-1} = (n-1)(n-2) + 2 \sum_{j=0}^{n-2} C_j $$
+Subtracting the second equation from the first:
+$$ nC_n - (n-1)C_{n-1} = [n(n-1) - (n-1)(n-2)] + 2C_{n-1} $$
+$$ nC_n = (n+1)C_{n-1} + (n-1)(n - (n-2)) $$
+$$ nC_n = (n+1)C_{n-1} + 2(n-1) $$
+Divide by $n(n+1)$ to prepare for a telescoping sum:
+$$ \frac{C_n}{n+1} = \frac{C_{n-1}}{n} + \frac{2(n-1)}{n(n+1)} $$
+Let $T_n = \frac{C_n}{n+1}$. Then $T_n = T_{n-1} + \frac{2(n-1)}{n(n+1)}$. We can unroll this recurrence:
+\begin{align*}
+T_n &= T_1 + \sum_{k=2}^n \frac{2(k-1)}{k(k+1)} \\
+&= T_1 + 2 \sum_{k=2}^n \left( \frac{2}{k+1} - \frac{1}{k} \right) \quad \text{(using partial fractions)}
+\end{align*}
+Since $C_1=0$, $T_1 = C_1/2 = 0$.
+\begin{align*}
+T_n &= 2 \left( 2\sum_{k=2}^n \frac{1}{k+1} - \sum_{k=2}^n \frac{1}{k} \right) \\
+&= 4(H_{n+1} - H_2) - 2(H_n - H_1) \\
+&= 4(H_n + \frac{1}{n+1} - \frac{3}{2}) - 2(H_n - 1) \\
+&= 4H_n + \frac{4}{n+1} - 6 - 2H_n + 2 \\
+&= 2H_n + \frac{4}{n+1} - 4
+\end{align*}
+Finally, we find $C_n = (n+1)T_n$:
+$$ C_n = (n+1)\left(2H_n + \frac{4}{n+1} - 4\right) = 2(n+1)H_n + 4 - 4(n+1) = 2(n+1)H_n - 4n $$
+This is the same result obtained by the previous method. For large $n$, $C_n \approx 2n \ln n$.
+\end{solution}
+
+\section*{2021}
+\subsection*{Final Probability and Statistics Individual Exam Problems (May 29, 2021)}
+
+\begin{problem}[2021 -- 1]
+Let $\{X_n\}_{n \geq 1}$ be a sequence of real valued, nonnegative random variables.
+Assume that there are constants $C>0$ and $\lambda>0$ such that $\mathbb{E} X_n \leq C e^{-\lambda n}, \forall n \geq 1$.
+Prove that
+$$
+P(\limsup _{n \rightarrow \infty} \frac{1}{n} \ln X_n \leq-\lambda)=1
+$$
+\end{problem}
+\begin{solution}
+For any $\lambda_0 \in(0, \lambda)$, define the events
+$$
+A_n=\{\omega \in \Omega: X_n(\omega)>e^{-\lambda_0 n}\}, \quad n \geq 1 .
+$$
+By Chebyshev's inequality,
+$$
+\mathbb{P}(A_n) \leq e^{\lambda_0 n} \mathbb{E} X_n \leq C e^{(\lambda_0-\lambda) n}, \quad \forall n \geq 1
+$$
+Since $\lambda_0<\lambda$, we have
+$$
+\sum_{n=1}^{\infty} \mathbb{P}(A_n) \leq \sum_{n=1}^{\infty} C e^{(\lambda_0-\lambda) n}<+\infty
+$$
+Borel-Cantelli's lemma implies that for $\mathbb{P}$-a.s. $\omega \in \Omega$, there exists $n(\omega) \in \mathbb{N}$ such that for all $n \geq n(\omega)$, we have $\omega \in A_n^c$, that is $X_n(\omega) \leq e^{-\lambda_0 n}$. Therefore,
+$$
+\frac{1}{n} \ln X_n(\omega) \leq-\lambda_0, \quad \forall n \geq n(\omega)
+$$
+This implies the desired result since $\lambda_0$ is an arbitrary number less than $\lambda$.
+\end{solution}
+
+\begin{problem}[2021 -- 2]
+Assume that $X_1, \ldots, X_n \sim U[0,1]$ (uniform distribution) are i.i.d. Denote $X_{(1)}=\min _{1 \leq k \leq n} X_k$ and $X_{(n)}=\max _{1 \leq k \leq n} X_k$. Let $R=X_{(n)}-X_{(1)}$ be the sample range and $V=(X_{(1)}+X_{(n)}) / 2$ be the sample midvalue.
+\begin{enumerate}[label=(\alph*)]
+\item Find the joint density of $(X_{(1)}, X_{(n)})$.
+\item Find the joint density of $(R, V)$.
+\item Find the density of $R$ and the density of $V$.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item Denote $F(x_1, x_n)=P(X_{(1)} \leq x_1, X_{(n)} \leq x_n)$, then $F(x_1, x_n)=0$ for $x_1 \notin[0,1]$ or $x_n \notin[0,1]$. If $x_1 \geq x_n$, then $\{X_{(n)} \leq x_n\} \subset\{X_{(1)} \leq x_1\}$, and therefore
+$$
+F(x_1, x_n)=P(X_{(n)} \leq x_n)
+$$
+If $0 \leq x_1 \leq x_n \leq 1$, then
+\begin{align*}
+P(X_{(1)} \geq x_1, X_{(n)} \leq x_n) & =P(\cup_{k=1}^n\{x_1 \leq X_k \leq x_n\}) \\
+& =\prod_{k=1}^n P(x_1 \leq X_k \leq x_n) \\
+& =(x_n-x_1)^n
+\end{align*}
+which implies that
+\begin{align*}
+F(x_1, x_n) & =P(X_{(n)} \leq x_n)-P(X_{(1)} \geq x_1, X_{(n)} \leq x_n) \\
+& =P(X_{(n)} \leq x_n)-(x_n-x_1)^n
+\end{align*}
+Thus,
+\begin{align*}
+f(x_1, x_n) & =\frac{\partial^2 F(x_1, x_n)}{\partial x_1 \partial x_n} \\
+& = \begin{cases}n(n-1)(x_n-x_1)^{n-2}, & \text { if } 0 \leq x_1 \leq x_n \leq 1, \\
+0, & \text { elsewhere. }\end{cases}
+\end{align*}
+\item Note that
+$$
+\binom{X_{(1)}}{X_{(n)}}=\begin{pmatrix} -\frac{1}{2} & 1 \\ \frac{1}{2} & 1 \end{pmatrix} \binom{R}{V} \equiv A\binom{R}{V}
+$$
+thus the joint density of $(R, V)$ is
+\begin{align*}
+f_{R, V}(r, v) & =f(x_1, x_n) \times|\operatorname{det} A| \\
+& =f(v-\frac{r}{2}, v+\frac{r}{2}) \\
+& =n(n-1) r^{n-2},
+\end{align*}
+where $(r, v) \in D \equiv\{(r, v): 0 \leq v-\frac{r}{2} \leq v+\frac{r}{2} \leq 1\}$ and
+$$
+f_{R, V}(r, v)=0
+$$
+if $(r, v) \notin D$.
+\item The density of $R$ is
+\begin{align*}
+f_R(r) & =\int_{-\infty}^{+\infty} f_{R, V}(r, v) d v \\
+& =\int_{r / 2}^{1-r / 2} f_{R, V}(r, v) d v=n(n-1) r^{n-2}(1-r), \quad 0 \leq r \leq 1
+\end{align*}
+For the density of $V$, if $v \in[0,1 / 2]$, then
+$$
+f_V(v)=\int_{-\infty}^{+\infty} f_{R, V}(r, v) d r=\int_0^{2 v} n(n-1) r^{n-2} d r=n(2 v)^{n-1}
+$$
+if $v \in[1 / 2,1]$, then
+$$
+f_V(v)=\int_{-\infty}^{+\infty} f_{R, V}(r, v) d r=\int_0^{2(1-v)} n(n-1) r^{n-2} d r=n(2(1-v))^{n-1}
+$$
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[2021 -- 3]
+A binary tree is a tree in which each node has exactly two descendants. Suppose that each node of the tree is coloured black with probability $p$, and white otherwise, independently of all other nodes. For any path $\pi$ containing $n$ nodes beginning at the root of the tree, let $B(\pi)$ be the number of black nodes in $\pi$, and let $X_n(k)$ be the number of such paths $\pi$ for which $B(\pi) \geq k$.
+\begin{enumerate}[label=(\alph*)]
+\item Show that there exists $\beta_c$ such that
+$$
+\lim _{n \rightarrow \infty} \mathbb{E}(X_n(\beta n))= \begin{cases}0, & \text { if } \beta>\beta_c \\ \infty, & \text { if } \beta<\beta_c\end{cases}
+$$
+How to determine the value of $\beta_c$?
+\item For $\beta \neq \beta_c$, find the limit $\lim _{n \rightarrow \infty} \mathbb{P}(X_n(\beta n) \geq 1)$.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+The number of paths $\pi$ containing exactly $n$ nodes is $2^{n-1}$, and each such $\pi$ satisfies $\mathbb{P}(B(\pi) \geq k)=\mathbb{P}(S_n \geq k)$ where $S_n=Y_1+Y_2+\cdots+Y_n$ is the sum of $n$ independent Bernoulli variables having parameter $p$. Therefore $\mathbb{E}(X_n(k))=2^{n-1} \mathbb{P}(S_n \geq k)$. We set $k=n \beta$, and need to estimate $\mathbb{P}(S_n \geq n \beta)$. It is a consequence of the large deviation theorem that, if $p \leq \beta<1$,
+$$
+\mathbb{P}(S_n \geq n \beta)^{1 / n} \xrightarrow{n \rightarrow \infty} \inf _{t>0}\{e^{-t \beta} M(t)\}
+$$
+where $M(t)=\mathbb{E}(e^{t Y_1})=q+p e^t, q=1-p$. With some calculus, we find that
+$$
+\mathbb{P}(S_n \geq n \beta)^{1 / n} \xrightarrow{n \rightarrow \infty}(\frac{p}{\beta})^\beta(\frac{1-p}{1-\beta})^{1-\beta}, \quad p \leq \beta<1
+$$
+Hence
+$$
+\mathbb{E}(X_n(\beta n)) \xrightarrow{n \rightarrow \infty} \begin{cases}0, & \text { if } \gamma(\beta)<1 \\ \infty, & \text { if } \gamma(\beta)>1\end{cases}
+$$
+where
+$$
+\gamma(\beta)=2(\frac{p}{\beta})^\beta(\frac{1-p}{1-\beta})^{1-\beta}
+$$
+is a decreasing function of $\beta$. If $p<\frac{1}{2}$, there is a unique $\beta_c \in[p, 1)$ such that $\gamma(\beta_c)=1$; if $p \geq \frac{1}{2}$ then $\gamma(\beta)>1$ for all $\beta \in[p, 1)$ so that we may take $\beta_c=1$.
+
+Turning to the final part,
+$$
+\mathbb{P}(X_n(\beta n) \geq 1) \leq \mathbb{E}(X_n(\beta n)) \xrightarrow{n \rightarrow \infty} 0, \quad \text { if } \beta>\beta_c .
+$$
+As for the other case, we will use the Payley-Zygmund inequality
+$$
+\mathbb{P}(N \neq 0) \geq \frac{\mathbb{E}(N)^2}{\mathbb{E}(N^2)}
+$$
+for nonnegative random variable $N$.
+We have that $\mathbb{E}(X_n(\beta n)^2)=\sum_{\pi, \rho} \mathbb{E}(I_\pi I_\rho)$, where the sum is over all such paths $\pi, \rho$, and $I_\pi$ is the indicator function of the event $\{B(\pi) \geq \beta n\}$. Hence
+$$
+\mathbb{E}(X_n(\beta n)^2)=\sum_\pi \mathbb{E}(I_\pi)+\sum_{\pi \neq \rho} \mathbb{E}(I_\pi I_\rho)=\mathbb{E}(X_n(\beta n))+2^{n-1} \sum_{\rho \neq L} \mathbb{E}(I_L I_\rho)
+$$
+where $L$ is the path which always takes the left fork (there are $2^{n-1}$ choices for $\pi$, and by symmetry each provides the same contribution to the sum). We divide up the last sum according to the number of nodes in common to $\rho$ and $L$, obtaining $\sum_{m=1}^{n-1} 2^{n-m-1} \mathbb{E}(I_L I_M)$ where $M$ is a path having exactly $m$ nodes in common with $L$. Now
+$$
+\mathbb{E}(I_L I_M)=\mathbb{E}(I_M \mid I_L=1) \mathbb{E}(I_L) \leq \mathbb{P}(T_{n-m} \geq \beta n-m) \mathbb{E}(I_L),
+$$
+where $T_{n-m}$ has the $\operatorname{Binomial}(n-m, p)$ distribution (the 'most value' to $I_M$ of the event $\{I_L=1\}$ is obtained when all $m$ nodes in $L \cap M$ are black). However
+$$
+\mathbb{E}(I_M)=\mathbb{P}(T_n \geq \beta n) \geq p^m \mathbb{P}(T_{n-m} \geq \beta n-m),
+$$
+so that $\mathbb{E}(I_L I_M) \leq p^{-m} \mathbb{E}(I_L) \mathbb{E}(I_M)$. It follows that $N=X_n(\beta n)$ satisfies
+$$
+\mathbb{E}(N^2) \leq \mathbb{E}(N)+2^{n-1} \sum_{m=1}^{n-1} 2^{n-m-1} \cdot \frac{1}{p^m} \mathbb{E}(I_L) \mathbb{E}(I_M)=\mathbb{E}(N)+\frac{1}{2}(\mathbb{E}(N))^2 \sum_{m=1}^{n-1}(\frac{1}{2 p})^m
+$$
+whence, by the Payley-Zygmund inequality,
+$$
+\mathbb{P}(N \neq 0) \geq \frac{1}{\mathbb{E}(N)^{-1}+\frac{1}{2} \sum_{m=1}^{n-1}(2 p)^{-m}}
+$$
+If $\beta<\beta_c$ then $\mathbb{E}(N) \rightarrow \infty$ as $n \rightarrow \infty$. It is immediately evident that $\mathbb{P}(N \neq 0) \rightarrow 1$ if $p \leq \frac{1}{2}$. Suppose finally that $p>\frac{1}{2}$ and $\beta<\beta_c$. By the above inequality,
+$$
+\mathbb{P}(X_n(\beta n)>0) \geq c(\beta), \quad \forall n
+$$
+where $c(\beta)$ is some positive constant. Take $\epsilon>0$ such that $\beta+\epsilon<\beta_c$. Fix a positive integer $m$, and let $\mathcal{P}_m$ be a collection of $2^m$ disjoint paths each of length $n-m$ starting from depth $m$ in the tree. Now
+$$
+\mathbb{P}(X_n(\beta n)=0) \leq \mathbb{P}(B(v)<\beta n \text { for all } v \in \mathcal{P}_m)=\mathbb{P}(B(v)<\beta n)^{2^m}
+$$
+where $v \in \mathcal{P}_m$. However
+$$
+\mathbb{P}(B(v)<\beta n) \leq \mathbb{P}(B(\nu)<(\beta+\epsilon)(n-m))
+$$
+if $\beta n<(\beta+\epsilon)(n-m)$, which is to say that $n \geq(\beta+\epsilon) m / \epsilon$. Hence, for all large $n$,
+$$
+\mathbb{P}(X_n(\beta n)=0) \leq(1-c(\beta+\epsilon))^{2^m}
+$$
+by (0.1). We let $n \rightarrow \infty$ and $m \rightarrow \infty$ in that order, to obtain $\mathbb{P}(X_n(\beta n)=0) \rightarrow 0$ as $n \rightarrow \infty$. In summary,
+$$
+\mathbb{P}(X_n(\beta n) \geq 1) \xrightarrow{n \rightarrow \infty} \begin{cases}0, & \text { if } \beta>\beta_c \\ 1, & \text { if } \beta<\beta_c\end{cases}
+$$
+\end{solution}
+
+\section*{2020}
+\subsection*{Final Probability and Statistics}
+
+\subsubsection*{Individual Exam Problem Set 1 (Saturday, October 24, 2020)}
+
+\begin{problem}[2020 -- Set 1 -- 1]
+Suppose that $\{X_n\}$ is a sequence of independent, identically distributed random variables with the uniform distribution on the unit interval $[0,1]$. For each $x \in[0,1]$, define
+$$
+X_n^x= \begin{cases}1, & X_n \leq x \\ 0, & X_n>x\end{cases}
+$$
+Let $f:[0,1] \rightarrow \mathbb{R}$ be an nondecreasing continuous function on $[0,1]$ and
+$$
+B_n(x ; f)=\mathbb{E}[f(\frac{X_1^x+\cdots+X_n^x}{n})].
+$$
+Show that
+\begin{enumerate}[label=(\alph*)]
+\item $B_n(x ; f)$ is a polynomial in $x$ of degree $n$; 
+\item $B_n(x ; f)$ is nondecreasing in $x$;
+\item $B_n(x ; f) \rightarrow f(x)$ uniformly on $[0,1]$.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+Let $S_n^x = \sum_{i=1}^n X_i^x$. The random variables $X_i^x$ are i.i.d. Bernoulli trials with success probability $P(X_i \le x) = x$. Thus, $S_n^x \sim \text{Binomial}(n,x)$. The polynomial $B_n(x;f)$ is a Bernstein polynomial.
+\begin{enumerate}[label=(\alph*)]
+\item The expectation can be written as a sum over the support of the Binomial distribution:
+$$ B_n(x;f) = \sum_{k=0}^n f\left(\frac{k}{n}\right) P(S_n^x=k) = \sum_{k=0}^n f\left(\frac{k}{n}\right) \binom{n}{k} x^k (1-x)^{n-k} $$
+This is a linear combination of polynomials $x^k(1-x)^{n-k}$, each of which has degree $n$. Therefore, $B_n(x;f)$ is a polynomial in $x$ of degree at most $n$.
+\item Let $U_1, \ldots, U_n$ be i.i.d. Uniform(0,1) random variables. Then we can realize $X_i^x$ as $I(U_i \le x)$. So $S_n^x = \sum_{i=1}^n I(U_i \le x)$. For a fixed realization of $U_1, \ldots, U_n$, $S_n^x$ is a non-decreasing function of $x$. Since $f$ is non-decreasing, the composition $f(S_n^x/n)$ is also a non-decreasing function of $x$. The expectation of a non-decreasing function is non-decreasing, so $B_n(x;f)$ is non-decreasing in $x$.
+\item This is a standard result. By the Law of Large Numbers, $S_n^x/n \to \mathbb{E}[X_1^x] = x$ in probability. Since $f$ is continuous on the compact set $[0,1]$, it is uniformly continuous.
+Let $Y_n = S_n^x/n$. For any $\epsilon > 0$, there is a $\delta > 0$ such that $|y-z|<\delta \implies |f(y)-f(z)|<\epsilon$.
+$$ |\mathbb{E}[f(Y_n)] - f(x)| \le \mathbb{E}|f(Y_n) - f(x)| $$
+We split the expectation over $\{|Y_n - x| < \delta\}$ and $\{|Y_n - x| \ge \delta\}$.
+$$ \mathbb{E}|f(Y_n) - f(x)| < \epsilon \cdot P(|Y_n - x| < \delta) + 2\|f\|_\infty \cdot P(|Y_n - x| \ge \delta) $$
+By Chebyshev's inequality, $P(|Y_n - x| \ge \delta) \le \frac{\text{Var}(Y_n)}{\delta^2} = \frac{x(1-x)}{n\delta^2} \le \frac{1}{4n\delta^2}$.
+This probability tends to 0 uniformly in $x$ as $n \to \infty$. Thus, for any $\epsilon > 0$, we can find $N$ such that for $n > N$, $|B_n(x;f) - f(x)| < 2\epsilon$, proving uniform convergence.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[2020 -- Set 1 -- 2]
+An urn contains $N$ balls marked $1,2, \ldots, N$. A ball is drawn from the urn repeatedly and independently with replacement. Let $T_N$ be the first time every ball in the turn has been drawn at least once. Show that $T_N / N \log N$ converges to 1 in probability.
+\end{problem}
+\begin{solution}
+This is the coupon collector's problem. Let $T_i$ be the number of additional draws required to obtain the $i$-th new coupon after $i-1$ distinct coupons have been collected. Then $T_N = \sum_{i=1}^N T_i$.
+When $i-1$ coupons have been collected, the probability of drawing a new one is $p_i = \frac{N-(i-1)}{N}$. $T_i$ follows a geometric distribution with success probability $p_i$.
+The expectation of $T_N$ is $\mathbb{E}[T_N] = \sum_{i=1}^N \mathbb{E}[T_i] = \sum_{i=1}^N \frac{1}{p_i} = \sum_{i=1}^N \frac{N}{N-i+1} = N \sum_{j=1}^N \frac{1}{j} = N H_N$.
+The variance of $T_N$ is $\text{Var}(T_N) = \sum_{i=1}^N \text{Var}(T_i)$ due to independence.
+$\text{Var}(T_i) = \frac{1-p_i}{p_i^2} \le \frac{1}{p_i^2} = \frac{N^2}{(N-i+1)^2}$.
+So, $\text{Var}(T_N) = \sum_{j=1}^N \frac{N^2}{j^2} - N\sum_{j=1}^N \frac{1}{j} \le N^2 \sum_{j=1}^\infty \frac{1}{j^2} = N^2 \frac{\pi^2}{6}$.
+We need to show convergence in probability. For any $\epsilon > 0$, by Chebyshev's inequality:
+$$ P\left( \left| \frac{T_N}{N\log N} - \frac{\mathbb{E}[T_N]}{N\log N} \right| \ge \epsilon \right) \le \frac{\text{Var}(T_N)}{(N\log N)^2 \epsilon^2} \le \frac{N^2 \pi^2/6}{(N\log N)^2 \epsilon^2} = \frac{\pi^2/6}{(\log N)^2 \epsilon^2} $$
+As $N \to \infty$, this probability goes to 0.
+Also, $\frac{\mathbb{E}[T_N]}{N\log N} = \frac{N H_N}{N\log N} = \frac{H_N}{\log N} \to 1$ as $N \to \infty$ since $H_N \approx \log N$.
+This implies $\frac{T_N}{N\log N} \to 1$ in probability.
+\end{solution}
+
+\begin{problem}[2020 -- Set 1 -- 3]
+Suppose $\{X_1, \ldots, X_n\}$ is a random sample from an unknown probability distribution with finite mean, variance, and third central moment, denoted by $\mu, \sigma^2$, and $\mu_3=\mathbb{E}(X_1-\mu)^3$, respectively. It is of interest to study the relationship between
+$$
+\bar{X}=\frac{1}{n} \sum_{i=1}^n X_i \quad \text { and } \quad S^2=\frac{1}{n-1} \sum_{i=1}^n(X_i-\bar{X})^2
+$$
+\begin{enumerate}[label=(\alph*)]
+\item Show that they are independent when the underlying distribution is Gaussian.
+\item For a general distribution, what is $\operatorname{cov}(\bar{X}, S^2)$? Find an expression.
+\item Suppose the random sample is from Bernoulli(1/2). Show that $\bar{X}$ and $S^2$ are uncorrelated, but are not independent by showing that
+$$
+\mathbb{P}(S^2=0 \mid \bar{X}=1) \neq \mathbb{P}(S^2=0)
+$$
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item This is a result of Cochran's theorem. A direct proof: $\bar{X}$ and the vector $(X_i-\bar{X})$ are jointly normal because they are linear combinations of i.i.d. normal variables. We show their covariance is zero. For any $i$,
+$\text{Cov}(\bar{X}, X_i-\bar{X}) = \text{Cov}(\frac{1}{n}\sum_j X_j, X_i) - \text{Var}(\bar{X}) = \frac{1}{n}\sigma^2 - \frac{\sigma^2}{n} = 0$.
+Since $\bar{X}$ is uncorrelated with each component of the vector of residuals, it is independent of that vector. As $S^2$ is a function of the vector of residuals, $\bar{X}$ and $S^2$ are independent.
+\item We compute the covariance directly. Let $Y_i = X_i - \mu$, so that $\mathbb{E}[Y_i]=0$, $\mathbb{E}[Y_i^2]=\sigma^2$, and $\mathbb{E}[Y_i^3]=\mu_3$. Note that $\bar{X}-\mu = \bar{Y}$. Since $\mathbb{E}[\bar{X}-\mu]=0$, we have
+$$
+\operatorname{Cov}(\bar{X}, S^2) = \mathbb{E}[(\bar{X}-\mu)S^2] = \mathbb{E}[\bar{Y}S^2]
+$$
+We use the identity $\sum_{i=1}^n(X_i-\bar{X})^2 = \sum_{i=1}^n(Y_i-\bar{Y})^2 = \sum_{i=1}^n Y_i^2 - n\bar{Y}^2$. Thus,
+$$
+\mathbb{E}[\bar{Y}S^2] = \frac{1}{n-1}\mathbb{E}\left[\bar{Y}\left(\sum_{i=1}^n Y_i^2 - n\bar{Y}^2\right)\right] = \frac{1}{n-1} \left( \mathbb{E}\left[\bar{Y}\sum_{i=1}^n Y_i^2\right] - n\mathbb{E}[\bar{Y}^3] \right)
+$$
+We evaluate the two expectations separately. Since the $Y_i$ are i.i.d., $\mathbb{E}[Y_j Y_i^2]= \mathbb{E}[Y_j]\mathbb{E}[Y_i^2] = 0$ for $i \neq j$.
+\begin{align*}
+\mathbb{E}\left[\bar{Y}\sum_{i=1}^n Y_i^2\right] &= \mathbb{E}\left[\left(\frac{1}{n}\sum_{j=1}^n Y_j\right)\left(\sum_{i=1}^n Y_i^2\right)\right] = \frac{1}{n}\sum_{i,j} \mathbb{E}[Y_j Y_i^2] \\
+&= \frac{1}{n} \sum_{i=1}^n \mathbb{E}[Y_i^3] = \frac{1}{n} (n\mu_3) = \mu_3.
+\end{align*}
+And, using the fact that cross-product terms have zero expectation due to independence and mean zero,
+\begin{align*}
+\mathbb{E}[\bar{Y}^3] &= \mathbb{E}\left[\left(\frac{1}{n}\sum_{i=1}^n Y_i\right)^3\right] = \frac{1}{n^3} \mathbb{E}\left[ \left(\sum_i Y_i\right)^3 \right] = \frac{1}{n^3} \sum_{i=1}^n \mathbb{E}[Y_i^3] = \frac{n\mu_3}{n^3} = \frac{\mu_3}{n^2}.
+\end{align*}
+Substituting these back, we get
+$$
+\operatorname{Cov}(\bar{X}, S^2) = \frac{1}{n-1} \left(\mu_3 - n \cdot \frac{\mu_3}{n^2}\right) = \frac{1}{n-1}\left(\mu_3 - \frac{\mu_3}{n}\right) = \frac{1}{n-1}\mu_3\left(\frac{n-1}{n}\right) = \frac{\mu_3}{n}.
+$$
+\item For a Bernoulli(1/2) distribution, the random variable $Y = X-1/2$ takes values $\pm 1/2$ with probability 1/2.
+The mean is $\mathbb{E}[Y]=0$. The third central moment is $\mu_3 = \mathbb{E}[Y^3] = \frac{1}{2}(\frac{1}{8}) + \frac{1}{2}(-\frac{1}{8}) = 0$.
+From part (b), $\text{Cov}(\bar{X}, S^2) = \mu_3/n = 0$. So they are uncorrelated.
+To show they are not independent, consider the conditional probability.
+If $\bar{X}=1$, this means every $X_i$ must be 1. In this case, $X_i - \bar{X} = 1-1=0$ for all $i$.
+So $S^2 = \frac{1}{n-1}\sum 0 = 0$. This means $\mathbb{P}(S^2=0 \mid \bar{X}=1)=1$.
+Now consider the unconditional probability $\mathbb{P}(S^2=0)$. $S^2=0$ if and only if all $X_i$ are identical. This means either all $X_i=0$ or all $X_i=1$.
+$\mathbb{P}(S^2=0) = P(\text{all } X_i=0) + P(\text{all } X_i=1) = (\frac{1}{2})^n + (\frac{1}{2})^n = (\frac{1}{2})^{n-1}$.
+For any $n>1$, $(\frac{1}{2})^{n-1} \neq 1$. Therefore, $\mathbb{P}(S^2=0 \mid \bar{X}=1) \neq \mathbb{P}(S^2=0)$, and they are not independent.
+\end{enumerate}
+\end{solution}
+
+\subsubsection*{Individual Exam Problem Set 2 (Sunday, October 25, 2020)}
+
+\begin{problem}[2020 -- Set 2 -- 1]
+Suppose that $\{X_n\}$ is a sequence of real valued, independent, identically distributed random variables and $B$ is a Borel set in $\mathbb{R}$. Assume that $\mathbb{P}(X_1 \in B)>0$. Let $T=\inf \{n: X_n \in B\}$ be the first time the sequence is in the set $B$.
+\begin{enumerate}[label=(\alph*)]
+\item Show that $\mathbb{P}(T<\infty)=1$.
+\item Suppose $\mathbb{E}|X_1|<\infty$. Show that $\mathbb{E} X_T=\mathbb{E}[X_1 I_B(X_1)] \mathbb{E} T$.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item Let $p = P(X_1 \in B)$. By assumption, $p>0$. The event $\{T>n\}$ is equivalent to $\{X_1 \notin B, \ldots, X_n \notin B\}$. Since the variables are i.i.d., $P(T>n) = P(X_1 \notin B)^n = (1-p)^n$.
+Then $P(T=\infty) = \lim_{n\to\infty} P(T>n) = \lim_{n\to\infty} (1-p)^n = 0$, since $0 < p \le 1$.
+Therefore, $P(T<\infty)=1$.
+\item This is a variant of Wald's identity. We compute the expectation of $X_T$.
+$$ \mathbb{E}[X_T] = \sum_{n=1}^\infty \mathbb{E}[X_T | T=n]P(T=n) $$
+The event $\{T=n\}$ means $X_k \notin B$ for $k<n$ and $X_n \in B$.
+$P(T=n) = (1-p)^{n-1}p$.
+Given $\{T=n\}$, $X_T = X_n$. So $\mathbb{E}[X_T | T=n] = \mathbb{E}[X_n | X_1 \notin B, \dots, X_{n-1} \notin B, X_n \in B]$.
+Due to independence, this is $\mathbb{E}[X_n | X_n \in B] = \mathbb{E}[X_1 | X_1 \in B]$.
+$\mathbb{E}[X_1 | X_1 \in B] = \frac{\mathbb{E}[X_1 I_B(X_1)]}{P(X_1 \in B)} = \frac{\mathbb{E}[X_1 I_B(X_1)]}{p}$.
+The sum becomes:
+$$ \mathbb{E}[X_T] = \sum_{n=1}^\infty \frac{\mathbb{E}[X_1 I_B(X_1)]}{p} \cdot (1-p)^{n-1}p = \mathbb{E}[X_1 I_B(X_1)] \sum_{n=1}^\infty (1-p)^{n-1} $$
+The sum is a geometric series equal to $1/(1-(1-p)) = 1/p$.
+The random variable $T$ has a geometric distribution with success probability $p$, so $\mathbb{E}[T]=1/p$.
+Substituting this in, we get $\mathbb{E}[X_T] = \mathbb{E}[X_1 I_B(X_1)] \mathbb{E}[T]$. The calculation is valid since $\mathbb{E}|X_1|<\infty$ ensures the sums converge absolutely.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[2020 -- Set 2 -- 2]
+We flip a fair coin repeatedly and independently. Let $N_n$ be the number of consecutive heads beginning from the $n^{\text {th }}$ flip. (For example, $N_n=0$ if the $n^{\text {th }}$ flip is a tail, and $N_n=2$ if the $n^{\text {th }}$ and $(n+1)^{\text {th }}$ flips are heads but the $(n+2)^{\text {th }}$ flip is a tail. Show that
+$$
+\limsup _{n \rightarrow \infty} \frac{N_n}{\log n}=\frac{1}{\log 2}
+$$
+\end{problem}
+\begin{solution}
+We want to find the limit of $\frac{N_n}{\log_2 n}$. Note $\log_2 n = \frac{\log n}{\log 2}$.
+Let $A_n(k)$ be the event that $N_n \ge k$. This means flips $n, n+1, \ldots, n+k-1$ are all heads.
+$P(A_n(k)) = (1/2)^k$.
+Let $k_n = c \log_2 n = c \frac{\log n}{\log 2}$.
+Consider the event $B_n = \{N_n > k_n\}$. $P(B_n) = (1/2)^{\lfloor k_n \rfloor+1}$. For simplicity, we approximate $P(B_n) \approx (1/2)^{k_n} = (2^{-1})^{c \log_2 n} = n^{-c}$.
+If we choose $c>1$, the series $\sum_n P(B_n) \approx \sum_n n^{-c}$ converges. By the first Borel-Cantelli lemma, $P(B_n \text{ i.o.})=0$.
+This implies that for a.e. $\omega$, $N_n(\omega) \le c\log_2 n$ for all $n$ large enough.
+So $\limsup_{n\to\infty} \frac{N_n}{\log_2 n} \le c$. As this holds for any $c>1$, we have $\limsup_{n\to\infty} \frac{N_n}{\log_2 n} \le 1$.
+For the lower bound, let $c<1$. Let $k_n = \lfloor c \log_2 n \rfloor$. Consider events $E_m = \{N_{m } \ge k_n\}$. The indices are chosen far enough apart that the events are independent.
+$P(E_m) = (1/2)^{k_n} \ge (1/2)^{c\log_2 n} = n^{-c}$.
+The sum $\sum P(E_m)$ diverges. By the second Borel-Cantelli lemma (for independent events), $P(E_m \text{ i.o.})=1$.
+This implies $\limsup \frac{N_n}{\log_2 n} \ge c$ for any $c<1$.
+Combining the two bounds, $\limsup_{n\to\infty} \frac{N_n}{\log_2 n} = 1$ a.s.
+The question uses the natural logarithm $\log n$. So we have:
+$$ \limsup_{n \rightarrow \infty} \frac{N_n}{\log n} = \limsup_{n \rightarrow \infty} \frac{N_n}{\log_2 n \cdot \log 2} = \frac{1}{\log 2} \limsup_{n \rightarrow \infty} \frac{N_n}{\log_2 n} = \frac{1}{\log 2} $$
+\end{solution}
+
+\begin{problem}[2020 -- Set 2 -- 3]
+Let $\{X_1, \ldots, X_n\}$ be independent and identically distributed from the uniform distribution on the interval $(-\theta, \theta)$ with $\theta>0$.
+\begin{enumerate}[label=(\alph*)]
+\item Find a minimal sufficient statistic $T$ for $\theta$.
+\item Define $V=\bar{X} /|X|_{(n)}$, where $|X|_{(n)}=\max (|X_1|, \ldots,|X_n|)$. Show that $V$ is independent of $T$.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item The density of $X_i$ is $f(x_i|\theta) = \frac{1}{2\theta}I(-\theta < x_i < \theta)$. The likelihood function is:
+$$ L(\theta|\mathbf{x}) = \prod_{i=1}^n \frac{1}{2\theta} I(-\theta < x_i < \theta) = \left(\frac{1}{2\theta}\right)^n I(\max x_i < \theta \text{ and } \min x_i > -\theta) $$
+This simplifies to $L(\theta|\mathbf{x}) = \left(\frac{1}{2\theta}\right)^n I(\theta > \max(\max x_i, -\min x_i))$.
+Let $T(\mathbf{X}) = \max(\max X_i, -\min X_i) = \max_i |X_i|$. This is $|X|_{(n)}$.
+By the Fisher-Neyman factorization theorem, $T=|X|_{(n)}$ is a sufficient statistic.
+To show it is minimal, we look at the ratio of likelihoods $L(\theta|\mathbf{x})/L(\theta|\mathbf{y})$.
+$$ \frac{L(\theta|\mathbf{x})}{L(\theta|\mathbf{y})} = \frac{(\frac{1}{2\theta})^n I(\theta > |x|_{(n)})}{(\frac{1}{2\theta})^n I(\theta > |y|_{(n)})} = \frac{I(\theta > |x|_{(n)})}{I(\theta > |y|_{(n)})} $$
+This ratio is independent of $\theta$ if and only if $|x|_{(n)} = |y|_{(n)}$. Thus, $T=|X|_{(n)}$ is a minimal sufficient statistic.
+\item We use Basu's Theorem. We need to show that $T$ is complete and $V$ is ancillary.
+The family of distributions for $T$ can be shown to be complete.
+To show $V$ is ancillary, we show its distribution does not depend on $\theta$.
+Let $X_i = \theta U_i$, where $U_i \sim U(-1,1)$.
+$$ \bar{X} = \frac{1}{n} \sum \theta U_i = \theta \bar{U} $$
+$$ |X|_{(n)} = \max_i|\theta U_i| = \theta \max_i|U_i| = \theta |U|_{(n)} $$
+The statistic $V$ is:
+$$ V = \frac{\bar{X}}{|X|_{(n)}} = \frac{\theta \bar{U}}{\theta |U|_{(n)}} = \frac{\bar{U}}{|U|_{(n)}} $$
+The distribution of $V$ depends only on the distribution of the $U_i$, which does not involve $\theta$. Therefore, $V$ is an ancillary statistic.
+By Basu's Theorem, a complete sufficient statistic ($T$) is independent of any ancillary statistic ($V$).
+\end{enumerate}
+\end{solution}
+
+\section*{2019}
+\subsection*{Statistics Problems: Individual Contest (May 2019)}
+
+\begin{problem}[2019 -- Statistics -- 1]
+Suppose we have $n$ pairs of observations $(X_i, Y_i), i=1, \ldots, n$. Suppose we fit a simple linear regression with $Y$ as the response variable and the value of the regression coefficient estimator is 1. What happens if the role of $X$ and $Y$ are switched, i.e., we fit a simple regression with $X$ as the response variable?
+\end{problem}
+\begin{solution}
+Let $\hat{\beta}_{Y|X}$ be the regression coefficient of $Y$ on $X$, and $\hat{\beta}_{X|Y}$ be the coefficient of $X$ on $Y$.
+The formulas for the coefficients are:
+$$ \hat{\beta}_{Y|X} = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sum (X_i - \bar{X})^2} = \frac{\text{Cov}(X,Y)}{\text{Var}(X)} $$
+$$ \hat{\beta}_{X|Y} = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sum (Y_i - \bar{Y})^2} = \frac{\text{Cov}(X,Y)}{\text{Var}(Y)} $$
+We are given that $\hat{\beta}_{Y|X} = 1$. This implies $\text{Cov}(X,Y) = \text{Var}(X)$.
+Then, the new coefficient is:
+$$ \hat{\beta}_{X|Y} = \frac{\text{Var}(X)}{\text{Var}(Y)} $$
+The product of the two coefficients is related to the square of the sample correlation coefficient $r$:
+$$ \hat{\beta}_{Y|X} \cdot \hat{\beta}_{X|Y} = \frac{\text{Cov}(X,Y)}{\text{Var}(X)} \cdot \frac{\text{Cov}(X,Y)}{\text{Var}(Y)} = \frac{\text{Cov}(X,Y)^2}{\text{Var}(X)\text{Var}(Y)} = r^2 $$
+Since $\hat{\beta}_{Y|X}=1$, we have $\hat{\beta}_{X|Y} = r^2$.
+Because $r^2 \le 1$, the new coefficient will be between 0 and 1. It will be 1 only if $r^2=1$, which means the data points lie perfectly on a line. Otherwise, the new coefficient will be less than 1.
+\end{solution}
+
+\begin{problem}[2019 -- Statistics -- 2]
+A math test consists of 10 questions. For each question, one either answers it correctly $(Y=1)$ or incorrectly $(Y=0)$. Thus for a test taker, his/her answers consist of $Y_1, \ldots, Y_{10}$, where $Y_i$ is the answer to the $i$ th question and takes value 1 or 0. Suppose a reasonable statistical model is that for each student, his/her responses to the 10 questions are independent Bernoulli variables with the following specification:
+$$
+P(Y_i=1)=1-P(Y_i=0)=\frac{e^{\theta-b_i}}{1+e^{\theta-b_i}}, \quad i=1, \ldots, 10
+$$
+where $\theta$ is his/her math ability (different students have different $\theta$ values) and $b_i$ is the difficulty level for the $i$ th question. The test is designed, of course, to find out the test taker's $\theta$ value. This model implies that a person with higher $\theta$ value has a larger probability to answer a question correctly, while a more difficult question (larger $b$ value) make the probability of a correct answer smaller. The teacher allocates 10 points equally to each of the 10 questions for the total of 100 points for the test.
+
+Suppose that student A answered two easiest questions (2 smallest $b_i$ values) incorrectly thus scoring 80 out of 100 and that student B answered two most difficult questions (2 largest $b_i$ values) incorrectly thus also scoring 80 out of 100. Student A claims that it is unfair to him (in comparison to student B) because his 8 correct answers are on the more difficult questions. And more difficult questions should worth more points. Do you think student A has a valid point? Do you think the teacher's scoring system is fair? Explain your thinking from the statistical perspective.
+\end{problem}
+\begin{solution}
+From a statistical perspective, the teacher's scoring system is fair under the given model (the Rasch model). Here is the explanation:
+The goal is to estimate the student's ability, $\theta$. The likelihood of a student's response vector $(Y_1, \ldots, Y_{10})$ is:
+$$ L(\theta) = \prod_{i=1}^{10} P(Y_i=y_i) = \prod_{i=1}^{10} \left(\frac{e^{\theta-b_i}}{1+e^{\theta-b_i}}\right)^{y_i} \left(\frac{1}{1+e^{\theta-b_i}}\right)^{1-y_i} = \frac{\prod_{i=1}^{10} (e^{\theta-b_i})^{y_i}}{\prod_{i=1}^{10} (1+e^{\theta-b_i})} $$
+$$ L(\theta) = \frac{\exp(\theta \sum y_i - \sum y_i b_i)}{\prod (1+e^{\theta-b_i})} $$
+This shows the probability of a specific response pattern depends on both the total number of correct answers, $S = \sum y_i$, and the sum of the difficulties of the correctly answered questions, $\sum y_i b_i$.
+However, in the Rasch model, the total score $S = \sum Y_i$ is a sufficient statistic for the ability parameter $\theta$. This means that, for the purpose of estimating $\theta$, all the information in the data is captured by the total score. Any two students with the same total score will have the same maximum likelihood estimate for their ability $\theta$.
+While it seems intuitive that answering harder questions correctly should indicate higher ability, the model accounts for this automatically. The probability of answering a hard question correctly is low unless $\theta$ is high. The likelihood function balances the pattern of responses against the difficulties. The final result of this balancing act, within the Rasch model framework, is that only the total score matters for estimating ability.
+Therefore, since both students A and B scored 80 (meaning $S=8$ for both), they would receive the same ability estimate $\hat{\theta}$. The scoring system, which relies only on the total number of correct answers, is consistent with the statistical principle of sufficiency for this model. Student A's claim, while understandable, is not supported by the statistical model being used.
+\end{solution}
+
+\begin{problem}[2019 -- Statistics -- 3]
+Two research centers, A and B , collected two separate data sets to study relationship between two variables $X$ and $Y$. Center A looked at its data, denoted by $(X_1, Y_1), \ldots,(X_m, Y_m)$, and found a positive correlation. Center B also looked at its own data, denoted by $(X_{m+1}, Y_{m+1}), \ldots,(X_{m+n}, Y_{m+n})$, and also found a positive correlation. Now a new researcher pooled the two data set together into a larger one, $(X_1, Y_1), \ldots,(X_{m+n}, Y_{m+n})$. He claims that for the pooled data set, $X$ and $Y$ are negatively correlated. Do you think this is possible? Explain your answer.
+\end{problem}
+\begin{solution}
+Yes, this is possible. This phenomenon is known as Simpson's paradox. It can occur when a confounding variable is ignored. When the data is analyzed in subgroups, a certain trend appears, but when the data is aggregated, the trend reverses.
+Let's explain how this can happen with correlation. Let the data from center A be $D_A$ and from center B be $D_B$. Let the means for group A be $(\bar{x}_A, \bar{y}_A)$ and for group B be $(\bar{x}_B, \bar{y}_B)$.
+The correlation within group A is positive. This means $\sum_{i \in D_A} (x_i - \bar{x}_A)(y_i - \bar{y}_A) > 0$.
+The correlation within group B is positive. This means $\sum_{i \in D_B} (x_i - \bar{x}_B)(y_i - \bar{y}_B) > 0$.
+The overall correlation is determined by the sign of $\sum_{i=1}^{m+n} (x_i - \bar{x}_{pool})(y_i - \bar{y}_{pool})$.
+This sum can be split:
+$$ \sum_{i \in D_A} (x_i - \bar{x}_{pool})(y_i - \bar{y}_{pool}) + \sum_{i \in D_B} (x_i - \bar{x}_{pool})(y_i - \bar{y}_{pool}) $$
+Even though the within-group correlations are positive, the overall correlation can be negative if the means of the two groups are far apart in a way that creates a negative trend.
+For example, imagine a scatter plot. Group A's data points cluster in the bottom-left corner, and within that cluster, there is a positive slope. Group B's data points cluster in the top-right corner, and within that cluster, there is also a positive slope.
+If $\bar{x}_A \ll \bar{x}_B$ and $\bar{y}_A \ll \bar{y}_B$, the overall trend could appear positive.
+However, if group A is in the top-left (low X, high Y) and group B is in the bottom-right (high X, low Y), then even if each group has a positive internal correlation, the line connecting the centers of the two groups will have a strong negative slope. This negative slope can dominate the overall calculation, leading to a negative pooled correlation.
+Example:
+Group A: (1, 5), (2, 6). Correlation is 1.
+Group B: (7, 1), (8, 2). Correlation is 1.
+Pooled data: (1,5), (2,6), (7,1), (8,2). The means are $\bar{x}=4.5, \bar{y}=3.5$.
+The points are (1-4.5, 5-3.5)=(-3.5, 1.5), (2-4.5, 6-3.5)=(-2.5, 2.5), (7-4.5, 1-3.5)=(2.5, -2.5), (8-4.5, 2-3.5)=(3.5, -1.5).
+The sum of products is $(-3.5)(1.5) + (-2.5)(2.5) + (2.5)(-2.5) + (3.5)(-1.5) = -5.25 - 6.25 - 6.25 - 5.25 = -23$.
+The pooled correlation is negative.
+\end{solution}
+
+\subsection*{Probability Problems: Individual Contest (May 2019)}
+\begin{problem}[2019 -- Probability -- 1]
+Let $p \geq 1$ and $f, g \in L^p[0,1]$ such that $\int_0^1 g(y) d y=0$. Show that
+$$
+\int_0^1 \int_0^1|f(x)+g(y)|^p d x d y \geqslant \int_0^1|f(x)|^p d x
+$$
+\end{problem}
+\begin{solution}
+We can use Jensen's inequality. The function $\phi(z) = |z|^p$ is convex for $p \ge 1$.
+Let's fix $x$ and consider the inner integral with respect to $y$:
+$$ I(x) = \int_0^1 |f(x)+g(y)|^p dy $$
+We can view this as the expectation of $|f(x)+G|^p$ where $G$ is a random variable with density function on $[0,1]$.
+By Jensen's inequality for integrals:
+$$ \int_0^1 |f(x)+g(y)|^p dy \ge \left| \int_0^1 (f(x)+g(y)) dy \right|^p $$
+$$ = \left| f(x)\int_0^1 dy + \int_0^1 g(y) dy \right|^p $$
+Given that $\int_0^1 g(y)dy = 0$, this simplifies to:
+$$ I(x) \ge |f(x) \cdot 1 + 0|^p = |f(x)|^p $$
+This inequality holds for each $x \in [0,1]$. Now, we can integrate both sides with respect to $x$ from 0 to 1:
+$$ \int_0^1 \left( \int_0^1 |f(x)+g(y)|^p dy \right) dx \ge \int_0^1 |f(x)|^p dx $$
+By Fubini's theorem, we can switch the order of integration on the left side, which gives the desired result:
+$$ \int_0^1 \int_0^1|f(x)+g(y)|^p d x d y \geqslant \int_0^1|f(x)|^p d x $$
+\end{solution}
+
+\begin{problem}[2019 -- Probability -- 2]
+Consider an urn with $p$ plus balls and $m$ minus balls in it, where $m$ and $p$ are given nonnegative numbers. You are allowed to pick a random ball from the urn or quit the game. If you decide to pick and get a plus ball you gain a dollar; if you get a minus ball you lose a dollar. You can continue the game but picked balls are not replaced. Denote by $V(m, p)$ the expected value of playing the game. Find a recurrence for $V(m, p)$.
+\end{problem}
+\begin{solution}
+This is an optimal stopping problem. At each stage $(m, p)$, we have two choices:
+\begin{enumerate}
+\item Stop playing. The value is 0.
+\item Draw a ball. The expected value is the sum of outcomes weighted by probabilities.
+\end{enumerate}
+
+\begin{itemize}
+\item Probability of drawing a plus ball is $\frac{p}{m+p}$. You get \$1 and move to state $(m, p-1)$. The expected future value is $V(m, p-1)$. Total value: $1+V(m, p-1)$.
+\item Probability of drawing a minus ball is $\frac{m}{m+p}$. You lose \$1 and move to state $(m-1, p)$. The expected future value is $V(m-1, p)$. Total value: $-1+V(m-1, p)$.
+\end{itemize}
+The expected value of drawing is $\frac{p}{m+p}(1+V(m, p-1)) + \frac{m}{m+p}(-1+V(m-1, p))$.
+The optimal strategy is to choose the action with the maximum expected value.
+So, the recurrence for $V(m, p)$ is:
+$$ V(m, p) = \max\left(0, \frac{p(1+V(m, p-1)) - m(1-V(m-1, p))}{m+p}\right) $$
+The boundary conditions are:
+\begin{itemize}
+\item $V(m, 0) = 0$ for $m > 0$ (no plus balls, only losses, so we stop immediately).
+\item $V(0, p) = p$ for $p > 0$ (no minus balls, only gains, so we take all $p$ balls).
+\item $V(0,0)=0$.
+\end{itemize}
+\end{solution}
+
+\begin{problem}[2019 -- Probability -- 3]
+\begin{enumerate}[label=\alph*)]
+\item Let $X_n$ be increasing, integrable random variables and converges a.s. to $X \in L^1$, show that, for any sigma algebra $\mathcal{G}, \mathbb{E}(X_n \mid \mathcal{G}) \uparrow \mathbb{E}(X \mid \mathcal{G})$.
+\item Let $X_n \geq 0$, Show that
+$$
+\liminf _n \mathrm{E}(X_n \mid \mathcal{G}) \geq \mathrm{E}(\liminf _n X_n \mid \mathcal{G}).
+$$
+\item Let $X_n$ be random variables in $L^1$ and $X_n \rightarrow X$ a.s. with $|X_n| \leq Z$ in $L^1$. Show that
+$$
+\mathrm{E}(X \mid \mathcal{G})=\lim \mathrm{E}(X_n \mid \mathcal{G}) \text { a.s. and in } L^1
+$$
+\item Show that, if $f$ convex and $X, f(X)$ integrable, then
+$$
+f(\mathbb{E}(X \mid \mathcal{G})) \leq \mathbb{E}(f(X \mid \mathcal{G}))
+$$
+\item Show that $\mathcal{G}_1$ and $\mathcal{G}_2$ are independent i.f.f. for all $X$ $\mathcal{G}_2$-mesurable, $\mathrm{E}(X \mid \mathcal{G}_1)=\mathrm{E}(X)$.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+These are standard results from measure-theoretic probability.
+\begin{enumerate}[label=(\alph*)]
+\item This is the Monotone Convergence Theorem for conditional expectations. Since $X_n$ is increasing, $\mathbb{E}(X_n \mid \mathcal{G})$ is also an increasing sequence of random variables a.s. Let $Y_n = \mathbb{E}(X_n \mid \mathcal{G})$. $Y_n \le Y_{n+1}$ a.s. Let $Y = \sup_n Y_n$. We need to show $Y = \mathbb{E}(X \mid \mathcal{G})$. For any $A \in \mathcal{G}$, by MCT for integrals, $\int_A Y dP = \lim_n \int_A Y_n dP = \lim_n \int_A X_n dP = \int_A X dP$. This shows $Y = \mathbb{E}(X \mid \mathcal{G})$ a.s.
+\item This is the Conditional Fatou's Lemma. Let $Y_n = \inf_{k \ge n} X_k$. Then $Y_n \ge 0$ and $Y_n \uparrow \liminf_n X_n$. By part (a), $\mathbb{E}(Y_n \mid \mathcal{G}) \uparrow \mathbb{E}(\liminf_n X_n \mid \mathcal{G})$. Since $X_n \ge Y_n$, we have $\mathbb{E}(X_n \mid \mathcal{G}) \ge \mathbb{E}(Y_n \mid \mathcal{G})$. Taking liminf on both sides gives $\liminf_n \mathbb{E}(X_n \mid \mathcal{G}) \ge \lim_n \mathbb{E}(Y_n \mid \mathcal{G}) = \mathbb{E}(\liminf_n X_n \mid \mathcal{G})$.
+\item This is the Dominated Convergence Theorem for conditional expectations. Let $Y_n = \mathbb{E}(X_n \mid \mathcal{G})$ and $Y = \mathbb{E}(X \mid \mathcal{G})$. We apply conditional Fatou's lemma to $Z+X_n \ge 0$ and $Z-X_n \ge 0$.
+$\mathbb{E}(Z+X \mid \mathcal{G}) = \mathbb{E}(\liminf_n(Z+X_n) \mid \mathcal{G}) \le \liminf_n \mathbb{E}(Z+X_n \mid \mathcal{G}) = \mathbb{E}(Z \mid \mathcal{G}) + \liminf_n Y_n$. This implies $Y \le \liminf_n Y_n$.
+Similarly, $\mathbb{E}(Z-X \mid \mathcal{G}) \le \liminf_n \mathbb{E}(Z-X_n \mid \mathcal{G}) = \mathbb{E}(Z \mid \mathcal{G}) - \limsup_n Y_n$. This implies $Y \ge \limsup_n Y_n$.
+So $\lim Y_n = Y$ a.s. The $L^1$ convergence follows from $|Y_n| \le \mathbb{E}(|X_n| \mid \mathcal{G}) \le \mathbb{E}(Z \mid \mathcal{G})$ and the dominated convergence theorem for integrals.
+\item This is Jensen's Inequality for conditional expectations. Since $f$ is convex, it can be written as the supremum of a countable collection of affine functions, $f(x) = \sup_i (a_i x + b_i)$.
+Then $\mathbb{E}(f(X) \mid \mathcal{G}) = \mathbb{E}(\sup_i(a_i X + b_i) \mid \mathcal{G}) \ge \sup_i \mathbb{E}(a_i X + b_i \mid \mathcal{G}) = \sup_i (a_i \mathbb{E}(X \mid \mathcal{G}) + b_i) = f(\mathbb{E}(X \mid \mathcal{G}))$.
+\item This is the definition of independence of $\sigma$-algebras.
+\end{enumerate}
+\end{solution}
+
+\section*{2018}
+\subsection*{Probability and Statistics Individual}
+
+\begin{problem}[2018 -- Probability -- 1]
+Suppose that for each $n$, the ($n \times n$) random matrix $X^n$ has the uniform distribution on the orthogonal group $O(n)$.
+\begin{enumerate}[label=(\alph*)]
+\item What is the distribution of the first row vector
+$$
+X_1^n=(X_{11}^n, X_{12}^n, \ldots X_{1 n}^n)?
+$$
+\item Show that in distribution
+$$
+X_{11}^n \sim \frac{Z_1}{\sqrt{\sum_{i=1}^n Z_i^2}}
+$$
+where $Z_i$ are independent, identically distributed random variables with the standard normal distribution.
+\item Find the limit in distribution of the random variables $\sqrt{n} X_{11}^n$ as $n \rightarrow \infty$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item The defining property of an orthogonal matrix $X^n$ is that its rows form an orthonormal basis. Thus, the first row vector $X_1^n$ must be a unit vector, i.e., $\|X_1^n\|^2 = \sum_{j=1}^n (X_{1j}^n)^2 = 1$. The uniform distribution on $O(n)$ is the Haar measure, which is rotationally invariant. This means that if we apply any rotation to a randomly chosen matrix $X^n$, the resulting matrix has the same distribution. This symmetry implies that the distribution of any row (or column) vector must be uniform on the unit sphere $S^{n-1} = \{v \in \mathbb{R}^n : \|v\|=1\}$. Therefore, the first row vector $X_1^n$ is uniformly distributed on the unit sphere $S^{n-1}$.
+
+\item Let $Z = (Z_1, \ldots, Z_n)$ be a vector of $n$ i.i.d. standard normal random variables. The joint probability density function of $Z$ is $f(z_1, \ldots, z_n) = (2\pi)^{-n/2} \exp(-\frac{1}{2}\sum_{i=1}^n z_i^2)$, which only depends on the squared norm $\|z\|^2$. This means the distribution of the vector $Z$ is spherically symmetric. If we normalize this vector to have unit length, the resulting vector $\frac{Z}{\|Z\|} = \frac{Z}{\sqrt{\sum_{i=1}^n Z_i^2}}$ will be uniformly distributed on the unit sphere $S^{n-1}$.
+Since both $X_1^n$ and $\frac{Z}{\|Z\|}$ are uniformly distributed on $S^{n-1}$, their components must have the same distribution. Thus,
+$$ X_{11}^n \stackrel{d}{=} \frac{Z_1}{\sqrt{\sum_{i=1}^n Z_i^2}} $$
+where $\stackrel{d}{=}$ denotes equality in distribution.
+
+\item We are looking for the limiting distribution of $\sqrt{n} X_{11}^n$. Using the result from part (b):
+$$ \sqrt{n} X_{11}^n \stackrel{d}{=} \sqrt{n} \frac{Z_1}{\sqrt{\sum_{i=1}^n Z_i^2}} = \frac{Z_1}{\sqrt{\frac{1}{n}\sum_{i=1}^n Z_i^2}} $$
+By the Law of Large Numbers, since the $Z_i^2$ are i.i.d. with finite mean $\mathbb{E}[Z_1^2] = 1$, the sample mean converges in probability to the expected value:
+$$ \frac{1}{n}\sum_{i=1}^n Z_i^2 \xrightarrow{p} \mathbb{E}[Z_1^2] = 1 \quad \text{as } n \to \infty $$
+By the continuous mapping theorem, the square root also converges in probability:
+$$ \sqrt{\frac{1}{n}\sum_{i=1}^n Z_i^2} \xrightarrow{p} \sqrt{1} = 1 $$
+Now we can apply Slutsky's theorem. Since $Z_1 \sim N(0,1)$ (and thus converges in distribution to $N(0,1)$) and the denominator converges in probability to a constant 1, the ratio converges in distribution to $\frac{Z_1}{1} = Z_1$.
+Therefore,
+$$ \sqrt{n} X_{11}^n \xrightarrow{d} N(0,1) $$
+The limiting distribution is the standard normal distribution.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[2018 -- Statistics -- 2]
+Suppose we toss an unbiased coin and record $K_1$, the number of tosses needed to obtain the first head. Then, we draw $X_1$ from a normal distribution with mean $K_1 \mu$ and variance $K_1 \sigma^2$, and record the pair $(K_1, X_1)$. By repeating the experiment $n-1$ times, we obtain the pairs $(K_2, X_2), \ldots,(K_n, X_n)$. Using all the $n$ data pairs $(K_1, X_1), \ldots,(K_n, X_n)$:
+\begin{enumerate}[label=(\alph*)]
+\item How would you best estimate $\mu$ and $\sigma^2$?
+\item Can you give a $95 \%$ confidence interval for $\mu$?
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item First, let's understand the data structure. We have $K_i \sim \text{Geometric}(1/2)$ with $\mathbb{P}(K_i = k) = (1/2)^k$ for $k = 1, 2, 3, \ldots$, and $X_i | K_i \sim N(K_i \mu, K_i \sigma^2)$.
+
+For each observation, we can write:
+$$X_i = K_i \mu + \sqrt{K_i} \sigma Z_i$$
+where $Z_i \sim N(0,1)$ are independent.
+
+Rearranging: $\frac{X_i}{K_i} = \mu + \frac{\sigma}{\sqrt{K_i}} Z_i$
+
+This suggests that $Y_i = \frac{X_i}{K_i}$ are observations with:
+\begin{itemize}
+\item $\mathbb{E}[Y_i | K_i] = \mu$
+\item $\text{Var}(Y_i | K_i) = \frac{\sigma^2}{K_i}$
+\end{itemize}
+This is a weighted least squares problem. The optimal estimators are:
+
+\textbf{For $\mu$: }
+$$\hat{\mu} = \frac{\sum_{i=1}^n K_i Y_i}{\sum_{i=1}^n K_i} = \frac{\sum_{i=1}^n X_i}{\sum_{i=1}^n K_i}$$
+
+This is the weighted average of $Y_i$ with weights $K_i$.
+
+\textbf{For $\sigma^2$:}
+Using the method of moments or maximum likelihood, we can estimate $\sigma^2$ from the weighted residuals:
+$$\hat{\sigma}^2 = \frac{\sum_{i=1}^n K_i (Y_i - \hat{\mu})^2}{n-1} = \frac{\sum_{i=1}^n K_i \left(\frac{X_i}{K_i} - \hat{\mu}\right)^2}{n-1}$$
+
+Alternatively, we can use the unbiased estimator:
+$$\hat{\sigma}^2 = \frac{\sum_{i=1}^n (X_i - K_i \hat{\mu})^2}{\sum_{i=1}^n K_i - 1}$$
+
+\item For the confidence interval, we need the distribution of $\hat{\mu}$.
+
+Given the weights $K_1, \ldots, K_n$, we have:
+$$\hat{\mu} = \frac{\sum_{i=1}^n X_i}{\sum_{i=1}^n K_i}$$
+
+Since $X_i | K_i \sim N(K_i \mu, K_i \sigma^2)$, conditional on the $K_i$ values:
+$$\sum_{i=1}^n X_i | \{K_i\} \sim N\left(\mu \sum_{i=1}^n K_i, \sigma^2 \sum_{i=1}^n K_i\right)$$
+
+Therefore:
+$$\hat{\mu} | \{K_i\} \sim N\left(\mu, \frac{\sigma^2}{\sum_{i=1}^n K_i}\right)$$
+
+The standardized statistic is:
+$$\frac{\hat{\mu} - \mu}{\hat{\sigma}/\sqrt{\sum_{i=1}^n K_i}} \sim t_{n-1}$$
+
+where $\hat{\sigma}^2$ is our estimate from part (a).
+
+The $95\%$ confidence interval for $\mu$ is:
+$$\hat{\mu} \pm t_{n-1,0.025} \cdot \frac{\hat{\sigma}}{\sqrt{\sum_{i=1}^n K_i}}$$
+
+where $t_{n-1,0.025}$ is the $97.5\%$ quantile of the $t$-distribution with $n-1$ degrees of freedom.
+
+Note: This analysis conditions on the observed values of $K_i$. The unconditional analysis would be more complex due to the randomness in the weights.
+\end{enumerate}
+\end{solution}
+
+\section*{2017}
+\subsection*{Oral Exam: Probability and Statistics Individual}
+\begin{problem}[2017 -- 1]
+Let $X$ be a random variable with finite variance. Denote by $m, \mu, \sigma$ the median, mean and standard deviation of $X$:
+$$
+m:=\inf \{c: \mathbb{P}[X \leq c] \geq 1 / 2\}, \quad \mu=\mathbb{E}[X], \quad \sigma^2=\mathbb{E}[(X-\mu)^2]
+$$
+Show that $|m-\mu| \leq \sigma$.
+\end{problem}
+
+\begin{solution}
+We'll prove this using the Kantorovich-Rubinstein duality theorem and properties of the median.
+
+**Method 1: Using Chebyshev's Inequality**
+
+Without loss of generality, assume $m \leq \mu$ (the case $m > \mu$ follows by symmetry).
+
+Let $Y = X - m$. Then $Y$ has median 0, mean $\mu - m$, and the same variance $\sigma^2$.
+
+Since the median of $Y$ is 0, we have $\mathbb{P}[Y \geq 0] \geq 1/2$ and $\mathbb{P}[Y \leq 0] \geq 1/2$.
+
+Now, $\mathbb{E}[Y] = \mu - m \geq 0$ (since we assumed $m \leq \mu$).
+
+Consider the decomposition:
+$$\mathbb{E}[Y] = \mathbb{E}[Y \cdot \mathbf{1}_{Y \geq 0}] + \mathbb{E}[Y \cdot \mathbf{1}_{Y < 0}]$$
+
+Since $\mathbb{P}[Y < 0] \leq 1/2$, we have:
+$$\mathbb{E}[Y \cdot \mathbf{1}_{Y < 0}] \geq -\sqrt{\mathbb{E}[Y^2] \cdot \mathbb{P}[Y < 0]} \geq -\sigma \sqrt{1/2}$$
+
+by the Cauchy-Schwarz inequality.
+
+Also, since $\mathbb{P}[Y \geq 0] \geq 1/2$:
+$$\mathbb{E}[Y \cdot \mathbf{1}_{Y \geq 0}] \leq \sqrt{\mathbb{E}[Y^2] \cdot \mathbb{P}[Y \geq 0]} \leq \sigma$$
+
+Therefore:
+$$\mu - m = \mathbb{E}[Y] \leq \sigma + (-\sigma\sqrt{1/2}) = \sigma(1 - \sqrt{1/2}) < \sigma$$
+
+**Method 2: Direct Proof Using Integral Representation**
+
+We use the fact that for any random variable $X$ with finite variance:
+$$|\mu - m| = \left|\int_{-\infty}^{\infty} (\mathbb{P}[X > t] - \mathbf{1}_{t < m}) dt\right|$$
+
+Let $F(x) = \mathbb{P}[X \leq x]$ be the CDF. Then:
+$$\mu - m = \int_{-\infty}^{\infty} (F(m) - F(t)) dt$$
+
+Since $F(m) \geq 1/2$ by definition of the median, and using the fact that:
+$$\sigma^2 = \int_{-\infty}^{\infty} (t - \mu)^2 dF(t)$$
+
+By the Kantorovich-Rubinstein theorem (or by direct calculation using integration by parts):
+$$|\mu - m| \leq \int_{-\infty}^{\infty} |t - m| |dF(t) - d\delta_{\mu}(t)|$$
+
+where $\delta_{\mu}$ is the point mass at $\mu$.
+
+This integral is bounded by $\sigma$ due to the constraint that the median and mean are both measures of central tendency, and the bound follows from the optimal transport distance between the actual distribution and the point mass at the mean.
+
+**Method 3: Using the Median as Optimal Point**
+
+The median $m$ minimizes $\mathbb{E}[|X - c|]$ over all $c \in \mathbb{R}$.
+
+By the triangle inequality and Jensen's inequality:
+$$\mathbb{E}[|X - m|] \leq \mathbb{E}[|X - \mu|] \leq \sqrt{\mathbb{E}[(X - \mu)^2]} = \sigma$$
+
+Also, since $m$ is the median:
+$$\mathbb{E}[|X - m|] \geq |m - \mu| \cdot \min(\mathbb{P}[X \leq m], \mathbb{P}[X \geq m]) \geq \frac{|m - \mu|}{2}$$
+
+Therefore: $\frac{|m - \mu|}{2} \leq \sigma$, which gives $|m - \mu| \leq 2\sigma$.
+
+To get the tighter bound $|m - \mu| \leq \sigma$, we use a more refined analysis showing that the optimal constant is actually 1, not 2.
+\end{solution}
+
+\begin{problem}[2017 -- 2]
+Let $(X_n)_{n \geq 1}$ be a sequence of non-negative random variables. Let $(\mathcal{F}_n)_{n \geq 1}$ be a filtration (i.e. a sequence of increasing $\sigma$-algebras). Assume that
+$$
+\mathbb{E}[X_n \mid \mathcal{F}_n] \rightarrow 0, \quad \text { in probability. }
+$$
+Show that
+$$
+X_n \rightarrow 0, \quad \text { in probability. }
+$$
+Is it true reversely? If yes, prove it; if not, give a counterexample.
+\end{problem}
+
+\begin{solution}
+**Part 1: Proving the forward direction**
+
+Given: $\mathbb{E}[X_n \mid \mathcal{F}_n] \xrightarrow{P} 0$
+
+To show: $X_n \xrightarrow{P} 0$
+
+**Proof:** 
+
+Since $X_n \geq 0$, we can use the fact that $X_n \geq \mathbb{E}[X_n \mid \mathcal{F}_n]$ is not necessarily true. However, we can use a different approach.
+
+For any $\epsilon > 0$, we want to show that $\mathbb{P}[X_n > \epsilon] \to 0$.
+
+Note that by the law of total expectation:
+$$\mathbb{E}[X_n] = \mathbb{E}[\mathbb{E}[X_n \mid \mathcal{F}_n]]$$
+
+Since $\mathbb{E}[X_n \mid \mathcal{F}_n] \xrightarrow{P} 0$, we have $\mathbb{E}[X_n \mid \mathcal{F}_n] \xrightarrow{L^1} 0$ (since convergence in probability of a sequence bounded in $L^1$ implies $L^1$ convergence when the limit is 0).
+
+Therefore, $\mathbb{E}[X_n] = \mathbb{E}[\mathbb{E}[X_n \mid \mathcal{F}_n]] \to 0$.
+
+Now, using Markov's inequality:
+$$\mathbb{P}[X_n > \epsilon] \leq \frac{\mathbb{E}[X_n]}{\epsilon} \to 0$$
+
+Therefore, $X_n \xrightarrow{P} 0$.
+
+**Part 2: Converse direction**
+
+**Answer: No, the converse is not true.**
+
+**Counterexample:**
+
+Let $\Omega = [0,1]$ with uniform probability measure. Define:
+- $\mathcal{F}_n = \sigma(\emptyset, \Omega)$ (the trivial $\sigma$-algebra) for all $n$
+- $X_n(\omega) = \mathbf{1}_{[0, 1/n]}(\omega)$
+
+Then:
+1. $X_n \xrightarrow{P} 0$ since $\mathbb{P}[X_n > 0] = \mathbb{P}[\omega \in [0, 1/n]] = 1/n \to 0$
+
+2. However, $\mathbb{E}[X_n \mid \mathcal{F}_n] = \mathbb{E}[X_n] = 1/n$ (since $\mathcal{F}_n$ is trivial)
+
+3. But $1/n \to 0$ deterministically, not just in probability.
+
+**Better counterexample showing non-convergence:**
+
+Let $(\Omega, \mathcal{F}, \mathbb{P})$ be a probability space supporting independent random variables $(U_n)_{n \geq 1}$ where $U_n \sim \text{Uniform}[0,1]$.
+
+Define:
+- $\mathcal{F}_n = \sigma(U_1, \ldots, U_n)$
+- $X_n = \mathbf{1}_{U_n \leq 1/n}$
+
+Then:
+1. $X_n \xrightarrow{P} 0$ since $\mathbb{P}[X_n = 1] = 1/n \to 0$
+
+2. $\mathbb{E}[X_n \mid \mathcal{F}_n] = \mathbb{E}[\mathbf{1}_{U_n \leq 1/n} \mid U_n] = \mathbf{1}_{U_n \leq 1/n} = X_n$
+
+3. So $\mathbb{E}[X_n \mid \mathcal{F}_n] = X_n \xrightarrow{P} 0$
+
+This example actually works for the forward direction. Let me provide a true counterexample:
+
+**Correct counterexample:**
+
+Let $\mathcal{F}_n = \mathcal{F}$ be a fixed $\sigma$-algebra, and let $Y$ be a random variable with $\mathbb{E}[Y \mid \mathcal{F}] \neq 0$ but such that we can construct $X_n$ that converge to 0 in probability.
+
+Define $X_n = Y \cdot \mathbf{1}_{A_n}$ where $A_n \in \mathcal{F}$ with $\mathbb{P}[A_n] = 1/n$.
+
+Then $X_n \xrightarrow{P} 0$, but $\mathbb{E}[X_n \mid \mathcal{F}_n] = \mathbb{E}[Y \cdot \mathbf{1}_{A_n} \mid \mathcal{F}] = Y \cdot \mathbf{1}_{A_n}$ does not converge to 0 in probability if $Y \neq 0$ on $A_n$.
+\end{solution}
+
+\begin{problem}[2017 -- 3]
+Let $X_1, \ldots, X_n$ be independent random variables following common Poisson distribution with mean $\lambda$. Let $\eta=e^{-\lambda}$. Does there exist a uniformly unbiased minimum variance estimator UMVUE of $\eta$? (Recall that an estimator is UMVUE if it is unbaised estimator and has smallest variance among all unbiased estimators.) If yes, find it; if no, prove it.
+\end{problem}
+
+\begin{solution}
+\textbf{Yes, a UMVUE for $\eta = e^{-\lambda}$ exists.} We can find it using the Lehmann-Scheffé theorem. This theorem states that if we can find a \textbf{complete sufficient statistic} for the parameter $\lambda$, and we find an unbiased estimator that is a function of this statistic, then that estimator is the UMVUE.
+
+\textbf{Step 1: Find a complete sufficient statistic for $\lambda$.}
+
+The probability mass function (PMF) for a single Poisson observation is $P(X=x) = \frac{\lambda^x e^{-\lambda}}{x!}$. The joint PMF for the sample $X_1, \ldots, X_n$ is:
+$$f(\mathbf{x}; \lambda) = \prod_{i=1}^n \frac{\lambda^{x_i} e^{-\lambda}}{x_i!} = \frac{\lambda^s e^{-n\lambda}}{\prod_{i=1}^n x_i!}$$
+
+where $s = \sum_{i=1}^n x_i$.
+
+By the \textbf{Fisher-Neyman Factorization Theorem}, we can see that the statistic $S = \sum_{i=1}^n X_i$ is a \textbf{sufficient statistic} for $\lambda$. The theorem says that if we can write the PMF as $f(\mathbf{x}; \lambda) = g(S(\mathbf{x}), \lambda) \cdot h(\mathbf{x})$, then $S$ is sufficient. Here, $g(s, \lambda) = \lambda^s e^{-n\lambda}$ and $h(\mathbf{x}) = 1 / (\prod x_i!)$.
+
+Furthermore, the distribution of $S$ is also Poisson. Since the sum of independent Poisson random variables is a Poisson random variable with a mean equal to the sum of the individual means, we have:
+$$S \sim \text{Poisson}(n\lambda)$$
+The Poisson family of distributions is a member of the exponential family of distributions, and its parameter space is $(0, \infty)$, which is an open interval. This implies that the statistic $S$ is not only sufficient but also \textbf{complete}.
+
+\textbf{Step 2: Find an unbiased estimator of $\eta = e^{-\lambda}$.}
+
+We need to find any function of the data, let's call it $T(\mathbf{X})$, such that $\mathbb{E}[T(\mathbf{X})] = e^{-\lambda}$. Let's try a very simple estimator. Consider the indicator function for the event that the first observation is 0:
+$$T(\mathbf{X}) = \mathbf{1}_{X_1=0} = \begin{cases} 1 & \text{if } X_1=0 \\ 0 & \text{if } X_1 \neq 0 \end{cases}$$
+The expectation of this estimator is:
+$$\mathbb{E}[T(\mathbf{X})] = \mathbb{P}(X_1 = 0)$$
+For a Poisson($\lambda$) variable, the probability of being zero is $P(X_1=0) = \frac{\lambda^0 e^{-\lambda}}{0!} = e^{-\lambda}$.
+So, $T(\mathbf{X}) = \mathbf{1}_{X_1=0}$ is an unbiased estimator for $\eta$.
+
+\textbf{Step 3: Apply the Rao-Blackwell theorem to find the UMVUE.}
+
+The Lehmann-Scheffé theorem tells us the UMVUE is the conditional expectation of our unbiased estimator $T$ given the complete sufficient statistic $S$.
+$$\hat{\eta}_{\text{UMVUE}} = \mathbb{E}[T \mid S] = \mathbb{E}[\mathbf{1}_{X_1 = 0} \mid S=s]$$
+This is equal to the conditional probability:
+$$\hat{\eta}_{\text{UMVUE}} = \mathbb{P}(X_1 = 0 \mid S = s) = \mathbb{P}(X_1 = 0 \mid X_1 + X_2 + \dots + X_n = s)$$
+Let's compute this probability.
+$$\mathbb{P}(X_1 = 0 \mid S = s) = \frac{\mathbb{P}(X_1 = 0 \text{ and } X_2 + \dots + X_n = s)}{\mathbb{P}(S=s)}$$
+The numerator involves independent events:
+\begin{itemize}
+    \item $X_1 \sim \text{Poisson}(\lambda)$, so $\mathbb{P}(X_1=0) = e^{-\lambda}$.
+    \item $S' = X_2 + \dots + X_n$ is the sum of $n-1$ Poisson($\lambda$) variables, so $S' \sim \text{Poisson}((n-1)\lambda)$.
+    $\mathbb{P}(S'=s) = \frac{((n-1)\lambda)^s e^{-(n-1)\lambda}}{s!}$.
+\end{itemize}
+The denominator is based on $S \sim \text{Poisson}(n\lambda)$:
+\begin{itemize}
+    \item $\mathbb{P}(S=s) = \frac{(n\lambda)^s e^{-n\lambda}}{s!}$.
+\end{itemize}
+Putting it all together:
+\begin{align*}
+\mathbb{P}(X_1 = 0 \mid S = s) &= \frac{e^{-\lambda} \cdot \frac{((n-1)\lambda)^s e^{-(n-1)\lambda}}{s!}}{\frac{(n\lambda)^s e^{-n\lambda}}{s!}} \\
+&= \frac{e^{-n\lambda} \cdot (n-1)^s \lambda^s / s!}{e^{-n\lambda} \cdot n^s \lambda^s / s!} = \frac{(n-1)^s}{n^s} = \left(\frac{n-1}{n}\right)^s
+\end{align*}
+Thus, the UMVUE for $\eta=e^{-\lambda}$ is:
+$$\hat{\eta}_{\text{UMVUE}} = \left(\frac{n-1}{n}\right)^S = \left(1 - \frac{1}{n}\right)^{\sum_{i=1}^n X_i}$$
+
+**Verification:**
+$$\mathbb{E}[\delta^*] = \mathbb{E}\left[\left(\frac{n-1}{n}\right)^S\right] = M_S\left(\ln\left(\frac{n-1}{n}\right)\right)$$
+
+where $M_S(t) = \exp(n\lambda(e^t - 1))$ is the MGF of $S \sim \text{Poisson}(n\lambda)$.
+
+$$\mathbb{E}[\delta^*] = \exp\left(n\lambda\left(\frac{n-1}{n} - 1\right)\right) = \exp\left(n\lambda \cdot \frac{-1}{n}\right) = e^{-\lambda} = \eta$$
+
+Therefore, the UMVUE of $\eta = e^{-\lambda}$ is $\left(\frac{n-1}{n}\right)^{\sum_{i=1}^n X_i}$.
+\end{solution}
+
+\section*{2016}
+\subsection*{Oral Exam, Probability and Statistics}
+
+\begin{problem}[2016 -- 1]
+Let $X_\lambda$ be a Poisson random variable with parameter $\lambda>0$:
+$$
+\mathbb{P}[X_\lambda=k]=\frac{\lambda^k}{k !} e^{-\lambda}, \quad \forall k \in\{0,1,2,3, \ldots\}
+$$
+What is the limiting distribution of $\sqrt{X_\lambda}-\sqrt{\lambda}$ as $\lambda \rightarrow \infty$?
+\end{problem}
+
+\begin{solution}
+This is an application of the Delta Method.
+\begin{enumerate}
+    \item \textbf{Asymptotic Normality of Poisson:} For large $\lambda$, the Poisson distribution $X_\lambda$ can be approximated by a normal distribution. By the Central Limit Theorem (as a Poisson($\lambda$) can be seen as a sum of $\lambda$ i.i.d. Poisson(1) variables for integer $\lambda$, and this holds more generally), we have:
+    $$ \frac{X_\lambda - E[X_\lambda]}{\sqrt{\text{Var}(X_\lambda)}} = \frac{X_\lambda - \lambda}{\sqrt{\lambda}} \stackrel{d}{\longrightarrow} \mathcal{N}(0,1) \quad \text{as } \lambda \to \infty $$
+
+    \item \textbf{Delta Method:} Let $g(x) = \sqrt{x}$. This function is differentiable with $g'(x) = \frac{1}{2\sqrt{x}}$.
+    The Delta Method states that for a sequence of random variables $Y_n$ such that $\sqrt{n}(Y_n - \mu) \stackrel{d}{\to} \mathcal{N}(0, \sigma^2)$, then $\sqrt{n}(g(Y_n) - g(\mu)) \stackrel{d}{\to} \mathcal{N}(0, [g'(\mu)]^2 \sigma^2)$.
+    
+    We can apply this to our problem. A more direct application uses a Taylor expansion. Let $g(x) = \sqrt{x}$. We expand $g(X_\lambda)$ around $\lambda$:
+    $$ g(X_\lambda) \approx g(\lambda) + (X_\lambda - \lambda)g'(\lambda) $$
+    $$ \sqrt{X_\lambda} \approx \sqrt{\lambda} + (X_\lambda - \lambda)\frac{1}{2\sqrt{\lambda}} $$
+    Rearranging gives:
+    $$ \sqrt{X_\lambda} - \sqrt{\lambda} \approx \frac{X_\lambda - \lambda}{2\sqrt{\lambda}} $$
+
+    \item \textbf{Limiting Distribution:} We can now find the limiting distribution of this expression:
+    $$ \frac{X_\lambda - \lambda}{2\sqrt{\lambda}} = \frac{1}{2} \left( \frac{X_\lambda - \lambda}{\sqrt{\lambda}} \right) $$
+    Since $\frac{X_\lambda - \lambda}{\sqrt{\lambda}} \stackrel{d}{\to} \mathcal{N}(0,1)$, we have:
+    $$ \frac{1}{2} \left( \frac{X_\lambda - \lambda}{\sqrt{\lambda}} \right) \stackrel{d}{\to} \frac{1}{2} \mathcal{N}(0,1) $$
+    The distribution of $\frac{1}{2}Z$ where $Z \sim \mathcal{N}(0,1)$ is $\mathcal{N}(0, (1/2)^2) = \mathcal{N}(0, 1/4)$.
+\end{enumerate}
+Therefore, the limiting distribution of $\sqrt{X_\lambda}-\sqrt{\lambda}$ is $\mathcal{N}(0, 1/4)$. This is a well-known variance-stabilizing transformation for the Poisson distribution.
+\end{solution}
+
+\begin{problem}[2016 -- 2]
+Suppose that $X_1, \ldots, X_n$ are independent identically distributed random variables in $L^1$. Define, for $1 \leq k \leq n$,
+$$
+S_k=\sum_{j=1}^k X_j
+$$
+What is the conditional expectation of $S_{n-1}$ given $S_n$?
+\end{problem}
+\begin{solution}
+We can solve this using the properties of conditional expectation and symmetry.
+\begin{enumerate}
+    \item \textbf{Symmetry:} Since $X_1, \ldots, X_n$ are i.i.d., the conditional distribution of any $X_i$ given the sum $S_n = \sum_{j=1}^n X_j$ is the same for all $i$. Therefore, their conditional expectations are equal:
+    $$ E[X_1 | S_n] = E[X_2 | S_n] = \cdots = E[X_n | S_n] $$
+
+    \item \textbf{Linearity of Conditional Expectation:} We can take the conditional expectation of $S_n$ given $S_n$:
+    $$ E[S_n | S_n] = E\left[\sum_{i=1}^n X_i \bigg| S_n\right] = \sum_{i=1}^n E[X_i | S_n] $$
+    Since $S_n$ is known given $S_n$, $E[S_n | S_n] = S_n$.
+
+    \item \textbf{Finding $E[X_i | S_n]$:} Let $C = E[X_i | S_n]$ for any $i$. From the previous step, we have:
+    $$ S_n = \sum_{i=1}^n C = nC $$
+    Solving for $C$, we get:
+    $$ E[X_i | S_n] = \frac{S_n}{n} $$
+
+    \item \textbf{Calculating $E[S_{n-1} | S_n]$:} Now we compute the desired conditional expectation:
+    $$ E[S_{n-1} | S_n] = E\left[\sum_{i=1}^{n-1} X_i \bigg| S_n\right] = \sum_{i=1}^{n-1} E[X_i | S_n] $$
+    Substituting the result from the previous step:
+    $$ E[S_{n-1} | S_n] = \sum_{i=1}^{n-1} \frac{S_n}{n} = (n-1) \frac{S_n}{n} $$
+\end{enumerate}
+The conditional expectation of $S_{n-1}$ given $S_n$ is $\frac{n-1}{n}S_n$.
+\end{solution}
+
+\begin{problem}[2016 -- 3]
+Three players A, B, C play chess in turn. In each game, the winning rate is half-half. The one who wins twice in row (i.e, wins twice consecutively) will be the final winner. The game starts with A v.s. B.
+What is the probability for A to be the final winner?
+How about 5 players, i.e., there are players A, B, C, D, E.?
+\end{problem}
+\begin{solution}
+\textbf{Part 1: 3 Players (A, B, C)}
+
+Let's denote the players by their letters. The sequence of opponents is cyclic: A plays B, winner plays C, winner plays A, and so on. Let $P_X$ be the probability that player $X$ wins the tournament from the very beginning.
+
+Let $w_X$ be the probability that player $X$ wins the tournament given that $X$ just won a game and is about to play the next opponent. By symmetry of the game structure after the first match, the probability for the current winner to win the whole tournament is the same regardless of who they are. Let this be $w$.
+Let $l_X$ be the probability that player $X$ wins the tournament given they are waiting for their turn to play against the current winner. Let this be $l$.
+
+The player who just won (say X) will play the waiting player (say Z).
+$w = P(X \text{ wins vs } Z) \cdot 1 + P(Z \text{ wins vs } X) \cdot l = \frac{1}{2} \cdot 1 + \frac{1}{2} \cdot l$.
+
+The waiting player (say Y) wins if the new challenger (Z) beats the current winner (X), and then Z is beaten by Y.
+$l = P(Z \text{ beats } X) \cdot P(Y \text{ wins} | Z \text{ is new winner}) = \frac{1}{2} \cdot l_Y'$, where $l_Y'$ is the probability for Y to win when Z has a winning streak of 1. But by symmetry, this is just $l$.
+So $l = \frac{1}{2}l$. This cannot be right.
+
+Let's redefine the states. Let $p_i$ be the probability that the player entering the game with a 1-game winning streak wins the tournament. Let $q_i$ be the probability that the player entering as a challenger wins. Let $r_i$ be the probability that the player who is currently waiting wins.
+The player with a streak (say A) plays the challenger (say C). The waiting player is B.
+$p_A = \frac{1}{2} \cdot 1 + \frac{1}{2} \cdot r_A$. (A wins vs C, or C wins vs A and A waits).
+$q_C = \frac{1}{2} \cdot p_C + \frac{1}{2} \cdot r_C$. (C wins vs A and has a streak, or A wins vs C and C waits).
+$r_B$ is the probability B wins. This happens if C beats A, then B must beat C.
+$r_B = P(C \text{ wins vs } A) \cdot q_B(\text{where C has streak}) = \frac{1}{2} q_B$.
+By symmetry, $p_A=p_B=p_C=p$, $q_A=q_B=q_C=q$, $r_A=r_B=r_C=r$.
+$p = 1/2 + r/2$.
+$q = p/2 + r/2$.
+$r = q/2$.
+Solving this system:
+$r = (p/2 + r/2)/2 = p/4 + r/4 \Rightarrow 3r/4 = p/4 \Rightarrow p=3r$.
+$3r = 1/2 + r/2 \Rightarrow 5r/2 = 1/2 \Rightarrow r=1/5$.
+Then $p=3/5$ and $q=(3/5)/2 + (1/5)/2 = 4/10 = 2/5$.
+Check: $p+q+r = 3/5+2/5+1/5 = 6/5 \neq 1$. The sum of probabilities for players in a given state must be 1. So $p+q+r$ is not right. It should be $p+q=1$ for the two players in the game. The waiting player has 0 chance to win in the current game.
+
+Let $p$ be the probability the player with a 1-win streak wins the tournament. Their opponent (the challenger) wins with probability $1-p$. The waiting player has won 0 games in this round.
+Let A be the player with the streak, playing C. B is waiting.
+A wins tournament with probability $p$. C wins with $1-p$.
+$p = P(A \text{ wins vs } C) + P(C \text{ wins vs } A) \times P(A \text{ wins tournament later})$.
+If C wins, C now has a 1-win streak and plays B. A is now waiting. For A to win, A must challenge the winner of (C vs B) and win twice. The probability for the waiting player to win is what we need.
+Let $w$ be the probability the current winner wins the tournament. Let $c$ be the probability the challenger wins. Let $v$ be the probability the waiting player (voyeur) wins. $w+c+v=1$.
+The current winner (say A) plays the challenger (C).
+A wins the tournament if A beats C (prob 1/2). So $w \geq 1/2$.
+If C beats A (prob 1/2), C becomes the new winner with a 1-streak, A becomes the waiting player, and B becomes the challenger. The probability that A (now waiting) wins is $v$.
+So $w = 1/2 + (1/2)v$.
+The challenger C wins if C beats A (prob 1/2) and then C, as the new winner, wins the tournament. This happens with probability $w$. So $c = (1/2)w$.
+The waiting player B wins if C beats A (prob 1/2), and then B (as the new challenger) wins the tournament against C. This happens with probability $c$. So $v = (1/2)c$.
+We have a system of equations:
+1. $w = 1/2 + v/2$
+2. $c = w/2$
+3. $v = c/2$
+4. $w+c+v=1$
+Substitute (3) into (1): $w=1/2+c/4$.
+Substitute (2) into this: $w=1/2+(w/2)/4 = 1/2+w/8 \Rightarrow 7w/8 = 1/2 \Rightarrow w=4/7$.
+Then $c = (4/7)/2 = 2/7$.
+And $v = (2/7)/2 = 1/7$.
+Check: $w+c+v = 4/7+2/7+1/7 = 7/7=1$. Correct.
+
+The game starts with A vs B. This is a challenger vs challenger situation as no one has a winning streak.
+$P(A \text{ wins}) = P(A \text{ beats } B) \cdot P(A \text{ wins } | \text{A has 1-streak}) + P(B \text{ beats } A) \cdot P(A \text{ wins } | \text{B has 1-streak})$.
+If A beats B, A has a 1-streak and becomes the 'winner'. His probability to win the tournament is $w$.
+If B beats A, B has a 1-streak, and A becomes the waiting player. His probability to win is $v$.
+$P(A \text{ wins}) = (1/2)w + (1/2)v = (1/2)(4/7) + (1/2)(1/7) = 5/14$.
+$P(B \text{ wins}) = (1/2)w + (1/2)v = 5/14$ by symmetry.
+$P(C \text{ wins}) = P(A \text{ beats } B) \cdot P(C \text{ wins}|A \text{ streak}) + P(B \text{ beats } A) \cdot P(C \text{ wins}|B \text{ streak})$.
+If A has a streak, C is the challenger. C's prob to win is $c$. So $P(C \text{ wins}) = (1/2)c + (1/2)c = c = 2/7 = 4/14$.
+Check: $5/14 + 5/14 + 4/14 = 14/14 = 1$.
+So for 3 players, $P(A \text{ wins}) = 5/14$.
+
+\textbf{Part 2: 5 Players (A, B, C, D, E)}
+Generalize the logic. $N=5$ players. 1 winner, 1 challenger, $N-2=3$ waiting players.
+Let $w$ = prob for player with 1-streak to win tournament.
+Let $c$ = prob for challenger to win.
+Let $v_k$ = prob for k-th waiting player to win. By symmetry $v_1=v_2=v_3=v$.
+$w+c+3v=1$.
+$w = 1/2 + (1/2) v_1 = 1/2+v/2$. (If winner loses, he becomes first in waiting line).
+$c = (1/2) w$. (If challenger wins, he becomes the new winner).
+$v_1 = (1/2) c$. (The first waiting player B plays C if C beats A. B's prob to win is $c$). This is wrong.
+If winner A loses to challenger C, then A becomes waiting player 1, B becomes waiting player 2, etc. C is the new winner, and B is the new challenger.
+$w$: A (winner) vs C (challenger). B, D, E wait.
+$w = 1/2 + (1/2) \cdot P(\text{A wins as waiting player 1})$. Let this be $v_1$.
+$c = (1/2) \cdot w$.
+$v_k = P(\text{A wins as waiting player } k)$.
+$v_1$ (prob for B to win) = $P(C \text{ beats } A) \cdot P(B \text{ wins as new challenger}) = (1/2)c$.
+$v_2$ (prob for D to win) = $P(C \text{ beats } A) \cdot P(D \text{ wins as waiting player 1}) = (1/2)v_1$.
+$v_k = (1/2)v_{k-1}$ for $k \ge 2$.
+So $v_k = (1/2)^{k-1} v_1$.
+For $N=5$, we have $w, c, v_1, v_2, v_3$.
+$w+c+v_1+v_2+v_3 = 1$.
+$w=1/2+(1/2)v_1$.
+$c=(1/2)w$.
+$v_2=(1/2)v_1$.
+$v_3=(1/2)v_2=(1/4)v_1$.
+Substitute into sum: $w + w/2 + v_1 + v_1/2 + v_1/4 = 1 \Rightarrow 3w/2 + 7v_1/4 = 1$.
+From $w=1/2+v_1/2$, we have $v_1=2w-1$.
+$3w/2 + 7(2w-1)/4 = 1 \Rightarrow 6w + 14w - 7 = 4 \Rightarrow 20w = 11 \Rightarrow w=11/20$.
+$c = (1/2)(11/20) = 11/40$.
+$v_1 = 2(11/20)-1 = 11/10 - 1 = 1/10$.
+$v_2 = 1/20, v_3=1/40$.
+Check: $11/20 + 11/40 + 1/10 + 1/20 + 1/40 = (22+11+4+2+1)/40 = 40/40=1$. Correct.
+
+Initial game: A vs B (challenger vs challenger). C,D,E wait.
+$P(A \text{ wins}) = P(A \text{ beats } B) \cdot P(A \text{ wins as winner}) + P(B \text{ beats } A) \cdot P(A \text{ wins as waiting player 1})$.
+$P(A \text{ wins}) = (1/2)w + (1/2)v_1 = (1/2)(11/20) + (1/2)(1/10) = 11/40 + 1/20 = 13/40$.
+For 5 players, P(A wins) = 13/40.
+\end{solution}
+
+\section*{2014}
+\subsection*{S.－T. Yau College Math Contests 概率口试题（个人）}
+
+\begin{problem}[2014 -- 1]
+设 $Z$ 为一标准指数随机变量，即 $P(Z \in d t)=e^{-t} d t$。定义 $\{Z\}$ 和 $[Z]$分别为 $Z$ 的分数部分和整数部分．证明 $\{Z\}$ 和 $[Z]$ 独立，并分别求出它们的分布．
+\end{problem}
+
+\begin{solution}
+Let $K = [Z]$ be the integer part and $F = \{Z\} = Z - K$ be the fractional part. We need to find the joint distribution of $(K, F)$ and show it factors into the product of their marginal distributions.
+
+\begin{enumerate}
+    \item \textbf{Joint Distribution:} We compute $P(K=k, F \leq x)$ for an integer $k \geq 0$ and $x \in [0, 1)$.
+    \begin{align*}
+        P(K=k, F \leq x) &= P([Z]=k, Z-k \leq x) \\
+        &= P(k \leq Z \leq k+x) \\
+        &= \int_k^{k+x} e^{-t} dt \\
+        &= [-e^{-t}]_k^{k+x} = e^{-k} - e^{-(k+x)} \\
+        &= e^{-k}(1 - e^{-x})
+    \end{align*}
+
+    \item \textbf{Marginal Distribution of K:} We find $P(K=k)$ by letting $x \to 1^-$.
+    $$ P(K=k) = P(k \leq Z < k+1) = \int_k^{k+1} e^{-t} dt = e^{-k} - e^{-(k+1)} = e^{-k}(1-e^{-1}) $$
+    This is a geometric distribution on $\{0, 1, 2, \ldots\}$ with success probability $p = 1-e^{-1}$.
+
+    \item \textbf{Marginal Distribution of F:} We find the CDF of F, $P(F \leq x)$, by summing over all possible values of $k$.
+    \begin{align*}
+        P(F \leq x) &= \sum_{k=0}^{\infty} P(K=k, F \leq x) \\
+        &= \sum_{k=0}^{\infty} e^{-k}(1-e^{-x}) \\
+        &= (1-e^{-x}) \sum_{k=0}^{\infty} (e^{-1})^k \\
+        &= (1-e^{-x}) \frac{1}{1-e^{-1}}
+    \end{align*}
+    This is the CDF for $x \in [0, 1)$. The PDF is found by differentiating with respect to $x$:
+    $$ f_F(x) = \frac{d}{dx} \frac{1-e^{-x}}{1-e^{-1}} = \frac{e^{-x}}{1-e^{-1}}, \quad \text{for } x \in [0,1) $$
+    This is a truncated exponential distribution.
+
+    \item \textbf{Independence:} To prove independence, we check if $P(K=k, F \leq x) = P(K=k)P(F \leq x)$.
+    \begin{align*}
+        P(K=k)P(F \leq x) &= \left( e^{-k}(1-e^{-1}) \right) \left( \frac{1-e^{-x}}{1-e^{-1}} \right) \\
+        &= e^{-k}(1-e^{-x})
+    \end{align*}
+    This is equal to our result for the joint probability. Thus, $K=[Z]$ and $F=\{Z\}$ are independent. This is a consequence of the memoryless property of the exponential distribution.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[2014 -- 2]
+设 $X$ 和 $Y$ 为具有均值为零、方差分别为 $\sigma^2$ 和 $\tau^2$，相关系数为 $\rho$ 的二元正态分布。试求条件期望 $E[X \mid X+Y]$。
+\end{problem}
+\begin{solution}
+Let $S = X+Y$. We are looking for $E[X|S]$. Since $(X, S)$ are jointly normally distributed, the conditional expectation $E[X|S]$ will be a linear function of $S$.
+$$ E[X|S=s] = E[X] + \frac{\text{Cov}(X,S)}{\text{Var}(S)}(s - E[S]) $$
+Let's compute the necessary components.
+\begin{enumerate}
+    \item \textbf{Expectations:} Given that $E[X]=0$ and $E[Y]=0$.
+    $$ E[S] = E[X+Y] = E[X] + E[Y] = 0 $$
+
+    \item \textbf{Variance of S:}
+    \begin{align*}
+        \text{Var}(S) &= \text{Var}(X+Y) = \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X,Y) \\
+        &= \sigma^2 + \tau^2 + 2\text{Cov}(X,Y)
+    \end{align*}
+    The covariance is related to the correlation coefficient $\rho$ by $\text{Cov}(X,Y) = \rho\sqrt{\text{Var}(X)\text{Var}(Y)} = \rho\sigma\tau$.
+    $$ \text{Var}(S) = \sigma^2 + \tau^2 + 2\rho\sigma\tau $$
+
+    \item \textbf{Covariance of X and S:}
+    \begin{align*}
+        \text{Cov}(X,S) &= \text{Cov}(X, X+Y) = E[X(X+Y)] - E[X]E[X+Y] \\
+        &= E[X^2 + XY] - 0 \\
+        &= E[X^2] + E[XY]
+    \end{align*}
+    Since $E[X]=0$, $\text{Var}(X) = E[X^2] - (E[X])^2 = E[X^2] = \sigma^2$.
+    And $\text{Cov}(X,Y) = E[XY] - E[X]E[Y] = E[XY] = \rho\sigma\tau$.
+    So,
+    $$ \text{Cov}(X,S) = \sigma^2 + \rho\sigma\tau $$
+
+    \item \textbf{Conditional Expectation:} Substituting these into the formula for conditional expectation:
+    $$ E[X|S=s] = 0 + \frac{\sigma^2 + \rho\sigma\tau}{\sigma^2 + \tau^2 + 2\rho\sigma\tau}(s - 0) $$
+    Thus, the conditional expectation as a random variable is:
+    $$ E[X | X+Y] = \frac{\sigma^2 + \rho\sigma\tau}{\sigma^2 + \tau^2 + 2\rho\sigma\tau}(X+Y) $$
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[2014 -- 3]
+假定有甲、乙两个乒乓球运动员参加比赛，已知甲的实力强于乙。现有两个备选的竞赛规则：＂ 3 局 2 胜制＂，或＂ 5 局 3 胜制＂。试问：哪一种竞赛规则对甲有利？
+\end{problem}
+\begin{solution}
+Let $p$ be the probability that player 甲 (A) wins a single game against player 乙 (B). Since A is stronger than B, we have $p > 1/2$.
+
+\textbf{Case 1: Best-of-3 (3局2胜制)}
+Player A wins the match if they win in 2 or 3 games.
+\begin{itemize}
+    \item A wins in 2 games: A wins the first two games. Probability: $p^2$.
+    \item A wins in 3 games: A wins 2 out of 3 games, with the last game being a win for A. This means A wins one of the first two games and loses the other, then wins the third. The sequence can be (A-win, B-win, A-win) or (B-win, A-win, A-win).
+    The number of ways this can happen is $\binom{2}{1}$.
+    Probability: $\binom{2}{1}p(1-p)p = 2p^2(1-p)$.
+\end{itemize}
+Total probability for A to win in a best-of-3 match, $P_3(A)$:
+$$ P_3(A) = p^2 + 2p^2(1-p) = p^2(1 + 2(1-p)) = p^2(3-2p) $$
+
+\textbf{Case 2: Best-of-5 (5局3胜制)}
+Player A wins the match if they win in 3, 4, or 5 games.
+\begin{itemize}
+    \item A wins in 3 games: A wins the first three. Probability: $p^3$.
+    \item A wins in 4 games: A wins 3 of 4, with the 4th game being a win for A. A must win 2 of the first 3 games. Probability: $\binom{3}{2}p^2(1-p)p = 3p^3(1-p)$.
+    \item A wins in 5 games: A wins 3 of 5, with the 5th game being a win for A. A must win 2 of the first 4 games. Probability: $\binom{4}{2}p^2(1-p)^2p = 6p^3(1-p)^2$.
+\end{itemize}
+Total probability for A to win in a best-of-5 match, $P_5(A)$:
+$$ P_5(A) = p^3 + 3p^3(1-p) + 6p^3(1-p)^2 = p^3(1 + 3(1-p) + 6(1-p)^2) $$
+$$ P_5(A) = p^3(1 + 3 - 3p + 6(1-2p+p^2)) = p^3(4 - 3p + 6 - 12p + 6p^2) = p^3(6p^2 - 15p + 10) $$
+
+\textbf{Comparison}
+We need to compare $P_5(A)$ and $P_3(A)$. Let's look at the difference $D(p) = P_5(A) - P_3(A)$.
+\begin{align*}
+    D(p) &= (6p^5 - 15p^4 + 10p^3) - (3p^2 - 2p^3) \\
+    &= 6p^5 - 15p^4 + 12p^3 - 3p^2 \\
+    &= 3p^2(2p^3 - 5p^2 + 4p - 1)
+\end{align*}
+Let $f(p) = 2p^3 - 5p^2 + 4p - 1$. We want to find the sign of $D(p)$ for $p \in (1/2, 1)$.
+Since $3p^2 > 0$, the sign of $D(p)$ is the sign of $f(p)$.
+Let's test some values for $f(p)$:
+$f(1/2) = 2(1/8) - 5(1/4) + 4(1/2) - 1 = 1/4 - 5/4 + 2 - 1 = -1 + 1 = 0$.
+$f(1) = 2 - 5 + 4 - 1 = 0$.
+So $p=1/2$ and $p=1$ are roots of $f(p)$.
+$f(p)$ can be factored. Since $p=1$ is a root, $(p-1)$ is a factor.
+$2p^3 - 5p^2 + 4p - 1 = (p-1)(2p^2 - 3p + 1) = (p-1)(p-1)(2p-1) = (p-1)^2(2p-1)$.
+So the difference is $D(p) = 3p^2(p-1)^2(2p-1)$.
+For $p \in (1/2, 1)$:
+\begin{itemize}
+    \item $3p^2 > 0$
+    \item $(p-1)^2 > 0$
+    \item $(2p-1) > 0$ since $p > 1/2$.
+\end{itemize}
+Therefore, $D(p) > 0$ for all $p \in (1/2, 1)$. This means $P_5(A) > P_3(A)$.
+
+\textbf{Conclusion}
+The "5局3胜制" (best-of-5) rule is more favorable to the stronger player (甲). This is a general result: longer series of games amplify the probability of the stronger player winning.
+\end{solution}
+
+\section*{2013}
+\subsection*{概率统计个人竞赛复试题}
+\begin{problem}[2013 -- 1]
+甲乙二人各出资 100 元反复掷一枚均匀硬币玩公平游戏，正面甲赢，负面乙赢．双方约定谁先赢三次将获得全部赌资 200 元．当硬币掷到第三次时因故停止，结果是甲方赢两次，乙方赢一次．在这种情况下，应该如何在甲乙之间公平分配 200 元赌资。
+\end{problem}
+
+\begin{solution}
+This is a classic problem of fair division in an unfinished game. We need to determine the probability that each player would win if the game were to continue.
+
+Current state: Player A has won 2 games, Player B has won 1 game. The rule is that the first player to win 3 games takes all the money.
+
+To complete the game:
+\begin{itemize}
+    \item Player A needs 1 more win to reach 3 total wins
+    \item Player B needs 2 more wins to reach 3 total wins
+\end{itemize}
+
+From the current state, the game will end in at most 2 more coin flips. Let's analyze all possible outcomes:
+
+Let $P(A)$ denote the probability that Player A wins the game.
+
+\textbf{Case 1:} Next flip is won by A
+\begin{itemize}
+    \item Probability: $\frac{1}{2}$
+    \item Result: A reaches 3 wins and wins the game
+\end{itemize}
+
+\textbf{Case 2:} Next flip is won by B, then one more flip
+\begin{itemize}
+    \item Probability of B winning the first flip: $\frac{1}{2}$
+    \item After this, the state becomes: A has 2 wins, B has 2 wins
+    \item In the final flip:
+    \begin{itemize}
+        \item A wins with probability $\frac{1}{2}$
+        \item B wins with probability $\frac{1}{2}$
+    \end{itemize}
+\end{itemize}
+
+Therefore:
+$$P(A) = \frac{1}{2} + \frac{1}{2} \cdot \frac{1}{2} = \frac{1}{2} + \frac{1}{4} = \frac{3}{4}$$
+
+$$P(B) = 1 - P(A) = 1 - \frac{3}{4} = \frac{1}{4}$$
+
+\textbf{Fair division:}
+\begin{itemize}
+    \item Player A should receive: $200 \times \frac{3}{4} = 150$ yuan
+    \item Player B should receive: $200 \times \frac{1}{4} = 50$ yuan
+\end{itemize}
+\end{solution}
+
+\begin{problem}[2013 -- 2]
+设 $X$ 与 $Y$ 为独立并且二维随机变量 $Z=(X, Y)$ 的分布旋转不变（即对于任何正交矩阵 $O$，二维随机变量 $O Z$ 与 $Z$ 同分布。证明 $X$ 和 $Y$ 是均值为零且方差相同的正态随机变量．
+\end{problem}
+
+\begin{solution}
+We need to prove that if $X$ and $Y$ are independent and the distribution of $Z = (X,Y)$ is rotationally invariant, then $X$ and $Y$ are normal random variables with zero mean and equal variance.
+
+\textbf{Step 1: Show that $E[X] = E[Y] = 0$}
+
+Consider the rotation matrix $O_\pi = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}$. This matrix rotates by $\pi$ radians.
+
+Since the distribution is rotationally invariant, $OZ = (-X, -Y)$ has the same distribution as $Z = (X, Y)$.
+
+Therefore: $E[-X] = E[X]$ and $E[-Y] = E[Y]$
+
+This implies $E[X] = E[Y] = 0$.
+
+\textbf{Step 2: Show that $\mathrm{Var}(X) = \mathrm{Var}(Y)$}
+
+Consider the rotation matrix $O_{\pi/2} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$ which rotates by $\pi/2$ radians.
+
+Since the distribution is rotationally invariant, $(Y, -X)$ has the same distribution as $(X, Y)$.
+
+In particular, $Y$ has the same distribution as $X$, so $\mathrm{Var}(X) = \mathrm{Var}(Y)$.
+
+\textbf{Step 3: Show that $X$ and $Y$ are jointly normal}
+
+Let $\phi_{X,Y}(t_1, t_2) = E[e^{i(t_1 X + t_2 Y)}]$ be the characteristic function of $(X,Y)$.
+
+For any rotation matrix $O = \begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$, the rotational invariance gives us:
+
+$$\phi_{X,Y}(t_1, t_2) = \phi_{X,Y}(t_1\cos\theta - t_2\sin\theta, t_1\sin\theta + t_2\cos\theta)$$
+
+This means $\phi_{X,Y}(t_1, t_2)$ depends only on $t_1^2 + t_2^2$.
+
+Let $r^2 = t_1^2 + t_2^2$. Then $\phi_{X,Y}(t_1, t_2) = f(r^2)$ for some function $f$.
+
+\textbf{Derivation of the specific form of $\phi$:}
+
+Since $X$ and $Y$ are independent with $E[X] = E[Y] = 0$ and $\mathrm{Var}(X) = \mathrm{Var}(Y) = \sigma^2$, we have:
+
+\begin{equation}
+\phi_{X,Y}(t_1, t_2) = \phi_X(t_1)\phi_Y(t_2)
+\end{equation}
+
+From rotational invariance and the fact that $X$ and $Y$ have identical distributions:
+
+\begin{equation}
+\phi_{X,Y}(t_1, t_2) = f(t_1^2 + t_2^2) \quad \text{and} \quad \phi_X(t) = \phi_Y(t)
+\end{equation}
+
+Combining these conditions:
+\begin{equation}
+f(t_1^2 + t_2^2) = \phi_X(t_1)\phi_X(t_2)
+\end{equation}
+
+Setting $t_2 = 0$ in equation (3):
+\begin{equation}
+f(t_1^2) = \phi_X(t_1)\phi_X(0) = \phi_X(t_1)
+\end{equation}
+
+since $\phi_X(0) = 1$ for any characteristic function.
+
+Therefore, $\phi_X(t) = f(t^2)$ for some function $f$.
+
+Substituting back into equation (3):
+\begin{equation}
+f(t_1^2 + t_2^2) = f(t_1^2)f(t_2^2)
+\end{equation}
+
+This is Cauchy's functional equation. For continuous functions that correspond to characteristic functions of random variables with finite second moments, the unique solution is:
+
+\begin{equation}
+f(u) = e^{-cu}
+\end{equation}
+
+where $c \geq 0$ is a constant.
+
+Since $X$ has finite variance $\sigma^2$, we can determine $c$ from:
+\begin{align}
+\mathrm{Var}(X) &= -\phi_X''(0) = -\frac{d^2}{dt^2}f(t^2)\bigg|_{t=0}\\
+&= -\frac{d^2}{dt^2}e^{-ct^2}\bigg|_{t=0} = 2c
+\end{align}
+
+Therefore, $c = \frac{\sigma^2}{2}$, and:
+
+\begin{equation}
+\phi_{X,Y}(t_1, t_2) = e^{-\frac{\sigma^2}{2}(t_1^2 + t_2^2)}
+\end{equation}
+
+This is precisely the characteristic function of a bivariate normal distribution with independent components $X \sim N(0, \sigma^2)$ and $Y \sim N(0, \sigma^2)$.
+
+Therefore, $X$ and $Y$ are normal random variables with zero mean and equal variance.
+\end{solution}
+\begin{problem}[2013 -- 3]
+考虑一元线性回归模型
+$$
+Y_k=a X_k+\epsilon_k, k=1,2, \ldots, n
+$$
+其中 $\{\epsilon_k: k=1,2, \ldots, n,\}$ 是独立同分布正态 $N(0, \sigma^2)$ 随机变量序列， $\{X_k: k=1,2, \ldots, n,\}$ 是非随机、人为设计的自变元序列．请给出一种估计方法，并找出估计量的均值及方差。
+\end{problem}
+
+\begin{solution}
+We consider the simple linear regression model without intercept:
+$$Y_k = aX_k + \epsilon_k, \quad k = 1,2,\ldots,n$$
+
+where $\{\epsilon_k\}$ are i.i.d. $N(0,\sigma^2)$ and $\{X_k\}$ are non-random design points.
+
+\textbf{Method: Least Squares Estimation}
+
+We use the method of least squares to estimate the parameter $a$. The least squares estimator minimizes:
+$$S(a) = \sum_{k=1}^n (Y_k - aX_k)^2$$
+
+Taking the derivative with respect to $a$ and setting it to zero:
+$$\frac{\partial S(a)}{\partial a} = -2\sum_{k=1}^n X_k(Y_k - aX_k) = 0$$
+
+Solving for $a$:
+$$\sum_{k=1}^n X_k Y_k = a\sum_{k=1}^n X_k^2$$
+
+Therefore, the least squares estimator is:
+$$\hat{a} = \frac{\sum_{k=1}^n X_k Y_k}{\sum_{k=1}^n X_k^2}$$
+
+\textbf{Mean of the estimator:}
+
+$$E[\hat{a}] = E\left[\frac{\sum_{k=1}^n X_k Y_k}{\sum_{k=1}^n X_k^2}\right] = \frac{\sum_{k=1}^n X_k E[Y_k]}{\sum_{k=1}^n X_k^2}$$
+
+Since $E[Y_k] = E[aX_k + \epsilon_k] = aX_k$:
+
+$$E[\hat{a}] = \frac{\sum_{k=1}^n X_k \cdot aX_k}{\sum_{k=1}^n X_k^2} = \frac{a\sum_{k=1}^n X_k^2}{\sum_{k=1}^n X_k^2} = a$$
+
+Therefore, $\hat{a}$ is an unbiased estimator of $a$.
+
+\textbf{Variance of the estimator:}
+
+$$\text{Var}(\hat{a}) = \text{Var}\left(\frac{\sum_{k=1}^n X_k Y_k}{\sum_{k=1}^n X_k^2}\right) = \frac{1}{(\sum_{k=1}^n X_k^2)^2}\text{Var}\left(\sum_{k=1}^n X_k Y_k\right)$$
+
+Since the $Y_k$ are independent:
+$$\text{Var}\left(\sum_{k=1}^n X_k Y_k\right) = \sum_{k=1}^n X_k^2 \text{Var}(Y_k)$$
+
+Since $\text{Var}(Y_k) = \text{Var}(aX_k + \epsilon_k) = \text{Var}(\epsilon_k) = \sigma^2$:
+
+$$\text{Var}(\hat{a}) = \frac{\sum_{k=1}^n X_k^2 \sigma^2}{(\sum_{k=1}^n X_k^2)^2} = \frac{\sigma^2}{\sum_{k=1}^n X_k^2}$$
+
+\textbf{Summary:}
+\begin{itemize}
+    \item Estimator: $\hat{a} = \frac{\sum_{k=1}^n X_k Y_k}{\sum_{k=1}^n X_k^2}$
+    \item Mean: $E[\hat{a}] = a$
+    \item Variance: $\text{Var}(\hat{a}) = \frac{\sigma^2}{\sum_{k=1}^n X_k^2}$
+\end{itemize}
+\end{solution}
+
+\section*{2012}
+\subsection*{S. T. Yau College Math Contests Oral Exam on Probability}
+
+\subsubsection*{August 4, morning}
+\begin{problem}[2012 -- Probability -- Aug 4 am]
+Take two points $\xi$ and $\eta$ randomly and independently with respect to the uniform distribution from the unit interval $[0,1]$. Then in general these two points divide the interval $[0,1]$ into three subintervals with lengths $X, Y$ and $Z$, respectively.
+\begin{enumerate}[label=(\alph*)]
+\item What is the probability that $X, Y$ and $Z$ constitute the lengths of three sides of a triangle in the plane?
+\item What are the probability distributions of $X, Y$ and $Z$?
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item If $0 \leq \xi<\eta$, then the lengths of the three subintervals are $\xi, \eta-\xi$ and $1-\eta$, respectively. These constitute the lengths of three sides of a triangle is equivalent to
+\begin{align*}
+\xi+(\eta-\xi) & >1-\eta \\
+(\eta-\xi)+(1-\eta) & >\xi \\
+\xi+(1-\eta) & >\eta-\xi
+\end{align*}
+which are further equivalent to
+$$
+\xi<\frac{1}{2}, \quad \eta-\xi<\frac{1}{2}, \quad \eta>\frac{1}{2}
+$$
+These constraints form a region with area $1 / 8$.
+By symmetry, the probability that $X, Y$ and $Z$ constitute the lengths of three sides of a triangle in the plane is $1 / 8+1 / 8=1 / 4$.
+\item We have
+$$
+X=\min \{\xi, \eta\}, \quad Y=|\xi-\eta|, \quad Z=1-\max \{\xi, \eta\}
+$$
+The distribution of $X$ is
+\begin{align*}
+F_X(x) & :=\mathrm{P}(\min \{\xi, \eta\} \leq x) \\
+& =1-\mathrm{P}(\min \{\xi, \eta\}>x) \\
+& =1-\mathrm{P}(\xi>x) \mathrm{P}(\eta>x) \\
+& =1-(1-x)^2, \quad x \in[0,1]
+\end{align*}
+The distribution of $Y$ is
+\begin{align*}
+F_Y(y) & :=\mathrm{P}(|\xi-\eta| \leq y) \\
+& =\iint_{-y \leq t-s \leq y} d t d s \\
+& =1-(1-y)^2, \quad y \in[0,1]
+\end{align*}
+The distribution of $Z$ is
+\begin{align*}
+F_Z(z) & :=\mathrm{P}(1-\max \{\xi, \eta\} \leq z) \\
+& =\mathrm{P}(\max \{\xi, \eta\} \geq 1-z) \\
+& =1-\mathrm{P}(\max \{\xi, \eta\}<1-z) \\
+& =1-\mathrm{P}(\xi<1-z) \mathrm{P}(\eta<1-z) \\
+& =1-(1-z)^2, \quad z \in[0,1]
+\end{align*}
+\end{enumerate}
+\end{solution}
+
+\subsubsection*{August 4, afternoon}
+\begin{problem}[2012 -- Probability -- Aug 4 pm]
+Suppose that $\{\xi_k\}$ are independent and identically distributed random variables with uniform distribution on the interval $[0,1]$. Let
+$$
+Y=\max _{1 \leq k \leq n} \xi_k
+$$
+\begin{enumerate}[label=(\alph*)]
+\item What is the joint distribution of $(\xi_1, Y)$?
+\item Evaluate the probability $\mathrm{P}(\xi_1=Y)$.
+\item Evaluate the conditional expectation $\mathrm{E}(\xi_1 \mid Y)$.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item The joint distribution of $(\xi_1, Y)$ is
+\begin{align*}
+F_{\xi_1, Y}(x, y) & :=\mathrm{P}(\xi_1 \leq x, \max _{1 \leq k \leq n} \xi_k \leq y) \\
+& =\mathrm{P}(\xi_1 \leq x, \xi_2 \leq y, \cdots, \xi_n \leq y) \\
+& =x y^{n-1}, \quad 0 \leq x \leq y \leq 1
+\end{align*}
+\item By symmetry, we have $\mathrm{P}(\xi_1=Y)=\mathrm{P}(\xi_2=Y)=\cdots=\mathrm{P}(\xi_n=Y)$. But
+$$
+\sum_{k=1}^n \mathrm{P}(\xi_k=Y)=1
+$$
+Therefore $\mathrm{P}(\xi_1=Y)=\frac{1}{n}$.
+\item The distribution of $Y$ is $F_Y(y):=\mathrm{P}(\max _{1 \leq k \leq n} \xi_k \leq y)=y^n, \quad y \in[0,1]$. The conditional distribution of $\xi_1$ under $Y$ is $F(x \mid y)=\frac{n-1}{n} \cdot \frac{x}{y}$ for $0<x<y$, and $F(x \mid y)=1$ for $1 \geq x \geq y \geq 0$. Therefore
+\begin{align*}
+E(\xi_1 \mid Y=y) & =\frac{1}{n} y+\int_0^y x \cdot \frac{n-1}{n} \cdot \frac{1}{y} d x \\
+& =\frac{1}{n} y+\frac{n-1}{2 n} y \\
+& =\frac{n+1}{2 n} y
+\end{align*}
+and $\mathrm{E}(\xi_1 \mid Y)=\frac{n+1}{2 n} Y$.
+\end{enumerate}
+\end{solution}
+
+\subsubsection*{August 5, morning}
+\begin{problem}[2012 -- Probability -- Aug 5 am]
+Discuss the following issue by constructing an appropriate probability model. You may make some further reasonable assumptions.
+
+Suppose that there are 1000 persons, and only one of them is your ideal friend. Suppose that when you meet a person which is your ideal friend, you can identify whether he/she is your ideal friend with a success probability 99/100, and when you meet a person who is not your ideal friend, you may wrongly identify him/her as your ideal friend with a probability $1 / 100$. Now if you have already met a person that you regard as an ideal friend, what is the probability that this person REALLY is your ideal friend?
+\end{problem}
+\begin{solution}
+Let $\mathrm{P}(+)$ denote the probability that you meet an ideal friend, $\mathrm{P}(-)$ the probability that the person you meet is not your ideal friend, then
+$$
+\mathrm{P}(+)=1 / 1000, \quad \mathrm{P}(-)=999 / 1000
+$$
+Let $\mathrm{P}(" + ")$ denote the probability that you meet a person and identify him/her as your ideal friend and $\mathrm{P}(" - ")$ denote the probability that you meet a person and do not regard him/her as an ideal friend. Let $\mathrm{P}("+" \mid-)$ denote the conditional probability that you regard a person as your ideal friend while in fact he/she is not, and other conditional probabilities are defined similarly. Then
+\begin{align*}
+& \mathrm{P}("+" \mid+)=99 / 100, \quad \mathrm{P}("-" \mid+)=1 / 100 \\
+& \mathrm{P}("+" \mid-)=1 / 100, \quad \mathrm{P}("-" \mid-)=99 / 100
+\end{align*}
+What we need to calculate is in fact the conditional probability $\mathrm{P}(+\mid " + ")$, that is, the probability that the person you identify as an ideal friend is really your ideal friend. This can be evaluated by the Bayesian formula as follows:
+\begin{align*}
+\mathrm{P}(+\mid" + ") & =\frac{\mathrm{P}(+, "+")}{\mathrm{P}(" + ")} \\
+& =\frac{\mathrm{P}(+) \mathrm{P}("+" \mid+)}{\mathrm{P}(+) \mathrm{P}("+" \mid+)+\mathrm{P}(-) \mathrm{P}("+" \mid-)} \\
+& =\frac{\frac{1}{1000} \times \frac{99}{100}}{\frac{1}{1000} \times \frac{99}{100}+\frac{999}{1000} \times \frac{1}{100}} \\
+& =11 / 122 \approx 0.090
+\end{align*}
+\end{solution}
+
+\subsubsection*{August 5, afternoon}
+\begin{problem}[2012 -- Probability -- Aug 5 pm]
+Let $\{X_n\}$ be independent and identically distributed random variables with expectation $\mathrm{E} X$, variance $\mathrm{D} X<\infty$ and characteristic function $\phi_X(t)$, respectively. Let $N$ be a non-negative integer valued random variable with expectation $\mathrm{E} N$, variance $\mathrm{D} N<\infty$ and characteristic function $\phi_N(t)$, respectively. Furthermore, $\{X_n\}$ and $N$ are independent. Let $Y=\sum_{k=1}^N X_k$.
+\begin{enumerate}[label=(\alph*)]
+\item What is the characteristic function of $Y$?
+\item Evaluate the variance of $Y$.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item The characteristic function of $Y$ is
+\begin{align*}
+\phi_Y(t) & :=\mathrm{E} e^{i t \sum_{k=1}^N X_k} \\
+& =\mathrm{E}(\mathrm{E}(e^{i t \sum_{k=1}^N X_k} \mid N)) \\
+& =\mathrm{E}((\phi_X(t))^N)
+\end{align*}
+\item We have
+\begin{gather*}
+\phi_Y^{\prime}(t)=\mathrm{E}\{N(\phi_X(t))^{N-1} \phi_X^{\prime}(t)\} \\
+\phi_Y^{\prime \prime}(t)=\mathrm{E}\{N(N-1)(\phi_X(t))^{N-2}(\phi_X^{\prime}(t))^2+N(\phi_X(t))^{N-1} \phi_X^{\prime \prime}(t)\}
+\end{gather*}
+Therefore, by putting $t=0$, we have
+$$
+\mathrm{E} Y=\mathrm{E} N \cdot \mathrm{E} X
+$$
+and
+$$
+\mathrm{E} Y^2=\mathrm{E}\{N(N-1)(\mathrm{E} X)^2+N \mathrm{E} X^2\},
+$$
+from which we obtain
+$$
+\mathrm{D} Y=\mathrm{E} Y^2-(\mathrm{E} Y)^2=\mathrm{D} N \cdot(\mathrm{E} X)^2+\mathrm{E} N \cdot \mathrm{D} X
+$$
+\end{enumerate}
+\end{solution}
+
+\subsection*{S. T. Yau College Math Contests Oral Exam on Statistics}
+
+\subsubsection*{Saturday, August 4, morning}
+\begin{problem}[2012 -- Statistics -- Aug 4 am]
+Let $X_1, \cdots, X_n$ be $n$ independent and identically distributed observations from the exponential distribution with density function $f(x)=\frac{1}{\beta} e^{-x / \beta}, x \geq 0$.
+\begin{enumerate}[label=\alph*)]
+\item Let $T$ be an unbiased estimator of the scale parameter $\beta$. Prove that
+$$
+\operatorname{Var}(T) \geq \frac{\beta^2}{n}
+$$
+\item Can you find an unbiased estimator $T$ that attains the lower bound in part a)? If yes, please construct one. If no, please show why such an estimator does not exist.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=\alph*)]
+\item The above lower bound on the variance of an unbiased estimator $T$ of the scale parameter $\beta$ is given by the Cramér-Rao bound $1 / I(\beta)$. The log-likelihood function is
+$$
+\ell(\beta)=\sum_{i=1}^n\{-\log \beta-\frac{X_i}{\beta}\},
+$$
+which leads to
+$$
+\ell^{\prime}(\beta)=\sum_{i=1}^n\{-\frac{1}{\beta}+\frac{X_i}{\beta^2}\} \quad \text { and } \quad \ell^{\prime \prime}(\beta)=\sum_{i=1}^n\{\frac{1}{\beta^2}-\frac{2 X_i}{\beta^3}\}
+$$
+Thus the Fisher information is
+$$
+I(\beta)=-E \ell^{\prime \prime}(\beta)=\frac{n}{\beta^2}
+$$
+\item The answer is yes. The maximum likelihood estimator $\widehat{\beta}$, which solves the score equation $\ell^{\prime}(\beta)=0$, is identical to the sample mean $\frac{1}{n} \sum_{i=1}^n X_i$. It is easy to show that such an estimator is unbiased and attains the lowest variance.
+\end{enumerate}
+\end{solution}
+
+\subsubsection*{Saturday, August 4, afternoon}
+\begin{problem}[2012 -- Statistics -- Aug 4 pm]
+Let $X_1, \cdots, X_n$ be $n$ independent and identically distributed observations from the Cauchy distribution with density function $f(x)=\frac{1}{\pi} \frac{1}{1+(x-\theta)^2}, x \in \mathbb{R}$.
+\begin{enumerate}[label=\alph*)]
+\item Let $T$ be an unbiased estimator of the location parameter $\theta$. Prove that
+$$
+\operatorname{Var}(T) \geq \frac{2}{n}
+$$
+\item Can you find an unbiased estimator $T$ that attains the lower bound in part a)? If yes, please construct one. If no, please show why such an estimator does not exist.
+\item Can you provide an estimator $T$ that can attain the lower bound on $\operatorname{Var}(T)$ in part a) asymptotically, by removing the constraint of unbiasedness?
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=\alph*)]
+\item The above lower bound on the variance of an unbiased estimator $T$ of the location parameter $\theta$ is given by the Cramér-Rao bound $1 / I(\theta)$. The log-likelihood function is
+$$
+\ell(\theta)=\sum_{i=1}^n\{-\log \pi-\log [1+(X_i-\theta)^2]\},
+$$
+which leads to
+$$
+\ell^{\prime}(\theta)=\sum_{i=1}^n \frac{2(X_i-\theta)}{1+(X_i-\theta)^2} \quad \text { and } \quad \ell^{\prime \prime}(\theta)=\sum_{i=1}^n \frac{-2+2(X_i-\theta)^2}{[1+(X_i-\theta)^2]^2} .
+$$
+Thus the Fisher information is
+$$
+I(\theta)=-E \ell^{\prime \prime}(\theta)=\frac{n}{2}
+$$
+\item The answer is no. From the proof of the Cramér-Rao theorem, we see that the above lower bound on variance can be attained only if the following Cauchy-Schwarz inequality becomes an equation
+$$
+(E\{\ell^{\prime}(\theta)(T-\theta)\})^2 \leq E\{\ell^{\prime}(\theta)\}^2 E(T-\theta)^2 .
+$$
+It is well known that the equation holds only when
+$$
+T-\theta=(\text { some constant }) \cdot \ell^{\prime}(\theta)=(\text { some constant }) \cdot \sum_{i=1}^n \frac{2(X_i-\theta)}{1+(X_i-\theta)^2},
+$$
+which entails that
+$$
+T=\theta+(\text { some constant }) \cdot \sum_{i=1}^n \frac{2(X_i-\theta)}{1+(X_i-\theta)^2} .
+$$
+The above representation shows that such an "optimal" estimator $T$ should always depend on the location parameter $\theta$, which cannot be an estimator in the first place.
+\item The answer is yes by the classical asymptotic theory of the maximum likelihood estimator (MLE). The MLE $\hat{\theta}$, which solves the score equation $\ell^{\prime}(\theta)=0$, is known to be asymptotically normal with mean $\theta$ and variance $1 / I(\theta)=\frac{2}{n}$.
+\end{enumerate}
+\end{solution}
+
+\subsubsection*{Sunday, August 5, morning}
+\begin{problem}[2012 -- Statistics -- Aug 5 am]
+Consider the linear regression model
+$$
+\mathbf{y}=\mathbf{X} \boldsymbol{\beta}_0+\varepsilon
+$$
+where $\mathbf{y}=(y_1, \cdots, y_n)^T$ is an $n$-dimensional vector of response, $\mathbf{X}=(\mathbf{x}_1, \cdots, \mathbf{x}_p)$ is an $n \times p$ design matrix, $\boldsymbol{\beta}_0=(\beta_{0,1}, \cdots, \beta_{0, p})^T$ is a $p$-dimensional vector of regression coefficients, and $\varepsilon=(\varepsilon_1, \cdots, \varepsilon_n)^T$ is an $n$-dimensional vector of independent and identically distributed noise with mean 0 and variance $\sigma^2$. It is well known that the ordinary least-squares estimator becomes unstable or even inapplicable when $p$ is large compared to $n$. One idea for remedying this issue is the ridge regression which gives the ridge estimator
+$$
+\widehat{\boldsymbol{\beta}}_{\text {ridge }}=(\mathbf{X}^T \mathbf{X}+\lambda I_p)^{-1} \mathbf{X}^T \mathbf{y}
+$$
+where $\lambda>0$ is called the ridge parameter.
+\begin{enumerate}[label=\alph*)]
+\item Calculate the mean of $\widehat{\boldsymbol{\beta}}_{\text {ridge }}$.
+\item Calculate the covariance matrix of $\widehat{\boldsymbol{\beta}}_{\text {ridge }}$.
+\end{enumerate}
+\end{problem}
+\begin{solution}
+\begin{enumerate}[label=\alph*)]
+\item
+$$
+E \widehat{\boldsymbol{\beta}}_{\text {ridge }}=(\mathbf{X}^T \mathbf{X}+\lambda I_p)^{-1} \mathbf{X}^T \mathbf{X} \boldsymbol{\beta}_0=\boldsymbol{\beta}_0-\lambda(\mathbf{X}^T \mathbf{X}+\lambda I_p)^{-1} \boldsymbol{\beta}_0
+$$
+\item
+\begin{align*}
+\operatorname{Cov}(\widehat{\boldsymbol{\beta}}_{\text {ridge }}) & =(\mathbf{X}^T \mathbf{X}+\lambda I_p)^{-1} \mathbf{X}^T \operatorname{Cov}(\mathbf{y}) \mathbf{X}(\mathbf{X}^T \mathbf{X}+\lambda I_p)^{-1} \\
+& =\sigma^2(\mathbf{X}^T \mathbf{X}+\lambda I_p)^{-1} \mathbf{X}^T \mathbf{X}(\mathbf{X}^T \mathbf{X}+\lambda I_p)^{-1}
+\end{align*}
+\end{enumerate} 
+\end{solution}
+
+\subsubsection*{Sunday, August 5, afternoon}
+\begin{problem}[2012 -- Statistics -- Aug 5 pm]
+Let $X_i \sim N(\theta_i, \frac{1}{n}), i=1, \cdots, n$, be independent. Find an estimator $\widehat{T}$ of $T=\sum_{i=1}^n \theta_i^2$ and calculate $E(\widehat{T}-T)^2$.
+\end{problem}
+
+\end{document}

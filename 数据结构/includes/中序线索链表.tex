@@ -1,0 +1,433 @@
+\section{中序线索链表}
+
+好的，我们来调整一下关于“标签”的约定，并更新解释和 C++ 代码。
+
+\textbf{新的约定：}
+
+\begin{itemize}
+	\item \textbf{\lstinline{Tag = 0}}: 表示对应的指针是一个 \textbf{线索 (Thread)}。
+	\begin{itemize}
+		\item \lstinline{lTag = 0}: \lstinline{leftChild} 指向中序前驱。
+		\item \lstinline{rTag = 0}: \lstinline{rightChild} 指向中序后继。
+	\end{itemize}
+	\item \textbf{\lstinline{Tag = 1}}: 表示对应的指针指向一个 \textbf{子节点 (Child)}。
+	\begin{itemize}
+		\item \lstinline{lTag = 1}: \lstinline{leftChild} 指向左子节点。
+		\item \lstinline{rTag = 1}: \lstinline{rightChild} 指向右子节点。
+	\end{itemize}
+\end{itemize}
+
+我们将使用 \lstinline{bool}类型的标签，其中 \lstinline{false} 代表 \lstinline{0} (线索)，\lstinline{true} 代表 \lstinline{1} (子节点)。
+
+\subsection{1. 预备知识：二叉树和中序遍历}
+
+（这部分与之前相同，保持不变）
+
+\begin{itemize}
+	\item \textbf{二叉树 (Binary Tree):} 一种树形数据结构，每个节点最多有两个子节点，分别称为左子节点 (left child) 和右子节点 (right child)。
+	\item \textbf{中序遍历 (Inorder Traversal):} 遍历二叉树的一种方式，顺序是：左子树 -> 根节点 -> 右子树。
+\end{itemize}
+
+\subsection{2. 为什么需要线索链表？}
+
+（这部分与之前相同，保持不变）
+利用空指针域，存放指向该节点在中序遍历序列中的前驱或后继节点的指针，从而优化遍历。
+
+\subsection{3. 什么是中序线索链表？（按新约定）}
+
+中序线索链表是一种特殊的二叉树，它通过修改节点的结构并利用空指针域来存储中序遍历的前驱和后继信息。
+
+\begin{itemize}
+	\item 如果一个节点的左子节点指针为空 (\lstinline{nullptr})，则让它指向该节点的\textbf{中序前驱}，并且其左标志位 \lstinline{lTag} 设为 \lstinline{0} (表示线索)。
+	\item 如果一个节点的右子节点指针为空 (\lstinline{nullptr})，则让它指向该节点的\textbf{中序后继}，并且其右标志位 \lstinline{rTag} 设为 \lstinline{0} (表示线索)。
+\end{itemize}
+
+如果指针指向的是实际的子节点：
+
+\begin{itemize}
+	\item 左指针指向左子节点，则 \lstinline{lTag} 设为 \lstinline{1}。
+	\item 右指针指向右子节点，则 \lstinline{rTag} 设为 \lstinline{1}。
+\end{itemize}
+
+\subsection{4. 中序线索链表的节点结构 (C++，按新约定)}
+
+\begin{lstlisting}[language=C++]
+template <typename T>
+struct ThreadNode {
+    T data;
+    ThreadNode<T>* leftChild;
+    ThreadNode<T>* rightChild;
+    bool lTag; // false (0) if leftChild is a thread, true (1) if it's a child
+    bool rTag; // false (0) if rightChild is a thread, true (1) if it's a child
+
+    // Constructor: When a node is created, its links are initially not threads pointing to
+    // specific predecessors/successors. They are either null or will point to children.
+    // So, we initialize tags to 'true' (1), indicating they are (or would be) child links.
+    // The threading process will change these to 'false' (0) if they become threads.
+    ThreadNode(T val) : data(val), leftChild(nullptr), rightChild(nullptr), lTag(true), rTag(true) {}
+};
+\end{lstlisting}
+\begin{itemize}
+	\item \lstinline{lTag} 为 \lstinline{false} (0) 表示 \lstinline{leftChild} 是指向中序前驱的\textbf{线索}。
+	\item \lstinline{lTag} 为 \lstinline{true} (1) 表示 \lstinline{leftChild} 是指向左\textbf{子节点}的指针。
+	\item \lstinline{rTag} 为 \lstinline{false} (0) 表示 \lstinline{rightChild} 是指向中序后继的\textbf{线索}。
+	\item \lstinline{rTag} 为 \lstinline{true} (1) 表示 \lstinline{rightChild} 是指向右\textbf{子节点}的指针。
+\end{itemize}
+
+\subsection{5. 构建中序线索链表（按新约定）}
+
+在对普通二叉树进行中序遍历的过程中，设置线索和相应的标志位。指针 \lstinline{pre} 指向当前访问节点在中序遍历中的前一个节点。
+
+\textbf{线索化过程 (inorderThreading):}
+
+\begin{enumerate}
+	\item 中序遍历左子树（如果左指针是子节点链接，即 \lstinline{lTag == 1}）。
+	\item 处理当前节点 \lstinline{current}:
+	\begin{itemize}
+		\item \textbf{处理左线索:} 如果 \lstinline{current} 没有左子节点 (\lstinline{current->leftChild == nullptr})，则将其左指针指向 \lstinline{pre}，并设置 \lstinline{current->lTag = false} (0, 表示线索)。如果它有左子节点，则 \lstinline{current->lTag = true} (1, 表示子节点)。
+		\item \textbf{处理右线索:} 如果 \lstinline{pre} 不为空且 \lstinline{pre} 没有右子节点 (\lstinline{pre->rightChild == nullptr})，则将 \lstinline{pre} 的右指针指向 \lstinline{current}，并设置 \lstinline{pre->rTag = false} (0, 表示线索)。如果 \lstinline{pre} 有右子节点，则 \lstinline{pre->rTag = true} (1, 表示子节点)。
+	\end{itemize}
+	\item 更新 \lstinline{pre = current}。
+	\item 中序遍历右子树（如果右指针是子节点链接，即 \lstinline{rTag == 1}）。
+\end{enumerate}
+
+\textbf{C++ 实现线索化 (按新约定):}
+
+\begin{lstlisting}[language=C++]
+template <typename T>
+ThreadNode<T>* pre_threading_ptr = nullptr; //全局或成员变量
+
+template <typename T>
+void buildInorderThreadsRecursive(ThreadNode<T>* current) {
+    if (current == nullptr) {
+        return;
+    }
+
+    // 1. Traverse left subtree if it's a child link
+    // For initial threading of an unthreaded tree, we can assume lTag is true if leftChild is not null.
+    // The check current->lTag is more for robustness or re-threading.
+    // A simpler initial threading just calls: buildInorderThreadsRecursive(current->leftChild);
+    // Here, we'll assume tags might have been set by constructor or previous operations.
+    if (current->lTag == true) { // If true (1), it's a child link
+        buildInorderThreadsRecursive(current->leftChild);
+    }
+
+    // 2. Process current node
+    // Set left thread for 'current' if it has no left child
+    if (current->leftChild == nullptr) {
+        current->lTag = false; // false (0) means THREAD
+        current->leftChild = pre_threading_ptr;
+    } else {
+        current->lTag = true; // true (1) means CHILD (already was or should be)
+    }
+
+    // Set right thread for 'pre_threading_ptr' if it has no right child
+    if (pre_threading_ptr != nullptr) {
+        if (pre_threading_ptr->rightChild == nullptr) {
+            pre_threading_ptr->rTag = false; // false (0) means THREAD
+            pre_threading_ptr->rightChild = current;
+        } else {
+             // If pre_threading_ptr->rightChild is not null, it's a child.
+             // Its rTag should be true (1). This would typically be set when that child was processed
+             // or by the constructor.
+             pre_threading_ptr->rTag = true; // Ensure it's marked as CHILD
+        }
+    }
+    pre_threading_ptr = current; // Update predecessor
+
+    // 3. Traverse right subtree if it's a child link
+    if (current->rTag == true) { // If true (1), it's a child link
+        buildInorderThreadsRecursive(current->rightChild);
+    }
+}
+
+template <typename T>
+void createInorderThreadedTree(ThreadNode<T>* root) {
+    pre_threading_ptr<T> = nullptr;
+    if (root == nullptr) return;
+
+    // Call the recursive helper
+    buildInorderThreadsRecursive(root);
+
+    // The last node visited (pre_threading_ptr) in inorder traversal might have its
+    // rightChild as nullptr. This should be a thread to "nullptr" (no successor).
+    if (pre_threading_ptr != nullptr && pre_threading_ptr->rightChild == nullptr) {
+        pre_threading_ptr->rTag = false; // false (0) means THREAD (to nullptr)
+        // pre_threading_ptr->rightChild remains nullptr
+    }
+}
+\end{lstlisting}
+\subsection{6. 遍历中序线索链表（按新约定）}
+
+\textbf{算法：}
+
+\begin{enumerate}
+	\item 找到中序遍历的第一个节点：从根节点开始，只要当前节点的 \lstinline{lTag} 为 \lstinline{1} (表示是子节点链接) 且左子节点存在，就一直向左下走。
+	\item 循环访问节点并找到下一个节点：
+	\begin{itemize}
+		\item 访问当前节点 \lstinline{current}。
+		\item \textbf{找到中序后继：}
+		\begin{itemize}
+			\item 如果 \lstinline{current->rTag == false} (0, 右指针是线索)，那么 \lstinline{current->rightChild} 就是中序后继。
+			\item 如果 \lstinline{current->rTag == true} (1, 右指针指向右子树)，那么中序后继是其右子树中“最左下”的节点（即从 \lstinline{current->rightChild} 开始，只要 \lstinline{lTag == 1} 就一直向左下走）。
+		\end{itemize}
+	\end{itemize}
+\end{enumerate}
+
+\textbf{C++ 实现中序遍历 (按新约定):}
+
+\begin{lstlisting}[language=C++]
+template <typename T>
+void inorderTraversalThreaded(ThreadNode<T>* root) {
+    if (root == nullptr) {
+        std::cout << "Tree is empty." << std::endl;
+        return;
+    }
+
+    // 1. Find the first node in inorder traversal
+    ThreadNode<T>* current = root;
+    // Go to the leftmost node, following child links
+    while (current != nullptr && current->lTag == true) { // true (1) means it's a child link
+        current = current->leftChild;
+    }
+    // Now 'current' is the leftmost node (first in inorder)
+
+    // 2. Traverse the tree using threads
+    std::cout << "Inorder traversal (threaded): ";
+    while (current != nullptr) {
+        std::cout << current->data << " ";
+
+        // Move to the inorder successor
+        if (current->rTag == false) { // false (0) means right child is a THREAD
+            current = current->rightChild; // Successor is directly pointed by the thread
+        } else { // rTag is true (1), meaning right child is a normal CHILD pointer
+            // Successor is the leftmost node in the right subtree
+            current = current->rightChild;
+            // Go to the leftmost node of this right subtree
+            while (current != nullptr && current->lTag == true) { // true (1) means child link
+                current = current->leftChild;
+            }
+        }
+    }
+    std::cout << std::endl;
+}
+\end{lstlisting}
+\subsection{7. C++ 完整示例代码 (按新约定)}
+
+\begin{lstlisting}[language=C++]
+#include <iostream>
+
+// Node structure for Inorder Threaded Binary Tree
+template <typename T>
+struct ThreadNode {
+    T data;
+    ThreadNode<T>* leftChild;
+    ThreadNode<T>* rightChild;
+    bool lTag; // false (0) if leftChild is a thread, true (1) if it's a child
+    bool rTag; // false (0) if rightChild is a thread, true (1) if it's a child
+
+    // Constructor: Initialize tags to true (1), indicating child links by default.
+    // If a pointer (e.g. leftChild) remains nullptr, the threading process
+    // will set its corresponding lTag to false (0).
+    ThreadNode(T val) : data(val), leftChild(nullptr), rightChild(nullptr), lTag(true), rTag(true) {}
+};
+
+template <typename T>
+ThreadNode<T>* pre_node_for_threading_g = nullptr; // Global for simplicity
+
+template <typename T>
+void buildInorderThreadsRecursive(ThreadNode<T>* current) {
+    if (current == nullptr) {
+        return;
+    }
+
+    // 1. Traverse left subtree if it's a child link.
+    // Assumes that if current->leftChild is not NULL, current->lTag is initially true (1).
+    if (current->lTag == true) {
+        buildInorderThreadsRecursive(current->leftChild);
+    }
+
+    // 2. Process current node
+    // If current node has no left child, its left pointer becomes a thread.
+    if (current->leftChild == nullptr) {
+        current->lTag = false; // false (0) indicates THREAD
+        current->leftChild = pre_node_for_threading_g;
+    } else {
+        // If it has a left child, ensure lTag is true (1) for CHILD.
+        // This is typically already true from constructor or previous steps if tree was built with tags.
+        current->lTag = true;
+    }
+
+    // If the predecessor has no right child, its right pointer becomes a thread to current.
+    if (pre_node_for_threading_g != nullptr) {
+        if (pre_node_for_threading_g->rightChild == nullptr) {
+            pre_node_for_threading_g->rTag = false; // false (0) indicates THREAD
+            pre_node_for_threading_g->rightChild = current;
+        } else {
+            // If predecessor has a right child, ensure its rTag is true (1) for CHILD.
+            pre_node_for_threading_g->rTag = true;
+        }
+    }
+    pre_node_for_threading_g = current; // Update predecessor
+
+    // 3. Traverse right subtree if it's a child link.
+    if (current->rTag == true) {
+        buildInorderThreadsRecursive(current->rightChild);
+    }
+}
+
+template <typename T>
+void createInorderThreadedTree(ThreadNode<T>* root) {
+    pre_node_for_threading_g<T> = nullptr;
+    if (root == nullptr) return;
+
+    buildInorderThreadsRecursive(root);
+
+    // The last node visited (pre_node_for_threading_g) should have its right thread
+    // point to nullptr (or a header node in more complex setups).
+    // Its rTag should be false (0) if rightChild is indeed a thread (even to nullptr).
+    if (pre_node_for_threading_g != nullptr && pre_node_for_threading_g->rightChild == nullptr) {
+        pre_node_for_threading_g->rTag = false; // false (0) means THREAD to nullptr
+    }
+}
+
+template <typename T>
+void inorderTraversalThreaded(ThreadNode<T>* root) {
+    if (root == nullptr) {
+        std::cout << "Tree is empty." << std::endl;
+        return;
+    }
+
+    ThreadNode<T>* current = root;
+    // Find the first node (leftmost)
+    while (current != nullptr && current->lTag == true) { // true (1) means CHILD link
+        current = current->leftChild;
+    }
+
+    std::cout << "Inorder Traversal (Threaded): ";
+    while (current != nullptr) {
+        std::cout << current->data << " ";
+
+        if (current->rTag == false) { // false (0) means rChild is THREAD
+            current = current->rightChild;
+        } else { // rTag is true (1), rChild is a CHILD
+            current = current->rightChild; // Go to right child
+            // Then find the leftmost node in this right subtree
+            while (current != nullptr && current->lTag == true) { // true (1) means CHILD link
+                current = current->leftChild;
+            }
+        }
+    }
+    std::cout << std::endl;
+}
+
+
+int main() {
+    // Construct a sample binary tree. Tags are initially true (1) by constructor.
+    //      4
+    //     / \
+    //    2   5
+    //   / \   \
+    //  1   3   6
+    // Inorder: 1, 2, 3, 4, 5, 6
+    ThreadNode<int>* root = new ThreadNode<int>(4);
+    root->leftChild = new ThreadNode<int>(2); // root->lTag remains true (1)
+    root->rightChild = new ThreadNode<int>(5); // root->rTag remains true (1)
+
+    root->leftChild->leftChild = new ThreadNode<int>(1);
+    root->leftChild->rightChild = new ThreadNode<int>(3);
+    root->rightChild->rightChild = new ThreadNode<int>(6);
+
+    std::cout << "Original tree structure created. Tags default to 1 (child link potential)." << std::endl;
+
+    createInorderThreadedTree(root);
+    std::cout << "Tree has been threaded." << std::endl;
+
+    inorderTraversalThreaded(root); // Expected output: 1 2 3 4 5 6
+
+    // Manually check some threads for node '3' (inorder: 1, 2, *3*, 4, 5, 6)
+    // Predecessor of 3 is 2. Successor of 3 is 4.
+    // Node 3's leftChild will be a thread to 2 (lTag=0).
+    // Node 3's rightChild will be a thread to 4 (rTag=0).
+    ThreadNode<int>* node3 = root->leftChild->rightChild; // This is node 3
+    if (node3->lTag == false) { // lTag is 0 (false) for thread
+        std::cout << "Node 3's left thread (lTag=0) points to: "
+                  << (node3->leftChild ? std::to_string(node3->leftChild->data) : "nullptr")
+                  << " (Expected: 2)" << std::endl;
+    } else {
+        std::cout << "Node 3's left is a child (lTag=1)." << std::endl;
+    }
+
+    if (node3->rTag == false) { // rTag is 0 (false) for thread
+        std::cout << "Node 3's right thread (rTag=0) points to: "
+                  << (node3->rightChild ? std::to_string(node3->rightChild->data) : "nullptr")
+                  << " (Expected: 4)" << std::endl;
+    } else {
+        std::cout << "Node 3's right is a child (rTag=1)." << std::endl;
+    }
+
+    // Manually check threads for node '1' (inorder: *1*, 2, 3, 4, 5, 6)
+    // Predecessor of 1 is null. Successor of 1 is 2.
+    // Node 1's leftChild will be a thread to nullptr (lTag=0).
+    // Node 1's rightChild will be a thread to 2 (rTag=0).
+    ThreadNode<int>* node1 = root->leftChild->leftChild; // This is node 1
+    if (node1->lTag == false) {
+         std::cout << "Node 1's left thread (lTag=0) points to: "
+                  << (node1->leftChild ? std::to_string(node1->leftChild->data) : "nullptr")
+                  << " (Expected: nullptr for this simple setup)" << std::endl;
+    }
+     if (node1->rTag == false) {
+        std::cout << "Node 1's right thread (rTag=0) points to: "
+                  << (node1->rightChild ? std::to_string(node1->rightChild->data) : "nullptr")
+                  << " (Expected: 2)" << std::endl;
+    }
+
+
+    // Memory cleanup would be needed here for a complete program
+    // delete ... (complex for threaded trees, omitted for brevity)
+
+    return 0;
+}
+
+\end{lstlisting}
+\subsection{8. 优缺点}
+
+（这部分与之前相同，保持不变）
+
+\textbf{优点：}
+
+\begin{enumerate}
+	\item 快速遍历。
+	\item 查找前驱/后继容易。
+	\item 空间利用。
+\end{enumerate}
+
+\textbf{缺点：}
+
+\begin{enumerate}
+	\item 结构复杂。
+	\item 插入和删除复杂。
+\end{enumerate}
+
+\subsection{9. 备考小结（按新约定）}
+
+\begin{itemize}
+	\item \textbf{核心目的：} 利用空指针，实现不需要栈/递归的快速中序遍历，并方便查找中序前驱/后继。
+	\item \textbf{节点变化：} 增加 \lstinline{lTag} 和 \lstinline{rTag} (布尔型)。
+	\begin{itemize}
+		\item \lstinline{leftChild} 指针：
+		\begin{itemize}
+			\item \lstinline{lTag = false} (0): 指向中序\textbf{前驱} (是线索)。
+			\item \lstinline{lTag = true} (1): 指向左\textbf{子节点}。
+		\end{itemize}
+		\item \lstinline{rightChild} 指针：
+		\begin{itemize}
+			\item \lstinline{rTag = false} (0): 指向中序\textbf{后继} (是线索)。
+			\item \lstinline{rTag = true} (1): 指向右\textbf{子节点}。
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{线索化：} 在中序遍历过程中，用一个 \lstinline{pre} 指针记录前驱，建立当前节点与 \lstinline{pre} 之间的线索，并正确设置 \lstinline{Tag} 为 \lstinline{false} (0)。如果指针是指向子节点的，则 \lstinline{Tag} 为 \lstinline{true} (1)。
+	\item \textbf{遍历：} 找到第一个节点（一直沿 \lstinline{lTag=true} (1) 的左子链走到底），然后利用 \lstinline{rTag=false} (0) 的右线索或右子树 (\lstinline{rTag=true} (1)) 的最左节点不断找后继。
+\end{itemize}
+
+这个版本应该符合你对标签值 \lstinline{0} 和 \lstinline{1} 的具体要求了。祝你期末备考顺利！

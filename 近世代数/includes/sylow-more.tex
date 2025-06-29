@@ -1,0 +1,100 @@
+\section{Sylow more}
+
+\href{https://kconrad.math.uconn.edu/blurbs/grouptheory/sylowmore.pdf}{sylowmore.pdf}
+
+It is natural to ask how the SYlow theorems can be extended to $p$ -subgroups that are not $p$ -Sylow subgroups.
+
+\begin{theorem}[Theorem 4.1]
+If $p^d \mid |G|$ then there is a subgroup of $G$ with size $p^d$.\label{51886d}
+\end{theorem}
+
+\begin{note}
+First we directly prove \cref{51886d} .
+\end{note}
+\begin{proof}
+We \underline{induct} on the size of $G$. The case when $|G|=1$ or prime is trivial. Now suppose $|G|>1$ and the theorem is proved for all groups of smaller size. That is, we assume each group $G^{\prime}$ with $\left|G^{\prime}\right|<|G|$ has a subgroup of size equal to an arbitrary prime power dividing $\left|G^{\prime}\right|$.
+
+Choose a prime power $p^d$ dividing $|G|$, with $p^d>1$. We seek a subgroup of $G$ with size $p^d$. If $G$ has a proper subgroup $H$ such that $p^d| |H|$, then we're done: $H$ has a subgroup of size $p^d$ by induction (since $|H|<|G|$) and this subgroup is in $G$ too.
+
+Now we suppose every proper subgroup $H \subset G$ has size not divisible by $p^d$. Since $|G|=|H|[G: H]$ is divisible by $p^d$, we see every proper subgroup of $G$ has index divisible by $p$. Consider the class equation
+\[
+|G|=|Z(G)|+\sum_{i=1}^r\left[G: Z\left(g_i\right)\right]
+\]
+where $g_1, \ldots, g_r$ represent the conjugacy classes of size greater than 1. We have $p||G|$ and $p \mid\left[G: Z\left(g_i\right)\right]$ for each $i$ since each subgroup $Z\left(g_i\right)$ of $G$ is proper (if $Z\left(g_i\right)=G$ then $g_i$ would be in a conjugacy class of size 1, which isn't true). Therefore $p||Z(G)|$. By Cauchy's theorem, $Z(G)$ has an element of order $p$, say $z$. As $z \in Z(G),\langle z\rangle \triangleleft G$.
+
+We now consider the quotient group $G /\langle z\rangle$, which is a group with size less than that of $G$. Since $p^{d-1}| |G /\langle z\rangle|$, by induction $G /\langle z\rangle$ has a subgroup with size $p^{d-1}$. Its inverse image under $G \rightarrow G /\langle z\rangle$ is a subgroup of $G$ with size $p \cdot p^{d-1}=p^d$.
+\end{proof}
+
+\begin{theorem}[Cauchy's Theorem]
+Let $G$ be a finite group and let $p$ be a prime. If $p$ divides $|G|$, then $G$ contains an element of order $p$.
+\end{theorem}
+\begin{note}
+Here is a proof: \href{https://kconrad.math.uconn.edu/blurbs/grouptheory/cauchypf.pdf}{cauchypf.pdf}.
+\end{note}
+\begin{theorem}
+Let $G$ be a finite group. If $p^d \mid |G|$ and $d>0$ then each subgroup of $G$ with size $p^{d-1}$ has index $p$ in a subgroup of $G$.\label{4aded7}
+\end{theorem}
+
+From \cref{4aded7} we can build a nested chain
+\[
+\{ e \}\subset G_1\subset G_2\subset\dots \subset G_k\subset G
+\]
+where $[G_i:G_{i-1}]=p$, so $\lvert G_i \rvert=p^{i}$. \cref{51886d} is a special case of \cref{4aded7}, so it suffices to prove \cref{4aded7}.
+
+\begin{proof}
+The case $d=1$ says there is a subgroup of size $p$ in $G$. This is Cauchy's theorem.
+
+Now take $d>1$. Let $H$ be a subgroup of $G$ with size $p^{d-1}$. We want to find a subgroup $K \subset G$ in which $H$ has index $p$. Consider the left multiplication action of $H$ (not $G!$ ) on $G / H$. Since $H$ is a non-trivial $p$-group,
+\begin{equation}
+|G / H| \equiv \mid\{\text { fixed points }\} \mid \bmod p
+\label{9fda5b}
+\end{equation}
+
+The left side of the congruence is $[G: H]$, which is divisible by $p$. Which cosets in $G / H$ are fixed points? They are
+\[
+\begin{aligned}
+\{g H: h g H=g H \text { for all } h \in H\} & =\left\{g H: g^{-1} h g \in H \text { for all } h \in H\right\} \\
+& =\left\{g H: g^{-1} H g=H\right\} \\
+& =\{g H: g \in \mathrm{~N}(H)\} \\
+& =\mathrm{N}(H) / H
+\end{aligned}
+\]
+Therefore the set of fixed points of $H$ acting on $G / H$ is $\mathrm{N}(H) / H$, which has the structure of a group since $H \lhd \mathrm{~N}(H)$. By (4.2), $p\mid|\mathrm{~N}(H) / H|$, so Cauchy tells us there is a subgroup $H^{\prime} \subset \mathrm{N}(H) / H$ of order $p$. Its inverse image under $\mathrm{N}(H) \rightarrow \mathrm{N}(H) / H$ is a subgroup of $\mathrm{N}(H)$ with size $p \cdot p^{d-1}=p^d$, and it contains $H$ with index $p$.
+\end{proof}
+
+\begin{theorem}[Orbit-Stabilizer Theorem]
+Let $G$ be a group acting on a set $X$. For any $x \in X$, we have
+\[
+|G| = |\mathcal{O}_x| \cdot |\operatorname{Stab}(x)|
+\]where $\mathcal{O}_x$ is the orbit of $x$ and $\operatorname{Stab}(x)$ is the stabilizer of $x$. In other words,
+\[
+|\mathcal{O}_x| = [G : \operatorname{Stab}(x)]
+\]
+\end{theorem}
+Explain the reason why \cref{9fda5b} holds.
+
+Let's consider the orbits of the action of $H$ on $G / H$. For any $g H \in G / H$, the orbit of $g H$ under the action of $H$ is given by $\operatorname{Orb}(g H)=\{h \cdot(g H) \mid h \in H\}=\{(h g) H \mid h \in H\}$. The size of this orbit is given by the Orbit-Stabilizer Theorem: $|\operatorname{Orb}(g H)|=|H| /\left|\operatorname{Stab}_H(g H)\right|$,
+
+If $g H$ is not a fixed point, then there exists at least one $h \in H$ such that $h \cdot(g H) \neq g H$, which means $\left|\operatorname{Stab}_H(g H)\right|$ is a proper subgroup of $H$. Since $H$ is a $p$-group of order $p^{d-1}>1$, the size of any proper subgroup of $H$ must be a power of $p$ strictly less than $p^{d-1}$. Therefore, the index $|H| /\left|\operatorname{Stab}_H(g H)\right|=|\operatorname{Orb}(g H)|$ must be a multiple of $p$.
+
+We can partition the set $G / H$ into disjoint orbits under the action of $H$. Let $F$ be the set of fixed points. Then,
+\[
+|G / H|=|F|+\sum_{\text {orbits } \mathcal{O} \text { not in } F}|\mathcal{O}|
+\]
+We know that $|F|=\left|N_G(H) / H\right|$, and for every orbit $\mathcal{O}$ not in $F$, its size $|\mathcal{O}|$ is a multiple of $p$. Therefore, when we take this equation modulo $p$, the sum on the right-hand side becomes 0 $(\bmod p)$, and we are left with:
+\[
+|G / H| \equiv|F| \quad(\bmod p)
+\]
+\begin{corollary}
+Let $H$ be a $p$-subgroup of the finite group $G$. Then
+\[
+[G: H] \equiv[\mathrm{N}(H): H] \bmod p .
+\]In particular, if $p \mid[G: H]$ then $H \neq \mathrm{N}(H)$.
+\end{corollary}
+\begin{proof}
+The congruence here is (4.2). When $p \mid[G: H],[\mathrm{N}(H): H] \neq 1$, so $H \neq \mathrm{N}(H)$.
+\end{proof}
+
+\begin{theorem}[Frobenius]
+If $p^r| | G \mid$, the number of subgroups of $G$ with size $p^r$ is $\equiv 1 \bmod p$.
+\end{theorem}

@@ -1,0 +1,394 @@
+\documentclass[
+	leqno, % Add leqno option here
+	a4paper, % Page size
+	fontsize=12pt, % Base font size
+	twoside=false, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+	open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
+	chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
+	numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
+    UTF-8, % Add this fix lots of style compile issue when using ctex and XeLaTex
+	toc=nottotoc,
+	BCOR=12mm,
+	DIV=calc,
+]{styles/kaobook}
+%----------------------------------------------------------------------------------------
+%	加载包以及文档配置，新项目可以直接复制粘贴
+%----------------------------------------------------------------------------------------
+\renewcommand{\marginlayout}{%
+	\newgeometry{
+		top=27.4mm, % 页面顶部到正文内容的距离
+		bottom=15.4mm, % 页面底部到正文内容的距离
+		inner=13.8mm, % 页面内侧（装订侧）到正文内容的距离
+		textwidth=137mm, % width of the text
+		marginparsep=5.2mm, % width between text and margin
+		marginparwidth=39.4mm, % width of the margin
+	}%
+}
+
+\input{styles/packageconfig.tex}
+\setlength{\intextsep}{1pt plus 1pt minus 1pt}
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\usetikzlibrary{patterns}
+% Load packages for testing
+\usepackage{blindtext}
+% 从mathtools包中引入\coloneqq和\eqqcolon命令
+\makeatletter
+\providecommand{\coloneqq}{\mathrel{\mathop{:}=}}
+\providecommand{\eqqcolon}{\mathrel{\mathop{=}:}}
+\makeatother
+
+\addbibresource{main.bib} % Bibliography file
+
+
+% Paths in which to look for images
+\makeindex[columns=3, title=Alphabetical Index, intoc] % 取消注释以生成按字母顺序排列的索引
+\makeindex[columns=3, title=按字母排序的索引, intoc] % 创建一个按字母排序的索引，并将其添加到目录中
+\makeglossaries % 生成术语表所需的文件
+\input{glossary.tex} % 包含术语表定义
+\makenomenclature % 生成术语表所需的文件
+% Reset sidenote counter at chapters
+%\counterwithin*{sidenote}{chapter} % 取消注释以在每章重置旁注计数器
+
+\let\boldsymbol\symbfit
+
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage{eso-pic}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+\newcommand{\degree}{^\circ}
+% hyperref应放在大多数包之后
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+\usetikzlibrary{decorations.pathmorphing}
+\hypersetup{
+    unicode=true,
+    pdfencoding=auto,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    CJKbookmarks=true
+}
+
+\graphicspath{{../figures/}}
+
+% \renewenvironment{proof}{\begin{prf}}{\end{prf}}
+% \newenvironment{solution}{\begin{soln}}{\end{soln}}
+% \renewenvironment{exercise}{\begin{exr}}{\end{exr}}
+% \renewenvironment{definition}{\begin{defi}}{\end{defi}}
+% \renewenvironment{corollary}{\begin{cor}}{\end{cor}}
+% \renewenvironment{theorem}{\begin{thm}}{\end{thm}}
+% \renewenvironment{lemma}{\begin{lem}}{\end{lem}}
+% \renewenvironment{proposition}{\begin{prop}}{\end{prop}}
+% \renewenvironment{property}{\begin{ppt}}{\end{ppt}}
+% \renewenvironment{example}{\begin{expl}}{\end{expl}}
+% \renewenvironment{remark}{\begin{rmk}}{\end{rmk}}
+
+\newtheorem*{note}{Note}
+\usepackage{mdframed} % 用于创建带框的环境
+\mdfdefinestyle{solutionstyle}{
+    linecolor=gray,
+    backgroundcolor=gray!10,
+    linewidth=1pt,
+    innertopmargin=10pt,
+    innerbottommargin=10pt,
+    leftmargin=0pt,
+    rightmargin=0pt
+}
+\newtheorem*{solution}{Solution}
+\mdfdefinestyle{solutionstyle}{
+    linecolor=gray,
+    backgroundcolor=gray!10,
+    linewidth=1pt,
+    innertopmargin=10pt,
+    innerbottommargin=10pt,
+    leftmargin=0pt,
+    rightmargin=0pt,
+    font=\small % 设置字体大小为small
+}
+\surroundwithmdframed[style=solutionstyle]{solution} % 使用mdframed包将solution环境包围起来，并应用solutionstyle样式
+
+\newtheorem*{pf}{Proof}
+\surroundwithmdframed[style=solutionstyle]{pf}
+\renewenvironment{proof}{\begin{pf}}{\end{pf}}
+
+\begin{document}
+
+\subject{使用此文档作为模板}
+
+\title[示例及说明文档 {\normalfont\texttt{kaobook}} 类]{现代数学笔记\\Modern Mathematics Notes}
+\subtitle{中文 Kaobook 模板制作}
+
+\author[乐绎华]{乐绎华·中大数学系2023级本科生}
+
+\date{\zhtoday}
+
+\publishers{Sun Yat-sen University}
+
+%----------------------------------------------------------------------------------------
+
+\frontmatter % Denotes the start of the pre-document content, uses roman numerals
+
+\definecolor{titlecolorcoverpage}{RGB}{64, 62, 91}
+
+%----------------------------------------------------------------------------------------
+%	OUTPUT TITLE PAGE AND PREVIOUS
+%----------------------------------------------------------------------------------------
+
+% Note that \maketitle outputs the pages before here
+% \maketitle
+\begin{titlepage} % 创建一个新的页面
+%用来将图片从左下角开始平铺整个封面
+	\AddToShipoutPicture*{%
+	\AtPageLowerLeft{%
+		\adjustbox{width=1.1\paperwidth, height=1.5\paperheight, keepaspectratio}{% 强制图片至纸张尺寸，但可能裁切
+			\includegraphics{images/Elias_Maur.jpg}
+		}
+	}
+}
+\begin{flushleft} % 左对齐环境
+	\setlength{\leftskip}{1cm} % 左侧缩进
+	\makeatletter % 允许访问带有@字符的内部命令
+	\vspace*{4cm} % 标题距离页面顶端的空白
+	{\color{titlecolorcoverpage}\Huge \textbf{\@title} \par} % 使用前文定义的title作为标题
+	\vspace{1cm} % 标题和子标题的间距
+	{\color{titlecolorcoverpage}\Large\@subtitle \par} % 使用前文定义的subtitle作为子标题
+	\vfill % 作者信息前的垂直填充
+	{\color{white}\large{\@author}\par} % 作者名
+	{\color{white}\large \@publishers \par} % 出版者
+	{\color{white}\large \zhtoday\par} % 日期，默认为当天
+	\makeatother % 将@重置为非字母字符
+	\vspace{0cm} % 标题和子标题的间距
+	% 结束左对齐环境
+\end{flushleft}
+\ClearShipoutPicture % 清除背景图片
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS & LIST OF FIGURES/TABLES
+%----------------------------------------------------------------------------------------
+
+\begingroup % 以下命令的局部范围
+
+% 定义目录、插图列表和表格列表的样式
+\setstretch{1} % 取消注释以修改目录中的行距
+%\hypersetup{linkcolor=blue} % 取消注释以设置目录中链接的颜色
+\setlength{\textheight}{230\hscale} % 手动调整目录页面的高度
+
+% 打开etoc包的兼容模式
+%\etocstandarddisplaystyle % "目录显示"仿佛etoc未加载
+%\etocstandarddisplaystyle 已弃用，使用\etocclasstocstyle
+% \etocclasstocstyle % "目录显示"仿佛etoc未加载
+% \etocstandardlines % "目录行"仿佛etoc未加载
+
+\tableofcontents % 输出目录
+\listoffigures % 输出插图列表
+% 注释掉以下两行以在不同页面上显示插图列表和表格列表
+\let\cleardoublepage\bigskip
+\let\clearpage\bigskip
+\listoftables % 输出表格列表
+
+\endgroup
+
+
+%----------------------------------------------------------------------------------------
+%	MAIN BODY
+%----------------------------------------------------------------------------------------
+\mainmatter % 表示正文内容的开始，重置页码并使用阿拉伯数字
+
+\setchapterstyle{kao} % 选择默认的章节标题样式
+\pagelayout{wide}
+\addpartwithbg{大二上}{elias-maurer-1D5KHvFBVSs-unsplash}
+\pagelayout{margin}
+
+\input{chapters/ode.tex}
+\input{chapters/probability.tex}
+\input{chapters/mathematical_analysis_3.tex}
+\input{chapters/numerical_analysis.tex}
+
+\setchapterstyle{kao} % 选择默认的章节标题样式
+\pagelayout{wide}
+\addpartwithbg{大二下}{elias-maurer-ykwP1X61zbU-unsplash}
+\pagelayout{margin}
+
+
+
+\setchapterpreamble[u]{\margintoc}
+\chapter{数理统计}
+\labch{statistics}
+
+\input{../数理统计/includes/chap1-2.tex}
+\input{../数理统计/includes/chap3.tex}
+\input{../数理统计/includes/chap4.tex}
+\input{../数理统计/includes/chap5.tex}
+\input{../数理统计/includes/chap6.tex}
+\input{../数理统计/includes/distributions.tex}
+\input{../数理统计/includes/simple-approximation.tex}
+\input{../数理统计/includes/Convergence-of-Random-Variables.tex}
+\input{../数理统计/includes/relationships-of-convergences.tex}
+\input{../数理统计/includes/Models-Statistical-Inference-and-Learning.tex}
+\input{../数理统计/includes/Bootstrap.tex}
+\input{../数理统计/includes/Parametric-Inference.tex}
+\input{../数理统计/includes/hw1.tex}
+\input{../数理统计/includes/hw2.tex}
+\input{../数理统计/includes/hw3.tex}
+\input{../数理统计/includes/hw4.tex}
+\input{../数理统计/includes/hw5.tex}
+\input{../数理统计/includes/hw6.tex}
+\input{../数理统计/includes/hw7.tex}
+\input{../数理统计/includes/hw8.tex}
+\input{../数理统计/includes/hw9.tex}
+
+
+\setchapterpreamble[u]{\margintoc}
+\chapter{实变函数}
+\labch{real-analysis}
+\input{../实变函数/includes/Cardinality.tex}
+\input{../实变函数/includes/Topological-preliminaries.tex}
+\input{../实变函数/includes/Construction-of-measure.tex}
+\input{../实变函数/includes/Lebesgue测度-可测集-测度-Borel集.tex}
+\input{../实变函数/includes/不同意义收敛的函数序列.tex}
+\input{../实变函数/includes/函数空间.tex}
+\input{../实变函数/includes/积分理论.tex}
+\input{../实变函数/includes/hw1.tex}
+\input{../实变函数/includes/hw2.tex}
+\input{../实变函数/includes/hw3.tex}
+\input{../实变函数/includes/hw4.tex}
+\input{../实变函数/includes/hw5.tex}
+\input{../实变函数/includes/hw6.tex}
+\input{../实变函数/includes/hw7.tex}
+\input{../实变函数/includes/hw8.tex}
+\input{../实变函数/includes/hw9.tex}
+
+
+\setchapterpreamble[u]{\margintoc}
+\chapter{复变函数}
+\labch{complex-analysis}
+\section{基础知识}
+\input{../复变函数/includes/复分析知识简介.tex}
+\input{../复变函数/includes/delta-function.tex}
+\input{../复变函数/includes/primary-functions.tex}
+\input{../复变函数/includes/解析函数.tex}
+\input{../复变函数/includes/复变函数的积分.tex}
+\input{../复变函数/includes/留数计算方法.tex}
+\input{../复变函数/includes/复分析脉络.tex}
+\input{../复变函数/includes/最大模原理.tex}
+\input{../复变函数/includes/解析函数的幂级数表示.tex}
+\input{../复变函数/includes/洛朗级数.tex}
+\input{../复变函数/includes/the logic of Harmoic function.tex}
+\input{../复变函数/includes/hw1.tex}
+\input{../复变函数/includes/hw2.tex}
+\input{../复变函数/includes/hw3.tex}
+\input{../复变函数/includes/hw4.tex}
+\input{../复变函数/includes/hw5.tex}
+\input{../复变函数/includes/hw6.tex}
+\input{../复变函数/includes/hw7.tex}
+\input{../复变函数/includes/hw8.tex}
+\input{../复变函数/includes/hw9.tex}
+\input{../复变函数/includes/hw10.tex}
+
+
+\setchapterpreamble[u]{\margintoc}
+\chapter{数学分析进阶}
+\labch{mathematical-analysis-plus}
+\input{../数学分析进阶/includes/chap1.tex}
+\input{../数学分析进阶/includes/实数的完备性.tex}
+\input{../数学分析进阶/includes/hw1.tex}
+\input{../数学分析进阶/includes/hw2.tex}
+\input{../数学分析进阶/includes/hw3.tex}
+\input{../数学分析进阶/includes/hw4.tex}
+\input{../数学分析进阶/includes/hw5.tex}
+\input{../数学分析进阶/includes/hw6.tex}
+\input{../数学分析进阶/includes/hw7.tex}
+\input{../数学分析进阶/includes/hw8.tex}
+\input{../数学分析进阶/includes/hw9.tex}
+
+
+\setchapterpreamble[u]{\margintoc}
+\chapter{近世代数}
+\labch{algebra}
+\input{../近世代数/includes/Permutation-Groups.tex}
+\input{../近世代数/includes/Decomposition-of-Finite-Abelian-Groups.tex}
+\input{../近世代数/includes/Sylow-theorems.tex}
+\input{../近世代数/includes/sylow-more.tex}
+\input{../近世代数/includes/Sylow-exercise.tex}
+\input{../近世代数/includes/Broad-classifications.tex}
+\input{../近世代数/includes/semi-product.tex}
+\input{../近世代数/includes/semidirect-product.tex}
+\input{../近世代数/includes/Galois-theory-at-work.tex}
+\input{../近世代数/includes/Galois-theory-at-work-1.tex}
+\input{../近世代数/includes/Irreducibility-of-polnomial.tex}
+\input{../近世代数/includes/环论.tex}
+\input{../近世代数/includes/hw1.tex}
+\input{../近世代数/includes/hw2.tex}
+\input{../近世代数/includes/hw3.tex}
+\input{../近世代数/includes/hw4.tex}
+\input{../近世代数/includes/hw5.tex}
+\input{../近世代数/includes/hw6.tex}
+\input{../近世代数/includes/hw7.tex}
+
+
+\setchapterpreamble[u]{\margintoc}
+\chapter{cmc决赛}
+\labch{cmc-final}
+\input{../includes/cmc决赛.tex}
+\input{../微分几何/includes/数学类解析几何.tex}
+\input{../includes/数分高代.tex}
+
+\setchapterstyle{kao} % 选择默认的章节标题样式
+\pagelayout{wide}
+\addpartwithbg{课外笔记}{elias-maurer-1D5KHvFBVSs-unsplash}
+\pagelayout{margin}
+
+
+\setchapterpreamble[u]{\margintoc}
+\chapter{偏微分方程}
+\labch{partial-differential-equation}
+\section{Sobolev 空间}
+\input{../偏微分方程/includes/Sobolev-Spaces.tex}
+\section{Evans 第五章}
+\input{../偏微分方程/includes/Evans-Chap5.tex}
+\section{Hyperbolic equations}
+\input{../偏微分方程/includes/Hyperbolic-equations.tex}
+\section{Parabolic equations}
+\input{../偏微分方程/includes/Parabolic-equations.tex}
+\section{Elliptic equations}
+\input{../偏微分方程/includes/Second-Order-Elliptic-Equations.tex}
+\input{../偏微分方程/includes/场论初步.tex}
+\input{../偏微分方程/includes/分布.tex}
+\input{../偏微分方程/includes/Diffusion.tex}
+\input{../偏微分方程/includes/Fourier分析初步.tex}
+
+\setchapterpreamble[u]{\margintoc}
+\chapter{微分几何}
+\labch{differential-geometry}
+\input{../微分几何/includes/数学类解析几何.tex}
+\input{../微分几何/includes/空间曲线(不严谨).tex}
+\input{../微分几何/includes/曲面形式(不严谨).tex}
+\input{../微分几何/includes/曲面论(不严谨).tex}
+\input{../微分几何/includes/测地曲率和测地线(计算版本).tex}
+\input{../微分几何/includes/极小曲面.tex}
+
+\setchapterpreamble[u]{\margintoc}
+\chapter{表示论}
+\labch{representation-theory}
+\input{../表示论/includes/有限群表示论.tex}
+\input{../表示论/includes/group-representation.tex}
+\input{../表示论/includes/Representation-Theory-and-Character-Theory.tex}
+\input{../表示论/includes/group-algebra.tex}
+\input{../表示论/includes/FG-modules.tex}
+\input{../表示论/includes/tensor-product.tex}
+
+\appendix % 从这里开始，章节序号将以字母排序并重设书签等级
+\addpartwithbg{附录}{Paul-Pastourmat}
+
+\pagelayout{wide}
+\input{../includes/Appendix.tex}
+%----------------------------------------------------------------------------------------
+
+\backmatter % Denotes the end of the main document content
+% \setchapterstyle{plain} % Output plain chapters from this point onwards
+
+
+\end{document}

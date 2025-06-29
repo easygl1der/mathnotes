@@ -1,0 +1,48 @@
+\section{群论杂题}
+
+见《近世代数三百题》
+
+\begin{proposition}
+1．9．9．设 $n_1, \cdots, n_r$ 为自然数，则
+（1） $\mathbb{Z}_{n_1} \times \mathbb{Z}_{n_2} \cong \mathbb{Z}_{n_1 n_2}$ 当且仅当 $\left(n_1, n_2\right)=1$ ．
+（2）如果 $n_1, \cdots, n_r$ 两两互素，则 $\mathbb{Z}_{n_1} \times \cdots \times \mathbb{Z}_{n_r} \cong \mathbb{Z}_{n_1 \cdots n_2}$ ．\label{785b89}
+\end{proposition}
+
+\begin{proposition}
+1．9．10．试证 $7 \cdot 11 \cdot 13$ 阶群一定是循环群．
+\end{proposition}
+\begin{proof}
+首先利用 Sylow 定理证明 $\mathbb{Z}_{7}\lhd G,\mathbb{Z}_{11}\lhd G,\mathbb{Z}_{13}\lhd G$. 借助 \cref{785b89} 可知 $\mathbb{Z}_{7}\times \mathbb{Z}_{11}\times \mathbb{Z}_{13}\cong \mathbb{Z}_{7\cdot11\cdot13}$ 是循环群.
+\end{proof}
+
+\begin{definition}
+Let $H$ be a subgroup of $G$. Define
+\[
+K:=\bigcap_{g \in G} g H g^{-1}
+\]to be the intersection of all conjugates of $H$.
+\end{definition}
+\begin{exercise}
+\begin{enumerate}
+		\item Show that $K$ is a normal subgroup of $G$.
+		\item Show that if $[G: H]$ is finite, then $[G: K]$ is finite. (Hint: first show that the intersection above defining $K$ is essentially a finite intersection.)
+	\end{enumerate}
+\end{exercise}
+\begin{proof}
+(1) We check that for any $s \in G$,
+\[
+s K s^{-1}:=s\left(\bigcap_{g \in G} g H g^{-1}\right) s^{-1}=\bigcap_{g \in G} s g H g^{-1} s^{-1}=\bigcap_{g^{\prime} \in G} g^{\prime} H g^{\prime-1}=K
+\]
+with $g^{\prime}=s g$ in the notation. So $K$ is a normal subgroup of $G$.
+
+(2) We start with a lemma: if $H_1$ and $H_2$ are subgroups of $G$ of finite index. Then $H_1 \cap H_2$ is a subgroup of $G$ of finite index. The easiest way to see this is to let $H_1$ act on the left cosets $G / H_2$ by left multiplication. Then the stabilizer group at $H_2$ is precisely $H_1 \cap H_2$. We know that the index of $H_1 \cap H_2$ inside $H_1$ is precisely the number of elements in the orbit of the identity coset $H_2$ in $G / H_2$ under this action. In particular, $\left[H_1: H_1 \cap H_2\right] \leq \#\left(G / H_2\right)$. It then follows that $\left[G: H_1 \cap H_2\right] \leq\left[G: H_1\right] \cdot\left[G: H_2\right]$.
+
+Now, we come back to the proof of (2). As $[G: H]$ is assumed to be finite, we may choose a finite set of coset representatives $g_1 H, \ldots, g_r H$ of $G / H$. Then for every element $g \in g_i H$ (writing $g=g_i h$ ), we have
+\[
+g H g^{-1}=g_i h H h^{-1} g_i^{-1}=g_i H g_i^{-1} .
+\]
+So $K$ is the intersection
+\[
+\bigcap_{i=1}^r g_i H g_i^{-1},
+\]
+which is the intersection of finitely many finite index subgroups. By the lemma above, $[G: K]$ is finite as well.
+\end{proof}

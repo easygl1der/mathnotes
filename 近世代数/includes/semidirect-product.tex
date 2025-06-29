@@ -1,0 +1,283 @@
+\section{Semidirect-product}
+
+See \href{https://kconrad.math.uconn.edu/blurbs/grouptheory/semidirect-product.pdf}{semidirect-product.pdf}
+
+\subsection{When \texorpdfstring{$G\cong H\times K$}{Gcong Htimes K}}
+
+\begin{theorem}[recognition theorem]
+Let $G$ be a group with subgroups $H$ and $K$ where
+	\begin{enumerate}
+		\item $G=H K$; that is, every element of $G$ has the form $h k$ for some $h \in H$ and $k \in K$,
+		\item $H \cap K=\{1\}$ in $G$,
+		\item $h k=k h$ for all $h \in H$ and $k \in K$.
+	\end{enumerate}
+Then the map $H \times K \rightarrow G$ by $(h, k) \mapsto h k$ is an isomorphism.\label{0fe581}
+\end{theorem}
+
+\subsubsection{Example 1}
+
+In $G=\operatorname{Aff}(\mathbf{R})$, let
+\[
+H=\left\{\left(\begin{array}{ll}
+1 & y \\
+0 & 1
+\end{array}\right): y \in \mathbf{R}\right\} \cong \mathbf{R}, \quad K=\left\{\left(\begin{array}{ll}
+x & 0 \\
+0 & 1
+\end{array}\right): x \in \mathbf{R}^{\times}\right\} \cong \mathbf{R}^{\times} .
+\]
+Since
+\[
+\left(\begin{array}{ll}
+x & y \\
+0 & 1
+\end{array}\right)=\underbrace{\left(\begin{array}{ll}
+1 & y \\
+0 & 1
+\end{array}\right)}_{\in H} \underbrace{\left(\begin{array}{ll}
+x & 0 \\
+0 & 1
+\end{array}\right)}_{\in K}
+\]
+we have $G=H K$, and clearly $H \cap K$ is trivial, but matrices in $H$ and in $K$ often do not commute with each other. You can find your own such matrices (nearly any random choice will work), but also observe that if elements of $H$ and of $K$ always commute with one another then $G \cong H \times K$ by \cref{0fe581} , but $G \ncong H \times K$ since $H \times K$ is abelian ( $H$ and $K$ are abelian) while $G$ is nonabelian.
+
+\subsubsection{Example 2}
+
+In $G=S_4$, let $H$ be a 2-Sylow subgroup and $K$ be a 3-Sylow subgroup (so $H \cong D_4$ and $K$ is cyclic of order 3). In the Sylow theorems for $S_4, n_2=3$ and $n_3=4$, so $H$ and $K$ are not normal in $S_4$. The set $H K$ can be written as $H$-cosets $H k$ and as $K$-cosets $h K$, so $|H K|$ is divisible by $|H|=8$ and by $|K|=3$, so $|H K|=24$. Therefore $S_4=H K$. The subgroups $H$ and $K$ intersect trivially. We have $S_4 \nsupseteq H \times K \cong D_4 \times \mathbf{Z} /(3)$ since $D_4 \times \mathbf{Z} /(3)$ has a nontrivial center ( \textbf{$D_4$ and $\mathbf{Z} /(3)$ both have nontrivial center}) while $S_4$ has a trivial center.
+
+The center of $D_{2n}$ depends on whether $n$ is even or odd. Recall that $D_{2n}=\langle r,s \mid r^n=s^2=1, srs=r^{-1}\rangle$.
+
+\begin{itemize}
+	\item If $n$ is odd, then $Z(D_{2n}) = \{1\}$.
+\begin{proof}
+Suppose that $x \in Z(D_{2n})$. Write $x = r^i$ or $x = r^i s$. Assume that $x = r^i$. Then $srs^{-1} = r^{-1}$. Hence $sr^i s^{-1} = r^{-i}$. But $x \in Z(D_{2n})$, so $sr^i s^{-1} = r^i$. Thus $r^i = r^{-i}$, which implies that $r^{2i} = 1$. Thus $n \mid 2i$, so $i = n/2$ or $i = 0$. If $i = 0$, then $x = 1$. If $i = n/2$, then $n$ is even. So if $n$ is odd, then $x = 1$. Now assume that $x = r^i s$. Then $r^{-1}xr = x$. Thus $r^{-1} r^i s r = r^i s$, so $r^{-1} r^i s r = r^i s$. Hence $r^{-1} r^i s r = r^i s$, so $r^{-1} r^i s r = r^i s$. Thus $r^{-1} r^i s r = r^i s$, so $r^{-1} r^i s r = r^i s$. But $r^{-1} s r = r^{-1} s r = s r^{-2}$. Thus $r^{i-2} s = r^i s$, so $r^{-2} = 1$. This implies that $n \mid 2$, so $n = 1$ or $n = 2$. But $n$ is odd and $n > 1$, a contradiction. Therefore, $x = 1$.
+\end{proof}
+	\item If $n$ is even, then $Z(D_{2n}) = \{1, r^{n/2}\}$.
+\begin{proof}
+Suppose that $x \in Z(D_{2n})$. Write $x = r^i$ or $x = r^i s$. Assume that $x = r^i$. Then $srs^{-1} = r^{-1}$. Hence $sr^i s^{-1} = r^{-i}$. But $x \in Z(D_{2n})$, so $sr^i s^{-1} = r^i$. Thus $r^i = r^{-i}$, which implies that $r^{2i} = 1$. Thus $n \mid 2i$, so $i = n/2$ or $i = 0$. If $i = 0$, then $x = 1$. If $i = n/2$, then $x = r^{n/2}$. Now assume that $x = r^i s$. Then $r^{-1}xr = x$. Thus $r^{-1} r^i s r = r^i s$, so $r^{-1} r^i s r = r^i s$. Hence $r^{-1} r^i s r = r^i s$, so $r^{-1} r^i s r = r^i s$. Thus $r^{-1} r^i s r = r^i s$, so $r^{-1} r^i s r = r^i s$. But $r^{-1} s r = r^{-1} s r = s r^{-2}$. Thus $r^{i-2} s = r^i s$, so $r^{-2} = 1$. This implies that $n \mid 2$, so $n = 1$ or $n = 2$. If $n = 1$, then $D_2 = \{1, s\}$, so $Z(D_2) = D_2$, a contradiction since $r^{n/2} = r^{1/2} \notin D_2$. If $n = 2$, then $r^i s \notin Z(D_4)$. Thus $Z(D_{2n}) = \{1, r^{n/2}\}$.
+\end{proof}
+\end{itemize}
+
+In summary:
+\[
+Z(D_{2n}) = \begin{cases} \{1\} & \text{if } n \text{ is odd} \\ \{1, r^{n/2}\} & \text{if } n \text{ is even} \end{cases}
+\]
+\subsection{Motivation of Semidirect Product: \texorpdfstring{$G\ncong H\times K$}{Gncong Htimes K}}
+
+For subgroups $H,K$ of $G$,  $HK$ might not be a subgroup. However, if $H$ or $K$ is normal in $G$, then $HK$ is a subgroup. Take $H\lhd G$, e.g.
+\[
+(hk)(h'k')=(\underbrace{ h\overbrace{ kh'k^{-1} }^{ =\mathrm{Ad}_{k}(h') } }_{ \in H })(\underbrace{ kk' }_{ \in K })\in HK
+\]
+\[
+(hk)^{-1}=k^{-1}h^{-1}=(\overbrace{ k^{-1}h^{-1}k }^{ =\mathrm{Ad}_{k^{-1}}(h^{-1}) })k^{-1}\in HK
+\]
+Consider $\varphi _k=\mathrm{Ad}_k \in \mathrm{Aut}(H)$ induced by $k\in K$, then we have the natural definition:
+
+\begin{definition}[semidirect product]
+For two groups $H$ and $K$ and an action $\varphi: K \rightarrow \operatorname{Aut}(H)$ of $K$ on $H$ by automorphisms, the corresponding \textbf{semidirect product} $H \rtimes_{\varphi} K$ is defined as follows: as a set it is $H \times K=\{(h, k): h \in H, k \in K\}$. The group law on $H \rtimes_{\varphi} K$ is
+\[
+(h, k)\left(h^{\prime}, k^{\prime}\right)=\left(h \varphi_k\left(h^{\prime}\right), k k^{\prime}\right) .
+\]
+\end{definition}
+\begin{note}
+Note that $H$, $K$ might not be subgroups of the same group, e.g. $H=D_4,K=\mathbb{Z}_{2}$, thus $hk$ fails to be defined, but $h\varphi _k(h')$ has definition.
+\end{note}
+\begin{remark}
+The notation $H\rtimes K$ means $H$ is normal "$\lhd$", and $K$ has a "twisted" action on $H$.
+\end{remark}
+\begin{example}
+In $H \rtimes_{\varphi} K, (h, k)^2=(h, k)(h, k)=\left(h \varphi_k(h), k^2\right)$, so $(h, k)^2=(1,1)$ if and only if $\varphi_k(h)=h^{-1}$ and $k^2=1$.
+\end{example}
+\begin{example}
+Take $H=\mathbf{R}, K=\mathbf{R}^{\times}$, and $\varphi: \mathbf{R}^{\times} \rightarrow \operatorname{Aut}(\mathbf{R})$ where $\varphi_x: \mathbf{R} \rightarrow \mathbf{R}$ by $\varphi_x(y)=x y$. Note $\varphi_x$ is an automorphism of $\mathbf{R}$ as an additive group and $\varphi_x \circ \varphi_{x^{\prime}}=\varphi_{x x^{\prime}}$ since $x\left(x^{\prime} y\right)=\left(x x^{\prime}\right) y$ for all $y \in \mathbf{R}$.
+The group $\mathbf{R} \rtimes_{\varphi} \mathbf{R}^{\times}$has the operation
+\[
+(a, b)\left(a^{\prime}, b^{\prime}\right)=\left(a+\varphi_b\left(a^{\prime}\right), b b^{\prime}\right)=\left(a+b a^{\prime}, b b^{\prime}\right) .
+\]This resembles the multiplication in $\operatorname{Aff}(\mathbf{R})$, where $\left(\begin{array}{cc}b & a \\ 0 & 1\end{array}\right)\left(\begin{array}{cc}b^{\prime} & a^{\prime} \\ 0 & 1\end{array}\right)=\left(\begin{array}{cc}b b^{\prime} & b a^{\prime}+a \\ 0 & 1\end{array}\right)$. In the affine matrices we multiply in the upper left, while in $\mathbf{R} \rtimes_{\varphi} \mathbf{R}^{\times}$, components multiply in the second coordinate. That suggests turning $(a, b) \in \mathbf{R} \rtimes_{\varphi} \mathbf{R}^{\times}$ into $\left(\begin{array}{ll}b & a \\ 0 & 1\end{array}\right): \mathbf{R} \rtimes_{\varphi} \mathbf{R}^{\times} \cong \operatorname{Aff}(\mathbf{R})$ by $(a, b) \mapsto\left(\begin{array}{ll}b & a \\ 0 & 1\end{array}\right)=\left(\begin{array}{ll}1 & a \\ 0 & 1\end{array}\right)\left(\begin{array}{ll}b & 0 \\ 0 & 1\end{array}\right)$.
+In the group $\operatorname{Aff}(\mathbf{R})$ you have to be careful about how you decompose a matrix:
+\[
+\left(\begin{array}{ll}
+x & y \\
+0 & 1
+\end{array}\right)=\left(\begin{array}{ll}
+1 & y \\
+0 & 1
+\end{array}\right)\left(\begin{array}{ll}
+x & 0 \\
+0 & 1
+\end{array}\right) \neq\left(\begin{array}{ll}
+x & 0 \\
+0 & 1
+\end{array}\right)\left(\begin{array}{ll}
+1 & y \\
+0 & 1
+\end{array}\right) \quad \text { for } x \neq 1, y \neq 0 .
+\]The nice decomposition puts the matrix associated to $y$ first, before that associated to $x$.
+\end{example}
+\begin{example}
+In the previous example, replace $\mathbb{R}$ with $\mathbb{Z} /(m)$ and $\mathbb{R}^{\times}$with $(\mathbb{Z} /(m))^{\times}$. We have $\operatorname{Aut}(\mathbb{Z} /(m)) \cong(\mathbb{Z} /(m))^{\times}$ since automorphisms of the additive group $\mathbb{Z} /(m)$ are the mappings $\varphi_a: x \bmod m \mapsto a x \bmod m$ for $a \in(\mathbb{Z} /(m))^{\times}$.
+Let $\varphi:(\mathbb{Z} /(m))^{\times} \rightarrow \operatorname{Aut}(\mathbb{Z} /(m))$ by making $\varphi_a: \mathbb{Z} /(m) \rightarrow \mathbb{Z} /(m)$ for each $a$ be multiplication by $a$. The semidirect product $\mathbb{Z} /(m) \rtimes_{\varphi}(\mathbb{Z} /(m))^{\times}$ has operation
+\[
+(a, b)\left(a^{\prime}, b^{\prime}\right)=\left(a+b a^{\prime}, b+b^{\prime}\right)
+\]and is isomorphic to $\operatorname{Aff}(\mathbb{Z} /(m))$ by $(a, b) \bmod m \mapsto\left(\begin{array}{ll}b & a \\ 0 & 1\end{array}\right) \bmod m$.
+\end{example}
+\begin{example}
+Since $\pm 1$ acts as additive automorphisms on $\mathbb{Z}$, we have a semidirect product $\mathbb{Z} \rtimes \{ \pm 1\}$ where $(a, \varepsilon)\left(a^{\prime}, \varepsilon^{\prime}\right)=\left(a+\varepsilon a^{\prime}, \varepsilon \varepsilon^{\prime}\right)$.
+The homomorphism $\mathbb{Z} \rightarrow\{ \pm 1\}$ given by $n \mapsto(-1)^n$ leads to a semidirect product $\mathbb{Z} \rtimes \mathbb{Z}$ by $(m, n)\left(m^{\prime}, n^{\prime}\right)=\left(m+(-1)^n m^{\prime}, n+n^{\prime}\right)$.
+\end{example}
+\begin{theorem}[Theorem 3.7]
+Inside $H \rtimes_{\varphi} K$, we have
+\[
+H \cong\{(h, 1): h \in H\} \text { by } h \mapsto(h, 1), \quad K \cong\{(1, k): k \in K\} \text { by } k \mapsto(1, k),
+\]and $(h, k)=(h, 1)(1, k)=(1, k)\left(\varphi_k^{-1}(h), 1\right)$. The copy of $H$ in $H \rtimes_{\varphi} K$ is a normal subgroup with conjugation by $k$ being described with $\varphi_k$ :
+\[
+(1, k)(h, 1)(1, k)^{-1}=\left(\varphi_k(h), 1\right) .
+\]In particular, $(1, k)$ commutes with each $(h, 1)$ if and only if $k \in \operatorname{ker} \varphi$, and every $(1, k)$ and $(h, 1)$ commute if and only if $\varphi: K \rightarrow \operatorname{Aut}(H)$ is trivial on $K: \varphi_k=\operatorname{id}_H$ for all $k \in K$.\label{6742ba}
+\end{theorem}\begin{proof}
+The proof is routine.
+\end{proof}
+
+\begin{example}
+Let $H=\mathbf{R}, K=\mathbf{R}^{\times}$, and $\varphi: \mathbf{R}^{\times} \rightarrow \mathbf{R}$ by $\varphi_x(y)=x y$. We saw in Example 3.4 that $\operatorname{Aff}(\mathbf{R}) \cong \mathbf{R} \rtimes_{\varphi} \mathbf{R}^{\times}$by $\left(\begin{array}{ll}x & y \\ 0 & 1\end{array}\right) \mapsto(y, x)$.
+\end{example}
+\cref{6742ba}  says the effect of $\varphi_x$ on $\mathbf{R}$ looks like conjugation in $\mathbf{R} \rtimes_{\varphi} \mathbf{R}^{\times}$, and this is related to the affine group conjugation formula:
+\[
+\left(\begin{array}{ll}
+x & 0 \\
+0 & 1
+\end{array}\right)\left(\begin{array}{ll}
+1 & y \\
+0 & 1
+\end{array}\right)\left(\begin{array}{ll}
+x & 0 \\
+0 & 1
+\end{array}\right)^{-1}=\left(\begin{array}{cc}
+1 & x y \\
+0 & 1
+\end{array}\right)=\left(\begin{array}{cc}
+1 & \varphi_x(y) \\
+0 & 1
+\end{array}\right) .
+\]
+\begin{example}
+Example 3.10. Let $H$ be an abelian group written additively, so negation neg: $h \mapsto -h$ is an automorphism of order 2. Let $\varphi: \mathbb{Z} /(2) \rightarrow \operatorname{Aut}(H)$ by $\varphi_0=\operatorname{id}_H$ and $\varphi_1=[h \mapsto -h]$. Then $\varphi$ is a homomorphism (tip: when a group $G$ contains an element $g$ of order $m$, we always get a homomorphism $\mathbb{Z} /(m) \rightarrow G$ by $a \bmod m \mapsto g^a$, and here we're using the special case $G=\operatorname{Aut}(H)$ and $g$ is inversion on $H)$. The group $H \rtimes_{\varphi} \mathbb{Z} /(2)$ has operation (3.6) $(h, a \bmod 2)\left(h^{\prime}, a^{\prime} \bmod 2\right)=\left(h+\operatorname{neg}^a\left(h^{\prime}\right), a+a^{\prime} \bmod 2\right)=\left(h+(-1)^a h^{\prime}, a+a^{\prime} \bmod 2\right)$. Then
+\[
+(h, 0)(0,1)=(h, 1) \text { and }(0,1)(h, 0)=(0+\operatorname{neg}(h), 1+0)=(-h, 1) .
+\]Thus $(h, 0)$ and $(0,1)$ commute in $H \rtimes_{\varphi} \mathbb{Z} /(2)$ if and only if $h=-h$. If all nonzero elements of $H$ have order 2 (so negation on $H$ is the identity) then $H \rtimes_{\varphi} \mathbb{Z} /(2)=H \times \mathbb{Z} /(2)$. If some nonzero element of $H$ does not have order 2 then $H \rtimes_{\varphi} \mathbb{Z} /(2)$ is nonabelian.
+Consider the case $H=\mathbb{Z} /(n)$ where $n \geq 3$. The group $\mathbb{Z} /(n) \rtimes_{\varphi} \mathbb{Z} /(2)$ has order $2 n$ and the group law (3.6) in this special case is
+\[
+(j, k)\left(j^{\prime}, k^{\prime}\right)=\left(j+(-1)^k j^{\prime}, k+k^{\prime}\right) .
+\]This may look like a weird group of order $2 n$, but in fact it is isomorphic to $D_n$. If we identify $(1,0)$ with $r$ and $(0,1)$ with $s$ in $D_n$ then $\mathbb{Z} /(n) \rtimes_{\varphi} \mathbb{Z} /(2) \cong D_n$ by $(1,0) \mapsto r$ and $(0,1) \mapsto s$. For example, (3.7) says $(0,1)(1,0)=(-1,1)=(-1,0)(0,1)$, which matches the familiar dihedral relation $s r=r^{-1} s$. (The general multiplication rule in $D_n$ is $\left(r^j s^k\right)\left(r^{j^{\prime}} s^{k^{\prime}}\right)=r^{j+(-1)^k j^{\prime}} s^{k+k^{\prime}}$, where the exponents on $r$ and $s$ look like (3.7).)
+\end{example}
+\subsection{Recognize Semidirect Products}
+
+Similar to \cref{0fe581}, we have a recognition theorem for semidirect products.
+
+\begin{theorem}[Theorem 4.1]
+Let $G$ be a group with subgroups $H$ and $K$ such that
+	\begin{enumerate}
+		\item $G=H K$,
+		\item $H \cap K=\{1\}$,
+		\item $H \lhd G$.
+	\end{enumerate}
+Let $\varphi: K \rightarrow \operatorname{Aut}(H)$ be conjugation: $\varphi_k(h)=k h k^{-1}$. Then $\varphi$ is a homomorphism and the map $f: H \rtimes_{\varphi} K \rightarrow G$ where $f(h, k)=h k$ is an isomorphism.
+\end{theorem}
+\begin{proof}
+That $\varphi$ makes sense at all is due to (3). That it is a homomorphism means $\varphi_k \circ \varphi_{k^{\prime}}=\varphi_{k k^{\prime}}$, and this is left to the reader to check. The function
+\[
+f: H \rtimes_{\varphi} K \rightarrow G
+\]
+where $f(h, k)=h k$ is surjective by (1), and $f$ is injective by (2) using the same argument for injectivity as in the proof of Theorem 2.1. To show $f$ is a homomorphism, calculate
+\[
+\begin{aligned}
+f\left((h, k)\left(h^{\prime}, k^{\prime}\right)\right) & =f\left(h \varphi_k\left(h^{\prime}\right), k k^{\prime}\right) \\
+& =h \varphi_k\left(h^{\prime}\right) k k^{\prime} \\
+& =h k h^{\prime} k^{-1} k k^{\prime} \\
+& =h k h^{\prime} k^{\prime} \\
+& =f(h, k) f\left(h^{\prime}, k^{\prime}\right) .
+\end{aligned}
+\]
+Hence $f$ is an isomorphism.
+\end{proof}
+
+\begin{example}
+We will show for odd $n>1$ that the direct product $\mathrm{SL}_n(\mathbf{R}) \times \mathbf{R}^{\times}$is isomorphic to a nontrivial semidirect product $\mathrm{SL}_n(\mathbf{R}) \rtimes \mathbf{R}^{\times}$.
+\end{example}
+We have met several examples of groups that are isomorphic to a semidirect product of two groups:
+
+\begin{enumerate}
+	\item $\operatorname{Aff}(\mathbf{R}) \cong \mathbf{R} \rtimes \mathbf{R}^{\times}$
+	\item $S_n \cong A_n \rtimes \mathbf{Z} /(2)$;
+	\item $D_n \cong \mathbf{Z} /(n) \rtimes \mathbf{Z} /(2)$;
+	\item $\mathrm{GL}_2(\mathbf{R}) \cong \mathrm{SL}_2(\mathbf{R}) \rtimes \mathbf{R}^{\times}$;
+\end{enumerate}
+
+In these respective groups,
+
+\begin{enumerate}
+	\item $\mathbf{R}^{\times}$ acts on $\mathbf{R}$ by multiplication maps $\varphi_x: y \mapsto x y$ for $x \in \mathbf{R}^{\times}$;
+	\item $\mathbf{Z} /(2)$ is identified with $\{1, \tau\}$ for any transposition $\tau$ in $S_n$;
+	\item $\mathbf{Z} /(n)$ is identified with $\langle r\rangle$ and $\mathbf{Z} /(2)$ is identified with $\{1, s\}$ in $D_n$;
+	\item $\mathbf{R}^{\times}$ is identified with the group of matrices $\left(\begin{array}{ll}a & 0 \\ 0 & 1\end{array}\right)$ (not with the matrices $\left(\begin{array}{ll}a & 0 \\ 0 & a\end{array}\right)$ );
+\end{enumerate}
+
+\subsection{Building Semidirect Product}
+
+The case when $H$ and $K$ are finite with $(|K|,|\operatorname{Aut}(H)|)=1$ is boring, since $\varphi:K\to \mathrm{Aut}(H)$ has a trivial image and thus the only semidirect product $H \rtimes K$ is the direct product $H \times K$.
+
+\begin{example}
+A semidirect product $\mathbb{Z} /(5) \rtimes \mathbb{Z} /(3)$ has order 15 and it must be a direct product: $\operatorname{Aut}(\mathbb{Z} /(5))=(\mathbb{Z} /(5))^{\times}$ has order 4 and that is relatively prime to 3. In fact, all groups of order 15 are cyclic; groups of order $p q$ will be studied below.
+\end{example}
+\begin{example}
+Example 5.2. Is there a nontrivial $\mathbb{Z} /(25) \rtimes \mathbb{Z} /(15)$? Since $\operatorname{Aut}(\mathbb{Z} /(25))=(\mathbb{Z} /(25))^{\times}$ has size 20 and $(20,15) \neq 1$, there might be nontrivial examples. We seek a nontrivial homomorphism
+\[
+\varphi: \mathbb{Z} /(15) \rightarrow(\mathbb{Z} /(25))^{\times} .
+\]It is necessary that $\varphi(1)$ goes to a $g$ such that $g^{15}=1$. If $g^{15} \equiv 1 \bmod 25$, then $g^{15} \equiv 1 \bmod 5$, so (by testing $\bmod 5$) $g \equiv 1 \bmod 5$. Then
+\[
+g \in\{1,6,11,16,21\} .
+\]Choose $g=6$. Check $6^{15} \equiv 1 \bmod 25$ (in fact, if $a \equiv 1 \bmod 5$ then $a^5 \equiv 1 \bmod 25$, so $a^{15} \equiv 1 \bmod 25$). Let $\varphi: \mathbb{Z} /(15) \rightarrow(\mathbb{Z} /(25))^{\times}$by $\varphi(1)=6$, so $\varphi(k \bmod 15)=6^k \bmod 25$ (e.g., $\varphi(2)=\varphi(1+1)=\varphi(1) \varphi(1)=6^2$). We get a nontrivial semidirect product $\mathbb{Z} /(25) \rtimes_{\varphi} \mathbb{Z} /(15)$ with the group law
+\[
+(a, b)(c, d)=\left(a+\varphi_b(c), b+d\right)=\left(a+6^b c, b+d\right) .
+\]This is a nonabelian group of order $15 \cdot 25=375$ built from two cyclic groups of order 15 and 25.
+\end{example}
+\subsection{Groups of Order \texorpdfstring{$pq$}{pq}}
+
+We'll use the Sylow theorems and semidirect products to find all groups of order $pq$ up to isomorphism.
+
+\begin{theorem}[Theorem 6.1]
+If primes $p<q$ satisfy $q \not \equiv 1 \bmod p$ then all groups of order $pq$ are cyclic.
+\end{theorem}
+A useful lemma:
+
+\begin{lemma}[Lemma 6.2]
+A semidirect product $H \rtimes_{\varphi} K$ is \textbf{unchanged up to isomorphism} if the action $\varphi: K \rightarrow \operatorname{Aut}(H)$ is composed with an automorphism of $K$: for automorphisms $f: K \rightarrow K, H \rtimes_{\varphi \circ f} K \cong H \rtimes_{\varphi} K$.
+\end{lemma}
+Moreover, if $H\cong H',K\cong K'$, then
+\[
+H\rtimes K\cong H'\rtimes K'
+\]
+e.g. if $\lvert H \rvert=7,\lvert K \rvert=11$, then
+\[
+H\rtimes K\cong \mathbb{Z}_{7}\rtimes \mathbb{Z}_{11}  
+\]
+\begin{theorem}[Theorem 6.3]
+If primes $p<q$ satisfy $q \equiv 1 \bmod p$ then there are two groups of order $pq$ up to isomorphism: one is cyclic and one is nonabelian.
+\end{theorem}
+Explicitly, for $q \equiv 1 \bmod p$, a nonabelian matrix group of order $p q$ is
+\[
+\left\{\left(\begin{array}{ll}
+x & y \\
+0 & 1
+\end{array}\right): x \in(\mathbb{Z} /(q))^{\times}, y \in \mathbb{Z} /(q), x^p \equiv 1 \bmod q\right\} \subset \operatorname{Aff}(\mathbb{Z} /(q)) .
+\]
+\section{Groups of order \texorpdfstring{$pq$}{pq}}
+
+\section{Complementary Subgroups}
+
+If a group $G$ contains subgroups $H$ and $K$ such that $G=H K$ and $H \cap K=\{1\}$, then $H$ and $K$ are called complementary subgroups. For a normal subgroup $H \triangleleft G$, is there always a complementary subgroup $K \subset G$ ? If so, we'd then have $G \cong H \rtimes_{\varphi} K$
+
+The answer is no!
+
+\begin{theorem}[Schur-Zassenhaus]
+If $H \lhd G$ and $(|H|,|G / H|)=1$, then $H$ has a complementary subgroup in $G$ and all complementary subgroups to $H$ in $G$ are conjugate.
+\end{theorem}

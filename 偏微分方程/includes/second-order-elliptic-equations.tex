@@ -1,0 +1,35 @@
+\section{Second-Order-Elliptic-Equations}
+
+We will exploit two essentially distinct techniques:
+
+\begin{itemize}
+	\item Energy methods within Sobolev spaces ($\S 6.1-\S 6.3$)
+	\item Maximum principle methods ($\S 6.4$)
+\end{itemize}
+
+\subsection{Definitions}
+
+We will in this chapter mostly study the boundary-value problem
+\[
+\begin{cases}
+Lu=f & \text{in }U \\
+u=0 & \text{on }\partial U
+\end{cases}
+\]
+where $U$ is an open, bounded subset of $\mathbb{R}^{n}$, and $u:\overline{U}\to \mathbb{R}$ is the unknown, $u=u(x)$.
+\[
+L u=-\sum_{i, j=1}^n a^{i j}(x) u_{x_i x_j}+\sum_{i=1}^n b^i(x) u_{x_i}+c(x) u,
+\]
+for given coefficient functions $a^{ij},b^{i},c$ ($i,j=1,\dots,n$)
+
+\begin{definition}[elliptic]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Second-Order Elliptic Equations-20250319.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{definition}
+Ellipticity thus means that for each point $x \in U$, the symmetric $n \times n$ matrix $\mathbf{A}(x)=\left(\left(a^{i j}(x)\right)\right)$ is positive definite, with smallest eigenvalue greater than or equal to $\theta$.
+
+An obvious example is $a^{ij}\equiv\delta _{ij}$, $b^{i}\equiv0$, $c\equiv0$, in which case the operateor $L$ is $-\Delta$.

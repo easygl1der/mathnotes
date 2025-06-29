@@ -1,0 +1,640 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\title{\textbf{丘成桐大学生数学竞赛\\统计方向复习资料}}
+\author{数理统计复习指南}
+\date{\today}
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{definition}{定义}[section]
+\newtheorem{example}{例题}[section]
+\newtheorem{corollary}{推论}[section]
+\newtheorem{lemma}{引理}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{注记}[section]
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{分布理论与基础统计}
+
+\subsection{连续分布族}
+
+\subsubsection{正态分布 (Normal Distribution)}
+
+\begin{definition}[正态分布]
+随机变量$X$服从参数为$\mu$和$\sigma^2$的正态分布，记作$X \sim N(\mu, \sigma^2)$，其概率密度函数为：
+$$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}, \quad x \in \mathbb{R}$$
+\end{definition}
+
+\textbf{重要性质：}
+\begin{itemize}
+\item $E[X] = \mu$，$\text{Var}(X) = \sigma^2$
+\item 标准化：$Z = \frac{X-\mu}{\sigma} \sim N(0,1)$
+\item 线性组合：若$X_i \sim N(\mu_i, \sigma_i^2)$独立，则$\sum a_i X_i \sim N(\sum a_i \mu_i, \sum a_i^2 \sigma_i^2)$
+\end{itemize}
+
+\begin{example}[正态分布计算]
+设$X \sim N(100, 16)$，求$P(96 < X < 108)$。
+
+\textbf{解：}
+$$Z = \frac{X-100}{4} \sim N(0,1)$$
+$$P(96 < X < 108) = P\left(\frac{96-100}{4} < Z < \frac{108-100}{4}\right) = P(-1 < Z < 2)$$
+$$= \Phi(2) - \Phi(-1) = 0.9772 - 0.1587 = 0.8185$$
+\end{example}
+
+\subsubsection{卡方分布 ($\chi^2$ Distribution)}
+
+\begin{definition}[卡方分布]
+若$Z_1, Z_2, \ldots, Z_n$独立同分布于$N(0,1)$，则$\chi^2 = \sum_{i=1}^n Z_i^2$服从自由度为$n$的卡方分布，记作$\chi^2 \sim \chi^2(n)$。
+\end{definition}
+
+\textbf{性质：}
+\begin{itemize}
+\item $E[\chi^2] = n$，$\text{Var}(\chi^2) = 2n$
+\item 可加性：若$\chi_1^2 \sim \chi^2(n_1)$，$\chi_2^2 \sim \chi^2(n_2)$独立，则$\chi_1^2 + \chi_2^2 \sim \chi^2(n_1 + n_2)$
+\item 渐近正态性：当$n$很大时，$\frac{\chi^2 - n}{\sqrt{2n}} \stackrel{d}{\to} N(0,1)$
+\end{itemize}
+
+\subsubsection{t分布 (t-Distribution)}
+
+\begin{definition}[t分布]
+若$Z \sim N(0,1)$，$V \sim \chi^2(n)$且相互独立，则$T = \frac{Z}{\sqrt{V/n}}$服从自由度为$n$的t分布，记作$T \sim t(n)$。
+\end{definition}
+
+\textbf{性质：}
+\begin{itemize}
+\item 当$n > 1$时，$E[T] = 0$
+\item 当$n > 2$时，$\text{Var}(T) = \frac{n}{n-2}$
+\item 当$n \to \infty$时，$t(n) \to N(0,1)$
+\end{itemize}
+
+\subsubsection{F分布 (F-Distribution)}
+
+\begin{definition}[F分布]
+若$U \sim \chi^2(m)$，$V \sim \chi^2(n)$且相互独立，则$F = \frac{U/m}{V/n}$服从自由度为$(m,n)$的F分布，记作$F \sim F(m,n)$。
+\end{definition}
+
+\textbf{性质：}
+\begin{itemize}
+\item $E[F] = \frac{n}{n-2}$（当$n > 2$时）
+\item $\text{Var}(F) = \frac{2n^2(m+n-2)}{m(n-2)^2(n-4)}$（当$n > 4$时）
+\item $\frac{1}{F} \sim F(n,m)$
+\end{itemize}
+
+\subsubsection{Gamma分布}
+
+\begin{definition}[Gamma分布]
+随机变量$X$服从参数为$\alpha > 0$和$\beta > 0$的Gamma分布，记作$X \sim \text{Gamma}(\alpha, \beta)$，其概率密度函数为：
+$$f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}, \quad x > 0$$
+其中$\Gamma(\alpha) = \int_0^\infty t^{\alpha-1} e^{-t} dt$是Gamma函数。
+\end{definition}
+
+\textbf{性质：}
+\begin{itemize}
+\item $E[X] = \frac{\alpha}{\beta}$，$\text{Var}(X) = \frac{\alpha}{\beta^2}$
+\item 可加性：若$X_1 \sim \text{Gamma}(\alpha_1, \beta)$，$X_2 \sim \text{Gamma}(\alpha_2, \beta)$独立，则$X_1 + X_2 \sim \text{Gamma}(\alpha_1 + \alpha_2, \beta)$
+\item 特殊情况：$\chi^2(n) = \text{Gamma}(n/2, 1/2)$，指数分布$\text{Exp}(\lambda) = \text{Gamma}(1, \lambda)$
+\end{itemize}
+
+\subsubsection{Beta分布}
+
+\begin{definition}[Beta分布]
+随机变量$X$服从参数为$\alpha > 0$和$\beta > 0$的Beta分布，记作$X \sim \text{Beta}(\alpha, \beta)$，其概率密度函数为：
+$$f(x) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha-1} (1-x)^{\beta-1}, \quad 0 < x < 1$$
+\end{definition}
+
+\textbf{性质：}
+\begin{itemize}
+\item $E[X] = \frac{\alpha}{\alpha + \beta}$，$\text{Var}(X) = \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta + 1)}$
+\item 与Gamma分布的关系：若$Y_1 \sim \text{Gamma}(\alpha, \theta)$，$Y_2 \sim \text{Gamma}(\beta, \theta)$独立，则$\frac{Y_1}{Y_1 + Y_2} \sim \text{Beta}(\alpha, \beta)$
+\end{itemize}
+
+\subsection{离散分布族}
+
+\subsubsection{多项分布 (Multinomial Distribution)}
+
+\begin{definition}[多项分布]
+进行$n$次独立试验，每次试验有$k$种可能结果，结果$i$出现的概率为$p_i$（$\sum_{i=1}^k p_i = 1$）。设$X_i$为结果$i$出现的次数，则$(X_1, \ldots, X_k)$服从多项分布：
+$$P(X_1 = n_1, \ldots, X_k = n_k) = \frac{n!}{n_1! \cdots n_k!} p_1^{n_1} \cdots p_k^{n_k}$$
+其中$\sum_{i=1}^k n_i = n$。
+\end{definition}
+
+\textbf{性质：}
+\begin{itemize}
+\item $E[X_i] = np_i$，$\text{Var}(X_i) = np_i(1-p_i)$
+\item $\text{Cov}(X_i, X_j) = -np_ip_j$（$i \neq j$）
+\item 边际分布：$X_i \sim \text{Binomial}(n, p_i)$
+\end{itemize}
+
+\subsubsection{Poisson分布}
+
+\begin{definition}[Poisson分布]
+随机变量$X$服从参数为$\lambda > 0$的Poisson分布，记作$X \sim \text{Poisson}(\lambda)$，其概率质量函数为：
+$$P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \quad k = 0, 1, 2, \ldots$$
+\end{definition}
+
+\textbf{性质：}
+\begin{itemize}
+\item $E[X] = \text{Var}(X) = \lambda$
+\item 可加性：若$X_1 \sim \text{Poisson}(\lambda_1)$，$X_2 \sim \text{Poisson}(\lambda_2)$独立，则$X_1 + X_2 \sim \text{Poisson}(\lambda_1 + \lambda_2)$
+\item Poisson逼近：当$n$很大，$p$很小，$np = \lambda$时，$\text{Binomial}(n,p) \approx \text{Poisson}(\lambda)$
+\end{itemize}
+
+\subsubsection{负二项分布}
+
+\begin{definition}[负二项分布]
+进行独立的Bernoulli试验，成功概率为$p$，设$X$为第$r$次成功前的失败次数，则$X$服从负二项分布：
+$$P(X = k) = \binom{k+r-1}{k} p^r (1-p)^k, \quad k = 0, 1, 2, \ldots$$
+\end{definition}
+
+\textbf{性质：}
+\begin{itemize}
+\item $E[X] = \frac{r(1-p)}{p}$，$\text{Var}(X) = \frac{r(1-p)}{p^2}$
+\item 特殊情况：当$r = 1$时为几何分布
+\end{itemize}
+
+\subsection{基本统计量}
+
+\begin{definition}[样本均值和方差]
+设$X_1, X_2, \ldots, X_n$为来自总体$X$的简单随机样本，则：
+\begin{itemize}
+\item 样本均值：$\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i$
+\item 样本方差：$S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2$
+\item 样本标准差：$S = \sqrt{S^2}$
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[样本均值和方差的性质]
+设$X_1, \ldots, X_n$为来自$N(\mu, \sigma^2)$的样本，则：
+\begin{enumerate}
+\item $\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right)$
+\item $\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$
+\item $\bar{X}$与$S^2$相互独立
+\item $\frac{\bar{X} - \mu}{S/\sqrt{n}} \sim t(n-1)$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[样本分位数]
+设$X_{(1)} \leq X_{(2)} \leq \cdots \leq X_{(n)}$为顺序统计量，则：
+\begin{itemize}
+\item 样本中位数：$\text{Med} = \begin{cases} X_{((n+1)/2)} & \text{若}n\text{为奇数} \\ \frac{X_{(n/2)} + X_{(n/2+1)}}{2} & \text{若}n\text{为偶数} \end{cases}$
+\item 样本$p$分位数：$Q_p = X_{(\lceil np \rceil)}$
+\end{itemize}
+\end{definition}
+
+\section{假设检验}
+
+\subsection{Neyman-Pearson理论框架}
+
+\begin{definition}[假设检验的基本概念]
+\begin{itemize}
+\item \textbf{原假设}（零假设）：$H_0$，我们希望检验的假设
+\item \textbf{备择假设}：$H_1$或$H_a$，与原假设对立的假设
+\item \textbf{简单假设}：完全确定参数值的假设
+\item \textbf{复合假设}：不完全确定参数值的假设
+\end{itemize}
+\end{definition}
+
+\begin{definition}[检验的错误类型]
+\begin{itemize}
+\item \textbf{第一类错误}（Type I Error）：$H_0$为真时拒绝$H_0$，概率记为$\alpha$
+\item \textbf{第二类错误}（Type II Error）：$H_0$为假时接受$H_0$，概率记为$\beta$
+\item \textbf{检验的势}（Power）：$H_0$为假时正确拒绝$H_0$的概率，为$1-\beta$
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Neyman-Pearson引理]
+考虑简单假设$H_0: \theta = \theta_0$对$H_1: \theta = \theta_1$。对于给定的显著性水平$\alpha$，最优检验是似然比检验：
+$$\Lambda(x) = \frac{L(\theta_1|x)}{L(\theta_0|x)} \gtrless k$$
+其中$k$由$P_{H_0}(\Lambda(X) > k) = \alpha$确定。
+\end{theorem}
+
+\subsection{似然比检验}
+
+\begin{definition}[似然比统计量]
+设$\Theta_0 \subset \Theta$，似然比统计量定义为：
+$$\Lambda(x) = \frac{\sup_{\theta \in \Theta_0} L(\theta|x)}{\sup_{\theta \in \Theta} L(\theta|x)}$$
+\end{definition}
+
+\begin{theorem}[广义似然比检验的渐近分布]
+在正则条件下，当样本量$n \to \infty$时：
+$$-2\log\Lambda(X) \stackrel{d}{\to} \chi^2(r)$$
+其中$r = \dim(\Theta) - \dim(\Theta_0)$是自由度。
+\end{theorem}
+
+\begin{example}[正态总体均值的检验]
+设$X_1, \ldots, X_n \sim N(\mu, \sigma^2)$，$\sigma^2$已知。检验$H_0: \mu = \mu_0$对$H_1: \mu \neq \mu_0$。
+
+\textbf{解：}
+检验统计量：$Z = \frac{\bar{X} - \mu_0}{\sigma/\sqrt{n}} \sim N(0,1)$
+
+拒绝域：$|Z| > z_{\alpha/2}$，其中$z_{\alpha/2}$是标准正态分布的$\alpha/2$上分位数。
+
+$p$值：$p = 2P(Z > |z|)$，其中$z$是观测值。
+\end{example}
+
+\subsection{常用检验方法}
+
+\subsubsection{单样本t检验}
+
+检验$H_0: \mu = \mu_0$（$\sigma^2$未知）：
+$$t = \frac{\bar{X} - \mu_0}{S/\sqrt{n}} \sim t(n-1)$$
+
+\subsubsection{两样本t检验}
+
+\textbf{等方差情况：}
+$$t = \frac{\bar{X}_1 - \bar{X}_2}{S_p\sqrt{1/n_1 + 1/n_2}} \sim t(n_1 + n_2 - 2)$$
+其中$S_p^2 = \frac{(n_1-1)S_1^2 + (n_2-1)S_2^2}{n_1 + n_2 - 2}$
+
+\textbf{不等方差情况（Welch检验）：}
+$$t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{S_1^2/n_1 + S_2^2/n_2}}$$
+自由度用Satterthwaite近似。
+
+\subsubsection{卡方检验}
+
+\textbf{拟合优度检验：}
+$$\chi^2 = \sum_{i=1}^k \frac{(O_i - E_i)^2}{E_i} \sim \chi^2(k-1-p)$$
+其中$O_i$是观测频数，$E_i$是期望频数，$p$是估计参数个数。
+
+\textbf{独立性检验：}
+$$\chi^2 = \sum_{i=1}^r \sum_{j=1}^c \frac{(O_{ij} - E_{ij})^2}{E_{ij}} \sim \chi^2((r-1)(c-1))$$
+
+\section{参数估计}
+
+\subsection{参数估计的基本概念}
+
+\begin{definition}[估计量的性质]
+设$\hat{\theta}_n$是参数$\theta$的估计量：
+\begin{itemize}
+\item \textbf{无偏性}：$E[\hat{\theta}_n] = \theta$
+\item \textbf{一致性}：$\hat{\theta}_n \stackrel{P}{\to} \theta$
+\item \textbf{渐近正态性}：$\sqrt{n}(\hat{\theta}_n - \theta) \stackrel{d}{\to} N(0, \sigma^2)$
+\item \textbf{有效性}：在所有无偏估计量中方差最小
+\end{itemize}
+\end{definition}
+
+\subsection{矩估计法}
+
+\begin{definition}[矩估计法]
+设总体$X$的$k$阶原点矩为$\mu_k = E[X^k]$，样本$k$阶原点矩为$M_k = \frac{1}{n}\sum_{i=1}^n X_i^k$。
+
+矩估计法是令样本矩等于总体矩：
+$$M_k = \mu_k(\theta_1, \ldots, \theta_p), \quad k = 1, 2, \ldots, p$$
+解这个方程组得到参数的矩估计量。
+\end{definition}
+
+\begin{example}[正态分布的矩估计]
+设$X_1, \ldots, X_n \sim N(\mu, \sigma^2)$。
+
+一阶矩：$E[X] = \mu$，$M_1 = \bar{X}$，所以$\hat{\mu} = \bar{X}$
+
+二阶中心矩：$E[(X-\mu)^2] = \sigma^2$，$\frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2$，所以$\hat{\sigma}^2 = \frac{1}{n}\sum_{i=1}^n (X_i - \bar{X})^2$
+\end{example}
+
+\subsection{最大似然估计}
+
+\begin{definition}[最大似然估计]
+设样本$X_1, \ldots, X_n$的似然函数为$L(\theta) = \prod_{i=1}^n f(x_i|\theta)$，最大似然估计量$\hat{\theta}_{MLE}$是使似然函数最大的$\theta$值：
+$$\hat{\theta}_{MLE} = \arg\max_\theta L(\theta) = \arg\max_\theta \log L(\theta)$$
+\end{definition}
+
+\textbf{求解步骤：}
+\begin{enumerate}
+\item 写出似然函数$L(\theta)$
+\item 取对数得$\ell(\theta) = \log L(\theta)$
+\item 求导：$\frac{d\ell(\theta)}{d\theta} = 0$
+\item 解方程得到$\hat{\theta}_{MLE}$
+\item 验证二阶导数条件确保是最大值
+\end{enumerate}
+
+\begin{example}[指数分布的最大似然估计]
+设$X_1, \ldots, X_n \sim \text{Exp}(\lambda)$，$f(x|\lambda) = \lambda e^{-\lambda x}$。
+
+似然函数：$L(\lambda) = \prod_{i=1}^n \lambda e^{-\lambda x_i} = \lambda^n e^{-\lambda \sum x_i}$
+
+对数似然：$\ell(\lambda) = n\log\lambda - \lambda\sum_{i=1}^n x_i$
+
+求导：$\frac{d\ell}{d\lambda} = \frac{n}{\lambda} - \sum_{i=1}^n x_i = 0$
+
+解得：$\hat{\lambda}_{MLE} = \frac{n}{\sum_{i=1}^n x_i} = \frac{1}{\bar{x}}$
+\end{example}
+
+\subsection{估计量的评价准则}
+
+\begin{definition}[Cramér-Rao下界]
+对于满足正则性条件的估计问题，任何无偏估计量$\hat{\theta}$的方差都满足：
+$$\text{Var}(\hat{\theta}) \geq \frac{1}{I(\theta)}$$
+其中$I(\theta) = E\left[\left(\frac{\partial \log f(X|\theta)}{\partial \theta}\right)^2\right]$是Fisher信息量。
+\end{definition}
+
+\begin{theorem}[最大似然估计的渐近性质]
+在正则条件下，最大似然估计量$\hat{\theta}_{MLE}$具有以下性质：
+\begin{enumerate}
+\item 一致性：$\hat{\theta}_{MLE} \stackrel{P}{\to} \theta$
+\item 渐近正态性：$\sqrt{n}(\hat{\theta}_{MLE} - \theta) \stackrel{d}{\to} N(0, I^{-1}(\theta))$
+\item 渐近有效性：达到Cramér-Rao下界
+\end{enumerate}
+\end{theorem}
+
+\subsection{Fisher信息量}
+
+\begin{definition}[Fisher信息量]
+对于参数$\theta$，Fisher信息量定义为：
+$$I(\theta) = E\left[\left(\frac{\partial \log f(X|\theta)}{\partial \theta}\right)^2\right] = -E\left[\frac{\partial^2 \log f(X|\theta)}{\partial \theta^2}\right]$$
+
+对于样本$(X_1, \ldots, X_n)$，总信息量为：$I_n(\theta) = nI(\theta)$
+\end{definition}
+
+\begin{example}[正态分布的Fisher信息量]
+设$X \sim N(\mu, \sigma^2)$，$\sigma^2$已知。
+
+$\log f(x|\mu) = -\frac{1}{2}\log(2\pi\sigma^2) - \frac{(x-\mu)^2}{2\sigma^2}$
+
+$\frac{\partial \log f}{\partial \mu} = \frac{x-\mu}{\sigma^2}$
+
+$I(\mu) = E\left[\left(\frac{X-\mu}{\sigma^2}\right)^2\right] = \frac{1}{\sigma^2}$
+
+所以样本均值$\bar{X}$的方差下界为$\frac{\sigma^2}{n}$，恰好等于$\text{Var}(\bar{X})$。
+\end{example}
+
+\subsection{置信区间}
+
+\begin{definition}[置信区间]
+参数$\theta$的$100(1-\alpha)\%$置信区间是一个随机区间$[L(X), U(X)]$，满足：
+$$P(L(X) \leq \theta \leq U(X)) = 1-\alpha$$
+\end{definition}
+
+\textbf{构造方法：}
+
+\textbf{1. 枢轴量法：}
+找到一个枢轴量$Q(X, \theta)$，其分布不依赖于未知参数。
+
+\textbf{2. 大样本方法：}
+利用渐近正态性：$\hat{\theta} \pm z_{\alpha/2} \cdot SE(\hat{\theta})$
+
+\textbf{3. 似然比方法：}
+基于$-2\log\Lambda(\theta)$的渐近分布。
+
+\begin{example}[正态均值的置信区间]
+设$X_1, \ldots, X_n \sim N(\mu, \sigma^2)$，$\sigma^2$未知。
+
+枢轴量：$T = \frac{\bar{X} - \mu}{S/\sqrt{n}} \sim t(n-1)$
+
+$95\%$置信区间：$\bar{X} \pm t_{0.025}(n-1) \cdot \frac{S}{\sqrt{n}}$
+\end{example}
+
+\section{贝叶斯统计}
+
+\subsection{贝叶斯定理与先验后验}
+
+\begin{theorem}[贝叶斯定理]
+设$\theta$是参数，$x$是观测数据，则：
+$$\pi(\theta|x) = \frac{f(x|\theta)\pi(\theta)}{m(x)}$$
+其中：
+\begin{itemize}
+\item $\pi(\theta)$是先验分布
+\item $f(x|\theta)$是似然函数
+\item $\pi(\theta|x)$是后验分布
+\item $m(x) = \int f(x|\theta)\pi(\theta)d\theta$是边际分布
+\end{itemize}
+\end{theorem}
+
+\begin{definition}[共轭先验]
+如果先验分布$\pi(\theta)$和后验分布$\pi(\theta|x)$属于同一分布族，则称先验分布为共轭先验。
+\end{definition}
+
+\textbf{常见的共轭分布对：}
+\begin{enumerate}
+\item \textbf{二项分布-Beta分布：}
+   \begin{itemize}
+   \item 似然：$X|\theta \sim \text{Binomial}(n, \theta)$
+   \item 先验：$\theta \sim \text{Beta}(\alpha, \beta)$
+   \item 后验：$\theta|x \sim \text{Beta}(\alpha + x, \beta + n - x)$
+   \end{itemize}
+
+\item \textbf{正态分布-正态分布（已知方差）：}
+   \begin{itemize}
+   \item 似然：$X|\mu \sim N(\mu, \sigma^2)$（$\sigma^2$已知）
+   \item 先验：$\mu \sim N(\mu_0, \tau^2)$
+   \item 后验：$\mu|x \sim N\left(\frac{\tau^2 x + \sigma^2\mu_0}{\tau^2 + \sigma^2}, \frac{\sigma^2\tau^2}{\sigma^2 + \tau^2}\right)$
+   \end{itemize}
+
+\item \textbf{Poisson分布-Gamma分布：}
+   \begin{itemize}
+   \item 似然：$X|\lambda \sim \text{Poisson}(\lambda)$
+   \item 先验：$\lambda \sim \text{Gamma}(\alpha, \beta)$
+   \item 后验：$\lambda|x \sim \text{Gamma}(\alpha + x, \beta + 1)$
+   \end{itemize}
+\end{enumerate}
+
+\subsection{贝叶斯估计}
+
+\begin{definition}[贝叶斯估计量]
+常用的贝叶斯估计量包括：
+\begin{itemize}
+\item \textbf{后验均值：}$\hat{\theta}_{Bayes} = E[\theta|x]$
+\item \textbf{后验中位数：}$\text{Med}(\theta|x)$
+\item \textbf{后验众数（MAP）：}$\arg\max_\theta \pi(\theta|x)$
+\end{itemize}
+\end{definition}
+
+\begin{example}[Beta-二项模型]
+设观测到$n$次试验中有$x$次成功，成功概率$\theta$的先验为$\text{Beta}(\alpha, \beta)$。
+
+后验分布：$\theta|x \sim \text{Beta}(\alpha + x, \beta + n - x)$
+
+贝叶斯估计（后验均值）：
+$$\hat{\theta}_{Bayes} = \frac{\alpha + x}{\alpha + \beta + n}$$
+
+这可以写成：
+$$\hat{\theta}_{Bayes} = \frac{\alpha + \beta}{\alpha + \beta + n} \cdot \frac{\alpha}{\alpha + \beta} + \frac{n}{\alpha + \beta + n} \cdot \frac{x}{n}$$
+
+即先验均值和样本比例的加权平均。
+\end{example}
+
+\begin{theorem}[贝叶斯估计的性质]
+贝叶斯估计量（后验均值）具有以下性质：
+\begin{enumerate}
+\item 在平方损失下是最优的：$\min_{\hat{\theta}} E[(\theta - \hat{\theta})^2|x]$
+\item 当样本量趋于无穷时，贝叶斯估计趋向于最大似然估计
+\item 自动包含了参数的不确定性
+\end{enumerate}
+\end{theorem}
+
+\section{大样本性质}
+
+\subsection{一致性}
+
+\begin{definition}[一致性的类型]
+设$\{\hat{\theta}_n\}$是参数$\theta$的估计量序列：
+\begin{itemize}
+\item \textbf{弱一致性：}$\hat{\theta}_n \stackrel{P}{\to} \theta$
+\item \textbf{强一致性：}$\hat{\theta}_n \stackrel{a.s.}{\to} \theta$
+\item \textbf{均方一致性：}$E[(\hat{\theta}_n - \theta)^2] \to 0$
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[大数定律的应用]
+\begin{enumerate}
+\item \textbf{弱大数定律：}$\bar{X}_n \stackrel{P}{\to} \mu$
+\item \textbf{强大数定律：}$\bar{X}_n \stackrel{a.s.}{\to} \mu$
+\item \textbf{Glivenko-Cantelli定理：}经验分布函数一致收敛到真实分布函数
+\end{enumerate}
+\end{theorem}
+
+\subsection{渐近正态性}
+
+\begin{theorem}[中心极限定理]
+设$X_1, X_2, \ldots$独立同分布，$E[X_i] = \mu$，$\text{Var}(X_i) = \sigma^2 < \infty$，则：
+$$\frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \stackrel{d}{\to} N(0, 1)$$
+\end{theorem}
+
+\begin{theorem}[Delta方法]
+设$\sqrt{n}(X_n - \theta) \stackrel{d}{\to} N(0, \sigma^2)$，$g$是在$\theta$处可微的函数，$g'(\theta) \neq 0$，则：
+$$\sqrt{n}(g(X_n) - g(\theta)) \stackrel{d}{\to} N(0, [g'(\theta)]^2 \sigma^2)$$
+\end{theorem}
+
+\begin{example}[Delta方法的应用]
+设$X_n \sim \text{Binomial}(n, p)$，考虑$\hat{p} = X_n/n$。
+
+已知：$\sqrt{n}(\hat{p} - p) \stackrel{d}{\to} N(0, p(1-p))$
+
+设$g(p) = \log\left(\frac{p}{1-p}\right)$（logit变换），$g'(p) = \frac{1}{p(1-p)}$
+
+由Delta方法：
+$$\sqrt{n}(g(\hat{p}) - g(p)) \stackrel{d}{\to} N\left(0, \frac{1}{p(1-p)}\right)$$
+\end{example}
+
+\subsection{似然比统计量的渐近分布}
+
+\begin{theorem}[Wilks定理]
+在正则条件下，当$H_0$为真时：
+$$-2\log\Lambda_n \stackrel{d}{\to} \chi^2(r)$$
+其中$r$是约束的个数。
+\end{theorem}
+
+\textbf{应用：}
+\begin{enumerate}
+\item 假设检验：构造似然比检验
+\item 置信区间：基于似然比的置信域
+\item 模型选择：通过AIC、BIC等准则
+\end{enumerate}
+
+\subsection{渐近有效性}
+
+\begin{definition}[渐近有效性]
+估计量$\hat{\theta}_n$是渐近有效的，如果：
+$$\sqrt{n}(\hat{\theta}_n - \theta) \stackrel{d}{\to} N(0, I^{-1}(\theta))$$
+其中$I(\theta)$是Fisher信息量。
+\end{definition}
+
+\begin{theorem}[最大似然估计的渐近性质]
+在正则条件下，最大似然估计量$\hat{\theta}_{MLE}$是：
+\begin{enumerate}
+\item 一致的
+\item 渐近正态的
+\item 渐近有效的
+\end{enumerate}
+\end{theorem}
+
+\section{总结与应试策略}
+
+\subsection{重点知识梳理}
+
+\textbf{1. 分布理论（25\%）}
+\begin{itemize}
+\item 掌握各种分布的性质、参数、期望方差
+\item 重点：正态分布族（$\chi^2$, $t$, $F$分布）的关系
+\item 常考：分布的可加性、变换性质
+\end{itemize}
+
+\textbf{2. 假设检验（30\%）}
+\begin{itemize}
+\item 理解Type I/II错误，检验的势
+\item 掌握Neyman-Pearson引理和似然比检验
+\item 常用检验：$t$检验、$\chi^2$检验、$F$检验
+\end{itemize}
+
+\textbf{3. 参数估计（30\%）}
+\begin{itemize}
+\item 矩估计法和最大似然估计的计算
+\item Fisher信息量和Cramér-Rao下界
+\item 置信区间的构造方法
+\end{itemize}
+
+\textbf{4. 贝叶斯统计（10\%）}
+\begin{itemize}
+\item 共轭先验的计算
+\item 贝叶斯估计量的性质
+\end{itemize}
+
+\textbf{5. 大样本理论（15\%）}
+\begin{itemize}
+\item 一致性、渐近正态性
+\item Delta方法的应用
+\item 似然比统计量的渐近分布
+\end{itemize}
+
+\subsection{解题技巧}
+
+\textbf{1. 分布识别}
+\begin{itemize}
+\item 看到独立正态随机变量的平方和 → $\chi^2$分布
+\item 看到标准正态与$\chi^2$的比 → $t$分布
+\item 看到两个$\chi^2$分布的比 → $F$分布
+\end{itemize}
+
+\textbf{2. 最大似然估计}
+\begin{itemize}
+\item 写似然函数时注意取值范围
+\item 对数变换简化计算
+\item 检查边界值和驻点
+\end{itemize}
+
+\textbf{3. 假设检验}
+\begin{itemize}
+\item 明确$H_0$和$H_1$
+\item 选择合适的检验统计量
+\item 确定拒绝域或计算$p$值
+\end{itemize}
+
+\textbf{4. 置信区间}
+\begin{itemize}
+\item 找到合适的枢轴量
+\item 利用对称性简化计算
+\item 大样本时使用渐近正态性
+\end{itemize}
+
+\subsection{常见陷阱}
+
+\begin{itemize}
+\item 混淆样本方差$S^2$和总体方差$\sigma^2$
+\item 忘记自由度的计算（特别是$t$分布和$\chi^2$分布）
+\item 贝叶斯估计中先验和后验的参数更新
+\item Delta方法中函数的可微性条件
+\item 似然比检验中约束条件的个数
+\end{itemize}
+
+通过系统掌握这些理论和方法，并配合大量练习，可以有效提高在丘成桐数学竞赛统计方向的表现。重点要理解概念之间的联系，熟练掌握计算技巧，并能灵活应用到具体问题中。
+
+\end{document}

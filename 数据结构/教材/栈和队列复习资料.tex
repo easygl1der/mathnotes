@@ -1,0 +1,1009 @@
+\documentclass[12pt,a4paper]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+
+% Define custom colors
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{mdframed}
+\usepackage[hidelinks,bookmarksnumbered,bookmarksopen]{hyperref}
+\usepackage{xeCJK}
+\setCJKmainfont{LXGW WenKai}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+% 代码高亮设置
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    tabsize=4,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false
+}
+
+% 定理环境
+\newtheorem{definition}{定义}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{example}{例题}[section]
+\newtheorem{property}{性质}[section]
+
+% TikZ库
+\usetikzlibrary{trees,positioning,arrows,automata,calc,shapes}
+
+
+\title{\textbf{数据结构 - 栈和队列复习资料}}
+\author{详细版本}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+% % 目录设置
+% \tableofcontents
+% \newpage
+
+\section{栈的基本概念}
+
+\subsection{栈的定义}
+
+\begin{definition}[栈]
+栈（stack）是限定仅在表的一端进行插入和删除操作的线性表。允许插入和删除的一端称为栈顶（stack top），另一端称为栈底（stack bottom），不含任何数据元素的栈称为空栈。
+\end{definition}
+
+\subsection{栈的特性}
+
+栈中元素具有以下特性：
+\begin{enumerate}
+\item \textbf{后进先出（LIFO）}：Last In First Out，最后进入栈的元素最先出栈
+\item \textbf{线性关系}：栈中元素具有一对一的前驱后继关系
+\item \textbf{操作受限}：只能在栈顶进行插入（入栈、压栈）和删除（出栈、弹栈）操作
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+% 栈的示意图
+\draw[thick] (0,0) rectangle (2,4);
+\node[rectangle,draw,fill=lightblue,minimum width=1.8cm,minimum height=0.6cm] at (1,0.4) {$a_1$};
+\node[rectangle,draw,fill=lightblue,minimum width=1.8cm,minimum height=0.6cm] at (1,1.2) {$a_2$};
+\node[rectangle,draw,fill=lightblue,minimum width=1.8cm,minimum height=0.6cm] at (1,2.0) {$a_3$};
+\node[rectangle,draw,fill=lightblue,minimum width=1.8cm,minimum height=0.6cm] at (1,2.8) {$a_4$};
+
+% 标注
+\node[left] at (0,0.4) {栈底};
+\node[left] at (0,2.8) {栈顶};
+\node[right] at (2.3,2.8) {出栈};
+\node[above] at (1,4.2) {入栈};
+
+% 箭头
+\draw[->,thick,red] (1,3.5) -- (1,3.2);
+\draw[->,thick,blue] (2.5,2.8) -- (2.2,2.8);
+\end{tikzpicture}
+\end{center}
+
+\subsection{栈的抽象数据类型定义}
+
+\indent
+
+\begin{lstlisting}[caption=栈的抽象数据类型定义]
+ADT Stack {
+    数据对象：D = {ai | ai ∈ ElemType, i = 1,2,...,n, n ≥ 0}
+    数据关系：R1 = {<ai-1, ai> | ai-1, ai ∈ D, i = 2,...,n}
+    基本操作：
+        InitStack(S);           // 栈的初始化
+        DestroyStack(S);        // 栈的销毁
+        Push(S, x);             // 入栈操作
+        Pop(S);                 // 出栈操作
+        GetTop(S);              // 取栈顶元素
+        Empty(S);               // 判断栈是否为空
+} ADT Stack
+\end{lstlisting}
+
+\section{栈的存储结构及实现}
+
+\subsection{顺序栈}
+
+\subsubsection{顺序栈的存储结构}
+
+顺序栈是栈的顺序存储结构，用一维数组存储栈中元素，并用一个整型变量top记录栈顶元素在数组中的位置。
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+% 顺序栈示意图
+\foreach \x in {0,1,2,3,4,5,6,7,8,9} {
+    \draw (\x,0) rectangle (\x+1,1);
+    \node at (\x+0.5,-0.3) {\x};
+}
+
+% 填充数据
+\node at (0.5,0.5) {$a_1$};
+\node at (1.5,0.5) {$a_2$};
+\node at (2.5,0.5) {$a_3$};
+\node at (3.5,0.5) {$a_4$};
+
+% 标注
+\node[below] at (0.5,-0.8) {栈底};
+\node[above] at (3.5,1.3) {top = 3};
+\node[above] at (3.5,1.7) {栈顶};
+\draw[->,thick] (3.5,1.5) -- (3.5,1.1);
+
+% 空闲区域标注
+\node at (6.5,0.5) {空闲};
+
+% 数组名
+\node[left] at (0,0.5) {data};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{顺序栈的实现}
+
+\indent
+
+\begin{lstlisting}[caption=顺序栈类定义]
+const int StackSize = 100;
+template <typename DataType>
+class SeqStack {
+public:
+    SeqStack();                    // 构造函数
+    ~SeqStack();                   // 析构函数
+    void Push(DataType x);         // 入栈操作
+    DataType Pop();                // 出栈操作
+    DataType GetTop();             // 取栈顶元素
+    int Empty();                   // 判断栈是否为空
+private:
+    DataType data[StackSize];      // 存放栈元素的数组
+    int top;                       // 栈顶指针
+};
+\end{lstlisting}
+
+\textbf{基本操作实现：}
+
+\begin{lstlisting}[caption=顺序栈基本操作]
+// 构造函数
+template <typename DataType>
+SeqStack<DataType>::SeqStack() {
+    top = -1;    // 栈空时top = -1
+}
+
+// 入栈操作
+template <typename DataType>
+void SeqStack<DataType>::Push(DataType x) {
+    if (top == StackSize - 1) 
+        throw "栈上溢";
+    data[++top] = x;
+}
+
+// 出栈操作
+template <typename DataType>
+DataType SeqStack<DataType>::Pop() {
+    if (top == -1) 
+        throw "栈下溢";
+    return data[top--];
+}
+
+// 取栈顶元素
+template <typename DataType>
+DataType SeqStack<DataType>::GetTop() {
+    if (top == -1) 
+        throw "栈为空";
+    return data[top];
+}
+
+// 判空操作
+template <typename DataType>
+int SeqStack<DataType>::Empty() {
+    return (top == -1) ? 1 : 0;
+}
+\end{lstlisting}
+
+\subsection{链栈}
+
+\subsubsection{链栈的存储结构}
+
+链栈是栈的链式存储结构，用单链表实现，通常以链表的头部作为栈顶。
+\begin{center}
+\begin{tikzpicture}[scale=1]
+% 链栈示意图
+\node[rectangle,draw,minimum width=1cm,minimum height=0.8cm] at (0,0) {top};
+\draw[->] (0.5,0) -- (1.5,0);
+
+\node[rectangle,draw,minimum width=1cm,minimum height=0.8cm,fill=lightblue] at (2,0) {$a_4$};
+\node[rectangle,draw,minimum width=0.8cm,minimum height=0.8cm] at (3,0) {};
+\draw[->] (3.4,0) -- (4.5,0);
+
+\node[rectangle,draw,minimum width=1cm,minimum height=0.8cm,fill=lightblue] at (5,0) {$a_3$};
+\node[rectangle,draw,minimum width=0.8cm,minimum height=0.8cm] at (6,0) {};
+\draw[->] (6.4,0) -- (7.5,0);
+
+\node[rectangle,draw,minimum width=1cm,minimum height=0.8cm,fill=lightblue] at (8,0) {$a_2$};
+\node[rectangle,draw,minimum width=0.8cm,minimum height=0.8cm] at (9,0) {};
+\draw[->] (9.4,0) -- (10.5,0);
+
+\node[rectangle,draw,minimum width=1cm,minimum height=0.8cm,fill=lightblue] at (11,0) {$a_1$};
+\node[rectangle,draw,minimum width=0.8cm,minimum height=0.8cm] at (12,0) {$\wedge$};
+
+% 标注
+\node[above] at (2,0.5) {栈顶};
+\node[above] at (11,0.5) {栈底};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{链栈的实现}
+
+\indent
+
+\begin{lstlisting}[caption=链栈类定义]
+template <typename DataType>
+struct Node {
+    DataType data;
+    Node<DataType>* next;
+};
+
+template <typename DataType>
+class LinkStack {
+public:
+    LinkStack();                   // 构造函数
+    ~LinkStack();                  // 析构函数
+    void Push(DataType x);         // 入栈操作
+    DataType Pop();                // 出栈操作
+    DataType GetTop();             // 取栈顶元素
+    int Empty();                   // 判断栈是否为空
+private:
+    Node<DataType>* top;           // 栈顶指针
+};
+\end{lstlisting}
+
+\begin{lstlisting}[caption=链栈基本操作]
+// 入栈操作
+template <typename DataType>
+void LinkStack<DataType>::Push(DataType x) {
+    Node<DataType>* s = new Node<DataType>;
+    s->data = x;
+    s->next = top;
+    top = s;
+}
+
+// 出栈操作
+template <typename DataType>
+DataType LinkStack<DataType>::Pop() {
+    if (top == nullptr) 
+        throw "栈下溢";
+    DataType x = top->data;
+    Node<DataType>* p = top;
+    top = top->next;
+    delete p;
+    return x;
+}
+\end{lstlisting}
+
+\subsection{顺序栈与链栈的比较}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{比较项目} & \textbf{顺序栈} & \textbf{链栈} \\
+\hline
+存储空间 & 预分配固定大小 & 动态分配 \\
+\hline
+空间利用率 & 可能浪费空间 & 充分利用空间 \\
+\hline
+存储密度 & 高（无指针开销） & 低（有指针开销） \\
+\hline
+操作效率 & 高 & 相对较低 \\
+\hline
+栈满判断 & 容易判断 & 依赖内存状态 \\
+\hline
+适用场景 & 元素个数相对稳定 & 元素个数变化较大 \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{队列的基本概念}
+
+\subsection{队列的定义}
+
+\begin{definition}[队列]
+队列（queue）是只允许在一端进行插入操作，在另一端进行删除操作的线性表。允许插入（入队）的一端称为队尾（rear），允许删除（出队）的一端称为队头（front）。
+\end{definition}
+
+\subsection{队列的特性}
+
+队列中元素具有以下特性：
+\begin{enumerate}
+\item \textbf{先进先出（FIFO）}：First In First Out，最先进入队列的元素最先出队
+\item \textbf{线性关系}：队列中元素具有一对一的前驱后继关系
+\item \textbf{操作受限}：只能在队尾插入，在队头删除
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+% 队列示意图
+\foreach \x in {0,1,2,3,4,5} {
+    \draw (\x,0) rectangle (\x+1,1);
+}
+
+% 填充数据
+\node at (0.5,0.5) {$a_1$};
+\node at (1.5,0.5) {$a_2$};
+\node at (2.5,0.5) {$a_3$};
+\node at (3.5,0.5) {$a_4$};
+
+% 标注
+\node[below] at (0.5,-0.5) {队头};
+\node[below] at (3.5,-0.5) {队尾};
+
+% 箭头
+\draw[->,thick,blue] (-0.5,0.5) -- (-0.1,0.5);
+\node[left] at (-0.5,0.5) {出队};
+
+\draw[->,thick,red] (6.5,0.5) -- (6.1,0.5);
+\node[right] at (6.5,0.5) {入队};
+
+\draw[->] (0,-0.3) -- (0,-0.1);
+\draw[->] (4,-0.3) -- (4,-0.1);
+\end{tikzpicture}
+\end{center}
+
+\subsection{队列的抽象数据类型定义}
+
+\indent
+
+\begin{lstlisting}[caption=队列的抽象数据类型定义]
+ADT Queue {
+    数据对象：D = {ai | ai ∈ ElemType, i = 1,2,...,n, n ≥ 0}
+    数据关系：R1 = {<ai-1, ai> | ai-1, ai ∈ D, i = 2,...,n}
+    基本操作：
+        InitQueue(Q);           // 队列的初始化
+        DestroyQueue(Q);        // 队列的销毁
+        EnQueue(Q, x);          // 入队操作
+        DeQueue(Q);             // 出队操作
+        GetHead(Q);             // 取队头元素
+        Empty(Q);               // 判断队列是否为空
+} ADT Queue
+\end{lstlisting}
+
+\section{队列的存储结构及实现}
+
+\subsection{顺序队列的问题}
+
+如果用顺序存储实现队列，会遇到"假溢出"问题：
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+% 假溢出示意图
+\foreach \x in {0,1,2,3,4,5,6,7} {
+    \draw (\x,0) rectangle (\x+1,1);
+    \node at (\x+0.5,-0.3) {\x};
+}
+
+% 状态1：正常队列
+\node at (1.5,2.5) {\textbf{状态1：正常队列}};
+\node at (1.5,0.5) {$a_1$};
+\node at (2.5,0.5) {$a_2$};
+\node at (3.5,0.5) {$a_3$};
+\draw[->] (1,-0.1) -- (1,0.1);
+\node[below] at (1,-0.4) {front};
+\draw[->] (4,-0.1) -- (4,0.1);
+\node[below] at (4,-0.4) {rear};
+
+% 状态2：假溢出
+\foreach \x in {0,1,2,3,4,5,6,7} {
+    \draw (\x,3) rectangle (\x+1,4);
+    \node at (\x+0.5,2.7) {\x};
+}
+\node at (1.5,5.5) {\textbf{状态2：假溢出}};
+\node at (5.5,3.5) {$a_4$};
+\node at (6.5,3.5) {$a_5$};
+\node at (7.5,3.5) {$a_6$};
+\draw[->] (5,2.9) -- (5,3.1);
+\node[below] at (5,2.6) {front};
+\draw[->] (8,2.9) -- (8,3.1);
+\node[below] at (8,2.6) {rear};
+\node[above] at (4,4.3) {空闲但无法使用};
+\end{tikzpicture}
+\end{center}
+
+\subsection{循环队列}
+
+为了解决假溢出问题，将存储队列的数组看成头尾相接的循环结构，称为循环队列。
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+% 循环队列示意图
+\draw[thick] (0,0) circle (2.5);
+
+% 数组位置
+\foreach \i in {0,1,2,3,4,5,6,7} {
+    \pgfmathsetmacro{\angle}{90 - \i * 45}
+    \coordinate (pos\i) at (\angle:2.5);
+    \node[circle,draw,fill=white,minimum size=0.6cm] at (pos\i) {\i};
+}
+
+% 填充数据
+\node[circle,draw,fill=lightblue,minimum size=0.6cm] at (pos4) {$a_1$};
+\node[circle,draw,fill=lightblue,minimum size=0.6cm] at (pos5) {$a_2$};
+\node[circle,draw,fill=lightblue,minimum size=0.6cm] at (pos6) {$a_3$};
+\node[circle,draw,fill=lightblue,minimum size=0.6cm] at (pos7) {$a_4$};
+
+% 指针标注
+\draw[->,thick,red] ([yshift=15pt]pos3) -- (pos3);
+\node[above] at ([yshift=15pt]pos3) {\textbf{front}};
+
+\draw[->,thick,blue] ([yshift=15pt]pos7) -- (pos7);
+\node[above] at ([yshift=15pt]pos7) {\textbf{rear}};
+
+\node[below] at (0,-3) {\textbf{循环队列示意图}};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{循环队列的队空和队满判断}
+
+\textbf{问题：}循环队列中，队空和队满时都有front == rear，如何区分？
+
+\textbf{解决方案：}牺牲一个存储单元，队满条件为：$(rear + 1) \% QueueSize == front$
+
+\begin{center}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{状态} & \textbf{判断条件} \\
+\hline
+队空 & front == rear \\
+\hline
+队满 & (rear + 1) \% QueueSize == front \\
+\hline
+队列长度 & (rear - front + QueueSize) \% QueueSize \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{循环队列的实现}
+
+\indent
+
+\begin{lstlisting}[caption=循环队列类定义]
+const int QueueSize = 100;
+template <typename DataType>
+class CirQueue {
+public:
+    CirQueue();                    // 构造函数
+    ~CirQueue();                   // 析构函数
+    void EnQueue(DataType x);      // 入队操作
+    DataType DeQueue();            // 出队操作
+    DataType GetHead();            // 取队头元素
+    int Empty();                   // 判断队列是否为空
+private:
+    DataType data[QueueSize];      // 存放队列元素的数组
+    int front, rear;               // 队头和队尾指针
+};
+\end{lstlisting}
+
+\begin{lstlisting}[caption=循环队列基本操作]
+// 构造函数
+template <typename DataType>
+CirQueue<DataType>::CirQueue() {
+    front = rear = 0;    // 队空时front = rear
+}
+
+// 入队操作
+template <typename DataType>
+void CirQueue<DataType>::EnQueue(DataType x) {
+    if ((rear + 1) % QueueSize == front) 
+        throw "队列上溢";
+    rear = (rear + 1) % QueueSize;
+    data[rear] = x;
+}
+
+// 出队操作
+template <typename DataType>
+DataType CirQueue<DataType>::DeQueue() {
+    if (front == rear) 
+        throw "队列下溢";
+    front = (front + 1) % QueueSize;
+    return data[front];
+}
+
+// 取队头元素
+template <typename DataType>
+DataType CirQueue<DataType>::GetHead() {
+    if (front == rear) 
+        throw "队列为空";
+    return data[(front + 1) % QueueSize];
+}
+\end{lstlisting}
+
+\subsection{链队列}
+
+\subsubsection{链队列的存储结构}
+
+链队列是队列的链式存储结构，用单链表实现，需要设置队头指针front和队尾指针rear。
+
+\begin{center}
+\begin{tikzpicture}[scale=1,
+    node distance=0.5cm,
+    box/.style={rectangle,draw,thick,minimum width=1.2cm,minimum height=0.8cm,rounded corners=2pt},
+    pointer/.style={rectangle,draw,thick,minimum width=0.6cm,minimum height=0.4cm,fill=white},
+    data/.style={box,fill=lightblue!80},
+    header/.style={box,fill=lightgray!60},
+    label/.style={rectangle,draw,thick,fill=orange!20,rounded corners=3pt,font=\small\bfseries}]
+
+% 指针标签
+\node[label] (front_label) at (0,1.5) {front};
+\node[label] (rear_label) at (0,0) {rear};
+
+% 头结点
+\node[header] (head) at (3,0.75) {head};
+\node[pointer] (head_ptr) at (4.2,0.75) {};
+
+% 数据结点
+\node[data] (node1) at (6,0.75) {$a_1$};
+\node[pointer] (ptr1) at (7.2,0.75) {};
+
+\node[data] (node2) at (9,0.75) {$a_2$};
+\node[pointer] (ptr2) at (10.2,0.75) {};
+
+\node[data] (node3) at (12,0.75) {$a_3$};
+\node[pointer] (ptr3) at (13.2,0.75) {$\wedge$};
+
+% 连接箭头 - 使用更美观的弯曲箭头
+\draw[->,very thick,red] (front_label.east) to[bend left=10] (head.west);
+\draw[->,very thick,blue] (rear_label.east) to[bend right=20] (node3.south west);
+
+\draw[->,thick] (head_ptr.east) to[bend left=5] (node1.west);
+\draw[->,thick] (ptr1.east) to[bend left=5] (node2.west);
+\draw[->,thick] (ptr2.east) to[bend left=5] (node3.west);
+
+% 操作方向指示
+\draw[->,very thick,green!70!black] (5.5,1.8) -- (6.5,1.8);
+\node[above] at (6,2.1) {\footnotesize \textcolor{green!70!black}{出队方向}};
+
+\draw[->,very thick,purple!70!black] (11.5,1.8) -- (12.5,1.8);
+\node[above] at (12,2.1) {\footnotesize \textcolor{purple!70!black}{入队方向}};
+
+% 节点类型标注
+\node[below] at (3,-0.4) {\footnotesize 头结点};
+\node[below] at (6,-0.4) {\footnotesize 队头数据};
+\node[below] at (12,-0.4) {\footnotesize 队尾数据};
+
+% 整体标题和说明
+\node[below] at (6.5,-1.2) {\textbf{链队列存储结构}};
+\node[below] at (6.5,-1.6) {\footnotesize 蓝色为数据节点，灰色为头结点，$\wedge$表示空指针};
+\end{tikzpicture}
+\end{center}
+
+\subsubsection{链队列的实现}
+
+\indent
+
+\begin{lstlisting}[caption=链队列类定义]
+template <typename DataType>
+class LinkQueue {
+public:
+    LinkQueue();                   // 构造函数
+    ~LinkQueue();                  // 析构函数
+    void EnQueue(DataType x);      // 入队操作
+    DataType DeQueue();            // 出队操作
+    DataType GetHead();            // 取队头元素
+    int Empty();                   // 判断队列是否为空
+private:
+    Node<DataType>* front, * rear; // 队头和队尾指针
+};
+\end{lstlisting}
+
+\begin{lstlisting}[caption=链队列基本操作]
+// 构造函数
+template <typename DataType>
+LinkQueue<DataType>::LinkQueue() {
+    Node<DataType>* s = new Node<DataType>;
+    s->next = nullptr;
+    front = rear = s;    // 头结点
+}
+
+// 入队操作
+template <typename DataType>
+void LinkQueue<DataType>::EnQueue(DataType x) {
+    Node<DataType>* s = new Node<DataType>;
+    s->data = x;
+    s->next = nullptr;
+    rear->next = s;
+    rear = s;
+}
+
+// 出队操作
+template <typename DataType>
+DataType LinkQueue<DataType>::DeQueue() {
+    if (front == rear) 
+        throw "队列下溢";
+    Node<DataType>* p = front->next;
+    DataType x = p->data;
+    front->next = p->next;
+    if (rear == p) rear = front;  // 队列变空
+    delete p;
+    return x;
+}
+\end{lstlisting}
+
+\section{栈和队列的应用}
+
+\subsection{括号匹配问题}
+
+\begin{example}[括号匹配算法]
+设计算法判断表达式中括号是否正确配对。
+
+\textbf{算法思想：}
+\begin{enumerate}
+\item 用栈保存未配对的左括号
+\item 遇到左括号时入栈
+\item 遇到右括号时出栈一个左括号与之配对
+\item 最后栈空则配对成功
+\end{enumerate}
+\end{example}
+
+\begin{algorithm}[H]
+\caption{括号匹配算法}
+\begin{algorithmic}[1]
+\REQUIRE 表达式字符串$str$
+\ENSURE 匹配结果：0表示匹配，1表示多左括号，-1表示多右括号
+\STATE 栈$S$初始化
+\FOR{$i = 0$ to $strlen(str) - 1$}
+    \IF{$str[i] == '('$}
+        \STATE $S.Push('(')$
+    \ELSIF{$str[i] == ')'$}
+        \IF{$S.Empty()$}
+            \RETURN $-1$ \COMMENT{多右括号}
+        \ELSE
+            \STATE $S.Pop()$
+        \ENDIF
+    \ENDIF
+\ENDFOR
+\IF{$S.Empty()$}
+    \RETURN $0$ \COMMENT{正确匹配}
+\ELSE
+    \RETURN $1$ \COMMENT{多左括号}
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{表达式求值}
+
+\begin{example}[表达式求值算法]
+利用两个栈（操作数栈和运算符栈）实现中缀表达式求值。
+
+\textbf{算法过程：}
+\begin{enumerate}
+\item 扫描表达式，操作数直接入操作数栈
+\item 运算符与运算符栈顶比较优先级
+\item 当前运算符优先级高，入运算符栈
+\item 当前运算符优先级低，弹出栈顶运算符计算
+\end{enumerate}
+\end{example}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{当前字符} & \textbf{操作数栈} & \textbf{运算符栈} & \textbf{说明} \\
+\hline
+$($ & & $\#,($ & $($ 入运算符栈 \\
+\hline
+$4$ & $4$ & $\#,($ & $4$ 入操作数栈 \\
+\hline
+$+$ & $4$ & $\#,(,+$ & $+$ 入运算符栈 \\
+\hline
+$2$ & $4,2$ & $\#,(,+$ & $2$ 入操作数栈 \\
+\hline
+$)$ & $6$ & $\#,($ & 计算 $4+2=6$ \\
+\hline
+$)$ & $6$ & $\#$ & 括号匹配，$($出栈 \\
+\hline
+$*$ & $6$ & $\#,*$ & $*$ 入运算符栈 \\
+\hline
+$3$ & $6,3$ & $\#,*$ & $3$ 入操作数栈 \\
+\hline
+$\#$ & $18$ & $\#$ & 计算 $6*3=18$ ，结束 \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{函数调用栈}
+
+函数的嵌套调用使用系统栈保存调用现场：
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+% 函数调用栈示意图
+% 栈的外框
+\draw[thick] (-1.5,-0.5) rectangle (1.5,4);
+
+% 栈中的函数调用现场
+\node[rectangle,draw,thick,minimum width=2.5cm,minimum height=0.8cm,fill=lightblue,rounded corners=2pt] at (0,3.2) {\small 函数A调用现场};
+\node[rectangle,draw,thick,minimum width=2.5cm,minimum height=0.8cm,fill=lightgreen,rounded corners=2pt] at (0,2.2) {\small 函数B调用现场};
+\node[rectangle,draw,thick,minimum width=2.5cm,minimum height=0.8cm,fill=lightyellow,rounded corners=2pt] at (0,1.2) {\small 函数C调用现场};
+\node[rectangle,draw,thick,minimum width=2.5cm,minimum height=0.8cm,fill=lightgray,rounded corners=2pt] at (0,0.2) {\small $\cdots$};
+
+% 栈顶和栈底标记
+\node[above,font=\bfseries] at (0,4.2) {栈顶};
+\node[below,font=\bfseries] at (0,-0.7) {栈底};
+
+% 状态指示箭头和标签
+\draw[->,thick,red] (2,3.2) -- (1.3,3.2);
+\node[right,font=\small] at (2,3.2) {\textcolor{red}{当前执行}};
+
+\draw[->,thick,blue] (2,2.2) -- (1.3,2.2);
+\node[right,font=\small] at (2,2.2) {\textcolor{blue}{被挂起}};
+
+\draw[->,thick,blue] (2,1.2) -- (1.3,1.2);
+\node[right,font=\small] at (2,1.2) {\textcolor{blue}{被挂起}};
+
+% 说明文字
+\node[below,font=\small] at (0,-1.2) {函数调用栈结构};
+\end{tikzpicture}
+\end{center}
+
+\subsection{队列的应用场景}
+
+\begin{enumerate}
+\item \textbf{操作系统}：进程调度、作业队列
+\item \textbf{打印缓冲}：打印任务排队
+\item \textbf{键盘缓冲}：按键事件队列
+\item \textbf{BFS遍历}：广度优先搜索算法
+\item \textbf{银行排队}：客户服务系统
+\end{enumerate}
+
+\section{特殊栈和队列}
+
+\subsection{共享栈}
+
+利用一个数组实现两个栈，充分利用存储空间：
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+% 共享栈示意图
+% 绘制数组格子
+\foreach \x in {0,1,2,3,4,5,6,7,8,9} {
+    \draw[thick] (\x,0) rectangle (\x+1,1);
+    \node[font=\small] at (\x+0.5,-0.3) {\x};
+}
+
+% 栈1数据 (从左侧开始)
+\node[rectangle,draw,thick,minimum width=0.8cm,minimum height=0.8cm,fill=lightblue,rounded corners=1pt] at (0.5,0.5) {$a_1$};
+\node[rectangle,draw,thick,minimum width=0.8cm,minimum height=0.8cm,fill=lightblue,rounded corners=1pt] at (1.5,0.5) {$a_2$};
+\node[rectangle,draw,thick,minimum width=0.8cm,minimum height=0.8cm,fill=lightblue,rounded corners=1pt] at (2.5,0.5) {$a_3$};
+
+% 栈2数据 (从右侧开始)
+\node[rectangle,draw,thick,minimum width=0.8cm,minimum height=0.8cm,fill=lightgreen,rounded corners=1pt] at (9.5,0.5) {$b_1$};
+\node[rectangle,draw,thick,minimum width=0.8cm,minimum height=0.8cm,fill=lightgreen,rounded corners=1pt] at (8.5,0.5) {$b_2$};
+\node[rectangle,draw,thick,minimum width=0.8cm,minimum height=0.8cm,fill=lightgreen,rounded corners=1pt] at (7.5,0.5) {$b_3$};
+
+% 栈顶指针
+\draw[->,very thick,red] (3,1.3) -- (3,1.1);
+\node[above,font=\bfseries,fill=red!20,rounded corners=2pt,inner sep=2pt] at (3,1.5) {\small top1};
+
+\draw[->,very thick,blue] (7,1.3) -- (7,1.1);
+\node[above,font=\bfseries,fill=blue!20,rounded corners=2pt,inner sep=2pt] at (7,1.5) {\small top2};
+
+% 区域标注
+\node[above,font=\bfseries,color=blue] at (1.5,2) {栈1};
+\node[above,font=\bfseries,color=green!60!black] at (8.5,2) {栈2};
+\node[above,font=\small,color=gray] at (5,2.2) {共享空间};
+
+% 栈满条件
+\node[below,font=\small] at (5,-0.8) {栈满条件：top1 + 1 == top2};
+
+% 生长方向指示
+\draw[->,thick,red,dashed] (3.5,0.5) -- (4.5,0.5);
+\node[above,font=\tiny,color=red] at (4,0.8) {栈1增长};
+
+\draw[->,thick,blue,dashed] (6.5,0.5) -- (5.5,0.5);
+\node[above,font=\tiny,color=blue] at (6,0.8) {栈2增长};
+\end{tikzpicture}
+\end{center}
+
+\subsection{双端队列}
+
+允许在队列两端进行插入和删除操作：
+
+\begin{center}
+\begin{tikzpicture}[scale=1]
+% 双端队列示意图
+\foreach \x in {0,1,2,3,4,5} {
+    \draw (\x,0) rectangle (\x+1,1);
+}
+
+\node at (0.5,0.5) {$a_1$};
+\node at (1.5,0.5) {$a_2$};
+\node at (2.5,0.5) {$a_3$};
+\node at (3.5,0.5) {$a_4$};
+
+% 双向箭头
+\draw[<->,thick,red] (-0.5,0.5) -- (-0.1,0.5);
+\node[left] at (-0.5,0.5) {出队};
+\draw[<->,thick,red] (6.5,0.5) -- (6.1,0.5);
+\node[right] at (6.5,0.5) {出队};
+
+\draw[<->,thick,blue] (-0.5,1.5) -- (-0.1,1.5);
+\node[left] at (-0.5,1.5) {入队};
+\draw[<->,thick,blue] (6.5,1.5) -- (6.1,1.5);
+\node[right] at (6.5,1.5) {入队};
+
+\node[below] at (0,-0.5) {队头/队尾};
+\node[below] at (5,-0.5) {队尾/队头};
+\end{tikzpicture}
+\end{center}
+
+\section{算法复杂度分析}
+
+\subsection{时间复杂度}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{操作} & \textbf{顺序栈} & \textbf{链栈} & \textbf{说明} \\
+\hline
+Push & $O(1)$ & $O(1)$ & 入栈操作 \\
+\hline
+Pop & $O(1)$ & $O(1)$ & 出栈操作 \\
+\hline
+GetTop & $O(1)$ & $O(1)$ & 取栈顶元素 \\
+\hline
+Empty & $O(1)$ & $O(1)$ & 判空操作 \\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{操作} & \textbf{循环队列} & \textbf{链队列} & \textbf{说明} \\
+\hline
+EnQueue & $O(1)$ & $O(1)$ & 入队操作 \\
+\hline
+DeQueue & $O(1)$ & $O(1)$ & 出队操作 \\
+\hline
+GetHead & $O(1)$ & $O(1)$ & 取队头元素 \\
+\hline
+Empty & $O(1)$ & $O(1)$ & 判空操作 \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{空间复杂度}
+
+\begin{itemize}
+\item \textbf{顺序栈}：$O(n)$，需要预分配固定大小的数组
+\item \textbf{链栈}：$O(n)$，动态分配，但有指针开销
+\item \textbf{循环队列}：$O(n)$，需要预分配固定大小的数组
+\item \textbf{链队列}：$O(n)$，动态分配，但有指针开销
+\end{itemize}
+
+\section{常见考点总结}
+
+\subsection{重点掌握内容}
+
+\begin{enumerate}
+\item \textbf{栈和队列的基本概念}：LIFO和FIFO特性
+\item \textbf{循环队列}：队空和队满的判断条件
+\item \textbf{栈的应用}：括号匹配、表达式求值、函数调用
+\item \textbf{队列的应用}：BFS算法、操作系统调度
+\item \textbf{出入栈序列}：判断序列的合法性
+\item \textbf{算法设计}：用栈和队列解决实际问题
+\end{enumerate}
+
+\subsection{常见题型}
+
+\begin{enumerate}
+\item 判断给定的出栈序列是否合法
+\item 循环队列的队空、队满判断
+\item 用栈实现括号匹配算法
+\item 用栈实现中缀表达式求值
+\item 用栈实现中缀转后缀表达式
+\item 用队列实现BFS算法
+\item 共享栈的设计与实现
+\end{enumerate}
+
+\subsection{解题技巧}
+
+\begin{enumerate}
+\item \textbf{出栈序列判断}：利用栈的LIFO特性，模拟入栈出栈过程
+\item \textbf{循环队列}：注意取模运算和牺牲一个存储单元
+\item \textbf{表达式求值}：掌握运算符优先级和两个栈的配合
+\item \textbf{递归转迭代}：用栈模拟递归调用过程
+\end{enumerate}
+
+\section{典型例题解析}
+
+\begin{example}[出栈序列判断]
+栈的入栈序列为1,2,3,4,5，判断以下哪些是合法的出栈序列：
+\begin{enumerate}
+\item 5,4,3,2,1
+\item 4,5,3,2,1  
+\item 4,3,5,1,2
+\end{enumerate}
+
+\textbf{解：}
+\begin{enumerate}
+\item \textbf{5,4,3,2,1}：合法。全部入栈后依次出栈。
+\item \textbf{4,5,3,2,1}：合法。1,2,3,4入栈，4出栈，5入栈，5出栈，3,2,1依次出栈。
+\item \textbf{4,3,5,1,2}：不合法。当5出栈时，1,2还在栈中，不可能2比1先出栈。
+\end{enumerate}
+\end{example}
+
+\begin{example}[循环队列容量计算]
+循环队列的存储空间为Q[0..m-1]，约定front指向队头元素前一个位置，rear指向队尾元素位置。当front=rear时队列为空，当(rear+1)%m=front时队列为满。求该循环队列最多可以存储多少个元素？
+
+\textbf{解：}
+设队列最多存储n个元素。当队列满时，有一个位置被浪费（用于区分队空和队满），因此：
+$$n = m - 1$$
+该循环队列最多可以存储$m-1$个元素。
+\end{example}
+
+\begin{example}[共享栈设计]
+设计一个共享栈，用一个数组S[0..n-1]存储两个栈，栈1从数组低端开始，栈2从数组高端开始。写出入栈和出栈算法。
+
+\textbf{解：}
+\begin{lstlisting}
+// 共享栈结构
+struct SharedStack {
+    int data[MAXSIZE];
+    int top1, top2;  // 两个栈顶指针
+};
+
+// 初始化
+void InitStack(SharedStack &S) {
+    S.top1 = -1;
+    S.top2 = MAXSIZE;
+}
+
+// 栈满判断
+bool StackFull(SharedStack S) {
+    return S.top1 + 1 == S.top2;
+}
+
+// 入栈操作
+bool Push(SharedStack &S, int i, int x) {
+    if (StackFull(S)) return false;
+    if (i == 1) 
+        S.data[++S.top1] = x;
+    else
+        S.data[--S.top2] = x;
+    return true;
+}
+
+// 出栈操作
+int Pop(SharedStack &S, int i) {
+    if (i == 1) {
+        if (S.top1 == -1) throw "栈1下溢";
+        return S.data[S.top1--];
+    } else {
+        if (S.top2 == MAXSIZE) throw "栈2下溢";
+        return S.data[S.top2++];
+    }
+}
+\end{lstlisting}
+\end{example}
+\end{document} 

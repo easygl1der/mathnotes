@@ -1,0 +1,488 @@
+To apply ideas of functional analysis to glean information concerning PDF, theories of Sobolov spaces is developed, which is sometimes subtle and unmotivated but ultimately will prove extremely useful.
+
+\section{Hölder spaces}
+
+We defined the Hölder spaces and the supremum norm $\lVert u \rVert_{C(\overline{U})}=\sup_{x\in U}\lvert u(x) \rvert$ and the $\gamma^{\text{th}}$ -Hölder seminorm of $u:U\to \mathbb{R}$ to be
+\[
+[u]_{C^{0,\gamma}(\overline{U})}=\sup_{x,y\in U,x\neq y}\left\{  \frac{\lvert u(x)-u(y) \rvert }{\lvert x-y \rvert ^{\gamma}}  \right\}
+\]
+And the $\gamma^{\text{th}}$ -Hölder norm to be
+\[
+\lVert u \rVert _{C^{0,\gamma}(\overline{U})}=\lVert u \rVert_{C(\overline{U})}+[u]_{C^{0,\gamma}(\overline{U})}
+\]
+The Hölder space $C^{k,\gamma}(\overline{U})$ consists of all functions $u\in C^{k}(\overline{U})$ for which the norm
+\[
+\lVert u \rVert _{C^{k,\gamma}(\overline{U})}=\sum_{\lvert \alpha \rvert \leq k}\lVert D^{\alpha}u \rVert _{C(\overline{U})}+\sum_{\lvert \alpha \rvert =k}[D^{\alpha}u]_{C^{0,\gamma}(\overline{U})}
+\]
+is finite. The space of functions $C^{k,\gamma}(\overline{U})$ is a Banach space. (left as an exercise)
+
+\subsection{Banach space}
+
+If $X$ denotes a real linear space, then a mapping $\lVert \cdot \rVert:X\to[0,\infty)$ is called a \textbf{norm} provided
+
+\begin{enumerate}
+	\item $\lVert u+v \rVert\leq \lVert u \rVert+\lVert v \rVert$ for all $u, v\in X$.
+	\item $\lVert \lambda u \rVert=\lvert \lambda \rvert \lVert u \rVert$ for all $u\in X,\lambda\in \mathbb{R}$.
+	\item $\lVert u \rVert=0$ if and only if $u=0$.
+\end{enumerate}
+
+A norm provides us with a notion of convergence: we say a sequence $\{ u_k \}_{k=1}^{\infty}$ \textbf{converges} to $u\in X$, written $u_k\to u$, if $\lim_{ k \to \infty }\lVert u_k-u \rVert=0$.
+
+A \textbf{Banach space} is then a normed linear space which is \textbf{complete}, i.e. within which each Cauchy sequence converges.
+
+\section{Sobolev Spaces}
+
+Hölder spaces is not often suitable. We want other spaces containing \underline{less smooth functions}. In practice we must strike a balance.
+
+\subsection{Weak derivatives}
+
+$C^{\infty}_{c}(U)$ denotes the space of infinitely differentiable functions $\phi:U\to \mathbb{R}$ with compact support in $U$. $\phi$ is sometimes called a test function. We have
+\[
+\int_{U}^{} u\phi_{x_i} \, dx =-\int_{U}^{} u_{x_i}\phi \, dx \qquad i=1,2,\dots,n
+\]
+There are no boundary terms, since $\phi$ has compact support in $U$ and thus vanishes near $\partial U$. Then we define the \textbf{weak derivative} of $u\in L^{1}_{\text{loc}}(U)$.
+
+Let $\alpha$ be a multiindex. Say that $v\in L^{1}_{\text{loc}}(U)$ is the $\alpha^{\text{th}}$ -\underline{weak partial derivative }of $u$, written $D^{\alpha}u=v$, provided
+\[
+\int_{U}^{} uD^{\alpha}\phi \, dx =(-1)^{\lvert \alpha \rvert }\int_{U}^{} v\phi \, dx ,\qquad \forall \phi\in C^{\infty}_{c}(U).
+\]
+\begin{note}
+The weak derivative is well-defined. (it's unique.)
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{note}
+\subsubsection{Example 1}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+$u$ is not strongly differentiable at $x=1$ but weakly differentiable.
+
+\subsubsection{Example 2}
+
+This is an example showing that the weak derivative does not always exists.
+
+Let $n=1$, $U=(0,2)$ and
+\[
+u(x)=\begin{cases}
+x & \text{if }0<x\leq 1  \\
+2 & \text{if }1<x<2
+\end{cases}
+\]
+We assert $u'$ does not exists in the weak sense. To check this, we must show that there does not exist any function $v\in L^{1}_{\text{loc}}(U)$ satisfying
+\begin{equation}
+\int_{0}^{2} u\phi' \, dx =-\int_{0}^{2} v\phi \, dx
+\label{8b128d}
+\end{equation}
+
+for all $\phi\in C^{\infty}_{c}(U)$. Suppose, to the contrary, \cref{8b128d}   were valid for some $v$ and all $\phi$. Then
+\begin{equation}
+-\int_{0}^{2} v\phi \, dx =\int_{0}^{2} u\phi' \, dx =\int_{0}^{1} x\phi' \, d+2\int_{1}^{2} \phi' \, dx =-\int_{0}^{1} \phi \, dx -\phi(1)
+\label{d52d3e}
+\end{equation}
+
+Choose a sequence $\{ \phi _m \}_{m=1}^{\infty}$ of smooth functions satisfying
+\[
+0\leq \phi _m\leq 1,\quad \phi _m(1)=1,\quad \phi _m(x)\to0\text{ for all }x\neq 1
+\]
+Replace $\phi$ by $\phi _m$ in \cref{d52d3e} and send $m \to \infty$, we discover
+\[
+1=\lim_{ m \to \infty } \phi _m(1)=\lim_{ m \to \infty } \left[ \int_{0}^{2} v\phi _m \, dx -\int_{0}^{1} \phi _m \, dx  \right]=0
+\]
+a contradiction.
+
+\subsection{Definition of Sobolev spaces}
+
+Fix $1\leq p\leq \infty$ and let $k$ be a nonnegative integer. The \textbf{Sobolev space} $W^{k,p}(U)$ consists of all locally summable function $u:U\to \mathbb{R}$ such that for each multiindex $\alpha$ with $\lvert \alpha \rvert\leq k$, $D^{\alpha}u$ exists in the \underline{weak sense} and belongs to $L^{p}(U)$.
+
+\begin{remark}
+If $p=2$, we usually write $H^{k}(U)=W^{k,2}(U)$. $H^{k}(U)$ is a Hilbert space. Note that $H^{0}(U)=L^{2}(U)$.
+\end{remark}
+If $u\in W^{k,p}(U)$, we define its \textbf{norm} to be
+\[
+\lVert u \rVert _{W^{k,p}(U)}\coloneqq \begin{cases}
+\left( \sum_{\lvert \alpha \rvert \leq k}\int_{U}^{} \lvert D^{\alpha}u \rvert ^{p} \, dx  \right)^{1/p } & 1\leq p<\infty \\
+\sum_{\lvert \alpha \rvert \leq k}\mathrm{ess\ sup} _{U}\lvert D^{\alpha}u \rvert  & p=\infty
+\end{cases}
+\]
+We write
+\[
+u_m\to u\qquad \text{in }W_{\text{loc}}^{k,p}(U)
+\]
+to mean
+\[
+u_m\to u\qquad \text{in }W^{k,p}(V)
+\]
+for each $V\subset \subset U$. $A \subset \subset B$ 意指 $\bar{A}$ 为紧集即有界闭集， $\bar{A} \subset B$ 且 $d(\bar{A}, \partial B)>0$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsubsection{Example}
+
+The following example shows what condition the parameters should satisfy such that $u\in W^{1,p}(U)$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsubsection{Example 4}
+
+The following example illustrates a fundamental fact of life, that although a function $u$ belonging to a Sobolev space possesses certain smoothness properties, it can be rather badly behaved in other ways.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Elementary Properties}
+
+We verify some certain properties of weak derivatives, which is obvious for smooth functions but relies proof solely upon the defintion of weak derivatives.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+We prove the Leibniz's formula by induction on $\lvert \alpha \rvert$. Suppose first $\lvert \alpha \rvert=1$. Choose any $\phi\in C^{\infty}_{c}(U)$. Then
+\[
+\int_{U}^{}  \zeta uD^{\alpha}\phi \, dx  = \int_{U}^{} u\underbrace{ D^{\alpha}(\zeta \phi) }_{ =\phi (D^{\alpha}\zeta) +\zeta (D^{\alpha}\phi)}-u(D^{\alpha}\zeta)\phi \, dx 
+  =-\int_{U}^{} (\zeta D^{\alpha}u+uD^{\alpha}\zeta)\phi \, dx 
+\]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{9-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+Check $u_m\to u$ in $W^{k,p}(U)$ by checking that $D^{\alpha}u_m\to D^{\alpha}u$ in $L^{p}(U)$ for all $\lvert \alpha \rvert\leq k$.
+
+\section{Approximation}
+
+\subsection{Interior approximation by smooth functions}
+
+In order to study the deeper properties of Sobolev spaces, we therefore need to develop some systematic procedures fo rapproximating a function in a Sobolev space by smooth functinos.
+
+Fix positive integer $k$ and $1\leq p<\infty$. $U_{\varepsilon}=\{ x\in U:\mathrm{dist}(x,\partial U)>\varepsilon \}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{10-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+Claim that if $\lvert \alpha \rvert\leq k$ then
+\[
+D^{\alpha}u^{\varepsilon}=\eta_{\varepsilon}*D^{\alpha}u\qquad \text{in }U_{\varepsilon}
+\]
+\subsection{Approximation by smooth functions}
+
+Next we show that we can find smooth functions which approximate in $W^{k,p}(U)$ and not just in $W^{k,p}_{\text{loc}}(U)$. Notice that the smoothness of $\partial U$ is not neccessary.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{11-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+使用了单位分解的思想。
+
+\subsection{Global approximation by smooth functions}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{12-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\section{Extensions}
+
+见崔尚斌
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{13-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{14-Sobolev Spaves-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\section{Traces}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Sobolev Spaces-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{theorem}[Trace Theorem]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Sobolev Spaces-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{theorem}
+\begin{definition}[trace]
+We call $Tu$ the trace of $u$ on $\partial U$.
+\end{definition}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Sobolev Spaces-20250315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\section{Sobolev 嵌入定理}
+
+Sobolev 空间理论的核心部分是三个嵌入定理:
+
+\begin{itemize}
+	\item Sobolev 嵌入定理
+	\item Morrey 嵌入定理
+	\item Kondrachov-Rellich 嵌入定理
+\end{itemize}
+
+\begin{theorem}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Sobolev Spaces-20250315.png}
+% \caption{}
+\label{}
+\end{figure}\label{c2cf0d}
+\end{theorem}
+
+只需证明对于任意 $u\in C^{1}_{0}(\Omega)$ 都成立上述不等式，因为由此通过取极限便可以得到这个不等式对任意 $u\in W_0^{1,p}(\Omega)$ 也都成立，并进而得到包含关系 $W_0^{1,p}(\Omega)\subseteq L^{q}(\Omega)$.
+
+当 $u\in C^{1}_{0}(\Omega)$ 时，把 $u$ 零延拓到 $\mathbb{R}^{n}$ 上便得到 $u\in C_0^{1}(\mathbb{R}^{n})$，这样对于任意满足 $\lvert \omega \rvert=1$ 的 $\omega\in \mathbb{R}^{n}$，有
+\[
+u(x)=-\int_{0}^{\infty} \frac{d}{dt}u(x+t\omega) \, dt, \quad \forall x\in \mathbb{R}^{n}
+\]
+关于 $\omega$ 在单位球面上积分，注意到 $\displaystyle\int_{\lvert \omega \rvert=1}^{}  \, d\omega=n\omega _n$，就得到
+\[
+\begin{aligned}
+\lvert u(x)  \rvert  & \leq \frac{1}{n\omega _n}\int_{\lvert \omega \rvert =1}^{} \int_{0}^{\infty} \left\lvert  \frac{d}{dt} u(x+t\omega)  \right\rvert t^{-(n-1)}\cdot t^{n-1} \, dt  \, d\omega \\
+ & \leq \frac{1}{n\omega _n }\int_{\mathbb{R}^{n}}^{} \lvert \nabla u(y) \rvert \lvert x-y \rvert ^{-(n-1)} \, dy \\
+  & =\frac{1}{n\omega _n } \int_{\Omega}^{} \lvert \nabla u(y) \rvert \lvert x-y \rvert ^{-(n-1)} \, dy,\quad \forall x\in \Omega   
+\end{aligned}
+\]
+记 $\mu=\frac{1}{p}-\frac{1}{q}$, $r=\frac{1}{1-\mu}$. 由所设条件知道 $0\leq \mu<\frac{1}{n}$, 进而 $0<r\leq1$. 注意到
+\[
+\lvert \nabla u(y) \rvert \lvert x-y \rvert ^{-(n-1)}=[\lvert \nabla u(y) \rvert ^{p}\lvert x-y \rvert ^{-(n-1)r}]^{\frac{1}{q}}\cdot \lvert \nabla u(y) \rvert ^{\mu p}\cdot \lvert x-y \rvert ^{-\left( 1-\frac{1}{p} \right)(n-1)r}
+\]
+以及 $\frac{1}{q}+\mu+\left( 1-\frac{1}{p} \right)=1$, 应用推广的 Holder 不等式得
+\[
+\begin{aligned}
+\lvert u(x) \rvert  & \leq \frac{1}{n\omega _n }\left[ \int_{\Omega}^{} \lvert \nabla u(y) \rvert ^{p}\lvert x-y \rvert ^{-(n-1)r} \, dy  \right]^{\frac{1}{q}}\cdot \left[ \int_{\Omega}^{} \lvert \nabla u(y) \rvert ^{p} \, dx  \right]^{\mu}\cdot\left[ \int_{\Omega}^{} \lvert x-y \rvert ^{-(n-1)r} \, dy  \right]^{1-\frac{1}{p}}  \\
+ & \leq \frac{1}{n\omega _n } [C_0(n,p,q,\Omega)]^{1-\frac{1}{p}}\lVert \nabla u \rVert ^{\mu p}_{L^{p}(\Omega)}\left[ \int_{\Omega}^{} \lvert \nabla u(y) \rvert ^{p}\lvert x-y \rvert ^{-(n-1)r} \, dy  \right]^{\frac{1}{q}},\quad \forall x\in \Omega   
+\end{aligned}
+\]
+其中 $\displaystyle C_0(n,p,q,\Omega)=\sup_{x\in \Omega}\int_{\Omega}^{} \lvert x-y \rvert ^{-(n-1)r} \, dy$. 因此
+\[
+\begin{aligned}
+\|u\|_{L^q(\Omega)} & \leqslant \frac{1}{n \omega_n}\left[C_0(n, p, q, \Omega)\right]^{1-\frac{1}{p}}\|\nabla u\|_{L^p(\Omega)}^{\mu p}\left[\int_{\Omega} \int_{\Omega}|\nabla u(y)|^p|x-y|^{-(n-1) r} \mathrm{~d} y \mathrm{~d} x\right]^{\frac{1}{q}} \\
+& \leqslant \frac{1}{n \omega_n}\left[C_0(n, p, q, \Omega)\right]^{1-\frac{1}{p}}\|\nabla u\|_{L^p(\Omega)}^{\mu p} \cdot\left[C_0(n, p, q, \Omega)\right]^{\frac{1}{q}}\|\nabla u\|_{L^p(\Omega)}^{\frac{p}{q}} \\
+& =\frac{1}{n \omega_n}\left[C_0(n, p, q, \Omega)\right]^{1-\frac{1}{p}+\frac{1}{q}}\|\nabla u\|_{L^p(\Omega)} .
+\end{aligned}
+\]
+这里用到 $\mu p+\frac{p}{q}=1$. 选取 $R>0$ 使得 $\lvert \Omega \rvert=\mathrm{meas}B_{R}=\omega _nR^{n}$，则对任意 $x\in \Omega$ 有
+\[
+\begin{aligned}
+\int_{\Omega}^{} \lvert x-y \rvert ^{-(n-1)r} \, dy  & \leq \int_{B_{R}(x)}^{} \lvert x-y \rvert ^{-(n-1)r} \, dy \\
+  & =n\omega _n\int_{0}^{R} \rho^{-(n-1)r+n-1} \, d\rho= \frac{n\omega _nR^{n-(n-1)r}}{n-(n-1)r} 
+\end{aligned}
+\]
+把 $R=\omega_n^{-\frac{1}{n}}|\Omega|^{\frac{1}{n}}$ 代入，得
+\[
+C_0(n, p, q, \Omega)=\sup _{x \in \Omega} \int_{\Omega}|x-y|^{-(n-1) r} \mathrm{~d} y \leqslant \frac{n \omega_n^{\frac{n-1}{n} r}|\Omega|^{1-\frac{n-1}{n} r}}{n-(n-1) r} .
+\]
+注意到 $r=\frac{1}{1-\mu}=1 /\left(1-\frac{1}{p}+\frac{1}{q}\right)$ ，便从（1．8．2）得到了（1．8．1）．证毕．
+
+把 \cref{c2cf0d} 应用到 $q=p$ 的特殊情况，就有如下著名不等式
+
+\begin{theorem}[Poincare 不等式]
+对任意 $1\leq p<\infty$ 和有界开集 $\Omega \subseteq \mathbb{R}^{n}$ 成立不等式
+\[
+\lVert u \rVert _{L^{p}(\Omega)}\leq \omega _n^{-\frac{1}{n}}\lvert \Omega \rvert ^{\frac{1}{n}}\lVert \nabla u \rVert _{L^{p}(\Omega)},\quad \forall u\in W_0^{1,p}(\Omega)
+\]
+\end{theorem}
+把 \cref{c2cf0d} 应用到 $q=\infty$ 的特殊情况，则有如下不等式
+
+\begin{corollary}
+设 $p>n$，则对任意有界开集 $\Omega \subseteq \mathbb{R}^{n}$ 有 $W_0^{1,p}\subseteq C(\overline{\Omega})$，且成立不等式
+\[
+\sup_{x\in \Omega}\lvert u(x) \rvert \leq C_2(n,p)\lvert \Omega \rvert ^{\frac{1}{n}-\frac{1}{p}}\lVert \nabla u \rVert _{L^{p}(\Omega)},\quad \forall u\in W_{0}^{1-p}(\Omega)
+\]
+其中 $C_2(n,p)=\omega _n^{-\frac{1}{n}}[(p-1)/(p-n)]^{1-\frac{1}{p}}$.
+\end{corollary}
+\begin{theorem}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Sobolev Spaces-20250319.png}
+% \caption{}
+\label{}
+\end{figure}\label{63f437}
+\end{theorem}
+
+\begin{remark}
+我还是不大理解这个证明
+\end{remark}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Sobolev Spaces-20250319.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\cref{c2cf0d} 和 \cref{63f437}  说明，在关于 $p$ 和 $\Omega$ 的一定条件下，$W_0^{1,p}$ 中的函数可以有比 $p$ 大的某些幂次 $q$ 的可积性，而且它们关于这些幂次 $q$ 的 $L^{q}(\Omega)$ 范数\underline{可以用其一阶弱导数的} $L^{p}(\Omega)$ \underline{范数界定}。后一性质是 $W_0^{1,p}(\Omega)$ 所特有的；当 $W_0^{1,p}(\Omega)\neq W^{1,p}(\Omega)$ 时，$W^{1,p}(\Omega)$ 中的函数一般不具有这种性质，即 $W^{1,p}(\Omega)$ 中函数的 $L^{q}(\Omega)$ 范数一般不能被其一阶弱导数的 $L^{p}(\Omega)$ 范数界定. 例如当 $\Omega$ 是有界开集时，非零的常值函数都属于 $W^{1,p}(\Omega)$；而对于这些函数，不等式 $\|u\|_{L^q(\Omega)} \leqslant C_1(n, p, q)|\Omega|^{\frac{1}{n}-\frac{1}{p}+\frac{1}{q}}\|\nabla u\|_{L^p(\Omega)}$ 和 $\|u\|_{L^{p^*}(\Omega)} \leqslant C_3(n, p)\|\nabla u\|_{L^p(\Omega)}$ 显然都不可能成立. 至于前一性质，则不是 $W^{1,p}_{0}(\Omega)$ 中的函数所特有的，事实上 $W^{1,p}(\Omega)$ 中的函数也具有类似的这种性质. 这一事实由以下定理所保证：
+
+\begin{theorem}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Sobolev Spaces-20250319.png}
+% \caption{}
+\label{}
+\end{figure}\label{2bcff7}
+\end{theorem}
+
+反复使用 \cref{2bcff7}  便可以得到
+
+\begin{theorem}[Sobolev 嵌入定理]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-Sobolev Spaces-20250319.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-Sobolev Spaces-20250319.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{theorem}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{10-Sobolev Spaces-20250319.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{9-Sobolev Spaces-20250319.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\section{Morrey 嵌入定理}
+
+本节介绍 Morrey 嵌入定理，它解释了 Sobolev 空间 $W^{m,p}(\Omega)$ 到 Holder 空间 $C^{k,\mu}(\overline{\Omega})$ 的嵌入关系。
+
+\begin{theorem}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{12-Sobolev Spaces-20250319.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{theorem}
+\begin{proof}
+由于 $\Omega$ 是凸开集，所以其边界是 Lipschitz 连续的，进而 $\Omega$ 是可延拓开集. 因此根据定理 1.7.10 可知，只需证明上述不等式对任意 $u\in C^{1}(\overline{\Omega})$ 成立即可. 这时，由 $\Omega$ 的凸性可知对任意 $x, y\in \Omega(x\neq y)$ 有
+\[
+u(x)-u(y)=-\int_{0}^{\lvert x-y \rvert } \frac{d}{dt}u(x+t\omega) \, dx ,\qquad \omega=-\frac{x-y}{\lvert x-y \rvert }
+\]
+关于 $y$ 在 $\Omega$ 上积分并除以 $\lvert \Omega \rvert$，得
+\[
+\begin{aligned}
+\lvert u(x)-m(u) \rvert & \leq \frac{1}{\lvert \Omega \rvert } \int_{\Omega}^{} \int_{0}^{\lvert x-y \rvert } \left\lvert  \frac{d}{dt} (x+t\omega)  \right\rvert  \, dt  \, dy  \\
+ & \leq \frac{1}{\lvert \Omega \rvert  } \int_{\Omega}^{} \int_{0}^{\lvert x-y \rvert } \lvert \nabla u(x+t\omega) \rvert  \, dt  \, dy,\quad \forall x\in \Omega    
+\end{aligned}
+\]
+令 $\widehat{\nabla u}$ 表示把 $\nabla u$ 的各个分量都作零延拓所得到的 $\mathbf{R}^n$ 上的向量函数，并记 $d=$ $\operatorname{diam} \Omega$ ，则有
+\[
+\begin{aligned}
+|u(x)-m(u)| & \leqslant \frac{1}{|\Omega|} \int_{B_d(x)} \int_0^{|x-y|}|\widehat{\nabla u}(x+t \omega)| \mathrm{d} t \mathrm{~d} y \\
+& =\frac{1}{|\Omega|} \int_0^{\infty} \int_{|\omega|=1} \int_0^d|\widehat{\nabla u}(x+t \omega)| \rho^{n-1} \mathrm{~d} \rho \mathrm{~d} \omega \mathrm{~d} t \\
+& =\frac{d^n}{n|\Omega|} \int_0^{\infty} \int_{|\omega|=1}|\widehat{\nabla u}(x+t \omega)| \mathrm{d} \omega \mathrm{~d} t \\
+& =\frac{d^n}{n|\Omega|} \int_{\Omega}|x-y|^{-(n-1)}|\nabla u(y)| \mathrm{d} y, \quad \forall x \in \Omega .
+\end{aligned}
+\]
+据此应用与定理 1.8.1 的证明类似的方法即可得到（1.9.1）．证毕．
+
+\end{proof}
+
+\section{Some Inequalities}
+
+\begin{theorem}[Holder 不等式]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Sobolev Spaces-20250319.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Sobolev Spaces-20250319.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{theorem}
+\begin{theorem}[内插不等式]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-Sobolev Spaces-20250319.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{theorem}

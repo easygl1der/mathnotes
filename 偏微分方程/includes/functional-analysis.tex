@@ -1,0 +1,262 @@
+\section{Functional analysis in pde}
+
+\subsection{Background of Sobolev Spaces}
+
+Let $\Omega \subset \mathbb{R}^{n}$ be a domain. The Sobolev spaces we will use most are: the Hilbert space
+\[
+H^{1}(\Omega)=\{ u\in L^{2}(\Omega):\nabla u\in L^2(\Omega;\mathbb{R}^{n}) \}
+\]
+(all derivatives are meant in distributional sense) with the inner product
+\[
+(u,v)_{H^{1}(\Omega)}=\int_{\Omega}^{} [\nabla u\cdot \nabla v+uv] \, \mathrm{d}x
+\]
+\begin{theorem}
+证明 $H^1(a, b) \subset C([a, b])$.\footnote{This is false in dimension $n\geq2$.}
+\end{theorem}
+\begin{proof}
+设 $u \in H^1(a, b)$。我们需要证明 $u$ 在 $[a, b]$ 上连续。由于 $u \in H^1(a, b)$, 则 $u \in L^2(a, b)$ 且 $u'$ (弱导数) $\in L^2(a, b)$。
+
+根据Sobolev嵌入定理，如果 $\Omega \subset \mathbb{R}^n$ 是一个有界开集，且 $\partial \Omega$ 足够光滑，那么当 $k > \frac{n}{p}$ 时，$W^{k, p}(\Omega) \hookrightarrow C(\overline{\Omega})$。
+
+在我们的例子中，$\Omega = (a, b) \subset \mathbb{R}$，所以 $n = 1$。我们有 $u \in H^1(a, b) = W^{1, 2}(a, b)$，因此 $k = 1$ 且 $p = 2$。因为 $1 > \frac{1}{2}$, Sobolev嵌入定理告诉我们 $W^{1, 2}(a, b) \hookrightarrow C([a, b])$。
+
+这意味着存在一个连续函数 $\tilde{u} \in C([a, b])$ 使得 $u = \tilde{u}$ 几乎处处成立。由于我们通常将 $H^1(a, b)$ 中的元素视为等价类（即，如果两个函数在Lebesgue测度意义下相等，则认为它们是等价的），我们可以选取这个连续的代表 $\tilde{u}$ 作为 $u$。
+
+因此，$u$ 在 $[a, b]$ 上有一个连续的代表，这意味着 $H^1(a, b) \subset C([a, b])$。
+
+\end{proof}
+
+\subsection{Lax-Milgram Theorem}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Functional-Analysis-2025051409.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsubsection{Statement}
+
+Imagine you have:
+
+\begin{enumerate}
+	\item A special kind of "space" where you can measure distances and angles (this is the \textbf{Hilbert space}, $H$).
+	\item A rule that takes any two items from this space and gives you a number. This rule needs to be "nice" in two ways:
+	\begin{itemize}
+		\item \textbf{It doesn't blow up:} The number you get isn't excessively large compared to the "size" of the two items (this is \textbf{boundedness}).
+		\item \textbf{It's "positive" in a strong way:} When you use the rule with the same item twice, the number you get is significantly positive and related to the "size" of that item squared (this is \textbf{coercivity}). This rule is your \textbf{bilinear form}, $B(u,v)$.
+	\end{itemize}
+	\item Another rule that takes any one item from your space and gives you a number, and this rule is also "nice" (it doesn't blow up) (this is your \textbf{bounded linear functional}, $L(v)$).
+\end{enumerate}
+
+\textbf{The Lax-Milgram Theorem then says:}
+
+If your "combining rule" ($B$) is "nice" (bounded and coercive), then for any "measuring rule" ($L$) you pick, you can always find \textbf{one and only one} special item ($u$) in your space such that:
+
+When you combine this special item ($u$) with \textit{any} other item ($v$) using your rule $B$, you get the exact same number as when you measure that \textit{other} item ($v$) using your rule $L$.
+
+\textbf{In short:}
+
+Under certain "good behavior" conditions for how you combine and measure things in a special space, a specific type of equation ($B(u,v)=L(v)$) is guaranteed to have exactly one solution ($u$) in that space.
+
+\textbf{Why it matters (the even simpler version):}
+
+It's a powerful math tool that tells us that certain types of problems (often coming from physics and engineering, like how heat spreads or structures bend) definitely have a unique answer, as long as the problem is "well-behaved" in a specific mathematical sense.
+
+\subsubsection{Importance of Lax-Milgram Theorem}
+
+\textbf{The Big Idea: Does My Problem Even \textit{Have} an Answer?}
+
+Imagine you're an engineer or a scientist. You've written down a mathematical equation (often a "partial differential equation" or PDE) that you believe describes a real-world situation. Before you spend a lot of time (and computer power) trying to \textit{find} the answer, you'd want to know:
+
+\begin{enumerate}
+	\item \textbf{Does an answer even exist?}
+	\item \textbf{If it exists, is there only one unique answer?} (If there are many, which one is the "right" one for your physical situation?)
+\end{enumerate}
+
+This is where the Lax-Milgram theorem comes in. It's a powerful mathematical tool that can answer "YES!" to both questions for a specific class of problems.
+
+\textbf{How it Works (Simplified):}
+
+\begin{enumerate}
+	\item \textbf{Hard Problem:} The original PDE is often tricky to solve directly.
+	\item \textbf{Easier Version (Weak Formulation):} Mathematicians have a way to rephrase the hard problem into an "easier" (though still abstract) form. This easier form is an equation that looks like $B(u,v)=L(v)$.
+	\item \textbf{Lax-Milgram's Job:} If the parts of this "easier" equation ($B$ and $L$) satisfy certain "good behavior" conditions (boundedness and coercivity), the Lax-Milgram theorem guarantees that there's exactly one solution $u$ to this easier version.
+	\item \textbf{Good News:} This "weak solution" to the easier version is often good enough for practical purposes and, in many cases, can be shown to be the actual solution to the original hard problem.
+\end{enumerate}
+
+\textbf{Why is this "guarantee" important?}
+
+\begin{itemize}
+	\item \textbf{For Scientists/Engineers:} It tells them their mathematical model of the physical world is well-posed (meaning it has a unique solution). This gives them confidence that their model makes sense.
+	\item \textbf{For Computer Simulations:} Many complex engineering and science problems are solved using computer simulations (e.g., Finite Element Method - FEM). These methods essentially try to find an approximate solution to the "easier" weak formulation. The Lax-Milgram theorem provides the theoretical backbone, assuring us that the problem these numerical methods are trying to solve actually \textit{has} a unique solution to begin with. Without this, the computer might be chasing a ghost!
+\end{itemize}
+
+So, while you might not use the Lax-Milgram theorem directly in everyday calculations, it's a crucial piece of foundational mathematics that makes a lot of advanced engineering analysis and scientific computation possible and reliable. It gives a green light for many solution-seeking processes.
+
+\subsubsection{Application}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Functional-Analysis-2025051409.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Functional-Analysis-2025051409.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Functional-Analysis-2025051409.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Functional-Analysis-2025051409.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{例题}
+
+\begin{exercise}[非线性算子的连续性；紧性]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Functional-Analysis-2025051312.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{exercise}
+一个关键的定理是：对于\underline{线性算子} $T:X \to Y$，以下说法是等价的：
+
+\begin{enumerate}
+	\item $T$ 在 $X$ 上是连续的。
+	\item $T$ 在 $X$ 中的某一点 $x_0$ 处是连续的。
+	\item $T$ 在原点 $0_X \in X$ 处是连续的。
+	\item $T$ 是\underline{有界的} (Bounded)。这是最常用和最重要的等价条件。
+\end{enumerate}
+
+有界线性算子的定义：
+
+线性算子 $T:X\to Y$ 称为有界的，如果存在一个常数 $M\geq0$, 使得对于所有的 $x\in X$ ,都有：
+\[
+\|T(x)\|_Y\leq M\|x\|_X
+\]
+这个常数 $M$ 称为算子 $T$ 的一个界。最小的这样的 $M$ 称为算子 $T$ 的范数，记为 $\|T\|$。
+\[
+\|T\|=\sup_{\|x\|_X=1}\|T(x)\|_Y=\sup_{x\neq0_X}\frac{\|T(x)\|_Y}{\|x\|_X}
+\]
+我们可以证明：对于任意的 $f\in H$,
+\[
+\lVert T[f] \rVert _{H}^2=\int_{0}^{1} \int_{0}^{1} (t+f(s))^2 \, \mathrm{d}s  \, \mathrm{d}t\leq (2+2\lVert f \rVert _{H}^2)^2
+\]
+故 $T$ 良定义. 接下来直接验证连续性：对于 $f, g\in H$,
+\[
+\begin{aligned}
+\lVert T[f]-T[g] \rVert ^2_{H} & =\int_{0}^{1} \left[ \int_{0}^{1} \lvert (t+f(s))^2-(t+g(s))^2 \rvert  \, \mathrm{d}s \right]^2 \, \mathrm{d}t \\
+ & =\int_{0}^{1} \left[ \int_{0}^{1} \lvert (f(s)-g(s))(2t+f(s)+g(s)) \rvert  \, \mathrm{d}s \right]^2  \, \mathrm{d}t  \\
+ & \overset{ \text{Cauchy} }{ \leq  }\int_{0}^{1} \left[ \int_{0}^{1} \lvert f(s)-g(s) \rvert ^2 \, \mathrm{d}s \cdot\int_{0}^{1} \underbrace{ \lvert 2t+f(s)+g(s) \rvert ^2 }_{ \leq 2[4t^2+(f(s)+g(s))^2] } \, \mathrm{d}s  \right] \, \mathrm{d}t \\
+ & =\lVert f-g \rVert _{H}^2\left( \frac{8}{3} +\lVert f+g \rVert _{H}^2\right)
+\end{aligned}
+\]
+若 $\lVert f-g \rVert_{H}\to0$, 那么 $\lVert T[f]-T[g] \rVert_{H}\to0$. 故 $f$ 连续.
+
+接下来验证紧性
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Functional-Analysis-2025051312.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{exercise}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Functional-Analysis-2025051312.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{exercise}
+\begin{note}
+If any subsequence of a sequence converges to $x$, then the sequence converges to $x$. (Proved by limsup and liminf)
+\end{note}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-Functional-Analysis-2025051312.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Functional-Analysis-2025051312.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Functional-Analysis-2025051312.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{exercise}[yau-22-problem 4]
+Problem 4. Let $C([0,1])$ be the space of all continuous $\mathbb{C}$ -valued functions equipped with $L^\infty$ -norm. Let $\mathbf{P} \subset C([0,1])$ be a closed linear subspace. Assume that the elements of $\mathbf{P}$ are polynomials. Prove that $\dim \mathbf{P} < \infty$.
+\end{exercise}
+\textbf{Main Idea:}
+
+The core strategy is to demonstrate that the closed unit ball in the subspace $\mathbf{P}$ is compact. A fundamental theorem in functional analysis states that a normed linear space is finite-dimensional if and only if its closed unit ball is compact. By proving the compactness of the unit ball of $\mathbf{P}$, the proof concludes that $\mathbf{P}$ must be finite-dimensional.
+
+\textbf{Sketch of the Proof (Logical Flow):}
+
+\begin{enumerate}
+	\item \textbf{Problem Setup:} We have a closed linear subspace $\mathbf{P}$ of $C([0,1])$ (continuous functions on $[0,1]$ with $L^\infty$-norm), and all elements of $\mathbf{P}$ are polynomials. We want to prove $\dim \mathbf{P} < \infty$.
+	\item \textbf{Introduce Slope Operators:}
+	\begin{itemize}
+		\item Define a family of linear operators $T_{(x,y)}: \mathbf{P} \to \mathbf{C}$ (where $\mathbf{C}$ is the complex numbers) for distinct $x, y \in [0,1]$:
+\[
+T_{(x,y)}(u) = \frac{u(x) - u(y)}{x-y}
+\]
+		\item This is essentially the slope of the polynomial $u$ between $x$ and $y$.
+	\end{itemize}
+	\item \textbf{Show Pointwise Boundedness of these Operators:}
+	\begin{itemize}
+		\item For any fixed polynomial $u \in \mathbf{P}$, its derivative $u'$ is continuous on $[0,1]$ and thus bounded (i.e., $||u'||_{L^\infty} < \infty$).
+		\item By the Mean Value Theorem, $|T_{(x,y)}(u)| = |u'(\xi)| \le ||u'||_{L^\infty}$ for some $\xi$ between $x$ and $y$.
+		\item This means for each $u$, the set $\{T_{(x,y)}(u)\}$ is bounded.
+	\end{itemize}
+	\item \textbf{Apply Banach-Steinhaus Theorem (Uniform Boundedness Principle):}
+	\begin{itemize}
+		\item $\mathbf{P}$ is a closed subspace of a Banach space ($C([0,1])$), so $\mathbf{P}$ itself is a Banach space.
+		\item Since the family of continuous linear operators $\{T_{(x,y)}\}$ is pointwise bounded on the Banach space $\mathbf{P}$, the Banach-Steinhaus Theorem implies that their operator norms are uniformly bounded.
+		\item So, there exists a constant $C > 0$ such that $||T_{(x,y)}||_{\mathbf{P} \to \mathbf{C}} \le C$ for all $(x,y)$.
+	\end{itemize}
+	\item \textbf{Establish Equicontinuity of the Unit Ball of P:}
+	\begin{itemize}
+		\item Consider the unit ball $B = \{u \in \mathbf{P} \mid ||u||_{L^\infty} \le 1\}$.
+		\item For any $u \in B$:
+\[
+\left|\frac{u(x) - u(y)}{x-y}\right| = |T_{(x,y)}(u)| \le ||T_{(x,y)}||_{\mathbf{P} \to \mathbf{C}} \cdot ||u||_{L^\infty} \le C \cdot 1 = C
+\]
+		\item This implies $|u(x) - u(y)| \le C|x-y|$ for all $u \in B$.
+		\item This is the definition of uniform Lipschitz continuity for the functions in $B$, which in turn implies that the family $B$ is equicontinuous.
+	\end{itemize}
+	\item \textbf{Apply Arzelà-Ascoli Theorem:}
+	\begin{itemize}
+		\item The unit ball $B$ is defined on the compact set $[0,1]$.
+		\item $B$ is equicontinuous (from step 5).
+		\item $B$ is uniformly bounded (since for $u \in B$, $||u||_{L^\infty} \le 1$, meaning $|u(x)| \le 1$ for all $x$).
+		\item The Arzelà-Ascoli Theorem states that a family of functions that is equicontinuous and pointwise (or uniformly) bounded on a compact set is relatively compact. Since $B$ is also closed (it's a closed unit ball), it is compact.
+	\end{itemize}
+	\item \textbf{Conclude Finite Dimensionality:}
+	\begin{itemize}
+		\item A normed linear space is finite-dimensional if and only if its closed unit ball is compact.
+		\item Since the closed unit ball $B$ of $\mathbf{P}$ has been shown to be compact, $\mathbf{P}$ must be finite-dimensional.
+	\end{itemize}
+\end{enumerate}
+
+In essence, the proof cleverly uses the properties of polynomials (differentiability) to construct a family of operators. The Banach-Steinhaus theorem then provides a crucial uniform bound. This bound leads to the equicontinuity of the unit ball, which, combined with its boundedness, allows the Arzelà-Ascoli theorem to establish its compactness, ultimately proving finite dimensionality.

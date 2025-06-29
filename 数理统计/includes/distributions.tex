@@ -1,0 +1,105 @@
+\section{常见分布}
+
+\begin{itemize}
+    \item \textbf{二项分布 (Binomial Distribution)}
+    \begin{itemize}
+        \item 记作：$X \sim B(n, p)$
+        \item PMF：$$P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0, 1, \ldots, n$$
+        \item MGF：$$M_X(t) = (1-p+pe^t)^n$$
+        \item 特征函数：$$\varphi_X(t) = (1-p+pe^{it})^n$$
+    \end{itemize}
+
+    \item \textbf{负二项分布 (Negative Binomial Distribution)}
+    \begin{itemize}
+        \item 记作：$X \sim NB(r, p)$
+        \item PMF：$$P(X = k) = \binom{k+r-1}{k} p^r (1-p)^k, \quad k = 0, 1, 2, \ldots$$
+        \item MGF：$$M_X(t) = \left(\frac{p}{1-(1-p)e^t}\right)^r, \quad t < -\ln(1-p)$$
+        \item 特征函数：$$\varphi_X(t) = \left(\frac{p}{1-(1-p)e^{it}}\right)^r$$
+    \end{itemize}
+
+    \item \textbf{几何分布 (Geometric Distribution)}
+    \begin{itemize}
+        \item 记作：$X \sim Geo(p)$
+        \item PMF：$$P(X = k) = p(1-p)^{k-1}, \quad k = 1, 2, \ldots$$
+        \item MGF：$$M_X(t) = \frac{pe^t}{1-(1-p)e^t}, \quad t < -\ln(1-p)$$
+        \item 特征函数：$$\varphi_X(t) = \frac{pe^{it}}{1-(1-p)e^{it}}$$
+    \end{itemize}
+
+    \item \textbf{多项分布 (Multinomial Distribution)}
+    \begin{itemize}
+        \item 记作：$\mathbf{X} \sim Mult(n, \mathbf{p})$，其中 $\mathbf{p} = (p_1, p_2, \ldots, p_k)$
+        \item PMF：$$P(\mathbf{X} = \mathbf{x}) = \frac{n!}{x_1! x_2! \cdots x_k!} p_1^{x_1} p_2^{x_2} \cdots p_k^{x_k}$$，其中 $\sum_{i=1}^k x_i = n$
+        \item MGF：$$M_{\mathbf{X}}(\mathbf{t}) = (p_1 e^{t_1} + p_2 e^{t_2} + \cdots + p_k e^{t_k})^n$$
+        \item 特征函数：$$\varphi_{\mathbf{X}}(\mathbf{t}) = (p_1 e^{it_1} + p_2 e^{it_2} + \cdots + p_k e^{it_k})^n$$
+    \end{itemize}
+
+    \item \textbf{超几何分布 (Hypergeometric Distribution)}
+    \begin{itemize}
+        \item 记作：$X \sim HGeom(N, K, n)$
+        \item PMF：$$P(X = k) = \frac{\binom{K}{k} \binom{N-K}{n-k}}{\binom{N}{n}}, \quad \max(0, n+K-N) \leq k \leq \min(n, K)$$
+        \item MGF：无简单表达式
+        \item 特征函数：无简单表达式
+    \end{itemize}
+
+    \item \textbf{泊松分布 (Poisson Distribution)}
+    \begin{itemize}
+        \item 记作：$X \sim Pois(\lambda)$
+        \item PMF：$$P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \quad k = 0, 1, 2, \ldots$$
+        \item MGF：$$M_X(t) = e^{\lambda(e^t-1)}$$
+        \item 特征函数：$$\varphi_X(t) = e^{\lambda(e^{it}-1)}$$
+    \end{itemize}
+
+    \item \textbf{伽马分布 (Gamma Distribution)}
+    \begin{itemize}
+        \item 记作：$X \sim Gamma(\alpha, \beta)$
+        \item PDF：$$f(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}, \quad x > 0$$
+        \item CDF：$F(x) = \frac{\gamma(\alpha, \beta x)}{\Gamma(\alpha)}, \quad x > 0$，其中 $\gamma(\alpha, y)$ 是不完全伽马函数
+        \item MGF：$$M_X(t) = \left(1-\frac{t}{\beta}\right)^{-\alpha}, \quad t < \beta$$
+        \item 特征函数：$$\varphi_X(t) = \left(1-\frac{it}{\beta}\right)^{-\alpha}$$
+    \end{itemize}
+
+    \item \textbf{卡方分布 (Chi-Square Distribution)}
+    \begin{itemize}
+        \item 记作：$X \sim \chi^2(k)$，是自由度为 $k$ 的卡方分布
+        \item PDF：$$f(x) = \frac{1}{2^{k/2}\Gamma(k/2)} x^{k/2-1} e^{-x/2}, \quad x > 0$$
+        \item CDF：$F(x) = \frac{\gamma(k/2, x/2)}{\Gamma(k/2)}, \quad x > 0$
+        \item MGF：$$M_X(t) = (1-2t)^{-k/2}, \quad t < 1/2$$
+        \item 特征函数：$$\varphi_X(t) = (1-2it)^{-k/2}$$
+    \end{itemize}
+
+    \item \textbf{贝塔分布 (Beta Distribution)}
+    \begin{itemize}
+        \item 记作：$X \sim Beta(\alpha, \beta)$
+        \item PDF：$$f(x) = \frac{1}{B(\alpha, \beta)} x^{\alpha-1} (1-x)^{\beta-1}, \quad 0 < x < 1$$
+        \item CDF：$F(x) = \frac{B_x(\alpha, \beta)}{B(\alpha, \beta)}, \quad 0 \leq x \leq 1$，其中 $B_x(\alpha, \beta)$ 是不完全贝塔函数
+        \item MGF：无简单表达式
+        \item 特征函数：无简单表达式
+    \end{itemize}
+
+    \item \textbf{正态分布 (Normal Distribution)}
+    \begin{itemize}
+        \item 记作：$X \sim N(\mu, \sigma^2)$
+        \item PDF：$$f(x) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}, \quad x \in \mathbb{R}$$
+        \item CDF：$F(x) = \Phi\left(\frac{x-\mu}{\sigma}\right) = \frac{1}{2}\left[1 + \text{erf}\left(\frac{x-\mu}{\sigma\sqrt{2}}\right)\right]$
+        \item MGF：$$M_X(t) = e^{\mu t + \frac{1}{2}\sigma^2 t^2}$$
+        \item 特征函数：$$\varphi_X(t) = e^{i\mu t - \frac{1}{2}\sigma^2 t^2}$$
+    \end{itemize}
+
+    \item \textbf{t 分布 (Student's t-Distribution)}
+    \begin{itemize}
+        \item 记作：$X \sim t(n)$，其中 $n$ 是自由度
+        \item PDF：$$f(x) = \frac{\Gamma(\frac{n+1}{2})}{\sqrt{n\pi}\Gamma(\frac{n}{2})}\left(1+\frac{x^2}{n}\right)^{-\frac{n+1}{2}}, \quad x \in \mathbb{R}$$
+        \item CDF：无简单表达式
+        \item MGF：不存在
+        \item 特征函数：无简单表达式
+    \end{itemize}
+
+    \item \textbf{F 分布 (F-Distribution)}
+    \begin{itemize}
+        \item 记作：$X \sim F(d_1, d_2)$，其中 $d_1, d_2$ 是自由度
+        \item PDF：$$g_1(w)=\frac{\Gamma\left[\left(r_1+r_2\right) / 2\right]\left(r_1 / r_2\right)^{r_1 / 2}}{\Gamma\left(r_1 / 2\right) \Gamma\left(r_2 / 2\right)} \frac{w^{r_1 / 2-1}}{\left(1+r_1 w / r_2\right)^{\left(r_1+r_2\right) / 2}} \quad 0<w<\infty$$
+        \item CDF：无简单表达式
+        \item MGF：不存在
+        \item 特征函数：无简单表达式
+    \end{itemize}
+\end{itemize}

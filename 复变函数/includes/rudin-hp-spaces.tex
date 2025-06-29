@@ -1,0 +1,81 @@
+\section{Rudin Chapter 17}
+
+This chapter studies certain subspaces of $H(U)$ which are defined by certain growth conditions. These so-called $H^{p}$ -spaces have a large number of interesting properties concerning factorizations, boundary values, and Cauchy-type representations in terms of measures on the boundary of $U$.
+
+A convenient approach to the subject is via subharmonic functions, and we begin with a brief outline of their properties.
+
+\subsection{Subharmonic Functions}
+
+\begin{definition}
+A function $u$ defined in an open set $\Omega$ in the plane is said to be \textbf{subharmonic} if it has the following four properties.
+	\begin{enumerate}
+		\item $-\infty \leq u(z) < \infty$ for all $z \in \Omega$.
+		\item $u$ is upper semicontinuous in $\Omega$.
+		\item Whenever $D(a; r) \subset \Omega$, then
+	\end{enumerate}
+\[
+u(a) \leq \frac{1}{2\pi} \int_{-\pi}^{\pi} u(a + re^{i\theta}) d\theta.
+\]	\begin{enumerate}
+		\item None of the integrals in (c) is $-\infty$.
+	\end{enumerate}
+\end{definition}
+Note that the integrals in (c) always exist and are not $+\infty$, since (a) and (b) imply that $u$ is bounded above on every compact $K\subset\Omega$. \footnote{Proof: If $K_n$ is the set of all $z\in K$ at which $u (z)\geq n$, then $K\supset K_1\supset K_2\cdots$, so either $K_n=\varnothing$ for some $n$, or $\bigcap K_n\neq \varnothing$, in which case $u (z)=\infty$ for some $z\in K$.} Hence (d) says that the integrands in (c) belong to $L^1(T)$.
+
+\begin{theorem}[Theorem 17.2]
+If $u$ is subharmonic in $\Omega$, and if $\varphi$ is a monotonically increasing convex function on $\mathbb{R}^1$, then $\varphi \circ u$ is subharmonic.
+\end{theorem}
+\begin{theorem}[Theorem 17.3]
+If $\Omega$ is a region, $f \in H(\Omega)$, and $f$ is not identically 0, then $\log |f|$ is subharmonic in $\Omega$, and so are $\log^+ |f|$ and $|f|^p (0<p<\infty)$.\footnote{if $f$ has no zero in $\Omega$, $\log \lvert f \rvert$ is harmonic.}
+\end{theorem}
+\begin{theorem}[Theorem 17.4]
+Suppose $u$ is a continuous subharmonic function in $\Omega$, $K$ is a compact subset of $\Omega$, $h$ is a continuous real function on $K$ which is harmonic in the interior $V$ of $K$, and $u(z) \leq h(z)$ at all boundary points of $K$. Then $u(z) \leq h(z) \text{ for all } z \in K$.\label{b2d12b}
+\end{theorem}
+
+\begin{note}
+Clearly by maximum modulus principle. But we gives a proof without it.
+\end{note}
+\begin{proof}
+Put $u_1=u-h$. Assume that $u_1(z)>0$ for some $z\in V$. Since $u_1\in C(K)$, $u_1$ attains its maximum $m$ on $K$; and since $u_1\leq0$ on the boundary of $K$, the set $E=\{ z\in K:u_1(z)=m \}$ is a nonempty compact subset of $V$. Let $z_0$ be a boundary point of $E$. Then for some $r>0$, we have $\overline{B_{r}(z_0)}\subset V$, but some subarc of the boundary of $\overline{B_{r}(z_0)}$ lies in the complement of $E$. Hence
+\[
+u_1(z_0)=m>\frac{1}{2\pi}\int_{-\pi}^{\pi} u_1(z_0+re^{ i\theta }) \, \mathrm{d}\theta
+\]
+and this means $u_1$ is not subharmonic in $V$, which is a contradiction.
+\end{proof}
+
+\begin{theorem}[Theorem 17.5]
+Suppose $u$ is a continuous subharmonic function in $U$, and
+\[
+m(r)=\frac{1}{2 \pi} \int_{-\pi}^{\pi} u\left(r e^{i \theta}\right) d \theta \qquad (0 \leq r<1).
+\]If $r_1<r_2$, then $m\left(r_1\right) \leq m\left(r_2\right)$.
+\end{theorem}
+\begin{proof}
+Let $h$ be the continuous function on $\overline{B_{r_2}(0)}$ which conincides with $u$ on the boundary of $\overline{B_{r_2}(0)}$ and which is harmonic in $B_{r_2}(0)$. By \cref{b2d12b}, $u\leq h$ in $B_{r_2}(0)$. Hence
+\[
+m(r_1)\leq \frac{1}{2\pi}\int_{-\pi}^{\pi} h(r_1e^{ i\theta }) \, \mathrm{d}\theta=h(0) =\frac{1}{2\pi}\int_{-\pi}^{\pi} h(r_2e^{ i\theta }) \, \mathrm{d}\theta=m(r_2) 
+\]
+\end{proof}
+
+\subsection{The spaces \texorpdfstring{$H^{p}$}{H^p} and \texorpdfstring{$N$}{N}}
+
+Let $\sigma$ denote Lebesgue measure on $T$, so normalized that $\sigma(T)=1$.
+\[
+\lVert f_{r} \rVert _{p}=\left( \int_{T}^{} \lvert f_{r} \rvert ^{p} \, \mathrm{d}\sigma  \right)^{1/p }\qquad 0<p<\infty
+\]
+\[
+\lVert f_{r} \rVert _{\infty}=\sup_{\theta}\lvert f(re^{ i\theta }) \rvert
+\]
+and we also introduce
+\[
+\lVert f_{r} \rVert _{0}=\exp \left\{  \int_{T}^{} \log ^{+}\lvert f_{r} \rvert  \, \mathrm{d}\sigma   \right\}
+\]
+\begin{definition}
+If $f \in H(U)$ and $0 \leq p \leq \infty$, we put
+\[
+\|f\|_p=\sup \left\{\|f_r\|_p: 0 \leq r<1\right\}
+\]
+\end{definition}
+If $0 < p \leq \infty$, $H^p$ is defined to be the class of all $f \in H(U)$ for which $\| f \|_p < \infty$. (Note that this coincides with our previously introduced terminology in the case $p = \infty$.)
+
+The class $N$ consists of all $f \in H(U)$ for which $\| f \|_0 < \infty$.
+
+It is clear that $H^\infty \subset H^p \subset H^s \subset N$ if $0 < s < p < \infty.$

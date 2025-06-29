@@ -1,0 +1,304 @@
+\documentclass[
+	leqno, % Add leqno option here
+	a4paper, % Page size
+	fontsize=12pt, % Base font size
+	twoside=false, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+	open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
+	chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
+	numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
+    UTF-8, % Add this fix lots of style compile issue when using ctex and XeLaTex
+	toc=nottotoc,
+	BCOR=12mm,
+	DIV=calc,
+]{styles/kaobook}
+%----------------------------------------------------------------------------------------
+%	加载包以及文档配置，新项目可以直接复制粘贴
+%----------------------------------------------------------------------------------------
+\renewcommand{\marginlayout}{%
+	\newgeometry{
+		top=27.4mm, % 页面顶部到正文内容的距离
+		bottom=27.4mm, % 页面底部到正文内容的距离
+		inner=17.8mm, % 页面内侧（装订侧）到正文内容的距离
+		textwidth=137mm, % width of the text
+		marginparsep=5.2mm, % width between text and margin
+		marginparwidth=39.4mm, % width of the margin
+	}%
+}
+
+\input{styles/packageconfig.tex}
+
+
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+\usetikzlibrary{patterns}
+% Load packages for testing
+\usepackage{blindtext}
+% 从mathtools包中引入\coloneqq和\eqqcolon命令
+\makeatletter
+\providecommand{\coloneqq}{\mathrel{\mathop{:}=}}
+\providecommand{\eqqcolon}{\mathrel{\mathop{=}:}}
+\makeatother
+
+\addbibresource{main.bib} % Bibliography file
+% Load mathematical packages for theorems and related environments
+% \usepackage[framed=true]{styles/kaotheorems}
+% Load the package for hyperreferences
+% \usepackage{styles/kaorefs}
+\graphicspath{{examples/documentation/images/}{images/}} 
+% 定义note环境
+\usepackage{mdframed} % 用于创建带框的环境
+% \usepackage{amsthm}   % 用于定理类环境
+
+
+
+\let\boldsymbol\symbfit
+\let\mathbf\symbf
+
+\usepackage{adjustbox}
+\usepackage[utf8]{inputenc}
+% \usepackage{tikz}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{eso-pic}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+% hyperref应放在大多数包之后
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+\usetikzlibrary{decorations.pathmorphing}
+\hypersetup{
+    unicode=true,
+    pdfencoding=auto,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    CJKbookmarks=true
+}
+\setlength{\intextsep}{1pt plus 1pt minus 1pt}
+% bookmark包必须在hyperref之后加载
+\usepackage{cleveref}
+
+\graphicspath{{../figures/}}
+% 重定义proof环境为prf环境
+% \let\proof\relax
+% \let\endproof\relax
+% \let\solution\relax
+% \let\endsolution\relax
+\renewenvironment{proof}{\begin{prf}}{\end{prf}}
+\newenvironment{solution}{\begin{soln}}{\end{soln}}
+\renewenvironment{exercise}{\begin{exr}}{\end{exr}}
+\renewenvironment{definition}{\begin{defi}}{\end{defi}}
+\renewenvironment{corollary}{\begin{cor}}{\end{cor}}
+\renewenvironment{theorem}{\begin{thm}}{\end{thm}}
+\renewenvironment{lemma}{\begin{lem}}{\end{lem}}
+\renewenvironment{proposition}{\begin{prop}}{\end{prop}}
+\renewenvironment{property}{\begin{ppt}}{\end{ppt}}
+\renewenvironment{example}{\begin{expl}}{\end{expl}}
+\renewenvironment{remark}{\begin{rmk}}{\end{rmk}}
+
+\usepackage{amsthm}
+\newtheorem{note}{Note}[chapter]
+\begin{document}
+
+\subject{使用此文档作为模板}
+
+\title[示例及说明文档 {\normalfont\texttt{kaobook}} 类]{现代数学笔记\\Modern Mathematics Notes}
+\subtitle{中文 Kaobook 模板制作}
+
+\author[乐绎华]{乐绎华·中大数学系2023级本科生}
+
+\date{\zhtoday}
+
+\publishers{Sun Yat-sen University}
+
+%----------------------------------------------------------------------------------------
+
+\frontmatter % Denotes the start of the pre-document content, uses roman numerals
+
+
+\definecolor{titlecolorcoverpage}{RGB}{64, 62, 91}
+
+\dedication{
+	世界的和谐体现在形式和数量上，自然哲学的心和灵魂以及一切诗歌都体现在数学美的概念上。\\
+	\flushright -- D'Arcy Wentworth Thompson
+}
+
+%----------------------------------------------------------------------------------------
+%	OUTPUT TITLE PAGE AND PREVIOUS
+%----------------------------------------------------------------------------------------
+
+% Note that \maketitle outputs the pages before here
+% \maketitle
+\begin{titlepage} % 创建一个新的页面
+%用来将图片从左下角开始平铺整个封面
+	\AddToShipoutPicture*{%
+	\AtPageLowerLeft{%
+		\adjustbox{width=1.1\paperwidth, height=1.5\paperheight, keepaspectratio}{% 强制图片至纸张尺寸，但可能裁切
+			\includegraphics{images/Elias_Maur.jpg}
+		}
+	}
+}
+\begin{flushleft} % 左对齐环境
+	\setlength{\leftskip}{1cm} % 左侧缩进
+	\makeatletter % 允许访问带有@字符的内部命令
+	\vspace*{4cm} % 标题距离页面顶端的空白
+	{\color{titlecolorcoverpage}\Huge \textbf{\@title} \par} % 使用前文定义的title作为标题
+	\vspace{1cm} % 标题和子标题的间距
+	{\color{titlecolorcoverpage}\Large\@subtitle \par} % 使用前文定义的subtitle作为子标题
+	\vfill % 作者信息前的垂直填充
+	{\color{white}\large{\@author}\par} % 作者名
+	{\color{white}\large \@publishers \par} % 出版者
+	{\color{white}\large \zhtoday\par} % 日期，默认为当天
+	\makeatother % 将@重置为非字母字符
+	\vspace{0cm} % 标题和子标题的间距
+	% 结束左对齐环境
+\end{flushleft}
+\ClearShipoutPicture % 清除背景图片
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	PREFACE
+%----------------------------------------------------------------------------------------
+
+% \input{chapters/preface.tex}
+% \index{preface}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS & LIST OF FIGURES/TABLES
+%----------------------------------------------------------------------------------------
+
+\begingroup % 以下命令的局部范围
+
+% 定义目录、插图列表和表格列表的样式
+%\setstretch{1} % 取消注释以修改目录中的行距
+%\hypersetup{linkcolor=blue} % 取消注释以设置目录中链接的颜色
+\setlength{\textheight}{230\hscale} % 手动调整目录页面的高度
+
+% 打开etoc包的兼容模式
+%\etocstandarddisplaystyle % "目录显示"仿佛etoc未加载
+%\etocstandarddisplaystyle 已弃用，使用\etocclasstocstyle
+% \etocclasstocstyle % "目录显示"仿佛etoc未加载
+% \etocstandardlines % "目录行"仿佛etoc未加载
+
+\tableofcontents % 输出目录
+\listoffigures % 输出插图列表
+% 注释掉以下两行以在不同页面上显示插图列表和表格列表
+\let\cleardoublepage\bigskip
+\let\clearpage\bigskip
+\listoftables % 输出表格列表
+
+\endgroup
+
+
+%----------------------------------------------------------------------------------------
+%	MAIN BODY
+%----------------------------------------------------------------------------------------
+\mainmatter % 表示正文内容的开始，重置页码并使用阿拉伯数字
+\chapter{测试}	
+\section{测试}
+\subsection{测试}
+\subsubsection{测试}
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{example-image}
+    % \caption{第一张图片}
+\end{figure}
+dsahkdajlajd
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{example-image}
+    % \caption{第一张图片}
+\end{figure}
+\[
+	l, \mathscr{A}, \boldsymbol{A}, \mathbf{A}
+\]
+
+\begin{solution}
+	fahkfa
+	
+	fahkfja
+
+
+	fafjla\sidenote{这是一段随机文字，用于测试文档排版效果。中文排版在学术文档中需要特别注意字间距和行间距的调整。这里我们可以看到边注功能的使用方法。}
+\end{solution}
+
+\begin{equation}\label{eq:test}
+	\begin{aligned}
+		a &= b \\
+		c &= d
+	\end{aligned}
+\end{equation}
+
+\marginnote{\blindtext}
+
+\cref{eq:test}
+\begin{note}
+	this is a note.
+\end{note}
+
+\begin{remark}
+	this is a remark.
+\end{remark}	
+
+\begin{proof}[fjjjjjj]
+	 djlfjlafj
+\end{proof}
+
+\begin{solution}[fjjjjjj]
+	 djlfjlafj
+\end{solution}
+
+\begin{exr}
+	dad
+\end{exr}	
+
+\begin{exr}\label{exr:test}
+	dad
+\end{exr}	
+
+\cref{exr:test}
+
+
+\begin{defi}[jflasj]\label{defi:test}
+djalda
+\end{defi}
+
+\cref{defi:test}
+
+\begin{cor}
+	dad
+\end{cor}
+
+\begin{lem}[fkaj]
+	hfas
+\end{lem}
+
+\begin{prop}
+	fafjla
+\end{prop}
+
+\begin{thm}
+	fafjla
+\end{thm}
+
+\begin{ppt}
+	fafjla
+\end{ppt}
+
+\begin{expl}
+	fafjla
+\end{expl}
+
+\begin{rmk}
+	fafjla
+\end{rmk}
+
+%----------------------------------------------------------------------------------------
+
+\backmatter % Denotes the end of the main document content
+% \setchapterstyle{plain} % Output plain chapters from this point onwards
+
+
+\end{document}

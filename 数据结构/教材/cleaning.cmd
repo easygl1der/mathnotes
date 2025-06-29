@@ -1,0 +1,31 @@
+@echo off
+chcp 65001 > nul
+echo Starting Cleaning...
+cd 数据结构
+cd 教材
+del *.aux
+del *.bbl
+del *.out
+del *.bcf
+del *.blg
+del *.glg
+del *.glo
+del *.gls
+del *.idx
+del *.ilg
+del *.ind
+del *.loe
+del *.lof
+del *.log
+del *.lol
+del *.lot
+del *.mw
+del *.nlo
+del *.nls
+del *(busy)
+del *.toc
+del *.unq
+del *.xdy
+del *.xml
+cd ...
+@echo Finish...

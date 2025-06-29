@@ -1,0 +1,82 @@
+\section{Tonelli and Fubini theorem}
+
+Fubini 定理和 Tonelli 定理都处理在重积分中交换积分顺序的问题，但它们的条件和结论有所不同。它们之间的关系可以概括为：\textbf{Tonelli 定理通常用于为 Fubini 定理的应用铺平道路}。
+
+简单来说：
+
+\begin{itemize}
+	\item \textbf{Tonelli 定理}：适用于\textbf{非负可测函数}。它表明，对于一个非负可测函数 $f(x,y)$，无论其积分值是有限还是无穷大，其重积分等于两个迭代积分，并且可以交换积分顺序：
+\[
+\int_X \left( \int_Y f(x,y) \, d\mu_2 \right) d\mu_1 = \int_Y \left( \int_X f(x,y) \, d\mu_1 \right) d\mu_2 = \int_{X \times Y} f(x,y) \, d(\mu_1 \times \mu_2)
+\]这个定理的关键在于函数\textbf{非负}，不需要函数可积。
+	\item \textbf{Fubini 定理}：适用于\textbf{可积函数} (即 $\int_{X \times Y} |f(x,y)| \, d(\mu_1 \times \mu_2) < \infty$ 的函数)。它表明，如果函数 $f(x,y)$ 是可积的，那么其重积分等于两个迭代积分，这两个迭代积分都存在且相等，并且积分值为有限：
+\[
+\int_X \left( \int_Y f(x,y) \, d\mu_2 \right) d\mu_1 = \int_Y \left( \int_X f(x,y) \, d\mu_1 \right) d\mu_2 = \int_{X \times Y} f(x,y) \, d(\mu_1 \times \mu_2)
+\]\end{itemize}
+
+\subsection{关系 🤝}
+
+Tonelli 定理常常作为应用 Fubini 定理的前提条件。具体步骤如下：
+
+\begin{enumerate}
+	\item \textbf{检查可积性}：要应用 Fubini 定理于一个可能取正值也可能取负值的函数 $f(x,y)$，首先需要验证 $f$ 是否可积，即 $\int_{X \times Y} |f(x,y)| \, d(\mu_1 \times \mu_2)$ 是否有限。
+	\item \textbf{应用 Tonelli 定理}：由于 $|f(x,y)|$ 是一个非负函数，我们可以应用 Tonelli 定理来计算 $\int |f|$。这意味着我们可以通过计算迭代积分 $\int_X (\int_Y |f(x,y)| \, d\mu_2) d\mu_1$ 或 $\int_Y (\int_X |f(x,y)| \, d\mu_1) d\mu_2$ 来得到 $\int_{X \times Y} |f(x,y)| \, d(\mu_1 \times \mu_2)$ 的值。
+	\item \textbf{应用 Fubini 定理}：如果通过 Tonelli 定理计算出 $\int |f|$ 是有限的（即 $f$ 是可积的），那么我们就可以放心地应用 Fubini 定理于原函数 $f(x,y)$，并可以交换积分顺序，且迭代积分的结果将是相等的有限值。
+\end{enumerate}
+
+\textbf{总结来说}：
+
+\begin{itemize}
+	\item \textbf{Tonelli 定理}处理非负函数，允许交换积分顺序，即使积分结果是无穷大。
+	\item \textbf{Fubini 定理}处理可积函数（其绝对值的积分有限），允许交换积分顺序，并保证积分结果是有限的。
+	\item 实践中，经常先用 \textbf{Tonelli 定理}处理 $|f|$ 来判断 $f$ 是否可积。如果可积，再用 \textbf{Fubini 定理}处理 $f$。
+\end{itemize}
+
+因此，这两个定理是相辅相成的，Tonelli 定理为 Fubini 定理的适用性提供了重要的判断依据。 富比尼定理 (Fubini's Theorem) 和托内利定理 (Tonelli's Theorem) 都是关于在多重积分中交换积分顺序的重要定理，它们在测度论和积分论中扮演着核心角色。它们的主要关系可以概括为：\textbf{托内利定理通常用于验证富比尼定理的条件}。
+
+\subsection{核心区别与联系}
+
+\textbf{托内利定理 (Tonelli's Theorem)}:
+
+\begin{itemize}
+	\item \textbf{适用对象}: 非负可测函数。
+	\item \textbf{核心内容}: 对于一个非负可测函数 $f(x,y)$，其在乘积空间上的积分（无论是否有限）等于其逐次积分，并且两个逐次积分的顺序可以任意交换，结果都相等。
+	\begin{itemize}
+		\item 即：$\iint_{X \times Y} f(x,y) \,d(\mu_1 \times \mu_2) = \int_X \left( \int_Y f(x,y) \,d\mu_2 \right) d\mu_1 = \int_Y \left( \int_X f(x,y) \,d\mu_1 \right) d\mu_2$.
+	\end{itemize}
+	\item \textbf{关键点}: 不需要函数本身可积（即积分值有限）。如果其中一个积分是无穷大，那么其他的也都是无穷大。
+\end{itemize}
+
+\textbf{富比尼定理 (Fubini's Theorem)}:
+
+\begin{itemize}
+	\item \textbf{适用对象}: 可积函数（即函数绝对值的积分是有限的）。
+	\item \textbf{核心内容}: 如果函数 $f(x,y)$ 在乘积空间上可积（即 $\iint_{X \times Y} |f(x,y)| \,d(\mu_1 \times \mu_2) < \infty$），那么其在乘积空间上的积分等于其逐次积分，并且两个逐次积分的顺序可以任意交换，结果都相等且有限。
+	\begin{itemize}
+		\item 即：若 $\iint |f| < \infty$，则 $\iint_{X \times Y} f(x,y) \,d(\mu_1 \times \mu_2) = \int_X \left( \int_Y f(x,y) \,d\mu_2 \right) d\mu_1 = \int_Y \left( \int_X f(x,y) \,d\mu_1 \right) d\mu_2$.
+	\end{itemize}
+	\item \textbf{关键点}: \textbf{要求函数可积}。这个条件是交换积分顺序并得到有限且相等结果的前提。
+\end{itemize}
+
+\subsection{它们如何协同工作 🤝}
+
+在实际应用中，当你面对一个一般的（可能取正值也可能取负值的）可测函数 $f(x,y)$，并想交换积分顺序时，步骤通常如下：
+
+\begin{enumerate}
+	\item \textbf{应用托内利定理于 $|f(x,y)|$}: 由于 $|f(x,y)|$ 是一个非负可测函数，你可以使用托内利定理来计算 $\iint |f(x,y)| \,d(\mu_1 \times \mu_2)$，通常是通过计算一个逐次积分，例如 $\int_X \left( \int_Y |f(x,y)| \,d\mu_2 \right) d\mu_1$。
+	\item \textbf{检验可积性}:
+	\begin{itemize}
+		\item 如果通过托内利定理计算出的 $\iint |f(x,y)| \,d(\mu_1 \times \mu_2)$ 是\textbf{有限的}，那么函数 $f(x,y)$ 就是可积的。
+		\item 如果这个积分是\textbf{无穷大}，则富比尼定理的条件不满足，不能直接应用富比尼定理来交换 $f(x,y)$ 的积分顺序（交换顺序可能会导致不同的结果或无意义的表达式）。
+	\end{itemize}
+	\item \textbf{应用富比尼定理}: 如果上一步确认了 $f(x,y)$ 是可积的（即 $\iint |f| < \infty$），那么你就可以安全地应用富比尼定理，声明 $f(x,y)$ 的逐次积分可以交换顺序，并且它们都等于 $f(x,y)$ 在乘积空间上的积分。
+\end{enumerate}
+
+\subsection{简单来说 🎯}
+
+\begin{itemize}
+	\item \textbf{托内利定理}说：“对于非负的家伙，随便你怎么积，顺序不重要，结果都一样（可能是无穷大）。”
+	\item \textbf{富比尼定理}说：“如果这个家伙（可正可负）的‘能量’（绝对值的积分）是有限的，那么你也可以随便积，顺序不重要，结果都一样并且是有限的。”
+\end{itemize}
+
+因此，托内利定理是富比尼定理的一个重要铺垫，它提供了一种验证富比尼定理核心条件（函数可积性）的方法。这两个定理经常一起被称为 \textbf{富比尼-托内利定理 (Fubini-Tonelli Theorem)}，强调了它们在实际应用中的紧密联系。

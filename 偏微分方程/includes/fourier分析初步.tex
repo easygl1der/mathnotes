@@ -1,0 +1,376 @@
+\section{Fourier 分析初步}
+
+参见于品数学分析讲义 65,66节
+
+\begin{definition}[$L^{1}$ 函数的 Fourier 变换]
+对于函数 $f \in L^1\left(\mathbb{R}^n\right)$，我们定义它的 \textbf{Fourier 变换} $\widehat{f}$（或者 $\mathcal{F}(f)$) 为如下的 $\mathbb{R}^n$ 上的函数：
+\[
+\widehat{f}(\xi)=\mathcal{F}(f)(\xi)=\int_{\mathbb{R}^n} e^{-i x \cdot \xi} f(x) d x
+\]其中 $\xi \in \mathbb{R}^n$。我们通常把 $\widehat{f}$ 的定义域 $\mathbb{R}^n$ 称作是频率空间，它的变量通常用 $\xi$ 来表示。
+\end{definition}
+我们考虑 $C\left(\mathbb{R}^n\right)$ 的线性子空间
+\[
+C_{\circ}\left(\mathbb{R}^n\right)=\left\{f \in C\left(\mathbb{R}^n\right) \mid \lim _{|x| \rightarrow \infty} f(x)=0\right\}
+\]
+我们知道 $(C_{\circ}(\mathbb{R}^{n}),\lVert \cdot \rVert_{\infty})$ 是 Banach 空间. (取一列 $C_{\circ}(\mathbb{R}^{n})$ 内 $\{ f_k \}_{k\geq1}\rightrightarrows f$ 于 $C(\mathbb{R}^{n})$，验证 $f\in C_{\circ}(\mathbb{R}^{n})$ 即可)
+
+\begin{lemma}[引理 335]
+给定赋范线性空间 $\left(E,\|\cdot\|_E\right),\left(F,\|\cdot\|_F\right)$ 和它们之间的 $(\mathbb{C}-)$ 线性映射 $L: E \rightarrow F$ 。那么，如下三个论断是等价的：
+	\begin{enumerate}
+		\item $L$ 在 $0 \in E$ 处连续；
+		\item $L$ 是连续的；
+		\item $L$ 是有界，即存在 $C>0$ ，对每个 $e \in E$ ，我们都有
+	\end{enumerate}
+\[
+\|L(e)\|_F \leqslant C\|e\|_E
+\]
+\end{lemma}
+\begin{theorem}[Theorem 4.48]
+对任意的 $f \in L^1(\mathbb{R}^n)$, $\widehat{f} \in C_{\circ}(\mathbb{R}^n)$. 特别地, 线性映射
+\[
+\mathcal{F}: L^1(\mathbb{R}^n) \longrightarrow C_{\circ}(\mathbb{R}^n)
+\]是连续线性映射, 即存在常数 $C$, 使得对任意的 $f \in L^1(\mathbb{R}^n)$, 我们有
+\[
+\|\widehat{f}\|_{L^{\infty}} \leqslant C\|f\|_{L^1}.
+\]
+\end{theorem}
+显然
+\[
+\lVert \widehat{f} \rVert _{L^{\infty}}\leq \lVert f \rVert _{L^{1}}
+\]
+由于 $C_{0}^{\infty}(\mathbb{R}^{n})$ 在 $L^{1}(\mathbb{R}^{n})$ 中稠密，故只需要证明 $\widehat{\varphi}\in C_{\circ}(\mathbb{R}^{n})$ 连续，由 Lebesgue 控制收敛定理可知：假设 $\mathbb{R}^{n}$ 中的点列 $\{ \xi _k \}_{k\geq1}\to \xi$，有
+\[
+\widehat{f}(\xi _k)=\int_{\mathbb{R}^{n}}^{} e^{ -ix\cdot \xi _k }f(x) \, \mathrm{d}x \to\int_{\mathbb{R}^{n}}^{} e^{ ix\cdot \xi }f(x) \, \mathrm{d}x 
+\]
+控制函数为 $\lvert f(x) \rvert$.
+
+对于 $\varphi\in C_{0}^{\infty}(\mathbb{R}^{n}),k\leq n$, 我们有如下两个重要观点：
+
+\begin{itemize}
+	\item 物理空间的求导等价于频率空间的乘法：$\widehat{\partial_k \varphi}(\xi)=i \xi_k \widehat{\varphi}(\xi)$
+	\item 物理空间的乘法等价于频率空间的求导：$\widehat{-i x_k \varphi}(\xi)=\partial_{\xi_k} \widehat{\varphi}(\xi)$
+\end{itemize}
+
+实际上，对任意的 $\varphi \in C_0^{\infty}\left(\mathbb{R}^n\right)$，对任意的正整数 $N$，利用第一个原则，我们有
+\[
+\left(1+|\xi|^2\right)^N \widehat{\varphi}(\xi)=\mathcal{F}\left((1-\Delta)^N \varphi\right)(\xi)
+\]
+其中 $\triangle$ 是 Laplace 算子.
+
+很明显，$(1-\triangle)^N \varphi \in L^1\left(\mathbb{R}^n\right)$，所以，我们有
+\[
+|\widehat{\varphi}(\xi)| \leqslant \frac{\left\|(1-\Delta)^N \varphi\right\|_{L^1}}{\left(1+|\xi|^2\right)^N} .
+\]
+这表明 $\widehat{\varphi}$ 是衰减的并且我们对于 $\varphi$ 求的导数越多，那么衰减速度就越快. 特别地，我们还证明了 $\widehat{\varphi} \in C_{\circ}\left(\mathbb{R}^n\right)$.
+
+通常为了说明 $\widehat{f}$ 在无穷远处趋于 0，我们任取 $\epsilon>0$，再选取 $\varphi\in C_0^{\infty}(\mathbb{R}^{n})$ 使得
+\[
+\lVert f-\varphi \rVert _{L^{1}}<\frac{1}{2}\epsilon
+\]
+从而对于任意的 $\xi$，我们有
+\[
+\begin{aligned}
+\lvert \widehat{f}(\xi) \rvert  & =\lvert \widehat{f}(\xi)-\widehat{\varphi}(\xi) \rvert +\lvert \widehat{\varphi}(\xi) \rvert  \\
+ & \leq \lVert \widehat{f}-\widehat{\varphi} \rVert _{L^{\infty}}+\frac{\lVert (1-\Delta)^{N}\varphi \rVert _{L^{1}}}{(1+\lvert \xi \rvert ^2)^{N}} \\
+ & \leq \lVert f-\varphi \rVert _{L^{1}}+\frac{\lVert (1-\Delta)^{N}\varphi \rVert _{L^{1}}}{(1+\lvert \xi \rvert ^2)^{N}} \\
+ & \leq \frac{\epsilon}{2}+\frac{\lVert (1-\Delta)^{N}\varphi \rVert _{L^{1}}}{(1+\lvert \xi \rvert ^2)^{N}}
+\end{aligned}
+\]
+当 $\lvert \xi \rvert$ 很大的时候，有 $\lvert \widehat{f}(\xi) \rvert<\epsilon$.
+
+然⽽，这些过程实际上都被包装在开始的命题上，所以我们通常只对光滑有紧支集的函数（在 $L^{1}$ 中稠密）来证明即可.
+
+\subsection{卷积}
+
+\begin{theorem}[卷积对应于频率空间的乘积]
+对任意的 $f, g \in L^1\left(\mathbb{R}^n\right)$ ，我们有
+\[
+\widehat{f * g}(\xi)=\widehat{f}(\xi) \widehat{g}(\xi) .
+\]
+\end{theorem}
+\begin{proposition}
+假设 $f \in L^1\left(\mathbb{R}_x^n\right), g \in L^1(\mathbb{R}_{\xi}^n)$. 那么，
+\[
+\int_{\mathbb{R}^n} \widehat{f}(\xi) g(\xi) d \xi=\int_{\mathbb{R}^n} f(x) \widehat{g}(x) d x
+\]
+\end{proposition}
+\subsection{仿射坐标变换}
+
+\begin{proposition}
+任给 $f \in L^1\left(\mathbb{R}^n\right), x_0 \in \mathbb{R}^n$ 和可逆线性变换
+\[
+A: \mathbb{R}^n \rightarrow \mathbb{R}^n
+\]我们有
+1）物理空间的平移对应频率空间乘相应的频率，即
+\[
+\mathcal{F}\left(f\left(\cdot+x_0\right)\right)(\xi)=e^{i x_0 \cdot \xi} \widehat{f}(\xi) .
+\]2）频率空间应该视作是余切丛，即
+\[
+\mathcal{F}(f \circ A)(\xi)=|\operatorname{det}(A)|^{-1} \widehat{f}\left({ }^t A^{-1} \xi\right) .
+\]
+\end{proposition}
+证明：第一部分是显然的；为了证明第二部分，我们直接利用换元公式：
+\[
+\begin{aligned}
+\mathcal{F}(f \circ A)(\xi) & =\int_{\mathbb{R}^n} e^{-i x \cdot \xi} f(A x) d x \\
+& =|\operatorname{det}(A)|^{-1} \int_{\mathbb{R}^n} e^{-i\left(A^{-1} y\right) \cdot \xi} f(y) d y \\
+& =|\operatorname{det}(A)|^{-1} \int_{\mathbb{R}^n} e^{-i y \cdot { }^t A^{-1} \xi} f(y) d y
+\end{aligned}
+\]
+命题成立。
+
+\subsection{Gauss 函数的 Fourier 变换}
+
+\begin{theorem}[Gauss 函数的 Fourier 变换]
+对任意的正数 $\lambda>0$，我们有
+\[
+\mathcal{F}\left(e^{-\lambda \frac{|x|^2}{2}}\right)(\xi)=\left(\frac{2 \pi}{\lambda}\right)^{\frac{n}{2}} e^{-\frac{|\xi|^2}{2 \lambda}} .
+\]
+\end{theorem}
+利⽤上⾯ Guass 函数的 Fourier 变换，我们可以证明关于 Fourier 逆变换的定理。
+
+\begin{definition}
+对任意的 $g \in L^1\left(\mathbb{R}_{\xi}^n\right)$，对任意的 $x \in \mathbb{R}^n$ 我们\textbf{定义}
+\[
+\left(\mathcal{F}^{-1}(g)\right)(x)=\frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n} e^{i \xi \cdot x} g(\xi) d \xi .
+\]
+\end{definition}
+\begin{theorem}[Fourier 逆变换]
+给定 $f \in L^1\left(\mathbb{R}_x^n\right)$，如果 $\widehat{f} \in L^1\left(\mathbb{R}_{\xi}^n\right)$，那么，我们有
+\[
+f=\mathcal{F}^{-1} \widehat{f}
+\]其中，上面等号成立是在 $L^1\left(\mathbb{R}^n\right)$ 的意义下的。
+\end{theorem}
+\section{\texorpdfstring{$L^2$}{L^2} 空间}
+
+注意到, $C_0^{\infty}\left(\mathbb{R}^n\right) \subset L^2\left(\mathbb{R}^n\right)$ 是稠密的子空间。我们任意选取 $f \in C_0^{\infty}\left(\mathbb{R}^n\right)$, 很明显, $\widehat{f} \in L^1\left(\mathbb{R}^n\right)$ (因为光滑性意味着衰减很快, 所以可积)。另外, 我们有
+\[
+\overline{\widehat{f}}(\xi)=\int_{\mathbb{R}^n} e^{i x \cdot \xi} \overline{f(x)} d x=(2 \pi)^n \mathcal{F}^{-1}(\bar{f})(\xi)
+\]
+所以，我们有
+\[
+\begin{aligned}
+\|\widehat{f}(\xi)\|_{L^2}^2 & =\int_{\mathbb{R}^n} \widehat{f}(\xi) \overline{\widehat{f}(\xi)} d \xi \\
+& =(2 \pi)^n \int_{\mathbb{R}^n} \widehat{f}(\xi) \mathcal{F}^{-1}(\overline{f(\xi)}) d \xi \\
+& =(2 \pi)^n \int_{\mathbb{R}^n} f(x) \mathcal{F}\left(\mathcal{F}^{-1}(\overline{f(\xi)})\right)(x) d \xi \\
+& =(2 \pi)^n \int_{\mathbb{R}^n} f(x) \bar{f}(x) d \xi
+\end{aligned}
+\]
+从而,
+\[
+\|\widehat{f}(\xi)\|_{L^2}=(2 \pi)^{\frac{n}{2}}\|f\|_{L^2}
+\]
+这表明定义在 $L^2\left(\mathbb{R}^n\right)$ 是稠密的子空间 $C_0^{\infty}\left(\mathbb{R}^n\right)$ 上的 Fourier 变换
+\[
+\mathcal{F}: C_0^{\infty}\left(\mathbb{R}^n\right) \rightarrow L^2\left(\mathbb{R}^n\right), \quad f \mapsto \widehat{f}
+\]
+是连续的。
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Fourier分析初步-2025050219.png}
+% \caption{}
+\label{}
+\end{figure}
+根据连续线性映射扩张的定理，我们就证明了
+
+\begin{theorem}[定理 4.55 ($L^2$ 上的 Fourier 变换与 Planchrel 公式)]
+我们可以定义 Fourier 变换 $\mathcal{F}$:
+\[
+\mathcal{F}: L^2\left(\mathbb{R}^n\right) \rightarrow L^2\left(\mathbb{R}^n\right)
+\]使得
+\[
+(2 \pi)^{\frac{n}{2}} \mathcal{F}: L^2\left(\mathbb{R}^n\right) \longrightarrow L^2\left(\mathbb{R}^n\right)
+\]是等距同构。特别地，对于 $f \in L^1\left(\mathbb{R}^n\right) \cap L^2\left(\mathbb{R}^n\right)$，我们有
+\[
+\|\widehat{f}\|_{L^2}^2=(2 \pi)^n\|f\|_{L^2}^2 .
+\]通过极化，我们有对任意的 $f, g \in L^2\left(\mathbb{R}^n\right)$，我们有
+\[
+(\widehat{f}, \widehat{g})_{L^2}=(2 \pi)^n(f, g)_{L^2}
+\]
+\end{theorem}
+\begin{proof}
+上述一切叙述对 $C_0^{\infty}\left(\mathbb{R}^n\right)$ 是成立的。对一般的 $f \in L^2\left(\mathbb{R}^n\right)$，用 $C_0^{\infty}\left(\mathbb{R}^n\right)$ 中函数逼近即可。
+\end{proof}
+
+\begin{remark}
+上面的定理定义了 $f \in L^2(\mathbb{R}^n)$ 的Fourier变换，为了行文清楚，我们暂且把 $L^2$ 意义下的Fourier变换记作 $\mathcal{F}_2$. 另外，对于 $g \in L^1(\mathbb{R}^n)$, 它的Fourier变换是可以用Fourier积分表示的，我们把它记做 $\mathcal{F}_1$, 也就是说
+\[
+\mathcal{F}_1(g)=\int_{\mathbb{R}^n} g(x) e^{-i x \xi} d x
+\]那么，对于$f \in L^1(\mathbb{R}^n) \cap L^2(\mathbb{R}^n)$, 我们有
+\[
+\mathcal{F}_1(f)=\mathcal{F}_2(f)
+\]
+\end{remark}
+\begin{example}
+考虑 $\mathbb{R}^1$ 上的 $L^2$ －函数
+\[
+u(x)=(1+|x|)^{-\alpha}
+\]其中，$\frac{1}{2}<\alpha \leqslant 1$ 。很明显，我们知道 $e^{-i x \xi} u(x) \notin L^1\left(\mathbb{R}_x\right)$ ，所以我们不能直接用 $L^1$－函数的 Fourier 积分来写它的 Fourier 变换。然而，我们知道
+\[
+u_n(x)=u(x) \mathbf{1}_{|x| \leqslant n}
+\]是 $L^1$ 的，我们可以先显式写下 $u_n$ 的 Fourier 变换。由于序列 $\left\{u_n\right\}_{n \geqslant 1}$ 在 $L^2$ 中逼近 $u$ ，所谓，我们有
+\[
+\widehat{u} \stackrel{L^2}{=} \lim _{n \rightarrow} \widehat{u_n} .
+\]
+\end{example}
+\section{Schwartz 空间}
+
+\subsection{Schwarz 函数（速降函数）}
+
+对任意的给定的函数 $f$ ，对任意的多重指标 $\alpha$ ，我们采用如下的符号：
+\[
+x^\alpha f(x)=x_1^{\alpha_1} \cdots x_n^{\alpha_n} f\left(x_1, \cdots, x_n\right) .
+\]
+\begin{definition}[Schwartz 空间，Schwarz 函数（速降函数）]
+函数 $\varphi$ 是 $\mathbb{R}^n$ 上的光滑函数。如果 $\varphi$ 满足如下的条件：对任意的多重指标 $\alpha, \beta$ ，我们都有
+\[
+x^\alpha \partial^\beta \varphi(x) \in L^{\infty}\left(\mathbb{R}^n\right)
+\]那么，我们就称 $\varphi$ 是一个 \textbf{Schwartz 函数} 或者是一个 \textbf{速降的函数}。我们把 $\mathbb{R}^n$ 上所有的 Schwartz 函数所构成的线性空间称作是 \textbf{Schwartz 空间}，并记作 $\mathcal{S}\left(\mathbb{R}^n\right)$ 。
+对于每个非负整数 $p \in \mathbb{Z}_{\geqslant 0}$ ，我们定义如下的（一族）范数：
+\[
+N_p(\varphi)=\sum_{\substack{\alpha|\leqslant p,|\beta| \leqslant p}}\left\|x^\alpha \partial^\beta \varphi(x)\right\|_{L^{\infty}\left(\mathbb{R}^n\right)}
+\]在 $\mathcal{S}\left(\mathbb{R}^n\right)$ 上，我们规定如下的收敛性（拓扑）：给定 Schwartz 函数的序列 $\left\{\varphi_k\right\}_{p=1,2, \cdots} \subset \mathcal{S}\left(\mathbb{R}^n\right)$ ，它收敛到 Schwartz 函数 $\varphi \in \mathcal{S}\left(\mathbb{R}^n\right)$ ，指的是对任意的非负整数 $p$ ，我们都有
+\[
+\lim _{n \rightarrow \infty} N_p\left(\varphi_n-\varphi\right)=0
+\]我们把这个极限简写成
+\[
+\varphi_k \xrightarrow{\delta\left(\mathbb{R}^n\right)} \varphi
+\]
+\end{definition}
+\begin{example}
+我们已经见过很多 Schwartz 函数
+	\begin{itemize}
+		\item $\mathcal{D}\left(\mathbb{R}^n\right) \subset \mathcal{S}\left(\mathbb{R}^n\right)$；
+		\item $e^{-x^2} \in \mathcal{S}\left(\mathbb{R}^n\right)$；
+		\item 对于 Schwartz 函数 $\varphi \in \mathcal{S}\left(\mathbb{R}^n\right)$，对它求若干次导数或者乘以一个多项式仍然是一个 Schwartz函数，即对任意的多重指标 $\alpha, \beta$，我们有
+	\end{itemize}
+\[
+\begin{aligned}
+& x^\alpha: \mathcal{S}\left(\mathbb{R}^n\right) \rightarrow \mathcal{S}\left(\mathbb{R}^n\right) \\
+& \partial^\beta: \mathcal{S}\left(\mathbb{R}^n\right) \rightarrow \mathcal{S}\left(\mathbb{R}^n\right)
+\end{aligned}
+\]上面例子的验证我们留作作业。
+\end{example}
+给定一个 Schwarz 函数，我们对它有如下的估计：对于任何的多重指标 $\alpha$ 和 $\beta$，其中 $|\alpha|,|\beta| \leqslant p$，我们有
+\[
+\left|(1+|x|)^{n+1} x^\alpha \partial^\beta \varphi(x)\right| \leqslant N_{p+n+1}(\varphi),
+\]
+其中，$n$ 是空间的维数。
+
+从而，对任意的 $x \in \mathbb{R}^n$，我们有
+\[
+\left|x^\alpha \partial^\beta \varphi(x)\right| \leqslant \frac{N_{p+n+1}(\varphi)}{(1+|x|)^{n+1}} .
+\]
+上式右边的函数是可积的，所以，
+\[
+\left\|x^\alpha \partial^\beta \varphi(x)\right\|_{L^1\left(\mathbb{R}^n\right)} \leqslant C_n N_{p+d+1}(\varphi) .
+\]
+特别地，我们可以对 $x^\alpha \partial^\beta \varphi(x)$ 用傅里叶积分来定义其傅里叶变换。作为推论，我们还知道
+\[
+\mathcal{S}\left(\mathbb{R}^n\right) \subset L^1\left(\mathbb{R}^n\right) .
+\]
+另外，以上的估计是常用的技巧，在后面的不少场合都会用到。
+
+\begin{theorem}
+$\mathcal{D}\left(\mathbb{R}^n\right)$ 在 $\mathcal{S}\left(\mathbb{R}^n\right)$ 中是稠密的，即对任意的 $\varphi \in \mathcal{S}\left(\mathbb{R}^n\right)$ ，存在函数序列 $\left\{\varphi_k\right\}_{k \geqslant 1} \subset \mathcal{D}\left(\mathbb{R}^n\right)$ ，使得
+\[
+\varphi_k \xrightarrow{\mathcal{S}\left(\mathbb{R}^n\right)} \varphi .
+\]
+\end{theorem}
+\begin{note}
+$\varphi _k\overset{ \mathcal{S}(\mathbb{R}^{n}) }{ \to }\varphi$ 意味着对于任意非负整数 $p$，有 $N_{p}(\varphi _k-\varphi)\to0$.
+\end{note}
+\begin{note}
+光滑函数乘以一个函数，结果仍为光滑函数，当且仅当另一个函数也是光滑函数.
+\end{note}
+\begin{proof}
+我们选取有紧支集的光滑函数 $\chi(x)$，使得
+\[
+\left\{\begin{array}{l}
+\chi(x)=1, \quad|x| \leqslant 1 \\
+0 \leqslant \chi(x) \leqslant 1
+\end{array}\right.
+\]
+对于 $\varphi(x) \in \mathcal{S}\left(\mathbb{R}^n\right)$，我们令
+\[
+\varphi_k(x)=\chi\left(\frac{x}{k}\right) \varphi(x) \in \mathcal{D}\left(\mathbb{R}^n\right)
+\]
+我们只要证明，对任意的非负整数 $p$，我们有
+\[
+N_p\left(\varphi_k-\varphi\right) \rightarrow 0,
+\]
+即可。对于满足 $|\alpha| \leqslant p,|\beta| \leqslant p$ 的多重指标，我们有
+\[
+\begin{aligned}
+x^\alpha \partial^\beta\left(\varphi-\varphi_k\right) & =x^\alpha \partial^\beta\left(\left(1-\chi\left(\frac{x}{k}\right)\right) \varphi\right) \\
+& =\left(1-\chi\left(\frac{x}{k}\right)\right) x^\alpha \partial^\beta \varphi-\underbrace{ \sum_{0 \neq \gamma \leqslant \beta} \frac{1}{k^{|\gamma|}} \frac{\beta!}{\gamma!(\beta-\gamma)!} \underbrace{x^\alpha \partial^{\beta-\gamma} \varphi(x)}_{|\cdot| \leqslant N_p(\varphi)}\left(\partial^\gamma \chi\right)\left(\frac{x}{k}\right) }_{ \to0,\text{ as }k\to \infty }
+\end{aligned}
+\]
+上式的第二个求和部分有 $k^{-1}$ 这样的衰减因子，所以极限为 0。对于第一项，由于 $\chi$ 在半径为 1 的球内部为 1，所以然而，我们有
+\[
+\begin{aligned}
+\left|\left(1-\chi\left(\frac{x}{k}\right)\right) x^\alpha \partial^\beta \varphi\right| & \leqslant \mathbf{1}_{|x| \geqslant k}(x) \cdot|x|^{-2} \cdot\left|x^{\alpha+2} \partial^\beta \varphi\right| \\
+& \leqslant \frac{1}{k^2} N_{p+2}(\varphi) \rightarrow 0
+\end{aligned}
+\]
+这就完成了证明。
+\end{proof}
+
+\subsection{Schwarz 函数的 Fourier 变换}
+
+\begin{theorem}[$\mathcal{S}(\mathbb{R}^n)$ 上的 Fourier 变换]
+如果 $\varphi \in \mathcal{S}\left(\mathbb{R}^n\right)$ 是 Schwartz 函数，那么，$\widehat{\varphi} \in \mathcal{S}\left(\mathbb{R}^n\right)$ 。在 Schwartz 函数空间上的 Fourier 变换：
+\[
+\mathcal{F}: \mathcal{S}\left(\mathbb{R}^n\right) \longrightarrow \mathcal{S}\left(\mathbb{R}^n\right), \quad \varphi \mapsto \widehat{\varphi}(\xi)
+\]满足如下的性质：对任意的 $p \in \mathbb{Z}_{\geqslant 0}$ ，存在常数 $C_p>0$ ，使得对每个 $\varphi \in \mathcal{S}\left(\mathbb{R}^n\right)$ ，我们都有
+\[
+N_p(\widehat{\varphi}) \leqslant C_p N_{p+n+1}(\varphi)
+\]特别的， $\mathcal{F}: \mathcal{S}\left(\mathbb{R}^n\right) \longrightarrow \mathcal{S}\left(\mathbb{R}^n\right)$ 是连续的线性同构，即对任意的在 $\mathcal{S}\left(\mathbb{R}^n\right)$ 中收敛的函数序列
+\[
+\varphi_k \xrightarrow{s} \varphi, \quad k \rightarrow \infty,
+\]我们有
+\[
+\widehat{\varphi_k} \xrightarrow{s} \widehat{\varphi}, \quad k \rightarrow \infty .
+\]另外，对任意的 $\varphi \in \mathcal{S}\left(\mathbb{R}^n\right)$ ，我们还有公式
+\[
+\widehat{\partial_k \varphi}=i \xi_k \widehat{f}, \quad \widehat{x_k \varphi}=i \partial_k \widehat{\varphi}
+\]
+\end{theorem}
+\begin{proof}
+我们首先证明叙述中的最后两个恒等式。对任意的 Schwartz 函数 $\varphi$ ，对任意的 $k \leqslant n$ ，利用分部积分，我们有
+\[
+\widehat{\partial_k \varphi}(\xi)=-\int_{\mathbb{R}^n}\left(-i \xi_k\right) e^{-i x \cdot \xi} \varphi(x) d x=i \xi_k \widehat{\varphi}(\xi)
+\]
+第二个等式要用 Lebesgue 控制收敛的推论（积分与求导数可交换），我们有
+\[
+\partial_{\xi_k} \widehat{\varphi}(\xi)=\int_{\mathbb{R}^n}\left(-i x_k\right) e^{-i x \cdot \xi} \varphi(x) d x=\widehat{-i x_k \varphi}(\xi)
+\]
+现在证明定理中的不等式（从而证明了 Fourier 变换 $\mathcal{F}$ 的像也落在 $\mathcal{S}\left(\mathbb{R}^n\right)$ 中）。固定两个多重指标 $\alpha$ 和 $\beta$ ，其中 $|\alpha|,|\beta| \leqslant p$ 。利用已经证明的公式，我们就有
+\[
+\begin{aligned}
+\left|\xi^\alpha \partial_{\xi}^\beta \widehat{\varphi}(\xi)\right| & =\mid \partial^\alpha\left(x^\beta \varphi\right) \\
+& \leqslant C_p N_{p+n+1}(\varphi) \mid \leqslant\left\|\partial^\alpha\left(x^\beta \varphi\right)(x)\right\|_{L^1}
+\end{aligned}
+\]
+Fourier 变换的连续性可以通过这个不等式得到：对任意给定 $p$ ，我们有
+\[
+N_p\left(\widehat{\varphi_k}-\widehat{\varphi}\right) \leqslant C_p N_{p+n+1}\left(\varphi_k-\varphi\right) \rightarrow 0
+\]
+按照定义，我们就有
+\[
+\widehat{\varphi_k} \xrightarrow{s} \widehat{\varphi}, \quad k \rightarrow \infty .
+\]
+最后，我们来说明 $\mathcal{F}$ 是同构。实际上，我们可以定义直接考虑 Fourier 变换的逆 $\mathcal{F}^{-1}$ ，因为 $\widehat{\varphi} \in L^1$ ，所以之前定义的 $\mathcal{F}^{-1}$ 在此也是良好定义的。此时，我们已经证明了 $\mathcal{F}$ 与 $\mathcal{F}^{-1}$ 互为逆映射，所以命题得证（ $\mathcal{F}^{-1}$ 也是连续的）。
+\end{proof}
+
+\subsection{缓增分布}
+
+\begin{definition}[缓增的分布]
+假设 $u \in \mathcal{D}^{\prime}\left(\mathbb{R}^n\right)$ 是一个分布。如果存在非负整数 $p$ 和常数 $C>0$，使得对每个 $\varphi \in \mathcal{D}\left(\mathbb{R}^n\right)$，我们都有
+\[
+|\langle u, \varphi\rangle| \leqslant C N_p(\varphi)
+\]我们就说 $u$ 是一个\textbf{缓增的分布}。我们用 $\mathcal{S}^{\prime}\left(\mathbb{R}^n\right)$ 来表示所有缓增分布的集合，很明显
+\[
+\mathcal{S}^{\prime}\left(\mathbb{R}^n\right) \subset \mathcal{D}^{\prime}\left(\mathbb{R}^n\right)
+\]是线性子空间。
+\end{definition}

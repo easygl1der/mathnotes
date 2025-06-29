@@ -1,0 +1,408 @@
+\section{Chapter 11 Summary: Bayesian Statistics}
+
+This chapter introduces the Bayesian approach to statistical inference, where parameters are treated as random variables with prior distributions.
+
+Bayesian methods incorporate prior knowledge and provide a coherent framework for sequential learning.
+
+\subsection{11.1 Bayesian Procedures}
+
+\subsubsection{11.1.1 Prior and Posterior Distributions}
+
+The fundamental Bayesian model consists of:
+
+\begin{definition}[\textbf{Bayesian Model Components}]
+\[
+X \mid \theta \sim f(x \mid \theta)
+\] (likelihood)
+\[
+\Theta \sim h(\theta)
+\] (prior distribution)
+The \textbf{posterior distribution} is:
+\[
+k(\theta \mid \mathbf{x}) = \frac{L(\mathbf{x} \mid \theta) h(\theta)}{g_1(\mathbf{x})}
+\]
+where $g_1(\mathbf{x}) = \int L(\mathbf{x} \mid \theta) h(\theta) d\theta$ (marginal distribution)
+\end{definition}
+\subsubsection{Key Relationship}
+\[
+k(\theta \mid \mathbf{x}) \propto L(\mathbf{x} \mid \theta) h(\theta)
+\]
+
+\textbf{Interpretation:}
+
+\begin{itemize}
+	\item Prior: $h(\theta)$ represents belief about $\theta$ before observing data
+	\item Posterior: $k(\theta \mid \mathbf{x})$ represents updated belief after observing data
+	\item Likelihood: $L(\mathbf{x} \mid \theta)$ represents information from the data
+\end{itemize}
+
+\subsubsection{Sufficient Statistics}
+
+If $Y = u(\mathbf{X})$ is sufficient for $\theta$, then:
+\[
+k(\theta \mid y) \propto g(y \mid \theta) h(\theta)
+\]
+
+\subsubsection{11.1.2 Bayesian Point Estimation}
+
+\begin{definition}[\textbf{Bayes Estimator}]
+A \textbf{Bayes estimator} minimizes the posterior expected loss:
+\[
+\delta(\mathbf{x}) = \text{argmin} \int \mathcal{L}[\theta, \delta(\mathbf{x})] k(\theta \mid \mathbf{x}) d\theta
+\]
+\end{definition}
+\textbf{Common Loss Functions:}
+
+\begin{enumerate}
+	\item Squared-error loss: $\mathcal{L}[\theta, \delta] = [\theta - \delta]^2$
+	\begin{itemize}
+		\item Bayes estimator = posterior mean: $E(\Theta \mid \mathbf{x})$
+	\end{itemize}
+	\item Absolute-error loss: $\mathcal{L}[\theta, \delta] = |\theta - \delta|$
+	\begin{itemize}
+		\item Bayes estimator = posterior median
+	\end{itemize}
+\end{enumerate}
+
+\subsubsection{Key Examples}
+
+\textbf{Example 1: Beta-Binomial Model}
+\[
+\begin{aligned}
+X_i \mid \theta &\sim \text{iid Bernoulli}(\theta) \\
+\Theta &\sim \text{Beta}(\alpha, \beta)
+\end{aligned}
+\]
+Posterior: $\Theta \mid \mathbf{x} \sim \text{Beta}(\alpha + \sum x_i, \beta + n - \sum x_i)$
+
+Bayes estimator (squared-error):
+\[
+\delta(y) = \frac{\alpha + y}{\alpha + \beta + n} = \frac{n}{n + \alpha + \beta} \cdot \frac{y}{n} + \frac{\alpha + \beta}{n + \alpha + \beta} \cdot \frac{\alpha}{\alpha + \beta}
+\]
+
+This is a \textbf{weighted average} of MLE and prior mean!
+
+\textbf{Example 2: Normal Model with Known Variance}
+\[
+\begin{aligned}
+X_i \mid \theta &\sim \text{iid } N(\theta, \sigma^2) \\
+\Theta &\sim N(\theta_0, \sigma_0^2)
+\end{aligned}
+\]
+Posterior: $\Theta \mid \overline{x} \sim N\left(\frac{\overline{x}\sigma_0^2 + \theta_0(\sigma^2/n)}{\sigma_0^2 + \sigma^2/n}, \frac{(\sigma^2/n)\sigma_0^2}{\sigma_0^2 + \sigma^2/n}\right)$
+
+Bayes estimator:
+\[
+\delta(\overline{x}) = \frac{\sigma_0^2}{\sigma_0^2 + \sigma^2/n} \overline{x} + \frac{\sigma^2/n}{\sigma_0^2 + \sigma^2/n} \theta_0
+\]
+
+\subsubsection{11.1.3 Bayesian Interval Estimation}
+
+\begin{definition}[\textbf{Credible Interval}]
+An interval $(u(\mathbf{x}), v(\mathbf{x}))$ is a $(1-\alpha)100\%$ \textbf{credible interval} if:
+\[
+P[u(\mathbf{x}) < \Theta < v(\mathbf{x}) \mid \mathbf{X} = \mathbf{x}] = 1-\alpha
+\]
+\end{definition}
+\textbf{Construction Methods:}
+
+\begin{enumerate}
+	\item Equal-tail intervals: $\alpha/2$ probability in each tail
+	\item Highest density region (HDR): Shortest interval with given probability
+\end{enumerate}
+
+\subsubsection{11.1.4 Bayesian Testing Procedures}
+
+For hypotheses $H_0: \theta \in \omega_0$ vs $H_1: \theta \in \omega_1$:
+
+\textbf{Decision Rule:}
+
+\begin{itemize}
+	\item Accept $H_0$ if $P(\Theta \in \omega_0 \mid \mathbf{x}) \geq P(\Theta \in \omega_1 \mid \mathbf{x})$
+	\item Otherwise accept $H_1$
+\end{itemize}
+
+\textbf{Advantages:}
+
+\begin{itemize}
+	\item Direct probability statements about hypotheses
+	\item Coherent with other Bayesian procedures
+	\item Natural for sequential analysis
+\end{itemize}
+
+\subsubsection{11.1.5 Bayesian Sequential Procedures}
+
+\textbf{Sequential Update:} Previous posterior becomes new prior
+
+\begin{enumerate}
+	\item Start with prior $h_0(\theta)$
+	\item Observe $\mathbf{x}_1$, get posterior $k_1(\theta \mid \mathbf{x}_1)$
+	\item Use $k_1$ as prior for next observation
+	\item Continue indefinitely
+\end{enumerate}
+
+This provides an elegant framework for sequential learning.
+
+\subsection{11.2 More Bayesian Terminology and Ideas}
+
+\subsubsection{Conjugate Priors}
+
+\begin{definition}[\textbf{Conjugate Family}]
+A class of prior distributions is \textbf{conjugate} for a likelihood family if the posterior is in the same family as the prior.
+\end{definition}
+\textbf{Common Conjugate Pairs:}
+
+\begin{itemize}
+	\item Binomial + Beta $\to$ Beta
+	\item Poisson + Gamma $\to$ Gamma
+	\item Normal (known variance) + Normal $\to$ Normal
+	\item Normal (known mean) + Inverse-Gamma $\to$ Inverse-Gamma
+\end{itemize}
+
+\textbf{Advantages:}
+
+\begin{itemize}
+	\item Analytical tractability
+	\item Easy computation
+	\item Clear interpretation of hyperparameters
+\end{itemize}
+
+\subsubsection{Improper and Noninformative Priors}
+
+\begin{definition}[\textbf{Improper Prior}]
+A prior $h(\theta) \geq 0$ that doesn't integrate to 1, but yields a proper posterior:
+\[
+\int k(\theta \mid \mathbf{x}) d\theta = 1
+\]
+\end{definition}
+\textbf{Examples:}
+
+\begin{itemize}
+	\item Uniform on $(-\infty, \infty)$: $h(\theta) \propto 1$
+	\item Scale-invariant: $h(\sigma) \propto 1/\sigma$
+\end{itemize}
+
+\begin{definition}[\textbf{Jeffreys' Prior}]
+\[
+h(\theta) \propto \sqrt{I(\theta)}
+\]
+where $I(\theta)$ is Fisher information. This prior is \textbf{invariant} under reparameterization.
+\end{definition}
+\subsubsection{Problem-Solving Strategy for Priors}
+
+\begin{enumerate}
+	\item Identify conjugate family if available
+	\item Choose hyperparameters based on prior belief
+	\item Check sensitivity to prior specification
+	\item Use noninformative priors when little prior knowledge exists
+\end{enumerate}
+
+\subsection{11.3 Gibbs Sampler}
+
+\subsubsection{Motivation}
+
+When analytical integration is difficult, use \textbf{Monte Carlo methods}.
+
+\begin{theorem}[\textbf{Generation Algorithm}]
+To generate $X \sim f_X(x)$:
+	\begin{enumerate}
+		\item Generate $Y \sim f_Y(y)$
+		\item Generate $X \sim f_{X|Y}(x \mid Y)$
+	\end{enumerate}
+Then $X$ has the desired distribution $f_X(x)$.
+\end{theorem}
+\subsubsection{Gibbs Sampler Algorithm}
+
+\begin{definition}[\textbf{Gibbs Sampler}]
+For joint distribution $(X,Y)$, starting with $X_0$:
+For $i = 1, 2, \ldots, m$:
+	\begin{enumerate}
+		\item Generate $Y_i \mid X_{i-1} \sim f(y \mid x_{i-1})$
+		\item Generate $X_i \mid Y_i \sim f(x \mid y_i)$
+	\end{enumerate}
+As $i \to \infty$: $(X_i, Y_i) \xrightarrow{D} (X,Y)$
+\end{definition}
+\textbf{Key Properties:}
+
+\begin{itemize}
+	\item Markov chain: Future depends only on present state
+	\item Convergence: Reaches equilibrium distribution
+	\item Estimation: $\overline{W} = m^{-1}\sum_{i=1}^m W(X_i) \xrightarrow{P} E[W(X)]$
+\end{itemize}
+
+\subsubsection{Implementation Guidelines}
+
+\begin{enumerate}
+	\item Burn-in period: Discard first $m$ iterations
+	\item Multiple chains: Check convergence
+	\item Diagnostic plots: Monitor chain behavior
+	\item Thinning: Reduce autocorrelation if needed
+\end{enumerate}
+
+\subsubsection{Example: Gamma-Poisson Model}
+\[
+\begin{aligned}
+f(x,y) &\propto \frac{y^{\alpha+x-1} e^{-2y}}{x!}, \quad y > 0, x = 0,1,2,\ldots
+\end{aligned}
+\]
+\textbf{Conditional distributions:}
+
+\begin{itemize}
+	\item $Y \mid X=x \sim \Gamma(\alpha + x, 1/2)$
+	\item $X \mid Y=y \sim \text{Poisson}(y)$
+\end{itemize}
+
+\textbf{Gibbs algorithm:}
+
+\begin{enumerate}
+	\item Generate $Y_i \mid X_{i-1} \sim \Gamma(\alpha + X_{i-1}, 1/2)$
+	\item Generate $X_i \mid Y_i \sim \text{Poisson}(Y_i)$
+\end{enumerate}
+
+\subsection{11.4 Modern Bayesian Methods}
+
+\subsubsection{Hierarchical Bayes}
+
+\begin{definition}[\textbf{Hierarchical Bayes Model}]
+\[
+\begin{aligned}
+X \mid \theta &\sim f(x \mid \theta) \\
+\Theta \mid \gamma &\sim h(\theta \mid \gamma) \\
+\Gamma &\sim \psi(\gamma)
+\end{aligned}
+\]where $\gamma$ is a \textbf{hyperparameter}.
+\end{definition}
+\textbf{Advantages:}
+
+\begin{itemize}
+	\item More flexible prior specification
+	\item Partial pooling of information
+	\item Automatic sensitivity analysis
+\end{itemize}
+
+\textbf{Posterior:}
+\[
+k(\theta \mid \mathbf{x}) = \frac{\int f(\mathbf{x} \mid \theta) h(\theta \mid \gamma) \psi(\gamma) d\gamma}{\int\int f(\mathbf{x} \mid \theta) h(\theta \mid \gamma) \psi(\gamma) d\gamma d\theta}
+\]
+
+\textbf{MCMC Implementation:}
+Use Gibbs sampler with conditionals:
+
+\begin{itemize}
+	\item $\Theta_i \mid \mathbf{x}, \gamma_{i-1} \sim g(\theta \mid \mathbf{x}, \gamma_{i-1})$
+	\item $\Gamma_i \mid \mathbf{x}, \theta_i \sim g(\gamma \mid \mathbf{x}, \theta_i)$
+\end{itemize}
+
+\subsubsection{11.4.1 Empirical Bayes}
+
+\begin{definition}[\textbf{Empirical Bayes}]
+\[
+\begin{aligned}
+X \mid \theta &\sim f(x \mid \theta) \\
+\Theta \mid \gamma &\sim h(\theta \mid \gamma)
+\end{aligned}
+\]Estimate $\widehat{\gamma}$ from marginal likelihood:
+\[
+m(\mathbf{x} \mid \gamma) = \int f(\mathbf{x} \mid \theta) h(\theta \mid \gamma) d\theta
+\]
+Use posterior $k(\theta \mid \mathbf{x}, \widehat{\gamma})$ for inference.
+\end{definition}
+\textbf{Procedure:}
+
+\begin{enumerate}
+	\item Maximize $m(\mathbf{x} \mid \gamma)$ to get $\widehat{\gamma}$
+	\item Substitute $\widehat{\gamma}$ into posterior
+	\item Make inference using $k(\theta \mid \mathbf{x}, \widehat{\gamma})$
+\end{enumerate}
+
+\textbf{Example: Poisson-Gamma}
+\[
+\begin{aligned}
+X_i \mid \lambda &\sim \text{iid Poisson}(\lambda) \\
+\Lambda \mid b &\sim \Gamma(1, b)
+\end{aligned}
+\]
+MLE: $\widehat{b} = \overline{x}$
+
+Empirical Bayes estimator: $\widehat{\lambda} = \overline{x}$ (equals MLE!)
+
+\subsection{Problem-Solving Strategies}
+
+\begin{enumerate}
+	\item Choosing Priors
+	\begin{itemize}
+		\item Conjugate priors: For analytical convenience
+		\item Informative priors: When strong prior knowledge exists
+		\item Noninformative priors: For "objective" analysis
+		\item Sensitivity analysis: Check robustness to prior choice
+	\end{itemize}
+	\item Computational Methods
+	\begin{itemize}
+		\item Analytical: When conjugate priors available
+		\item Simple Monte Carlo: When easy to sample from posterior
+		\item Gibbs sampler: For complex multiparameter problems
+		\item Other MCMC: When Gibbs sampler difficult
+	\end{itemize}
+	\item Model Selection and Validation
+	\begin{itemize}
+		\item Bayes factors: For model comparison
+		\item Posterior predictive checks: For model validation
+		\item Cross-validation: For predictive performance
+		\item Sensitivity analysis: For robustness
+	\end{itemize}
+	\item Practical Considerations
+	\begin{itemize}
+		\item Computational cost: Balance accuracy vs. efficiency
+		\item Convergence diagnosis: Essential for MCMC
+		\item Multiple chains: Check convergence
+		\item Effective sample size: Ensure adequate precision
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Key Distributions and Results}
+
+\subsubsection{Conjugate Families}
+
+\begin{itemize}
+	\item Beta-Binomial: $\text{Beta}(\alpha, \beta) + \text{Binomial} \to \text{Beta}(\alpha + y, \beta + n - y)$
+	\item Gamma-Poisson: $\Gamma(\alpha, \beta) + \text{Poisson} \to \Gamma(\alpha + \sum x_i, \beta/(n\beta + 1))$
+	\item Normal-Normal: Both likelihood and prior normal
+\end{itemize}
+
+\subsubsection{Improper Priors}
+
+\begin{itemize}
+	\item Uniform: $h(\theta) \propto 1$
+	\item Jeffreys': $h(\theta) \propto \sqrt{I(\theta)}$
+	\item Scale-invariant: $h(\sigma) \propto 1/\sigma$
+\end{itemize}
+
+\subsubsection{Asymptotic Properties}
+
+\begin{itemize}
+	\item Bernstein-von Mises: Posterior $\to$ Normal around MLE
+	\item Consistency: Posterior concentrates on true value
+	\item Efficiency: Posterior variance $\to$ Cramér-Rao bound
+\end{itemize}
+
+\subsection{Applications and Extensions}
+
+\subsubsection{Modern Applications}
+
+\begin{enumerate}
+	\item Machine learning: Bayesian neural networks, Gaussian processes
+	\item Biostatistics: Clinical trials, personalized medicine
+	\item Economics: Bayesian econometrics, decision theory
+	\item Engineering: Reliability analysis, quality control
+\end{enumerate}
+
+\subsubsection{Advanced Topics}
+
+\begin{itemize}
+	\item Variational Bayes: Approximate inference
+	\item Reversible jump MCMC: Variable dimension problems
+	\item Particle filters: Dynamic models
+	\item Approximate Bayesian computation (ABC): Intractable likelihoods
+\end{itemize}
+
+This chapter provides the foundation for Bayesian statistical analysis, from basic conjugate models to modern computational methods, enabling sophisticated probabilistic modeling and inference.

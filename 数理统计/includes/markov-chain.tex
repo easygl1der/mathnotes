@@ -1,0 +1,195 @@
+\section{Markov Chain}
+
+\subsection{基本性质}
+
+好的，马尔可夫链具有一些非常重要的基本性质，这些性质是我们理解和应用它的基础。以下是一些核心的性质：
+
+\begin{enumerate}
+	\item \textbf{马尔可夫性 (Markov Property) - 无记忆性}
+	\begin{itemize}
+		\item \textbf{定义：} 这是马尔可夫链最根本的性质。它指系统的下一个状态只依赖于其当前状态，而与它过去的状态序列无关。
+		\item \textbf{数学表达：} $P(X_{n+1} = j | X_n = i, X_{n-1} = i_{n-1}, ..., X_0 = i_0) = P(X_{n+1} = j | X_n = i)$。
+		\item \textbf{意义：} 大大简化了对随机过程的分析，因为我们不需要追踪系统的全部历史。
+	\end{itemize}
+	\item \textbf{状态空间 (State Space)}
+	\begin{itemize}
+		\item \textbf{定义：} 系统所有可能状态的集合。
+		\item \textbf{分类：}
+		\begin{itemize}
+			\item \textbf{离散状态空间 (Discrete State Space)：} 状态是可数的（有限个或无限可数个），例如天气（晴、阴、雨）、骰子点数（1, 2, 3, 4, 5, 6）。我们通常讨论的马尔可夫链都是离散状态的。
+			\item \textbf{连续状态空间 (Continuous State Space)：} 状态是连续的，例如某个物理量的精确值。这通常涉及到更复杂的马尔可夫过程。
+			\item \textbf{有限状态空间 (Finite State Space)：} 状态的个数是有限的。
+			\item \textbf{无限状态空间 (Infinite State Space)：} 状态的个数是无限的。
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{转移概率 (Transition Probabilities)}
+	\begin{itemize}
+		\item \textbf{定义：} 从一个状态 $i$ 转移到另一个状态 $j$ 的概率，记为 $P_{ij}$ 或 $P(X_{n+1}=j | X_n=i)$。
+		\item \textbf{性质：}
+		\begin{itemize}
+			\item $0 \le P_{ij} \le 1$ （概率非负且不大于1）
+			\item $\sum_{j \in S} P_{ij} = 1$ （对于任意状态 $i$，从 $i$ 出发到所有可能状态 $j$ 的转移概率之和为1，其中 $S$ 是状态空间）
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{时齐性 (Time Homogeneity) / 稳态转移概率 (Stationary Transition Probabilities)}
+	\begin{itemize}
+		\item \textbf{定义：} 转移概率 $P_{ij}$ 不随时间 $n$ 的变化而变化。也就是说，在任何时刻从状态 $i$ 转移到状态 $j$ 的概率都是相同的。
+		\item \textbf{数学表达：} $P(X_{n+1}=j | X_n=i) = P(X_{m+1}=j | X_m=i)$ 对所有 $n, m$ 成立。
+		\item \textbf{意义：} 大多数我们初学的马尔可夫链都假设是时齐的，这使得分析更加简单。如果转移概率随时间变化，则称为非时齐马尔可夫链。
+	\end{itemize}
+	\item \textbf{n步转移概率 (n-step Transition Probabilities)}
+	\begin{itemize}
+		\item \textbf{定义：} 从状态 $i$ 经过 $n$ 步转移到状态 $j$ 的概率，记为 $P_{ij}^{(n)}$。
+		\item \textbf{计算：} 可以通过 Chapman-Kolmogorov 方程计算：$P_{ij}^{(n+m)} = \sum_{k \in S} P_{ik}^{(n)} P_{kj}^{(m)}$。特别地，状态转移矩阵的 n 次幂 $\mathbf{P}^n$ 的 $(i,j)$ 元就是 $P_{ij}^{(n)}$。
+	\end{itemize}
+\end{enumerate}
+
+以下是一些更深入的、描述马尔可夫链长期行为的性质：
+
+\begin{enumerate}
+	\item \textbf{可达性 (Accessibility)}
+	\begin{itemize}
+		\item \textbf{定义：} 如果从状态 $i$ 出发，经过有限步（可能为0步）能够到达状态 $j$ (即 $P_{ij}^{(n)} > 0$ 对某个 $n \ge 0$ 成立)，则称状态 $j$ 从状态 $i$ 可达，记为 $i \to j$。
+	\end{itemize}
+	\item \textbf{互通性 (Communication)}
+	\begin{itemize}
+		\item \textbf{定义：} 如果状态 $i$ 和状态 $j$ 相互可达 (即 $i \to j$ 且 $j \to i$)，则称状态 $i$ 和状态 $j$ 是互通的，记为 $i \leftrightarrow j$。
+		\item \textbf{性质：} 互通是一种等价关系，可以将状态空间划分为若干个互通类。
+	\end{itemize}
+	\item \textbf{不可约性 (Irreducibility)}
+	\begin{itemize}
+		\item \textbf{定义：} 如果一个马尔可夫链中所有状态都属于同一个互通类（即从任意状态都可以到达任意其他状态），则称该马尔可夫链是不可约的。
+		\item \textbf{意义：} 不可约马尔可夫链的行为更为整体和一致。
+	\end{itemize}
+	\item \textbf{常返性 (Recurrence) 与瞬逝性 (Transience)}
+	\begin{itemize}
+		\item \textbf{常返状态：} 如果从状态 $i$ 出发，最终能以概率1返回到状态 $i$，则称状态 $i$ 是常返的。
+		\item \textbf{瞬逝状态：} 如果从状态 $i$ 出发，最终返回到状态 $i$ 的概率小于1（意味着有可能永远不再返回），则称状态 $i$ 是瞬逝的。
+		\item \textbf{性质：}
+		\begin{itemize}
+			\item 在不可约马尔可夫链中，所有状态要么都是常返的，要么都是瞬逝的。
+			\item 对于有限状态空间的不可约马尔可夫链，所有状态都是常返的。
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{周期性 (Periodicity)}
+	\begin{itemize}
+		\item \textbf{定义：} 状态 $i$ 的周期 $d(i)$ 是使得 $P_{ii}^{(n)} > 0$ 的所有步数 $n \ge 1$ 的最大公约数。如果 $P_{ii}^{(n)} = 0$ 对所有 $n \ge 1$ 成立，则定义 $d(i) = 0$ 或 $\infty$ (不同教材定义可能略有差异，但核心是不能返回自身)。
+		\item \textbf{非周期性：} 如果一个状态的周期 $d(i) = 1$，则称该状态是非周期的。
+		\item \textbf{性质：} 同一个互通类中的所有状态具有相同的周期。如果一个不可约马尔可夫链的所有状态都是非周期的，则称该链是非周期的。
+	\end{itemize}
+	\item \textbf{平稳分布 (Stationary Distribution) / 极限分布 (Limiting Distribution)}
+	\begin{itemize}
+		\item \textbf{平稳分布 ($\pi$)：} 一个概率分布向量 $\pi = (\pi_1, \pi_2, ...)$，其中 $\pi_j$ 是系统处于状态 $j$ 的概率，并且满足 $\sum \pi_j = 1$ 以及 $\pi \mathbf{P} = \pi$（即 $\pi_j = \sum_i \pi_i P_{ij}$）。如果系统当前的概率分布是 $\pi$，那么经过一步转移后，其概率分布仍然是 $\pi$。
+		\item \textbf{极限分布：} 当时间 $n \to \infty$ 时， $P_{ij}^{(n)}$ 的极限（如果存在）。
+		\item \textbf{重要定理：} 对于一个不可约、非周期、正常返（对于有限状态空间，不可约即正常返）的马尔可夫链，存在唯一的平稳分布 $\pi$，并且该平稳分布也是极限分布，即 $\lim_{n \to \infty} P_{ij}^{(n)} = \pi_j$ (与初始状态 $i$ 无关)。
+		\item \textbf{意义：} 描述了马尔可夫链在长时间运行后的稳定状态。
+	\end{itemize}
+\end{enumerate}
+
+这些是马尔可夫链的一些最基本的性质，理解它们对于进一步学习和应用马尔可夫链至关重要。根据研究的深入程度，还会有更多细致的性质和分类。
+
+\subsection{验证为 Markov chain}
+
+要证明一个随机过程是一个马尔可夫链，核心在于验证它是否满足\textbf{马尔可夫性质 (Markov Property)}，并且明确其\textbf{状态空间 (State Space)} 和 \textbf{时间参数 (Time Parameter)}。
+
+\begin{definition}[Markov Property]
+A stochastic process $\{X_t: t \in T\}$ has the \textbf{Markov property} if, for any $t_1 < t_2 < \cdots < t_n$ in $T$,
+\[
+P\left(X_{t_n} \in A \mid X_{t_{n-1}}=x_{n-1}, \ldots, X_{t_1}=x_1\right)=P\left(X_{t_n} \in A \mid X_{t_{n-1}}=x_{n-1}\right)
+\]for all $A \in \mathcal{B}$ and $x_i \in \mathbb{R}$. In other words, the future is independent of the past given the present.
+\end{definition}
+以下是证明一个过程是马尔可夫链的一般步骤和关键点：
+
+\begin{enumerate}
+	\item \textbf{定义状态空间 (Define the State Space} $S$\textbf{):}
+	\begin{itemize}
+		\item 首先，你需要清晰地定义系统所有可能的状态。状态空间 $S$ 可以是有限的，也可以是无限可数的。
+		\item 确保每个状态都是互斥的，即系统在任何时刻只能处于一个状态。
+		\item \textbf{例子：}
+		\begin{itemize}
+			\item 天气模型：$S= \{ \text{晴天, 阴天, 雨天} \}$
+			\item 硬币投掷：$S=\{ \text{正面朝上, 反面朝上} \}$
+			\item 排队系统中的顾客数量：$S=\{ 0,1,2,3,\dots \}$
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{定义时间参数 (Define the Time Parameter} $T$\textbf{):}
+	\begin{itemize}
+		\item 确定过程是离散时间的还是连续时间的。对于初学者，我们通常关注离散时间马尔可夫链，时间参数 $T=\{0,1,2,\dots\}$ 或 \{$t_0, t_1, t_2, ...$\}.
+		\item $X_n$ 或 $X(t_n)$ 表示在时间步 $n$ (或时刻 $t_n$) 系统所处的状态。
+	\end{itemize}
+	\item \textbf{验证马尔可夫性质 (Verify the Markov Property):}
+这是最关键的一步。马尔可夫性质指出，给定现在，未来与过去独立。更正式地说，对于任意时间步 $n$ 和任意状态序列 $i_0, i_1, ..., i_{n-1}, i, j \in S$：
+\[
+P(X_{n+1}=j \mid X_n=i, X_{n-1}=i_{n-1},...,X_0=i_0) = P(X_{n+1}=j \mid X_n=i)
+\]要证明这一点，你需要：
+	\begin{enumerate}
+		\item 明确条件概率的含义： 理解 $P(A \mid B)$ 是在事件 $B$ 发生的条件下事件 $A$ 发生的概率。
+		\item 利用过程的定义和规则： 根据你所研究的随机过程的具体规则和描述，推导其一步转移的条件概率。
+		\item 展示“无记忆性”：
+		\begin{itemize}
+			\item 考虑在已知当前状态 $X_n=i$ 以及过去所有状态 $X_{n-1}=i_{n-1},...,X_0=i_0$ 的情况下，系统在下一个时刻 $X_{n+1}$ 转移到状态 $j$ 的概率。
+			\item 然后，证明这个概率仅仅依赖于当前状态 $X_n=i$，而与过去的状态 $X_{n-1},...,X_0$ 无关。也就是说，那些过去的状态信息对于预测下一个状态是多余的。
+		\end{itemize}
+\textbf{如何操作？}
+		\begin{itemize}
+			\item \textbf{直接从定义出发：} 有些过程的定义本身就隐含了这种无记忆性。例如，如果规则明确说明“下一步只看当前”，那么马尔可夫性质就比较容易验证。
+			\item \textbf{通过计算条件概率：}
+			\begin{enumerate}
+				\item 写出 $P(X_{n+1}=j \mid X_n=i, X_{n-1}=i_{n-1},...,X_0=i_0)$ 的表达式。
+				\item 利用过程的内在机制，看看这个表达式是否可以简化为只依赖于 $i$ 和 $j$ 的形式，即 $P(X_{n+1}=j \mid X_n=i)$。
+				\item 如果可以，那么马尔可夫性质就得到了证明。
+			\end{enumerate}
+		\end{itemize}
+	\end{enumerate}
+	\item \textbf{（可选，但常伴随）确定转移概率 (Determine Transition Probabilities):}
+	\begin{itemize}
+		\item 一旦证明了马尔可夫性质，通常下一步是确定（或者说明如何确定）一步转移概率 $P_{ij}=P(X_{n+1}=j \mid X_n=i)$。
+		\item 如果这些转移概率不依赖于时间 $n$，那么这个马尔可夫链是\textbf{时齐的 (Time-Homogeneous)}。大多数基础讨论中的马尔可夫链都是时齐的。如果依赖于时间 $n$，即 $P_{ij}(n)=P(X_{n+1}=j \mid X_n=i)$，则它是\textbf{非时齐的 (Non-Time-Homogeneous)}。证明过程本身是马尔可夫链时，并不强制要求时齐性，但通常会关注这一点。
+	\end{itemize}
+\end{enumerate}
+
+\textbf{一个简单的例子来说明思路：简化的天气模型}
+
+假设我们有一个天气模型，规则如下：
+
+\begin{itemize}
+	\item 如果今天下雨，明天有 $70\%$ 的概率下雨， $30\%$ 的概率晴天。
+	\item 如果今天晴天，明天有 $40\%$ 的概率下雨， $60\%$ 的概率晴天。
+	\item 明天的天气只取决于今天的天气。
+\end{itemize}
+
+\textbf{证明步骤：}
+
+\begin{enumerate}
+	\item \textbf{状态空间：} $S=\{ \text{雨天 (R), 晴天 (S)} \}$
+	\item \textbf{时间参数：} 离散时间，$T=\{ 0,1,2,\dots \}$ (天数)
+	\item 验证马尔可夫性质：
+我们要证明：$P(X_{n+1} \mid X_n, X_{n-1},...,X_0) = P(X_{n+1} \mid X_n)$
+\end{enumerate}
+
+\begin{itemize}
+	\item 考虑 $P(X_{n+1}=\text{雨天} \mid X_n=\text{雨天},X_{n-1},...,X_0)$: 根据模型规则，“明天的天气只取决于今天的天气”。所以，即使我们知道 $X_{n-1},...,X_0$ 的具体天气情况，只要 $X_n=\text{雨天}$，下一天是雨天的概率就是 0.7。因此，$P(X_{n+1}=\text{雨天} \mid X_n=\text{雨天},X_{n-1},...,X_0)=0.7$。同时，$P(X_{n+1}=\text{雨天} \mid X_n=\text{雨天})=0.7$。两者相等。
+	\item 类似地，可以对所有可能的当前状态和下一个状态进行验证：
+	\begin{enumerate}
+		\item $P(X_{n+1}=\text{晴天} \mid X_n=\text{雨天},...) = P(X_{n+1}=\text{晴天} \mid X_n=\text{雨天})=0.3$
+		\item $P(X_{n+1}=\text{雨天} \mid X_n=\text{晴天},...) = P(X_{n+1}=\text{雨天} \mid X_n=\text{晴天})=0.4$
+		\item $P(X_{n+1}=\text{晴天} \mid X_n=\text{晴天},...) = P(X_{n+1}=\text{晴天} \mid X_n=\text{晴天})=0.6$
+	\end{enumerate}
+\end{itemize}
+
+由于对于所有情况，未来状态的概率只依赖于当前状态，所以该过程满足马尔可夫性质。
+
+\begin{enumerate}
+	\item \textbf{转移概率（时齐）：}
+	\begin{itemize}
+		\item $P(雨天 \mid 雨天)=P_{RR}=0.7$
+		\item $P(晴天 \mid 雨天)=P_{RS}=0.3$
+		\item $P(雨天 \mid 晴天)=P_{SR}=0.4$
+		\item $P(晴天 \mid 晴天)=P_{SS}=0.6$
+这些概率不随天数 $n$ 变化，所以这是一个时齐马尔可夫链。
+	\end{itemize}
+\end{enumerate}
+
+\textbf{总结关键：}
+
+证明的核心是严格地、形式化地展示出“给定现在，未来与过去无关”。这通常需要仔细分析随机过程的规则和定义，并运用条件概率的知识。对于一些复杂的过程，这可能涉及到更多的数学推导。

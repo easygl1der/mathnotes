@@ -1,0 +1,74 @@
+\section{环论}
+
+\begin{theorem}
+设 $(R,+, \cdot)$ 为含 $1 \neq 0$ 的结合环， $a, b \in R$ ．若 $a+b=b a$ ，且关于 $x$ 的方程
+\[
+\left\{\begin{array}{l}
+x^2-\left(a x^2+x^2 a\right)+a x^2 a=1 \\
+x+a-(a x+x a)+a x a=1
+\end{array}\right.
+\]在 $R$ 中有解．证明：$a b=b a$ ．
+\end{theorem}
+\begin{proof}
+1）首先注意到
+\[
+\begin{aligned}
+& \left\{\begin{array}{l}
+x^2-\left(a x^2+x^2 a\right)+a x^2 a=1 \\
+x+a-(a x+x a)+a x a=1
+\end{array}\right. \\
+& \Leftrightarrow\left\{\begin{array}{c}
+(1-a) x^2(1-a)=1 \\
+(1-a) x(1-a)=1-a
+\end{array}\right.
+\end{aligned}
+\]
+结果有：
+\[
+\begin{aligned}
+& (1-a) x=(1-a) x\left\{(1-a) x^2(1-a)\right\} \\
+= & (1-a) x(1-a) x^2(1-a)=(1-a) x^2(1-a)=1 \\
+& x(1-a)=(1-a) x^2(1-a) x(1-a) \\
+= & (1-a) x^2 \cdot(1-a) x(1-a)=(1-a) x^2(1-a)=1
+\end{aligned}
+\]
+因此有 $1-a$ 可逆且 $(1-a)^{-1}=x$
+
+2）现在考虑 $(1-b)(1-a)$ ，则有 $(1-b)(1-a)=1-a-b+b a=1$ ，结合前面所证 $1-a$ 可逆，因此得 $(1-a)^{-1}=1-b$ ．进而有
+\[
+1=(1-a)(1-b)=1-a-b+a b=1-b a+a b
+\]
+亦即 $a b=b a$ ．
+
+\end{proof}
+
+\begin{exercise}[Kaplansky]
+含幺环中某元若有多于一个右逆，则它必然有无限多个右逆.
+\end{exercise}
+\begin{proof}
+设 $a\in R$ 有多于一个右逆，则它是左零因子，设理想
+\[
+I\coloneqq \{ x\in R:ax=0 \}
+\]
+只需要证明：$I$ 是无限集. 这是因为若 $b$ 是 $a$ 的一个右逆，则 $a(b+I)=0$，$b+x, \forall x\in I$ 也是 $a$ 的右逆.
+
+考虑反证，假设 $I$ 是有限集 $\{x_0, x_1,\dots,x_n \}$，($x_0=0$) 于是 $ax_k=0, k\in \{ 1,\dots,n \}$. 考虑 $x_ka$，它们显然也在 $I$ 内，但 $x_ka\neq x_{l}a$，两两不同，故 $\{ x_1a,\dots,x_na \}$ 是 $\{ x_1,\dots,x_n \}$ 的一个置换.
+
+取 $b$ 为 $a$ 的一个右逆，因为 $a$ 是零因子，故 $ba\neq1$（若 $b$ 是 $a$ 的左右逆，则 $a$ 为 unit，不是零因子）从而 $ba-1\neq0$，但是 $a(ba-1)=a-a=0$，故 $ba-1\in I$. 于是 $ba-1=x_i\neq0$ for some $i\neq0$. 同时 $x_ib=(ba-1)b=0$，$x_i=x_ja$ for some $j\neq0$. 于是
+\[
+0=x_ib=x_jab=x_j\neq 0
+\]
+矛盾！
+
+\end{proof}
+
+\begin{exercise}[注意环的乘法不包含可逆性]
+设 $D$ 为整环，$m$ 和 $n$ 为互素的正整数，$a, b\in D$. 如果 $a^{m}=b^{m}$，$a^{n}=b^{n}$. 求证：$a=b$.
+\end{exercise}
+\begin{proof}
+不妨设 $a\neq0,b\neq0$，由于 $(m,n)=1$，故存在整数 $s,t$ 使得 $sm+tn=1$，如果 $s\geq0$ 则 $t\leq0$ 故
+\[
+a\cdot a^{sm}=a\cdot b^{sm}=a\cdot b^{1-tn}=ba\cdot b^{-tn}=ba\cdot a^{-tn}= ba ^{1-tn}=b a^{sm}
+\]
+由于 $D$ 是整环，$(a-b)a^{sm}=0$，$a\neq0$ 不是零因子，所以 $a-b$ 是零因子，故为 0. 也就是 $a=b$.
+\end{proof}

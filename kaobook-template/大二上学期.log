@@ -1,0 +1,4974 @@
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.3) (preloaded format=xelatex 2025.3.26)  29 MAY 2025 00:17
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**./大二上学期.tex
+(大二上学期.tex
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2025-01-18>
+(styles/kaobook.cls
+
+LaTeX Warning: You have requested document class `styles/kaobook',
+               but the document class provides `kaobook'.
+
+Document Class: kaobook 2021/06/02 v0.9.7 kaobook
+(E:\Miktex\tex/latex/koma-script\scrbook.cls
+Document Class: scrbook 2024/10/24 v3.43 KOMA-Script document class (book)
+(E:\Miktex\tex/latex/koma-script\scrkbase.sty
+Package: scrkbase 2024/10/24 v3.43 KOMA-Script package (KOMA-Script-dependent b
+asics and keyval usage)
+
+(E:\Miktex\tex/latex/koma-script\scrbase.sty
+Package: scrbase 2024/10/24 v3.43 KOMA-Script package (KOMA-Script-independent 
+basics and keyval usage)
+
+(E:\Miktex\tex/latex/koma-script\scrlfile.sty
+Package: scrlfile 2024/10/24 v3.43 KOMA-Script package (file load hooks)
+
+(E:\Miktex\tex/latex/koma-script\scrlfile-hook.sty
+Package: scrlfile-hook 2024/10/24 v3.43 KOMA-Script package (using LaTeX hooks)
+
+
+(E:\Miktex\tex/latex/koma-script\scrlogo.sty
+Package: scrlogo 2024/10/24 v3.43 KOMA-Script package (logo)
+)))
+(E:\Miktex\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+Applying: [2021/05/01] Usage of raw or classic option list on input line 254.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line
+ 370.
+))
+(E:\Miktex\tex/latex/koma-script\tocbasic.sty
+Package: tocbasic 2024/10/24 v3.43 KOMA-Script package (handling toc-files)
+\scr@dte@tocline@numberwidth=\skip49
+\scr@dte@tocline@numbox=\box52
+)
+Package tocbasic Info: omitting babel extension for `toc'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `toc' on input line 137.
+
+(E:\Miktex\tex/latex/base\leqno.clo
+File: leqno.clo 2016/12/29 v1.2b Standard LaTeX option (left equation numbers)
+)
+Class scrbook Info: File `scrsize12pt.clo' used to setup font sizes on input li
+ne 2716.
+
+(E:\Miktex\tex/latex/koma-script\scrsize12pt.clo
+File: scrsize12pt.clo 2024/10/24 v3.43 KOMA-Script font size class option (12pt
+)
+)
+(E:\Miktex\tex/latex/koma-script\typearea.sty
+Package: typearea 2024/10/24 v3.43 KOMA-Script package (type area)
+\ta@bcor=\skip50
+\ta@div=\count192
+Package typearea Info: You've used standard option `a4paper'.
+(typearea)             This is correct!
+(typearea)             Internally I'm using `paper=a4'.
+(typearea)             If you'd like to set the option with \KOMAoptions,
+(typearea)             you'd have to use `paper=a4' there
+(typearea)             instead of `a4paper', too.
+\ta@hblk=\skip51
+\ta@vblk=\skip52
+\ta@temp=\skip53
+\footheight=\skip54
+
+
+Package typearea Info: DIV calculation for classic typearea. on input line 1802
+.
+
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 9
+(typearea)             BCOR = 34.1433pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 375.57643pt
+(typearea)              DIV departure   = 3%
+(typearea)              \evensidemargin = 55.76741pt
+(typearea)              \oddsidemargin  = 55.76741pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 577.5pt
+(typearea)              \topmargin      = -18.25089pt
+(typearea)              \headheight     = 18.125pt
+(typearea)              \headsep        = 21.75pt
+(typearea)              \topskip        = 12.0pt
+(typearea)              \footskip       = 50.75pt
+(typearea)              \baselineskip   = 14.5pt
+(typearea)              on input line 1802.
+)
+\c@part=\count193
+\c@chapter=\count194
+\c@section=\count195
+\c@subsection=\count196
+\c@subsubsection=\count197
+\c@paragraph=\count198
+\c@subparagraph=\count199
+\scr@dte@chapter@maxnumwidth=\skip55
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\chapter on input line 6016.
+\scr@dte@section@maxnumwidth=\skip56
+Class scrbook Info: using compatibility default `runin=bysign'
+(scrbook)           for `\section on input line 6027.
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\section on input line 6027.
+\scr@dte@part@maxnumwidth=\skip57
+Class scrbook Info: using compatibility default `afterindent=true'
+(scrbook)           for `\part on input line 6036.
+\scr@dte@subsection@maxnumwidth=\skip58
+Class scrbook Info: using compatibility default `runin=bysign'
+(scrbook)           for `\subsection on input line 6046.
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\subsection on input line 6046.
+\scr@dte@subsubsection@maxnumwidth=\skip59
+Class scrbook Info: using compatibility default `runin=bysign'
+(scrbook)           for `\subsubsection on input line 6056.
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\subsubsection on input line 6056.
+\scr@dte@paragraph@maxnumwidth=\skip60
+Class scrbook Info: using compatibility default `runin=bysign'
+(scrbook)           for `\paragraph on input line 6067.
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\paragraph on input line 6067.
+\scr@dte@subparagraph@maxnumwidth=\skip61
+Class scrbook Info: using compatibility default `runin=bysign'
+(scrbook)           for `\subparagraph on input line 6077.
+Class scrbook Info: using compatibility default `afterindent=bysign'
+(scrbook)           for `\subparagraph on input line 6077.
+\abovecaptionskip=\skip62
+\belowcaptionskip=\skip63
+\c@pti@nb@sid@b@x=\box53
+Package tocbasic Info: omitting babel extension for `lof'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lof' on input line 7271.
+\scr@dte@figure@maxnumwidth=\skip64
+\c@figure=\count266
+Package tocbasic Info: omitting babel extension for `lot'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lot' on input line 7288.
+\scr@dte@table@maxnumwidth=\skip65
+\c@table=\count267
+Class scrbook Info: Redefining `\numberline' on input line 7459.
+\bibindent=\dimen141
+) (styles/kaoCJKsc.sty
+
+LaTeX Warning: You have requested package `styles/kaoCJKsc',
+               but the package provides `kaoCJKsc'.
+
+Package: kaoCJKsc 
+(E:\Miktex\tex/latex/etoolbox\etoolbox.sty
+Package: etoolbox 2025/02/11 v2.5l e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count268
+) (E:\Miktex\tex/latex/tools\calc.sty
+Package: calc 2023/07/08 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count269
+\calc@Bcount=\count270
+\calc@Adimen=\dimen142
+\calc@Bdimen=\dimen143
+\calc@Askip=\skip66
+\calc@Bskip=\skip67
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count271
+\calc@Cskip=\skip68
+) (E:\Miktex\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
+
+(E:\Miktex\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+
+Package xcolor Warning: Package option `usenames' is obsolete and ignored on in
+put line 265.
+
+Package xcolor Info: Driver file: xetex.def on input line 274.
+(E:\Miktex\tex/latex/graphics-def\xetex.def
+File: xetex.def 2022/09/22 v5.0n Graphics/color driver for xetex
+)
+(E:\Miktex\tex/latex/graphics\mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
+Package xcolor Info: Model `RGB' extended on input line 1365.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1367.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
+)
+(E:\Miktex\tex/latex/graphics\dvipsnam.def
+File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
+)
+(E:\Miktex\tex/latex/colortbl\colortbl.sty
+Package: colortbl 2024/07/06 v1.0i Color table columns (DPC)
+ (E:\Miktex\tex/latex/tools\array.sty
+Package: array 2024/10/17 v2.6g Tabular extension package (FMi)
+\col@sep=\dimen144
+\ar@mcellbox=\box54
+\extrarowheight=\dimen145
+\NC@list=\toks18
+\extratabsurround=\skip69
+\backup@length=\skip70
+\ar@cellbox=\box55
+)
+\everycr=\toks19
+\minrowclearance=\skip71
+\rownum=\count272
+) (E:\Miktex\tex/generic/iftex\iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)
+(E:\Miktex\tex/latex/xifthen\xifthen.sty
+Package: xifthen 2015/11/05 v1.4.0 Extended ifthen features
+ (E:\Miktex\tex/latex/base\ifthen.sty
+Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
+)
+(E:\Miktex\tex/latex/ifmtarg\ifmtarg.sty
+Package: ifmtarg 2018/04/16 v1.2b check for an empty argument
+))
+(E:\Miktex\tex/latex/options\options.sty
+Package: options 2015/03/01, Daan Leijen, Provides convenient path-value (or ke
+y-value) options
+\opt@nesting=\count273
+\opt@idx=\count274
+\opt@choiceord=\count275
+)
+(E:\Miktex\tex/latex/l3packages/xparse\xparse.sty
+(E:\Miktex\tex/latex/l3kernel\expl3.sty
+Package: expl3 2025-01-18 L3 programming layer (loader) 
+
+(E:\Miktex\tex/latex/l3backend\l3backend-xetex.def
+File: l3backend-xetex.def 2024-05-08 L3 backend support: XeTeX
+\g__graphics_track_int=\count276
+\l__pdf_internal_box=\box56
+\g__pdf_backend_annotation_int=\count277
+\g__pdf_backend_link_int=\count278
+))
+Package: xparse 2024-08-16 L3 Experimental document command parser
+)
+(E:\Miktex\tex/latex/xpatch\xpatch.sty
+Package: xpatch 2020/03/25 v0.3a Extending etoolbox patching commands
+)
+(E:\Miktex\tex/latex/xstring\xstring.sty
+(E:\Miktex\tex/generic/xstring\xstring.tex
+\xs_counta=\count279
+\xs_countb=\count280
+)
+Package: xstring 2023/08/22 v1.86 String manipulations (CT)
+)
+(E:\Miktex\tex/latex/tools\afterpage.sty
+Package: afterpage 2023/07/04 v1.08 After-Page Package (DPC)
+\AP@output=\toks20
+\AP@partial=\box57
+\AP@footins=\box58
+)
+(E:\Miktex\tex/latex/imakeidx\imakeidx.sty
+Package: imakeidx 2016/10/15 v1.3e Package for typesetting indices in a synchro
+nous mode
+
+(E:\Miktex\tex/latex/xkeyval\xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(E:\Miktex\tex/generic/xkeyval\xkeyval.tex
+(E:\Miktex\tex/generic/xkeyval\xkvutils.tex
+\XKV@toks=\toks21
+\XKV@tempa@toks=\toks22
+)
+\XKV@depth=\count281
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(E:\Miktex\tex/generic/iftex\ifxetex.sty
+Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
+)
+(E:\Miktex\tex/generic/iftex\ifluatex.sty
+Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
+)
+(E:\Miktex\tex/latex/tools\multicol.sty
+Package: multicol 2024/09/14 v1.9i multicolumn formatting (FMi)
+\c@tracingmulticols=\count282
+\mult@box=\box59
+\multicol@leftmargin=\dimen146
+\c@unbalance=\count283
+\c@collectmore=\count284
+\doublecol@number=\count285
+\multicoltolerance=\count286
+\multicolpretolerance=\count287
+\full@width=\dimen147
+\page@free=\dimen148
+\premulticols=\dimen149
+\postmulticols=\dimen150
+\multicolsep=\skip72
+\multicolbaselineskip=\skip73
+\partial@page=\box60
+\last@line=\box61
+\mc@boxedresult=\box62
+\maxbalancingoverflow=\dimen151
+\mult@rightbox=\box63
+\mult@grightbox=\box64
+\mult@firstbox=\box65
+\mult@gfirstbox=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\@tempa=\box93
+\@tempa=\box94
+\@tempa=\box95
+\@tempa=\box96
+\@tempa=\box97
+\@tempa=\box98
+\@tempa=\box99
+\@tempa=\box100
+\@tempa=\box101
+\@tempa=\box102
+\c@minrows=\count288
+\c@columnbadness=\count289
+\c@finalcolumnbadness=\count290
+\last@try=\dimen152
+\multicolovershoot=\dimen153
+\multicolundershoot=\dimen154
+\mult@nat@firstbox=\box103
+\colbreak@box=\box104
+\mc@col@check@num=\count291
+))
+(E:\Miktex\tex/latex/tools\varioref.sty
+Package: varioref 2024/05/23 v1.6g package for extended references (FMi)
+\c@vrcnt=\count292
+)
+\hscale=\skip74
+\vscale=\skip75
+
+(E:\Miktex\tex/latex/geometry\geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(E:\Miktex\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count293
+\Gm@cntv=\count294
+\c@Gm@tempcnt=\count295
+\Gm@bindingoffset=\dimen155
+\Gm@wd@mp=\dimen156
+\Gm@odd@mp=\dimen157
+\Gm@even@mp=\dimen158
+\Gm@layoutwidth=\dimen159
+\Gm@layoutheight=\dimen160
+\Gm@layouthoffset=\dimen161
+\Gm@layoutvoffset=\dimen162
+\Gm@dimlist=\toks23
+
+(E:\Miktex\tex/latex/geometry\geometry.cfg))
+(E:\Miktex\tex/latex/koma-script\scrlayer-scrpage.sty
+Package: scrlayer-scrpage 2024/10/24 v3.43 KOMA-Script package (end user interf
+ace for scrlayer)
+
+(E:\Miktex\tex/latex/koma-script\scrlayer.sty
+Package: scrlayer 2024/10/24 v3.43 KOMA-Script package (defining layers and pag
+e styles)
+Package scrlayer Info: patching LaTeX kernel macro \pagestyle on input line 218
+2.
+)
+Package scrlayer-scrpage Info: Makeing stand-alone element `pagehead' from
+(scrlayer-scrpage)             alias to `pageheadfoot' on input line 1106.
+)
+\headtextwidth=\skip76
+\headmarginparsep=\skip77
+\headmarginparwidth=\skip78
+\headtotal=\skip79
+\contentwidth=\skip80
+
+(E:\Miktex\tex/latex/ragged2e\ragged2e.sty
+Package: ragged2e 2023/06/22 v3.6 ragged2e Package
+\CenteringLeftskip=\skip81
+\RaggedLeftLeftskip=\skip82
+\RaggedRightLeftskip=\skip83
+\CenteringRightskip=\skip84
+\RaggedLeftRightskip=\skip85
+\RaggedRightRightskip=\skip86
+\CenteringParfillskip=\skip87
+\RaggedLeftParfillskip=\skip88
+\RaggedRightParfillskip=\skip89
+\JustifyingParfillskip=\skip90
+\CenteringParindent=\skip91
+\RaggedLeftParindent=\skip92
+\RaggedRightParindent=\skip93
+\JustifyingParindent=\skip94
+)
+(E:\Miktex\tex/latex/setspace\setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)
+(E:\Miktex\tex/latex/hyphenat\hyphenat.sty
+Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
+\langwohyphens=\language79
+LaTeX Info: Redefining \_ on input line 43.
+)
+(E:\Miktex\tex/latex/microtype\microtype.sty
+Package: microtype 2025/02/11 v3.2a Micro-typographical refinements (RS)
+\MT@toks=\toks24
+\MT@tempbox=\box105
+\MT@count=\count296
+LaTeX Info: Redefining \noprotrusionifhmode on input line 1087.
+LaTeX Info: Redefining \leftprotrusion on input line 1088.
+\MT@prot@toks=\toks25
+LaTeX Info: Redefining \rightprotrusion on input line 1107.
+LaTeX Info: Redefining \textls on input line 1449.
+\MT@outer@kern=\dimen163
+LaTeX Info: Redefining \microtypecontext on input line 2053.
+LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
+\MT@listname@count=\count297
+
+(E:\Miktex\tex/latex/microtype\microtype-xetex.def
+File: microtype-xetex.def 2025/02/11 v3.2a Definitions specific to xetex (RS)
+LaTeX Info: Redefining \lsstyle on input line 443.
+LaTeX Info: Redefining \lslig on input line 451.
+\MT@outer@space=\skip95
+)
+Package microtype Info: Loading configuration file microtype.cfg.
+
+(E:\Miktex\tex/latex/microtype\microtype.cfg
+File: microtype.cfg 2025/02/11 v3.2a microtype main configuration file (RS)
+)
+LaTeX Info: Redefining \microtypesetup on input line 3065.
+)
+(E:\Miktex\tex/latex/needspace\needspace.sty
+Package: needspace 2025/03/13 v1.3e reserve vertical space
+)
+(E:\Miktex\tex/latex/tools\xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+(E:\Miktex\tex/latex/placeins\placeins.sty
+Package: placeins 2005/04/18  v 2.2
+)
+(E:\Miktex\tex/latex/marginnote\marginnote.sty
+Package: marginnote 2018/08/09 1.4b non floating margin notes for LaTeX
+\c@mn@abspage=\count298
+)
+(E:\Miktex\tex/latex/sidenotes\sidenotes.sty
+(E:\Miktex\tex/latex/l3packages/l3keys2e\l3keys2e.sty
+Package: l3keys2e 2024-08-16 LaTeX2e option processing using LaTeX3 keys
+)
+Package: sidenotes 2024/09/12 v1.20 Rich text in the margin for LaTeX
+
+(E:\Miktex\tex/latex/caption\caption.sty
+Package: caption 2023/08/05 v3.6o Customizing captions (AR)
+
+(E:\Miktex\tex/latex/caption\caption3.sty
+Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+\caption@tempdima=\dimen164
+\captionmargin=\dimen165
+\caption@leftmargin=\dimen166
+\caption@rightmargin=\dimen167
+\caption@width=\dimen168
+\caption@indent=\dimen169
+\caption@parindent=\dimen170
+\caption@hangindent=\dimen171
+Package caption Info: KOMA-Script document class detected.
+
+(E:\Miktex\tex/latex/caption\caption-koma.sto
+File: caption-koma.sto 2023/09/08 v2.0e Adaption of the caption package to the 
+KOMA-Script document classes (AR)
+))
+\c@caption@flags=\count299
+\c@continuedfloat=\count300
+Package caption Info: KOMA-Script scrextend package detected.
+\caption@addmargin@hsize=\dimen172
+\caption@addmargin@linewidth=\dimen173
+)
+(E:\Miktex\tex/latex/changepage\changepage.sty
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count301
+\cp@tempcnt=\count302
+)
+\c@sidenote=\count303
+\@sidenotes@marginfigurebox=\box106
+\@sidenotes@margintablebox=\box107
+)
+(E:\Miktex\tex/latex/chngcntr\chngcntr.sty
+Package: chngcntr 2018/04/09 v1.1a change counter resetting
+Package chngcntr Info: \counterwithout already defined.
+(chngcntr)             Quitting chngcntr on input line 21.
+)
+(E:\Miktex\tex/latex/footmisc\footmisc.sty
+Package: footmisc 2025/03/10 v7.0a a miscellany of footnote facilities
+
+(E:\Miktex\tex/latex/footmisc\footmisc-2022-02-14.sty
+Package: footmisc 2024/12/24 v6.0g a miscellany of footnote facilities
+\FN@temptoken=\toks26
+\footnotemargin=\dimen174
+\@outputbox@depth=\dimen175
+Package footmisc Info: Declaring symbol style bringhurst on input line 699.
+Package footmisc Info: Declaring symbol style chicago on input line 707.
+Package footmisc Info: Declaring symbol style wiley on input line 716.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 727.
+
+Package footmisc Info: Declaring symbol style lamport* on input line 747.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 768
+.
+))
+(E:\Miktex\tex/latex/footnotebackref\footnotebackref.sty
+Package: footnotebackref 2012/07/01 v1.0 Backreferences for footnotes (Holger L
+ange)
+
+(E:\Miktex\tex/latex/letltxmacro\letltxmacro.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(E:\Miktex\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2024-11-05 v7.01l Hypertext links for LaTeX
+
+(E:\Miktex\tex/latex/kvsetkeys\kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(E:\Miktex\tex/generic/kvdefinekeys\kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(E:\Miktex\tex/generic/pdfescape\pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(E:\Miktex\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(E:\Miktex\tex/generic/pdftexcmds\pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(E:\Miktex\tex/generic/infwarerr\infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+))
+(E:\Miktex\tex/latex/hycolor\hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(E:\Miktex\tex/latex/hyperref\nameref.sty
+Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
+
+(E:\Miktex\tex/latex/refcount\refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(E:\Miktex\tex/generic/gettitlestring\gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(E:\Miktex\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count304
+)
+(E:\Miktex\tex/generic/stringenc\stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen176
+\Hy@linkcounter=\count305
+\Hy@pagecounter=\count306
+
+(E:\Miktex\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2024-11-05 v7.01l Hyperref: PDFDocEncoding definition (HO)
+)
+(E:\Miktex\tex/generic/intcalc\intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count307
+
+(E:\Miktex\tex/latex/hyperref\puenc.def
+File: puenc.def 2024-11-05 v7.01l Hyperref: PDF Unicode definition (HO)
+)
+Package hyperref Info: Hyper figures OFF on input line 4157.
+Package hyperref Info: Link nesting OFF on input line 4162.
+Package hyperref Info: Hyper index ON on input line 4165.
+Package hyperref Info: Plain pages OFF on input line 4172.
+Package hyperref Info: Backreferencing OFF on input line 4177.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4424.
+\c@Hy@tempcnt=\count308
+ (E:\Miktex\tex/latex/url\url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4763.
+\XeTeXLinkMargin=\dimen177
+
+(E:\Miktex\tex/generic/bitset\bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(E:\Miktex\tex/generic/bigintcalc\bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count309
+\Field@Width=\dimen178
+\Fld@charsize=\dimen179
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing OFF on input line 6057.
+Package hyperref Info: Link coloring OFF on input line 6062.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
+
+(E:\Miktex\tex/latex/base\atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count310
+\c@Item=\count311
+\c@Hfootnote=\count312
+)
+Package hyperref Info: Driver (autodetected): hxetex.
+
+(E:\Miktex\tex/latex/hyperref\hxetex.def
+File: hxetex.def 2024-11-05 v7.01l Hyperref driver for XeTeX
+\pdfm@box=\box108
+\c@Hy@AnnotLevel=\count313
+\HyField@AnnotCount=\count314
+\Fld@listcount=\count315
+\c@bookmark@seq@number=\count316
+
+(E:\Miktex\tex/latex/rerunfilecheck\rerunfilecheck.sty
+Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
+
+(E:\Miktex\tex/latex/base\atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+(E:\Miktex\tex/generic/uniquecounter\uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+85.
+)
+\Hy@SectionHShift=\skip96
+)
+\c@BackrefHyperFootnoteCounter=\count317
+)
+(E:\Miktex\tex/latex/graphics\graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(E:\Miktex\tex/latex/graphics\graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(E:\Miktex\tex/latex/graphics\trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(E:\Miktex\tex/latex/graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 106.
+)
+\Gin@req@height=\dimen180
+\Gin@req@width=\dimen181
+)
+(E:\Miktex\tex/latex/pgf/frontendlayer\tikz.sty
+(E:\Miktex\tex/latex/pgf/basiclayer\pgf.sty
+(E:\Miktex\tex/latex/pgf/utilities\pgfrcs.sty
+(E:\Miktex\tex/generic/pgf/utilities\pgfutil-common.tex
+\pgfutil@everybye=\toks27
+\pgfutil@tempdima=\dimen182
+\pgfutil@tempdimb=\dimen183
+)
+(E:\Miktex\tex/generic/pgf/utilities\pgfutil-latex.def
+\pgfutil@abb=\box109
+)
+(E:\Miktex\tex/generic/pgf/utilities\pgfrcs.code.tex
+(E:\Miktex\tex/generic/pgf\pgf.revision.tex)
+Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
+))
+Package: pgf 2023-01-15 v3.1.10 (3.1.10)
+
+(E:\Miktex\tex/latex/pgf/basiclayer\pgfcore.sty
+(E:\Miktex\tex/latex/pgf/systemlayer\pgfsys.sty
+(E:\Miktex\tex/generic/pgf/systemlayer\pgfsys.code.tex
+Package: pgfsys 2023-01-15 v3.1.10 (3.1.10)
+
+(E:\Miktex\tex/generic/pgf/utilities\pgfkeys.code.tex
+\pgfkeys@pathtoks=\toks28
+\pgfkeys@temptoks=\toks29
+
+(E:\Miktex\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.tex
+\pgfkeys@tmptoks=\toks30
+))
+\pgf@x=\dimen184
+\pgf@y=\dimen185
+\pgf@xa=\dimen186
+\pgf@ya=\dimen187
+\pgf@xb=\dimen188
+\pgf@yb=\dimen189
+\pgf@xc=\dimen190
+\pgf@yc=\dimen191
+\pgf@xd=\dimen192
+\pgf@yd=\dimen193
+\w@pgf@writea=\write3
+\r@pgf@reada=\read2
+\c@pgf@counta=\count318
+\c@pgf@countb=\count319
+\c@pgf@countc=\count320
+\c@pgf@countd=\count321
+\t@pgf@toka=\toks31
+\t@pgf@tokb=\toks32
+\t@pgf@tokc=\toks33
+\pgf@sys@id@count=\count322
+
+(E:\Miktex\tex/generic/pgf/systemlayer\pgf.cfg
+File: pgf.cfg 2023-01-15 v3.1.10 (3.1.10)
+)
+Driver file for pgf: pgfsys-xetex.def
+
+(E:\Miktex\tex/generic/pgf/systemlayer\pgfsys-xetex.def
+File: pgfsys-xetex.def 2023-01-15 v3.1.10 (3.1.10)
+
+(E:\Miktex\tex/generic/pgf/systemlayer\pgfsys-dvipdfmx.def
+File: pgfsys-dvipdfmx.def 2023-01-15 v3.1.10 (3.1.10)
+
+(E:\Miktex\tex/generic/pgf/systemlayer\pgfsys-common-pdf.def
+File: pgfsys-common-pdf.def 2023-01-15 v3.1.10 (3.1.10)
+)
+\pgfsys@objnum=\count323
+)))
+(E:\Miktex\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
+File: pgfsyssoftpath.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfsyssoftpath@smallbuffer@items=\count324
+\pgfsyssoftpath@bigbuffer@items=\count325
+)
+(E:\Miktex\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
+File: pgfsysprotocol.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcore.code.tex
+Package: pgfcore 2023-01-15 v3.1.10 (3.1.10)
+
+(E:\Miktex\tex/generic/pgf/math\pgfmath.code.tex
+(E:\Miktex\tex/generic/pgf/math\pgfmathutil.code.tex)
+(E:\Miktex\tex/generic/pgf/math\pgfmathparser.code.tex
+\pgfmath@dimen=\dimen194
+\pgfmath@count=\count326
+\pgfmath@box=\box110
+\pgfmath@toks=\toks34
+\pgfmath@stack@operand=\toks35
+\pgfmath@stack@operation=\toks36
+)
+(E:\Miktex\tex/generic/pgf/math\pgfmathfunctions.code.tex)
+(E:\Miktex\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex)
+(E:\Miktex\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex)
+(E:\Miktex\tex/generic/pgf/math\pgfmathfunctions.random.code.tex)
+(E:\Miktex\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex)
+(E:\Miktex\tex/generic/pgf/math\pgfmathfunctions.base.code.tex)
+(E:\Miktex\tex/generic/pgf/math\pgfmathfunctions.round.code.tex)
+(E:\Miktex\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex)
+(E:\Miktex\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex)
+(E:\Miktex\tex/generic/pgf/math\pgfmathcalc.code.tex)
+(E:\Miktex\tex/generic/pgf/math\pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count327
+))
+(E:\Miktex\tex/generic/pgf/math\pgfint.code.tex)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
+File: pgfcorepoints.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@picminx=\dimen195
+\pgf@picmaxx=\dimen196
+\pgf@picminy=\dimen197
+\pgf@picmaxy=\dimen198
+\pgf@pathminx=\dimen199
+\pgf@pathmaxx=\dimen256
+\pgf@pathminy=\dimen257
+\pgf@pathmaxy=\dimen258
+\pgf@xx=\dimen259
+\pgf@xy=\dimen260
+\pgf@yx=\dimen261
+\pgf@yy=\dimen262
+\pgf@zx=\dimen263
+\pgf@zy=\dimen264
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@path@lastx=\dimen265
+\pgf@path@lasty=\dimen266
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex
+File: pgfcorepathusage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@shorten@end@additional=\dimen267
+\pgf@shorten@start@additional=\dimen268
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
+File: pgfcorescopes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfpic=\box111
+\pgf@hbox=\box112
+\pgf@layerbox@main=\box113
+\pgf@picture@serial@count=\count328
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgflinewidth=\dimen269
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcoretransformations.code.tex
+File: pgfcoretransformations.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@pt@x=\dimen270
+\pgf@pt@y=\dimen271
+\pgf@pt@temp=\dimen272
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcorequick.code.tex
+File: pgfcorequick.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex
+File: pgfcoreobjects.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcorepathprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
+File: pgfcorearrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowsep=\dimen273
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
+File: pgfcoreshade.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@max=\dimen274
+\pgf@sys@shading@range@num=\count329
+\pgf@shadingcount=\count330
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
+File: pgfcoreimage.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
+File: pgfcoreexternal.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfexternal@startupbox=\box114
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcorelayers.code.tex
+File: pgfcorelayers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcoretransparency.code.tex
+File: pgfcoretransparency.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcorepatterns.code.tex
+File: pgfcorepatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(E:\Miktex\tex/generic/pgf/basiclayer\pgfcorerdf.code.tex
+File: pgfcorerdf.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)))
+(E:\Miktex\tex/generic/pgf/modules\pgfmoduleshapes.code.tex
+File: pgfmoduleshapes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfnodeparttextbox=\box115
+)
+(E:\Miktex\tex/generic/pgf/modules\pgfmoduleplot.code.tex
+File: pgfmoduleplot.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+(E:\Miktex\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
+Package: pgfcomp-version-0-65 2023-01-15 v3.1.10 (3.1.10)
+\pgf@nodesepstart=\dimen275
+\pgf@nodesepend=\dimen276
+)
+(E:\Miktex\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty
+Package: pgfcomp-version-1-18 2023-01-15 v3.1.10 (3.1.10)
+))
+(E:\Miktex\tex/latex/pgf/utilities\pgffor.sty
+(E:\Miktex\tex/latex/pgf/utilities\pgfkeys.sty
+(E:\Miktex\tex/generic/pgf/utilities\pgfkeys.code.tex))
+(E:\Miktex\tex/latex/pgf/math\pgfmath.sty
+(E:\Miktex\tex/generic/pgf/math\pgfmath.code.tex))
+(E:\Miktex\tex/generic/pgf/utilities\pgffor.code.tex
+Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
+\pgffor@iter=\dimen277
+\pgffor@skip=\dimen278
+\pgffor@stack=\toks37
+\pgffor@toks=\toks38
+))
+(E:\Miktex\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
+Package: tikz 2023-01-15 v3.1.10 (3.1.10)
+
+(E:\Miktex\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgf@plot@mark@count=\count331
+\pgfplotmarksize=\dimen279
+)
+\tikz@lastx=\dimen280
+\tikz@lasty=\dimen281
+\tikz@lastxsaved=\dimen282
+\tikz@lastysaved=\dimen283
+\tikz@lastmovetox=\dimen284
+\tikz@lastmovetoy=\dimen285
+\tikzleveldistance=\dimen286
+\tikzsiblingdistance=\dimen287
+\tikz@figbox=\box116
+\tikz@figbox@bg=\box117
+\tikz@tempbox=\box118
+\tikz@tempbox@bg=\box119
+\tikztreelevel=\count332
+\tikznumberofchildren=\count333
+\tikznumberofcurrentchild=\count334
+\tikz@fig@count=\count335
+
+(E:\Miktex\tex/generic/pgf/modules\pgfmodulematrix.code.tex
+File: pgfmodulematrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfmatrixcurrentrow=\count336
+\pgfmatrixcurrentcolumn=\count337
+\pgf@matrix@numberofcolumns=\count338
+)
+\tikz@expandcount=\count339
+
+(E:\Miktex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code
+.tex
+File: tikzlibrarytopaths.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))) (E:\Miktex\tex/latex/tikzpagenodes\tikzpagenodes.sty
+Package: tikzpagenodes 2012/09/16 v1.1 Special PGF/TikZ nodes for areas of the 
+page
+
+(E:\Miktex\tex/latex/ifoddpage\ifoddpage.sty
+Package: ifoddpage 2022/10/18 v1.2 Conditionals for odd/even page detection
+\c@checkoddpage=\count340
+LaTeX Info: Redefining \checkoddpage on input line 45.
+))
+(E:\Miktex\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen288
+\lightrulewidth=\dimen289
+\cmidrulewidth=\dimen290
+\belowrulesep=\dimen291
+\belowbottomsep=\dimen292
+\aboverulesep=\dimen293
+\abovetopsep=\dimen294
+\cmidrulesep=\dimen295
+\cmidrulekern=\dimen296
+\defaultaddspace=\dimen297
+\@cmidla=\count341
+\@cmidlb=\count342
+\@aboverulesep=\dimen298
+\@belowrulesep=\dimen299
+\@thisruleclass=\count343
+\@lastruleclass=\count344
+\@thisrulewidth=\dimen300
+)
+(E:\Miktex\tex/latex/multirow\multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip97
+\multirow@cntb=\count345
+\multirow@dima=\skip98
+\bigstrutjot=\dimen301
+)
+(E:\Miktex\tex/latex/graphics\rotating.sty
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+\c@r@tfl@t=\count346
+\rotFPtop=\skip99
+\rotFPbot=\skip100
+\rot@float@box=\box120
+\rot@mess@toks=\toks39
+)
+(E:\Miktex\tex/latex/listings\listings.sty
+\lst@mode=\count347
+\lst@gtempboxa=\box121
+\lst@token=\toks40
+\lst@length=\count348
+\lst@currlwidth=\dimen302
+\lst@column=\count349
+\lst@pos=\count350
+\lst@lostspace=\dimen303
+\lst@width=\dimen304
+\lst@newlines=\count351
+\lst@lineno=\count352
+\lst@maxwidth=\dimen305
+
+(E:\Miktex\tex/latex/listings\lstpatch.sty
+File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
+)
+(E:\Miktex\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+\c@lstnumber=\count353
+\lst@skipnumbers=\count354
+\lst@framebox=\box122
+)
+(E:\Miktex\tex/latex/listings\listings.cfg
+File: listings.cfg 2024/09/23 1.10c listings configuration
+))
+Package: listings 2024/09/23 1.10c (Carsten Heinz)
+
+(E:\Miktex\tex/latex/floatrow\floatrow.sty
+Package: floatrow 2008/08/02 v0.3b floatrow: float package extension
+\c@float@type=\count355
+\float@exts=\toks41
+\float@box=\box123
+\@floatcapt=\box124
+Package floatrow Info: Modified float package code loaded on input line 455.
+Package floatrow Info: Modified rotfloat package code loaded on input line 473.
+
+\FR@everyfloat=\toks42
+\flrow@foot=\insert252
+\FB@wd=\dimen306
+\FBo@wd=\dimen307
+\FBc@wd=\dimen308
+\FBo@ht=\skip101
+\FBc@ht=\skip102
+\FBf@ht=\skip103
+\FBo@max=\skip104
+\FBc@max=\skip105
+\FBf@max=\skip106
+\c@FBl@b=\count356
+\floatbox@depth=\count357
+\c@FRobj=\count358
+\c@FRsobj=\count359
+\Xhsize=\skip107
+\sXhsize=\skip108
+\Zhsize=\skip109
+\sZhsize=\skip110
+\flrow@rowbox=\box125
+\FR@Zunitlength=\dimen309
+\c@FBcnt=\count360
+\FPOScnt=\count361
+\LTleft=\skip111
+\LTright=\skip112
+\LTleft=\skip113
+\LTright=\skip114
+\flrow@types=\toks43
+)
+\kaomarginskipabove=\skip115
+\kaomarginskipbelow=\skip116
+\@sidenotes@marginlistingbox=\box126
+\mycap=\box127
+\scr@dte@lstlisting@maxnumwidth=\skip117
+ (E:\Miktex\tex/latex/etoc\etoc.sty
+Package: etoc 2023/10/29 v1.2d Completely customisable TOCs (JFB)
+\Etoc@toctoks=\toks44
+\c@etoc@tocid=\count362
+\etoc@framed@titlebox=\box128
+\etoc@framed@contentsbox=\box129
+)
+\c@margintocdepth=\count363
+\mtocshift=\skip118
+(E:\Miktex\tex/latex/amsfonts\amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+
+(E:\Miktex\tex/latex/amsfonts\amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks45
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+))
+(E:\Miktex\tex/latex/filehook\filehook.sty
+Package: filehook 2022/10/25 v0.8b Hooks for input files
+
+(E:\Miktex\tex/latex/filehook\filehook-2020.sty
+Package: filehook-2020 2022/10/25 v0.8b Hooks for input files
+))
+(E:\Miktex\tex/latex/unicode-math\unicode-math.sty
+Package: unicode-math 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLaTeX
+
+(E:\Miktex\tex/latex/unicode-math\unicode-math-xetex.sty
+Package: unicode-math-xetex 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLa
+TeX
+
+(E:\Miktex\tex/latex/fontspec\fontspec.sty
+Package: fontspec 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
+
+(E:\Miktex\tex/latex/fontspec\fontspec-xetex.sty
+Package: fontspec-xetex 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count364
+\l__fontspec_language_int=\count365
+\l__fontspec_strnum_int=\count366
+\l__fontspec_tmp_int=\count367
+\l__fontspec_tmpa_int=\count368
+\l__fontspec_tmpb_int=\count369
+\l__fontspec_tmpc_int=\count370
+\l__fontspec_em_int=\count371
+\l__fontspec_emdef_int=\count372
+\l__fontspec_strong_int=\count373
+\l__fontspec_strongdef_int=\count374
+\l__fontspec_tmpa_dim=\dimen310
+\l__fontspec_tmpb_dim=\dimen311
+\l__fontspec_tmpc_dim=\dimen312
+
+(E:\Miktex\tex/latex/base\fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(E:\Miktex\tex/latex/fontspec\fontspec.cfg)))
+(E:\Miktex\tex/latex/base\fix-cm.sty
+Package: fix-cm 2020/11/24 v1.1t fixes to LaTeX
+ (E:\Miktex\tex/latex/base\ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
+))
+(E:\Miktex\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2024/11/05 v2.17t AMS math features
+\@mathmargin=\skip119
+
+For additional information on amsmath, use the `?' option.
+(E:\Miktex\tex/latex/amsmath\amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(E:\Miktex\tex/latex/amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks46
+\ex@=\dimen313
+))
+(E:\Miktex\tex/latex/amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen314
+)
+(E:\Miktex\tex/latex/amsmath\amsopn.sty
+Package: amsopn 2022/04/08 v2.04 operator names
+)
+\inf@bad=\count375
+LaTeX Info: Redefining \frac on input line 233.
+\uproot@=\count376
+\leftroot@=\count377
+LaTeX Info: Redefining \overline on input line 398.
+LaTeX Info: Redefining \colon on input line 409.
+\classnum@=\count378
+\DOTSCASE@=\count379
+LaTeX Info: Redefining \ldots on input line 495.
+LaTeX Info: Redefining \dots on input line 498.
+LaTeX Info: Redefining \cdots on input line 619.
+\Mathstrutbox@=\box130
+\strutbox@=\box131
+LaTeX Info: Redefining \big on input line 721.
+LaTeX Info: Redefining \Big on input line 722.
+LaTeX Info: Redefining \bigg on input line 723.
+LaTeX Info: Redefining \Bigg on input line 724.
+\big@size=\dimen315
+LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
+\macc@depth=\count380
+LaTeX Info: Redefining \bmod on input line 904.
+LaTeX Info: Redefining \pmod on input line 909.
+LaTeX Info: Redefining \smash on input line 939.
+LaTeX Info: Redefining \relbar on input line 969.
+LaTeX Info: Redefining \Relbar on input line 970.
+\c@MaxMatrixCols=\count381
+\dotsspace@=\muskip18
+\c@parentequation=\count382
+\dspbrk@lvl=\count383
+\tag@help=\toks47
+\row@=\count384
+\column@=\count385
+\maxfields@=\count386
+\andhelp@=\toks48
+\eqnshift@=\dimen316
+\alignsep@=\dimen317
+\tagshift@=\dimen318
+\tagwidth@=\dimen319
+\totwidth@=\dimen320
+\lineht@=\dimen321
+\@envbody=\toks49
+\multlinegap=\skip120
+\multlinetaggap=\skip121
+\mathdisplay@stack=\toks50
+LaTeX Info: Redefining \[ on input line 2953.
+LaTeX Info: Redefining \] on input line 2954.
+)
+\g__um_fam_int=\count387
+\g__um_fonts_used_int=\count388
+\l__um_primecount_int=\count389
+\g__um_primekern_muskip=\muskip19
+
+(E:\Miktex\tex/latex/unicode-math\unicode-math-table.tex)))
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Latin Modern Math/B" (it
+(fontspec)             probably doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'LatinModernMath(0)' created for font
+(fontspec)             'Latin Modern Math' with options
+(fontspec)             [BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script
+=Math].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Latin Modern
+(fontspec)             Math/OT:script=math;language=dflt;"
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Latin Modern Math/B" (it
+(fontspec)             probably doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'LatinModernMath(1)' created for font
+(fontspec)             'Latin Modern Math' with options
+(fontspec)             [BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script
+=Math,SizeFeatures={{Size=10.2-},{Size=7.2-10.2,Font=Latin
+(fontspec)             Modern Math,Style=MathScript},{Size=-7.2,Font=Latin
+(fontspec)             Modern Math,Style=MathScriptScript}}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <10.2->"Latin Modern
+(fontspec)             Math/OT:script=math;language=dflt;"<7.2-10.2>"Latin
+(fontspec)             Modern
+(fontspec)             Math/OT:script=math;language=dflt;+ssty=0;"<-7.2>"Latin
+(fontspec)             Modern Math/OT:script=math;language=dflt;+ssty=1;"
+
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 1080
+.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/LatinModernMath(1)/m/n on input line
+ 1080.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 1080.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/LatinModernMath(1)/b/n on input lin
+e 1080.
+
+Package fontspec Info: 
+(fontspec)             Latin Modern Math scale = 1.0001.
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Latin Modern Math/B" (it
+(fontspec)             probably doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Latin Modern Math scale = 1.0001.
+
+
+Package fontspec Info: 
+(fontspec)             Latin Modern Math scale = 1.0001.
+
+
+Package fontspec Info: 
+(fontspec)             Latin Modern Math scale = 1.0001.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'LatinModernMath(2)' created for font
+(fontspec)             'Latin Modern Math' with options
+(fontspec)             [BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script
+=Math,SizeFeatures={{Size=10.2-},{Size=7.2-10.2,Font=Latin
+(fontspec)             Modern Math,Style=MathScript},{Size=-7.2,Font=Latin
+(fontspec)             Modern
+(fontspec)             Math,Style=MathScriptScript}},ScaleAgain=1.0001,FontAdju
+stment={\fontdimen
+(fontspec)             8\font =8.124pt\relax \fontdimen 9\font =4.728pt\relax
+(fontspec)             \fontdimen 10\font =5.328pt\relax \fontdimen 11\font
+(fontspec)             =8.232pt\relax \fontdimen 12\font =4.14pt\relax
+(fontspec)             \fontdimen 13\font =4.356pt\relax \fontdimen 14\font
+(fontspec)             =4.356pt\relax \fontdimen 15\font =3.468pt\relax
+(fontspec)             \fontdimen 16\font =2.964pt\relax \fontdimen 17\font
+(fontspec)             =2.964pt\relax \fontdimen 18\font =3.0pt\relax
+(fontspec)             \fontdimen 19\font =2.4pt\relax \fontdimen 22\font
+(fontspec)             =3.0pt\relax \fontdimen 20\font =0pt\relax \fontdimen
+(fontspec)             21\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <10.2->s*[1.0001]"Latin Modern
+(fontspec)             Math/OT:script=math;language=dflt;"<7.2-10.2>s*[1.0001]"
+Latin
+(fontspec)             Modern
+(fontspec)             Math/OT:script=math;language=dflt;+ssty=0;"<-7.2>s*[1.00
+01]"Latin
+(fontspec)             Modern Math/OT:script=math;language=dflt;+ssty=1;"
+
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 1080.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> TU/LatinModernMath(2)/m/n on input lin
+e 1080.
+LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 1080.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> TU/LatinModernMath(2)/b/n on input lin
+e 1080.
+
+Package fontspec Info: 
+(fontspec)             Latin Modern Math scale = 0.9999.
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font "Latin Modern Math/B" (it
+(fontspec)             probably doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             Latin Modern Math scale = 0.9999.
+
+
+Package fontspec Info: 
+(fontspec)             Latin Modern Math scale = 0.9999.
+
+
+Package fontspec Info: 
+(fontspec)             Latin Modern Math scale = 0.9999.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'LatinModernMath(3)' created for font
+(fontspec)             'Latin Modern Math' with options
+(fontspec)             [BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script
+=Math,SizeFeatures={{Size=10.2-},{Size=7.2-10.2,Font=Latin
+(fontspec)             Modern Math,Style=MathScript},{Size=-7.2,Font=Latin
+(fontspec)             Modern
+(fontspec)             Math,Style=MathScriptScript}},ScaleAgain=0.9999,FontAdju
+stment={\fontdimen
+(fontspec)             8\font =0.48pt\relax \fontdimen 9\font =2.4pt\relax
+(fontspec)             \fontdimen 10\font =2.004pt\relax \fontdimen 11\font
+(fontspec)             =1.332pt\relax \fontdimen 12\font =7.2pt\relax
+(fontspec)             \fontdimen 13\font =0pt\relax }].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <10.2->s*[0.9999]"Latin Modern
+(fontspec)             Math/OT:script=math;language=dflt;"<7.2-10.2>s*[0.9999]"
+Latin
+(fontspec)             Modern
+(fontspec)             Math/OT:script=math;language=dflt;+ssty=0;"<-7.2>s*[0.99
+99]"Latin
+(fontspec)             Modern Math/OT:script=math;language=dflt;+ssty=1;"
+
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 1
+080.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> TU/LatinModernMath(3)/m/n on input lin
+e 1080.
+LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 108
+0.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> TU/LatinModernMath(3)/b/n on input lin
+e 1080.
+
+Package fontspec Info: 
+(fontspec)             Font family 'XITSMath(0)' created for font 'XITS Math'
+(fontspec)             with options
+(fontspec)             [BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script
+=Math,SizeFeatures={{Size=10.2-},{Size=7.2-10.2,Font=XITS
+(fontspec)             Math,Style=MathScript},{Size=-7.2,Font=XITS
+(fontspec)             Math,Style=MathScriptScript}}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <10.2->"XITS
+(fontspec)             Math/OT:script=math;language=dflt;"<7.2-10.2>"XITS
+(fontspec)             Math/OT:script=math;language=dflt;+ssty=0;"<-7.2>"XITS
+(fontspec)             Math/OT:script=math;language=dflt;+ssty=1;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"XITS
+(fontspec)             Math/B/OT:script=math;language=dflt;"
+
+\sym__um_fam1=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `__um_fam1' in version `normal'
+(Font)                  TU/XITSMath(0)/m/n --> TU/XITSMath(0)/m/n on input line
+ 1080.
+LaTeX Font Info:    Overwriting symbol font `__um_fam1' in version `bold'
+(Font)                  TU/XITSMath(0)/m/n --> TU/XITSMath(0)/b/n on input line
+ 1080.
+
+(E:\Miktex\tex/latex/bookmark\bookmark.sty
+Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
+
+(E:\Miktex\tex/latex/bookmark\bkm-dvipdfm.def
+File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
+\BKM@id=\count390
+))
+Package hyperref Info: Option `unicode' set `true' on input line 1151.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 1151.
+Package hyperref Info: Option `breaklinks' set `true' on input line 1151.
+Package hyperref Info: Option `colorlinks' set `true' on input line 1151.
+
+(E:\Miktex\tex/latex/enumitem\enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip122
+\enit@outerparindent=\dimen322
+\enit@toks=\toks51
+\enit@inbox=\box132
+\enit@count@id=\count391
+\enitdp@description=\count392
+)
+(E:\Miktex\tex/latex/mdframed\mdframed.sty
+Package: mdframed 2013/07/01 1.9b: mdframed
+
+(E:\Miktex\tex/latex/zref\zref-abspage.sty
+Package: zref-abspage 2023-09-14 v2.35 Module abspage for zref (HO)
+
+(E:\Miktex\tex/latex/zref\zref-base.sty
+Package: zref-base 2023-09-14 v2.35 Module base for zref (HO)
+
+(E:\Miktex\tex/generic/etexcmds\etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+(E:\Miktex\tex/latex/auxhook\auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+Package zref Info: New property list: main on input line 767.
+Package zref Info: New property: default on input line 768.
+Package zref Info: New property: page on input line 769.
+)
+\c@abspage=\count393
+Package zref Info: New property: abspage on input line 67.
+)
+\mdf@templength=\skip123
+\c@mdf@globalstyle@cnt=\count394
+\mdf@skipabove@length=\skip124
+\mdf@skipbelow@length=\skip125
+\mdf@leftmargin@length=\skip126
+\mdf@rightmargin@length=\skip127
+\mdf@innerleftmargin@length=\skip128
+\mdf@innerrightmargin@length=\skip129
+\mdf@innertopmargin@length=\skip130
+\mdf@innerbottommargin@length=\skip131
+\mdf@splittopskip@length=\skip132
+\mdf@splitbottomskip@length=\skip133
+\mdf@outermargin@length=\skip134
+\mdf@innermargin@length=\skip135
+\mdf@linewidth@length=\skip136
+\mdf@innerlinewidth@length=\skip137
+\mdf@middlelinewidth@length=\skip138
+\mdf@outerlinewidth@length=\skip139
+\mdf@roundcorner@length=\skip140
+\mdf@footenotedistance@length=\skip141
+\mdf@userdefinedwidth@length=\skip142
+\mdf@needspace@length=\skip143
+\mdf@frametitleaboveskip@length=\skip144
+\mdf@frametitlebelowskip@length=\skip145
+\mdf@frametitlerulewidth@length=\skip146
+\mdf@frametitleleftmargin@length=\skip147
+\mdf@frametitlerightmargin@length=\skip148
+\mdf@shadowsize@length=\skip149
+\mdf@extratopheight@length=\skip150
+\mdf@subtitleabovelinewidth@length=\skip151
+\mdf@subtitlebelowlinewidth@length=\skip152
+\mdf@subtitleaboveskip@length=\skip153
+\mdf@subtitlebelowskip@length=\skip154
+\mdf@subtitleinneraboveskip@length=\skip155
+\mdf@subtitleinnerbelowskip@length=\skip156
+\mdf@subsubtitleabovelinewidth@length=\skip157
+\mdf@subsubtitlebelowlinewidth@length=\skip158
+\mdf@subsubtitleaboveskip@length=\skip159
+\mdf@subsubtitlebelowskip@length=\skip160
+\mdf@subsubtitleinneraboveskip@length=\skip161
+\mdf@subsubtitleinnerbelowskip@length=\skip162
+
+(E:\Miktex\tex/latex/mdframed\md-frame-1.mdf
+File: md-frame-1.mdf 2013/07/01\ 1.9b: md-frame-1
+)
+\mdf@frametitlebox=\box133
+\mdf@footnotebox=\box134
+\mdf@splitbox@one=\box135
+\mdf@splitbox@two=\box136
+\mdf@splitbox@save=\box137
+\mdfsplitboxwidth=\skip163
+\mdfsplitboxtotalwidth=\skip164
+\mdfsplitboxheight=\skip165
+\mdfsplitboxdepth=\skip166
+\mdfsplitboxtotalheight=\skip167
+\mdfframetitleboxwidth=\skip168
+\mdfframetitleboxtotalwidth=\skip169
+\mdfframetitleboxheight=\skip170
+\mdfframetitleboxdepth=\skip171
+\mdfframetitleboxtotalheight=\skip172
+\mdffootnoteboxwidth=\skip173
+\mdffootnoteboxtotalwidth=\skip174
+\mdffootnoteboxheight=\skip175
+\mdffootnoteboxdepth=\skip176
+\mdffootnoteboxtotalheight=\skip177
+\mdftotallinewidth=\skip178
+\mdfboundingboxwidth=\skip179
+\mdfboundingboxtotalwidth=\skip180
+\mdfboundingboxheight=\skip181
+\mdfboundingboxdepth=\skip182
+\mdfboundingboxtotalheight=\skip183
+\mdf@freevspace@length=\skip184
+\mdf@horizontalwidthofbox@length=\skip185
+\mdf@verticalmarginwhole@length=\skip186
+\mdf@horizontalspaceofbox=\skip187
+\mdfsubtitleheight=\skip188
+\mdfsubsubtitleheight=\skip189
+\c@mdfcountframes=\count395
+
+****** mdframed patching \endmdf@trivlist
+
+****** -- success******
+
+\mdf@envdepth=\count396
+\c@mdf@env@i=\count397
+\c@mdf@env@ii=\count398
+\c@mdf@zref@counter=\count399
+Package zref Info: New property: mdf@pagevalue on input line 895.
+)
+\c@kaocounter=\count400
+Package tocbasic Info: omitting babel extension for `loi'
+(tocbasic)             because of missing \bbl@set@language on input line 1313.
+
+
+(E:\Miktex\tex/latex/pdfpages\pdfpages.sty
+Package: pdfpages 2025/03/12 v0.6f Insert pages of external PDF documents (AM)
+
+(E:\Miktex\tex/latex/eso-pic\eso-pic.sty
+Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
+\ESO@tempdima=\dimen323
+\ESO@tempdimb=\dimen324
+)
+\AM@pagewidth=\dimen325
+\AM@pageheight=\dimen326
+\AM@fboxrule=\dimen327
+
+(E:\Miktex\tex/latex/pdfpages\ppxetex.def
+File: ppxetex.def 2025/03/12 v0.6f Pdfpages driver for XeTeX (AM)
+)
+\pdfpages@includegraphics@status=\count401
+\AM@pagebox=\box138
+\AM@global@opts=\toks52
+\AM@pagecnt=\count402
+\AM@toc@title=\toks53
+\AM@lof@heading=\toks54
+\c@AM@survey=\count403
+\AM@templatesizebox=\box139
+)
+(E:\Miktex\tex/latex/subfiles\subfiles.sty
+Package: subfiles 2020/11/14 v2.2 Multi-file projects (package)
+
+(E:\Miktex\tex/latex/import\import.sty
+Package: import 2020/04/01  v 6.2
+))
+(E:\Miktex\tex/latex/todonotes\todonotes.sty
+Package: todonotes 2024/01/05 v1.1.7 Todonotes source and documentation.
+Package: todonotes 2024/01/05
+
+(E:\Miktex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarypositioning.
+code.tex
+File: tikzlibrarypositioning.code.tex 2023-01-15 v3.1.10 (3.1.10)
+)
+\c@@todonotes@numberoftodonotes=\count404
+) (E:\Miktex\tex/latex/algorithm2e\algorithm2e.sty
+Invalid UTF-8 byte or sequence at line 284 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 299 replaced by U+FFFD.
+Invalid UTF-8 byte or sequence at line 550 replaced by U+FFFD.
+Package: algorithm2e 2017/07/18 v5.2 algorithms environments
+\c@AlgoLine=\count405
+\algocf@hangindent=\skip190
+
+(E:\Miktex\tex/latex/relsize\relsize.sty
+Package: relsize 2013/03/29 ver 4.1
+)
+\skiptotal=\skip191
+\skiplinenumber=\skip192
+\skiprule=\skip193
+\skiphlne=\skip194
+\skiptext=\skip195
+\skiplength=\skip196
+\algomargin=\skip197
+\skipalgocfslide=\skip198
+\algowidth=\dimen328
+\inoutsize=\dimen329
+\inoutindent=\dimen330
+\interspacetitleruled=\dimen331
+\interspacealgoruled=\dimen332
+\interspacetitleboxruled=\dimen333
+\algocf@ruledwidth=\skip199
+\algocf@inoutbox=\box140
+\algocf@inputbox=\box141
+\AlCapSkip=\skip256
+\AlCapHSkip=\skip257
+\algoskipindent=\skip258
+\algocf@nlbox=\box142
+\algocf@hangingbox=\box143
+\algocf@untilbox=\box144
+\algocf@skipuntil=\skip259
+\algocf@capbox=\box145
+\algocf@lcaptionbox=\skip260
+\algoheightruledefault=\skip261
+\algoheightrule=\skip262
+\algotitleheightruledefault=\skip263
+\algotitleheightrule=\skip264
+\c@algocfline=\count406
+\c@algocfproc=\count407
+\c@algocf=\count408
+\algocf@algoframe=\box146
+\algocf@algobox=\box147
+)
+(E:\Miktex\tex/latex/ccicons\ccicons.sty
+Package: ccicons 2017/10/30 v1.6 LaTeX support for Creative Commons icons
+)
+(E:\Miktex\tex/latex/metalogo\metalogo.sty
+Package: metalogo 2010/05/29 v0.12 Extended TeX logo macros
+\xl@everylogo=\toks55
+\xl@@everylogo=\toks56
+LaTeX Info: Redefining \TeX on input line 193.
+LaTeX Info: Redefining \LaTeX on input line 202.
+LaTeX Info: Redefining \LaTeXe on input line 219.
+)
+(E:\Miktex\tex/latex/glossaries/base\glossaries.sty
+Package: glossaries 2025/03/19 v4.58 (NLCT)
+
+(E:\Miktex\tex/latex/mfirstuc\mfirstuc.sty
+Package: mfirstuc 2022/10/14 v2.08 (NLCT)
+\@glsmfirst=\toks57
+\@glsmrest=\toks58
+) (E:\Miktex\tex/latex/xfor\xfor.sty
+Package: xfor 2009/02/05 v1.05 (NLCT)
+) (E:\Miktex\tex/latex/datatool\datatool-base.sty
+Package: datatool-base 2025/03/14 v3.2 (NLCT)
+
+(E:\Miktex\tex/latex/tracklang\tracklang.sty
+Package: tracklang 2025/03/11 v1.6.6 (NLCT) Track Languages
+
+(E:\Miktex\tex/generic/tracklang\tracklang.tex))
+(E:\Miktex\tex/latex/datatool\datatool-l3fp.def
+File: datatool-l3fp.def 2025/03/14 v3.2 (NLCT)
+)
+\@dtl@toks=\toks59
+\@dtl@tmpcount=\count409
+\dtl@tmplength=\skip265
+\l__datatool_measure_box=\box148
+\dtl@sortresult=\count410
+
+(E:\Miktex\tex/latex/datatool\datatool-utf8.ldf
+File: datatool-utf8.ldf 2025/03/14 v3.2 (NLCT)
+)
+\@dtl@datatype=\count411
+\l__datatool_tmpa_int=\count412
+\l__datatool_tmpb_int=\count413
+\l__datatool_tmpc_int=\count414
+\l__datatool_tmpd_int=\count415
+\l__datatool_count_int=\count416
+\l__datatool_tmp_datatype_int=\count417
+\l__datatool_tmpa_dim=\dimen334
+\l__datatool_tmpb_dim=\dimen335
+\c_datatool_unknown_int=\count418
+\l__datatool_year_int=\count419
+\l__datatool_month_int=\count420
+\l__datatool_day_int=\count421
+\l__datatool_hour_int=\count422
+\l__datatool_minute_int=\count423
+\l__datatool_second_int=\count424
+\l__datatool_tzhour_int=\count425
+\l__datatool_tzminute_int=\count426
+\l__datatool_julian_int=\count427
+\l__datatool_local_julian_int=\count428
+\l__datatool_prefix_int=\count429
+\l__datatool_suffix_int=\count430
+\@dtl@foreach@level=\count431
+\dtl@codeA=\count432
+\dtl@codeB=\count433
+)
+\gls@level=\count434
+\@gls@tmpb=\toks60
+\gls@tmplen=\skip266
+\glskeylisttok=\toks61
+\glslabeltok=\toks62
+\glsshorttok=\toks63
+\glslongtok=\toks64
+
+(E:\Miktex\tex/latex/glossaries/styles\glossary-hypernav.sty
+Package: glossary-hypernav 2025/03/19 v4.58 (NLCT)
+)
+(E:\Miktex\tex/latex/glossaries/styles\glossary-list.sty
+Package: glossary-list 2025/03/19 v4.58 (NLCT)
+\glslistdottedwidth=\skip267
+)
+(E:\Miktex\tex/latex/glossaries/styles\glossary-long.sty
+Package: glossary-long 2025/03/19 v4.58 (NLCT)
+
+(E:\Miktex\tex/latex/tools\longtable.sty
+Package: longtable 2024-10-27 v4.22 Multi-page Table package (DPC)
+\LTleft=\skip268
+\LTright=\skip269
+\LTpre=\skip270
+\LTpost=\skip271
+\LTchunksize=\count435
+\LTcapwidth=\dimen336
+\LT@head=\box149
+\LT@firsthead=\box150
+\LT@foot=\box151
+\LT@lastfoot=\box152
+\LT@gbox=\box153
+\LT@cols=\count436
+\LT@rows=\count437
+\c@LT@tables=\count438
+\c@LT@chunks=\count439
+\LT@p@ftn=\toks65
+)
+Class scrbook Info: longtable captions redefined on input line 47.
+\glsdescwidth=\skip272
+\glspagelistwidth=\skip273
+)
+(E:\Miktex\tex/latex/glossaries/styles\glossary-super.sty
+Package: glossary-super 2025/03/19 v4.58 (NLCT)
+
+(E:\Miktex\tex/latex/supertabular\supertabular.sty
+Package: supertabular 2024/07/20 v4.2c the supertabular environment
+\c@tracingst=\count440
+\ST@wd=\dimen337
+\ST@rightskip=\skip274
+\ST@leftskip=\skip275
+\ST@parfillskip=\skip276
+\ST@pageleft=\dimen338
+\ST@headht=\dimen339
+\ST@tailht=\dimen340
+\ST@pagesofar=\dimen341
+\ST@pboxht=\dimen342
+\ST@rowht=\dimen343
+\ST@prevht=\dimen344
+\ST@toadd=\dimen345
+\ST@dimen=\dimen346
+\ST@pbox=\box154
+))
+(E:\Miktex\tex/latex/glossaries/styles\glossary-tree.sty
+Package: glossary-tree 2025/03/19 v4.58 (NLCT)
+\glstreeindent=\skip277
+))
+(E:\Miktex\tex/latex/nomencl\nomencl.sty
+Package: nomencl 2021/11/10 v5.6 Nomenclature package
+Package tocbasic Info: omitting babel extension for `nlo'
+(tocbasic)             because of missing \bbl@set@language on input line 187.
+Package tocbasic Info: omitting babel extension for `nls'
+(tocbasic)             because of missing \bbl@set@language on input line 188.
+\nomlabelwidth=\dimen347
+\nom@tempdim=\dimen348
+\nomitemsep=\skip278
+))) (styles/packageconfig.tex
+(E:\Miktex\tex/latex/polyglossia\polyglossia.sty
+Package: polyglossia 2025/01/31 v2.4 Modern multilingual typesetting with XeLaT
+eX and LuaLaTeX
+\l_xpg_alias_keyvals_int=\count441
+
+(E:\Miktex\tex/latex/polyglossia\gloss-latex.ldf
+File: gloss-latex.ldf polyglossia: module for default language
+))
+(E:\Miktex\tex/latex/polyglossia\gloss-english.ldf
+File: gloss-english.ldf polyglossia: module for English
+)
+
+Package polyglossia Info: Default language is english
+
+
+(E:\Miktex\tex/latex/csquotes\csquotes.sty
+Package: csquotes 2024-04-04 v5.2o context-sensitive quotations (JAW)
+\csq@reset=\count442
+\csq@gtype=\count443
+\csq@glevel=\count444
+\csq@qlevel=\count445
+\csq@maxlvl=\count446
+\csq@tshold=\count447
+\csq@ltx@everypar=\toks66
+
+(E:\Miktex\tex/latex/csquotes\csquotes.def
+File: csquotes.def 2024-04-04 v5.2o csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(E:\Miktex\tex/latex/csquotes\csquotes.cfg
+File: csquotes.cfg 
+)
+Package csquotes Info: Disabling multilingual quotes.
+Package csquotes Info: Redefining alias 'default' -> 'english'.
+) (styles/kaobiblioCJKsc.sty
+Package: styles/kaobiblioCJKsc 
+
+(E:\Miktex\tex/latex/bigfoot\perpage.sty
+Package: perpage 2014/10/25 2.0 Reset/sort counters per page
+)
+(E:\Miktex\tex/generic/oberdiek\iflang.sty
+Package: iflang 2018/01/21 v1.7 Checks for the current language (HO)
+Package iflang Info: Naming convention for patterns: babel.
+)
+(E:\Miktex\tex/latex/biblatex\biblatex.sty
+Package: biblatex 2024/03/21 v3.20 programmable bibliographies (PK/MW)
+
+(E:\Miktex\tex/latex/logreq\logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count448
+ (E:\Miktex\tex/latex/logreq\logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+\c@tabx@nest=\count449
+\c@listtotal=\count450
+\c@listcount=\count451
+\c@liststart=\count452
+\c@liststop=\count453
+\c@citecount=\count454
+\c@citetotal=\count455
+\c@multicitecount=\count456
+\c@multicitetotal=\count457
+\c@instcount=\count458
+\c@maxnames=\count459
+\c@minnames=\count460
+\c@maxitems=\count461
+\c@minitems=\count462
+\c@citecounter=\count463
+\c@maxcitecounter=\count464
+\c@savedcitecounter=\count465
+\c@uniquelist=\count466
+\c@uniquename=\count467
+\c@refsection=\count468
+\c@refsegment=\count469
+\c@maxextratitle=\count470
+\c@maxextratitleyear=\count471
+\c@maxextraname=\count472
+\c@maxextradate=\count473
+\c@maxextraalpha=\count474
+\c@abbrvpenalty=\count475
+\c@highnamepenalty=\count476
+\c@lownamepenalty=\count477
+\c@maxparens=\count478
+\c@parenlevel=\count479
+\blx@tempcnta=\count480
+\blx@tempcntb=\count481
+\blx@tempcntc=\count482
+\c@blx@maxsection=\count483
+\blx@maxsegment@0=\count484
+\blx@notetype=\count485
+\blx@parenlevel@text=\count486
+\blx@parenlevel@foot=\count487
+\blx@sectionciteorder@0=\count488
+\blx@sectionciteorderinternal@0=\count489
+\blx@entrysetcounter=\count490
+\blx@biblioinstance=\count491
+\labelnumberwidth=\skip279
+\labelalphawidth=\skip280
+\biblabelsep=\skip281
+\bibitemsep=\skip282
+\bibnamesep=\skip283
+\bibinitsep=\skip284
+\bibparsep=\skip285
+\bibhang=\skip286
+\blx@bcfin=\read3
+\blx@bcfout=\write4
+\blx@langwohyphens=\language80
+\c@mincomprange=\count492
+\c@maxcomprange=\count493
+\c@mincompwidth=\count494
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+(E:\Miktex\tex/latex/biblatex\blx-dm.def
+File: blx-dm.def 2024/03/21 v3.20 biblatex datamodel (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'gb7714-2015ms.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count495
+\c@savedafterword=\count496
+\c@annotator=\count497
+\c@savedannotator=\count498
+\c@author=\count499
+\c@savedauthor=\count500
+\c@bookauthor=\count501
+\c@savedbookauthor=\count502
+\c@commentator=\count503
+\c@savedcommentator=\count504
+\c@editor=\count505
+\c@savededitor=\count506
+\c@editora=\count507
+\c@savededitora=\count508
+\c@editorb=\count509
+\c@savededitorb=\count510
+\c@editorc=\count511
+\c@savededitorc=\count512
+\c@foreword=\count513
+\c@savedforeword=\count514
+\c@holder=\count515
+\c@savedholder=\count516
+\c@introduction=\count517
+\c@savedintroduction=\count518
+\c@namea=\count519
+\c@savednamea=\count520
+\c@nameb=\count521
+\c@savednameb=\count522
+\c@namec=\count523
+\c@savednamec=\count524
+\c@translator=\count525
+\c@savedtranslator=\count526
+\c@shortauthor=\count527
+\c@savedshortauthor=\count528
+\c@shorteditor=\count529
+\c@savedshorteditor=\count530
+\c@labelname=\count531
+\c@savedlabelname=\count532
+\c@institution=\count533
+\c@savedinstitution=\count534
+\c@lista=\count535
+\c@savedlista=\count536
+\c@listb=\count537
+\c@savedlistb=\count538
+\c@listc=\count539
+\c@savedlistc=\count540
+\c@listd=\count541
+\c@savedlistd=\count542
+\c@liste=\count543
+\c@savedliste=\count544
+\c@listf=\count545
+\c@savedlistf=\count546
+\c@location=\count547
+\c@savedlocation=\count548
+\c@organization=\count549
+\c@savedorganization=\count550
+\c@origlocation=\count551
+\c@savedoriglocation=\count552
+\c@origpublisher=\count553
+\c@savedorigpublisher=\count554
+\c@publisher=\count555
+\c@savedpublisher=\count556
+\c@language=\count557
+\c@savedlanguage=\count558
+\c@origlanguage=\count559
+\c@savedoriglanguage=\count560
+\c@pageref=\count561
+\c@savedpageref=\count562
+\shorthandwidth=\skip287
+\shortjournalwidth=\skip288
+\shortserieswidth=\skip289
+\shorttitlewidth=\skip290
+\shortauthorwidth=\skip291
+\shorteditorwidth=\skip292
+\locallabelnumberwidth=\skip293
+\locallabelalphawidth=\skip294
+\localshorthandwidth=\skip295
+\localshortjournalwidth=\skip296
+\localshortserieswidth=\skip297
+\localshorttitlewidth=\skip298
+\localshortauthorwidth=\skip299
+\localshorteditorwidth=\skip300
+Package biblatex Info: Trying to load enhanced support for Unicode engines...
+Package biblatex Info: ... file 'blx-unicode.def' found.
+
+(E:\Miktex\tex/latex/biblatex\blx-unicode.def)
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(E:\Miktex\tex/latex/biblatex\blx-compat.def
+File: blx-compat.def 2024/03/21 v3.20 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(E:\Miktex\tex/latex/biblatex\biblatex.def
+File: biblatex.def 2024/03/21 v3.20 biblatex compatibility (PK/MW)
+\c@textcitecount=\count563
+\c@textcitetotal=\count564
+\c@textcitemaxnames=\count565
+\c@biburlbigbreakpenalty=\count566
+\c@biburlbreakpenalty=\count567
+\c@biburlnumpenalty=\count568
+\c@biburlucpenalty=\count569
+\c@biburllcpenalty=\count570
+\biburlbigskip=\muskip20
+\biburlnumskip=\muskip21
+\biburlucskip=\muskip22
+\biburllcskip=\muskip23
+\c@smartand=\count571
+)
+Package biblatex Info: Trying to load bibliography style 'gb7714-2015ms'...
+Package biblatex Info: ... file 'gb7714-2015ms.bbx' found.
+
+(E:\Miktex\tex/latex/biblatex-gb7714-2015\gb7714-2015ms.bbx
+File: gb7714-2015ms.bbx 2025/03/03 v1.1tbiblatex bibliography style
+Package biblatex Info: Trying to load bibliography style 'numeric-comp'...
+Package biblatex Info: ... file 'numeric-comp.bbx' found.
+
+(E:\Miktex\tex/latex/biblatex/bbx\numeric-comp.bbx
+File: numeric-comp.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+
+(E:\Miktex\tex/latex/biblatex/bbx\numeric.bbx
+File: numeric.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(E:\Miktex\tex/latex/biblatex/bbx\standard.bbx
+File: standard.bbx 2024/03/21 v3.20 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count572
+\c@bbx:relatedtotal=\count573
+)))
+\BracketLift=\skip301
+\footbibmargin=\skip302
+\footbiblabelsep=\skip303
+\c@gbnamefmtcase=\count574
+\c@gbalignlabel=\count575
+\c@gbcitelocalcase=\count576
+\c@gbbiblocalcase=\count577
+\bibitemindent=\skip304
+\biblabelextend=\skip305
+
+
+Package biblatex Warning: Macro 'patenttitle' undefined.
+(biblatex)                Using \newbibmacro.
+
+)
+Package biblatex Info: Trying to load citation style 'gb7714-2015ms'...
+Package biblatex Info: ... file 'gb7714-2015ms.cbx' found.
+ (E:\Miktex\tex/latex/biblatex-gb7714-2015\gb7714-2015ms.cbx
+File: gb7714-2015ms.cbx a biblatex citation style for GB/T 7714-2015
+Package biblatex Info: Trying to load citation style 'gb7714-2015'...
+Package biblatex Info: ... file 'gb7714-2015.cbx' found.
+
+(E:\Miktex\tex/latex/biblatex-gb7714-2015\gb7714-2015.cbx
+File: gb7714-2015.cbx a biblatex citation style for GB/T 7714-2015
+Package biblatex Info: Trying to load citation style 'numeric-comp'...
+Package biblatex Info: ... file 'numeric-comp.cbx' found.
+
+(E:\Miktex\tex/latex/biblatex/cbx\numeric-comp.cbx
+File: numeric-comp.cbx 2024/03/21 v3.20 biblatex citation style (PK/MW)
+\c@cbx@tempcnta=\count578
+\c@cbx@tempcntb=\count579
+\c@cbx@tempcntc=\count580
+\c@cbx@tempcntd=\count581
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+\c@gbrefcompress=\count582
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\cbx@textcite'.
+))
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(E:\Miktex\tex/latex/biblatex\biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: XeTeX detected.
+(biblatex)             Assuming input encoding 'utf8'.
+Package biblatex Info: Document encoding is UTF8 ....
+Package biblatex Info: ... and expl3
+(biblatex)             2025-01-18 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+
+(E:\Miktex\tex/latex/biblatex\blx-case-expl3.sty
+Package: blx-case-expl3 2024/03/21 v3.20 expl3 case changing code for biblatex
+))
+Package biblatex Info: Redefining '\fullcite' on input line 412.
+)
+(styles/kaotheoremsCJKsc.sty
+Package: styles/kaotheoremsCJKsc 
+ (E:\Miktex\tex/latex/amscls\amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks67
+\thm@bodyfont=\toks68
+\thm@headfont=\toks69
+\thm@notefont=\toks70
+\thm@headpunct=\toks71
+\thm@preskip=\skip306
+\thm@postskip=\skip307
+\thm@headsep=\skip308
+\dth@everypar=\toks72
+)
+Class scrbook Info: amsthm's \deferred@thm@head patched.
+
+(E:\Miktex\tex/latex/thmtools\thmtools.sty
+Package: thmtools 2023/05/04 v0.76
+\thmt@toks=\toks73
+\c@thmt@dummyctr=\count583
+
+(E:\Miktex\tex/latex/thmtools\thm-patch.sty
+Package: thm-patch 2023/05/04 v0.76
+
+(E:\Miktex\tex/latex/thmtools\parseargs.sty
+Package: parseargs 2023/05/04 v0.76
+\@parsespec=\toks74
+))
+(E:\Miktex\tex/latex/thmtools\thm-kv.sty
+Package: thm-kv 2023/05/04 v0.76
+Package thm-kv Info: Theorem names will be uppercased on input line 42.
+Package thm-kv Info: kvsetkeys patch (v1.16 or later) on input line 158.
+)
+(E:\Miktex\tex/latex/thmtools\thm-autoref.sty
+Package: thm-autoref 2023/05/04 v0.76
+
+(E:\Miktex\tex/latex/thmtools\aliasctr.sty
+Package: aliasctr 2023/05/04 v0.76
+))
+(E:\Miktex\tex/latex/thmtools\thm-listof.sty
+Package: thm-listof 2023/05/04 v0.76
+)
+(E:\Miktex\tex/latex/thmtools\thm-restate.sty
+Package: thm-restate 2023/05/04 v0.76
+)
+(E:\Miktex\tex/latex/thmtools\thm-amsthm.sty
+Package: thm-amsthm 2023/05/04 v0.76
+\thmt@style@headstyle=\toks75
+))
+Package thmtools Info: Automatically pulling in `thmdef-mdframed' on input line
+ 178.
+
+(E:\Miktex\tex/latex/thmtools\thmdef-mdframed.sty
+Package: thmdef-mdframed 2023/05/04 v0.76
+)
+\c@theorem=\count584
+\c@definition=\count585
+\c@assumption=\count586
+\c@remark=\count587
+\c@example=\count588
+\c@exercise=\count589
+\c@problem=\count590
+\c@property=\count591
+) (styles/kaorefsCJKsc.sty
+Package: styles/kaorefsCJKsc 
+
+(E:\Miktex\tex/latex/cleveref\cleveref.sty
+Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2370.
+LaTeX Info: Redefining \cref on input line 2370.
+LaTeX Info: Redefining \Cref on input line 2370.
+LaTeX Info: Redefining \crefrange on input line 2370.
+LaTeX Info: Redefining \Crefrange on input line 2370.
+LaTeX Info: Redefining \cpageref on input line 2370.
+LaTeX Info: Redefining \Cpageref on input line 2370.
+LaTeX Info: Redefining \cpagerefrange on input line 2370.
+LaTeX Info: Redefining \Cpagerefrange on input line 2370.
+LaTeX Info: Redefining \labelcref on input line 2370.
+LaTeX Info: Redefining \labelcpageref on input line 2370.
+Package cleveref Info: `varioref' support loaded on input line 2605.
+Package cleveref Info: `cleveref' supersedes `varioref's \labelformatcommand on
+ input line 2605.
+LaTeX Info: Redefining \vref on input line 2605.
+LaTeX Info: Redefining \Vref on input line 2605.
+LaTeX Info: Redefining \vrefrange on input line 2605.
+LaTeX Info: Redefining \fullref on input line 2605.
+Package cleveref Info: `amsthm' support loaded on input line 3026.
+Package cleveref Info: `listings' support loaded on input line 3131.
+Package cleveref Info: `algorithm2e' support loaded on input line 3147.
+Package cleveref Info: always capitalise cross-reference names on input line 78
+25.
+Package cleveref Info: include cross-reference names in hyperlinks on input lin
+e 7836.
+Package cleveref Info: always capitalise cross-reference names on input line 78
+52.
+Package cleveref Info: include cross-reference names in hyperlinks on input lin
+e 7852.
+Package cleveref Info: no abbreviation of names on input line 7852.
+)) (styles/kaoWinCJKsc.sty
+Package: styles/kaoWinCJKsc 
+
+(E:\Miktex\tex/xelatex/xecjk\xeCJK.sty
+Package: xeCJK 2022/08/05 v3.9.1 Typesetting CJK scripts with XeLaTeX
+ (E:\Miktex\tex/latex/ctex\ctexhook.sty
+Package: ctexhook 2022/07/14 v2.5.10 Document and package hooks (CTEX)
+)
+(E:\Miktex\tex/latex/l3packages/xtemplate\xtemplate.sty
+Package: xtemplate 2024-08-16 L3 Experimental prototype document functions
+)
+\l__xeCJK_tmp_int=\count592
+\l__xeCJK_tmp_box=\box155
+\l__xeCJK_tmp_dim=\dimen349
+\l__xeCJK_tmp_skip=\skip309
+\g__xeCJK_space_factor_int=\count593
+\l__xeCJK_begin_int=\count594
+\l__xeCJK_end_int=\count595
+\c__xeCJK_CJK_class_int=\XeTeXcharclass1
+\c__xeCJK_FullLeft_class_int=\XeTeXcharclass2
+\c__xeCJK_FullRight_class_int=\XeTeXcharclass3
+\c__xeCJK_HalfLeft_class_int=\XeTeXcharclass4
+\c__xeCJK_HalfRight_class_int=\XeTeXcharclass5
+\c__xeCJK_NormalSpace_class_int=\XeTeXcharclass6
+\c__xeCJK_CM_class_int=\XeTeXcharclass7
+\c__xeCJK_HangulJamo_class_int=\XeTeXcharclass8
+\l__xeCJK_last_skip=\skip310
+\c__xeCJK_none_node=\count596
+\g__xeCJK_node_int=\count597
+\c__xeCJK_CJK_node_dim=\dimen350
+\c__xeCJK_CJK-space_node_dim=\dimen351
+\c__xeCJK_default_node_dim=\dimen352
+\c__xeCJK_CJK-widow_node_dim=\dimen353
+\c__xeCJK_normalspace_node_dim=\dimen354
+\c__xeCJK_default-space_node_skip=\skip311
+\l__xeCJK_ccglue_skip=\skip312
+\l__xeCJK_ecglue_skip=\skip313
+\l__xeCJK_punct_kern_skip=\skip314
+\l__xeCJK_indent_box=\box156
+\l__xeCJK_last_penalty_int=\count598
+\l__xeCJK_last_bound_dim=\dimen355
+\l__xeCJK_last_kern_dim=\dimen356
+\l__xeCJK_widow_penalty_int=\count599
+
+LaTeX template Info: Declaring template type 'xeCJK/punctuation' taking 0
+(template)           argument(s) on line 2396.
+
+\l__xeCJK_fixed_punct_width_dim=\dimen357
+\l__xeCJK_mixed_punct_width_dim=\dimen358
+\l__xeCJK_middle_punct_width_dim=\dimen359
+\l__xeCJK_fixed_margin_width_dim=\dimen360
+\l__xeCJK_mixed_margin_width_dim=\dimen361
+\l__xeCJK_middle_margin_width_dim=\dimen362
+\l__xeCJK_bound_punct_width_dim=\dimen363
+\l__xeCJK_bound_margin_width_dim=\dimen364
+\l__xeCJK_margin_minimum_dim=\dimen365
+\l__xeCJK_kerning_total_width_dim=\dimen366
+\l__xeCJK_same_align_margin_dim=\dimen367
+\l__xeCJK_different_align_margin_dim=\dimen368
+\l__xeCJK_kerning_margin_width_dim=\dimen369
+\l__xeCJK_kerning_margin_minimum_dim=\dimen370
+\l__xeCJK_bound_dim=\dimen371
+\l__xeCJK_reverse_bound_dim=\dimen372
+\l__xeCJK_margin_dim=\dimen373
+\l__xeCJK_minimum_bound_dim=\dimen374
+\l__xeCJK_kerning_margin_dim=\dimen375
+\g__xeCJK_family_int=\count600
+\l__xeCJK_fam_int=\count601
+\g__xeCJK_fam_allocation_int=\count602
+\l__xeCJK_verb_case_int=\count603
+\l__xeCJK_verb_exspace_skip=\skip315
+
+(E:\Miktex\tex/xelatex/xecjk\xeCJK-listings.sty
+Package: xeCJK-listings 2022/08/05 v3.9.1 xeCJK patch file for listings
+\l__xeCJK_listings_max_char_int=\count604
+\l__xeCJK_listings_flag_int=\count605
+)
+(E:\Miktex\tex/xelatex/xecjk\xeCJK.cfg
+File: xeCJK.cfg 2022/08/05 v3.9.1 Configuration file for xeCJK package
+))
+
+Package fontspec Info: 
+(fontspec)             Font family 'LXGWWenKaiGB(0)' created for font 'LXGW
+(fontspec)             WenKai GB' with options [Script={CJK},BoldFont={LXGW
+(fontspec)             WenKai GB Bold},AutoFakeSlant={0.167}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"LXGW WenKai
+(fontspec)             GB/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"LXGW WenKai GB
+(fontspec)             Bold/OT:script=hani;language=dflt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"LXGW WenKai
+(fontspec)             GB/OT:script=hani;language=dflt;slant=0.167;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"LXGW WenKai
+(fontspec)             GB/B/OT:script=hani;language=dflt;"
+
+
+(E:\Miktex\tex/latex/tools\indentfirst.sty
+Package: indentfirst 2023/07/02 v1.03 Indent first paragraph (DPC)
+)
+(E:\Miktex\tex/latex/zhnumber\zhnumber.sty
+Package: zhnumber 2022/07/14 v3.0 Typesetting numbers with Chinese glyphs
+\l__zhnum_scale_int=\count606
+\l__zhnum_tmp_int=\count607
+
+(E:\Miktex\tex/latex/zhnumber\zhnumber-utf8.cfg
+File: zhnumber-utf8.cfg 2022/07/14 v3.0 Chinese numerals with UTF8 encoding
+))
+\c@theo=\count608
+\c@exr=\count609
+\c@thm=\count610
+\c@ppt=\count611
+\c@lem=\count612
+\c@prop=\count613
+\c@cor=\count614
+\c@defi=\count615
+\c@rmk=\count616
+\c@expl=\count617
+)
+(E:\Miktex\tex/latex/blindtext\blindtext.sty
+Package: blindtext 2012/01/06 V2.0 blindtext-Package
+\c@blindtext=\count618
+\c@Blindtext=\count619
+\c@blind@countparstart=\count620
+\blind@countxx=\count621
+\blindtext@numBlindtext=\count622
+\blind@countyy=\count623
+\c@blindlist=\count624
+\c@blindlistlevel=\count625
+\c@blindlist@level=\count626
+\blind@listitem=\count627
+\c@blind@listcount=\count628
+\c@blind@levelcount=\count629
+\blind@mathformula=\count630
+\blind@Mathformula=\count631
+\c@blind@randomcount=\count632
+\c@blind@randommax=\count633
+\c@blind@pangramcount=\count634
+\c@blind@pangrammax=\count635
+)
+(E:\Miktex\tex/latex/zhlipsum\zhlipsum.sty
+Package: zhlipsum 2020/04/10 v1.2.0 Chinese dummy text
+\l__zhlipsum_begin_int=\count636
+\l__zhlipsum_end_int=\count637
+\l__zhlipsum_max_int=\count638
+
+(E:\Miktex\tex/latex/zhlipsum\zhlipsum-utf8.def
+File: zhlipsum-utf8.def 2020/04/10 v1.2.0 Chinese dummy text with UTF-8 encodin
+g (for zhlipsum)
+\g__zhlipsum_simp_int=\count639
+
+Package zhlipsum Info: Chinese dummy text "simp" is created. It has 50
+(zhlipsum)             paragraphs.
+
+\g__zhlipsum_trad_int=\count640
+
+Package zhlipsum Info: Chinese dummy text "trad" is created. It has 50
+(zhlipsum)             paragraphs.
+
+\g__zhlipsum_nanshanjing_int=\count641
+
+Package zhlipsum Info: Chinese dummy text "nanshanjing" is created. It has 43
+(zhlipsum)             paragraphs.
+
+\g__zhlipsum_xiangyu_int=\count642
+
+Package zhlipsum Info: Chinese dummy text "xiangyu" is created. It has 45
+(zhlipsum)             paragraphs.
+
+\g__zhlipsum_zhufu_int=\count643
+
+Package zhlipsum Info: Chinese dummy text "zhufu" is created. It has 110
+(zhlipsum)             paragraphs.
+
+\g__zhlipsum_aspirin_int=\count644
+
+Package zhlipsum Info: Chinese dummy text "aspirin" is created. It has 66
+(zhlipsum)             paragraphs.
+
+))
+(E:\Miktex\tex/latex/adjustbox\adjustbox.sty
+Package: adjustbox 2025/02/26 v1.3c Adjusting TeX boxes (trim, clip, ...)
+
+(E:\Miktex\tex/latex/adjustbox\adjcalc.sty
+Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
+-ends (calc, etex, pgfmath)
+)
+(E:\Miktex\tex/latex/adjustbox\trimclip.sty
+Package: trimclip 2025/02/21 v1.2a Trim and clip general TeX material
+
+(E:\Miktex\tex/latex/collectbox\collectbox.sty
+Package: collectbox 2022/10/17 v0.4c Collect macro arguments as boxes
+\collectedbox=\box157
+)
+\tc@llx=\dimen376
+\tc@lly=\dimen377
+\tc@urx=\dimen378
+\tc@ury=\dimen379
+Package trimclip Info: Using driver 'tc-xetex.def'.
+
+(E:\Miktex\tex/latex/adjustbox\tc-xetex.def
+File: tc-xetex.def 2019/01/04 v2.2 Clipping driver for xetex
+))
+\adjbox@Width=\dimen380
+\adjbox@Height=\dimen381
+\adjbox@Depth=\dimen382
+\adjbox@Totalheight=\dimen383
+\adjbox@pwidth=\dimen384
+\adjbox@pheight=\dimen385
+\adjbox@pdepth=\dimen386
+\adjbox@ptotalheight=\dimen387
+
+(E:\Miktex\tex/latex/varwidth\varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box158
+\sift@deathcycles=\count645
+\@vwid@loff=\dimen388
+\@vwid@roff=\dimen389
+)))
+LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 27.
+
+(E:\Miktex\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarypatterns.cod
+e.tex
+File: tikzlibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (E:\Miktex\tex/generic/pgf/libraries\pgflibrarypatterns.code.tex
+File: pgflibrarypatterns.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+\c@note=\count646
+\大二上学期@idxfile=\write5
+\openout5 = `大二上学期.idx'.
+
+
+Writing index file 大二上学期.idx
+\大二上学期@idxfile=\write6
+\openout6 = `大二上学期.idx'.
+
+Writing index file 大二上学期.idx
+\glswrite=\write7
+\glo@main@file=\write8
+\openout8 = `大二上学期.glo'.
+
+Package glossaries Info: Writing glossary file 大二上学期.glo on input line 89.
+(glossary.tex)
+\@nomenclaturefile=\write9
+\openout9 = `大二上学期.nlo'.
+
+Package nomencl Info: Writing nomenclature file 大二上学期.nlo on input line 91.
+ (E:\Miktex\tex/latex/jknappen\mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup7
+)
+(E:\Miktex\tex/latex/oberdiek\centernot.sty
+Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
+)
+Package hyperref Info: Option `unicode' set `true' on input line 117.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 117.
+
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 117.
+Package hyperref Info: Option `CJKbookmarks' set `true' on input line 117.
+
+(E:\Miktex\tex/latex/scrhack\scrhack.sty
+Package: scrhack 2024-09-04 v3.42 scrhack emulation package
+
+(E:\Miktex\tex/latex/floatrowbytocbasic\floatrowbytocbasic.sty
+Package: floatrowbytocbasic 2023-08-16 v1.0 improved floatrow package using toc
+basic
+)
+(E:\Miktex\tex/latex/setspaceenhanced\setspaceenhanced.sty
+Package: setspaceenhanced 2024-11-12 v1.04 improved setspace package
+))
+
+LaTeX Warning: Unused global option(s):
+    [a4paper,fontsize,twoside,open,chapterentrydots,numbers,UTF-8,toc,BCOR,DIV]
+.
+
+(大二上学期.aux)
+\openout1 = `大二上学期.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 124.
+LaTeX Font Info:    ... okay on input line 124.
+Package scrbase Info: activating english \partname on input line 124.
+Package scrbase Info: activating english \chaptername on input line 124.
+Package scrbase Info: activating english \appendixname on input line 124.
+Package scrbase Info: activating english \figurename on input line 124.
+Package scrbase Info: activating english \tablename on input line 124.
+Package scrbase Info: activating english \contentsname on input line 124.
+Package scrbase Info: activating english \listfigurename on input line 124.
+Package scrbase Info: activating english \listtablename on input line 124.
+Package scrbase Info: activating english \bibname on input line 124.
+Package scrbase Info: activating english \indexname on input line 124.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(89.62662pt, 418.25148pt, 89.62663pt)
+* v-part:(T,H,B)=(101.4061pt, 591.5271pt, 152.1092pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=418.25148pt
+* \textheight=591.5271pt
+* \oddsidemargin=17.35663pt
+* \evensidemargin=17.35663pt
+* \topmargin=-10.73889pt
+* \headheight=18.125pt
+* \headsep=31.29787pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=62.59607pt
+* \marginparsep=12.8401pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(70.56247pt, 304.44289pt, 222.49937pt)
+* v-part:(T,H,B)=(77.96011pt, 689.12218pt, 77.96011pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=304.44289pt
+* \textheight=689.12218pt
+* \oddsidemargin=-1.70752pt
+* \evensidemargin=-1.70752pt
+* \topmargin=-43.73274pt
+* \headheight=18.125pt
+* \headsep=31.29787pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=135.71892pt
+* \marginparsep=17.6406pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+Package microtype Info: Patching varwidth to enable character protrusion.
+\MT@vwid@leftmargin=\dimen390
+\MT@vwid@rightmargin=\dimen391
+LaTeX Info: Redefining \microtypecontext on input line 124.
+Package microtype Info: Applying patch `item' on input line 124.
+Package microtype Info: Applying patch `toc' on input line 124.
+Package microtype Info: Applying patch `eqnum' on input line 124.
+Package microtype Info: Applying patch `footnote' on input line 124.
+Package microtype Info: Applying patch `verbatim' on input line 124.
+LaTeX Info: Redefining \microtypesetup on input line 124.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of spacing.
+Package microtype Info: No adjustment of kerning.
+(E:\Miktex\tex/latex/microtype\mt-LatinModernRoman.cfg
+File: mt-LatinModernRoman.cfg 2021/02/21 v1.1 microtype config. file: Latin Mod
+ern Roman (RS)
+)
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: changepage package is loaded.
+\caption@adjustwidth@hsize=\dimen392
+\caption@adjustwidth@linewidth=\dimen393
+Package caption Info: float package is loaded.
+Package caption Info: floatrow package is loaded.
+Package caption Info: floatrow package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+
+(E:\Miktex\tex/latex/caption\ltcaption.sty
+Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
+)
+Package caption Info: Fixing longtable code of `floatrow' package.
+Package caption Info: rotating package is loaded.
+Package caption Info: supertabular package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\@sidenotes@extrawidth=\skip316
+Package hyperref Info: Link coloring ON on input line 124.
+\c@lstlisting=\count647
+Package tocbasic Info: setting babel extension for `lol' on input line 124.
+
+(E:\Miktex\tex/latex/floatrow\fr-longtable.sty
+Package: fr-longtable 2007/11/28 v0.1b (beta) floatrow: additions for longtable
+
+\flrow@LT@lasthead=\box159
+\flrow@LT@prelastfoot=\box160
+\c@FBLTpage=\count648
+)
+\Etoc@tf=\read4
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  TU/LatinModernMath(1)/m/n --> TU/lmr/m/n on input line 
+124.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 124.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/bx/n on input line 124.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 124.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/bx/n on input line 124.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 124.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/bx/n on input line 124.
+
+(E:\Miktex\tex/latex/pdflscape\pdflscape.sty
+Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
+
+(E:\Miktex\tex/latex/pdflscape\pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2022-10-28 v0.13 Display of landscape pages in PD
+F (HO)
+
+(E:\Miktex\tex/latex/graphics\lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+(E:\Miktex\tex/latex/lscapeenhanced\lscapeenhanced.sty
+Package: lscapeenhanced 2024-04-16 v1.0 improved lscape package
+Package lscapeenhanced Info: \landscape patched to make \textheight change opti
+onal on input line 72.
+\@lscapeenhanced@textheight=\skip317
+)
+Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
+
+))
+Package biblatex Info: Trying to load language 'american'...
+Package biblatex Info: ... file 'american.lbx' found.
+
+(E:\Miktex\tex/latex/biblatex/lbx\american.lbx
+File: american.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(E:\Miktex\tex/latex/biblatex/lbx\english.lbx
+File: english.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load language 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
+
+(E:\Miktex\tex/latex/biblatex/lbx\english.lbx
+File: english.lbx 2024/03/21 v3.20 biblatex localization (PK/MW)
+))
+Package biblatex Info: XeTeX detected.
+(biblatex)             Assuming input encoding 'utf8'.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout4 = `大二上学期.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file '大二上学期.bbl' not found.
+
+No file 大二上学期.bbl.
+Package biblatex Info: Reference section=0 on input line 124.
+Package biblatex Info: Reference segment=0 on input line 124.
+(E:\Miktex\tex/generic/stringenc\se-ascii-print.def
+File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
+
+)
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(70.56247pt, 456.37979pt, 70.56247pt)
+* v-part:(T,H,B)=(77.96011pt, 689.12218pt, 77.96011pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=456.37979pt
+* \textheight=689.12218pt
+* \oddsidemargin=-1.70752pt
+* \evensidemargin=-1.70752pt
+* \topmargin=-43.73274pt
+* \headheight=18.125pt
+* \headsep=31.29787pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=0.0pt
+* \marginparsep=0.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+
+File: images/Elias_Maur.jpg Graphic file (type bmp)
+<images/Elias_Maur.jpg>
+[1
+
+\openout7 = `大二上学期.xdy'.
+
+
+
+
+
+
+]
+\tf@toc=\write10
+\openout10 = `大二上学期.toc'.
+
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmss' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+
+Package fontspec Info: 
+(fontspec)             Font family 'NotoSansCJKSC(0)' created for font 'Noto
+(fontspec)             Sans CJK SC' with options [Script={CJK},BoldFont={Noto
+(fontspec)             Sans CJK SC Bold},AutoFakeSlant={0.167}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"Noto Sans CJK
+(fontspec)             SC/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"Noto Sans CJK SC
+(fontspec)             Bold/OT:script=hani;language=dflt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"Noto Sans CJK
+(fontspec)             SC/OT:script=hani;language=dflt;slant=0.167;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"Noto Sans
+(fontspec)             CJK SC/B/OT:script=hani;language=dflt;"
+
+Package tocbasic Info: character protrusion at toc deactivated on input line 20
+7.
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `LatinModernMath' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/m/n' will be
+(Font)              scaled to size 12.00128pt on input line 207.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/m/n' will be
+(Font)              scaled to size 8.40088pt on input line 207.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/m/n' will be
+(Font)              scaled to size 6.00064pt on input line 207.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/m/n' will be
+(Font)              scaled to size 11.99872pt on input line 207.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/m/n' will be
+(Font)              scaled to size 8.3991pt on input line 207.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/m/n' will be
+(Font)              scaled to size 5.99936pt on input line 207.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 207
+.
+ (E:\Miktex\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+(E:\Miktex\tex/latex/microtype\mt-msa.cfg
+File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 207
+.
+
+(E:\Miktex\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+(E:\Miktex\tex/latex/microtype\mt-msb.cfg
+File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `XITSMath' (encoding: TU).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/12'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/12'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/12'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/12'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/12'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/12'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8.4'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8.4'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8.4'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8.4'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8.4'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8.4'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/6'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/6'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/6'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/6'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/6'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/6'.
+(microtype)             Ignoring protrusion settings for this character.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 20
+7.
+
+(E:\Miktex\tex/latex/jknappen\ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+
+LaTeX Font Warning: Font shape `TU/lmr/bx/sc' undefined
+(Font)              using `TU/lmr/bx/n' instead on input line 207.
+
+
+LaTeX Font Warning: Font shape `TU/LXGWWenKaiGB(0)/b/sc' undefined
+(Font)              using `TU/LXGWWenKaiGB(0)/b/n' instead on input line 207.
+
+
+
+[2
+
+]
+
+[3]
+Package tocbasic Info: character protrusion at lof deactivated on input line 20
+7.
+ (大二上学期.lof)
+\tf@lof=\write11
+\openout11 = `大二上学期.lof'.
+
+Package tocbasic Info: character protrusion at lot deactivated on input line 21
+1.
+ (大二上学期.lot)
+\tf@lot=\write12
+\openout12 = `大二上学期.lot'.
+
+
+
+[4
+
+]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(70.56247pt, 304.44289pt, 222.49937pt)
+* v-part:(T,H,B)=(77.96011pt, 689.12218pt, 77.96011pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=304.44289pt
+* \textheight=689.12218pt
+* \oddsidemargin=-1.70752pt
+* \evensidemargin=-1.70752pt
+* \topmargin=-43.73274pt
+* \headheight=18.125pt
+* \headsep=31.29787pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=135.71892pt
+* \marginparsep=17.6406pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(70.56247pt, 456.37979pt, 70.56247pt)
+* v-part:(T,H,B)=(77.96011pt, 689.12218pt, 77.96011pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=456.37979pt
+* \textheight=689.12218pt
+* \oddsidemargin=-1.70752pt
+* \evensidemargin=-1.70752pt
+* \topmargin=-43.73274pt
+* \headheight=18.125pt
+* \headsep=31.29787pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=0.0pt
+* \marginparsep=0.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(70.56247pt, 456.37979pt, 70.56247pt)
+* v-part:(T,H,B)=(77.96011pt, 689.12218pt, 77.96011pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=456.37979pt
+* \textheight=689.12218pt
+* \oddsidemargin=-1.70752pt
+* \evensidemargin=-1.70752pt
+* \topmargin=-43.73274pt
+* \headheight=18.125pt
+* \headsep=31.29787pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=0.0pt
+* \marginparsep=0.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+part I.
+Package scrkbase Info: You've told me to use the font selection of the element
+(scrkbase)             `partprefix' that is an alias of element `partnumber'
+(scrkbase)              on input line 224.
+
+
+File: ../figures/elias-maurer-gLo2UCpH5i8-unsplash.jpg Graphic file (type bmp)
+<../figures/elias-maurer-gLo2UCpH5i8-unsplash.jpg>
+[1
+
+
+
+
+
+]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(70.56247pt, 304.44289pt, 222.49937pt)
+* v-part:(T,H,B)=(77.96011pt, 689.12218pt, 77.96011pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=304.44289pt
+* \textheight=689.12218pt
+* \oddsidemargin=-1.70752pt
+* \evensidemargin=-1.70752pt
+* \topmargin=-43.73274pt
+* \headheight=18.125pt
+* \headsep=31.29787pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=135.71892pt
+* \marginparsep=17.6406pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(70.56247pt, 304.44289pt, 222.49937pt)
+* v-part:(T,H,B)=(77.96011pt, 689.12218pt, 77.96011pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=304.44289pt
+* \textheight=689.12218pt
+* \oddsidemargin=-1.70752pt
+* \evensidemargin=-1.70752pt
+* \topmargin=-43.73274pt
+* \headheight=18.125pt
+* \headsep=31.29787pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=135.71892pt
+* \marginparsep=17.6406pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+ (chapters/probability.tex
+chapter 1.
+File: ../figures/Paul Pastourmatzis Unsplash.jpg Graphic file (type bmp)
+<../figures/Paul Pastourmatzis Unsplash.jpg>
+
+Overfull \hbox (222.46901pt too wide) in paragraph at lines 3--3
+[]| [] 
+ []
+
+Package marginnote Info: Margin note 6.1 is on absolute page 6 on input line 3.
+
+Package marginnote Info: right page because not two side mode on input line 3.
+Package marginnote Info: xpos seems to be 70.56247pt on input line 3.
+
+Underfull \hbox (badness 2229) in paragraph at lines 3--3
+ [][][][]\TU/lmr/bx/n/10.95 2024-1 \TU/LXGWWenKaiGB(0)/b/n/10.95 概 率 论 期 
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 12.
+Package hyperref Info: bookmark level for unknown definition defaults to 0 on i
+nput line 12.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 27.
+Package marginnote Info: Margin note 6.2 is on absolute page 7 on input line 35
+.
+Package marginnote Info: right page because not two side mode on input line 35.
+
+Package marginnote Info: xpos seems to be 237.26312pt on input line 35.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/m/n' will be
+(Font)              scaled to size 10.00107pt on input line 35.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/m/n' will be
+(Font)              scaled to size 7.00075pt on input line 35.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/m/n' will be
+(Font)              scaled to size 5.00053pt on input line 35.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 35.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 35.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 35.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/7'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/7'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/7'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/7'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/7'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/7'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/5'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/5'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/5'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/5'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/5'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/5'.
+(microtype)             Ignoring protrusion settings for this character.
+Package marginnote Info: Margin note 6.3 is on absolute page 7 on input line 35
+.
+Package marginnote Info: right page because not two side mode on input line 35.
+
+Package marginnote Info: xpos seems to be 143.92284pt on input line 35.
+Package marginnote Info: Margin note 6.4 is on absolute page 7 on input line 43
+.
+Package marginnote Info: right page because not two side mode on input line 43.
+
+Package marginnote Info: xpos seems to be 163.49141pt on input line 43.
+Package marginnote Info: Margin note 6.5 is on absolute page 7 on input line 44
+.
+Package marginnote Info: right page because not two side mode on input line 44.
+
+Package marginnote Info: xpos seems to be 131.92284pt on input line 44.
+
+
+[2
+
+
+
+]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 52.
+Package hyperref Info: bookmark level for unknown theorem defaults to 0 on inpu
+t line 52.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 59.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 67.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/m/n' will be
+(Font)              scaled to size 10.95116pt on input line 72.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/m/n' will be
+(Font)              scaled to size 8.00085pt on input line 72.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/m/n' will be
+(Font)              scaled to size 10.94882pt on input line 72.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/m/n' will be
+(Font)              scaled to size 7.99915pt on input line 72.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/10.95'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textendash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textemdash ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquoteright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblleft ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8'.
+(microtype)             Ignoring protrusion settings for this character.
+Package microtype Info: Character `textquotedblright ' is missing
+(microtype)             in font `TU/XITSMath(0)/m/n/8'.
+(microtype)             Ignoring protrusion settings for this character.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 79.
+
+
+LaTeX Font Info:    Font shape `TU/LXGWWenKaiGB(0)/m/sl' in size <12> not avail
+able
+(Font)              Font shape `TU/LXGWWenKaiGB(0)/m/it' tried instead on input
+ line 81.
+[3]
+Overfull \hbox (27.77881pt too wide) detected at line 107
+[] [] [][][][] [] [] [][][] [] [][][] [] [] [][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 111.
+
+Overfull \hbox (58.45772pt too wide) detected at line 125
+[][][] [] [] [] [][] [] [][][] [] [] [] [][] [] [][][] [] [] [] [][] [] [][][] 
+[] [] [] [][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 134.
+Package marginnote Info: Margin note 8.1 is on absolute page 9 on input line 13
+7.
+Package marginnote Info: right page because not two side mode on input line 137
+.
+Package marginnote Info: xpos seems to be 267.13165pt on input line 137.
+Package marginnote Info: Margin note 8.2 is on absolute page 9 on input line 13
+7.
+Package marginnote Info: right page because not two side mode on input line 137
+.
+Package marginnote Info: xpos seems to be 357.46577pt on input line 137.
+
+
+[4]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 142.
+Package marginnote Info: Margin note 9.1 is on absolute page 9 on input line 14
+5.
+Package marginnote Info: right page because not two side mode on input line 145
+.
+Package marginnote Info: xpos seems to be 129.52287pt on input line 145.
+
+Underfull \hbox (badness 3503) in paragraph at lines 145--145
+[]|\TU/lmr/m/n/10 6: \TU/LXGWWenKaiGB(0)/m/n/10 即 对 于 任 意 指 标 $[] []
+ []
+
+Package marginnote Info: Margin note 9.2 is on absolute page 9 on input line 14
+5.
+Package marginnote Info: right page because not two side mode on input line 145
+.
+Package marginnote Info: xpos seems to be 206.48328pt on input line 145.
+
+Underfull \hbox (badness 10000) in paragraph at lines 145--145
+[]|\TU/lmr/m/n/10 7: \TU/LXGWWenKaiGB(0)/m/n/10 即 $[][][][] [] [][][] []
+ []
+
+Package marginnote Info: Margin note 9.3 is on absolute page 9 on input line 14
+6.
+Package marginnote Info: right page because not two side mode on input line 146
+.
+Package marginnote Info: xpos seems to be 213.52287pt on input line 146.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 148.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 150.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 155.
+Package hyperref Info: bookmark level for unknown lemma defaults to 0 on input 
+line 155.
+Package marginnote Info: Margin note 9.4 is on absolute page 9 on input line 15
+7.
+Package marginnote Info: right page because not two side mode on input line 157
+.
+Package marginnote Info: xpos seems to be 339.62877pt on input line 157.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 161.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 168.
+
+
+[5]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 178.
+Package hyperref Info: bookmark level for unknown exercise defaults to 0 on inp
+ut line 178.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 186.
+Package marginnote Info: Margin note 10.1 is on absolute page 10 on input line 
+187.
+Package marginnote Info: right page because not two side mode on input line 187
+.
+Package marginnote Info: xpos seems to be 198.10052pt on input line 187.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 194.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 205.
+Package marginnote Info: Margin note 10.2 is on absolute page 10 on input line 
+210.
+Package marginnote Info: right page because not two side mode on input line 210
+.
+Package marginnote Info: xpos seems to be 398.42798pt on input line 210.
+
+Overfull \hbox (36.19463pt too wide) in paragraph at lines 205--211
+[]\TU/lmr/bx/n/12 Exercise 1.2 []\TU/LXGWWenKaiGB(0)/m/n/12 若 $[][][][] [][][] 
+[] [] [][][]$ 有 概 率 密 度 $[][][][][] [][][] [] [] [][][]$[][]|[]，|
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 214.
+Package hyperref Info: bookmark level for unknown proposition defaults to 0 on 
+input line 214.
+
+
+[6]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 234.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 244.
+Package hyperref Info: bookmark level for unknown note defaults to 0 on input l
+ine 245.
+
+
+[7]
+Overfull \hbox (43.0491pt too wide) detected at line 286
+[][][][] [] [] [] [] [][][][][][] [] [] [][][][][][][][] [] [] [] [][][]
+ []
+
+
+Overfull \hbox (39.7353pt too wide) detected at line 290
+[][][][][][][] [] [] [] [][][] [] [] [] [][] [] [][][] [] [] [] [][][][][] [] [
+] [] [][][]
+ []
+
+
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 351--353
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 353.
+Package hyperref Info: bookmark level for unknown corollary defaults to 0 on in
+put line 353.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 366.
+
+
+[9]
+Package mdframed Info: Not enough space on this page on input line 368.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 371.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 375.
+
+Overfull \hbox (12.36537pt too wide) detected at line 410
+[][][][] [] []  [][][][] [] []
+ []
+
+
+Overfull \hbox (16.79163pt too wide) detected at line 420
+[][][][] [] []  [][][][] [] []
+ []
+
+
+
+[10]
+Overfull \hbox (134.04192pt too wide) detected at line 431
+[][][][] [] [] [][][][][] [] [][][] [][][] [] [][] [] [][][][][] [] [][][][]  [
+] [] [][] [][] [] [] []
+ []
+
+
+Overfull \hbox (26.21376pt too wide) detected at line 435
+[][][][] [] [] [][][] [][][] [] [][] [] [][][][]  [] [] [][] [][] [][] []
+ []
+
+
+Overfull \hbox (42.55894pt too wide) detected at line 439
+[][][][] [] [] [] [][] [] [][][] [][][] [] [][] [] [][][] [] [][][][]  [] [] []
+[] [][] []
+ []
+
+
+Overfull \hbox (198.98135pt too wide) detected at line 443
+[][][][] [] [] [] [][][] [] [][] [] [][]  [] [] [][][][] [] [] [] [] [][][] [] 
+[] [][][][] [][]
+ []
+
+
+Overfull \hbox (185.06438pt too wide) detected at line 446
+[][][][] [] [] [][][][][] [] [][][] [][][] [] [][] [] [][][][][] [] [][][][]  [
+] [] [][] [][] [][] []
+ []
+
+
+
+[11]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 451.
+
+Overfull \hbox (39.40251pt too wide) in paragraph at lines 452--453
+[]\TU/lmr/bx/n/12 Theorem 1.14 \TU/lmr/m/n/12 (gamma \TU/LXGWWenKaiGB(0)/m/n/12
+ 分 布 的 性 质\TU/lmr/m/n/12 ) []\TU/LXGWWenKaiGB(0)/m/it/12 若 $[] [] [][][][][][][
+][] [][][] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 455.
+
+Overfull \hbox (21.81854pt too wide) in paragraph at lines 456--457
+[]\TU/lmr/bx/n/12 Theorem 1.15 \TU/lmr/m/n/12 (\TU/LXGWWenKaiGB(0)/m/n/12 正 态 分
+ 布 的 性 质\TU/lmr/m/n/12 ) []\TU/LXGWWenKaiGB(0)/m/it/12 若 $[] [] [][][][][][][][
+][] [][][] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 484.
+
+
+[12]
+Package mdframed Info: Not enough space on this page on input line 488.
+
+Overfull \hbox (13.26854pt too wide) detected at line 504
+[][]
+ []
+
+
+Overfull \hbox (33.91286pt too wide) in paragraph at lines 504--507
+\TU/LXGWWenKaiGB(0)/m/n/12 此 时，|  也 记 为 $[][][] [][] [] [] []$ ．|  图[][]\TU/lmr
+/m/n/12 1.1[][]\TU/LXGWWenKaiGB(0)/m/n/12 是 $[][][][] [][] [][] [][] [][][][]$
+ []
+
+File: ../figures/二维正态分布.png Graphic file (type bmp)
+<../figures/二维正态分布.png>
+
+LaTeX Warning: Marginpar on page 13 moved.
+
+
+LaTeX Warning: Marginpar on page 13 moved.
+
+
+Overfull \hbox (37.82727pt too wide) detected at line 520
+[][]
+ []
+
+
+Overfull \hbox (6.46407pt too wide) in paragraph at lines 527--530
+\TU/LXGWWenKaiGB(0)/m/n/12 这 就 是 说，|  正 态 分 布 的 边 沿 分 布 仍 为 正 态 分 布，| $[] [] []
+ []$
+ []
+
+
+
+[13]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 530.
+Package hyperref Info: bookmark level for unknown example defaults to 0 on inpu
+t line 530.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 558.
+
+
+[14]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 562.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 567.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 575.
+Package hyperref Info: bookmark level for unknown remark defaults to 0 on input
+ line 575.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 582.
+
+Overfull \hbox (3.698pt too wide) detected at line 589
+[] [] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 599.
+
+Overfull \hbox (92.6939pt too wide) detected at line 614
+[] [] [] []
+ []
+
+
+
+[15]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 634.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 641.
+
+
+[16]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 645.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 668.
+
+Overfull \hbox (2.79675pt too wide) detected at line 672
+[][] [] [][]  [][][][] [] [][] [] [][] [] [][][][] [] [] [] [][][] [] [][][][] 
+[] [][][]
+ []
+
+
+
+[17]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 689.
+
+Overfull \hbox (0.31726pt too wide) in paragraph at lines 698--701
+\TU/LXGWWenKaiGB(0)/m/n/12 简 单 验 证 可 以 知 道 $[]$ 也 是 概 率 密 度 函 数\TU/lmr/m/n/12 .
+                   
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 701.
+
+
+[18]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 736.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 760.
+
+
+[19]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 776.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 790.
+
+Overfull \hbox (42.39337pt too wide) in paragraph at lines 799--801
+[]\TU/LXGWWenKaiGB(0)/m/n/12 设 $[][] [][] []$ 是 常 数，| $[][][][] [] [][] [][][][
+] [] [][] [][] [] [][][][] [][][][][] []
+ []
+
+
+Overfull \hbox (120.34184pt too wide) detected at line 808
+[]
+ []
+
+
+Overfull \hbox (70.84033pt too wide) in paragraph at lines 810--811
+[]$[][][][] [][][] [] [][] [][] [][][][][] [][][] [] [][] [][][][][][][][][][] 
+[]
+ []
+
+
+
+[20]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 818.
+
+Overfull \hbox (0.70512pt too wide) in paragraph at lines 822--824
+\TU/LXGWWenKaiGB(0)/m/it/12 为 随 机 变 量 $[][] []$ 的 协 方 差 \TU/lmr/m/it/12 (covari
+ance)[][][][][][][][]\TU/LXGWWenKaiGB(0)/m/it/12 ，|  记 作 $[][][][] [][]$
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 826.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 839.
+
+Overfull \hbox (24.9065pt too wide) detected at line 845
+[][][][] [][] [] [][] [][][][][][] [][] [][] [][] [] [] [][] [] [][] [][] [] []
+[] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 851.
+
+
+[21]
+Package mdframed Info: Not enough space on this page on input line 857.
+
+
+LaTeX Font Warning: Font shape `TU/LatinModernMath(1)/b/n' undefined
+(Font)              using `TU/LatinModernMath(1)/m/n' instead on input line 862
+.
+
+
+LaTeX Font Warning: Font shape `TU/LatinModernMath(2)/b/n' undefined
+(Font)              using `TU/LatinModernMath(2)/m/n' instead on input line 862
+.
+
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/b/n' will be
+(Font)              scaled to size 8.40088pt on input line 862.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/b/n' will be
+(Font)              scaled to size 6.00064pt on input line 862.
+
+LaTeX Font Warning: Font shape `TU/LatinModernMath(3)/b/n' undefined
+(Font)              using `TU/LatinModernMath(3)/m/n' instead on input line 862
+.
+
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/b/n' will be
+(Font)              scaled to size 8.3991pt on input line 862.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/b/n' will be
+(Font)              scaled to size 5.99936pt on input line 862.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/b/n' will be
+(Font)              scaled to size 12.00128pt on input line 864.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/b/n' will be
+(Font)              scaled to size 11.99872pt on input line 864.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 902.
+
+Overfull \hbox (52.85478pt too wide) in paragraph at lines 903--904
+[]\TU/lmr/bx/n/12 Definition 1.12 \TU/lmr/m/n/12 (\TU/LXGWWenKaiGB(0)/m/n/12 协 
+方 差 矩 阵\TU/lmr/m/n/12 ) []\TU/LXGWWenKaiGB(0)/m/it/12 如 果 随 机 向 量 $[] [] []$
+ []
+
+
+
+[22]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 916.
+
+Overfull \hbox (29.17552pt too wide) in paragraph at lines 919--920
+[]$[]$ \TU/LXGWWenKaiGB(0)/m/it/12 退 化 的 充 分 必 要 条 件 是 有 不 全 为 零 的 常 数 $[][][] 
+[][][] [] [] [][]$
+ []
+
+
+
+[23]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 950.
+Package marginnote Info: Margin note 28.1 is on absolute page 28 on input line 
+951.
+Package marginnote Info: right page because not two side mode on input line 951
+.
+Package marginnote Info: xpos seems to be 192.02757pt on input line 951.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 960.
+Package hyperref Info: bookmark level for unknown property defaults to 0 on inp
+ut line 960.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 973.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 985.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 992.
+Package marginnote Info: Margin note 28.2 is on absolute page 29 on input line 
+1002.
+Package marginnote Info: right page because not two side mode on input line 100
+2.
+Package marginnote Info: xpos seems to be 329.50447pt on input line 1002.
+
+
+[24]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1013.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1044.
+
+
+[25]
+Package mdframed Info: Not enough space on this page on input line 1049.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1051.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1058.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1065.
+
+Overfull \hbox (1.66978pt too wide) in paragraph at lines 1066--1067
+[]\TU/lmr/bx/n/12 Exercise 1.3 []\TU/LXGWWenKaiGB(0)/m/n/12 设 $[][] []$ 为 随 机 变
+ 量，| $[][] [] [][] [] [][] [][] []
+ []
+
+
+Overfull \hbox (49.5848pt too wide) detected at line 1080
+[]
+ []
+
+
+
+[26]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1083.
+Package mdframed Info: Not enough space on this page on input line 1087.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1091.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1099.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1113.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1117.
+
+
+[27]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1132.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1135.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1145.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1151.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1160.
+
+
+[28]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1174.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1178.
+Package biblatex Info: Delimiter 'finalnamedelim' in context '' already defined
+, overwriting on input line 1179.
+
+
+LaTeX Warning: Citation '任佳刚' on page 29 undefined on input line 1179.
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1201.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1211.
+Package marginnote Info: Margin note 33.1 is on absolute page 34 on input line 
+1213.
+Package marginnote Info: right page because not two side mode on input line 121
+3.
+Package marginnote Info: xpos seems to be 151.98326pt on input line 1213.
+
+
+[29]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1220.
+Package marginnote Info: Margin note 34.1 is on absolute page 34 on input line 
+1223.
+Package marginnote Info: right page because not two side mode on input line 122
+3.
+Package marginnote Info: xpos seems to be 131.58327pt on input line 1223.
+
+Overfull \hbox (49.77328pt too wide) in paragraph at lines 1242--1244
+\TU/LXGWWenKaiGB(0)/m/n/12 接 下 来 是 定 理[][]\TU/lmr/m/n/12 1.44[][]\TU/LXGWWenKai
+GB(0)/m/n/12 的 一 些 应 用，|  用 于 判 断 特 征 函 数\TU/lmr/m/n/12 .                   
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1244.
+Package mdframed Info: You first box width is to small
+ mdframed fixed it
+(mdframed)              on input line 1249.
+
+
+[30]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1250.
+Package hyperref Info: bookmark level for unknown solution defaults to 0 on inp
+ut line 1251.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1254.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1260.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1263.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1270.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1274.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1280.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1285.
+
+
+[31]
+Package mdframed Info: Not enough space on this page on input line 1290.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1296.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1304.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1312.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1314.
+
+Overfull \hbox (106.93755pt too wide) detected at line 1322
+[][][] [] [] [] [][] [] [][][][] [] [] [] [][] [] [][][][] [] [][] [] [][][][][
+] [] [][][][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1326.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1332.
+
+Overfull \hbox (10.8925pt too wide) in paragraph at lines 1340--1342
+\TU/LXGWWenKaiGB(0)/m/it/10.95 第 二 问，|  设 $[]$ 为 重 量 超 \TU/lmr/m/it/10.95 5.1 \
+TU/LXGWWenKaiGB(0)/m/it/10.95 千 克 的 袋 数，|  则 $[] [] [][][][][][] [][][][][][][]
+$，|
+ []
+
+
+Overfull \hbox (141.93755pt too wide) detected at line 1344
+[][][] [] [][] [] [][][][] [] [][][] [] [][] [] [][][] [] [][][][][] [] [][][][
+][][][] [] [][][][][][]
+ []
+
+
+
+[32]
+Package mdframed Info: Not enough space on this page on input line 1345.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1358.
+
+Overfull \hbox (9.86688pt too wide) detected at line 1370
+[] [][] [] [] [] [][][] [] [][] [] [] [] [][] [] [] [] [][][]
+ []
+
+
+Overfull \hbox (184.3478pt too wide) detected at line 1377
+[][] [] [][] [] [] [] [] [] [][] [] [] [] [] [] [] [][][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1380.
+
+
+[33]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1389.
+
+Overfull \hbox (168.21187pt too wide) detected at line 1395
+[][][][] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] [][][][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1400.
+
+Overfull \hbox (76.95439pt too wide) in paragraph at lines 1407--1408
+\TU/LXGWWenKaiGB(0)/m/n/12 满 足 可 列 可 加 性，|  因 此 都 是 有 限 测 度．|  令 $\U/rsfs/m/n/1
+2 A []$ $[]$
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1411.
+
+Overfull \hbox (0.76692pt too wide) in paragraph at lines 1416--1417
+[]\TU/LXGWWenKaiGB(0)/m/n/12 正 则 性，| $[][][][] [] [][] [][][][][] [] [][] [][][
+][] [] [][] [][][][][] []
+ []
+
+
+
+[34]
+Overfull \hbox (35.692pt too wide) detected at line 1428
+[][] [] [] [][][][][][][][] [] [][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1445.
+
+Overfull \hbox (201.65747pt too wide) detected at line 1454
+[] [] [] [] [][][][] [] [] [] [] [][][][] [] [] [] [] [][][][] [] [] [] [] [] [
+]
+ []
+
+
+
+[35]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1460.
+
+Underfull \hbox (badness 3449) in paragraph at lines 1460--1460
+[]\TU/lmr/bx/n/10 Theorem 1.47 \TU/lmr/m/n/10 (\TU/LXGWWenKaiGB(0)/m/n/10 双 指 标
+
+ []
+
+
+Underfull \hbox (badness 7415) in paragraph at lines 1460--1460
+\TU/LXGWWenKaiGB(0)/m/n/10 级 数 求 和 换 序 定 理\TU/lmr/m/n/10 ) []\TU/LXGWWenKaiGB(0
+)/m/it/10 设
+ []
+
+Package mdframed Info: mdframed inside a box 
+ mdframed uses option nobreak mdframed on input line 1460.
+
+Overfull \hbox (24.04202pt too wide) detected at line 1463
+[] [] [][][][] [] [] [] [] [][][][] [] [] [] [] [][][][] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1475.
+
+Overfull \hbox (44.90709pt too wide) detected at line 1484
+[] [] [] [] [] [] [] [] [] [] [] [] [] []
+ []
+
+
+Overfull \hbox (10.53036pt too wide) in paragraph at lines 1484--1486
+\TU/LXGWWenKaiGB(0)/m/n/12 又 因 为 $[][] [][] [] []$ ，|  因 此 $[] [] [] [] []$
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1488.
+
+
+[36]
+Overfull \hbox (13.44589pt too wide) in paragraph at lines 1506--1507
+[]\TU/LXGWWenKaiGB(0)/m/n/12 注 意 到 由 次 可 加 性，| $[][] [] [] [] [] [] []
+ []
+
+
+Overfull \hbox (47.23286pt too wide) in paragraph at lines 1506--1507
+[] [] [] []$ \TU/LXGWWenKaiGB(0)/m/n/12 ，|  另 外 $[] [] [][] [] [] []$ $[] [] []
+[] [] []
+ []
+
+
+Overfull \hbox (60.48738pt too wide) detected at line 1514
+[] [] [] [] [] [] [] [] [] [] [] []
+ []
+
+
+Overfull \hbox (198.62347pt too wide) detected at line 1522
+[] [] [] [] [] [] [] [] [] [] [] [] [][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1528.
+
+
+[37]
+Overfull \hbox (200.53638pt too wide) detected at line 1538
+[][][] [] [][] [] [] [] [] [] [] [][] [] [] [] [] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1541.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1550.
+
+Overfull \hbox (33.32413pt too wide) detected at line 1561
+[][] [] [][] [] [] [] [] [][] [] [] [] \U/rsfs/m/n/12 F[]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1565.
+
+
+[38]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1580.
+
+Overfull \hbox (207.31274pt too wide) detected at line 1590
+[][][][][] [] [][][] [] [][] [] [][][] [] [][] [] [] [][] [] [][][] [] [][] [] 
+[] [][] [] [][][] [] [][] [] [] [][] [] [][][] [] [][] [] [] [][] [] [][][][][]
+
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1594.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1596.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1601.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1605.
+
+Overfull \hbox (76.12611pt too wide) in paragraph at lines 1607--1609
+\TU/LXGWWenKaiGB(0)/m/n/12 如 $[][][] [][] [] [][][][] [][] [][] [][] [][][][][]
+ [][][] [][] [] [][][][] [][] [][] [][] [][][][][]$\TU/lmr/m/n/12 .            
+       
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1609.
+
+Overfull \hbox (83.90984pt too wide) detected at line 1615
+[][][][][] [] [][][] [] [][] [] [][][][][] [] [][][][] [] [][] [] [] [] [] [][]
+ [] []  [][] [] []
+ []
+
+
+
+[39]
+Overfull \hbox (56.31479pt too wide) detected at line 1623
+[][][][][] [] [] [][] [] [] [][][][][] [] [] [][] [] [] [][][][][] [] [][]  [] 
+[] []
+ []
+
+
+Overfull \hbox (65.65079pt too wide) detected at line 1627
+[][][][][] [] [] [][] [] [] [][][][][] [] [] [][] [] [] [][][][][][] [] [][]  [
+] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1631.
+
+Overfull \hbox (105.47287pt too wide) detected at line 1650
+[][]
+ []
+
+
+Overfull \hbox (276.76613pt too wide) detected at line 1654
+[][][][][] [] [] [] [] [] [][] [][] [] [] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1661.
+
+
+[40]
+Package mdframed Info: Not enough space on this page on input line 1662.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1667.
+
+Overfull \hbox (39.22968pt too wide) detected at line 1673
+[][] [] [][][][][][] [] [][] [] [][] [] [] [] [] \U/rsfs/m/n/12 F
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1676.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1678.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1681.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1685.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1688.
+
+Overfull \hbox (60.83974pt too wide) in paragraph at lines 1695--1696
+[]\TU/LXGWWenKaiGB(0)/m/n/12 证 明．|  由 \TU/lmr/m/n/12 Borel \TU/LXGWWenKaiGB(0)/
+m/n/12 － \TU/lmr/m/n/12 Cantelli \TU/LXGWWenKaiGB(0)/m/n/12 引 理，|  注 意 到 $[][] 
+[] [] []
+ []
+
+
+
+[41]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1698.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1704.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1710.
+
+Overfull \hbox (17.7721pt too wide) detected at line 1736
+[][]
+ []
+
+
+
+[42]
+Overfull \hbox (186.44797pt too wide) detected at line 1745
+[][][][][][] [] [][] [] [][] [][][][][] [] [][][][] [] [][][][] [] [][] [] [][]
+[][] [] [][][] [] [][] [][][] [] [][] [] [][][] [] [][][][][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1749.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1758.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1766.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1774.
+Package mdframed Info: Not enough space on this page on input line 1775.
+
+
+[43]
+Package mdframed Info: Not enough space on this page on input line 1775.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1776.
+
+Overfull \hbox (71.48517pt too wide) in paragraph at lines 1777--1778
+[]\TU/LXGWWenKaiGB(0)/b/n/12 注 记 \TU/lmr/bx/n/12 1.5 []\TU/LXGWWenKaiGB(0)/m/it
+/12 单 位 圆 盘 上 的 均 匀 分 布，|  即 $[][][] [][]$ 服 从 $[]$
+ []
+
+
+Overfull \hbox (183.57245pt too wide) detected at line 1783
+[] [] [] [][] [][] [] [][] [][][][][] [] [][] [][] [][][][][][] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1786.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1788.
+
+Overfull \hbox (17.6947pt too wide) in paragraph at lines 1789--1790
+[]\TU/LXGWWenKaiGB(0)/b/n/10.95 解 答 []$[] [] [] [] [] [] [][] [][] [][] [][][] 
+[] [][] [][][] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1792.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1799.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1807.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1810.
+
+Overfull \hbox (23.34714pt too wide) detected at line 1820
+[][]
+ []
+
+Package mdframed Info: You first box width is to small
+ mdframed fixed it
+(mdframed)              on input line 1821.
+
+
+[44]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1823.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1825.
+
+Overfull \hbox (110.11246pt too wide) detected at line 1829
+[][][][][] [][] [] [][] [] [] [] [][][] [] [] [][] [] [][] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1832.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1834.
+
+Overfull \hbox (44.05403pt too wide) in paragraph at lines 1835--1836
+[]\TU/LXGWWenKaiGB(0)/b/n/10.95 解 答 []\TU/LXGWWenKaiGB(0)/m/it/10.95 注 意 到 $[][
+][] [][]$ 的 密 度 函 数 为 $[][][][][] [][] [] []$
+ []
+
+
+Overfull \hbox (14.4727pt too wide) in paragraph at lines 1835--1836
+\TU/LXGWWenKaiGB(0)/m/it/10.95 而 $[] [] [][] [] [][] [][][][] [][]$ 的 逆 变 换 为 $
+[]$
+ []
+
+
+Overfull \hbox (34.9721pt too wide) detected at line 1838
+[][][][][] [][] [] [][][][] [] [][] [] [] [][][][][] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1842.
+
+
+[45]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1862.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1886.
+
+
+[46]
+Package mdframed Info: Not enough space on this page on input line 1890.
+
+Overfull \hbox (33.81552pt too wide) detected at line 1902
+[][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1905.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1920.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1922.
+
+Overfull \hbox (258.88945pt too wide) detected at line 1926
+[] [] [] [] [] [] [] [] [] [] [] [] [] [] [] []
+ []
+
+
+Overfull \hbox (255.65225pt too wide) detected at line 1930
+[] [] [] [] [] [] [] [] [] [] [] [] [] []
+ []
+
+
+
+[47]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1934.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1936.
+
+Overfull \hbox (105.6535pt too wide) detected at line 1943
+[][]
+ []
+
+
+Overfull \hbox (13.61108pt too wide) in paragraph at lines 1943--1945
+\TU/LXGWWenKaiGB(0)/m/it/10.95 当 $[] [] []$ 时，|  有 上 式 等 于 $[] [] [] [] []$
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1948.
+
+Overfull \hbox (14.94577pt too wide) detected at line 1961
+[][]
+ []
+
+
+
+[48]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1966.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1973.
+
+Overfull \hbox (139.91289pt too wide) detected at line 1991
+[][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2000.
+
+Overfull \hbox (53.42456pt too wide) detected at line 2013
+\U/rsfs/m/n/12 C [] []
+ []
+
+
+
+[49]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2021.
+
+Overfull \hbox (75.50072pt too wide) detected at line 2032
+[] [] [][] [] [] [][][][][] [] [][] [] [][][][][] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2039.
+
+
+[50]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2048.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2055.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2062.
+
+Overfull \hbox (47.80136pt too wide) detected at line 2071
+[][][][][] [] [][][][][][][][][] [] [][][][] [] [][][]  [] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2075.
+
+
+[51]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2115.
+Package hyperref Info: bookmark level for unknown problem defaults to 0 on inpu
+t line 2115.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2119.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2123.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2131.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2135.
+Package mdframed Info: Not enough space on this page on input line 2136.
+
+
+[52]
+Package mdframed Info: Not enough space on this page on input line 2136.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2139.
+
+Overfull \hbox (0.91585pt too wide) in paragraph at lines 2139--2141
+[]\TU/lmr/bx/n/12 Problem 1.6 []\TU/LXGWWenKaiGB(0)/m/n/12 独 立 随 机 变 量 $[][][] 
+[][]$ 分 别 服 从 参 数 为 $[][][] [][]$
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2148.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2152.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2163.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2167.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2171.
+
+
+[53]) (chapters/numerical_analysis.tex
+
+[54
+
+]
+chapter 2.
+File: ../figures/Paul Pastourmatzis Unsplash.jpg Graphic file (type bmp)
+<../figures/Paul Pastourmatzis Unsplash.jpg>
+
+Overfull \hbox (222.46901pt too wide) in paragraph at lines 3--3
+[]| [] 
+ []
+
+Package marginnote Info: Margin note 59.1 is on absolute page 59 on input line 
+3.
+Package marginnote Info: right page because not two side mode on input line 3.
+Package marginnote Info: xpos seems to be 70.56247pt on input line 3.
+
+Underfull \hbox (badness 1565) in paragraph at lines 3--3
+ [][][][]\TU/lmr/bx/n/10.95 Lagrange \TU/LXGWWenKaiGB(0)/b/n/10.95 插 值 多 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+ [][][][]\TU/LXGWWenKaiGB(0)/b/n/10.95 均 差 与 \TU/lmr/bx/n/10.95 Newton 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+ [][][][]\TU/lmr/bx/n/10.95 Hermite \TU/LXGWWenKaiGB(0)/b/n/10.95 插 值 多 
+ []
+
+
+Underfull \hbox (badness 2229) in paragraph at lines 3--3
+ [][][][]\TU/lmr/bx/n/10.95 2024-1 \TU/LXGWWenKaiGB(0)/b/n/10.95 期 末 考 内 
+ []
+
+
+Overfull \hbox (4.50397pt too wide) in paragraph at lines 14--16
+\TU/LXGWWenKaiGB(0)/m/n/12 若 实 数 $[] [] [][][][][] [] [][] [] [][] []$\TU/lmr/m
+/n/12 ($[][][][] [] [][][] [] [][][] [][] [] [] [][][]$
+ []
+
+
+
+[55
+
+]
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/b/n' will be
+(Font)              scaled to size 10.95116pt on input line 55.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/b/n' will be
+(Font)              scaled to size 8.00085pt on input line 55.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/b/n' will be
+(Font)              scaled to size 10.94882pt on input line 55.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/b/n' will be
+(Font)              scaled to size 7.99915pt on input line 55.
+
+Overfull \hbox (68.80025pt too wide) detected at line 56
+[] [] [] [] [][] [][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 57.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 63.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 88.
+
+
+[56]
+Package mdframed Info: Not enough space on this page on input line 90.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 95.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 105.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/b/n' will be
+(Font)              scaled to size 10.00107pt on input line 106.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/b/n' will be
+(Font)              scaled to size 7.00075pt on input line 106.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(2)/b/n' will be
+(Font)              scaled to size 5.00053pt on input line 106.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/b/n' will be
+(Font)              scaled to size 9.99893pt on input line 106.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/b/n' will be
+(Font)              scaled to size 6.99925pt on input line 106.
+LaTeX Font Info:    Font shape `TU/LatinModernMath(3)/b/n' will be
+(Font)              scaled to size 4.99947pt on input line 106.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 113.
+Package marginnote Info: Margin note 61.1 is on absolute page 61 on input line 
+115.
+Package marginnote Info: right page because not two side mode on input line 115
+.
+Package marginnote Info: xpos seems to be 329.01932pt on input line 115.
+
+
+[57]
+Package marginnote Info: Margin note 62.1 is on absolute page 62 on input line 
+152.
+Package marginnote Info: right page because not two side mode on input line 152
+.
+Package marginnote Info: xpos seems to be 100.56247pt on input line 152.
+
+Overfull \hbox (17.6061pt too wide) detected at line 152
+[][][][][] [] [] [] []
+ []
+
+
+Overfull \hbox (5.0161pt too wide) detected at line 152
+[][][][][] [] [] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 155.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 165.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 191.
+
+
+[58]
+Underfull \hbox (badness 5519) in paragraph at lines 217--217
+[]\TU/lmr/m/n/10 5: \TU/LXGWWenKaiGB(0)/m/n/10 这 将 推 出 $[][][][][][] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 223.
+
+
+[59]
+Overfull \hbox (21.59721pt too wide) detected at line 294
+[][][][][][] [] [] [] []  [] [] [][] [][] [] [] [][]
+ []
+
+
+
+[60]
+Overfull \hbox (32.91202pt too wide) detected at line 314
+[][][][][][] [] [] [] []  [] [] [][] [][] [] [] [][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 320.
+
+
+[61]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 380.
+Package marginnote Info: Margin note 66.1 is on absolute page 66 on input line 
+390.
+Package marginnote Info: right page because not two side mode on input line 390
+.
+Package marginnote Info: xpos seems to be 365.00536pt on input line 390.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 395.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 405.
+
+
+[62]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 412.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 415.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 418.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 422.
+
+
+[63]
+Overfull \hbox (44.2474pt too wide) detected at line 469
+[][] [] [][][][][][][] [] [][][] [] [][][][][][][][] [] [][][][][][][]  [][][][
+][] [] [][] [][][][][] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 478.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 481.
+
+Overfull \hbox (10.75822pt too wide) detected at line 490
+[][]
+ []
+
+
+
+[64]
+Package mdframed Info: Not enough space on this page on input line 511.
+
+
+[65]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 531.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 544.
+
+Overfull \hbox (36.80588pt too wide) detected at line 550
+[][][][][] [] [][][][] [] [][][][][] [] [] [][][] [] [][][] [] [] [] [][] [] []
+[][]
+ []
+
+
+Overfull \hbox (9.53404pt too wide) detected at line 564
+[] [] [] []
+ []
+
+
+
+[66]
+Overfull \hbox (133.2779pt too wide) in paragraph at lines 564--567
+\TU/LXGWWenKaiGB(0)/m/n/12 为 $[]$ 在 节 点 $[][][] [][][] [] [] [][]$ 上 的 $[]$ 阶 均
+ 差\TU/lmr/m/n/12 , \TU/LXGWWenKaiGB(0)/m/n/12 其 中 $[] [] [] [] []$
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 567.
+
+Overfull \hbox (39.63194pt too wide) detected at line 573
+[][]
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 575.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 579.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 582.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 585.
+
+Overfull \hbox (9.37628pt too wide) in paragraph at lines 585--586
+[]\TU/lmr/bx/n/12 Proposition 2.18 []\TU/LXGWWenKaiGB(0)/m/it/12 设 $[] [] [][][
+][][] [][][] [][] [] [][][] [][][] [] [] [][] [][] [] [] []$
+ []
+
+
+Overfull \hbox (78.62271pt too wide) detected at line 595
+[]
+ []
+
+
+Overfull \hbox (12.0pt too wide) in paragraph at lines 595--595
+[] 
+ []
+
+
+Overfull \hbox (21.89775pt too wide) detected at line 599
+[][][][] [] [][][][][] [] [] [] [] [] [] [] []
+ []
+
+
+
+[67]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 609.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 612.
+
+Overfull \hbox (88.47824pt too wide) detected at line 616
+[][][][] [] [][][][] [] [] [][] [][] [] [][] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 627.
+
+
+[68]
+Package mdframed Info: Not enough space on this page on input line 628.
+
+Overfull \hbox (45.69998pt too wide) detected at line 659
+[] [] [][] [][][][][][][][][][][][][][][][][]  [] [] [][] [][][][][][][][][][][
+][][][][][]
+ []
+
+
+
+[69]
+Overfull \hbox (67.57489pt too wide) detected at line 702
+[][] [][][][] [][] [] [][] [][][][] [][] [] [][] [] [][][][][][][][][][] [][] [
+] [] [][][][][] [][] [][][][][] [][]
+ []
+
+
+
+[70]
+Overfull \hbox (51.90779pt too wide) detected at line 740
+[][] [][][][] [][] [] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 748.
+
+
+[71]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 783.
+
+Overfull \hbox (29.17665pt too wide) detected at line 796
+[][][][] [] [][][][][] [] [][][][][] [] [][][][][][][][] [] [][][][][]  []  [][
+][][] [] [][][][][] [] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 800.
+
+Overfull \hbox (19.29826pt too wide) detected at line 812
+[][][][][][] [] [] [][][][][][] [] [] [][][][][][][][]  []  [][][][] [] [] [][]
+[][]
+ []
+
+
+
+[72]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 817.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 819.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 838.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 840.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 850.
+
+Overfull \hbox (3.2601pt too wide) in paragraph at lines 850--851
+[]\TU/lmr/bx/n/12 Exercise 2.5 []\TU/LXGWWenKaiGB(0)/m/n/12 已 知 $[][][][] [] []
+[] [][][][] [] [][] [][][][][] [] [][][] [][][][] []
+ []
+
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 852.
+
+
+[73]
+Package mdframed Info: Not enough space on this page on input line 872.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 875.
+Package marginnote Info: Margin note 78.1 is on absolute page 78 on input line 
+875.
+Package marginnote Info: right page because not two side mode on input line 875
+.
+Package marginnote Info: xpos seems to be 147.23048pt on input line 875.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 879.
+Package marginnote Info: Margin note 78.2 is on absolute page 78 on input line 
+882.
+Package marginnote Info: right page because not two side mode on input line 882
+.
+Package marginnote Info: xpos seems to be 229.81743pt on input line 882.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 889.
+Package marginnote Info: Margin note 78.3 is on absolute page 78 on input line 
+889.
+Package marginnote Info: right page because not two side mode on input line 889
+.
+Package marginnote Info: xpos seems to be 147.5087pt on input line 889.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 895.
+
+
+[74]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 907.
+Package marginnote Info: Margin note 79.1 is on absolute page 79 on input line 
+907.
+Package marginnote Info: right page because not two side mode on input line 907
+.
+Package marginnote Info: xpos seems to be 147.23048pt on input line 907.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 916.
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 921.
+Package marginnote Info: Margin note 79.2 is on absolute page 79 on input line 
+921.
+Package marginnote Info: right page because not two side mode on input line 921
+.
+Package marginnote Info: xpos seems to be 147.74817pt on input line 921.
+
+Overfull \hbox (103.74364pt too wide) detected at line 951
+[][] [] [] []  [][] [] [] []  [][] [] [] []  [][] [] []
+ []
+
+
+
+[75]
+
+[76])
+
+[77
+
+]
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: xetex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(70.56247pt, 456.37979pt, 70.56247pt)
+* v-part:(T,H,B)=(77.96011pt, 689.12218pt, 77.96011pt)
+* \paperwidth=597.50473pt
+* \paperheight=845.0424pt
+* \textwidth=456.37979pt
+* \textheight=689.12218pt
+* \oddsidemargin=-1.70752pt
+* \evensidemargin=-1.70752pt
+* \topmargin=-43.73274pt
+* \headheight=18.125pt
+* \headsep=31.29787pt
+* \topskip=12.0pt
+* \footskip=50.75pt
+* \marginparwidth=0.0pt
+* \marginparsep=0.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+
+Package glossaries Warning: No \printglossary or \printglossaries found. 
+(Remove \makeglossaries if you don't want any glossaries.) 
+This document will not have a glossary.
+
+(大二上学期.aux)
+ ***********
+LaTeX2e <2024-11-01> patch level 2
+L3 programming layer <2020/04/10>
+ ***********
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                大二上学期
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to '大二上学期.run.xml'.
+\openout1 = `大二上学期.run.xml'.
+
+ )
+(\end occurred when \ifx on line 17 was incomplete) 
+Here is how much of TeX's memory you used:
+ 69069 strings out of 408640
+ 1469263 string characters out of 5752043
+ 2959861 words of memory out of 5000000
+ 91096 multiletter control sequences out of 15000+600000
+ 573923 words of font info for 199 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 128i,20n,159p,10935b,4535s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on 大二上学期.pdf (81 pages).

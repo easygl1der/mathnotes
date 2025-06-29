@@ -1,0 +1,85 @@
+\section{实数系统}
+
+\subsection{整数、有理数及无理数}
+
+第一节介绍正整数（自然数）集合 $\mathbb{N}$ 具有的两个重要的性质，这两个性质还是等价的。它们分别是良序原理（任意非空正整数集有最小数）和数学归纳法原理（若正整数集 $P$ 含有 1 且若 $n\in P$ 则 $n+1\in P$ 那么 $P=\mathbb{N}$.）
+
+\begin{proposition}
+1 是最小的正整数
+\end{proposition}
+\begin{proposition}
+数学归纳法原理和良序原理是等价的
+\end{proposition}
+这个证明比较繁琐
+接下来是一个应用
+
+\begin{proposition}
+大于 1 的整数要么是素数，要么在不计次序的情况下可以唯一分解为素数的乘积
+\end{proposition}
+若合数 $n$ 不能写成素数乘积，不妨设 $n$ 是最小的这样的合数（由良序原理），由于 $n$ 是合数，就可以写作 $n=ab$ 其中 $1<a,b<n$. 于是 $a, b$ 要么是素数，要么是素数的乘积（因为 $n$ 是最小的不能写成素数乘积的合数），故 $n$ 也是素数乘积，故矛盾！
+
+其次证明唯一性：若存在合数 $Q$，它的因子分解不是唯一的，$Q=p_1p_2\dots p_k=q_1q_2\dots q_j$，不妨设 $Q$ 是最小的这样的数（由良序原理）显然所有的 $p$ 都和 $q$ 互异，否则可以消去，这与 $Q$ 的最小性矛盾。不妨设 $p_1\leq p_2\leq\dots\leq p_k,q_1\leq q_2\leq\dots\leq q_j$，不妨设 $p_1<q_1$，考虑 $P=(q_1-p_1)q_2q_3\dots q_j$，显然 $P=Q-p_1q_2\dots q_j\equiv0(\mathrm{mod}\ p)$，将 $q_1-p_1$ 写成素数乘积 $q_1-p_1=r_1\dots r_{s}$，于是 $Q-P=r_1\dots r_{s}q_2\dots q_j$，同时 $Q-P=p_1t_1\dots t_{l}$，这是不同的分解，因为前者中没有 $p_1$，于是 $Q-P$ 取代 $Q$ 成为最小的因子分解不唯一的合数，矛盾！
+
+\begin{proposition}
+没有最大的素数
+\end{proposition}
+若 $\{ p_1,\dots,p_k \}$ 是前面所有的素数，那么 $n=p_1\dots p_k+1$ 又是一个素数。
+
+\begin{proposition}
+若 $p$ 是素数，那么 $\sqrt{ p }$ 是无理数
+\end{proposition}
+若 $\sqrt{ p }=\frac{m}{n}$ 则 $p=\frac{m^{2}}{n^{2}}$，即 $pn^{2}=m^{2}$，那么左边有奇数个素因子，右边有偶数个，矛盾！
+
+\begin{proposition}
+对于非平方自然数 $k$，$U\coloneqq \{ q\in \mathbb{Q}:q^{2}>k \}$，$L=Q\setminus U$，那么 $U$ 没有最小数，$L$ 没有最大数
+\end{proposition}
+\subsection{Dedekind 分割}
+
+\begin{definition}[分割]
+基本定义 有理数的一个集合 $\alpha$ 叫做一个分割，倘若
+（i）$\alpha$ 至少含有一个有理数，但不含有所有有理数；
+（ii）若 $p \in \alpha$ 及 $q<p$ ，其中 $q$ 为有理数，则 $q \in \alpha$ ；
+（iii）$\alpha$ 不含最大的有理数．
+\end{definition}
+\begin{proposition}
+若 $p\in\alpha, q\in \mathbb{Q},p\not\in\alpha$ 则 $q>p$
+\end{proposition}
+$\alpha$ 中的元素称为 $\alpha$ 的\textbf{下数}，不在 $\alpha$ 的有理数称为 $\alpha$ 的\textbf{上数}，上数集记作 $\alpha'$.
+
+\begin{proposition}
+对于 $\alpha\in \mathbb{Q}$，$\alpha\coloneqq \{ p\in \mathbb{Q} :p<r\}$，那么 $\alpha$ 是一个分割. 且 $r$ 是 $\alpha$ 的最小上数.
+\end{proposition}
+上述分割叫做一个\textbf{有理分割}，若 $\alpha$ 是由此从 $r$ 做出的有理分割，则记作 $\alpha=r^{*}$.
+
+\begin{definition}[分割之间的序关系]
+若 $p\in\alpha\Rightarrow p\in \beta$ 且 $p\in\beta\Rightarrow p\in\alpha$，那么 $\alpha=\beta$. 类似定义 $\alpha\leq\beta$. 简单验证可知这是序关系.
+\end{definition}
+\begin{proposition}
+$\gamma=\{ r\in \mathbb{Q}: r=p+q,p\in\alpha,q\in\beta \}$，则 $\gamma$ 是分割，记作 $\gamma=\alpha+\beta$.
+\end{proposition}
+\begin{proposition}
+若 $a, b\in \mathbb{Q}_{>0}$，则存在 $n\in \mathbb{N}$，使得 $na>b$.
+\end{proposition}
+定义 $-\alpha\coloneqq\{ -p\in \mathbb{Q}:p\text{是}\alpha\text{的真上数} \}$ 是一个分割. $\alpha$ 的真上数指的是 $\alpha'$ 中的非最小数.
+
+\begin{proposition}
+若 $\alpha,\beta$ 是分割，则存在唯一 $\gamma$ 使得 $\alpha+\gamma=\beta$. 记作 $\gamma=\beta-\alpha$.
+\end{proposition}
+置 $\gamma=\beta+(-\alpha)$，则 $\alpha+\gamma=\beta$，若 $\delta$ 使得 $\alpha+\delta=\beta$，那么 $\delta=0^{*}+\delta=(-\alpha+\alpha)+\delta=-\alpha+(\alpha+\delta)=(-\alpha)+\beta=\gamma$.
+
+\begin{proposition}
+$\alpha\geq0^{*},\beta\geq0^{*}$，$\gamma\coloneqq \{ r\in \mathbb{Q}_{<0} \}\cup \{ r\in \mathbb{Q}:r=pq,p\in \alpha,q\in\beta,p,q\geq0 \}$ 是一个分割，记作 $\gamma=\alpha\beta$.
+\end{proposition}
+\begin{definition}[分割的绝对值]
+若 $\alpha\geq0^{*}$ 则 $\lvert \alpha \rvert=\alpha$；若 $\alpha<0^{*}$ 则 $\lvert \alpha \rvert=-\alpha$.
+\end{definition}
+若 $\alpha<0^{*},\beta\geq0^{*}$ 或 $\alpha\geq0^{*},\beta<0^{*}$ 那么 $\alpha\beta=-(\lvert \alpha \rvert \lvert \beta \rvert)$，否则 $\alpha\beta=\lvert \alpha \rvert \lvert \beta \rvert$.
+
+\begin{proposition}
+对于 $\alpha>0^{*}$，$\gamma=\{ r\leq0 \}\cup \left\{  r>0:\frac{1}{r}\text{是}\alpha \text{的真上数} \right\}$ 是一个分割，且 $\gamma>0^{*}$. 记作 $\alpha ^{-1}$ 或 $\frac{1}{\alpha}$.
+\end{proposition}
+若 $\alpha<0^{*}$，那么 $\alpha ^{-1}\coloneqq-(-\alpha)^{-1}$
+
+\begin{proposition}
+对于任意分割 $\alpha>0^{*}$，存在唯一分割 $\beta$ 满足 $\alpha\beta=1^{*}=\beta\alpha$.
+\end{proposition}

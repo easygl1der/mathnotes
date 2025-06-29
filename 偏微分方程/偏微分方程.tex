@@ -1,0 +1,786 @@
+\documentclass{mynote}
+
+
+\begin{document}
+
+\pagenumbering{Roman} % 设置页码格式为罗马数字
+\setcounter{page}{1} % 将页码计数器设置为1
+\tableofcontents % 生成目录
+\newpage % 插入新页
+\setcounter{page}{1} % 将页码计数器重置为1
+\pagenumbering{arabic} % 设置页码格式为阿拉伯数字
+
+
+\chapter{偏微分方程}
+
+\section{记号说明}
+对于$u(x)=u(x_1,x_2,\cdots,x_n)$，我们定义：
+
+\textbf{梯度}：
+\[
+    Du=\nabla u=\left(\partial_{1} u, \partial_{2} u, \cdots, \partial_{n} u\right)
+\]
+\textbf{Hessian矩阵}：
+\[
+    D^2u=\begin{pmatrix}
+        \partial_{11} u & \partial_{12} u & \cdots & \partial_{1n} u \\
+        \partial_{21} u & \partial_{22} u & \cdots & \partial_{2n} u \\
+        \vdots & \vdots & \ddots & \vdots \\
+        \partial_{n1} u & \partial_{n2} u & \cdots & \partial_{nn} u
+    \end{pmatrix}
+\]
+设$\boldsymbol{F}=(F_1,F_2,\cdots,F_n):\Omega\to \mathbb{R}^n$，则$\boldsymbol{F}$的\textbf{散度}为
+\[
+    \operatorname{div} \boldsymbol{F}=\sum_{i=1}^n \partial_{i} F_i
+\]
+于是
+\[
+    \Delta u=\operatorname{div} Du=\mathrm{tr}(D^2u)
+\]
+
+\section{基础公式}
+\begin{theorem}{Gauss-Green公式}
+    假设 $\Omega$ 是 $\mathbf{R}^n$ 中的一个有界开集，且 $\partial \Omega \in C^1$ ．如果 $\boldsymbol{F}=\left(F_1, F_2, \cdots, F_n\right): \bar{\Omega} \rightarrow \mathbf{R}^n$ 属于 $C^1(\Omega) \cap C(\bar{\Omega})$ ，则
+    \begin{equation}\label{Gauss-Green}
+        \int_{\Omega} \operatorname{div} \boldsymbol{F} \mathrm{d} x=\int_{\partial \Omega} \boldsymbol{F} \cdot \boldsymbol{n} \mathrm{d} S(x),
+    \end{equation}
+    其中 $\boldsymbol{n}$ 为 $\partial \Omega$ 的单位外法向量．
+\end{theorem}
+
+\begin{corollary}
+    \begin{enumerate}
+        \item 如果 $u, v \in C^1(\Omega) \cap C(\bar{\Omega})$ ，则
+        \begin{equation}
+        \int_{\Omega} \partial_i u \cdot v \mathrm{~d} x=-\int_{\Omega} u\cdot \partial_i v \mathrm{~d} x+\int_{\partial \Omega} u v n_i \mathrm{~d} S(x),
+        \label{eq:integration_by_parts_1}
+        \end{equation}
+        其中 $n_i$ 是 $\partial \Omega$ 的单位外法向量 $\boldsymbol{n}$ 的第 $i$ 个分量；
+        \item 如果 $u \in C^2(\Omega) \cap C^1(\bar{\Omega})$ ，则
+        \begin{equation}
+        \int_{\Omega} \Delta u \mathrm{~d} x=\int_{\partial \Omega} \frac{\partial u}{\partial \boldsymbol{n}} \mathrm{~d} S(x) ;
+        \label{eq:integration_by_parts_2}
+        \end{equation}
+        \item 如果 $u \in C^1(\Omega) \cap C(\bar{\Omega}), v \in C^2(\Omega) \cap C^1(\bar{\Omega})$ ，则
+        \begin{equation}
+        \int_{\Omega} D u \cdot D v \mathrm{~d} x=-\int_{\Omega} u \Delta v \mathrm{~d} x+\int_{\partial \Omega} u \frac{\partial v}{\partial \boldsymbol{n}} \mathrm{~d} S(x)
+        \label{eq:integration_by_parts_3}
+        \end{equation}
+        \item 如果 $u, v \in C^2(\Omega) \cap C^1(\bar{\Omega})$ ，则
+        如果 $u, v \in C^2(\Omega) \cap C^1(\bar{\Omega})$ ，则
+        \begin{equation}
+        \int_{\Omega}(u \Delta v-v \Delta u) \mathrm{d} x=\int_{\partial \Omega}\left(u \frac{\partial v}{\partial \boldsymbol{n}}-v \frac{\partial u}{\partial \boldsymbol{n}}\right) \mathrm{d} S(x)
+        \label{eq:integration_by_parts_4}
+        \end{equation}
+    \end{enumerate}
+\end{corollary}
+
+\begin{proof}
+    \begin{enumerate}
+        \item 取$\boldsymbol{F}=(0,\cdots,0,uv,0,\cdots,0)$，代入公式\ref{Gauss-Green}即可
+        \item 取$\boldsymbol{F}=Du$，代入公式\ref{Gauss-Green}即可
+        \item 取$\boldsymbol{F}=u\cdot Dv$，注意到
+        \[
+            \operatorname{div}(u\cdot Dv)=\operatorname{div}(\cdots,u\cdot \partial_i v,\cdots)=\sum_{i=1}^n \partial_i (u\cdot \partial_i v)=\sum_{i=1}^n (\partial_i u\partial_i v+u\cdot \partial_i^2 v)=Du\cdot Dv+u\Delta v
+        \]
+        代入公式\ref{Gauss-Green}即可。
+        \item 取$\boldsymbol{F}=(\cdots,u\cdot \partial_i v-v\cdot \partial_i u,\cdots)$，代入公式\ref{Gauss-Green}即可。
+    \end{enumerate}
+\end{proof}
+
+利用分部积分的思想：
+\begin{equation}\label{eq:integration_by_parts_5}
+    \int_{\Omega}u \Delta u \mathrm{d} x=\sum_{i=1}^n\int_{\Omega} u\cdot \partial_i^2 u \mathrm{d} x=-\sum_{i=1}^n \int_{\Omega}(\partial_i u)^2\mathrm{d} x=-\int_{\Omega}|Du|^2\mathrm{d} x
+\end{equation}
+\section{调和函数}
+
+\begin{theorem}{平均值公式}\label{average_value_formula}
+    假设 $u \in C^2(\Omega)$ 是 $\Omega$ 上的调和函数，则对于任意的球 $B(x, r) \subset \Omega$ ，有
+
+$$
+u(x)=\dashint_{\partial B(x, r)} u(y) \mathrm{d} S(y)=\dashint_{B(x, r)} u(y) \mathrm{d} y,
+$$
+其中积分符号 $\dashint$ 表示求平均值，即
+$$
+\begin{aligned}
+\dashint_{\partial B(x, r)} u(y) \mathrm{d} S(y) & =\frac{1}{n \alpha(n) r^{n-1}} \int_{\partial B(x, r)} u(y) \mathrm{d} S(y), \\
+\dashint_{B(x, r)} u(y) \mathrm{d} y & =\frac{1}{\alpha(n) r^n} \int_{B(x, r)} u(y) \mathrm{d} y,
+\end{aligned}
+$$
+这里$\alpha(n)=\frac{2\pi^{n/2}}{n \Gamma(n/2)}$是$n$维球的体积。
+\end{theorem}
+\begin{proof}
+    注意到
+    \[
+        u(x)=\lim_{r\to 0}\dashint_{\partial B(x, r)} u(y) \mathrm{d} S(y)\overset{\text{why？}}{=}\dashint_{\partial B(x, r)} u(y) \mathrm{d} S(y)
+    \]
+    以及
+    \[
+        \int_{B(x,r)}u(y)dy=\int_0^r\int_{\partial B(x,t)}u(y)dS(y)dt
+    \]
+\end{proof}
+上述证明中的一个核心技巧就是，记
+\[
+    \phi(r)=\dashint_{\partial B(x, r)} u(y) \mathrm{d} S(y)=\dashint_{\partial B(0, 1)} u(x+rz) \mathrm{d} S(z)
+\]
+其中任意给定$x\in\Omega,B(x,r)\subset\Omega$，于是
+\begin{align*}
+    \phi'(r)&=\partial_r\dashint_{\partial B(0, 1)} u(x+rz) \mathrm{d} S(z)\\
+    &=\dashint_{\partial B(0, 1)} \partial_r u(x+rz) \mathrm{d} S(z)\qquad r\text{存在于每个分量上}\\
+    &=\dashint_{\partial B(0, 1)}  Du(x+rz) \cdot z \mathrm{d} S(z)\\
+    &=\dashint_{\partial B(x, r)}  Du(y) \cdot \frac{y-x}{r} \mathrm{d} S(y)\\
+    &=\dashint_{\partial B(x, r)}  Du(y) \cdot \vec{\boldsymbol{n}} \mathrm{d} S(y)\\
+    &=\dashint_{\partial B(x, r)}  \frac{\partial u}{\partial \boldsymbol{n}} \mathrm{d} S(y)\\
+    &=\frac{r}{n}\dashint_{B(x,r)} \Delta u(y) \mathrm{d} y=0
+\end{align*}
+由$u(x)$的连续性，$\phi(r)$在$r=0$处连续，因此$\phi(r)=\lim_{t\to 0}\phi(t)=u(x)$.
+
+\begin{theorem}\label{harmonic_function_theorem}
+    假设 $u \in C^2(\Omega)$ 满足，对于任意 $B(x, r) \subset \Omega$ ，
+$$
+u(x)=\dashint_{\partial B(x, r)} u(y) \mathrm{d} S(y)
+$$
+则 $u$ 是调和函数．
+\end{theorem}
+
+\begin{theorem}{Harnack 不等式}\label{Harnack_inequality}
+    假设 $u$ 是半径为 $R$ 的球 $B_R$ 上的任意非负调和函数，则对任意 $r \in(0, R)$ ，成立不等式
+$$
+\sup _{B_r} u \leq\left(\frac{R+r}{R-r}\right)^n \inf _{B_r} u,
+$$
+其中 $B_r$ 是以 $r$ 为半径，与 $B_R$ 同心的球．
+\end{theorem}
+
+\begin{theorem}{弱极值原理}\label{weak_maximum_principle}
+    若调和函数 $u$ 在 $\bar{\Omega}$ 上连续，则 $\max _{\bar{\Omega}} u=\max _{\partial \Omega} u$ 。
+\end{theorem}
+\begin{proof}
+    令 $w=u+\varepsilon e^{x_1}$ ，易见
+    \begin{enumerate}
+        \item $w>u$ ，因而有 $\max _{\bar{\Omega}} u \leq \max _{\bar{\Omega}} w$ 。
+        \item $\Delta w=\varepsilon e^{x_1}>0, ~ w$ 的最大值只可能在边界上达到，因而有 $\max _{\bar{\Omega}} w=\max _{\partial \Omega} w$ 。
+        \item $\max _{\partial \Omega} w \leq \max _{\partial \Omega} u+\max _{\partial \Omega} \varepsilon e^{x_1}=\max _{\partial \Omega} u+\varepsilon \max _{\partial \Omega} e^{x_1}$
+    \end{enumerate}
+    综合上面三点观察，就得到不等式 $\max _{\bar{\Omega}} u \leq \max _{\partial \Omega} u+\varepsilon \max _{\partial \Omega} e^{x_1}$ 。
+
+    令 $\varepsilon \rightarrow 0$ 就有 $\max _{\bar{\Omega}} u \leq \max _{\partial \Omega} u$ ，但是 $\partial \Omega \subset \bar{\Omega}$ ，又应该有 $\max _{\partial \Omega} u \leq \max _{\bar{\Omega}} u$ ，所以必须有 $\max _{\bar{\Omega}} u=\max _{\partial \Omega} u$ ，这就证明了结论。
+\end{proof}
+\begin{theorem}{强极值原理}\label{strong_maximum_principle}
+    假设 $\Omega$ 是 $\mathbf{R}^n$ 上的有界开集，$u \in$ $C^2(\Omega) \cap C(\bar{\Omega})$ 是 $\Omega$ 上的调和函数，则
+    \begin{enumerate}
+        \item\label{strong_maximum_principle_1} $u(x)$ 在 $\bar{\Omega}$ 上的最大（小）值一定在边界 $\partial \Omega$ 上达到，即
+            $$
+            \max _{\bar{\Omega}} u=\max _{\partial \Omega} u
+            $$
+        \item\label{strong_maximum_principle_2} 如果 $\Omega$ 是连通的，且存在 $x_0 \in \Omega$ 使得调和函数 $u(x)$ 在 $x_0$点达到 $u(x)$ 在 $\bar{\Omega}$ 上的最大（小）值，则 $u$ 在 $\bar{\Omega}$ 上是常数．
+    \end{enumerate}
+\end{theorem}
+
+强极值原理\ref{strong_maximum_principle}的一个应用是:
+
+对于Dirichlet问题
+\begin{equation}\label{Dirichlet_problem}
+    \begin{cases}
+        -\Delta u=f, & x\in \Omega\\
+        u|_{\partial \Omega}=g, & x\in \partial \Omega
+    \end{cases}
+\end{equation}
+其中$\Omega$是$\mathbb{R}^n$中的有界开集，$g\in C(\partial \Omega),f\in C(\Omega)$，则问题\ref{Dirichlet_problem}的解是唯一的。
+
+这是因为如果存在两个解$u_1,u_2$，则$w=u_1-u_2$是调和函数，满足
+\[
+    \begin{cases}
+        -\Delta w=0, & x\in \Omega\\
+        w|_{\partial \Omega}=0, & x\in \partial \Omega
+    \end{cases}
+\]  
+根据强极值原理，对于$x\in \Omega$，$w(x)\le 0$. 注意到$-w$满足同样的初值问题，于是对于$x\in \Omega$，$w(x)\ge 0$. 因此$w\equiv 0$，即$u_1\equiv u_2$.
+
+\begin{theorem}\label{Cauchy_estimate}
+    假设 $u$ 是 $\Omega$ 上的调和函数，则对于任意球 $B(x, r) \subset$ $\Omega$ ，任意阶数为 $k$ 的多重指标 $\alpha$ ，估计\footnote{类似复变函数中的Cauchy估计}
+$$
+\left|D^\alpha u(x)\right| \leq \frac{C_k}{r^{n+k}} \int_{B(x, r)}|u(y)| \mathrm{d} y
+$$
+成立，其中
+$$
+C_0=\frac{1}{\alpha(n)}, \quad C_k=\frac{(n+k)^{n+k}(n+1)^k}{\alpha(n)(n+1)^{n+1}} \quad(k=1,2, \cdots) .
+$$
+\end{theorem}
+作为推论，我们有(这跟复变函数中定理发展络如出一辙)
+\begin{theorem}{Liouville定理}
+    假设 $u$ 是 $\mathbb{R}^n$ 上的调和函数，则 $u$ 必为常数函数。
+\end{theorem}
+\begin{proof}
+    设 $|u| \leq M$ ．固定 $x \in \mathbf{R}^n$ ．对任意 $r>0$ ，在球 $B(x, r)$ 上利用定理\ref{Cauchy_estimate}当 $k=1$ 时的结论，则
+$$
+|D u(x)| \leq \frac{n C_1}{r^{n+1}} \int_{B(x, r)}|u(y)| \mathrm{d} y \leq \frac{n C_1 \alpha(n)}{r} M .
+$$
+令 $r \rightarrow+\infty$ ，我们有
+$$
+D u(x) \equiv 0, \quad x \in \mathbf{R}^n .
+$$
+因此 $u$ 是常数．
+\end{proof}
+更强的，使用Harnack不等式，定理\ref{Cauchy_estimate}只需要函数$u$有上界或下界即可.
+\begin{theorem}
+    假设 $u$ 是 $\Omega$ 上的调和函数，则 $u$ 是 $\Omega$ 上的解析函数．
+\end{theorem}
+\begin{theorem}
+    假设 $u$ 是 $\mathbf{R}^n$ 的单位球 $B_1$ 上的调和函数，则
+$$
+H(r)=\int_{\partial B_r} u^2 \mathrm{~d} S, \quad D(r)=r^2 \int_{B r}|\nabla u|^2 \mathrm{~d} y
+$$
+是 $r$ 的单调递增函数，其中 $B_r$ 是与 $B_1$ 同心，以 $r$ 为半径的球．
+\end{theorem}
+\begin{proof}
+    直接暴力求导!(过于暴力)
+\end{proof}
+
+\section{基本解与Green函数}
+
+\begin{proposition}
+    如果一个在$\mathbb{R}^n$上的调和函数是径向对称的，则它必为常数函数。
+\end{proposition}
+假设$u(x)=v(r)$，其中$r=|x|$，则
+\[
+    0=\Delta u =v''(r)+\frac{n-1}{r}v'(r)
+\]
+求解这个微分方程得到
+\[
+    v(r)=\left\{\begin{array}{cl}
+        b \ln r+c, & n=2 \\
+        \frac{b}{r^{n-2}}+c, & n \geq 3
+        \end{array}\right.
+\]
+但当$b\ne 0,r=0$时，$v(r)$在原点无定义。也就是Laplace方程在\textbf{全空间}没有径向对称的解。
+
+尽管如此，由于$v(r)$仅仅在$r=0$时不满足调和性，我们称$v(r)$为\textbf{基本解}。
+\begin{definition}
+    对于$x\in \mathbb{R}^n$，如果$u(x)$满足
+    \[
+        \Gamma(x)= \begin{cases}-\frac{1}{2 \pi} \ln |x|, & n=2, \\ \frac{1}{n(n-2) \alpha(n)|x|^{n-2}}, & n \geq 3\end{cases}
+    \]
+    则称$\Gamma(x)$为\textbf{基本解}。
+\end{definition}
+关于$\Gamma(x)$的系数选取，我们注意到：对于$x\ne 0$
+\[
+    |D \Gamma(x)| \leq \frac{C}{|x|^{n-1}}, \quad\left|D^2 \Gamma(x)\right| \leq \frac{C}{|x|^n}
+\]
+其中$C=C(n)$是仅依赖于$n$的常数。
+\begin{theorem}
+    假设 $f(x) \in C_0^2\left(\mathbf{R}^n\right)$ ，则
+$$
+u(x)=(\Gamma*f)(x)+C=\int_{\mathbf{R}^n} \Gamma(x-y) f(y) \mathrm{d} y+C
+$$
+是位势方程$-\Delta u=f$在全空间 $\mathbf{R}^n$ 上所有的有界解．
+\end{theorem}
+
+我还是没有理解Green函数的定义...
+
+\section{极值原理和最大模估计}
+我们讨论更一般的方程：
+\begin{equation}\label{eq:general_equation}
+    \cal{L}u=-\Delta u+c(x)u=f(x),\quad x\in \Omega
+\end{equation}
+$\Omega$都是$\mathbb{R}^n$中的有界开集. 假定$c(x)\ge 0$且$f(x)< 0$.
+
+方程\ref{eq:general_equation}的极值原理只需要把Laplace方程的极值原理中的\textit{最大值}换成\textit{非负最大值}即可.
+
+关于最大模估计，我们考虑位势方程的Dirichlet问题：
+\begin{equation}\label{eq:potential_equation}
+    \begin{cases}
+        \Delta u=f(x), & x\in \Omega\\
+        u|_{\partial \Omega}=g, & x\in \partial \Omega
+    \end{cases}
+\end{equation}
+若$u\in C^2(\Omega)\cap C(\bar{\Omega})$，则
+\[
+    \max_{\bar{\Omega}}|u|\le \max_{\partial \Omega}|g|+C\cdot \sup_{\Omega}|f|
+\]
+其中$C=C(n,\sup_{x,u\in \Omega}|x-y|)$.
+
+\section{能量模估计}
+
+考虑$n$维位势方程的Dirichlet问题：
+\begin{equation}\label{eq:potential_equation_2}
+    \begin{cases}
+        -\Delta u+c(x)u=f(x), & x\in \Omega\\
+        u|_{\partial \Omega}=0, & x\in \partial \Omega
+    \end{cases}
+\end{equation}
+利用Gauss-Green公式\ref{Gauss-Green}，我们有
+\begin{theorem}
+    假设 $c(x) \geq c_0>0, u \in C^2(\Omega) \cap C^1(\bar{\Omega})$ 是 Dirichlet问题\ref{eq:potential_equation_2}的解，则
+$$
+\int_{\Omega}|D u(x)|^2 \mathrm{~d} x+\frac{c_0}{2} \int_{\Omega}|u(x)|^2 \mathrm{~d} x \leq M \int_{\Omega}|f(x)|^2 \mathrm{~d} x,
+$$
+其中 $M$ 是仅依赖于 $c_0$ 的常数．
+\end{theorem}
+\begin{proof}
+    这是显然的，因为
+    \[
+        \underbrace{\int_{\Omega}|Du(x)|^2\mathrm{d}x}_{=\displaystyle \int_{\Omega}|Du|^2\mathrm{d}x}+\underbrace{\int_{\Omega}c(x)u^2\mathrm{d}x}_{\displaystyle \ge c_0\int_{\Omega}u^2\mathrm{d}x}=\int_{\Omega}fu\mathrm{d}x\overset{Cauchy\text{ 不等式}}\le \frac{c_0}{2} \int_{\Omega} u^2 \mathrm{~d} x+\frac{1}{2 c_0} \int_{\Omega} f^2 \mathrm{~d} x .
+    \]
+\end{proof}
+\begin{lemma}{Friedrichs不等式}\label{Friedrichs_inequality}
+    假设$u\in C^1_0(\Omega)$，则
+    \[
+        \int_{\Omega}|u(x)|^2\mathrm{d}x\le 4d^2\int_\Omega|Du(x)|^2\mathrm{d}x
+    \]
+    其中$d$是$\Omega$的直径。
+\end{lemma}
+该证明也利用了经典的思想.
+\begin{proof}
+    做一个边长为$2d$且平行于坐标轴的$n$维正方体含住$\Omega$，不妨设为
+    \[
+        Q=\{x(x_1,\cdots,_n)|0\le x_i\le 2d,i=1,\cdots,n\}
+    \]
+    令$\tilde{u}=u \mathbb{1}_{Q}\in C_0^1(Q)$，且
+    \[
+        \tilde{u}(x_1,...,x_n)=\int_0^{x_1}\partial_{1}\tilde{u}(\xi,x_2,...,x_n)\mathrm{d}\xi
+    \]
+    利用Schwarz不等式，我们有
+    \[
+        \tilde{u}^2(x) \leq x_1 \int_0^{x_1}\left|\partial_\xi \tilde{u}\left(\xi, x_2, \cdots, x_n\right)\right|^2 \mathrm{~d} \xi\leq 2 d \int_0^{2 d}\left|\partial_1 \tilde{u}\left(x_1, x_2, \cdots, x_n\right)\right|^2 \mathrm{~d} \xi .
+    \]
+    两端在$Q$上积分，得到
+    \[
+        \int_Q \tilde{u}^2(x) \mathrm{d} x \leq 4 d^2 \int_Q\left|\tilde{u}_{x_1}\right|^2 \mathrm{~d} x \leq 4 d^2 \int_Q\underbrace{\sum_{i=1}^n\left|\partial_i \tilde{u}\right|^2}_{=|D \tilde{u}|^2} \mathrm{~d} x
+    \]
+\end{proof}
+利用上述不等式，我们可以证明下面结论．
+\begin{theorem}
+    假设 $c(x) \geq 0$ ．如果 $u \in C^2(\Omega) \cap C^1(\bar{\Omega})$ 是问题\ref{eq:potential_equation_2}的解，则
+$$
+\int_{\Omega}|D u(x)|^2 \mathrm{~d} x+\int_{\Omega}|u(x)|^2 \mathrm{~d} x \leq M \int_{\Omega}|f(x)|^2 \mathrm{~d} x
+$$
+其中 $M$ 是仅依赖于 $\Omega$ 的直径的常数．
+\end{theorem}
+
+\section{练习}
+
+\begin{exercise}
+    利用推导Laplace方程的思想推导极小曲面方程.
+\end{exercise}
+极小曲面方程为
+\[
+    \operatorname{div}\left(\frac{D u}{\left(1+|D u|^2\right)^{1/2}}\right)=0
+\]
+给定$M_g=\{v\in C(\bar{\Omega}),v|_{\partial \Omega}=g\}$，求$u\in M_g$，使得$J(u)=\min_{v\in M_g}J(v)$，其中
+\[
+    J(v)=\iint_\Omega \sqrt{1+|Dv|^2}\mathrm{d}x
+\]
+对于任意的$\varphi\in C_0^1(\Omega)$，设$f(\varepsilon)=J(v+\varepsilon\varphi)$，我们想要$f(\varepsilon)\ge f(0)$，这意味着$f'(0)=0$.
+
+直接展开：
+\[
+    f'(\varepsilon)=\iint_\Omega \frac{1}{\sqrt{1+|D(v+\varepsilon\varphi)|^2}}(Dv\cdot D\varphi+2\varepsilon |D\varphi|^2)\mathrm{d}x
+\]
+于是
+\[
+    f'(0)=\iint_\Omega \frac{1}{\sqrt{1+|Dv|^2}}(Dv\cdot D\varphi)\mathrm{d}x=0
+\]
+由于$\varphi\in C_0^1(\Omega)$，所以$D\varphi|_{\partial \Omega}=0$，于是分部积分得到
+\[
+    \iint_\Omega \left(-\operatorname{div}\frac{Dv}{\sqrt{1+|Dv|^2}}\right)\varphi\mathrm{d}x=0
+\]
+由$\varphi$的任意性，我们得到
+\[
+    \operatorname{div}\frac{Dv}{\sqrt{1+|Dv|^2}}=0
+\]
+即$v$是极小曲面. 得到极小曲面方程.
+
+\begin{exercise}
+    构造 $\mathbb{R}^n$ 上所有二次调和多项式组成的线性空间．
+\end{exercise}
+对于一个$n$维二次多项式
+\[
+    P(x)=x^\top A x +b^\top x +c
+\]
+我们要求$P$是调和的，即$\Delta P=0$，这意味着
+\[
+    \mathrm{tr}(A)=0
+\]
+于是该线性空间为$n$维二次多项式空间：
+\[
+    \{P(x)=x^\top A x +b^\top x +c|\mathrm{tr}(A)=0\}
+\]
+\begin{exercise}
+    证明定理2.1
+\end{exercise}
+显然。
+\begin{exercise}\label{exercise:average_value_formula}
+    仿照平均值公式的的推导证明：当 $n \geq 3$ 时，对于第一边值问题
+$$
+\begin{cases}-\triangle u=f, & x \in B(0, r), \\ u=g, & x \in \partial B(0, r)\end{cases}
+$$
+在 $C^2(B(0, r)) \cap C^1(\bar{B}(0, r))$ 上的解 $u(x)$ ，成立
+$$
+\begin{aligned}
+u(0)= & \frac{1}{n \alpha(n) r^{n-1}} \int_{\partial B(0, r)} g(x) \mathrm{d} S(x) \\
+& +\frac{1}{n(n-2) \alpha(n)} \int_{B(0, r)}\left(\frac{1}{|x|^{n-2}}-\frac{1}{r^{n-2}}\right) f(x) \mathrm{d} x .
+\end{aligned}
+$$
+\end{exercise}
+记$\phi(x)=\dashint_{\partial B(0,r)}u(y)\mathrm{d}S(y)$，则
+\[
+    \phi'(r)=\frac{r}{n}\dashint_{B(0,r)}\Delta u(y)\mathrm{d}y=-\frac{1}{n\alpha(n)r^{n-1}}\int_{B(0,r)}f(y)\mathrm{d}y
+\]
+于是
+\begin{align*}
+    \phi(0) &= u(0)=\phi(r)-\int_0^r\phi'(t)\mathrm{d}t\\
+    &= \dashint_{\partial B(0,r)}u(y)\mathrm{d}S(y)+\int_0^r\frac{1}{n\alpha(n)t^{n-1}}\int_{B(0,t)}f(y)\mathrm{d}y\mathrm{d}t\\
+    & = \dashint_{\partial B(0,r)}g(y)\mathrm{d}S(y)+\frac{1}{\alpha(n)}\int_0^r\frac{1}{t^{n-1}}\int_{B(0,t)}f(y)\mathrm{d}y\mathrm{d}t\\
+    & = \dashint_{\partial B(0,r)}g(y)\mathrm{d}S(y)+\frac{1}{n\alpha(n)}\int_0^r\frac{1}{t^{n-1}}\int_0^t\int_{\partial B(0,\rho)}f(y)\mathrm{d}y\mathrm{d}\rho\mathrm{d}t\\
+    & \overset{\text{Fubini}}{=} \dashint_{\partial B(0,r)}g(y)\mathrm{d}S(y)+\frac{1}{n\alpha(n)}\int_0^r\int_\rho^r\frac{1}{t^{n-1}}\int_{\partial B(0,\rho)}f(y)\mathrm{d}y\mathrm{d}t\mathrm{d}\rho\\
+    & = \dashint_{\partial B(0,r)}g(y)\mathrm{d}S(y)+\frac{1}{n\alpha(n)}\int_0^r\frac{1}{n-2}\left(  \frac{1}{\rho^{n-2}}-\frac{1}{r^{n-2}} \right)\int_{\partial B(0,\rho)}f(y)\mathrm{d}y\mathrm{d}\rho\\
+    & = \dashint_{\partial B(0,r)}g(y)\mathrm{d}S(y)+\frac{1}{n(n-2)\alpha(n)}\int_{B(0,r)}\left(  \frac{1}{|x|^{n-2}}-\frac{1}{r^{n-2}} \right)f(x)\mathrm{d}x
+\end{align*}
+
+
+\begin{exercise}
+    仿照平均值公式的的推导证明：当 $n=2$ 时，对于第一边值问题
+$$
+\begin{cases}-\triangle u=f, & x \in B(0, r), \\ u=g, & x \in \partial B(0, r)=C(0, r)\end{cases}
+$$
+在 $C^2(B(0, r)) \cap C^1(\bar{B}(0, r))$ 的解 $u(x)$ ，成立
+$$
+\begin{aligned}
+u(0)= & \frac{1}{2 \pi r} \int_{C(0, r)} g(x) \mathrm{d} l \\
+& +\frac{1}{2 \pi} \int_{B(0, r)}(\ln r-\ln |x|) f(x) \mathrm{d} x,
+\end{aligned}
+$$
+其中 $\mathrm{d} l$ 为弧长微分．此时 $C(0, r)$ 是环绕圆盘 $B(0, r)$ 的圆周．
+\end{exercise}
+
+证明与习题\ref{exercise:average_value_formula}如出一辙，这里略去。
+
+\begin{exercise}
+    若 $v \in C^2(\Omega)$ 满足
+$$
+-\Delta v \leq 0, \quad x \in \Omega
+$$
+则称 $v$ 在 $\Omega$ 上是下调和的．
+\begin{enumerate}
+    \item 证明：对于任意球 $B(x, r) \subset \Omega$ ，成立
+$$
+v(x) \leq \int_{B(x, r)} v(y) \mathrm{d} y
+$$
+    \item 证明： $\max _{\bar{\Omega}} v(x)=\max _{\partial \Omega} v(x)$ ．
+    \item 设 $\phi: \mathbf{R} \rightarrow \mathbf{R}$ 是光滑凸函数，且 $u$ 是 $\Omega$ 上的调和函数．证明：$v=\phi(u)$ 是 $\Omega$ 上的下调和函数．
+    \item 设 $u$ 是 $\Omega$ 上的调和函数．证明：$v=|D u|^2$ 是 $\Omega$ 上的下调和函数．
+\end{enumerate}
+\end{exercise}
+
+\begin{enumerate}
+    \item 参考定理\ref{average_value_formula}的证明，记
+    \[
+        \phi(r)=\dashint_{B(x,r)}v(y)\mathrm{d}y,\quad \phi'(r)=\dashint_{B(x,r)}\Delta v(y)\mathrm{d}y\ge 0
+    \]
+    则
+    \[
+        v(x)=\phi(0)\le \phi(r)=\dashint_{B(x,r)}v(y)\mathrm{d}y
+    \]
+    \item 仿照定理\ref{weak_maximum_principle}的证明，令$w=v+\varepsilon e^{x_1}$，其中$\varepsilon>0$，则
+    \[
+        \Delta w=\Delta v+\varepsilon e^{x_1}\ge 0
+    \]
+    于是$w$的最大值只可能在边界上达到，即$\max_{\bar{\Omega}}w=\max_{\partial \Omega}w$，再由于$u\in C^2(\Omega)$，令$\varepsilon\to 0$，则有$\max_{\bar{\Omega}}v=\max_{\partial \Omega}v$。
+    \item 直接计算
+    \[
+        \Delta v(x)=\sum_{i=1}^n\partial_{i}^2v(x)=\sum_{i=1}^n\partial_{i}^2\phi(u(x))=\sum_{i=1}^n\phi''(u(x))(\partial_{i}u(x))^2+\phi'(u(x))\underbrace{\Delta u(x)}_{=0}\ge 0
+    \]
+    \item 直接计算
+    \[
+        v(x)=|Du|^2=\sum_{i=1}^n\left(\partial_{i}u(x)\right)^2
+    \]
+    于是
+    \[
+        \Delta v(x)=\sum_{i=1}^n\partial_{i}^2v(x)=2\sum_{i,j=1}^n(\partial_{ij}u)^2+2\sum_{i=1}^n\partial_i\underbrace{\sum_{j=1}^n\partial_j^2u}_{=\operatorname{div}(\Delta u)=0}=2\sum_{i,j=1}^n(\partial_{ij}u)^2\ge 0
+    \]
+\end{enumerate}
+\begin{exercise}{Harnack 定理}
+    假设 $\left\{u_n\right\} \subset C(\bar{\Omega}) \cap C^2(\Omega)$ 是 $\Omega$ 上的调和函数列．如果 $\left\{u_n\right\}$ 在 $\partial \Omega$ 上一致收敛，则 $\left\{u_n\right\}$ 在 $\bar{\Omega}$ 上一致收敛，且收敛于一个调和函数．（提示：利用极值原理和平均值公式）
+\end{exercise}
+已知$\forall n,\Delta u_n=0,\lim_{m,n\to \infty}\sup_{x\in\partial \Omega}|u_n(x)-u_m(x)|=0$，由于$u_n-u_m$也是调和函数，所以
+\[
+    \lim_{m,n\to \infty}\sup_{x\in\bar{\Omega}}|u_n(x)-u_m(x)|\le \lim_{m,n\to \infty}\sup_{x\in\partial \Omega}|u_n(x)-u_m(x)|=0
+\]
+即$\left\{u_n\right\}$在$\bar{\Omega}$上一致收敛．
+
+由平均值公式\ref{average_value_formula}，对于任意$B(x,r)\subset \Omega$，我们有
+\[
+    u_n(x)=\dashint_{\partial B(x,r)}u_n(y)\mathrm{d}S(y)
+\]
+由一致收敛性，两边令$n\to \infty$，得到
+\[
+    u(x)=\dashint_{\partial B(x,r)}u(y)\mathrm{d}S(y)
+\]
+根据定理\ref{harmonic_function_theorem}可知，$u$是调和函数．
+
+\begin{exercise}{Schwarz 反射定理}
+    记上半球
+$$
+B^{+}=\left\{x=\left(x_1, x_2, \cdots, x_n\right) \in B(0,1) \mid x_n>0\right\},
+$$
+假设 $u$ 是上半球 $B^{+}$上的调和函数且在边界 $\left\{x \in \partial B^{+} \mid x_n=0\right\}$ 上满足 $u=0$ ．令
+$$
+v(x)= \begin{cases}u\left(x_1, x_2, \cdots, x_n\right), & x_n \geq 0, \\ -u\left(x_1, x_2, \cdots,-x_n\right), & x_n<0 .\end{cases}
+$$
+证明：$v$ 是球 $B(0,1)$ 上的调和函数．（提示：利用平均值公式的推导）
+\end{exercise}
+
+显然.
+
+\begin{exercise}
+    设 $\Omega$ 是 $\mathbf{R}^n$ 的一个开集．如果原点 $0 \notin \Omega$ ，我们记 $x^*=\frac{x}{|x|^2}$ ， $\Omega^*=\left\{x^* \mid x \in \Omega\right\}$ ．假设 $u$ 是在 $\Omega$ 上的一个函数，并定义 $\Omega^*$ 上的函数 $K[u](x)=|x|^{2-n} u\left(x^*\right), x \in \Omega^*$ 为函数 $u$ 的 Kelvin 变换．证明： $u(x)$ 是 $\Omega$ 上的调和函数当且仅当 $K[u]$ 是 $\Omega^*$ 上的调和函数．
+\end{exercise}
+
+爆算$\Delta K[u]$.
+
+\begin{exercise}
+    设 $u(x)$ 是球 $B(0, R)$ 上的调和函数，且在 $\bar{B}(0, R)$ 上连续．又设
+$$
+M=\int_{B(0, R)} u^2(x) \mathrm{d} x
+$$
+试证：
+\begin{enumerate}   
+    \item $|u(0)| \leq\left[\frac{M}{\alpha(n) R^n}\right]^{\frac{1}{2}}$ ；
+    \item $|u(x)| \leq\left[\frac{M}{\alpha(n)(R-|x|)^n}\right]^{\frac{1}{2}}$ ．
+\end{enumerate}
+\end{exercise}
+\begin{enumerate}
+    \item 由平均值公式\ref{average_value_formula}，我们有
+    \begin{equation}\label{eq:u0}
+    u(0)=\dashint_{ B(0,R)}u(x)\mathrm{d}x=\frac{1}{\alpha(n)R^{n}}\int_{\partial B(0,R)}u(x)\mathrm{d}S(x)
+\end{equation}
+再利用Schwarz不等式，我们有
+\begin{equation}\label{eq:u0_2} 
+    \left( \int_{B(0,R)}u(x)\mathrm{d}x\right)^2\le \left( \int_{B(0,R)}1 \mathrm{d}x\right)\cdot \left( \int_{B(0,R)}u^2(x)\mathrm{d}x\right)=\frac{1}{\alpha(n)R^{n}}\left( \int_{B(0,R)}u^2(x)\mathrm{d}x\right)
+\end{equation}
+结合\ref{eq:u0}和\ref{eq:u0_2}，即可得证.
+    \item 类似的，平移再多一步放缩即可.
+\end{enumerate}
+
+\begin{exercise}
+    设 $u(x)$ 是单位球 $B=B(0,1)$ 上的有界调和函数．证明：
+$$
+\sup _{x \in B}(1-|x|)|D u(x)|<+\infty .
+$$
+（提示：利用周蜀林书上定理 2.7 的第一步证明）
+\end{exercise}
+
+已知
+\[
+    |\partial_i u(x)|\le \frac{n+1}{\alpha(n)r^{n+1}}\int_{B(x,r)}|u(y)|\mathrm{d}y\le \frac{n+1}{\alpha(n)r^{n+1}}\sup_{y\in B(x,r)}|u(y)|\cdot \alpha(n)r^{n}=\frac{n+1}{r}\sup_{y\in B(x,r)}|u(y)|
+\]
+对于任意给定的$x\in \mathring{B}$，令$r=1-|x|>0$，则
+\[
+    (1-|x|)|Du(x)|\le \sqrt{n}\cdot (n+1)\sup_{y\in B(x,r)}|u(y)|\le \sqrt{n}\cdot (n+1)\sup_{y\in B}|u(y)|
+\]
+由于$u$在$\bar{B}$上有界，所以
+\[
+    \sup_{x\in B}(1-|x|)|Du(x)|<+\infty
+\]
+\begin{exercise}
+    设 $u(x)$ 是球 $B\left(0, R_0\right)$ 上的调和函数，对于 $R \in (0, R_0]$ 记
+$$
+\omega(R)=\sup _{B(0, R)} u-\inf _{B(0, R)} u .
+$$
+\begin{enumerate}
+    \item 利用 Harnack 不等式证明：存在 $\eta \in(0,1)$ ，使得
+$$
+\omega\left(\frac{R}{2}\right) \leq \eta \omega(R)
+$$
+（提示：对调和函数 $w(x)=u(x)-\inf _{B(0, R)} u$ 在球 $B\left(0, \frac{R}{2}\right)$ 上利用 Harnack 不等式）
+\item 如果 $\sup _{B\left(0, R_0\right)}|u(x)| \leq M_0$ ，则存在常数 $\alpha \in(0,1), C>0$ ，使得
+$$
+\omega(R) \leq C\left(M_0+1\right)\left(\frac{R}{R_0}\right)^\alpha, \quad R \in(0, R_0]
+$$
+\end{enumerate}
+（提示：对任意 $R \in\left(0, R_0\right)$ ，一定存在一个正整数 $i \geq 1$ ，使得 $\frac{R_0}{2^i} \leq$ $\left.R<\frac{R_0}{2^{i-1}}\right)$
+
+\end{exercise}
+
+
+\begin{exercise}{推广的 Liouville 定理}
+    假设 $u$ 是 $\mathbf{R}^n$ 上的调和函数，且
+$$
+|u(x)| \leq C_1|x|^m+C_2, \quad x \in \mathbf{R}^n,
+$$
+其中 $m$ 是非负整数，$C_1, C_2$ 是非负常数，则 $u$ 必为一个次数至多为 $m$ 的调和多项式．（提示：只要证明 $D^{m+1} u(x) \equiv 0$ ）
+\end{exercise}
+
+\begin{exercise}
+    假设 $u \in C^2\left(\mathbf{R}^n\right)$ ．对于 $r>0$ ，定义   
+$$
+u_r(x)=\frac{1}{N \omega_n r^{n-1}} \int_{\partial B_{r(x)}} u(y) \mathrm{d} S(y)
+$$
+证明：
+$$
+\Delta u_r=(\Delta u)_r
+$$
+\end{exercise}
+
+\begin{exercise}
+    假设 $u$ 是 $B(0, R)$ 上的非负调和函数．
+    \begin{enumerate}
+        \item 利用 Poisson 公式（2．37）证明：
+$$
+R^{n-2} \frac{R-|x|}{(R+|x|)^{n-1}} u(0) \leq u(x) \leq R^{n-2} \frac{R+|x|}{(R-|x|)^{n-1}} u(0)
+$$
+        \item 证明定理 $2.4^{\prime}$ ．
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}    
+    利用上述不等式证明定理 $2.8^{\prime}$ ．
+\end{exercise}
+
+\begin{exercise}
+    证明：对于任意 $x=\left(x_1, x_2, \cdots, x_n\right) \in \mathbf{R}_{+}^n$ ，Poisson 核满足
+$$
+\int_{\mathbf{R}^{n-1}} K(x, y) \mathrm{d} y=1,
+$$
+其中
+$$
+\begin{gathered}
+y=\left(y_1, y_2, \cdots, y_{n-1}, 0\right) \in \partial \mathbf{R}_{+}^n=\mathbf{R}^{n-1} \\
+\mathrm{~d} y=\mathrm{d} y_1 \mathrm{~d} y_2 \cdots \mathrm{~d} y_{n-1}, \quad K(x, y)=\frac{2 x_n}{n \alpha(n)|y-x|^n}
+\end{gathered}
+$$
+\end{exercise}
+
+\begin{exercise}
+    求边值问题
+$$
+\left\{\begin{array}{l}
+-\triangle u=f(x, y), \quad(x, y) \in \Omega \\
+\left.u\right|_{\partial \Omega}=g(x, y)
+\end{array}\right.
+$$
+的 Green 函数，其中
+\begin{enumerate}
+    \item $\Omega$ 是上半平面；
+    \item $\Omega$ 是第一象限；
+    \item $\Omega$ 是带形区域 $\left\{(x, y) \in \mathbf{R}^2 \mid x \in \mathbf{R}, 0<y<l\right\}$ ，其中 $l$ 为正常数．
+\end{enumerate}
+\end{exercise}
+
+
+\begin{exercise}
+    记 $B^{+}(R)=\left\{x=\left(x_1, x_2, \cdots, x_n\right) \in \mathbf{R}^n\left|x_n>0,|x|<R\right\}\right.$ $(n \geq 2)$ ．求边值问题
+$$
+\left\{\begin{array}{l}
+-\triangle u=f(x), x \in B^{+}(R), \\
+\left.u\right|_{\partial B^{+}(R)}=g(x)
+\end{array}\right.
+$$
+的 Green 函数．（提示：分别考虑 $n=2$ 和 $n \geq 3$ 两种情形）
+\end{exercise}
+
+\begin{exercise}
+    证明：第二边值问题
+$$
+\begin{cases}u_{x x}+u_{y y}=0, & (x, y) \in B(0, R), \\ \left.\frac{\partial u}{\partial r}\right|_{r=R}=g(\theta), & \quad \theta \in[0,2 \pi]\end{cases}
+$$
+的解在边值 $g(\theta)$ 满足条件 $\int_0^{2 \pi} g(\theta) \mathrm{d} \theta=0$ 时可以表示成
+$$
+u(r, \theta)=-\frac{1}{2 \pi} \int_0^{2 \pi} g(\tau) \ln \left[R^2+r^2-2 R r \cos (\tau-\theta)\right] \mathrm{d} \tau+C,
+$$
+其中 $C$ 为任意常数．这里 $(r, \theta)$ 是点 $(x, y)$ 的极坐标．
+\end{exercise}
+
+
+\begin{exercise}
+    假设 $u(x) \in C(\bar{\Omega}) \cap C^2(\Omega)$ 是定解问题
+$$
+\left\{\begin{array}{l}
+-\Delta u+c(x) u=f(x), x \in \Omega, \\
+\left.u\right|_{\partial \Omega}=0
+\end{array}\right.
+$$
+的一个解．
+\begin{enumerate}
+    \item 如果 $c(x) \geq c_0>0$ ，则
+$$
+\max _{\bar{\Omega}}|u(x)| \leq \frac{1}{c_0} \sup _{\Omega}|f(x)| ;
+$$
+\item 如果 $c(x) \geq 0$ ，则
+$$
+\max _{\bar{\Omega}}|u(x)| \leq M \sup _{\Omega}|f(x)|,
+$$
+其中 $M$ 依赖于 $\Omega$ 的直径 $d$ ；(提示：不妨设原点 $0 \in \Omega$ ，并令 $u(x)=$ $w(x) v(x)=\left(d^2-x|^2+1\right) v(x)$ ，然后考虑 $v(x)$ 满足的方程，利用（1）的证明方法可得 $v(x)$ 的最大模估计，从而得到 $u(x)$ 的最大模估计)
+\item 如果 $c(x)<0$ ，试举反例说明上述最大模估计一般不成立．
+\end{enumerate}
+\end{exercise}
+
+
+\begin{exercise}
+    假设 $u(x) \in C(\bar{\Omega}) \cap C^2(\Omega)$ 是定解问题
+$$
+\left\{\begin{array}{l}
+-\Delta u=1, x \in \Omega, \\
+\left.u\right|_{\partial \Omega}=0
+\end{array}\right.
+$$
+的一个解．试证明：对于任意 $x_0 \in \Omega$ ，估计
+$$
+\frac{1}{2 n} \min _{x \in \partial \Omega}\left|x-x_0\right|^2 \leq u\left(x_0\right) \leq \frac{1}{2 n} \max _{x \in \partial \Omega}\left|x-x_0\right|^2
+$$
+成立，这里 $n$ 是空间的维数．
+\end{exercise}
+
+\begin{exercise}
+    假设 $u(x) \in C^1(\bar{\Omega}) \cap C^2(\Omega)$ 是定解问题
+$$
+\begin{cases}-\Delta u+c(x) u=f(x), & x \in \Omega \\ {\left.\left[\frac{\partial u}{\partial \boldsymbol{n}}+\alpha(x) u\right]\right|_{\Gamma_1}=g_1,} & \left.u\right|_{\Gamma_2}=g_2\end{cases}
+$$
+的一个解，其中 $\Gamma_1 \cup \Gamma_2=\partial \Omega, \Gamma_1 \cap \Gamma_2=\phi, \Gamma_2 \neq \phi$ ．
+\begin{enumerate}
+    \item 如果 $c(x) \geq c_0>0, \alpha(x) \geq \alpha_0>0$ ，则有估计
+$$
+\max _{\bar{\Omega}}|u(x)| \leq \max \left\{\frac{1}{c_0} \sup _{\Omega}|f(x)|, \frac{1}{\alpha_0} \max _{\Gamma_1}\left|g_1\right|, \max _{\Gamma_2}\left|g_2\right|\right\} .
+$$
+    \item 如果 $c(x) \geq 0, \alpha(x) \geq 0$ ，且 $\Gamma_1$ 满足内球条件，则上述问题的解是惟一的．这里 $\Gamma_1$ 满足内球条件是指对于任意 $x_0 \in \Gamma_1$ ，存在一个球 $B$ 使得 $B \subset \Omega, \Gamma_1 \cap \partial B=\left\{x_0\right\}$ ．（提示：令 $u(x)=w(x) v(x)$ ，其中 $w(x)$ 是待定的辅助函数．在球 $B$ 上我们考虑 $v(x)$ 满足的问题）
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    试用辅助函数
+$$
+w(x)=\mathrm{e}^{-a|x|^2}-\mathrm{e}^{-a R^2}
+$$
+证明 Hopf 引理，这里 $a>0, R$ 是球 $B_R$ 的半径．
+\end{exercise}
+
+\begin{exercise}
+    假设 $\Omega \subset \mathbf{R}^n$ 是一个有界开集，$u_i(x) \in C^2(\Omega) \cap C(\bar{\Omega})$ $(i=1,2)$ 满足定解问题
+$$
+\begin{cases}-\triangle u_i+c_i(x) u=0, & x \in \Omega, \\ u=g_i, & x \in \partial \Omega .\end{cases}
+$$
+如果 $c_2(x) \geq c_1(x) \geq 0, g_1(x) \geq g_2(x) \geq 0$ ，则
+$$
+u_1(x) \geq u_2(x)
+$$
+（提示：先证明 $u_i(x) \geq 0$ ，然后考虑 $w(x)=u_1(x)-u_2(x)$ 满足的定解问题）
+\end{exercise}
+
+
+\begin{exercise}
+    假设 $\Omega_0 \subset \mathbf{R}^n$ 是一个有界区域，$\Omega=\mathbf{R}^n \backslash \bar{\Omega}_0$ ．如果 $u(x) \in C^2(\Omega) \cap C(\bar{\Omega})$ 是外部问题
+$$
+\begin{cases}-\triangle u+c(x) u=0, & x \in \Omega, \\ \left.u\right|_{\partial \Omega=g(x),} & x \in \partial \Omega, \\ \lim _{|x| \rightarrow \infty} u(x)=l & \end{cases}
+$$
+的一个解，其中 $c(x) \geq 0$ 且在 $\bar{\Omega}$ 上局部有界，则
+$$
+\sup _{\Omega}|u(x)| \leq \max \left\{|l|, \max _{\partial \Omega}|g(x)|\right\} .
+$$
+（提示：先在区域 $B(0, R) \backslash \Omega_0$ 上证明关于 $u(x)$ 的估计，然后令 $R \rightarrow +\infty$）
+\end{exercise}
+
+
+
+
+
+
+\end{document}

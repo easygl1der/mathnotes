@@ -1,0 +1,148 @@
+\documentclass[UTF8]{ctexart}
+
+\usepackage{amsmath, amsthm, amssymb, mathtools}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\title{希尔伯特零点定理的证明}
+\author{乐绎华}
+\date{\today}
+
+
+
+
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{remark}[theorem]{注}
+
+\newcommand{\V}{\mathcal{V}}
+\newcommand{\I}{\mathcal{I}}
+\DeclareMathOperator{\Frac}{Frac}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+本文旨在介绍并证明代数几何中的基本定理——希尔伯特零点定理 (Hilbert's Nullstellensatz)。这一定理是连接代数领域中的多项式理想与几何领域中的仿射簇的桥梁。本文将首先介绍Zariski引理，并在此基础上证明弱零点定理。最后，利用经典的Rabinowitsch技巧，我们从弱零点定理推导出强零点定理，从而揭示代数簇与其定义理想之间的深刻联系。
+\end{abstract}
+
+\section{引言}
+
+在19世纪末，大卫·希尔伯特 (David Hilbert) 的工作为代数几何奠定了基础。他提出的零点定理 (Nullstellensatz) 是这一领域的核心成果之一。该定理深刻地揭示了代数和几何之间的对偶关系：一方面，我们可以研究由多项式方程组定义的几何对象（称为仿射簇）；另一方面，我们可以研究多项式环中的代数结构（称为理想）。
+
+零点定理具体阐述了在一个代数闭域（如复数域 $\mathbb{C}$）上，一个理想所定义的所有多项式在一个点集上同时为零，与这个点集上所有取值为零的多项式所构成的理想之间的关系。简单来说，它告诉我们，如果我们有一个多项式方程组，那么所有在该方程组的解集上为零的多项式，必然与原方程组"代数相关"。
+
+本论文将系统地证明希尔伯特零点定理的强形式。我们的证明路径将遵循一条经典路线：首先证明Zariski引理，它是一个关于有限生成代数的重要结果；然后利用它来证明弱零点定理，该定理刻画了代数闭域上多项式环的极大理想；最后，通过一个被称为"Rabinowitsch 技巧"的巧妙论证，将弱零点定理推广到强零点定理，即我们最终的目标。
+
+\section{预备知识和主要定理的证明}
+
+在本节中，我们将在代数闭域 $K$ 上进行讨论。令 $R = K[x_1, \dots, x_n]$ 为 $n$ 个变量的多项式环。
+
+\begin{definition}[仿射簇与零化理想]
+对于一个多项式子集 $S \subseteq R$，其关联的\textbf{仿射簇} (affine variety) 定义为：
+$$ \V(S) \coloneqq \{ p \in K^n \mid f(p) = 0, \forall f \in S \} $$
+对于一个点集 $X \subseteq K^n$，其关联的\textbf{零化理想} (vanishing ideal) 定义为：
+$$ \I(X) \coloneqq \{ f \in R \mid f(p) = 0, \forall p \in X \} $$
+容易验证 $\I(X)$ 是 $R$ 的一个理想。
+\end{definition}
+
+\begin{definition}[根理想]
+一个理想 $J \subseteq R$ 的\textbf{根} (radical) 定义为：
+$$ \sqrt{J} \coloneqq \{ f \in R \mid \exists t \in \mathbb{Z}_{>0} \text{ a.t. } f^t \in J \} $$
+如果一个理想 $J$ 满足 $J = \sqrt{J}$，则称 $J$ 为\textbf{根理想}。
+\end{definition}
+
+\subsection{Zariski 引理}
+
+Zariski 引理是证明弱零点定理的关键。
+
+\begin{lemma}[Zariski 引理]
+设 $R$ 是一个整环，$k=\Frac(R)$ 是其分式域。如果域 $L$ 是一个有限生成的 $R$-代数，即 $L = R[\alpha_1, \dots, \alpha_n]$，那么 $L$ 是 $k$ 的一个有限代数扩张，这意味着每个 $\alpha_i$ 在 $R$ 上都是代数的。
+\end{lemma}
+
+\begin{proof}
+本引理的证明参考了 \cite{azarang} 中给出的思路。我们对 $n$ 进行归纳。
+当 $n=1$ 时，$L = R[\alpha_1]$ 是一个域。如果 $\alpha_1$ 在 $R$ 上是超越的，那么 $R[\alpha_1]$ 同构于 $R$ 上的多项式环，这是一个主理想整环，但通常不是域（除非 $R$ 是一个域且 $R[\alpha_1]$ 是其平凡扩张），矛盾。因此 $\alpha_1$ 必须在 $R$ 上是代数的，进而在 $k$ 上也是代数的。
+
+现在假设结论对 $n-1$ 成立。考虑 $L = R[\alpha_1, \dots, \alpha_n]$。令 $R' = R[\alpha_1]$ 和 $k' = k(\alpha_1)$。则 $L = R'[\alpha_2, \dots, \alpha_n]$。根据归纳假设，$\alpha_2, \dots, \alpha_n$ 在 $k'$ 上是代数的。这意味着 $L$ 是域 $k' = k(\alpha_1)$ 的有限代数扩张。
+
+我们只需证明 $\alpha_1$ 在 $k$ 上是代数的。因为 $\alpha_2, \dots, \alpha_n$ 在 $k(\alpha_1)$ 上代数，所以存在多项式 $f_i(y) \in k(\alpha_1)[y]$ 使得 $f_i(\alpha_i) = 0$。我们可以将这些多项式的系数中的分母（它们是 $\alpha_1$ 的多项式）通分，得到一个公分母 $g(\alpha_1) \in k[\alpha_1]$。这意味着每个 $\alpha_i$ 在环 $k[\alpha_1, 1/g(\alpha_1)]$ 上是整的。因此，$L$ 是 $k[\alpha_1, 1/g(\alpha_1)]$ 上的整扩张。
+
+由于 $L$ 是一个域，而它是整环 $k[\alpha_1, 1/g(\alpha_1)]$ 的整扩张，这迫使 $k[\alpha_1, 1/g(\alpha_1)]$ 本身也必须是一个域。如果 $\alpha_1$ 在 $k$ 上是超越的，那么 $k[\alpha_1]$ 是一个主理想整环，它有无穷多个互不相伴的素元（不可约多项式）。我们可以选取一个素元 $p(\alpha_1)$，它不整除 $g(\alpha_1)$。那么 $p(\alpha_1)$ 在 $k[\alpha_1, 1/g(\alpha_1)]$ 中没有逆元，因为它的逆 $1/p(\alpha_1)$ 不属于这个环。但这与 $k[\alpha_1, 1/g(\alpha_1)]$ 是一个域矛盾。
+
+因此，$\alpha_1$ 必须在 $k$ 上是代数的。由于 $L/k(\alpha_1)$ 和 $k(\alpha_1)/k$ 都是有限代数扩张，所以 $L/k$ 也是有限代数扩张。
+\end{proof}
+
+
+\subsection{弱零点定理}
+
+\begin{theorem}[弱零点定理]
+设 $K$ 是一个代数闭域。多项式环 $R = K[x_1, \dots, x_n]$ 中的理想 $J$ 是极大理想，当且仅当它具有形式 $J = (x_1 - a_1, \dots, x_n - a_n)$，其中 $a_1, \dots, a_n \in K$。
+\end{theorem}
+
+\begin{proof}
+($\Leftarrow$) 如果 $J = (x_1 - a_1, \dots, x_n - a_n)$，考虑映射 $\phi: R \to K$，定义为 $f \mapsto f(a_1, \dots, a_n)$。这是一个满同态，其核为 $\ker(\phi) = J$。根据同态基本定理，$R/J \cong K$。由于 $K$ 是一个域，所以 $R/J$ 是一个域，因此 $J$ 是极大理想。
+
+($\Rightarrow$) 设 $J$ 是 $R$ 的一个极大理想。那么商环 $L = R/J$ 是一个域。$L$ 是一个有限生成的 $K$-代数（由 $x_1+J, \dots, x_n+J$ 生成）。根据Zariski引理（此时 $R=K$ 是一个域，所以 $k=K$），$L$ 是 $K$ 的一个有限代数扩张。但由于 $K$ 是代数闭域，它没有非平凡的有限代数扩张，因此 $L$ 必须同构于 $K$。
+
+设这个同构为 $\psi: R/J \to K$。令 $\pi: R \to R/J$ 为自然投射。令 $a_i = \psi(\pi(x_i))$。则 $\psi(\pi(x_i - a_i)) = \psi(\pi(x_i)) - a_i = a_i - a_i = 0$。因此 $x_i - a_i \in \ker(\psi \circ \pi) = J$ 对所有 $i=1, \dots, n$ 成立。
+这意味着理想 $(x_1 - a_1, \dots, x_n - a_n)$ 包含于 $J$。但我们已经证明 $(x_1 - a_1, \dots, x_n - a_n)$ 是一个极大理想。由于 $J$ 也是极大理想，所以必有 $J = (x_1 - a_1, \dots, x_n - a_n)$。
+\end{proof}
+
+弱零点定理有一个重要的推论：如果一个理想 $J \subset R$ 不是单位理想（即 $J \neq R$），那么它的仿射簇 $\V(J)$ 非空。这是因为任何真理想都包含在一个极大理想中，而由定理可知，任何极大理想都有一个零点。
+
+\subsection{强零点定理}
+
+\begin{theorem}[Hilbert 零点定理]
+设 $K$ 是一个代数闭域， $J$ 为 $R=K[x_1, \dots, x_n]$ 的一个理想。则
+$$ \I(\V(J)) = \sqrt{J} $$
+\end{theorem}
+
+\begin{proof}
+($\supseteq$) 证明 $\sqrt{J} \subseteq \I(\V(J))$。
+设 $f \in \sqrt{J}$。根据定义，存在整数 $t > 0$ 使得 $f^t \in J$。对于任意点 $p \in \V(J)$，所有 $g \in J$ 都在 $p$ 点取值为 $0$。因此 $f^t(p) = 0$，这意味着 $(f(p))^t = 0$，所以 $f(p)=0$。由于 $p$ 是 $\V(J)$ 中的任意点，我们得出 $f \in \I(\V(J))$。
+
+($\subseteq$) 证明 $\I(\V(J)) \subseteq \sqrt{J}$。
+这一部分的证明使用了经典的 Rabinowitsch 技巧。设 $f \in \I(\V(J))$。如果 $f=0$，则 $f \in \sqrt{J}$，结论成立。现假设 $f \neq 0$。
+
+我们在一个更大的多项式环 $R[y] = K[x_1, \dots, x_n, y]$ 中构造一个新的理想。令 $J'$ 是由 $J$ 中的所有多项式和多项式 $1-yf$ 在 $R[y]$ 中生成的理想。即 $J' = (J, 1-yf)$。
+
+我们断言 $\V(J') = \emptyset$。假设存在一点 $q = (a_1, \dots, a_n, b) \in \V(J')$。这意味着 $J'$ 中所有的多项式在 $q$ 点都为零。特别地：
+\begin{enumerate}
+    \item 对于所有 $g \in J$，有 $g(a_1, \dots, a_n) = 0$。这说明点 $p = (a_1, \dots, a_n)$ 属于 $\V(J)$。
+    \item 多项式 $1-yf$ 在 $q$ 点为零，即 $1 - b \cdot f(a_1, \dots, a_n) = 0$。
+\end{enumerate}
+因为 $p \in \V(J)$ 且 $f \in \I(\V(J))$，所以我们有 $f(p) = f(a_1, \dots, a_n) = 0$。代入第2个条件，得到 $1 - b \cdot 0 = 0$，即 $1=0$，这是一个矛盾。
+因此，我们的假设是错误的，$\V(J')$ 必定为空集。
+
+根据弱零点定理的推论，如果一个理想的零点集为空，那么这个理想必定是整个环。因此 $J' = R[y]$。这意味着 $1 \in J'$。所以存在 $g_1, \dots, g_m \in J$ 和 $h_1, \dots, h_m, h \in R[y]$，使得
+$$ 1 = \sum_{i=1}^m h_i(x_1, \dots, x_n, y) g_i(x_1, \dots, x_n) + h(x_1, \dots, x_n, y) (1 - yf(x_1, \dots, x_n)) $$
+这个等式在环 $R[y]$ 中成立。我们可以在分式域 $K(x_1, \dots, x_n)$ 中将 $y$ 替换为 $1/f$ (由于 $f \neq 0$，这是合法的)。注意 $g_i$ 不依赖于 $y$。
+$$ 1 = \sum_{i=1}^m h_i(x_1, \dots, x_n, 1/f) g_i(x_1, \dots, x_n) $$
+将 $h_i$ 中的 $y$ 替换为 $1/f$ 后，它们成为 $x_1, \dots, x_n$ 的有理函数。我们可以将所有项通分，分母是 $f$ 的某个幂次 $f^t$。
+$$ 1 = \frac{\text{某个 } x_1, \dots, x_n \text{ 的多项式}}{f^t} $$
+两边乘以 $f^t$，我们得到 $f^t = (\text{多项式}) \in (g_1, \dots, g_m)R = J$。这意味着 $f^t \in J$ 对于某个整数 $t > 0$ 成立。根据根理想的定义，这正是 $f \in \sqrt{J}$。
+证明完成。
+\end{proof}
+
+\subsection{推论}
+
+零点定理建立了一个根本的对应关系。
+
+\begin{corollary}
+在代数闭域 $K$ 上，映射 $\V$ 和 $\I$ 建立了 $K[x_1, \dots, x_n]$ 中的根理想与 $K^n$ 中的仿射簇之间的一一对应关系。这是一个反序对应，即 $J_1 \subseteq J_2 \implies \V(J_2) \subseteq \V(J_1)$。
+\end{corollary}
+
+\begin{proof}
+对于任意根理想 $J$，强零点定理告诉我们 $\I(\V(J))=J$。对于任意仿射簇 $X$，容易证明 $\V(\I(X))=X$。因此，$\V$ 和 $\I$ 互为逆映射，从而建立了一一对应。
+\end{proof}
+
+\begin{thebibliography}{1}
+\bibitem{azarang}
+Alborz Azarang, A one-line undergraduate proof of Zariski's lemma and Hilbert's Nullstellensatz.
+\end{thebibliography}
+
+\end{document}

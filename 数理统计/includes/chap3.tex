@@ -1,0 +1,540 @@
+\section{Binomial and Related Distributions}
+
+$X\sim b(1,p)$, has the \textbf{Bernouli distribution}, with pmf:
+\[
+p(x)=p^{x}(1-p)^{1-x},\qquad x=0,1
+\]
+$\mu=p, \sigma^{2}=p(1-p)$.
+
+For $X\sim b(n,p)$, the pmf is
+\[
+p(x)={\binom{n}{x} }p^{x}(1-p)^{n-x},\qquad x=0,1,\dots,n
+\]
+The mgf of a binomial distribution is
+\[
+M(t)=\sum_{x}e^{ tx }p(x)=\sum_{x=0}^{n}{\binom{n}{x} }(pe^{ t })^{x}(1-p)^{n-x}=[(1-p)+pe^{ t }]^{n}
+\]
+Then $E(X)=M'(0)=np,\sigma^{2}=M''(0)-\mu^{2}=np(1-p)$.
+
+\section{Negative Binomial and Geometric Distributions}
+\[
+p_{Y}(y)={\binom{y+r-1}{r-1} }p^{r}(1-p)^{y}\qquad y=0,1,2,\dots
+\]
+A distribution with a pmf of the form $p_{Y}(y)$ is called a \textbf{negative binomial distribution}, which means the probability that exactly $r-1$ successes in the first $y+r-1$ trials and a success on the $(y+r)$ th trial. Its mgf is $M(t)=p^{r}[1-(1-p)e^{ t }]^{-r}$, for $t<-\log(1-p)$.
+
+If $r=1$, then $p_{Y}(y)=p(1-p)^{y},y=0,1,2,\dots$ and $M(t)=p[1-(1-p)e^{ t }]^{-1}$. We say that $Y$ has a \textbf{geometric distribution}.
+
+\section{Multinomial Distribution}
+
+$X_1+\dots+X_k=n$, $p_1+\dots+p_k=1$, we say $(X_1,X_2,\dots,X_{k-1})$ has a \textbf{multinomial distribution} with parameters $n$ and $p_1,\dots,p_{k-1}$ if
+\[
+P(X_1=x_1,\dots,X_{k-1}=x_{k-1})=\frac{n!}{x_1!\dots x_{k-1}!x_k!}p_1^{x_1}\dots p_{k-1}^{x_{k-1}}p_k^{x_k}
+\]
+The conditional pmf is interesting.
+\[
+p_{2|1}(x_2|x_1)=\frac{p_{12}(x_1,x_2)}{p_1(x_1)}={\binom{n-x_1}{x_2} }\left( \frac{p_2}{1-p_1} \right)^{x_2}\left( 1-\frac{p_2}{1-p_1} \right)^{n-x_1-x_2}
+\]
+\section{Hypergeometric Distribution}
+\[
+p(x)=\frac{\binom{N-D}{n-x} \binom{D}{x} }{\binom{N}{n} }\qquad x=0,1,\dots,n
+\]
+We say that $X$ has a \textbf{hypergeometric distribution} with parameters $(N,D,n)$. The mean of $X$ is $E (X)=n \frac{D}{N}$ and $Var(X)=n\frac{D}{N}\frac{N-D}{N}\frac{N-n}{N-1}$.
+
+\section{The Poisson Distribution}
+
+$p(x)=\frac{\lambda^{x}e^{ -\lambda }}{x!},x=0,1,2,\dots$ if $X_i\sim \text{Poi}(\lambda _i)$ then $X_1+\dots +X_n\sim \text{Poi}(\sum_{i=1}^{n}\lambda _i)$. (check by mgf)
+\[
+\varphi(t)=E(e^{ iXt })=\sum_{n=0}^{\infty} \frac{\lambda^{n}e^{ -\lambda }}{n!}\cdot e^{ int }=e^{ \lambda(e^{ it }-1) }
+\]
+\[
+E(X)=\frac{1}{i}\varphi'(0)=\frac{1}{i}(\lambda ie^{ it }e^{ \lambda(e^{ it }-1) })_{t=0}=\lambda
+\]
+\[
+E(X^2)=-\varphi''(0)=-(-\lambda e^{ it }e^{ \lambda(e^{ it }-1) }-\lambda^{2}e^{ 2it }e^{ \lambda(e^{ it }-1) }))_{t=0}=\lambda^{2}+\lambda
+\]
+\[
+\mathrm{Var}(X)=E(X^2)-(E(X))^2=\lambda
+\]
+\section{The \texorpdfstring{$\Gamma$}{Gamma} Distribution}
+
+The definition of \textbf{Gamma function} is
+\[
+\Gamma(x)=\int_{0}^{\infty} t^{x-1}e^{ -t } \, dt 
+\]
+$X\sim\Gamma(\alpha,\beta)$  has the pmf
+\[
+f(x)=\frac{1}{\Gamma(\alpha)\beta^{\alpha}}x^{\alpha-1}e^{ -x/\beta }\qquad 0<x<\infty
+\]
+$\Gamma(1,\beta)$ is also called the \textbf{exponential distribution} with parameter $1/\beta$. $f(x)=\beta ^{-1}e^{ -x/\beta }$ for $x>0$.
+
+The characteristic function of $\Gamma(\alpha,\beta)$ is
+\[
+\begin{aligned}
+\varphi(t) & =E[e^{ iXt }]=\int_{0}^{\infty} e^{ ixt }\cdot\frac{1}{\Gamma(\alpha)\beta^{\alpha}}x^{\alpha-1}e^{ -x/\beta }  \, dx \\
+ & =\frac{1}{\Gamma(\alpha)\beta^{\alpha}}\int_{0}^{\infty} x^{\alpha-1}e^{ (it-1/\beta)x } \, dx  \\
+ & = (1-i\beta t)^{-\alpha}
+\end{aligned} 
+\]
+\begin{note}
+If $X_i\sim\Gamma(\alpha _i,\beta)$ then $X_1+\dots+X_n\sim\Gamma\left( \sum_{i=1}^{n}\alpha _i ,\beta\right)$.
+\end{note}
+\[
+E(X)=\frac{1}{i}\varphi'(0)=\frac{1}{i}[(-\alpha)(1-i\beta t)^{-\alpha-1}(-i\beta)]_{t=0}=\alpha\beta
+\]
+\[
+E(X^2)=-\varphi''(0)=-[i(-\alpha)(-\beta)(-\alpha-1)(-i\beta)(1-i\beta t)^{-\alpha-2}]_{t=0}=(\alpha^{2}+\alpha)\beta^{2}
+\]
+\[
+\mathrm{Var}(X)=E(X^2)-(E(X))^2=\alpha\beta^{2}
+\]
+When $\alpha=1$, then the exponential distribution $\text{Exp}(\beta)$ has mean $\beta$ and variance $\beta^{2}$.
+
+\begin{remark}
+Some texts define the PDF of $\text{Exp}(\lambda)$ as $p(x)=\lambda e^{-\lambda x}$, while others use $p(x)=\frac{1}{\lambda} e^{-x/\lambda}$.
+\end{remark}
+\section{The \texorpdfstring{$\chi^{2}$}{chi^2} -Distribution}
+
+Consider the special case $\Gamma(\alpha=r/2,\beta=2)$ for given $r$. $X$ has the pdf
+\[
+f(x)=\frac{1}{\Gamma(r/2 )2^{r/2 }}x^{r/2-1}e^{ -x/2  }\qquad 0<x<\infty
+\]
+and the mgf
+\[
+M(t)=(1-2t)^{-r/2 }\qquad t<\frac{1}{2}
+\]
+Because $\chi^{2}$ -distribution is a subfamily of $\Gamma$ -distribution, we have $\sum_{i=1}^{n}X_i\sim \chi^{2}\left( \sum_{i=1}^{n}r_i \right)$.
+
+The mean and variance of $\chi^2(r)$ are:
+\[
+\mathbb{E}(X) = r, \quad \operatorname{Var}(X) = 2r
+\]
+\begin{theorem}
+Let $X$ have a $\chi^2(r)$ distribution. If $k > -r/2$, then $\mathbb{E}(X^k)$ exists and it is given by
+\begin{equation}
+\mathbb{E}(X^k) = \frac{2^k\Gamma\left(\frac{r}{2} + k\right)}{\Gamma\left(\frac{r}{2}\right)}, \quad \text{if } k > -r/2.
+\label{ea9b9f}
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Note that
+\[
+\mathbb{E}(X^k) = \int_0^\infty \frac{1}{\Gamma\left(\frac{r}{2}\right)2^{r/2}}x^{(r/2)+k-1}e^{-x/2}dx.
+\]
+Make the change of variable $u = x/2$ in the above integral. This results in
+\[
+\mathbb{E}(X^k) = \int_0^\infty \frac{1}{\Gamma\left(\frac{r}{2}\right)2^{r/2}}2^{(r/2)+k}u^{(r/2)+k-1}e^{-u}du.
+\]
+This simplifies to the desired result provided that $k > -(r/2)$.
+\end{proof}
+
+\section{The \texorpdfstring{$\beta$}{beta} -Distribution}
+
+Let $X_1\sim\Gamma(\alpha,1)$, $X_2\sim\Gamma(\beta,1)$, then $Y\coloneqq X_1/(X_1+X_2)$ has the \textbf{beta distribution}, with pdf:
+\[
+f_{Y}(y)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}y^{\alpha-1}(1-y)^{\beta-1}\qquad 0<y<1
+\]
+And
+\[
+\mu=\frac{\alpha}{\alpha+\beta},\qquad \sigma^{2}=\frac{\alpha\beta}{(\alpha+\beta+1)(\alpha+\beta)^2}
+\]
+\section{The Normal Distribution}
+
+Let $Z$ have the standard normal distribution then $P(Z\leq z)=\Phi(z)=\int_{-\infty}^{z} \frac{1}{\sqrt{ 2\pi }}e^{ -t^{2}/2 } \, dt$. $\Phi$ is the CDF of $N(0,1)$.
+
+\begin{definition}[Normal Distribution]
+We say a random variable $X$ has a \textbf{normal distribution} $N(\mu,\sigma^{2})$ if its pdf is
+\[
+f(x)=\frac{1}{\sqrt{ 2\pi }\sigma} \exp \left\{  -\frac{1}{2}\left( \frac{x-\mu}{\sigma} \right)^{2}  \right\},\quad for \ -\infty<x<\infty
+\]
+The parameters $\mu$ and $\sigma^{2}$ are the mean and variance of $X$, respectively.
+\end{definition}
+\begin{theorem}
+If $X\sim N(\mu,\sigma^{2})$ then $V=\frac{(X-\mu)^{2}}{\sigma^{2}}\sim \chi^{2}(1)$. Particularly,
+\begin{equation}
+X\sim N(0,1)\Rightarrow X^{2}\sim \chi^{2}(1)
+\label{f74ad8}
+\end{equation}
+\end{theorem}
+
+\begin{note}
+Calculate the CDF of $X^{2}$.
+\end{note}
+\begin{proof} Because $V=W^2$, where $W=(X-\mu) / \sigma$ is $N(0,1)$, the cdf $G(v)$ for $V$ is, for $v \geq 0$,
+\[
+G(v)=P\left(W^2 \leq v\right)=P(-\sqrt{v} \leq W \leq \sqrt{v})
+\]
+That is,
+\[
+G(v)=2 \int_0^{\sqrt{v}} \frac{1}{\sqrt{2 \pi}} e^{-w^2 / 2} d w, \quad 0 \leq v
+\]
+And
+\[
+G(v)=0, \quad v<0
+\]
+If we change the variable of integration by writing $w=\sqrt{y}$, then
+\[
+G(v)=\int_0^v \frac{1}{\sqrt{2 \pi} \sqrt{y}} e^{-y / 2} d y, \quad 0 \leq v
+\]
+Hence the pdf $g(v)=G^{\prime}(v)$ of the continuous-type random variable $V$ is
+\[
+g(v)= \begin{cases}\frac{1}{\sqrt{\pi} \sqrt{2}} v^{1 / 2-1} e^{-v / 2} & 0<v<\infty \\ 0 & \text { elsewhere }\end{cases}
+\]
+Since $g(v)$ is a pdf
+\[
+\int_0^{\infty} g(v) d v=1
+\]
+hence, it must be that $\Gamma\left(\frac{1}{2}\right)=\sqrt{\pi}$ and thus $V$ is $\chi^2(1)$.
+\end{proof}
+
+\begin{theorem}
+$X_i\sim N(\mu _i,\sigma _i^{2})$ are iid, then $Y=\sum_{i=1}^{n}a_iX_i\sim N\left( \sum_{i=1}^{n}a_i \mu _i,\sum_{i=1}^{n}a_i^{2}\sigma _i^{2} \right)$.\label{1c233a}
+\end{theorem}
+
+\begin{note}
+Prove by the characteristic function.
+\end{note}
+\section{Multivariate Normal Distribution}
+
+\subsection{When \texorpdfstring{$n=2$}{n=2}}
+
+We say that $(X, Y)$ follows a bivariate normal distribution if its pdf is given by
+\[
+f(x, y)=\frac{1}{2 \pi \sigma_1 \sigma_2 \sqrt{1-\rho^2}} e^{-q / 2}, \quad-\infty<x<\infty, \quad-\infty<y<\infty
+\]
+Where
+\[
+q=\frac{1}{1-\rho^2}\left[\left(\frac{x-\mu_1}{\sigma_1}\right)^2-2 \rho\left(\frac{x-\mu_1}{\sigma_1}\right)\left(\frac{y-\mu_2}{\sigma_2}\right)+\left(\frac{y-\mu_2}{\sigma_2}\right)^2\right]
+\]
+and $-\infty<\mu_i<\infty, \sigma_i>0$, for $i=1,2$, and $\rho$ satisfies $\rho^2<1$. Clearly, this function is positive everywhere in $R^2$. As we show in Section 3.5.2, it is a pdf with the mgf given by:
+\[
+M_{(X, Y)}\left(t_1, t_2\right)=\exp \left\{t_1 \mu_1+t_2 \mu_2+\frac{1}{2}\left(t_1^2 \sigma_1^2+2 t_1 t_2 \rho \sigma_1 \sigma_2+t_2^2 \sigma_2^2\right)\right\}
+\]
+Then
+\[
+E(XY)=\frac{ \partial^{2}M_{(X,Y)} }{ \partial t_1\partial t_2 } (0,0)=\rho\sigma_1\sigma_2+\mu_1\mu_2
+\]
+\subsection{General Case}
+
+Consider the random vector $\mathbf{Z}=(Z_1,\dots,Z_n)'$ where $Z_1,\dots,Z_n$ are iid $N(0,1)$ random variables. Then the density of $\mathbf{Z}$ is
+\[
+f_{\mathbf{Z}}(\mathbf{z})=\prod_{i=1}^{n} \frac{1}{\sqrt{ 2\pi }}\exp \left\{  -\frac{1}{2}z_i^{2}  \right\}=\left( \frac{1}{2\pi}  \right)^{n/2 }\exp \left\{  -\frac{1}{2}\sum_{i=1}^{n} z_i^{2}  \right\}=\left( \frac{1}{2\pi}  \right)^{n/2 }\exp \left\{  -\frac{1}{2}\mathbf{z}'\mathbf{z}  \right\}\qquad \mathbf{z}\in \mathbf{R}^{n}
+\]
+\[
+M_{\mathbf{Z}}(\mathbf{t})=E[\exp \{ \mathbf{t}'\mathbf{Z} \}]=E\left[ \prod_{i=1}^{n} \exp \{ t_iZ_i \} \right]=\exp \left\{  \frac{1}{2}\sum_{i=1}^{n} t_i^{2}  \right\}=\exp \left\{  \frac{1}{2}\mathbf{t}'\mathbf{t}  \right\}\qquad \mathbf{t}\in \mathbf{R}^{n}
+\]
+We abbreviate this by saying that $\mathbf{Z}\sim N_n(\mathbf{0},\mathbf{I}_n)$.
+
+For the general case, suppose $\boldsymbol{\Sigma}$ is an $n\times n$, symmetric and positive semi-definite matrix. The \textbf{spectral decomposition} is $\boldsymbol{\Sigma}=\boldsymbol{\Gamma}'\boldsymbol{\Lambda}\boldsymbol{\Gamma}$, where $\boldsymbol{\Lambda}=\mathrm{diag}(\lambda_1,\dots,\lambda _n)$, $\lambda_1\geq\dots\geq\lambda _n\geq0$ are the eigenvalues of $\boldsymbol{\Sigma}$ and the columns of $\boldsymbol{\Gamma}'$, $\mathbf{v}_{1},\dots,\mathbf{v}_{n}$ are the corresponding eigenvectors. The matrix $\boldsymbol{\Gamma}$ is orthogonal, i.e., $\boldsymbol{\Gamma}^{-1}=\boldsymbol{\Gamma}'$. $\boldsymbol{\Sigma}=\sum_{i=1}^{n}\lambda _i \mathbf{v}_i \mathbf{v}_i'$.
+
+\begin{definition}[Multivariate Normal]
+Say an $n$ -dimensional random vector $\mathbf{X}$ has a \textbf{multivariate normal distribution} if its mgf is
+\[
+M_{\mathbf{X}}(\mathbf{t})=\exp \left\{  \mathbf{t}'\boldsymbol{\mu}+\frac{1}{2}\mathbf{t}'\boldsymbol{\Sigma}\mathbf{t}  \right\}\qquad \forall \mathbf{t}\in \mathbb{R}^{n}
+\]
+where $\boldsymbol{\Sigma}$ is a symmetric, positive semi-definite matrix and $\boldsymbol{\mu}\in \mathbb{R}^{n}$. We abbreviate this by saying that $\mathbf{X}$ has a $N_n(\boldsymbol{\mu},\boldsymbol{\Sigma})$ distribution.
+\end{definition}
+If $\mathbf{Z}\sim N_n(0,\mathbf{I}_n)$ then $\mathbf{X}=\boldsymbol{\Sigma}^{1/2}\mathbf{Z}+\boldsymbol{\mu}\sim N_n(\boldsymbol{\mu},\boldsymbol{\Sigma}^{1/2 })$. And we have
+\[
+E[\mathbf{X}]=\boldsymbol{\mu},\quad \mathrm{Cov}[\mathbf{X}]=\boldsymbol{\Sigma}^{1/2 }\boldsymbol{\Sigma}^{1/2}=\boldsymbol{\Sigma}
+\]
+Further, the mgf of $\mathbf{X}$ is given by
+\[
+\begin{aligned}
+M_{\mathbf{X}}(\mathbf{t})=E\left[\exp \left\{\mathbf{t}^{\prime} \mathbf{X}\right\}\right] & =E\left[\exp \left\{\mathbf{t}^{\prime} \boldsymbol{\Sigma}^{1 / 2} \mathbf{Z}+\mathbf{t}^{\prime} \boldsymbol{\mu}\right\}\right] \\
+& =\exp \left\{\mathbf{t}^{\prime} \boldsymbol{\mu}\right\} E\left[\exp \left\{\left(\boldsymbol{\Sigma}^{1 / 2} \mathbf{t}\right)^{\prime} \mathbf{Z}\right\}\right] \\
+& =\exp \left\{\mathbf{t}^{\prime} \boldsymbol{\mu}\right\} \exp \left\{(1 / 2)\left(\boldsymbol{\Sigma}^{1 / 2} \mathbf{t}\right)^{\prime} \boldsymbol{\Sigma}^{1 / 2} \mathbf{t}\right\} \\
+& =\exp \left\{\mathbf{t}^{\prime} \boldsymbol{\mu}\right\} \exp \left\{(1 / 2) \mathbf{t}^{\prime} \boldsymbol{\Sigma} \mathbf{t}\right\}
+\end{aligned}
+\]
+\begin{theorem}
+If $\mathbf{X}\sim N_n(\boldsymbol{\mu},\boldsymbol{\Sigma})$ and $\boldsymbol{\Sigma}$ is positive definite then $Y=(\mathbf{X}-\boldsymbol{\mu})'\boldsymbol{\Sigma}^{-1}(\mathbf{X}-\boldsymbol{\mu})\sim \chi^{2}(n)$.
+\end{theorem}
+\begin{proof}
+It's a consequence of \cref{f74ad8}.
+\end{proof}
+
+\begin{theorem}[Linearity]
+Suppose $\mathbf{X}\sim N_n(\boldsymbol{\mu},\boldsymbol{\Sigma})$. Let $\mathbf{Y}=\mathbf{A}\mathbf{X}+\mathbf{b}$ where $\mathbf{A}$ is $m\times n$ and $\mathbf{b}\in \mathbb{R}^{m}$. Then $\mathbf{Y}\sim N_m(\mathbf{A}\boldsymbol{\mu}+\mathbf{b},\mathbf{A}\boldsymbol{\Sigma}\mathbf{A}')$.
+\end{theorem}
+\begin{theorem}
+Suppose $\mathbf{X}\sim N_n(\boldsymbol{\mu},\boldsymbol{\Sigma})$. Let $\mathbf{Y}=\mathbf{A}\mathbf{X}+\mathbf{b}$ where $\mathbf{A}$ is $m\times n$ and $\mathbf{b}\in \mathbb{R}^{m}$. Then $\mathbf{Y}\sim N_m(\mathbf{A}\boldsymbol{\mu}+\mathbf{b},\mathbf{A}\boldsymbol{\Sigma}\mathbf{A}')$.
+\end{theorem}
+\begin{proof}
+Calculate the mgf of $\mathbf{Y}$.
+\end{proof}
+
+Particularly, suppose
+\[
+\begin{bmatrix}
+\mathbf{X}_{1} \\
+\mathbf{X}_{2} 
+\end{bmatrix}\sim N_n(\begin{bmatrix}
+\boldsymbol{\mu}_{1} \\
+\boldsymbol{\mu}_{2}
+\end{bmatrix},
+\begin{bmatrix}
+\boldsymbol{\Sigma}_{11}  & \boldsymbol{\Sigma}_{12} \\
+\boldsymbol{\Sigma}_{21} & \boldsymbol{\Sigma}_{22}
+\end{bmatrix})
+\]
+Then $\mathbf{X}_{1}\sim N_m(\boldsymbol{\mu}_{1},\boldsymbol{\Sigma}_{11})$.
+
+\begin{theorem}[decomposite to independent subvector]
+$\mathbf{X}\sim N_n(\boldsymbol{\mu},\boldsymbol{\Sigma})$, $\mathbf{X}=(\mathbf{X}_{1},\mathbf{X}_{2})'$, then $\mathbf{X}_{1}$ and $\mathbf{X}_{2}$ are independent iff $\boldsymbol{\Sigma}_{12}=\mathbf{O}$, i.e.
+\[
+\boldsymbol{\Sigma}=\begin{bmatrix}
+\boldsymbol{\Sigma}_{11}  & \mathbf{O} \\ \mathbf{O} & \boldsymbol{\Sigma}_{22}
+\end{bmatrix}
+\]
+\end{theorem}
+\begin{proof}
+The joint mgf is
+\[
+M_{\mathbf{X}_1, \mathbf{X}_2}\left(\mathbf{t}_1, \mathbf{t}_2\right)=\exp \left\{\mathbf{t}_1^{\prime} \boldsymbol{\mu}_1+\mathbf{t}_2^{\prime} \boldsymbol{\mu}_2+\frac{1}{2}\left(\mathbf{t}_1^{\prime} \boldsymbol{\Sigma}_{11} \mathbf{t}_1+\mathbf{t}_2^{\prime} \boldsymbol{\Sigma}_{22} \mathbf{t}_2+\mathbf{t}_2^{\prime} \boldsymbol{\Sigma}_{21} \mathbf{t}_1+\mathbf{t}_1^{\prime} \boldsymbol{\Sigma}_{12} \mathbf{t}_2\right)\right\}
+\]
+The product of their marginal mgfs is
+\[
+M_{\mathbf{X}_1}\left(\mathbf{t}_1\right) M_{\mathbf{X}_2}\left(\mathbf{t}_2\right)=\exp \left\{\mathbf{t}_1^{\prime} \boldsymbol{\mu}_1+\mathbf{t}_2^{\prime} \boldsymbol{\mu}_2+\frac{1}{2}\left(\mathbf{t}_1^{\prime} \boldsymbol{\Sigma}_{11} \mathbf{t}_1+\mathbf{t}_2^{\prime} \boldsymbol{\Sigma}_{22} \mathbf{t}_2\right)\right\} .
+\]
+Then $M_{\mathbf{X}_{1},\mathbf{X}_{2}}(\mathbf{t}_{1},\mathbf{t}_{2})=M_{\mathbf{X}_{1}}(\mathbf{t}_{1})M_{\mathbf{X}_{2}}(\mathbf{t}_{2})$ iff $\boldsymbol{\Sigma}_{12}=\mathbf{O}$.
+\end{proof}
+
+\begin{theorem}[conditional distribution]
+$\mathbf{X}_{1},\mathbf{X}_{2}$ are defined as above, then the conditional distribution of $\mathbf{X}_{1}|\mathbf{X}_{2}$ is
+\[
+N_m\left(\boldsymbol{\mu}_1+\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1}\left(\mathbf{X}_2-\boldsymbol{\mu}_2\right), \boldsymbol{\Sigma}_{11}-\boldsymbol{\Sigma}_{12} \boldsymbol{\Sigma}_{22}^{-1} \boldsymbol{\Sigma}_{21}\right)
+\]
+\end{theorem}
+\begin{proof}
+See proof from Hogg p.204.
+\end{proof}
+
+For $X_1\sim N(\mu_1,\sigma_1^{2}),X_2\sim N(\mu_2,\sigma_2^{2})$ with $\rho=corr(X_1,X_2)$. Then
+\[
+\begin{bmatrix}
+X_1 \\
+X_2
+\end{bmatrix}\sim N\left( \begin{bmatrix}
+\mu_1 \\
+\mu_2 
+\end{bmatrix},\begin{bmatrix}
+\sigma_1^{2} & \rho\sigma_1\sigma_2 \\
+\rho\sigma_1\sigma_2 & \sigma_2^{2}
+\end{bmatrix} \right)
+\]
+We decompostite the symmetric matrix.
+\[
+\begin{bmatrix}
+ \sigma_1^{2} & \rho\sigma_1\sigma_2  & 1 & 0\\
+\rho\sigma_1\sigma_2 & \sigma_2^{2} & 0 & 1
+\end{bmatrix}\sim \begin{bmatrix}
+(1-\rho^{2})\sigma_1^{2} & 0 & 1 & -\frac{\rho\sigma_1}{\sigma_2} \\
+0 & \sigma_2^{2} & 0 & 1 
+\end{bmatrix}
+\]
+Then
+\[
+\begin{bmatrix}
+X_1-\frac{\rho\sigma_1}{\sigma_2}X_2  \\
+X_2
+\end{bmatrix}=\begin{bmatrix}
+1 & -\frac{\rho\sigma_1}{\sigma_2} \\
+ 0 & 1
+\end{bmatrix}\cdot \begin{bmatrix}
+X_1  \\
+X_2
+\end{bmatrix}\sim N\left( \begin{bmatrix}
+\mu_1-\frac{\rho\sigma_1}{\sigma_2}\mu_2 \\
+\mu_2
+\end{bmatrix},\begin{bmatrix}
+(1-\rho^{2})\sigma_1^{2} & 0 \\
+0 & \sigma_2^{2}
+\end{bmatrix} \right)
+\]
+Thus $X_1-\frac{\rho\sigma_1}{\sigma_2}X_2$ and $X_2$ are independent. The conditional expectation is
+\[
+\begin{aligned}
+\mathbb{E}[X_1 \mid X_2] & =\mathbb{E}\left[ X_1-\frac{\rho\sigma_1}{\sigma_2}X_2 \mid X_2 \right]+\mathbb{E}\left[ \frac{\rho\sigma_1}{\sigma_2}X_2 \mid X_2 \right] \\
+ & =\mathbb{E}\left[ X_1-\frac{\rho\sigma_1}{\sigma_2}X_2  \right]+\frac{\rho\sigma_1}{\sigma_2}X_2 \\
+ & =\mu_1-\frac{\rho\sigma_1}{\sigma_2}\mu_2+\frac{\rho\sigma_1}{\sigma_2}X_2 \\
+ & =\mathbb{E}[X_1]+\frac{\mathrm{Cov}(X_1,X_2)}{\mathrm{Var}(X_2)}(X_2-\mu_2)
+\end{aligned}
+\]
+\[
+p\left((1-p)\left((1-p) p^2+p((1-p) p+p)\right)+p((1-p)((1-p) p+p)+p)\right)+(1-p)\left((1-p) p^3+p\left((1-p) p^2+p((1-p) p+p)\right)\right)
+\]
+\section{The \texorpdfstring{$t$}{t} -distribution}
+
+$W\sim N(0,1),V\sim \chi^{2}(r)$ indepedent; $T\coloneqq\frac{W}{\sqrt{ V/r  }}$; $T\sim t(r)$ has the pdf
+\[
+f(t)=\frac{\Gamma[(r+1)/2 ]}{\sqrt{ \pi r }\Gamma(r/2 )}\frac{1}{(1+t^{2}/r )^{(r+1)/2}}\qquad -\infty<t<\infty
+\]
+\[
+\mathbb{E}(T)=0
+\]
+\[
+\begin{aligned}
+\mathrm{Var}(T) & =\mathbb{E}(T^2) \\
+ & =\mathbb{E}\left[ W^{2}\left( \frac{V}{r} \right)^{-1 } \right] \\
+ & =\underbrace{ \mathbb{E}(\underbrace{ W^{2} }_{ \sim \chi^{2}(1) }) }_{ =1 }\cdot\mathbb{E}\left[ \left( \frac{V}{r} \right)^{-1 } \right] 
+\end{aligned}
+\]
+By \cref{ea9b9f}, for $r>2$,
+\[
+\mathbb{E}(V^{-1})=\frac{2^{-1}\Gamma\left( \frac{r}{2}-1 \right)}{\Gamma\left( \frac{r}{2} \right)}=\frac{1}{r-2}
+\]
+Thus
+\[
+\mathrm{Var}(Y)=\frac{r}{r-2}
+\]
+\subsection{Computation}
+
+\begin{note}
+We will show the technique to compute the pdf of  $T=T(W,V)$.
+\end{note}
+Let indepedent $W\sim N(0,1),V\sim \chi^{2}(r)$ . Then the joint pdf of $W,V$, say $h(w,v)$ is
+\[
+h(w,v)=\frac{1}{\sqrt{ 2\pi }}e^{ -w^{2}/2  }\frac{1}{\Gamma(r/2 )2^{r / 2 }}v^{r/2 -1}e^{ -v/2  }\qquad -\infty<w<\infty,0<v<\infty
+\]
+Define a new random variable $T$ by
+\[
+T=\frac{W}{\sqrt{ V/r  }}
+\]
+The transformation technique $i$ used to obtain the pdf $g_1(t)$ of $T$. The equations
+\[
+t=\frac{w}{\sqrt{ v/r  }},\qquad u=v
+\]
+define a transformation from $\mathcal{S}=\{ (w,v):-\infty<w<\infty,0<v<\infty \}$ to $\mathcal{T}=\{ (t,u):-\infty<t<\infty,0<u<\infty  \}$. Calculate the Jacobian of the transformation
+\[
+\lvert J \rvert =\frac{ \partial (w,v) }{ \partial (t,u) } =\left[ \frac{\partial (t,u)}{\partial (w,v)} \right]^{-1}=\begin{vmatrix}
+\frac{1}{\sqrt{ v/r  }}  & 0 \\
+0 & 1  
+\end{vmatrix}^{-1}=\frac{\sqrt{ u }}{\sqrt{ r }}
+\]
+Accordingly, the joint pdf of $T$ and $U=V$ is given by
+\[
+g(t,u)=h(w,v)\lvert J \rvert =h(t\sqrt{ u }/\sqrt{ r },u)\lvert J \rvert =\frac{1}{\sqrt{ 2\pi }\Gamma(r/2 )2^{r/2 }}u^{r/2 -1}\exp\left[ -\frac{u}{2}\left( 1+\frac{t^{2}}{r} \right) \right]\frac{\sqrt{ u }}{\sqrt{ r }}
+\]
+where $\lvert t \rvert <\infty,0<u<\infty$.
+
+The marginal pdf of $T$ is then
+\[
+g_1(t)=\int_{-\infty}^{\infty} g(t,u) \, du =\int_{0}^{\infty} \frac{1}{\sqrt{ 2\pi r\Gamma(r/2 )2^{r/2 } }} u^{(r+1)/2-1}\exp\left[ -\frac{u}{2}\left( 1+\frac{t^{2}}{r} \right) \right] \, du
+\]
+In this integral let $z=y[1+(t^{2}/r)]/2$ and it is seen that
+\[
+g_1(t)=\frac{\Gamma[(r+1)/2 ]}{\sqrt{ \pi r }\Gamma(r/2 )}\frac{1}{(1+t^{2}/r )^{(r+1)/2}}\qquad -\infty<t<\infty
+\]
+The distribution of the random variable $T$ is usually called a $t$ -\textbf{distribution}. $g_1(t)=g_1(-t)$, with max at $\,0$. As $t\to \infty$, the $t$ -distribution converges to the $N(0,1)$.
+
+\section{The \texorpdfstring{$F$}{F} -distribution}
+
+Let independent $U\sim \chi^{2}(r_1)$, $V\sim \chi^{2}(r_2)$. The joint pdf $h(u,v)$ of $U$ and $V$ is then
+\[
+h(u,v)=\frac{1}{\Gamma(r_1/2 )\Gamma(r_2 /2)2^{(r_1+r_2)/2}}u^{r_1/2 -1}v^{r_2/2-1}e^{ -(u+v)/2 }\quad 0<u,v<\infty
+\]
+We define the new random variable
+\[
+W=\frac{U/r_1}{V/r_2}
+\]
+and we propose finding the pdf $g_1(w)$ of $W$. The equations
+\[
+w=\frac{u/r_1}{v/r_2},\quad z=v
+\]
+By calculations, we have
+\[
+g_1(w)=\frac{\Gamma[(r_1+r_2)/2](r_1/r_2)^{r_1 /2}}{\Gamma(r_1/2)\Gamma(r_2/2)}\frac{w^{r_1/2-1}}{(1+r_1w/r_2 )^{(r_1+r_2)/2}}\quad 0<w<\infty
+\]
+The distribution of this random variable is usually called an $F$ -distribution, $W\sim F(r_1,r_2)$.
+
+By \cref{ea9b9f}, for $k>-\frac{r_1}{2}$, $k>-\frac{r_2}{2}$,
+\[
+\begin{aligned}
+\mathbb{E}(W^{k}) & =\left( \frac{r_2}{r_1} \right)^{k}\mathbb{E}(U^{k})\cdot E(V^{-k}) \\
+ & =\left( \frac{r_2}{r_1} \right)^{k}\cdot\frac{2^{k}\Gamma\left( \frac{r_1}{2}+k \right)}{\Gamma\left( \frac{r_1}{2} \right)}\cdot\frac{2^{-k}\Gamma\left( \frac{r_2}{2}-k \right)}{\Gamma\left( \frac{r_2}{2} \right)} \\
+ & =\left( \frac{r_2}{r_1} \right)^{k}\cdot\frac{\Gamma\left( \frac{r_1}{2}+k \right)\cdot\Gamma\left( \frac{r_2}{2}-k \right)}{\Gamma\left( \frac{r_1}{2} \right)\cdot\Gamma\left( \frac{r_2}{2} \right)}
+\end{aligned}
+\]
+In particular,
+\[
+\mathbb{E}(W)=\frac{r_2}{r_1}\cdot\underbrace{ \frac{\Gamma\left( \frac{r_1}{2}+1 \right)}{\Gamma\left( \frac{r_1}{2} \right)} }_{ =\frac{r_1}{2} }\cdot\underbrace{ \frac{\Gamma\left( \frac{r_2}{2}-1 \right)}{\Gamma\left( \frac{r_2}{2} \right)} }_{ =\left( \frac{r_2}{2}-1 \right)^{-1} }=\frac{r_2}{r_2-2}
+\]
+\section{Student's Theorem}
+
+Our final note concerns an important result for the later chapters on inference for normal random variables. It is a corollary to the $t$ -distribution derived bove and is often referred to as Student's Theorem.
+
+\begin{theorem}[Student's theorem]
+Let $X_1, \ldots, X_n$ be iid random variables each having a normal distribution with mean $\mu$ and variance $\sigma^2$. Define the random variables
+\[
+\bar{X}=\frac{1}{n} \sum_{i=1}^n X_i \text { and } S^2=\frac{1}{n-1} \sum_{i=1}^n\left(X_i-\bar{X}\right)^2
+\]Then
+	\begin{enumerate}
+		\item $\bar{X}$ has a $N\left(\mu, \frac{\sigma^2}{n}\right)$ distribution.
+		\item $\bar{X}$ and $S^2$ are independent.
+		\item $(n-1) S^2 / \sigma^2$ has a $\chi^2(n-1)$ distribution.
+		\item The random variable
+	\end{enumerate}
+\[
+T=\frac{\bar{X}-\mu}{S / \sqrt{n}}
+\]has a Student $t$ -distribution with $n-1$ degrees of freedom.
+\end{theorem}
+\begin{remark}
+In (b) we have proved that $\overline{X}$ is independent of $(X_1-\overline{X},\dots,X_n-\overline{X})$. 这是因为协方差为 0 的正态分布是独立的.
+\end{remark}
+\begin{proof}
+
+(1) is clear. (2) it suffices to show that $\overline{X}$ and $X_i-\overline{X}$ are uncorrelated for any $i$, thus independent due to the normality.
+\[
+\begin{aligned}
+\mathrm{Cov}(\overline{X},X_i-\overline{X}) & = \mathbb{E}[\overline{X}(X_i-\overline{X})]-\mathbb{E}[\overline{X}]\cdot\underbrace{ \mathbb{E}[X_i-\overline{X}] }_{ =\mu-\mu=0 } \\
+ & =\mathbb{E}(\overline{X}X_i)-\mathbb{E}(\overline{X}^{2} ) \\
+ & =\frac{1}{n}\left[ \sum_{j\neq i}\mathbb{E}(X_j)\mathbb{E}(X_i)+\mathbb{E}(X_i^{2}) \right]-\left( \frac{\sigma^{2}}{n}+\mu^{2} \right) \\
+ & =\frac{1}{n}[(n-1)\mu^{2}+\sigma^{2}+\mu^{2}]-\frac{\sigma^{2}}{n}-\mu^{2} \\
+ & =0
+\end{aligned}
+\]
+As $S^{2}$ is a Borel function of $(X_1-\overline{X},\dots,X_n-\overline{X})$, $\overline{X}$ and $S^{2}$ are independent.
+
+(3) Consider the random variable
+\[
+V=\sum_{i=1}^n\left(\frac{X_i-\mu}{\sigma}\right)^2
+\]
+Each term in this sum is the square of a $N(0,1)$ random variable and, hence, has a $\chi^2(1)$ distribution (Theorem 3.4.1). Because the summands are independent, it follows from Corollary 3.3 .1 that $V$ is a $\chi^2(n)$ random variable. Note the following identity:
+\[
+\begin{aligned}
+V & =\sum_{i=1}^n\left(\frac{\left(X_i-\bar{X}\right)+(\bar{X}-\mu)}{\sigma}\right)^2 \\
+& =\sum_{i=1}^n\left(\frac{X_i-\bar{X}}{\sigma}\right)^2+\left(\frac{\bar{X}-\mu}{\sigma / \sqrt{n}}\right)^2 \\
+& =\frac{(n-1) S^2}{\sigma^2}+\left(\frac{\bar{X}-\mu}{\sigma / \sqrt{n}}\right)^2
+\end{aligned}
+\]
+By part (b), the two terms on the right side of the last equation are independent. Further, the second term is the square of a standard normal random variable and, hence, has a $\chi^2(1)$ distribution. \underline{Taking mgfs of both sides}, we have
+\[
+(1-2 t)^{-n / 2}=E\left[\exp \left\{t(n-1) S^2 / \sigma^2\right\}\right](1-2 t)^{-1 / 2}
+\]
+Solving for the mgf of $(n-1) S^2 / \sigma^2$ on the right side we obtain part (c). Finally, part (d) follows immediately from parts (a)-(c) upon writing $T$, (3.6.9), as
+\[
+T=\frac{(\bar{X}-\mu) /(\sigma / \sqrt{n})}{\sqrt{(n-1) S^2 /\left(\sigma^2(n-1)\right)}}
+\]
+\end{proof}
+
+\section{Mixture Distributions}
+
+For $k$ distributions with pdfs $f_1(x),\dots,f_k(x)$, supports $\mathcal{S}_{1},\dots,\mathcal{S}_{k}$, means $\mu_1,\dots,\mu _k$ and variances $\sigma_1,\dots,\sigma _k$, with positive mixing probabilities $p_1,\dots,p_k$ where $p_1+\dots+p_k=1$. Let $\mathcal{S}=\bigcup_{i=1}^{k}\mathcal{S}_i$ and consider the function
+\[
+f(x)=\sum_{i=1}^{k} p_i f_i(x)\quad x\in \mathcal{S}
+\]
+\[
+F(x)=\int_{-\infty}^{x} f(t) \, dt =\int_{-\infty}^{x} \sum_{i=1}^{k} p_if_i(t) \, dt =\sum_{i=1}^{k} p_i\int_{-\infty}^{x} f_i(t) \, dt =\sum_{i=1}^{k} p_iF_i(x)
+\]
+\[
+E(X)=\int_{-\infty}^{\infty} xf(x) \, dx =\int_{-\infty}^{\infty} x\sum_{i=1}^{k} p_if_i(x) \, dx =\sum_{i=1}^{k} p_i\int_{-\infty}^{\infty} xf_i(x) \, dx =\sum_{i=1}^{k} p_i\mu _i=\overline{\mu}
+\]
+\[
+\begin{aligned}
+\mathrm{Var}(X) & =\int_{-\infty}^{\infty} (x-\overline{\mu})^{2}f(x) \, dx =\sum_{i=1}^{k}p_i \int_{-\infty}^{\infty} (x-\overline{\mu})^{2}f_i(x) \, dx  \\
+ & =\sum_{i=1}^{k} p_i\int_{-\infty}^{\infty} [(x-\mu _i)+(\mu _i-\overline{\mu})]^{2}f_i(x) \, dx  \\
+ & =\sum_{i=1}^{k} p_i\left[ \int_{-\infty}^{\infty } (x-\mu _i)^{2}f_i(x) \, dx +2\underbrace{ \int_{-\infty}^{\infty} (x-\mu _i)(\mu _i-\overline{\mu})f_i(x) \, dx }_{ =0 } +\int_{-\infty}^{\infty} (\mu _i-\overline{\mu})^{2}f_i(x) \, dx  \right] \\
+ & =\sum_{i=1}^{k} p_i\sigma _i^{2}+\sum_{i=1}^{k} p_i(\mu _i-\overline{\mu})^{2}
+\end{aligned}
+\]

@@ -1,0 +1,716 @@
+\section{二叉树}
+
+\subsection{满二叉树、完全二叉树}
+
+好的，我们来解释一下\textbf{完全二叉树（Complete Binary Tree）}。
+
+在了解完全二叉树之前，先回顾一下\textbf{满二叉树（Full Binary Tree）\textbf{和}完美二叉树（Perfect Binary Tree）}：
+
+\begin{itemize}
+	\item \textbf{满二叉树：} 除了叶子节点外，所有节点都有两个子节点。
+	\item \textbf{完美二叉树：} 是一种特殊的满二叉树，所有叶子节点都在同一层，并且所有内部节点都有两个子节点。完美二叉树的形状是一个完全对称的三角形。
+\end{itemize}
+
+现在来说\textbf{完全二叉树}：
+
+完全二叉树是指这样一种二叉树：
+
+\begin{enumerate}
+	\item 除最后一层外，\textbf{所有层都是完全填满的}。
+	\item 最后一层上的节点\textbf{从左到右依次排列}，不能有空缺。也就是说，如果最后一层不满，那么节点必须连续地靠左排列。
+\end{enumerate}
+
+\textbf{关键特点：}
+
+\begin{itemize}
+	\item 它的节点分布非常紧凑，除了最后一层，每一层都达到最大节点数。
+	\item 最后一层的节点尽可能靠左。
+\end{itemize}
+
+\textbf{举例说明：}
+
+这是一个\textbf{完全二叉树}：
+
+\begin{lstlisting}
+      A
+     / \
+    B   C
+   / \ /
+  D   E F
+\end{lstlisting}
+解释：第0层 (A) 是满的，第1层 (B, C) 是满的，第2层 (D, E, F) 是最后一层，虽然不满，但节点从左到右是连续排列的 (D、E 在左子树，F 在右子树且靠左)。
+
+这不是一个完全二叉树（因为最后一层有空缺，且不是最右边的空缺）：
+
+\begin{lstlisting}
+      A
+     / \
+    B   C
+   / \   \
+  D   E   G
+\end{lstlisting}
+解释：节点 \lstinline{F} 缺失了，导致最后一层的节点 \lstinline{E} 和 \lstinline{G} 之间有空缺。
+
+这不是一个完全二叉树（因为倒数第二层不满）：
+
+\begin{lstlisting}
+      A
+     /
+    B
+   / \
+  C   D
+\end{lstlisting}
+解释：第1层只 \lstinline{B} 一个节点，没有右子节点 \lstinline{C} 的位置（如果是完全二叉树，\lstinline{C} 应该在 \lstinline{B} 的右边或者 \lstinline{B} 的左子树被填满后才到 \lstinline{C}），直接跳到了第2层。
+
+\textbf{为什么完全二叉树很重要？}
+
+完全二叉树的一个重要特性是它们可以非常高效地用\textbf{数组}来表示，而不需要使用指针。
+
+\begin{itemize}
+	\item 如果根节点存储在数组索引 0 (或 1) 的位置，那么它的左子节点将存储在索引 \lstinline{2 * i + 1} (或 \lstinline{2 * i}) 的位置，右子节点存储在索引 \lstinline{2 * i + 2} (或 \lstinline{2 * i + 1}) 的位置（取决于数组从 0 还是 1 开始索引）。
+	\item 反过来，对于索引为 \lstinline{i} 的非根节点，其父节点存储在索引 \lstinline{(i - 1) / 2} (或 \lstinline{i / 2}) 的位置。
+\end{itemize}
+
+这种基于数组的表示使得完全二叉树成为实现**堆（Heap）**数据结构的最佳选择，因为堆需要快速访问父子节点，并且需要紧凑地存储数据。
+
+简而言之，完全二叉树是一种结构紧凑、节点靠左排列的二叉树，它非常适合用数组存储，常用于实现堆。完美二叉树和满二叉树都是完全二叉树的特例。
+
+\subsection{前序、中序、后序遍历}
+
+对于二叉树：
+
+\begin{lstlisting}
+    A
+   / \
+  B   C
+ / \
+D   E
+\end{lstlisting}
+\begin{itemize}
+	\item 前序遍历：根左右
+	\begin{itemize}
+		\item 对于上述二叉树，前序遍历的结果是：A, B, D, E, C
+	\end{itemize}
+	\item 中序遍历：左根右
+	\begin{itemize}
+		\item 对于上述二叉树，中序遍历的结果是：D, B, E, A, C
+	\end{itemize}
+	\item 后序遍历：左右根
+	\begin{itemize}
+		\item 对于上述二叉树，后序遍历的结果是：D, E, B, C, A
+	\end{itemize}
+\end{itemize}
+
+\begin{note}
+前序遍历加上中序遍历序列，可以唯一确定一颗二叉树.
+\end{note}
+\subsection{将完全二叉树存储到数组中}
+
+好的，将一颗完全二叉树存储到数组（或 C++中的 \lstinline{std::vector}）中，利用了完全二叉树的紧凑性，使得节点位置和数组索引之间存在固定的数学关系。
+
+最常用的映射方式是：
+
+\begin{itemize}
+	\item 如果根节点存储在索引 \lstinline{i} (通常是 0 或 1) 的位置。
+	\item 那么它的左子节点存储在索引 \lstinline{2 * i + 1} 的位置（如果从 0 开始索引）。
+	\item 它的右子节点存储在索引 \lstinline{2 * i + 2} 的位置（如果从 0 开始索引）。
+	\item 反过来，对于非根节点存储在索引 \lstinline{i} 的位置，它的父节点存储在索引 \lstinline{(i - 1) / 2} 的位置（如果从 0 开始索引，且 \lstinline{i > 0}）。
+\end{itemize}
+
+由于完全二叉树除了最后一层外都是满的，且最后一层节点靠左排列，这意味着如果一棵完全二叉树有 N 个节点，那么它们可以恰好填满数组的前 N 个位置，而不会有空缺（前提是按照层序从左到右排列）。
+
+因此，将完全二叉树存入数组最直接的方法就是进行\textbf{层序遍历（Level-Order Traversal）}，并依次将遍历到的节点值存入数组。层序遍历通常使用队列（Queue）来实现。
+
+下面是一个使用 C++ 语言，将一个给定根节点的完全二叉树存储到 \lstinline{std::vector} 中的程序示例：
+
+\begin{lstlisting}[language=C++]
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <cmath> // for calculating parent/child index if needed, but direct level-order filling is easier
+
+// 定义二叉树的节点结构
+struct TreeNode {
+    int val;
+    TreeNode *left;
+    TreeNode *right;
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+// 函数：将完全二叉树存储到 vector 中
+std::vector<int> storeCompleteBinaryTree(TreeNode* root) {
+    std::vector<int> result; // 用于存储节点值的vector
+    if (root == NULL) {
+        return result; // 如果树为空，返回空vector
+    }
+
+    // 使用队列进行层序遍历
+    std::queue<TreeNode*> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        TreeNode* current = q.front();
+        q.pop();
+
+        // 将当前节点的值存入 vector
+        result.push_back(current->val);
+
+        // 将当前节点的左孩子入队
+        // 对于完全二叉树的数组表示，即使某个位置理论上是左孩子，
+        // 但如果原始树中该节点不存在，我们也不会将其加入队列或vector。
+        // 这里我们假设输入的TreeNode结构已经代表了一棵完全二叉树的结构。
+        if (current->left != NULL) {
+            q.push(current->left);
+        }
+
+        // 将当前节点的右孩子入队
+        if (current->right != NULL) {
+            q.push(current->right);
+        }
+    }
+
+    return result;
+}
+
+// 辅助函数：创建一个示例完全二叉树
+// 结构:
+//       1
+//      / \
+//     2   3
+//    / \ /
+//   4   5 6
+TreeNode* createExampleCompleteBinaryTree() {
+    TreeNode* root = new TreeNode(1);
+    root->left = new TreeNode(2);
+    root->right = new TreeNode(3);
+    root->left->left = new TreeNode(4);
+    root->left->right = new TreeNode(5);
+    root->right->left = new TreeNode(6);
+    // 注意：这里特意不创建右子树的右孩子(7)，使其成为非完美的完全二叉树
+    return root;
+}
+
+// 辅助函数：释放树的内存
+void deleteTree(TreeNode* root) {
+    if (root == NULL) return;
+    deleteTree(root->left);
+    deleteTree(root->right);
+    delete root;
+}
+
+
+int main() {
+    // 创建一个示例完全二叉树
+    TreeNode* root = createExampleCompleteBinaryTree();
+
+    // 将完全二叉树存储到 vector
+    std::vector<int> treeArray = storeCompleteBinaryTree(root);
+
+    // 打印存储在 vector 中的节点值
+    std::cout << "完全二叉树存储在数组中的顺序 (层序遍历): ";
+    for (int i = 0; i < treeArray.size(); ++i) {
+        std::cout << treeArray[i] << (i == treeArray.size() - 1 ? "" : " ");
+    }
+    std::cout << std::endl;
+
+    // 验证数组索引和节点位置的关系 (例如，索引0的左孩子在索引1，右孩子在索引2)
+    if (!treeArray.empty()) {
+         std::cout << "--- 验证索引关系 (0-based) ---" << std::endl;
+         std::cout << "节点 " << treeArray[0] << " (索引 0):" << std::endl;
+         if (2*0 + 1 < treeArray.size()) {
+             std::cout << "  左孩子 (索引 1): " << treeArray[2*0 + 1] << std::endl;
+         }
+         if (2*0 + 2 < treeArray.size()) {
+             std::cout << "  右孩子 (索引 2): " << treeArray[2*0 + 2] << std::endl;
+         }
+
+         if (treeArray.size() > 1) {
+             std::cout << "节点 " << treeArray[1] << " (索引 1):" << std::endl;
+              std::cout << "  父节点 (索引 0): " << treeArray[(1 - 1) / 2] << std::endl;
+              if (2*1 + 1 < treeArray.size()) {
+                  std::cout << "  左孩子 (索引 3): " << treeArray[2*1 + 1] << std::endl;
+              }
+              if (2*1 + 2 < treeArray.size()) {
+                  std::cout << "  右孩子 (索引 4): " << treeArray[2*1 + 2] << std::endl;
+              }
+         }
+          if (treeArray.size() > 2) {
+             std::cout << "节点 " << treeArray[2] << " (索引 2):" << std::endl;
+              std::cout << "  父节点 (索引 0): " << treeArray[(2 - 1) / 2] << std::endl;
+              if (2*2 + 1 < treeArray.size()) {
+                  std::cout << "  左孩子 (索引 5): " << treeArray[2*2 + 1] << std::endl;
+              }
+              if (2*2 + 2 < treeArray.size()) {
+                  std::cout << "  右孩子 (索引 6): " << treeArray[2*2 + 2] << std::endl; // 这里会输出 6
+              }
+         }
+           if (treeArray.size() > 3) {
+             std::cout << "节点 " << treeArray[3] << " (索引 3):" << std::endl;
+              std::cout << "  父节点 (索引 1): " << treeArray[(3 - 1) / 2] << std::endl;
+              // Left and Right children checks...
+         }
+    }
+
+
+    // 释放内存
+    deleteTree(root);
+
+    return 0;
+}
+\end{lstlisting}
+\textbf{代码解释：}
+
+\begin{enumerate}
+	\item \textbf{\lstinline{TreeNode} 结构体：} 定义了二叉树节点的基本结构，包含一个值 (\lstinline{val}) 和指向左右子节点的指针 (\lstinline{left}, \lstinline{right})。
+	\item \textbf{\lstinline{storeCompleteBinaryTree} 函数：}
+	\begin{itemize}
+		\item 接收 \lstinline{TreeNode* root} 作为输入（树的根节点）。
+		\item 创建一个 \lstinline{std::vector<int>} 叫做 \lstinline{result} 用来存放遍历结果。
+		\item 如果输入的 \lstinline{root} 是 \lstinline{NULL} (空树)，直接返回空的 \lstinline{result}。
+		\item 创建一个 \lstinline{std::queue<TreeNode*>} 队列 \lstinline{q}，用于实现层序遍历。
+		\item 将根节点 \lstinline{root} 入队。
+		\item 进入 \lstinline{while} 循环，当队列不为空时继续：
+		\begin{itemize}
+			\item 取出队列头部的节点 (\lstinline{current}) 并出队。
+			\item 将 \lstinline{current} 节点的值 (\lstinline{current->val}) 添加到 \lstinline{result} 向量的末尾。
+			\item 如果 \lstinline{current} 的左子节点 \lstinline{current->left} 不为空，将其入队。
+			\item 如果 \lstinline{current} 的右子节点 \lstinline{current->right} 不为空，将其入队。
+		\end{itemize}
+		\item 循环结束后，\lstinline{result} 向量中就按层序从左到右存储了完全二叉树所有节点的值。
+		\item 返回 \lstinline{result} 向量。
+	\end{itemize}
+	\item \textbf{\lstinline{createExampleCompleteBinaryTree} 函数：} 这是一个辅助函数，用于手动构建一个符合完全二叉树定义的示例树，方便测试。
+	\item \textbf{\lstinline{deleteTree} 函数：} 辅助函数，用于递归地删除树节点，释放内存，防止内存泄漏。
+	\item \textbf{\lstinline{main} 函数：}
+	\begin{itemize}
+		\item 调用 \lstinline{createExampleCompleteBinaryTree} 创建示例树。
+		\item 调用 \lstinline{storeCompleteBinaryTree} 函数将树存储到 \lstinline{treeArray} 向量中。
+		\item 打印 \lstinline{treeArray} 的内容，展示存储结果。
+		\item 演示了如何根据数组索引计算父子节点的索引，并打印出对应的值，验证了完全二叉树的数组索引特性。
+		\item 调用 \lstinline{deleteTree} 释放内存。
+	\end{itemize}
+\end{enumerate}
+
+运行此程序，你将看到完全二叉树的节点值按照层序从左到右的顺序被打印出来，并验证了父子节点在数组中的索引关系。
+
+\subsection{时间复杂度}
+
+\subsubsection{二叉链表}
+
+存储两个孩子
+
+找双亲的时间复杂度为 $O(n)$，找孩子的时间复杂度为 $O(1)$.
+
+\subsubsection{三叉链表}
+
+存储两个孩子和一个双亲
+
+\section{使用前序遍历创建二叉树}
+
+例如创建下面的二叉树：
+
+\begin{lstlisting}
+    A
+   / \
+  B   C
+   \
+    D
+\end{lstlisting}
+使用前序遍历创建的过程：
+
+\begin{enumerate}
+	\item 输入前序序列：\lstinline{A B # D # # C # #}，每次输入一个字符
+	\begin{itemize}
+		\item 输入 A：创建根节点 A
+		\item 递归创建 A 的左子树:
+		\begin{itemize}
+			\item 输入 B：创建节点 B 作为 A 的左子节点
+			\item 递归创建 B 的左子树:
+			\begin{itemize}
+				\item 输入\#：B 的左子节点为 NULL
+			\end{itemize}
+			\item 递归创建 B 的右子树:
+			\begin{itemize}
+				\item 输入 D：创建节点 D 作为 B 的右子节点
+				\item 递归创建 D 的左子树:
+				\begin{itemize}
+					\item 输入\#：D 的左子节点为 NULL
+				\end{itemize}
+				\item 递归创建 D 的右子树:
+				\begin{itemize}
+					\item 输入\#：D 的右子节点为 NULL
+				\end{itemize}
+			\end{itemize}
+		\end{itemize}
+		\item 递归创建 A 的右子树:
+		\begin{itemize}
+			\item 输入 C：创建节点 C 作为 A 的右子节点
+			\item 递归创建 C 的左子树:
+			\begin{itemize}
+				\item 输入\#：C 的左子节点为 NULL
+			\end{itemize}
+			\item 递归创建 C 的右子树:
+			\begin{itemize}
+				\item 输入\#：C 的右子节点为 NULL
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+\end{enumerate}
+
+这样，通过序列 \lstinline{A B # D # # C # #} 就完成了整棵二叉树的创建。
+
+\subsection{Root 的作用}
+
+举例说明 \lstinline{root} 的作用：
+
+假设我们创建一棵如下的二叉树：
+
+\begin{lstlisting}
+    A
+   / \
+  B   C
+\end{lstlisting}
+\begin{enumerate}
+	\item \textbf{创建过程}：
+	\begin{itemize}
+		\item 构造函数\lstinline{BiTree()}调用\lstinline{Creat(root)}
+		\item 用户输入\lstinline{A B # # C # #}
+		\item \lstinline{Creat}函数递归构建树并返回指向根节点A的指针
+		\item 这个指针被赋值给\lstinline{root}
+	\end{itemize}
+	\item \textbf{访问和遍历}：
+	\begin{itemize}
+		\item 执行\lstinline{T.PreOrder()}时，内部会调用\lstinline{PreOrder(root)}
+		\item \lstinline{root}作为起点，从A开始访问整棵树
+		\item 如果没有\lstinline{root}，就无法知道从哪里开始遍历
+	\end{itemize}
+	\item \textbf{树的判空}：
+\begin{lstlisting}[language=C++]
+if (root == NULL) return; //判断是否为空树
+\end{lstlisting}	\item \textbf{内存释放}：
+	\begin{itemize}
+		\item 析构函数调用\lstinline{Release(root)}
+		\item 从\lstinline{root}开始递归释放所有节点内存
+	\end{itemize}
+\end{enumerate}
+
+\lstinline{root} 就像是树的"把手"，有了它才能对整棵树进行操作。如果 \lstinline{root} 丢失，即使树的节点还存在内存中，也无法访问到它们，会导致内存泄漏
+
+。
+
+\subsection{通过中序+后序确定二叉树}
+
+是的，通过后序遍历和中序遍历序列可以唯一地确定一棵二叉树。
+
+\textbf{核心思想：}
+
+\begin{enumerate}
+	\item \textbf{后序遍历 (Left-Right-Root)：} 序列的最后一个元素一定是当前（子）树的根节点。
+	\item \textbf{中序遍历 (Left-Root-Right)：} 一旦找到了根节点，那么在在中序遍历序列中，根节点左边的所有元素都属于左子树，右边的所有元素都属于右子树。
+\end{enumerate}
+
+\textbf{步骤：}
+
+假设我们有后序遍历序列 \lstinline{postOrder} 和中序遍历序列 \lstinline{inOrder}。
+
+\begin{enumerate}
+	\item \textbf{确定根节点：}
+	\begin{itemize}
+		\item \lstinline{postOrder} 的最后一个元素就是整棵树的根节点。设这个根节点为 \lstinline{rootVal}。
+	\end{itemize}
+	\item \textbf{划分左右子树：}
+	\begin{itemize}
+		\item 在 \lstinline{inOrder} 序列中找到 \lstinline{rootVal} 的位置。
+		\item \lstinline{inOrder} 中 \lstinline{rootVal} 左边的所有元素构成了左子树的中序遍历序列 (\lstinline{leftInOrder})。
+		\item \lstinline{inOrder} 中 \lstinline{rootVal} 右边的所有元素构成了右子树的中序遍历序列 (\lstinline{rightInOrder})。
+	\end{itemize}
+	\item \textbf{确定左右子树的后序遍历序列：}
+	\begin{itemize}
+		\item 左子树的节点数量等于 \lstinline{leftInOrder} 的长度。设为 \lstinline{leftTreeSize}。
+		\item 右子树的节点数量等于 \lstinline{rightInOrder} 的长度。设为 \lstinline{rightTreeSize}。
+		\item 在 \lstinline{postOrder} 序列中（除去最后一个根节点 \lstinline{rootVal}）：
+		\begin{itemize}
+			\item 前 \lstinline{leftTreeSize} 个元素构成了左子树的后序遍历序列 (\lstinline{leftPostOrder})。
+			\item 接下来的 \lstinline{rightTreeSize} 个元素构成了右子树的后序遍历序列 (\lstinline{rightPostOrder})。
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{递归构建：}
+	\begin{itemize}
+		\item 现在我们有了左子树的 \lstinline{leftPostOrder} 和 \lstinline{leftInOrder}，以及右子树的 \lstinline{rightPostOrder} 和 \lstinline{rightInOrder}。
+		\item 递归地对左子树和右子树执行上述步骤，直到处理的序列为空（表示子树为空）。
+		\item 将递归构建出的左子树连接到根节点的左孩子，右子树连接到根节点的右孩子。
+	\end{itemize}
+\end{enumerate}
+
+\textbf{举例说明：}
+
+假设：
+
+\begin{itemize}
+	\item \textbf{后序遍历 (postOrder):} \lstinline{[D, E, B, F, G, C, A]}
+	\item \textbf{中序遍历 (inOrder):} \lstinline{[D, B, E, A, F, C, G]}
+\end{itemize}
+
+\textbf{构建过程：}
+
+\begin{enumerate}
+	\item \textbf{第一次递归 (构建整棵树):}
+	\begin{itemize}
+		\item \textbf{根节点:} \lstinline{postOrder} 的最后一个元素是 \lstinline{A}。所以 \lstinline{A} 是根。
+		\item \textbf{划分中序:} 在 \lstinline{inOrder} \lstinline{[D, B, E, A, F, C, G]} 中，\lstinline{A} 的位置：
+		\begin{itemize}
+			\item \lstinline{leftInOrder} = \lstinline{[D, B, E]} (左子树的中序遍历)
+			\item \lstinline{rightInOrder} = \lstinline{[F, C, G]} (右子树的中序遍历)
+		\end{itemize}
+		\item \textbf{划分后序:}
+		\begin{itemize}
+			\item 左子树节点数 \lstinline{leftTreeSize} = 3 (来自 \lstinline{leftInOrder} 的长度)。
+			\item 右子树节点数 \lstinline{rightTreeSize} = 3 (来自 \lstinline{rightInOrder} 的长度)。
+			\item \lstinline{postOrder} (除去 \lstinline{A}) 是 \lstinline{[D, E, B, F, G, C]}。
+			\item \lstinline{leftPostOrder} = \lstinline{[D, E, B]} (前 3 个元素)
+			\item \lstinline{rightPostOrder} = \lstinline{[F, G, C]} (后 3 个元素)
+		\end{itemize}
+		\item 现在，根节点 \lstinline{A} 的左孩子通过 \lstinline{leftPostOrder: [D, E, B]} 和 \lstinline{leftInOrder: [D, B, E]} 构建。
+		\item 根节点 \lstinline{A} 的右孩子通过 \lstinline{rightPostOrder: [F, G, C]} 和 \lstinline{rightInOrder: [F, C, G]} 构建。
+	\end{itemize}
+	\item \textbf{第二次递归 (构建 A 的左子树):}
+	\begin{itemize}
+		\item 输入: \lstinline{postOrder_L = [D, E, B]}, \lstinline{inOrder_L = [D, B, E]}
+		\item \textbf{根节点:} \lstinline{postOrder_L} 的最后一个元素是 \lstinline{B}。所以 \lstinline{B} 是该子树的根。
+		\item \textbf{划分中序:} 在 \lstinline{inOrder_L} \lstinline{[D, B, E]} 中，\lstinline{B} 的位置：
+		\begin{itemize}
+			\item \lstinline{leftInOrder_L_sub} = \lstinline{[D]}
+			\item \lstinline{rightInOrder_L_sub} = \lstinline{[E]}
+		\end{itemize}
+		\item \textbf{划分后序:}
+		\begin{itemize}
+			\item 左子树节点数 = 1。右子树节点数 = 1。
+			\item \lstinline{postOrder_L} (除去 \lstinline{B}) 是 \lstinline{[D, E]}。
+			\item \lstinline{leftPostOrder_L_sub} = \lstinline{[D]}
+			\item \lstinline{rightPostOrder_L_sub} = \lstinline{[E]}
+		\end{itemize}
+		\item \lstinline{B} 的左孩子通过 \lstinline{post: [D]}, \lstinline{in: [D]} 构建。
+		\item \lstinline{B} 的右孩子通过 \lstinline{post: [E]}, \lstinline{in: [E]} 构建。
+	\end{itemize}
+	\item \textbf{第三次递归 (构建 B 的左子树):}
+	\begin{itemize}
+		\item 输入: \lstinline{postOrder = [D]}, \lstinline{inOrder = [D]}
+		\item \textbf{根节点:} \lstinline{D}。
+		\item \textbf{划分中序:} \lstinline{leftInOrder} 为空，\lstinline{rightInOrder} 为空。
+		\item \lstinline{D} 是叶子节点。返回 \lstinline{D}。
+	\end{itemize}
+	\item \textbf{第三次递归 (构建 B 的右子树):}
+	\begin{itemize}
+		\item 输入: \lstinline{postOrder = [E]}, \lstinline{inOrder = [E]}
+		\item \textbf{根节点:} \lstinline{E}。
+		\item \textbf{划分中序:} \lstinline{leftInOrder} 为空，\lstinline{rightInOrder} 为空。
+		\item \lstinline{E} 是叶子节点。返回 \lstinline{E}。
+		\item 此时，\lstinline{B} 的左右孩子都已确定：\lstinline{B} 的左孩子是 \lstinline{D}，右孩子是 \lstinline{E}。
+	\end{itemize}
+	\item \textbf{第二次递归 (构建 A 的右子树):}
+	\begin{itemize}
+		\item 输入: \lstinline{postOrder_R = [F, G, C]}, \lstinline{inOrder_R = [F, C, G]}
+		\item \textbf{根节点:} \lstinline{postOrder_R} 的最后一个元素是 \lstinline{C}。所以 \lstinline{C} 是该子树的根。
+		\item \textbf{划分中序:} 在 \lstinline{inOrder_R} \lstinline{[F, C, G]} 中，\lstinline{C} 的位置：
+		\begin{itemize}
+			\item \lstinline{leftInOrder_R_sub} = \lstinline{[F]}
+			\item \lstinline{rightInOrder_R_sub} = \lstinline{[G]}
+		\end{itemize}
+		\item \textbf{划分后序:}
+		\begin{itemize}
+			\item 左子树节点数 = 1。右子树节点数 = 1。
+			\item \lstinline{postOrder_R} (除去 \lstinline{C}) 是 \lstinline{[F, G]}。
+			\item \lstinline{leftPostOrder_R_sub} = \lstinline{[F]}
+			\item \lstinline{rightPostOrder_R_sub} = \lstinline{[G]}
+		\end{itemize}
+		\item \lstinline{C} 的左孩子通过 \lstinline{post: [F]}, \lstinline{in: [F]} 构建 (得到叶子节点 \lstinline{F})。
+		\item \lstinline{C} 的右孩子通过 \lstinline{post: [G]}, \lstinline{in: [G]} 构建 (得到叶子节点 \lstinline{G})。
+		\item 此时，\lstinline{C} 的左右孩子都已确定：\lstinline{C} 的左孩子是 \lstinline{F}，右孩子是 \lstinline{G}。
+	\end{itemize}
+\end{enumerate}
+
+\textbf{最终结果：}
+
+将所有构建好的子树连接起来，得到的二叉树结构如下：
+
+\begin{lstlisting}
+      A
+     / \
+    B   C
+   / \ / \
+  D  E F  G
+\end{lstlisting}
+这个过程通常用递归函数来实现，基本情况是当传入的遍历序列为空时，返回 \lstinline{null} (或表示空子树的标记)。
+
+\subsection{通过前序+中序确定二叉树}
+
+是的，通过前序遍历和中序遍历序列同样可以唯一地确定一棵二叉树。
+
+\textbf{核心思想：}
+
+\begin{enumerate}
+	\item \textbf{前序遍历 (Root-Left-Right)：} 序列的第一个元素一定是当前（子）树的根节点。
+	\item \textbf{中序遍历 (Left-Root-Right)：} 一旦找到了根节点，那么在中序遍历序列中，根节点左边的所有元素都属于左子树，右边的所有元素都属于右子树。
+\end{enumerate}
+
+\textbf{步骤：}
+
+假设我们有前序遍历序列 \lstinline{preOrder} 和中序遍历序列 \lstinline{inOrder}。
+
+\begin{enumerate}
+	\item \textbf{确定根节点：}
+	\begin{itemize}
+		\item \lstinline{preOrder} 的第一个元素就是整棵树的根节点。设这个根节点为 \lstinline{rootVal}。
+	\end{itemize}
+	\item \textbf{划分左右子树（在中序遍历中）：}
+	\begin{itemize}
+		\item 在 \lstinline{inOrder} 序列中找到 \lstinline{rootVal} 的位置。
+		\item \lstinline{inOrder} 中 \lstinline{rootVal} 左边的所有元素构成了左子树的中序遍历序列 (\lstinline{leftInOrder})。
+		\item \lstinline{inOrder} 中 \lstinline{rootVal} 右边的所有元素构成了右子树的中序遍历序列 (\lstinline{rightInOrder})。
+	\end{itemize}
+	\item \textbf{确定左右子树的前序遍历序列：}
+	\begin{itemize}
+		\item 左子树的节点数量等于 \lstinline{leftInOrder} 的长度。设为 \lstinline{leftTreeSize}。
+		\item 右子树的节点数量等于 \lstinline{rightInOrder} 的长度。
+		\item 在 \lstinline{preOrder} 序列中（除去第一个根节点 \lstinline{rootVal}）：
+		\begin{itemize}
+			\item 接下来的 \lstinline{leftTreeSize} 个元素构成了左子树的前序遍历序列 (\lstinline{leftPreOrder})。
+			\item 再往后的元素构成了右子树的前序遍历序列 (\lstinline{rightPreOrder})。
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{递归构建：}
+	\begin{itemize}
+		\item 现在我们有了左子树的 \lstinline{leftPreOrder} 和 \lstinline{leftInOrder}，以及右子树的 \lstinline{rightPreOrder} 和 \lstinline{rightInOrder}。
+		\item 递归地对左子树和右子树执行上述步骤，直到处理的序列为空（表示子树为空）。
+		\item 将递归构建出的左子树连接到根节点的左孩子，右子树连接到根节点的右孩子。
+	\end{itemize}
+\end{enumerate}
+
+\textbf{举例说明：}
+
+假设：
+
+\begin{itemize}
+	\item \textbf{前序遍历 (preOrder):} \lstinline{[A, B, D, E, C, F, G]}
+	\item \textbf{中序遍历 (inOrder):} \lstinline{[D, B, E, A, F, C, G]}
+\end{itemize}
+
+\textbf{构建过程：}
+
+\begin{enumerate}
+	\item \textbf{第一次递归 (构建整棵树):}
+	\begin{itemize}
+		\item \textbf{根节点:} \lstinline{preOrder} 的第一个元素是 \lstinline{A}。所以 \lstinline{A} 是根。
+		\item \textbf{划分中序:} 在 \lstinline{inOrder} \lstinline{[D, B, E, A, F, C, G]} 中，\lstinline{A} 的位置：
+		\begin{itemize}
+			\item \lstinline{leftInOrder} = \lstinline{[D, B, E]} (左子树的中序遍历)
+			\item \lstinline{rightInOrder} = \lstinline{[F, C, G]} (右子树的中序遍历)
+		\end{itemize}
+		\item \textbf{划分前序:}
+		\begin{itemize}
+			\item 左子树节点数 \lstinline{leftTreeSize} = 3 (来自 \lstinline{leftInOrder} 的长度)。
+			\item \lstinline{preOrder} (除去 \lstinline{A}) 是 \lstinline{[B, D, E, C, F, G]}。
+			\item \lstinline{leftPreOrder} = \lstinline{[B, D, E]} (接下来的 3 个元素)
+			\item \lstinline{rightPreOrder} = \lstinline{[C, F, G]} (剩下的元素)
+		\end{itemize}
+		\item 现在，根节点 \lstinline{A} 的左孩子通过 \lstinline{leftPreOrder: [B, D, E]} 和 \lstinline{leftInOrder: [D, B, E]} 构建。
+		\item 根节点 \lstinline{A} 的右孩子通过 \lstinline{rightPreOrder: [C, F, G]} 和 \lstinline{rightInOrder: [F, C, G]} 构建。
+	\end{itemize}
+	\item \textbf{第二次递归 (构建 A 的左子树):}
+	\begin{itemize}
+		\item 输入: \lstinline{preOrder_L = [B, D, E]}, \lstinline{inOrder_L = [D, B, E]}
+		\item \textbf{根节点:} \lstinline{preOrder_L} 的第一个元素是 \lstinline{B}。所以 \lstinline{B} 是该子树的根。
+		\item \textbf{划分中序:} 在 \lstinline{inOrder_L} \lstinline{[D, B, E]} 中，\lstinline{B} 的位置：
+		\begin{itemize}
+			\item \lstinline{leftInOrder_L_sub} = \lstinline{[D]}
+			\item \lstinline{rightInOrder_L_sub} = \lstinline{[E]}
+		\end{itemize}
+		\item \textbf{划分前序:}
+		\begin{itemize}
+			\item 左子树节点数 = 1。
+			\item \lstinline{preOrder_L} (除去 \lstinline{B}) 是 \lstinline{[D, E]}。
+			\item \lstinline{leftPreOrder_L_sub} = \lstinline{[D]} (接下来的 1 个元素)
+			\item \lstinline{rightPreOrder_L_sub} = \lstinline{[E]} (剩下的元素)
+		\end{itemize}
+		\item \lstinline{B} 的左孩子通过 \lstinline{pre: [D]}, \lstinline{in: [D]} 构建。
+		\item \lstinline{B} 的右孩子通过 \lstinline{pre: [E]}, \lstinline{in: [E]} 构建。
+	\end{itemize}
+	\item \textbf{第三次递归 (构建 B 的左子树):}
+	\begin{itemize}
+		\item 输入: \lstinline{preOrder = [D]}, \lstinline{inOrder = [D]}
+		\item \textbf{根节点:} \lstinline{D}。
+		\item \textbf{划分中序:} \lstinline{leftInOrder} 为空，\lstinline{rightInOrder} 为空。
+		\item \lstinline{D} 是叶子节点。返回 \lstinline{D}。
+	\end{itemize}
+	\item \textbf{第三次递归 (构建 B 的右子树):}
+	\begin{itemize}
+		\item 输入: \lstinline{preOrder = [E]}, \lstinline{inOrder = [E]}
+		\item \textbf{根节点:} \lstinline{E}。
+		\item \textbf{划分中序:} \lstinline{leftInOrder} 为空，\lstinline{rightInOrder} 为空。
+		\item \lstinline{E} 是叶子节点。返回 \lstinline{E}。
+		\item 此时，\lstinline{B} 的左右孩子都已确定：\lstinline{B} 的左孩子是 \lstinline{D}，右孩子是 \lstinline{E}。
+	\end{itemize}
+	\item \textbf{第二次递归 (构建 A 的右子树):}
+	\begin{itemize}
+		\item 输入: \lstinline{preOrder_R = [C, F, G]}, \lstinline{inOrder_R = [F, C, G]}
+		\item \textbf{根节点:} \lstinline{preOrder_R} 的第一个元素是 \lstinline{C}。所以 \lstinline{C} 是该子树的根。
+		\item \textbf{划分中序:} 在 \lstinline{inOrder_R} \lstinline{[F, C, G]} 中，\lstinline{C} 的位置：
+		\begin{itemize}
+			\item \lstinline{leftInOrder_R_sub} = \lstinline{[F]}
+			\item \lstinline{rightInOrder_R_sub} = \lstinline{[G]}
+		\end{itemize}
+		\item \textbf{划分前序:}
+		\begin{itemize}
+			\item 左子树节点数 = 1。
+			\item \lstinline{preOrder_R} (除去 \lstinline{C}) 是 \lstinline{[F, G]}。
+			\item \lstinline{leftPreOrder_R_sub} = \lstinline{[F]} (接下来的 1 个元素)
+			\item \lstinline{rightPreOrder_R_sub} = \lstinline{[G]} (剩下的元素)
+		\end{itemize}
+		\item \lstinline{C} 的左孩子通过 \lstinline{pre: [F]}, \lstinline{in: [F]} 构建 (得到叶子节点 \lstinline{F})。
+		\item \lstinline{C} 的右孩子通过 \lstinline{pre: [G]}, \lstinline{in: [G]} 构建 (得到叶子节点 \lstinline{G})。
+		\item 此时，\lstinline{C} 的左右孩子都已确定：\lstinline{C} 的左孩子是 \lstinline{F}，右孩子是 \lstinline{G}。
+	\end{itemize}
+\end{enumerate}
+
+\textbf{最终结果：}
+
+将所有构建好的子树连接起来，得到的二叉树结构如下：
+
+\begin{lstlisting}
+      A
+     / \
+    B   C
+   / \ / \
+  D  E F  G
+\end{lstlisting}
+这个过程与使用后序和中序遍历构建树非常相似，主要的区别在于从哪个遍历序列中取根节点（前序是第一个，后序是最后一个），以及如何根据根节点和中序遍历划分对应遍历序列中的子序列。
+
+\subsection{前序+后序不能确定二叉树}
+
+让我们来看一个例子：
+
+\textbf{情况 1：} 树 A:
+
+\begin{lstlisting}
+    1
+   /
+  2
+\end{lstlisting}
+\begin{itemize}
+	\item 前序遍历: \lstinline{[1, 2]}
+	\item 后序遍历: \lstinline{[2, 1]}
+\end{itemize}
+
+\textbf{情况 2：} 树 B:
+
+\begin{lstlisting}
+    1
+     \
+      2
+\end{lstlisting}
+\begin{itemize}
+	\item 前序遍历: \lstinline{[1, 2]}
+	\item 后序遍历: \lstinline{[2, 1]}
+\end{itemize}
+
+对于这两棵不同的树，它们的前序遍历和后序遍历结果是完全相同的。因此，仅给出前序 \lstinline{[1, 2]} 和后序 \lstinline{[2, 1]}，我们无法判断节点 \lstinline{2} 究竟是节点 \lstinline{1} 的左孩子还是右孩子。

@@ -1,0 +1,1234 @@
+\documentclass[12pt,a4paper]{amsart}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=red,urlcolor=red,bookmarks=true,bookmarksopen=true,bookmarksnumbered=true,bookmarksdepth=4]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{mathrsfs}
+\renewcommand{\arraystretch}{1.5}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\title{\textbf{Mathematical Statistics Final Review\\Chapters 1-9 Comprehensive Guide}}
+\author{Statistical Theory Review}
+\date{\today}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{note}{Note}[section]
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Probability and Distributions (Chapter 1)}
+
+\subsection{Fundamental Concepts}
+
+\begin{definition}[Probability Space]
+A probability space is a triple $(\Omega, \mathcal{F}, P)$ where:
+\begin{itemize}
+\item $\Omega$ is the sample space
+\item $\mathcal{F}$ is a $\sigma$-algebra on $\Omega$
+\item $P: \mathcal{F} \to [0,1]$ is a probability measure
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Kolmogorov Axioms]
+For any probability measure $P$:
+\begin{enumerate}
+\item $P(\Omega) = 1$
+\item $P(A) \geq 0$ for all $A \in \mathcal{F}$
+\item For disjoint events $A_1, A_2, \ldots$: $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$
+\end{enumerate}
+\end{theorem}
+
+\subsection{Conditional Probability and Independence}
+
+\begin{definition}[Conditional Probability]
+$$P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad P(B) > 0$$
+\end{definition}
+
+\begin{theorem}[Bayes' Theorem]
+Let $B_1, B_2, \ldots, B_n$ be a partition of $\Omega$. Then:
+$$P(B_i|A) = \frac{P(A|B_i)P(B_i)}{\sum_{j=1}^n P(A|B_j)P(B_j)}$$
+\end{theorem}
+
+\begin{definition}[Independence]
+Events $A$ and $B$ are independent if $P(A \cap B) = P(A)P(B)$.
+Random variables $X$ and $Y$ are independent if $F_{X,Y}(x,y) = F_X(x)F_Y(y)$.
+\end{definition}
+
+\subsection{Random Variables and Distributions}
+
+\begin{definition}[Cumulative Distribution Function]
+$$F_X(x) = P(X \leq x)$$
+
+\textbf{Properties:}
+\begin{enumerate}
+\item Non-decreasing: $x_1 < x_2 \Rightarrow F_X(x_1) \leq F_X(x_2)$
+\item Right-continuous: $\lim_{h \to 0^+} F_X(x+h) = F_X(x)$
+\item $\lim_{x \to -\infty} F_X(x) = 0$, $\lim_{x \to \infty} F_X(x) = 1$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Probability Mass/Density Functions]
+\textbf{Discrete:} $f_X(x) = P(X = x)$
+
+\textbf{Continuous:} $f_X(x) = \frac{dF_X(x)}{dx}$ where $F_X(x) = \int_{-\infty}^x f_X(t) dt$
+\end{definition}
+
+\subsection{Expectation and Moments}
+
+\begin{definition}[Expectation]
+\textbf{Discrete:} $E[X] = \sum_x x f_X(x)$
+
+\textbf{Continuous:} $E[X] = \int_{-\infty}^{\infty} x f_X(x) dx$
+\end{definition}
+
+\begin{theorem}[Properties of Expectation]
+\begin{enumerate}
+\item Linearity: $E[aX + bY] = aE[X] + bE[Y]$
+\item If $X \geq 0$, then $E[X] \geq 0$
+\item If $X$ and $Y$ are independent: $E[XY] = E[X]E[Y]$
+\item Law of Total Expectation: $E[X] = E[E[X|Y]]$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Variance]
+$$\text{Var}(X) = E[(X - E[X])^2] = E[X^2] - (E[X])^2$$
+
+\textbf{Properties:}
+\begin{itemize}
+\item $\text{Var}(aX + b) = a^2\text{Var}(X)$
+\item If $X$ and $Y$ are independent: $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$
+\item Law of Total Variance: $\text{Var}(X) = E[\text{Var}(X|Y)] + \text{Var}(E[X|Y])$
+\end{itemize}
+\end{definition}
+
+\subsection{Important Inequalities}
+
+\begin{theorem}[Markov's Inequality]
+For any non-negative random variable $X$ and $a > 0$:
+$$P(X \geq a) \leq \frac{E[X]}{a}$$
+\end{theorem}
+
+\begin{theorem}[Chebyshev's Inequality]
+For any random variable $X$ with finite mean $\mu$ and variance $\sigma^2$, and any $k > 0$:
+$$P(|X - \mu| \geq k\sigma) \leq \frac{1}{k^2}$$
+\end{theorem}
+
+\begin{theorem}[Jensen's Inequality]
+If $g$ is a convex function and $E[X]$ exists, then:
+$$g(E[X]) \leq E[g(X)]$$
+If $g$ is concave, the inequality is reversed.
+\end{theorem}
+
+\begin{theorem}[Cauchy-Schwarz Inequality]
+For random variables $X$ and $Y$ with finite second moments:
+$$|E[XY]| \leq \sqrt{E[X^2]E[Y^2]}$$
+Equality holds if and only if $X$ and $Y$ are linearly dependent.
+\end{theorem}
+
+\section{Multivariate Distributions (Chapter 2)}
+
+\subsection{Joint Distributions}
+
+\begin{definition}[Joint CDF]
+$$F_{X,Y}(x,y) = P(X \leq x, Y \leq y)$$
+\end{definition}
+
+\begin{definition}[Marginal Distributions]
+$$F_X(x) = F_{X,Y}(x, \infty) = \lim_{y \to \infty} F_{X,Y}(x,y)$$
+
+For continuous case:
+$$f_X(x) = \int_{-\infty}^{\infty} f_{X,Y}(x,y) dy$$
+\end{definition}
+
+\subsection{Conditional Distributions}
+
+\begin{definition}[Conditional PDF]
+$$f_{Y|X}(y|x) = \frac{f_{X,Y}(x,y)}{f_X(x)}, \quad f_X(x) > 0$$
+\end{definition}
+
+\begin{definition}[Conditional Expectation]
+$$E[Y|X = x] = \int_{-\infty}^{\infty} y f_{Y|X}(y|x) dy$$
+
+\textbf{Law of Total Expectation:} $E[Y] = E[E[Y|X]]$
+\end{definition}
+
+\subsection{Covariance and Correlation}
+
+\begin{definition}[Covariance]
+$$\text{Cov}(X,Y) = E[(X - E[X])(Y - E[Y])] = E[XY] - E[X]E[Y]$$
+\end{definition}
+
+\begin{definition}[Correlation Coefficient]
+$$\rho(X,Y) = \frac{\text{Cov}(X,Y)}{\sqrt{\text{Var}(X)\text{Var}(Y)}}$$
+
+\textbf{Properties:} $-1 \leq \rho(X,Y) \leq 1$
+\end{definition}
+
+\subsection{Transformations}
+
+\begin{theorem}[Jacobian Method]
+If $(U,V) = g(X,Y)$ where $g$ is bijective with Jacobian $J$, then:
+$$f_{U,V}(u,v) = f_{X,Y}(g^{-1}(u,v)) |J|^{-1}$$
+where $J = \det\begin{pmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\ \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{pmatrix}$
+\end{theorem}
+
+\section{Special Distributions (Chapter 3)}
+
+\subsection{Discrete Distributions}
+
+\begin{definition}[Binomial Distribution]
+$X \sim \text{Binomial}(n,p)$:
+$$P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0,1,\ldots,n$$
+$$E[X] = np, \quad \text{Var}(X) = np(1-p)$$
+\end{definition}
+
+\begin{definition}[Poisson Distribution]
+$X \sim \text{Poisson}(\lambda)$:
+$$P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \quad k = 0,1,2,\ldots$$
+$$E[X] = \text{Var}(X) = \lambda$$
+\end{definition}
+
+\begin{definition}[Negative Binomial Distribution]
+$X \sim \text{NegBin}(r,p)$ (number of failures before $r$-th success):
+$$P(X = k) = \binom{k+r-1}{k} p^r (1-p)^k$$
+$$E[X] = \frac{r(1-p)}{p}, \quad \text{Var}(X) = \frac{r(1-p)}{p^2}$$
+\end{definition}
+
+\subsection{Continuous Distributions}
+
+\begin{definition}[Normal Distribution]
+$X \sim \mathcal{N}(\mu, \sigma^2)$:
+$$f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$$
+$$E[X] = \mu, \quad \text{Var}(X) = \sigma^2$$
+\end{definition}
+
+\begin{definition}[Gamma Distribution]
+$X \sim \text{Gamma}(\alpha, \beta)$:
+$$f_X(x) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}, \quad x > 0$$
+$$E[X] = \frac{\alpha}{\beta}, \quad \text{Var}(X) = \frac{\alpha}{\beta^2}$$
+\end{definition}
+
+\begin{definition}[Chi-Square Distribution]
+$X \sim \chi^2(\nu)$ where $\nu$ is degrees of freedom:
+$$f_X(x) = \frac{1}{2^{\nu/2}\Gamma(\nu/2)} x^{\nu/2-1} e^{-x/2}, \quad x > 0$$
+$$E[X] = \nu, \quad \text{Var}(X) = 2\nu$$
+
+\textbf{Note:} $\chi^2(\nu) = \text{Gamma}(\nu/2, 1/2)$
+\end{definition}
+
+\begin{definition}[Student's t-Distribution]
+$T \sim t(\nu)$ where $T = \frac{Z}{\sqrt{V/\nu}}$, $Z \sim \mathcal{N}(0,1)$, $V \sim \chi^2(\nu)$:
+$$f_T(t) = \frac{\Gamma((\nu+1)/2)}{\sqrt{\nu\pi}\Gamma(\nu/2)} \left(1 + \frac{t^2}{\nu}\right)^{-(\nu+1)/2}$$
+$$E[T] = 0 \text{ (if } \nu > 1\text{)}, \quad \text{Var}(T) = \frac{\nu}{\nu-2} \text{ (if } \nu > 2\text{)}$$
+\end{definition}
+
+\begin{definition}[F-Distribution]
+$F \sim F(m,n)$ where $F = \frac{U/m}{V/n}$, $U \sim \chi^2(m)$, $V \sim \chi^2(n)$:
+$$E[F] = \frac{n}{n-2} \text{ (if } n > 2\text{)}$$
+\end{definition}
+
+\begin{definition}[Uniform Distribution]
+$X \sim \text{Uniform}(a,b)$:
+$$f_X(x) = \frac{1}{b-a}, \quad a < x < b$$
+$$E[X] = \frac{a+b}{2}, \quad \text{Var}(X) = \frac{(b-a)^2}{12}$$
+\end{definition}
+
+\begin{definition}[Exponential Distribution]
+$X \sim \text{Exponential}(\lambda)$:
+$$f_X(x) = \lambda e^{-\lambda x}, \quad x > 0$$
+$$E[X] = \frac{1}{\lambda}, \quad \text{Var}(X) = \frac{1}{\lambda^2}$$
+\textbf{Memoryless Property:} $P(X > s+t | X > s) = P(X > t)$
+\end{definition}
+
+\begin{definition}[Beta Distribution]
+$X \sim \text{Beta}(\alpha, \beta)$:
+$$f_X(x) = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha-1}(1-x)^{\beta-1}, \quad 0 < x < 1$$
+$$E[X] = \frac{\alpha}{\alpha+\beta}, \quad \text{Var}(X) = \frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}$$
+\end{definition}
+
+\begin{definition}[Hypergeometric Distribution]
+$X \sim \text{Hypergeometric}(N,K,n)$ (sampling without replacement):
+$$P(X = k) = \frac{\binom{K}{k}\binom{N-K}{n-k}}{\binom{N}{n}}$$
+$$E[X] = n\frac{K}{N}, \quad \text{Var}(X) = n\frac{K}{N}\frac{N-K}{N}\frac{N-n}{N-1}$$
+\end{definition}
+
+\subsection{Moment Generating Functions}
+
+\begin{definition}[Moment Generating Function]
+For random variable $X$:
+$$M_X(t) = E[e^{tX}] = \begin{cases}
+\sum_x e^{tx} P(X=x) & \text{discrete} \\
+\int_{-\infty}^{\infty} e^{tx} f_X(x) dx & \text{continuous}
+\end{cases}$$
+\end{definition}
+
+\begin{theorem}[Properties of MGF]
+\begin{enumerate}
+\item $M_X^{(n)}(0) = E[X^n]$ (moments)
+\item If $Y = aX + b$, then $M_Y(t) = e^{bt} M_X(at)$
+\item If $X$ and $Y$ are independent, then $M_{X+Y}(t) = M_X(t) M_Y(t)$
+\item MGF uniquely determines the distribution
+\end{enumerate}
+\end{theorem}
+
+\begin{example}[Common MGFs]
+\begin{itemize}
+\item Normal: $M_X(t) = \exp(\mu t + \frac{\sigma^2 t^2}{2})$
+\item Binomial: $M_X(t) = (1-p+pe^t)^n$
+\item Poisson: $M_X(t) = \exp(\lambda(e^t-1))$
+\item Exponential: $M_X(t) = \frac{\lambda}{\lambda-t}$ for $t < \lambda$
+\item Gamma: $M_X(t) = \left(\frac{\beta}{\beta-t}\right)^\alpha$ for $t < \beta$
+\item Chi-square: $M_X(t) = (1-2t)^{-k/2}$ for $t < \frac{1}{2}$
+\end{itemize}
+\end{example}
+
+\begin{definition}[Characteristic Function]
+$\phi_X(t) = E[e^{itX}]$ where $i = \sqrt{-1}$.
+
+\textbf{Properties:}
+\begin{itemize}
+\item Always exists for any random variable
+\item $|\phi_X(t)| \leq 1$ for all $t$, $\phi_X(0) = 1$
+\item If $X$ and $Y$ independent: $\phi_{X+Y}(t) = \phi_X(t)\phi_Y(t)$
+\item Uniquely determines the distribution
+\end{itemize}
+\end{definition}
+
+\subsection{Multivariate Normal Distribution}
+
+\begin{definition}[Bivariate Normal]
+$(X,Y) \sim \mathcal{N}_2(\boldsymbol{\mu}, \boldsymbol{\Sigma})$ where $\boldsymbol{\mu} = (\mu_1, \mu_2)^T$ and
+$$\boldsymbol{\Sigma} = \begin{pmatrix} \sigma_1^2 & \rho\sigma_1\sigma_2 \\ \rho\sigma_1\sigma_2 & \sigma_2^2 \end{pmatrix}$$
+
+Joint pdf:
+$$f(x,y) = \frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}} \exp\left(-\frac{Q}{2(1-\rho^2)}\right)$$
+where $Q = \frac{(x-\mu_1)^2}{\sigma_1^2} - \frac{2\rho(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2} + \frac{(y-\mu_2)^2}{\sigma_2^2}$
+\end{definition}
+
+\section{Elementary Statistical Inferences (Chapter 4)}
+
+\subsection{Sampling and Statistics}
+
+\begin{definition}[Random Sample]
+$X_1, X_2, \ldots, X_n$ is a random sample if they are independent and identically distributed (i.i.d.).
+\end{definition}
+
+\begin{definition}[Sample Statistics]
+\begin{itemize}
+\item Sample mean: $\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i$
+\item Sample variance: $S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2$
+\item Sample standard deviation: $S = \sqrt{S^2}$
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Sampling from Normal Distribution]
+If $X_1, \ldots, X_n \stackrel{iid}{\sim} \mathcal{N}(\mu, \sigma^2)$, then:
+\begin{enumerate}
+\item $\bar{X} \sim \mathcal{N}(\mu, \sigma^2/n)$
+\item $\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$
+\item $\bar{X}$ and $S^2$ are independent
+\item $\frac{\bar{X} - \mu}{S/\sqrt{n}} \sim t(n-1)$
+\end{enumerate}
+\end{theorem}
+
+\subsection{Confidence Intervals}
+
+\begin{definition}[Confidence Interval]
+A $100(1-\alpha)\%$ confidence interval for parameter $\theta$ is an interval $[L, U]$ such that:
+$$P(L \leq \theta \leq U) = 1-\alpha$$
+\end{definition}
+
+\begin{theorem}[Confidence Intervals for Normal Mean]
+\textbf{Case 1: $\sigma^2$ known}
+$$\bar{X} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$$
+
+\textbf{Case 2: $\sigma^2$ unknown}
+$$\bar{X} \pm t_{\alpha/2}(n-1) \frac{S}{\sqrt{n}}$$
+\end{theorem}
+
+\subsection{Order Statistics}
+
+\begin{definition}[Order Statistics]
+For sample $X_1, \ldots, X_n$, the order statistics are $X_{(1)} \leq X_{(2)} \leq \cdots \leq X_{(n)}$.
+
+The $k$-th order statistic $X_{(k)}$ has pdf:
+$$f_{X_{(k)}}(x) = \frac{n!}{(k-1)!(n-k)!} [F(x)]^{k-1} [1-F(x)]^{n-k} f(x)$$
+\end{definition}
+
+\subsection{Introduction to Hypothesis Testing}
+
+\begin{definition}[Hypothesis Test]
+\begin{itemize}
+\item Null hypothesis: $H_0$
+\item Alternative hypothesis: $H_1$
+\item Test statistic: $T(\mathbf{X})$
+\item Critical region: $\mathcal{C}$
+\item Decision rule: Reject $H_0$ if $T(\mathbf{X}) \in \mathcal{C}$
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Type I and Type II Errors]
+\begin{itemize}
+\item Type I error: Reject $H_0$ when $H_0$ is true, $\alpha = P(\text{Type I error})$
+\item Type II error: Accept $H_0$ when $H_1$ is true, $\beta = P(\text{Type II error})$
+\item Power: $1 - \beta = P(\text{Reject } H_0 | H_1 \text{ true})$
+\end{itemize}
+\end{definition}
+
+\subsection{Wald Test}
+
+\begin{definition}[Wald Test]
+For testing $H_0: \theta = \theta_0$ vs $H_1: \theta \neq \theta_0$, when $\hat{\theta}$ is asymptotically normal:
+$$W = \frac{\hat{\theta} - \theta_0}{\widehat{\text{se}}(\hat{\theta})} \stackrel{d}{\to} N(0,1)$$
+Reject $H_0$ if $|W| > z_{\alpha/2}$.
+\end{definition}
+
+\subsection{p-values}
+
+\begin{definition}[p-value]
+The p-value is the probability, under $H_0$, of observing a test statistic as extreme or more extreme than what was actually observed.
+
+For two-sided test: $\text{p-value} = 2P(|T| \geq |t_{obs}| | H_0)$
+\end{definition}
+
+\subsection{Chi-Square Tests}
+
+\begin{definition}[Goodness-of-Fit Test]
+For testing if data follows a specified distribution:
+$$\chi^2 = \sum_{i=1}^k \frac{(O_i - E_i)^2}{E_i} \sim \chi^2(k-1-r)$$
+where $O_i$ = observed frequency, $E_i$ = expected frequency, $r$ = number of estimated parameters.
+\end{definition}
+
+\begin{definition}[Test of Independence]
+For testing independence in contingency tables:
+$$\chi^2 = \sum_{i=1}^r \sum_{j=1}^c \frac{(O_{ij} - E_{ij})^2}{E_{ij}} \sim \chi^2((r-1)(c-1))$$
+where $E_{ij} = \frac{n_{i\cdot} n_{\cdot j}}{n}$.
+\end{definition}
+
+\section{Consistency and Limiting Distributions (Chapter 5)}
+
+\subsection{Modes of Convergence}
+
+\begin{definition}[Convergence in Probability]
+$X_n \stackrel{p}{\to} X$ if for any $\epsilon > 0$:
+$$\lim_{n \to \infty} P(|X_n - X| > \epsilon) = 0$$
+\end{definition}
+
+\begin{definition}[Convergence in Distribution]
+$X_n \stackrel{d}{\to} X$ if $F_n(x) \to F(x)$ at all continuity points of $F$.
+\end{definition}
+
+\begin{theorem}[Relationships Between Convergence Types]
+$$\text{a.s.} \Rightarrow \text{probability} \Rightarrow \text{distribution}$$
+$$L^p \Rightarrow \text{probability}$$
+\end{theorem}
+
+\subsection{Law of Large Numbers}
+
+\begin{theorem}[Weak Law of Large Numbers]
+If $X_1, X_2, \ldots$ are i.i.d. with $E[X_i] = \mu$ and $\text{Var}(X_i) = \sigma^2 < \infty$, then:
+$$\bar{X}_n \stackrel{p}{\to} \mu$$
+\end{theorem}
+
+\begin{theorem}[Strong Law of Large Numbers]
+If $X_1, X_2, \ldots$ are i.i.d. with $E[|X_i|] < \infty$ and $E[X_i] = \mu$, then:
+$$\bar{X}_n \stackrel{a.s.}{\to} \mu$$
+\end{theorem}
+
+\subsection{Central Limit Theorem}
+
+\begin{theorem}[Central Limit Theorem]
+If $X_1, X_2, \ldots$ are i.i.d. with $E[X_i] = \mu$ and $\text{Var}(X_i) = \sigma^2 < \infty$, then:
+$$\frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \stackrel{d}{\to} \mathcal{N}(0,1)$$
+\end{theorem}
+
+\subsection{Delta Method}
+
+\begin{theorem}[Delta Method]
+If $\sqrt{n}(X_n - \theta) \stackrel{d}{\to} \mathcal{N}(0, \sigma^2)$ and $g$ is differentiable at $\theta$ with $g'(\theta) \neq 0$, then:
+$$\sqrt{n}(g(X_n) - g(\theta)) \stackrel{d}{\to} \mathcal{N}(0, [g'(\theta)]^2 \sigma^2)$$
+\end{theorem}
+
+\section{Maximum Likelihood Methods (Chapter 6)}
+
+\subsection{Maximum Likelihood Estimation}
+
+\begin{definition}[Likelihood Function]
+For sample $\mathbf{x} = (x_1, \ldots, x_n)$:
+$$L(\theta; \mathbf{x}) = \prod_{i=1}^n f(x_i; \theta)$$
+
+Log-likelihood: $\ell(\theta; \mathbf{x}) = \log L(\theta; \mathbf{x}) = \sum_{i=1}^n \log f(x_i; \theta)$
+\end{definition}
+
+\begin{definition}[Maximum Likelihood Estimator]
+$$\hat{\theta}_{MLE} = \arg\max_\theta L(\theta; \mathbf{x})$$
+
+Often found by solving: $\frac{\partial \ell(\theta)}{\partial \theta} = 0$
+\end{definition}
+
+\subsection{Fisher Information}
+
+\begin{definition}[Fisher Information]
+$$I(\theta) = -E\left[\frac{\partial^2 \log f(X; \theta)}{\partial \theta^2}\right] = E\left[\left(\frac{\partial \log f(X; \theta)}{\partial \theta}\right)^2\right]$$
+
+For sample of size $n$: $I_n(\theta) = nI(\theta)$
+\end{definition}
+
+\begin{theorem}[Cramér-Rao Lower Bound]
+For any unbiased estimator $\hat{\theta}$:
+$$\text{Var}(\hat{\theta}) \geq \frac{1}{I_n(\theta)}$$
+\end{theorem}
+
+\subsection{Asymptotic Properties of MLE}
+
+\begin{theorem}[Asymptotic Properties of MLE]
+Under regularity conditions:
+\begin{enumerate}
+\item Consistency: $\hat{\theta}_n \stackrel{p}{\to} \theta_0$
+\item Asymptotic normality: $\sqrt{n}(\hat{\theta}_n - \theta_0) \stackrel{d}{\to} \mathcal{N}(0, I^{-1}(\theta_0))$
+\item Asymptotic efficiency: Achieves Cramér-Rao bound asymptotically
+\end{enumerate}
+\end{theorem}
+
+\subsection{Likelihood Ratio Tests}
+
+\begin{definition}[Likelihood Ratio Test Statistic]
+For testing $H_0: \theta \in \Theta_0$ vs $H_1: \theta \in \Theta_1$:
+$$\Lambda(\mathbf{x}) = \frac{\sup_{\theta \in \Theta_0} L(\theta; \mathbf{x})}{\sup_{\theta \in \Theta} L(\theta; \mathbf{x})}$$
+\end{definition}
+
+\begin{theorem}[Wilks' Theorem]
+Under $H_0$ and regularity conditions:
+$$-2\log\Lambda(\mathbf{X}) \stackrel{d}{\to} \chi^2(r)$$
+where $r = \dim(\Theta) - \dim(\Theta_0)$.
+\end{theorem}
+
+\section{Sufficiency (Chapter 7)}
+
+\subsection{Sufficient Statistics}
+
+\begin{definition}[Sufficient Statistic]
+$T(\mathbf{X})$ is sufficient for $\theta$ if the conditional distribution of $\mathbf{X}$ given $T(\mathbf{X})$ does not depend on $\theta$.
+\end{definition}
+
+\begin{theorem}[Factorization Theorem]
+$T(\mathbf{X})$ is sufficient for $\theta$ if and only if:
+$$f(\mathbf{x}; \theta) = g(T(\mathbf{x}); \theta) \cdot h(\mathbf{x})$$
+where $g$ depends on $\mathbf{x}$ only through $T(\mathbf{x})$ and $h$ doesn't depend on $\theta$.
+\end{theorem}
+
+\subsection{Minimal Sufficiency and Completeness}
+
+\begin{definition}[Minimal Sufficient Statistic]
+$T$ is minimal sufficient if for any other sufficient statistic $T'$, there exists a function $f$ such that $T = f(T')$.
+\end{definition}
+
+\begin{definition}[Complete Statistic]
+$T$ is complete if $E[g(T)] = 0$ for all $\theta$ implies $P(g(T) = 0) = 1$ for all $\theta$.
+\end{definition}
+
+\begin{theorem}[Rao-Blackwell Theorem]
+If $\hat{\theta}$ is unbiased for $\theta$ and $T$ is sufficient, then $\hat{\theta}^* = E[\hat{\theta}|T]$ satisfies:
+\begin{enumerate}
+\item $E[\hat{\theta}^*] = \theta$ (unbiased)
+\item $\text{Var}(\hat{\theta}^*) \leq \text{Var}(\hat{\theta})$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Lehmann-Scheffé Theorem]
+If $T$ is complete and sufficient, then there exists a unique UMVUE based on $T$.
+\end{theorem}
+
+\subsection{Methods for Determining Sufficiency and Completeness}
+
+\begin{theorem}[Neyman Factorization Theorem (Detailed)]
+$Y_1 = u_1(X_1, \ldots, X_n)$ is sufficient for $\theta$ if and only if the joint pdf/pmf can be factored as:
+$$f(x_1; \theta) \cdots f(x_n; \theta) = k_1[u_1(x_1, \ldots, x_n); \theta] \times k_2(x_1, \ldots, x_n)$$
+where $k_2$ does not depend on $\theta$, and $k_1$ depends on the data only through $Y_1$.
+\end{theorem}
+
+\begin{definition}[Complete Family of Distributions]
+A family of pdfs/pmfs $\{h(z; \theta): \theta \in \Omega\}$ for a statistic $Z$ is \textbf{complete} if:
+$$E[u(Z)] = 0 \text{ for all } \theta \in \Omega \Rightarrow u(z) = 0 \text{ (almost everywhere)}$$
+\end{definition}
+
+\begin{theorem}[Exponential Family and Complete Sufficiency]
+A family $\{f(x; \theta): \theta \in \Omega\}$ is a \textbf{regular exponential class} if:
+$$f(x; \theta) = \exp[p(\theta) K(x) + H(x) + q(\theta)]$$
+where:
+\begin{enumerate}
+\item The support does not depend on $\theta$
+\item $p(\theta)$ is a nontrivial continuous function of $\theta$
+\item $K(x)$ is nontrivial and $H(x)$ is continuous
+\end{enumerate}
+
+For a random sample from such a distribution, $Y_1 = \sum_{i=1}^n K(X_i)$ is a \textbf{complete sufficient statistic}.
+\end{theorem}
+
+\begin{example}[Normal Distribution ($\sigma^2$ known)]
+For $X_1, \ldots, X_n \sim N(\theta, \sigma^2)$ with $\sigma^2$ known:
+$$f(x; \theta) = \exp\left[\frac{\theta}{\sigma^2}x - \frac{x^2}{2\sigma^2} - \frac{\theta^2}{2\sigma^2} - \frac{1}{2}\log(2\pi\sigma^2)\right]$$
+Here $K(x) = x$, so $Y_1 = \sum X_i = n\bar{X}$ is complete sufficient for $\theta$.
+Since $E[\bar{X}] = \theta$, $\bar{X}$ is the unique MVUE of $\theta$.
+\end{example}
+
+\begin{example}[Poisson Distribution]
+For $X_1, \ldots, X_n \sim \text{Poisson}(\theta)$:
+$$f(x; \theta) = \exp[x\log\theta - \theta - \log(x!)]$$
+Here $K(x) = x$, so $Y_1 = \sum X_i$ is complete sufficient for $\theta$.
+Since $E[Y_1/n] = \theta$, $\bar{X} = Y_1/n$ is the unique MVUE of $\theta$.
+\end{example}
+
+\begin{example}[Uniform Distribution]
+For $X_1, \ldots, X_n \sim \text{Uniform}(0, \theta)$:
+- $Y_n = \max(X_1, \ldots, X_n)$ is sufficient for $\theta$
+- The pdf of $Y_n$ is $g(y_n; \theta) = \frac{ny_n^{n-1}}{\theta^n}$ for $0 < y_n < \theta$
+- This family is complete
+- Since $E[Y_n] = \frac{n}{n+1}\theta$, the MVUE of $\theta$ is $\frac{n+1}{n}Y_n$
+\end{example}
+
+\subsection{Minimal Sufficiency}
+
+\begin{definition}[Minimal Sufficient Statistic]
+A sufficient statistic $T$ is \textbf{minimal sufficient} if it is a function of every other sufficient statistic. Equivalently, $T$ achieves the maximum possible data reduction while retaining sufficiency.
+\end{definition}
+
+\begin{theorem}[Lehmann-Scheffé Criterion for Minimal Sufficiency]
+A statistic $T(\mathbf{X})$ is minimal sufficient if for any two data points $\mathbf{x}$ and $\mathbf{z}$:
+$$\frac{L(\theta; \mathbf{x})}{L(\theta; \mathbf{z})} \text{ is independent of } \theta \Leftrightarrow T(\mathbf{x}) = T(\mathbf{z})$$
+\end{theorem}
+
+\begin{remark}
+   complete sufficient statistic is minimal sufficient. but minimal sufficient is not necessarily complete sufficient.
+\end{remark}
+
+\subsection{Ancillary Statistics and Basu's Theorem}
+
+\begin{definition}[Ancillary Statistic]
+A statistic $Z$ is \textbf{ancillary} for $\theta$ if its distribution does not depend on $\theta$.
+
+\textbf{Common Types:}
+\begin{itemize}
+\item \textbf{Location-invariant:} For $X_i = \theta + W_i$, statistics like $S^2$ and Range
+\item \textbf{Scale-invariant:} For $X_i = \theta W_i$, statistics like $X_1/(X_1 + X_2)$
+\item \textbf{Location and scale-invariant:} Statistics like $(X_i - \bar{X})/S$
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Basu's Theorem]
+If $Y_1$ is a \textbf{complete sufficient statistic} for $\theta$, then $Y_1$ is independent of any \textbf{ancillary statistic} $Z$.
+
+\textbf{Converse:} If $Y_1$ is sufficient and independent of an ancillary statistic $Z$, then $Y_1$ is complete.
+\end{theorem}
+
+\begin{example}[Independence of $\bar{X}$ and $S^2$]
+For $X_1, \ldots, X_n \sim N(\mu, \sigma^2)$:
+\begin{enumerate}
+\item When $\sigma^2$ is known: $\bar{X}$ is complete sufficient for $\mu$, $S^2$ is ancillary for $\mu$
+\item By Basu's theorem: $\bar{X}$ and $S^2$ are independent
+\end{enumerate}
+\end{example}
+
+\subsection{Multi-Parameter Cases}
+
+\begin{theorem}[Joint Sufficiency]
+A vector of statistics $\mathbf{Y} = (Y_1, \ldots, Y_m)$ is \textbf{jointly sufficient} for $\boldsymbol{\theta} = (\theta_1, \ldots, \theta_p)$ if:
+$$\prod_{i=1}^n f(x_i; \boldsymbol{\theta}) = k_1(\mathbf{y}; \boldsymbol{\theta}) \times k_2(x_1, \ldots, x_n)$$
+where $k_2$ does not depend on $\boldsymbol{\theta}$.
+\end{theorem}
+
+\begin{theorem}[Multiparameter Exponential Family]
+For the multiparameter exponential family:
+$$f(x; \boldsymbol{\theta}) = \exp\left[\sum_{j=1}^m p_j(\boldsymbol{\theta}) K_j(x) + H(x) + q(\boldsymbol{\theta})\right]$$
+The statistics $Y_j = \sum_{i=1}^n K_j(X_i)$ for $j = 1, \ldots, m$ are \textbf{jointly complete sufficient}.
+\end{theorem}
+
+\begin{example}[Normal Distribution (Both Parameters Unknown)]
+For $X_1, \ldots, X_n \sim N(\mu, \sigma^2)$ with both parameters unknown:
+$$f(x; \mu, \sigma^2) = \exp\left[\frac{\mu}{\sigma^2}x - \frac{1}{2\sigma^2}x^2 - \frac{\mu^2}{2\sigma^2} - \frac{1}{2}\log(2\pi\sigma^2)\right]$$
+\begin{enumerate}
+\item $K_1(x) = x$, $K_2(x) = x^2$
+\item $Y_1 = \sum X_i$, $Y_2 = \sum X_i^2$ are jointly complete sufficient
+\item Equivalently: $\bar{X}$ and $S^2$ are jointly complete sufficient
+\item Since $E[\bar{X}] = \mu$ and $E[S^2] = \sigma^2$, they are the unique MVUEs
+\end{enumerate}
+\end{example}
+
+\subsection{Estimating Functions of Parameters}
+
+\begin{theorem}[MVUE of $g(\theta)$]
+If $Y_1$ is complete sufficient for $\theta$, and we want to estimate $g(\theta)$:
+\begin{enumerate}
+\item Find any unbiased estimator $T$ of $g(\theta)$ (not necessarily a function of $Y_1$)
+\item Compute $\psi(Y_1) = E[T | Y_1]$ (Rao-Blackwell improvement)
+\item Then $\psi(Y_1)$ is the unique MVUE of $g(\theta)$
+\end{enumerate}
+Alternatively, if you can find a function $\psi(Y_1)$ such that $E[\psi(Y_1)] = g(\theta)$, then $\psi(Y_1)$ is automatically the unique MVUE.
+\end{theorem}
+
+\begin{example}[Bernoulli Variance]
+For $X_1, \ldots, X_n \sim \text{Bernoulli}(\theta)$, to estimate $\delta = \theta(1-\theta)$:
+\begin{enumerate}
+\item $Y = \sum X_i$ is complete sufficient for $\theta$
+\item MLE of $\delta$ is $\hat{\delta} = \bar{X}(1-\bar{X}) = \frac{Y}{n}(1-\frac{Y}{n})$
+\item $E[\hat{\delta}] = \frac{n-1}{n}\theta(1-\theta) = \frac{n-1}{n}\delta$ (biased)
+\item MVUE of $\delta$ is $\frac{n}{n-1}\hat{\delta} = \frac{n}{n-1}\frac{Y}{n}(1-\frac{Y}{n})$
+\end{enumerate}
+\end{example}
+
+\begin{example}[Exponential Distribution]
+For $X_1, \ldots, X_n \sim \text{Exponential}(\theta)$ with mean $1/\theta$:
+\begin{enumerate}
+\item $Y_1 = \sum X_i$ is complete sufficient
+\item MLE: $\hat{\theta} = n/Y_1$ (biased, $E[\hat{\theta}] = \frac{n\theta}{n-1}$)
+\item MVUE: $\frac{n-1}{Y_1}$ (since $E[\frac{n-1}{Y_1}] = \theta$)
+\end{enumerate}
+\end{example}
+
+\section{Optimal Tests of Hypotheses (Chapter 8)}
+
+\subsection{Neyman-Pearson Theory}
+
+\begin{theorem}[Neyman-Pearson Lemma]
+For testing simple $H_0: \theta = \theta_0$ vs simple $H_1: \theta = \theta_1$, the most powerful test of size $\alpha$ rejects $H_0$ when:
+$$\frac{L(\theta_1; \mathbf{x})}{L(\theta_0; \mathbf{x})} > k$$
+where $k$ is chosen so that $P_{\theta_0}(\text{reject } H_0) = \alpha$.
+\end{theorem}
+
+\begin{definition}[Uniformly Most Powerful Test]
+A test is UMP of size $\alpha$ for $H_0: \theta \in \Theta_0$ vs $H_1: \theta \in \Theta_1$ if:
+\begin{enumerate}
+\item It has size $\alpha$
+\item Among all tests of size $\leq \alpha$, it has maximum power for every $\theta \in \Theta_1$
+\end{enumerate}
+\end{definition}
+
+\subsection{Likelihood Ratio Tests}
+
+\begin{theorem}[Generalized Likelihood Ratio Test]
+For composite hypotheses, reject $H_0$ when $\Lambda(\mathbf{x}) \leq c$ where:
+$$\Lambda(\mathbf{x}) = \frac{\sup_{\theta \in \Theta_0} L(\theta; \mathbf{x})}{\sup_{\theta \in \Theta} L(\theta; \mathbf{x})}$$
+\end{theorem}
+
+\section{Normal Linear Models (Chapter 9)}
+
+\subsection{One-Way ANOVA}
+
+\begin{definition}[One-Way ANOVA Model]
+$$X_{ij} = \mu + \alpha_i + \epsilon_{ij}$$
+where $i = 1, \ldots, k$, $j = 1, \ldots, n_i$, and $\epsilon_{ij} \stackrel{iid}{\sim} \mathcal{N}(0, \sigma^2)$.
+
+Constraint: $\sum_{i=1}^k n_i \alpha_i = 0$
+\end{definition}
+
+\begin{theorem}[ANOVA F-Test]
+Test $H_0: \alpha_1 = \cdots = \alpha_k = 0$ vs $H_1$: not all $\alpha_i = 0$.
+
+Test statistic: $F = \frac{MSA}{MSE} = \frac{SSA/(k-1)}{SSE/(N-k)}$
+
+Under $H_0$: $F \sim F(k-1, N-k)$ where $N = \sum_{i=1}^k n_i$.
+\end{theorem}
+
+\begin{theorem}[Sum of Squares Decomposition]
+$$SST = SSA + SSE$$
+where:
+\begin{itemize}
+\item $SST = \sum_{i=1}^k \sum_{j=1}^{n_i} (X_{ij} - \bar{X}_{\cdot\cdot})^2$ (Total Sum of Squares)
+\item $SSA = \sum_{i=1}^k n_i (\bar{X}_{i\cdot} - \bar{X}_{\cdot\cdot})^2$ (Treatment Sum of Squares)
+\item $SSE = \sum_{i=1}^k \sum_{j=1}^{n_i} (X_{ij} - \bar{X}_{i\cdot})^2$ (Error Sum of Squares)
+\end{itemize}
+\end{theorem}
+
+\subsection{Multiple Comparisons}
+
+\begin{definition}[Tukey's HSD (Honestly Significant Difference)]
+For equal sample sizes $m$:
+$$\text{HSD} = q_{\alpha}(k, f_e) \sqrt{\frac{MSE}{m}}$$
+Two means differ significantly if $|\bar{X}_{i\cdot} - \bar{X}_{j\cdot}| \geq \text{HSD}$.
+\end{definition}
+
+\begin{definition}[Bonferroni Correction]
+For $c$ comparisons at overall level $\alpha$, use individual level $\alpha/c$ for each comparison.
+\end{definition}
+
+\begin{definition}[Scheffé Method]
+For any contrast $L = \sum c_i \mu_i$ where $\sum c_i = 0$:
+$$S = \sqrt{(k-1)F_{\alpha}(k-1, f_e)} \sqrt{MSE \sum_{i=1}^k \frac{c_i^2}{n_i}}$$
+\end{definition}
+
+\subsection{Two-Way ANOVA}
+
+\begin{definition}[Two-Way ANOVA Model]
+$$X_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \epsilon_{ijk}$$
+where:
+\begin{itemize}
+\item $\alpha_i$: effect of factor A at level $i$
+\item $\beta_j$: effect of factor B at level $j$  
+\item $(\alpha\beta)_{ij}$: interaction effect
+\item $\epsilon_{ijk} \sim N(0,\sigma^2)$
+\end{itemize}
+Constraints: $\sum \alpha_i = \sum \beta_j = \sum_i (\alpha\beta)_{ij} = \sum_j (\alpha\beta)_{ij} = 0$
+\end{definition}
+
+\begin{theorem}[Two-Way ANOVA Decomposition]
+$$SST = SSA + SSB + SSAB + SSE$$
+where:
+\begin{itemize}
+\item $SSA = bn \sum_{i=1}^a (\bar{X}_{i\cdot\cdot} - \bar{X}_{\cdot\cdot\cdot})^2$ (Factor A)
+\item $SSB = an \sum_{j=1}^b (\bar{X}_{\cdot j\cdot} - \bar{X}_{\cdot\cdot\cdot})^2$ (Factor B)
+\item $SSAB = n \sum_{i=1}^a \sum_{j=1}^b (\bar{X}_{ij\cdot} - \bar{X}_{i\cdot\cdot} - \bar{X}_{\cdot j\cdot} + \bar{X}_{\cdot\cdot\cdot})^2$ (Interaction)
+\item $SSE = \sum_{i=1}^a \sum_{j=1}^b \sum_{k=1}^n (X_{ijk} - \bar{X}_{ij\cdot})^2$ (Error)
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[Two-Way ANOVA F-Tests]
+\begin{itemize}
+\item Factor A: $F_A = \frac{MSA}{MSE} \sim F(a-1, ab(n-1))$
+\item Factor B: $F_B = \frac{MSB}{MSE} \sim F(b-1, ab(n-1))$ 
+\item Interaction: $F_{AB} = \frac{MSAB}{MSE} \sim F((a-1)(b-1), ab(n-1))$
+\end{itemize}
+\end{theorem}
+
+
+
+\subsection{Tests for Homogeneity of Variances}
+
+\begin{definition}[Bartlett's Test]
+For testing $H_0: \sigma_1^2 = \sigma_2^2 = \cdots = \sigma_k^2$:
+$$B = \frac{(N-k)\ln(s_p^2) - \sum_{i=1}^k (n_i-1)\ln(s_i^2)}{1 + \frac{1}{3(k-1)}[\sum_{i=1}^k \frac{1}{n_i-1} - \frac{1}{N-k}]}$$
+where $s_p^2 = \frac{\sum_{i=1}^k (n_i-1)s_i^2}{N-k}$ and $N = \sum_{i=1}^k n_i$.
+Under $H_0$: $B \sim \chi^2(k-1)$.
+\end{definition}
+
+\begin{definition}[Levene's Test (Robust Alternative)]
+Replace observations with $Z_{ij} = |X_{ij} - \tilde{X}_{i\cdot}|$ where $\tilde{X}_{i\cdot}$ is the group median.
+Apply one-way ANOVA to the $Z_{ij}$ values.
+\end{definition}
+
+\subsection{Simple Linear Regression}
+
+\begin{definition}[Simple Linear Regression Model]
+$$Y_i = \beta_0 + \beta_1 x_i + \epsilon_i$$
+where $\epsilon_i \stackrel{iid}{\sim} \mathcal{N}(0, \sigma^2)$.
+\end{definition}
+
+\begin{theorem}[Least Squares Estimators]
+$$\hat{\beta}_1 = \frac{\sum_{i=1}^n (x_i - \bar{x})(Y_i - \bar{Y})}{\sum_{i=1}^n (x_i - \bar{x})^2} = \frac{S_{xy}}{S_{xx}}$$
+$$\hat{\beta}_0 = \bar{Y} - \hat{\beta}_1 \bar{x}$$
+
+where $S_{xy} = \sum(x_i - \bar{x})(Y_i - \bar{Y})$ and $S_{xx} = \sum(x_i - \bar{x})^2$.
+\end{theorem}
+
+\begin{theorem}[Properties of LS Estimators]
+\begin{enumerate}
+\item $\hat{\beta}_1 \sim \mathcal{N}\left(\beta_1, \frac{\sigma^2}{S_{xx}}\right)$
+\item $\hat{\beta}_0 \sim \mathcal{N}\left(\beta_0, \sigma^2\left(\frac{1}{n} + \frac{\bar{x}^2}{S_{xx}}\right)\right)$
+\item $\frac{(n-2)S^2}{\sigma^2} \sim \chi^2(n-2)$ where $S^2 = \frac{SSE}{n-2}$
+\end{enumerate}
+\end{theorem}
+
+\subsection{Regression Analysis Details}
+
+\begin{theorem}[Sum of Squares Decomposition in Regression]
+$$SST = SSR + SSE$$
+where:
+\begin{itemize}
+\item $SST = \sum_{i=1}^n (Y_i - \bar{Y})^2$ (Total Sum of Squares)
+\item $SSR = \sum_{i=1}^n (\hat{Y}_i - \bar{Y})^2$ (Regression Sum of Squares)
+\item $SSE = \sum_{i=1}^n (Y_i - \hat{Y}_i)^2$ (Error Sum of Squares)
+\end{itemize}
+\end{theorem}
+
+\begin{definition}[Coefficient of Determination]
+$$R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$$
+$R^2$ represents the proportion of variation in $Y$ explained by the regression model.
+\end{definition}
+
+\begin{theorem}[F-Test for Regression]
+To test $H_0: \beta_1 = 0$ vs $H_1: \beta_1 \neq 0$:
+$$F = \frac{MSR}{MSE} = \frac{SSR/1}{SSE/(n-2)} \sim F(1, n-2)$$
+\end{theorem}
+
+\begin{theorem}[t-Test for Regression Coefficients]
+$$t = \frac{\hat{\beta}_1}{\sqrt{S^2/S_{xx}}} \sim t(n-2)$$
+$$t = \frac{\hat{\beta}_0}{\sqrt{S^2(1/n + \bar{x}^2/S_{xx})}} \sim t(n-2)$$
+\end{theorem}
+
+\subsection{Prediction and Confidence Intervals}
+
+\begin{theorem}[Confidence Interval for Mean Response]
+At $x = x_0$, a $100(1-\alpha)\%$ confidence interval for $E[Y|x_0]$ is:
+$$\hat{Y}_0 \pm t_{\alpha/2, n-2} \sqrt{S^2\left(\frac{1}{n} + \frac{(x_0-\bar{x})^2}{S_{xx}}\right)}$$
+\end{theorem}
+
+\begin{theorem}[Prediction Interval for New Observation]
+At $x = x_0$, a $100(1-\alpha)\%$ prediction interval for a new observation $Y_0$ is:
+$$\hat{Y}_0 \pm t_{\alpha/2, n-2} \sqrt{S^2\left(1 + \frac{1}{n} + \frac{(x_0-\bar{x})^2}{S_{xx}}\right)}$$
+\end{theorem}
+
+\subsection{Correlation Analysis}
+
+\begin{definition}[Sample Correlation Coefficient]
+$$r = \frac{\sum_{i=1}^n (x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum_{i=1}^n (x_i - \bar{x})^2 \sum_{i=1}^n (y_i - \bar{y})^2}} = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}$$
+Properties: $-1 \leq r \leq 1$, and $r^2 = R^2$ in simple linear regression.
+\end{definition}
+
+\begin{theorem}[Test for Correlation]
+To test $H_0: \rho = 0$ vs $H_1: \rho \neq 0$:
+$$t = \frac{r\sqrt{n-2}}{\sqrt{1-r^2}} \sim t(n-2)$$
+\end{theorem}
+
+\subsection{Nonlinear Regression}
+
+Common transformations to linearize relationships:
+\begin{itemize}
+\item Exponential: $y = ae^{bx} \Rightarrow \ln(y) = \ln(a) + bx$
+\item Power: $y = ax^b \Rightarrow \ln(y) = \ln(a) + b\ln(x)$
+\item Logarithmic: $y = a + b\ln(x)$ (already linear in parameters)
+\item Reciprocal: $y = \frac{1}{a + bx} \Rightarrow \frac{1}{y} = a + bx$
+\end{itemize}
+
+\subsection{Key Formulas and Results Summary}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Concept} & \textbf{Formula} \\
+\hline
+Sample mean distribution & $\bar{X} \sim \mathcal{N}(\mu, \sigma^2/n)$ \\
+\hline
+t-statistic & $\frac{\bar{X} - \mu}{S/\sqrt{n}} \sim t(n-1)$ \\
+\hline
+Chi-square statistic & $\frac{(n-1)S^2}{\sigma^2} \sim \chi^2(n-1)$ \\
+\hline
+Cramér-Rao bound & $\text{Var}(\hat{\theta}) \geq \frac{1}{nI(\theta)}$ \\
+\hline
+MLE asymptotic & $\sqrt{n}(\hat{\theta} - \theta) \stackrel{d}{\to} \mathcal{N}(0, I^{-1}(\theta))$ \\
+\hline
+LRT statistic & $-2\log\Lambda \stackrel{d}{\to} \chi^2(r)$ \\
+\hline
+Delta method & $\sqrt{n}(g(\hat{\theta}) - g(\theta)) \stackrel{d}{\to} \mathcal{N}(0, [g'(\theta)]^2/I(\theta))$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Common Test Statistics Summary}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Test} & \textbf{Statistic} & \textbf{Distribution} \\
+\hline
+One-sample t-test & $\frac{\bar{X} - \mu_0}{S/\sqrt{n}}$ & $t(n-1)$ \\
+\hline
+Two-sample t-test & $\frac{\bar{X}_1 - \bar{X}_2}{S_p\sqrt{1/n_1 + 1/n_2}}$ & $t(n_1+n_2-2)$ \\
+\hline
+F-test (variances) & $\frac{S_1^2}{S_2^2}$ & $F(n_1-1, n_2-1)$ \\
+\hline
+Chi-square goodness-of-fit & $\sum \frac{(O_i - E_i)^2}{E_i}$ & $\chi^2(k-1-r)$ \\
+\hline
+ANOVA F-test & $\frac{MSA}{MSE}$ & $F(k-1, N-k)$ \\
+\hline
+Regression F-test & $\frac{MSR}{MSE}$ & $F(1, n-2)$ \\
+\hline
+Correlation test & $\frac{r\sqrt{n-2}}{\sqrt{1-r^2}}$ & $t(n-2)$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Important Constants and Critical Values}
+
+\textbf{Standard Normal:}
+\begin{itemize}
+\item $z_{0.025} = 1.96$, $z_{0.05} = 1.645$, $z_{0.01} = 2.326$
+\end{itemize}
+
+\textbf{Common t-values:} For large $n$, $t$-distribution approaches standard normal.
+
+\textbf{Chi-square:} $\chi^2_{0.05}(1) = 3.84$, $\chi^2_{0.05}(2) = 5.99$
+
+\subsection{Practical Guidelines}
+
+\begin{enumerate}
+\item \textbf{Choosing Tests:}
+   \begin{itemize}
+   \item Use t-test when $\sigma$ unknown and $n$ small
+   \item Use z-test when $\sigma$ known or $n$ large
+   \item Use F-test for comparing variances or in ANOVA
+   \item Use $\chi^2$-test for categorical data or goodness-of-fit
+   \end{itemize}
+
+\item \textbf{Sample Size Considerations:}
+   \begin{itemize}
+   \item CLT applies for $n \geq 30$ (rule of thumb)
+   \item For t-tests, small sample assumptions require normality
+   \item ANOVA requires equal variances (Bartlett's or Levene's test)
+   \end{itemize}
+
+\item \textbf{Model Assumptions:}
+   \begin{itemize}
+   \item Independence: Crucial for all procedures
+   \item Normality: Required for exact results, less critical for large $n$
+   \item Equal variances: Important for pooled procedures
+   \item Linearity: Essential for regression models
+   \end{itemize}
+\end{enumerate}
+
+\subsection{Final Exam Quick Reference}
+
+\textbf{Must Remember Formulas:}
+\begin{itemize}
+\item Sample variance: $S^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X})^2$
+\item Standard error of mean: $\text{SE}(\bar{X}) = \frac{S}{\sqrt{n}}$
+\item Confidence interval: $\bar{X} \pm t_{\alpha/2, n-1} \frac{S}{\sqrt{n}}$
+\item Pooled variance: $S_p^2 = \frac{(n_1-1)S_1^2 + (n_2-1)S_2^2}{n_1+n_2-2}$
+\item Regression slope: $\hat{\beta}_1 = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}{\sum(x_i-\bar{x})^2}$
+\item Coefficient of determination: $R^2 = \frac{\text{SSR}}{\text{SST}} = 1 - \frac{\text{SSE}}{\text{SST}}$
+\end{itemize}
+
+\textbf{Key Distributions for Testing:}
+\begin{itemize}
+\item t-distribution: For means when $\sigma$ unknown
+\item F-distribution: For variances and ANOVA
+\item $\chi^2$-distribution: For variances and goodness-of-fit
+\item Normal: For large samples and known $\sigma$
+\end{itemize}
+
+\textbf{Common Mistakes to Avoid:}
+\begin{itemize}
+\item Confusing population and sample parameters ($\mu$ vs $\bar{x}$, $\sigma^2$ vs $s^2$)
+\item Using wrong degrees of freedom
+\item Forgetting to check assumptions (normality, independence, equal variances)
+\item Misinterpreting p-values and confidence intervals
+\item Not distinguishing between one-tailed and two-tailed tests
+\end{itemize}
+
+\appendix
+
+\section{Appendix: Quick Reference Tables and Formulas}
+
+\subsection{A.1 Common Distributions Summary}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Distribution} & \textbf{PDF/PMF} & \textbf{Mean} & \textbf{Variance} \\
+\hline
+Bernoulli$(p)$ & $p^x(1-p)^{1-x}$ & $p$ & $p(1-p)$ \\
+\hline
+Binomial$(n,p)$ & $\binom{n}{x}p^x(1-p)^{n-x}$ & $np$ & $np(1-p)$ \\
+\hline
+Poisson$(\lambda)$ & $\frac{\lambda^x e^{-\lambda}}{x!}$ & $\lambda$ & $\lambda$ \\
+\hline
+Uniform$(a,b)$ & $\frac{1}{b-a}$ & $\frac{a+b}{2}$ & $\frac{(b-a)^2}{12}$ \\
+\hline
+Normal$(\mu,\sigma^2)$ & $\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ & $\mu$ & $\sigma^2$ \\
+\hline
+Exponential$(\lambda)$ & $\lambda e^{-\lambda x}$ & $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$ \\
+\hline
+Gamma$(\alpha,\beta)$ & $\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}$ & $\frac{\alpha}{\beta}$ & $\frac{\alpha}{\beta^2}$ \\
+\hline
+Chi-square$(\nu)$ & $\frac{1}{2^{\nu/2}\Gamma(\nu/2)}x^{\nu/2-1}e^{-x/2}$ & $\nu$ & $2\nu$ \\
+\hline
+t$(\nu)$ & $\frac{\Gamma((\nu+1)/2)}{\sqrt{\nu\pi}\Gamma(\nu/2)}(1+\frac{t^2}{\nu})^{-(\nu+1)/2}$ & $0$ & $\frac{\nu}{\nu-2}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{A.2 Moment Generating Functions}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Distribution} & \textbf{MGF} \\
+\hline
+Binomial$(n,p)$ & $(1-p+pe^t)^n$ \\
+\hline
+Poisson$(\lambda)$ & $e^{\lambda(e^t-1)}$ \\
+\hline
+Normal$(\mu,\sigma^2)$ & $e^{\mu t + \frac{\sigma^2 t^2}{2}}$ \\
+\hline
+Exponential$(\lambda)$ & $\frac{\lambda}{\lambda-t}$ for $t < \lambda$ \\
+\hline
+Gamma$(\alpha,\beta)$ & $\left(\frac{\beta}{\beta-t}\right)^\alpha$ for $t < \beta$ \\
+\hline
+Chi-square$(\nu)$ & $(1-2t)^{-\nu/2}$ for $t < \frac{1}{2}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{A.3 Sufficient Statistics for Common Distributions}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Distribution} & \textbf{Parameter} & \textbf{Sufficient Statistic} \\
+\hline
+Normal$(\theta, \sigma^2)$ & $\theta$ ($\sigma^2$ known) & $\bar{X}$ \\
+\hline
+Normal$(\mu, \theta)$ & $\theta$ ($\mu$ known) & $\sum(X_i-\mu)^2$ \\
+\hline
+Normal$(\theta_1, \theta_2)$ & $(\theta_1, \theta_2)$ & $(\bar{X}, S^2)$ or $(\sum X_i, \sum X_i^2)$ \\
+\hline
+Poisson$(\theta)$ & $\theta$ & $\sum X_i$ \\
+\hline
+Exponential$(\theta)$ & $\theta$ & $\sum X_i$ \\
+\hline
+Uniform$(0,\theta)$ & $\theta$ & $\max(X_i)$ \\
+\hline
+Bernoulli$(\theta)$ & $\theta$ & $\sum X_i$ \\
+\hline
+Gamma$(\alpha,\theta)$ & $\theta$ ($\alpha$ known) & $\sum X_i$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{A.4 Critical Values}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Distribution} & \textbf{$\alpha = 0.10$} & \textbf{$\alpha = 0.05$} & \textbf{$\alpha = 0.01$} \\
+\hline
+Standard Normal $z_{\alpha/2}$ & 1.645 & 1.96 & 2.576 \\
+\hline
+$t(10)$ & 1.812 & 2.228 & 3.169 \\
+\hline
+$t(20)$ & 1.725 & 2.086 & 2.845 \\
+\hline
+$t(30)$ & 1.697 & 2.042 & 2.750 \\
+\hline
+$\chi^2(1)$ & 2.706 & 3.841 & 6.635 \\
+\hline
+$\chi^2(5)$ & 9.236 & 11.071 & 15.086 \\
+\hline
+$\chi^2(10)$ & 15.987 & 18.307 & 23.209 \\
+\hline
+$F(1,10)$ & 3.285 & 4.965 & 10.044 \\
+\hline
+$F(5,10)$ & 2.522 & 3.326 & 5.636 \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{A.5 Hypothesis Testing Decision Rules}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Hypothesis} & \textbf{Test Statistic} & \textbf{Reject $H_0$ if} \\
+\hline
+$H_0: \mu = \mu_0$ ($\sigma$ known) & $Z = \frac{\bar{X}-\mu_0}{\sigma/\sqrt{n}}$ & $|Z| > z_{\alpha/2}$ \\
+\hline
+$H_0: \mu = \mu_0$ ($\sigma$ unknown) & $t = \frac{\bar{X}-\mu_0}{S/\sqrt{n}}$ & $|t| > t_{\alpha/2}(n-1)$ \\
+\hline
+$H_0: \sigma^2 = \sigma_0^2$ & $\chi^2 = \frac{(n-1)S^2}{\sigma_0^2}$ & $\chi^2 < \chi^2_{\alpha/2}(n-1)$ or $\chi^2 > \chi^2_{1-\alpha/2}(n-1)$ \\
+\hline
+$H_0: \mu_1 = \mu_2$ (equal var.) & $t = \frac{\bar{X}_1-\bar{X}_2}{S_p\sqrt{1/n_1+1/n_2}}$ & $|t| > t_{\alpha/2}(n_1+n_2-2)$ \\
+\hline
+$H_0: \sigma_1^2 = \sigma_2^2$ & $F = \frac{S_1^2}{S_2^2}$ & $F > F_{\alpha/2}(n_1-1,n_2-1)$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{A.6 Confidence Intervals}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Parameter} & \textbf{$100(1-\alpha)\%$ Confidence Interval} \\
+\hline
+$\mu$ ($\sigma$ known) & $\bar{X} \pm z_{\alpha/2}\frac{\sigma}{\sqrt{n}}$ \\
+\hline
+$\mu$ ($\sigma$ unknown) & $\bar{X} \pm t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}$ \\
+\hline
+$\sigma^2$ & $\left[\frac{(n-1)S^2}{\chi^2_{1-\alpha/2}(n-1)}, \frac{(n-1)S^2}{\chi^2_{\alpha/2}(n-1)}\right]$ \\
+\hline
+$\mu_1 - \mu_2$ (equal var.) & $(\bar{X}_1-\bar{X}_2) \pm t_{\alpha/2}(n_1+n_2-2)S_p\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}$ \\
+\hline
+$p$ (large sample) & $\hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{A.7 ANOVA Summary}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Source} & \textbf{Sum of Squares} & \textbf{df} & \textbf{Mean Square} \\
+\hline
+Treatment & $SSA = \sum n_i(\bar{X}_{i\cdot} - \bar{X}_{\cdot\cdot})^2$ & $k-1$ & $MSA = \frac{SSA}{k-1}$ \\
+\hline
+Error & $SSE = \sum\sum(X_{ij} - \bar{X}_{i\cdot})^2$ & $N-k$ & $MSE = \frac{SSE}{N-k}$ \\
+\hline
+Total & $SST = \sum\sum(X_{ij} - \bar{X}_{\cdot\cdot})^2$ & $N-1$ & - \\
+\hline
+\end{tabular}
+\end{table}
+
+Test statistic: $F = \frac{MSA}{MSE} \sim F(k-1, N-k)$ under $H_0$
+
+\subsection{A.8 Regression Formulas}
+
+\textbf{Simple Linear Regression:} $Y_i = \beta_0 + \beta_1 x_i + \epsilon_i$
+
+\begin{itemize}
+\item $\hat{\beta}_1 = \frac{S_{xy}}{S_{xx}} = \frac{\sum(x_i-\bar{x})(y_i-\bar{y})}{\sum(x_i-\bar{x})^2}$
+\item $\hat{\beta}_0 = \bar{y} - \hat{\beta}_1\bar{x}$
+\item $R^2 = \frac{SSR}{SST} = 1 - \frac{SSE}{SST}$
+\item $r = \frac{S_{xy}}{\sqrt{S_{xx}S_{yy}}}$ (correlation coefficient)
+\item Test for slope: $t = \frac{\hat{\beta}_1}{\sqrt{MSE/S_{xx}}} \sim t(n-2)$
+\end{itemize}
+
+\subsection{A.9 Maximum Likelihood Estimation Steps}
+
+\begin{enumerate}
+\item Write the likelihood function: $L(\theta) = \prod_{i=1}^n f(x_i; \theta)$
+\item Take the log-likelihood: $\ell(\theta) = \log L(\theta) = \sum_{i=1}^n \log f(x_i; \theta)$
+\item Differentiate: $\frac{d\ell(\theta)}{d\theta} = 0$
+\item Solve for $\hat{\theta}_{MLE}$
+\item Verify it's a maximum (second derivative test)
+\end{enumerate}
+
+\subsection{A.10 Asymptotic Results}
+
+\begin{itemize}
+\item \textbf{CLT:} $\frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \stackrel{d}{\to} N(0,1)$
+\item \textbf{MLE Asymptotic:} $\sqrt{n}(\hat{\theta} - \theta) \stackrel{d}{\to} N(0, I^{-1}(\theta))$
+\item \textbf{Delta Method:} $\sqrt{n}(g(\hat{\theta}) - g(\theta)) \stackrel{d}{\to} N(0, [g'(\theta)]^2 I^{-1}(\theta))$
+\item \textbf{LRT:} $-2\log\Lambda \stackrel{d}{\to} \chi^2(r)$ where $r$ = difference in parameters
+\end{itemize}
+
+\end{document}

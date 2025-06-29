@@ -1,0 +1,326 @@
+\documentclass[
+	leqno,
+	a4paper, % Page size
+	fontsize=12pt, % Base font size
+	twoside=false, % Use different layouts for even and odd pages (in particular, if twoside=true, the margin column will be always on the outside)
+	open=any, % If twoside=true, uncomment this to force new chapters to start on any page, not only on right (odd) pages
+	chapterentrydots=true, % Uncomment to output dots from the chapter name to the page number in the table of contents
+	numbers=noenddot, % Comment to output dots after chapter numbers; the most common values for this option are: enddot, noenddot and auto (see the KOMAScript documentation for an in-depth explanation)
+    UTF-8, % Add this fix lots of style compile issue when using ctex and XeLaTex
+	toc=nottotoc,
+	BCOR=12mm,
+	DIV=calc,
+]{styles/kaobook}
+%----------------------------------------------------------------------------------------
+%	加载包以及文档配置，新项目可以直接复制粘贴
+%----------------------------------------------------------------------------------------
+\input{styles/packageconfig.tex}
+
+% % Choose the language
+% \ifxetexorluatex
+% 	\usepackage{polyglossia}
+% 	\setmainlanguage{english}
+% \else
+% 	\usepackage[english]{babel} % Load characters and hyphenation
+% \fi
+% \usepackage[english=british]{csquotes}	% English quotes
+\DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+% \usepackage{ctex}
+% \newcommand{\coloneqq}{\mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt \hbox{\scriptsize.}\hbox{\scriptsize.}}}=}
+% \usepackage{tikz}
+\usetikzlibrary{patterns}
+% Load packages for testing
+\usepackage{blindtext}
+% 从mathtools包中引入\coloneqq和\eqqcolon命令
+\makeatletter
+\providecommand{\coloneqq}{\mathrel{\mathop{:}=}}
+\providecommand{\eqqcolon}{\mathrel{\mathop{=}:}}
+\makeatother
+% \usepackage{amssymb}
+% \usepackage{ulem}
+% \usepackage{amsmath,amsfonts,amssymb}
+%\usepackage{showframe} % Uncomment to show boxes around the text area, margin, header and footer
+%\usepackage{showlabels} % Uncomment to output the content of \label commands to the document where they are used
+% Load the bibliography package
+% \usepackage{styles/kaobiblio}
+\addbibresource{main.bib} % Bibliography file
+% Load mathematical packages for theorems and related environments
+% \usepackage[framed=true]{styles/kaotheorems}
+% Load the package for hyperreferences
+% \usepackage{styles/kaorefs}
+% \graphicspath{{examples/documentation/images/}{images/}} 
+% 定义note环境
+\usepackage{mdframed} % 用于创建带框的环境
+% \usepackage{amsthm}   % 用于定理类环境
+
+% \setcounter{tocdepth}{4}
+% \setcounter{secnumdepth}{4}
+% 替换设置粗斜体数学符号
+% 重新定义\boldsymbol命令，使其使用\symbfit命令
+% 这样可以改变数学公式中粗体符号的显示方式
+% \renewcommand{\boldsymbol}{\symbfit}
+% 基本的note环境定义
+\newmdtheoremenv{note}{注记}[chapter]
+\mdfdefinestyle{solutionstyle}{
+    linecolor=gray,
+    backgroundcolor=gray!10,
+    linewidth=1pt,
+    innertopmargin=10pt,
+    innerbottommargin=10pt,
+    leftmargin=0pt,
+    rightmargin=0pt,
+}
+
+\newtheorem*{solution}{解答}
+\mdfdefinestyle{solutionstyle}{
+    linecolor=gray,
+    backgroundcolor=gray!10,
+    linewidth=1pt,
+    innertopmargin=10pt,
+    innerbottommargin=10pt,
+    leftmargin=0pt,
+    rightmargin=0pt,
+    font=\small % 设置字体大小为small
+}
+\surroundwithmdframed[style=solutionstyle]{solution} % 使用mdframed包将solution环境包围起来，并应用solutionstyle样式
+% Paths in which to look for images
+\makeindex[columns=3, title=Alphabetical Index, intoc] % 取消注释以生成按字母顺序排列的索引
+\makeindex[columns=3, title=按字母排序的索引, intoc] % 创建一个按字母排序的索引，并将其添加到目录中
+\makeglossaries % 生成术语表所需的文件
+\input{glossary.tex} % 包含术语表定义
+\makenomenclature % 生成术语表所需的文件
+% Reset sidenote counter at chapters
+%\counterwithin*{sidenote}{chapter} % 取消注释以在每章重置旁注计数器
+\renewcommand\proofname{证明}
+
+\usepackage{adjustbox}
+% % 使用utf8编码，允许文档中包含UTF-8编码的字符
+% % 在使用XeLaTeX或LuaLaTeX时通常不需要此包，因为它们原生支持UTF-8
+% \usepackage[utf8]{inputenc}
+% \usepackage{tikz}
+\usepackage{float}
+\usepackage{adjustbox}
+\usepackage{eso-pic}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+\newcommand{\degree}{^\circ}
+% hyperref应放在大多数包之后
+\usepackage{hyperref}
+
+\hypersetup{
+    unicode=true,
+    pdfencoding=auto,
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    CJKbookmarks=true
+}
+
+% bookmark包必须在hyperref之后加载
+% \usepackage{cleveref}
+
+\graphicspath{{../figures/}}
+
+\begin{document}
+
+\subject{使用此文档作为模板}
+
+\title[示例及说明文档 {\normalfont\texttt{kaobook}} 类]{现代数学笔记\\Modern Mathematics Notes}
+\subtitle{中文 Kaobook 模板制作}
+
+\author[乐绎华]{乐绎华·中大数学系2023级本科生}
+
+\date{\zhtoday}
+
+\publishers{Sun Yat-sen University}
+
+%----------------------------------------------------------------------------------------
+
+\frontmatter % Denotes the start of the pre-document content, uses roman numerals
+
+
+\definecolor{titlecolorcoverpage}{RGB}{64, 62, 91}
+
+\dedication{
+	世界的和谐体现在形式和数量上，自然哲学的心和灵魂以及一切诗歌都体现在数学美的概念上。\\
+	\flushright -- D'Arcy Wentworth Thompson
+}
+
+%----------------------------------------------------------------------------------------
+%	OUTPUT TITLE PAGE AND PREVIOUS
+%----------------------------------------------------------------------------------------
+
+% Note that \maketitle outputs the pages before here
+% \maketitle
+\begin{titlepage} % 创建一个新的页面
+%用来将图片从左下角开始平铺整个封面
+	\AddToShipoutPicture*{%
+	\AtPageLowerLeft{%
+		\adjustbox{width=1.1\paperwidth, height=1.5\paperheight, keepaspectratio}{% 强制图片至纸张尺寸，但可能裁切
+			\includegraphics{images/Elias_Maur.jpg}
+		}
+	}
+}
+\begin{flushleft} % 左对齐环境
+	\setlength{\leftskip}{1cm} % 左侧缩进
+	\makeatletter % 允许访问带有@字符的内部命令
+	\vspace*{4cm} % 标题距离页面顶端的空白
+	{\color{titlecolorcoverpage}\Huge \textbf{\@title} \par} % 使用前文定义的title作为标题
+	\vspace{1cm} % 标题和子标题的间距
+	{\color{titlecolorcoverpage}\Large\@subtitle \par} % 使用前文定义的subtitle作为子标题
+	\vfill % 作者信息前的垂直填充
+	{\color{white}\large{\@author}\par} % 作者名
+	{\color{white}\large \@publishers \par} % 出版者
+	{\color{white}\large \zhtoday\par} % 日期，默认为当天
+	\makeatother % 将@重置为非字母字符
+	\vspace{0cm} % 标题和子标题的间距
+	% 结束左对齐环境
+\end{flushleft}
+\ClearShipoutPicture % 清除背景图片
+\end{titlepage}
+
+%----------------------------------------------------------------------------------------
+%	PREFACE
+%----------------------------------------------------------------------------------------
+
+% \input{chapters/preface.tex}
+% \index{preface}
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS & LIST OF FIGURES/TABLES
+%----------------------------------------------------------------------------------------
+
+\begingroup % 以下命令的局部范围
+
+% 定义目录、插图列表和表格列表的样式
+%\setstretch{1} % 取消注释以修改目录中的行距
+%\hypersetup{linkcolor=blue} % 取消注释以设置目录中链接的颜色
+\setlength{\textheight}{230\hscale} % 手动调整目录页面的高度
+
+% 打开etoc包的兼容模式
+%\etocstandarddisplaystyle % "目录显示"仿佛etoc未加载
+%\etocstandarddisplaystyle 已弃用，使用\etocclasstocstyle
+% \etocclasstocstyle % "目录显示"仿佛etoc未加载
+% \etocstandardlines % "目录行"仿佛etoc未加载
+
+\tableofcontents % 输出目录
+\listoffigures % 输出插图列表
+% 注释掉以下两行以在不同页面上显示插图列表和表格列表
+\let\cleardoublepage\bigskip
+\let\clearpage\bigskip
+\listoftables % 输出表格列表
+
+\endgroup
+
+
+%----------------------------------------------------------------------------------------
+%	MAIN BODY
+%----------------------------------------------------------------------------------------
+\mainmatter % 表示正文内容的开始，重置页码并使用阿拉伯数字
+
+
+\setchapterstyle{kao} % 选择默认的章节标题样式
+\pagelayout{wide}
+\addpartwithbg{课内笔记}{elias-maurer-gLo2UCpH5i8-unsplash}
+\pagelayout{margin}
+
+% \input{chapters/ode.tex}
+\input{chapters/probability.tex}
+% \input{chapters/mathematical_analysis_3.tex}
+\input{chapters/numerical_analysis.tex}
+
+
+
+
+%----------------------------------------------------------------------------------------
+
+\backmatter % Denotes the end of the main document content
+% \setchapterstyle{plain} % Output plain chapters from this point onwards
+
+% %----------------------------------------------------------------------------------------
+% %	BIBLIOGRAPHY
+% %----------------------------------------------------------------------------------------
+
+% % The bibliography needs to be compiled with biber using your LaTeX editor, or on the command line with 'biber main' from the template directory
+
+% \defbibnote{bibnote}{Here are the references in citation order.\par\bigskip} % Prepend this text to the bibliography
+% %\printbibliography[heading=bibintoc, title=Bibliography, prenote=bibnote] % Add the bibliography heading to the ToC, set the title of the bibliography and output the bibliography note
+% \printbibliography[heading=bibintoc, title=参考文献, prenote=bibnote] % Add the bibliography heading to the ToC and set the title of the bibliography
+
+% %----------------------------------------------------------------------------------------
+% %	NOMENCLATURE
+% %----------------------------------------------------------------------------------------
+
+% % The nomenclature needs to be compiled on the command line with 'makeindex main.nlo -s nomencl.ist -o main.nls' from the template directory
+
+% \nomenclature{$c$}{Speed of light in a vacuum inertial frame}
+% \nomenclature{$h$}{Planck constant}
+
+% \renewcommand{\nomname}{Notation} % Rename the default 'Nomenclature'
+% \renewcommand{\nompreamble}{The next list describes several symbols that will be later used within the body of the document.} % Prepend this text to the nomenclature
+
+% \printnomenclature % Output the nomenclature
+
+% %----------------------------------------------------------------------------------------
+% %	GREEK ALPHABET
+% % 	Originally from https://gitlab.com/jim.hefferon/linear-algebra
+% %----------------------------------------------------------------------------------------
+
+% % \vspace{1cm}
+
+% % {\usekomafont{chapter}Greek Letters with Pronunciations} \\[2ex]
+% % \begin{center}
+% % 	\newcommand{\pronounced}[1]{\hspace*{.2em}\small\textit{#1}}
+% % 	\begin{tabular}{l l @{\hspace*{3em}} l l}
+% % 		\toprule
+% % 		Character & Name & Character & Name \\ 
+% % 		\midrule
+% % 		$\alpha$ & alpha \pronounced{AL-fuh} & $\nu$ & nu \pronounced{NEW} \\
+% % 		$\beta$ & beta \pronounced{BAY-tuh} & $\xi$, $\Xi$ & xi \pronounced{KSIGH} \\ 
+% % 		$\gamma$, $\Gamma$ & gamma \pronounced{GAM-muh} & o & omicron \pronounced{OM-uh-CRON} \\
+% % 		$\delta$, $\Delta$ & delta \pronounced{DEL-tuh} & $\pi$, $\Pi$ & pi \pronounced{PIE} \\
+% % 		$\epsilon$ & epsilon \pronounced{EP-suh-lon} & $\rho$ & rho \pronounced{ROW} \\
+% % 		$\zeta$ & zeta \pronounced{ZAY-tuh} & $\sigma$, $\Sigma$ & sigma \pronounced{SIG-muh} \\
+% % 		$\eta$ & eta \pronounced{AY-tuh} & $\tau$ & tau \pronounced{TOW (as in cow)} \\
+% % 		$\theta$, $\Theta$ & theta \pronounced{THAY-tuh} & $\upsilon$, $\Upsilon$ & upsilon \pronounced{OOP-suh-LON} \\
+% % 		$\iota$ & iota \pronounced{eye-OH-tuh} & $\phi$, $\Phi$ & phi \pronounced{FEE, or FI (as in hi)} \\
+% % 		$\kappa$ & kappa \pronounced{KAP-uh} & $\chi$ & chi \pronounced{KI (as in hi)} \\
+% % 		$\lambda$, $\Lambda$ & lambda \pronounced{LAM-duh} & $\psi$, $\Psi$ & psi \pronounced{SIGH, or PSIGH} \\
+% % 		$\mu$ & mu \pronounced{MEW} & $\omega$, $\Omega$ & omega \pronounced{oh-MAY-guh} \\
+% % 		\bottomrule
+% % 	\end{tabular} \\[1.5ex]
+% % 	Capitals shown are the ones that differ from Roman capitals.
+% % \end{center}
+
+% %----------------------------------------------------------------------------------------
+% %	GLOSSARY
+% %----------------------------------------------------------------------------------------
+
+% % The glossary needs to be compiled on the command line with 'makeglossaries main' from the template directory
+
+% \setglossarystyle{listgroup} % Set the style of the glossary (see https://en.wikibooks.org/wiki/LaTeX/Glossary for a reference)
+% \printglossary[title=Special Terms, toctitle=List of Terms] % Output the glossary, 'title' is the chapter heading for the glossary, toctitle is the table of contents heading
+
+% %----------------------------------------------------------------------------------------
+% %	INDEX
+% %----------------------------------------------------------------------------------------
+
+% % The index needs to be compiled on the command line with 'makeindex main' from the template directory
+
+% \printindex % Output the index
+
+%----------------------------------------------------------------------------------------
+%	BACK COVER
+%----------------------------------------------------------------------------------------
+
+% If you have a PDF/image file that you want to use as a back cover, uncomment the following lines
+
+%\clearpage
+%\thispagestyle{empty}
+%\null%
+%\clearpage
+%\includepdf{cover-back.pdf}
+
+%----------------------------------------------------------------------------------------
+
+\end{document}

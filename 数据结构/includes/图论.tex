@@ -1,0 +1,515 @@
+\section{图论全面复习 ：概念、表示、算法与C++实现}
+
+本复习资料旨在为学习数据结构与算法课程的本科生提供一份关于图论的全面指导。内容涵盖图的基本概念、常用表示方法、核心遍历算法、最小生成树、最短路径问题、拓扑排序以及环检测等。每个主题都配有生动详尽的说明和C++代码示例，以帮助深入理解并有效备考。
+
+I. 图论基础 (Introduction to Graphs)
+
+图论是计算机科学中一个至关重要的分支，它为建模和解决涉及对象及其关系的问题提供了一个强大的数学框架。
+
+A. 什么是图？ (What is a Graph?)
+
+顶点 (Vertices) 与边 (Edges)：从根本上说，一个图 (Graph) 是由两个集合组成的：一个非空顶点集合 $V$ (Vertices 或 Nodes) 和一个边集合 $E$ (Edges)。数学上，一个图 $G$ 可以表示为 $G=(V,E)$. 顶点代表图中的基本单元或实体，例如城市、人或网页。边则代表这些实体之间的连接或关系，例如连接城市的道路、人与人之间的友谊或网页之间的超链接。理解这两个基本构成元素——顶点和边——是掌握后续所有图论概念和算法的基石。
+
+图的实际应用举例：图的抽象模型使其能够广泛应用于现实世界的多种场景中。例如：
+
+\begin{itemize}
+	\item 社交网络：用户是顶点，用户之间的好友或关注关系是边。
+	\item 交通网络：城市或交叉路口是顶点，连接它们的公路或航线是边，边的权重可以表示距离或时间。
+	\item 万维网：网页是顶点，网页之间的超链接是边。
+	\item 任务调度：项目中的各个任务是顶点，任务之间的依赖关系（例如，任务A必须在任务B开始前完成）是边。这类问题常通过拓扑排序解决。
+	\item 生物信息学：蛋白质或基因是顶点，它们之间的相互作用是边。
+\end{itemize}
+
+这些例子揭示了图作为一种通用建模工具的强大能力，能够将复杂系统简化为可分析的结构。
+
+B. 图的种类 (Types of Graphs)
+
+根据边的特性和图的结构，图可以分为多种类型，理解这些类型对于选择合适的算法至关重要。
+
+无向图 (Undirected Graphs) 与 有向图 (Directed Graphs / Digraphs)：
+
+\begin{itemize}
+	\item 无向图：边没有方向。如果顶点 $u$ 和顶点 $v$ 之间有一条边，那么这条边既可以看作从 $u$ 到 $v$，也可以看作从 $v$ 到 $u$。这种关系是双向的，例如Facebook上的好友关系。
+	\item 有向图 (也称有向图)：边具有明确的方向。一条从 $u$ 指向 $v$ 的边表示存在从 $u$ 到 $v$ 的关系，但不一定存在从 $v$ 到 $u$ 的关系。例如Twitter上的关注关系，用户A关注用户B，不代表用户B也关注用户A。边的方向性是图的一个核心属性，它直接影响路径、连通性等概念以及算法的选择。
+\end{itemize}
+
+无权图 (Unweighted Graphs) 与 加权图 (Weighted Graphs)：
+
+\begin{itemize}
+	\item 无权图：图中的所有边都没有关联的权重或成本，每条边都被认为是等价的。
+	\item 加权图：图中的每条边都关联一个数值，称为权重 (Weight) 或成本 (Cost)。权重可以表示多种含义，如距离、时间、容量、费用等。例如，在地图应用中，连接两个城市的边的权重可以表示它们之间的实际距离。加权图为模拟更复杂的现实场景提供了可能，许多重要的图算法，如Dijkstra最短路径算法和Prim最小生成树算法，都是针对加权图设计的。
+\end{itemize}
+
+简单图 (Simple Graphs), 多重图 (Multigraphs), 自环 (Loops)：
+
+\begin{itemize}
+	\item 简单图：一个图如果任意两个顶点之间最多只有一条边相连，并且图中不包含自环（即连接顶点到其自身的边），则称其为简单图。大多数基础的图算法，如简单路径查找，通常是在简单图的背景下讨论的。
+	\item 多重图：允许在同一对顶点之间存在多条平行的边。例如，两个数据中心之间可能有多条光纤连接。
+	\item 自环 (Loop)：一条连接顶点到其自身的边。例如，在状态图中，一个状态可以通过某个操作转换回自身。在邻接矩阵表示法中，自环对应于主对角线上的非零元素。
+\end{itemize}
+
+其他常见类型 (Brief mention)：
+
+\begin{itemize}
+	\item 完全图 (Complete Graph)：在一个无向简单图中，如果每对不同的顶点之间都恰好存在一条边，则称该图为完全图。若有 $N$ 个顶点，则完全图有 $N(N-1)/2$ 条边。
+	\item 二分图 (Bipartite Graph)：图的顶点集可以被划分为两个没有交集的子集 $U$ 和 $V$，使得图中的每一条边都连接 $U$ 中的一个顶点和 $V$ 中的一个顶点。例如，任务分配问题中，一组顶点代表人，另一组顶点代表任务，边表示某人可以执行某任务。
+\end{itemize}
+
+C. 图的基本术语 (Basic Graph Terminology)
+
+掌握图论的基本术语对于理解和交流图算法至关重要。
+
+顶点的度 (Degree of a Vertex), 入度 (In-degree), 出度 (Out-degree)：
+
+\begin{itemize}
+	\item 在无向图中，一个顶点的度是指与该顶点相关联（或称入射）的边的数量。在一个不包含自环的简单图中，一个顶点的度最大为 $V-1$，其中 $V$ 是顶点总数。
+	\item 在有向图中，一个顶点的度分为入度和出度。
+	\begin{itemize}
+		\item 入度 (In-degree)：指向该顶点的边的数量。
+		\item 出度 (Out-degree)：从该顶点指出的边的数量。
+	\end{itemize}
+\end{itemize}
+
+顶点的度（或入度/出度）是衡量其连接性的基本指标，并在多种算法（如Kahn拓扑排序算法依赖入度）中扮演关键角色。
+
+邻接顶点 (Adjacent Vertices / Neighbors)： 如果两个顶点之间存在一条边，则称这两个顶点是邻接的，它们互为邻居。
+
+路径 (Path)： 路径是从一个顶点 $v_s$ 到另一个顶点 $v_t$ 的一个顶点序列 $(v_0,v_1,...,v_k)$，其中 $v_0=v_s$, $v_k=v_t$，并且对于所有 $0 \leq i < k$, $(v_i,v_{i+1})$ 都是图中的一条边。路径的长度在无权图中通常指边的数量，在加权图中通常指路径上所有边的权重之和。
+
+闭合路径 (Closed Path)： 如果一条路径的起始顶点与终止顶点相同，则称其为闭合路径。
+
+简单路径 (Simple Path)： 如果一条路径中所有的顶点都是唯一的（除了可能的起始顶点和终止顶点相同的情况），则称其为简单路径。
+
+环路 (Cycle)： 一条简单路径，其第一个和最后一个顶点相同，并且路径中不包含重复的边（除了连接起点和终点的那条边，如果路径长度大于1）。严格来说，一个环路通常要求至少包含3条边（在简单图中）以避免退化情况。环路是图论中的一个核心概念，许多问题（如环检测、拓扑排序）都与之相关。
+
+连通图 (Connected Graphs) 与 连通分量 (Connected Components)：
+
+\begin{itemize}
+	\item 连通图 (特指无向图)：如果一个无向图中任意两个不同的顶点之间都至少存在一条路径，则称该图是连通图。
+	\item 连通分量 (特指无向图)：无向图的极大连通子图。这意味着一个连通分量本身是连通的，并且如果将原图中不在此分量内的任何其他顶点加入该分量，它将不再连通。一个非连通图可以分解为若干个连通分量。
+\end{itemize}
+
+对于有向图，连通性有更细致的划分，如弱连通（忽略边的方向后是连通的）和强连通（任意两个顶点之间都存在双向路径）。
+
+连通性描述了图的“整体性”。许多图算法的正确执行依赖于图的连通性，或者需要对图的每个连通分量分别应用算法。
+
+图的定义、类型以及相关的基本术语构成了图算法世界的“词汇表”和“语法规则”。对这些基础知识的精确掌握是理解和实现复杂图算法的前提。例如，一个算法的描述可能指定它适用于“加权无向连通图”，如果对这些术语理解不清，就无法正确应用该算法。图的抽象性使其具有极强的建模能力，能够将不同领域的问题（如社交网络分析、物流路径优化、任务依赖管理）统一到同一个数学框架下进行研究和求解。因此，学习图论不仅是掌握一组特定的算法，更是获得一种强大的分析和解决问题的思维模式。
+
+II. 图的表示方法 (Graph Representations)
+
+要在计算机中处理图，首先需要一种方式来存储图的结构，即顶点和它们之间的连接关系。选择合适的表示方法对算法的效率和实现复杂度有显著影响。主要有两种标准的图表示方法：邻接矩阵和邻接表。
+
+A. 邻接矩阵 (Adjacency Matrix)
+
+概念与结构：邻接矩阵是一种通过二维数组来表示图中顶点间连接关系的方法。对于一个包含 $V$ 个顶点的图，邻接矩阵是一个 $V \times V$ 的方阵，记为 \lstinline{adjMatrix}。
+
+\begin{itemize}
+	\item 如果顶点 $i$ 和顶点 $j$ 之间存在一条边：
+	\begin{itemize}
+		\item 对于无权图，\lstinline{adjMatrix[i][j]} 的值通常设为 1。
+		\item 对于加权图，\lstinline{adjMatrix[i][j]} 的值设为连接顶点 $i$ 和 $j$ 的边的权重。
+	\end{itemize}
+	\item 如果顶点 $i$ 和顶点 $j$ 之间不存在边，则 \lstinline{adjMatrix[i][j]} 的值通常设为 0 (对于无权图或表示不存在连接)，或者在某些算法（如最短路径算法）的初始化阶段设为一个特殊值（如无穷大）来表示不直接连通。
+	\item 对于无向图，由于边 $(i,j)$ 和 $(j,i)$ 是同一条边，所以邻接矩阵是关于主对角线对称的，即 \lstinline{adjMatrix[i][j] = adjMatrix[j][i]}。
+	\item 如果图中存在自环（即从顶点 $i$ 到其自身的边），则邻接矩阵的主对角线元素 \lstinline{adjMatrix[i][i]} 将为非零值（1或权重）。若不允许自环的简单图，主对角线元素通常为0。
+\end{itemize}
+
+邻接矩阵是一种非常直观的表示方式，易于理解和实现。
+
+C++ 代码示例：下面是一个使用 \lstinline{std::vector<std::vector<int>>} 实现邻接矩阵的C++类示例，用于表示一个无权图。它可以很容易地修改以支持加权图（将矩阵元素类型改为权重类型，并将1替换为权重值）。
+
+\begin{lstlisting}[language=cpp]
+#include <iostream>
+#include <vector>
+#include <stdexcept> // For std::out_of_range
+
+class GraphAdjMatrix {
+private:
+    int numVertices;
+    std::vector<std::vector<int>> adjMatrix;
+    bool isDirected; // 图是否有向
+
+public:
+    // 构造函数：初始化顶点数量和邻接矩阵
+    GraphAdjMatrix(int V, bool directed = false) : numVertices(V), isDirected(directed) {
+        if (V <= 0) {
+            throw std::invalid_argument("Number of vertices must be positive.");
+        }
+        // 初始化V x V的邻接矩阵，所有元素为0
+        adjMatrix.resize(numVertices, std::vector<int>(numVertices, 0));
+        std::cout << "Initialized Adjacency Matrix for " << numVertices << " vertices." << std::endl;
+    }
+
+    // 添加边 (u, v)
+    // 对于加权图，可以增加一个weight参数，并将矩阵值设为weight
+    void addEdge(int u, int v, int weight = 1) { // 默认为无权图，权重为1
+        if (u >= 0 && u < numVertices && v >= 0 && v < numVertices) {
+            adjMatrix[u][v] = weight;
+            if (!isDirected) { // 如果是无向图，对称地添加边
+                adjMatrix[v][u] = weight;
+            }
+            std::cout << "Added edge between " << u << " and " << v << " with weight " << weight << "." << std::endl;
+        } else {
+            throw std::out_of_range("Vertex out of bounds.");
+        }
+    }
+
+    // 移除边 (u, v)
+    void removeEdge(int u, int v) {
+        if (u >= 0 && u < numVertices && v >= 0 && v < numVertices) {
+            adjMatrix[u][v] = 0; // 或表示无穷大的值
+            if (!isDirected) {
+                adjMatrix[v][u] = 0;
+            }
+            std::cout << "Removed edge between " << u << " and " << v << "." << std::endl;
+        } else {
+            throw std::out_of_range("Vertex out of bounds.");
+        }
+    }
+
+    // 检查顶点u和v之间是否存在边
+    bool hasEdge(int u, int v) {
+        if (u >= 0 && u < numVertices && v >= 0 && v < numVertices) {
+            return adjMatrix[u][v]!= 0; // 对于加权图，只要不是0或无穷大就认为有边
+        }
+        throw std::out_of_range("Vertex out of bounds.");
+        return false;
+    }
+
+    // 打印邻接矩阵
+    void display() {
+        std::cout << "\nAdjacency Matrix:" << std::endl;
+        for (int i = 0; i < numVertices; ++i) {
+            for (int j = 0; j < numVertices; ++j) {
+                std::cout << adjMatrix[i][j] << " ";
+            }
+            std::cout << std::endl;
+        }
+    }
+
+    // 析构函数 (std::vector 会自动管理内存，如果用裸指针则需要手动释放)
+    ~GraphAdjMatrix() {
+        std::cout << "Adjacency Matrix Graph destroyed." << std::endl;
+    }
+};
+
+// 主函数示例
+// int main() {
+//     try {
+//         GraphAdjMatrix g(4, false); // 创建一个4个顶点的无向图
+//         g.addEdge(0, 1);
+//         g.addEdge(0, 2);
+//         g.addEdge(1, 2);
+//         g.addEdge(2, 3);
+//         g.display();
+// 
+//         GraphAdjMatrix dg(3, true); // 创建一个3个顶点的有向图
+//         dg.addEdge(0, 1, 5); // 加权边
+//         dg.addEdge(1, 2, 3);
+//         dg.addEdge(0, 2, 10);
+//         dg.display();
+//         std::cout << "Edge (0,1) exists: " << dg.hasEdge(0,1) << std::endl;
+//         std::cout << "Edge (1,0) exists: " << dg.hasEdge(1,0) << std::endl;
+// 
+//     } catch (const std::exception& e) {
+//         std::cerr << "Exception: " << e.what() << std::endl;
+//     }
+//     return 0;
+// }
+\end{lstlisting}
+在上述代码中，构造函数初始化一个全零的矩阵。addEdge 方法根据图是否有向来设置矩阵元素。hasEdge 方法可以快速检查边的存在性。
+
+优缺点分析：邻接矩阵的主要优点包括：
+
+\begin{itemize}
+	\item 快速判断边的存在性：检查顶点 $u$ 和 $v$ 之间是否存在边（即 \lstinline{adjMatrix[u][v]} 是否非零）只需要 $O(1)$ 的时间。
+	\item 添加或删除边操作高效：如果顶点已知，添加或删除一条边也只需要 $O(1)$ 的时间（修改矩阵中的一个元素）。
+	\item 对于稠密图（图中边的数量 $E$ 接近于 $V^2$），邻接矩阵的空间效率相对可以接受，并且其操作速度较快。
+\end{itemize}
+
+然而，邻接矩阵也有一些显著的缺点：
+
+\begin{itemize}
+	\item 空间复杂度高：它总是需要 $O(V^2)$ 的空间，其中 $V$ 是顶点数。对于稀疏图（边的数量 $E$ 远小于 $V^2$），这将导致大量的空间浪费，因为矩阵中的大部分元素都会是0。
+	\item 遍历顶点的邻接点效率低：要找到一个特定顶点的所有邻接点，需要遍历矩阵中的整行（或整列），这需要 $O(V)$ 的时间。
+	\item 添加或删除顶点操作成本高：这些操作通常需要重新分配和复制整个矩阵，或者至少是 $O(V^2)$ 级别的调整，因此非常耗时。
+\end{itemize}
+
+空间与时间复杂度总结：
+
+\begin{itemize}
+	\item 空间复杂度：$O(V^2)$
+	\item 添加顶点：$O(V^2)$ (由于矩阵重建)
+	\item 添加边：$O(1)$
+	\item 删除顶点：$O(V^2)$ (由于矩阵重建)
+	\item 删除边：$O(1)$
+	\item 查询边 (u,v) 是否存在：$O(1)$
+	\item 获取顶点 $u$ 的所有邻接点：$O(V)$
+\end{itemize}
+
+B. 邻接表 (Adjacency List)
+
+概念与结构：邻接表是另一种常用的图表示方法，尤其适用于稀疏图。它由一个包含 $V$ 个列表（通常是链表或动态数组，如C++中的 \lstinline{std::vector}）的数组（或向量）构成。数组的第 $i$ 个索引（或元素）对应图中的第 $i$ 个顶点，该索引处的列表存储了所有与顶点 $i$ 直接邻接的顶点。
+
+\begin{itemize}
+	\item 对于无权图，列表中通常只存储邻接顶点的编号。
+	\item 对于加权图，列表中的每个元素通常是一个序对 (pair)，例如 \lstinline{std::pair<int, int>}，其中第一个元素是邻接顶点的编号，第二个元素是连接当前顶点与该邻接顶点的边的权重。
+\end{itemize}
+
+由于图的结构可能非常复杂，任意两个顶点之间都可能存在关系，这种任意的逻辑关系使得图无法简单地通过固定的存储位置来表示其连接性，而邻接表恰好提供了这种所需的灵活性。
+
+C++ 代码示例：下面是一个使用 \lstinline{std::vector<std::vector<std::pair<int, int>>>} 实现邻接表的C++类示例，用于表示一个加权图。对于无权图，可以将 pair 替换为单个 int 来存储邻接顶点。
+
+\begin{lstlisting}[language=cpp]
+#include <iostream>
+#include <vector>
+#include <list>   // 可选，如果想用链表代替vector作为邻接列表
+#include <algorithm> // For std::remove_if for removeEdge
+
+// 对于加权图，边信息可以包含目标顶点和权重
+struct EdgeNode {
+    int to_vertex;
+    int weight;
+};
+
+class GraphAdjList {
+private:
+    int numVertices;
+    std::vector<std::list<EdgeNode>> adjList; // 使用list作为邻接列表，方便删除边
+    bool isDirected;
+
+public:
+    // 构造函数
+    GraphAdjList(int V, bool directed = false) : numVertices(V), isDirected(directed) {
+        if (V <= 0) {
+            throw std::invalid_argument("Number of vertices must be positive.");
+        }
+        adjList.resize(numVertices);
+        std::cout << "Initialized Adjacency List for " << numVertices << " vertices." << std::endl;
+    }
+
+    // 添加边 (u, v) 权重为 weight
+    void addEdge(int u, int v, int weight) {
+        if (u >= 0 && u < numVertices && v >= 0 && v < numVertices) {
+            adjList[u].push_back({v, weight});
+            if (!isDirected) { // 如果是无向图，对称地添加边
+                adjList[v].push_back({u, weight});
+            }
+            std::cout << "Added edge between " << u << " and " << v << " with weight " << weight << "." << std::endl;
+        } else {
+            throw std::out_of_range("Vertex out of bounds.");
+        }
+    }
+
+    // 移除边 (u, v)
+    // 注意：对于多重图，这会移除第一个匹配的边。如果需要移除所有匹配边，需修改。
+    void removeEdge(int u, int v) {
+        if (u >= 0 && u < numVertices && v >= 0 && v < numVertices) {
+            adjList[u].remove_if([v](const EdgeNode& edge){ return edge.to_vertex == v; });
+            if (!isDirected) {
+                adjList[v].remove_if([u](const EdgeNode& edge){ return edge.to_vertex == u; });
+            }
+            std::cout << "Attempted to remove edge(s) between " << u << " and " << v << "." << std::endl;
+        } else {
+            throw std::out_of_range("Vertex out of bounds.");
+        }
+    }
+
+    // 检查顶点u和v之间是否存在边
+    bool hasEdge(int u, int v) {
+        if (u >= 0 && u < numVertices && v >= 0 && v < numVertices) {
+            for (const auto& edge : adjList[u]) {
+                if (edge.to_vertex == v) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        throw std::out_of_range("Vertex out of bounds.");
+        return false;
+    }
+    
+    // 打印邻接表
+    void display() {
+        std::cout << "\nAdjacency List:" << std::endl;
+        for (int i = 0; i < numVertices; ++i) {
+            std::cout << "Vertex " << i << ":";
+            for (const auto& edge : adjList[i]) {
+                std::cout << " -> (" << edge.to_vertex << ", w:" << edge.weight << ")";
+            }
+            std::cout << std::endl;
+        }
+    }
+
+    // 获取顶点的邻接点列表 (只读访问)
+    const std::list<EdgeNode>& getNeighbors(int u) const {
+        if (u >= 0 && u < numVertices) {
+            return adjList[u];
+        }
+        throw std::out_of_range("Vertex out of bounds.");
+    }
+    
+    ~GraphAdjList() {
+        std::cout << "Adjacency List Graph destroyed." << std::endl;
+    }
+};
+
+// 主函数示例
+// int main() {
+//     try {
+//         GraphAdjList g(4, false); // 4个顶点的无向加权图
+//         g.addEdge(0, 1, 10);
+//         g.addEdge(0, 2, 5);
+//         g.addEdge(1, 2, 2);
+//         g.addEdge(2, 3, 1);
+//         g.display();
+// 
+//         std::cout << "Neighbors of vertex 0:" << std::endl;
+//         for (const auto& edge : g.getNeighbors(0)) {
+//             std::cout << "  To: " << edge.to_vertex << ", Weight: " << edge.weight << std::endl;
+//         }
+// 
+//         std::cout << "Edge (0,1) exists: " << g.hasEdge(0,1) << std::endl;
+//         g.removeEdge(0,1);
+//         std::cout << "Edge (0,1) exists after removal: " << g.hasEdge(0,1) << std::endl;
+//         g.display();
+// 
+//     } catch (const std::exception& e) {
+//         std::cerr << "Exception: " << e.what() << std::endl;
+//     }
+//     return 0;
+// }
+\end{lstlisting}
+在此示例中，adjList 是一个 \lstinline{std::vector}，其每个元素是一个 \lstinline{std::list<EdgeNode>}。EdgeNode 结构体存储了目标顶点和边的权重。addEdge 方法将新的邻接信息添加到相应顶点的列表中。
+
+优缺点分析：邻接表的主要优点包括：
+
+\begin{itemize}
+	\item 空间效率高：特别是对于稀疏图，邻接表的空间复杂度为 $O(V+E)$，其中 $V$ 是顶点数，$E$ 是边数。这是因为它只存储实际存在的边。
+	\item 高效遍历顶点的邻接点：获取并遍历一个特定顶点的所有邻接点非常高效，时间复杂度与其度数成正比。这对于像深度优先搜索 (DFS) 和广度优先搜索 (BFS) 这样的图遍历算法非常有利。
+	\item 添加顶点操作相对高效：向图中添加一个新顶点（不包括其边）通常是 $O(1)$ 操作（即在表示邻接表的数组/向量末尾添加一个新列表）。
+	\item 添加边操作高效：向现有顶点的邻接列表中添加一条边通常是 $O(1)$ （摊销时间，如果使用 \lstinline{std::vector::push_back} 或链表头插）。
+\end{itemize}
+
+邻接表的缺点主要有：
+
+\begin{itemize}
+	\item 判断边的存在性较慢：要检查顶点 $u$ 和 $v$ 之间是否存在边，最坏情况下需要遍历顶点 $u$ (或 $v$) 的整个邻接列表，时间复杂度为 $O(\text{degree}(u))$，其中 $\text{degree}(u)$ 是顶点 $u$ 的度。在稠密图中，这可能接近 $O(V)$。
+	\item 删除边操作可能较慢：与查询类似，删除一条边 $(u,v)$ 需要先在顶点 $u$ 的邻接列表中找到并移除 $v$（对于无向图，还需要在 $v$ 的列表中找到并移除 $u$），这同样可能需要 $O(\text{degree}(u))$ 的时间。
+\end{itemize}
+
+根据 61 的观点，邻接链表（一种邻接表的实现方式）在边的读写上可能比矩阵表示稍慢，因为链表中的指针在内存中可能不是连续存储的，这可能影响缓存性能。
+
+空间与时间复杂度总结：
+
+\begin{itemize}
+	\item 空间复杂度：$O(V+E)$
+	\item 添加顶点：$O(1)$ (仅指为新顶点创建空邻接列表)
+	\item 添加边：$O(1)$ (摊销)
+	\item 删除顶点：$O(V+E)$ (最坏情况，因为需要遍历所有其他顶点的邻接列表以移除与被删除顶点相关的边)
+	\item 删除边 (u,v)：$O(\text{degree}(u))$ (对于有向图，或无向图中从 $u$ 到 $v$ 的部分) 或 $O(\text{degree}(u)+\text{degree}(v))$ (对于无向图的完整删除)
+	\item 查询边 (u,v) 是否存在：$O(\text{degree}(u))$ 或 $O(V)$
+	\item 获取顶点 $u$ 的所有邻接点：$O(\text{degree}(u))$
+\end{itemize}
+
+C. 如何选择合适的表示方法 (Choosing the Right Representation)
+
+选择邻接矩阵还是邻接表，主要取决于图的特性（特别是密度）和应用中所需执行的主要操作类型。
+
+图的密度：
+
+\begin{itemize}
+	\item 稠密图 (Dense Graphs)：当边的数量 $E$ 接近于 $V^2$ 的上限时，图被认为是稠密的。在这种情况下，邻接矩阵的 $O(V^2)$ 空间开销与 $O(E)$ 相差不大，其 $O(1)$ 的边查询速度可能成为优势。
+	\item 稀疏图 (Sparse Graphs)：当边的数量 $E$ 远小于 $V^2$（例如 $E$ 与 $V$ 成线性关系）时，图被认为是稀疏的。此时，邻接表的 $O(V+E)$ 空间复杂度远优于邻接矩阵，是首选的表示方法。21 甚至探讨了对稀疏有向图的邻接矩阵进行压缩存储的方法，以缓解其空间浪费问题，这反过来也强调了邻接表在稀疏图上的自然优势。
+\end{itemize}
+
+主要操作需求：
+
+\begin{itemize}
+	\item 如果算法需要频繁地检查任意两个顶点之间是否存在边，邻接矩阵的 $O(1)$ 查询时间非常有利。
+	\item 如果算法需要频繁地遍历一个顶点的所有邻接点（例如在DFS、BFS等图遍历算法中），邻接表则更为高效，因为它直接提供了邻接点列表。
+	\item 如果图中顶点的添加和删除操作非常频繁，需要仔细评估两种方法。邻接矩阵的顶点增删成本很高 ($O(V^2)$)，而邻接表在添加顶点本身时较快，但删除顶点时仍需处理相关的边，可能达到 $O(V+E)$。
+\end{itemize}
+
+\paragraph{Table 1: 邻接矩阵与邻接表对比}
+
+下表总结了邻接矩阵和邻接表在各种操作上的性能特点：
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		特性 (Feature) & 邻接矩阵 (Adjacency Matrix) & 邻接表 (Adjacency List) \\
+		\hline
+		空间复杂度 (Space Complexity) & $O(V^2)$ & $O(V+E)$ \\
+		\hline
+		添加顶点 (Add Vertex) & $O(V^2)$ (通常需要重建) & $O(1)$ (为新顶点创建空列表) \\
+		\hline
+		添加边 (Add Edge) & $O(1)$ & $O(1)$ (摊销) \\
+		\hline
+		删除顶点 (Remove Vertex) & $O(V^2)$ (通常需要重建) & $O(V+E)$ (需从其他邻接列表移除相关边) \\
+		\hline
+		删除边 (Remove Edge) & $O(1)$ & $O(\text{degree}(u))$ 或 $O(V)$ （需搜索列表） \\
+		\hline
+		查询两点是否邻接 (Query Adjacency) & $O(1)$ & $O(\text{degree}(u))$ 或 $O(V)$ （需搜索列表） \\
+		\hline
+		遍历某顶点的所有邻接点 (Iterate Neighbors) & $O(V)$ & $O(\text{degree}(u))$ \\
+		\hline
+		适用图类型 (Suited Graph Type) & 稠密图 (Dense) & 稀疏图 (Sparse) \\
+		\hline
+	\end{tabular}
+\end{table}
+数据来源：基于 14 及其他相关片段的分析。
+
+此表格清晰地展示了两种表示方法的权衡。在实际应用和算法竞赛中，由于现实世界中的许多大型图（如社交网络、网页图）通常是稀疏的，邻接表因其空间效率和对遍历操作的良好支持而更为常用。
+
+图的表示方法是图算法得以高效执行的基石。一种算法的理论时间复杂度往往是基于某种特定的图表示（通常是邻接表，因为它对稀疏图更友好）推导出来的。例如，标准的BFS和DFS算法的 $O(V+E)$ 时间复杂度就是假设图是用邻接表表示的。如果用邻接矩阵，由于查找一个顶点的所有邻居需要 $O(V)$ 时间，这些遍历算法的复杂度可能会变成 $O(V^2)$。这凸显了数据结构选择对算法性能的深远影响。此外，C++标准模板库 (STL) 中的 \lstinline{std::vector} 和 \lstinline{std::list}（以及用于加权图的 \lstinline{std::pair}）为实现邻接表提供了极大的便利，使得开发者可以专注于算法逻辑本身，而不必过多地纠缠于底层数据结构的细节实现。然而，理解这些STL容器大致的性能特征（例如 \lstinline{std::vector::push_back} 的摊销 $O(1)$ 复杂度）对于准确分析算法性能仍然是重要的。最终，选择哪种表示方法是一个需要在空间效率、时间效率以及特定操作需求之间进行权衡的决策。
+
+III. 图的遍历算法 (Graph Traversal Algorithms)
+
+图的遍历是指按照某种特定的顺序访问图中的每一个顶点，并且每个顶点仅访问一次。这是许多更复杂图算法的基础。最核心的两种遍历算法是广度优先搜索 (BFS) 和深度优先搜索 (DFS)。
+
+A. 广度优先搜索 (BFS - Breadth-First Search)
+
+算法思想与直观理解：广度优先搜索 (BFS) 是一种系统性地探索图中顶点的方法。它从一个指定的源顶点开始，首先访问所有与源顶点直接相邻的顶点（可以看作是第一层或距离为1的层）。然后，对于第一层中所有已被访问的顶点，BFS会继续访问它们所有未被访问过的邻接点（构成第二层或距离为2的层）。这个过程逐层向外扩展，直到所有从源顶点可达的顶点都被访问过为止。可以将BFS的过程想象成在平静的水面上投下一颗石子，产生的波纹会以石子落点为中心，一圈一圈地向外均匀扩散。BFS的这种“逐层”或“按距离远近”的访问特性，使其天然适用于寻找无权图中的最短路径（以边的数量衡量）。
+
+为了实现这种逐层访问的顺序，BFS通常使用一个队列 (Queue) 数据结构。队列的先进先出 (FIFO) 特性保证了先发现的顶点（离源点更近的顶点）其邻接点会被优先探索。同时，为了避免重复访问同一个顶点（尤其是在包含环的图中可能导致无限循环），BFS会使用一个布尔数组 \lstinline{visited} 来标记每个顶点是否已经被访问过。
+
+C++ 代码示例：以下是一个基于邻接表实现的BFS算法的C++代码示例。假设图用 \lstinline{std::vector<std::vector<int>> adjList} 表示（对于无权图），其中 \lstinline{adjList[u]} 包含了顶点 $u$ 的所有邻接顶点。
+
+\begin{lstlisting}[language=cpp]
+#include <iostream>
+#include <vector>
+#include <queue>
+#include <list> // GraphAdjList 使用了 list
+
+// (假设 GraphAdjList 类如前文定义，这里仅展示BFS成员函数)
+// 或者可以是一个独立的BFS函数，接收邻接表和起始顶点作为参数
+
+// 独立BFS函数版本
+void bfs_standalone(int startVertex, int numVertices, const std::vector<std::list<EdgeNode>>& adjList) {
+    if (startVertex < 0 || startVertex >= numVertices) {
+        std::cerr << "Error: Start vertex is out of bounds." << std::endl;
+        return;
+    }
+
+    std::vector<bool> visited(numVertices, false); // 标记顶点是否被访问过
+    std::queue<int> q;                             // 辅助队列
+
+    // 1. 将起始顶点标记为已访问，并将其入队
+    visited[startVertex] = true;
+    q.push(startVertex);
+
+    std::cout << "BFS traversal starting from vertex " << startVertex << ": ";
+
+    // 2. 当队列不为空时，循环继续
+    while (!q.empty()) {
+        // 3. 从队列中取出一个顶点
+        int u = q.front();
+        q.pop();
+
+        // 4. 访问该顶点 (例如，打印)
+        std::cout << u << " ";
+
+        // 5. 遍历该顶点的所有邻
+\end{lstlisting}

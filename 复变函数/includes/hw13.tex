@@ -1,0 +1,50 @@
+\begin{lstlisting}
+p135 8 10 11
+\end{lstlisting}
+\begin{exercise}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{hw13-2025052617.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{exercise}
+$f\in H(D)$ then $1/f\in H(D)$, by maximum module principle, $\lvert 1/f \rvert$ cannot attain its maximum inside $D$.
+
+\begin{exercise}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{hw13-2025052618.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{exercise}
+Consider $\varphi_{a}(z)=\frac{a-z}{1-\overline{a}z}$, for $\lvert a \rvert<1$; let $g=\varphi_{b}\circ f\circ\varphi _a^{-1}$, where $b=f(a)$. Then
+\[
+\lvert g(0) \rvert =\lvert \varphi_{b}(f(\varphi_{a}^{-1}(0))) \rvert =\lvert \varphi_{b}(f(a)) \rvert =0
+\]
+For $z\in \mathbb{D}$, $\lvert \varphi_{a}^{-1}(z) \rvert=\lvert \varphi_{-a}(z) \rvert<1$,
+\[
+\lvert g(z) \rvert =\lvert \underbrace{ \varphi_{b}(\underbrace{ f(\underbrace{ \varphi_{a}^{-1}(z) }_{ \in \mathbb{D} }) }_{ \in \mathbb{D} }) }_{ \in \mathbb{D} } \rvert <1
+\]
+By Schwarz lemma, for any $z\in \mathbb{D}$,
+\[
+\lvert g(z) \rvert \leq \lvert z \rvert 
+\]
+where
+\[
+\lvert g(z) \rvert =\lvert \varphi_{b}(f(\varphi_{-a}(z))) \rvert =\left\lvert  \frac{f(a)-f(\varphi_{-a}(z))}{1-\overline{f(a)}f(\varphi_{-a}(z))}  \right\rvert \leq \lvert z \rvert
+\]
+Replace $z$ by $\varphi_{a}(z)$ then
+\[
+\left\lvert  \frac{f(a)-f(z)}{1-\overline{f(a)}f(z)}  \right\rvert \leq \left\lvert  \frac{a-z}{1-\overline{a}z}  \right\rvert
+\]
+\begin{exercise}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-hw13-2025052618.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{exercise}
+Clearly, $\varphi_{\alpha}(z)=\frac{z-\alpha}{1-\overline{\alpha}z}$ maps $\alpha$ to 0, and is automorphism in $\mathbb{D}$. For any $f\in \mathrm{Aut}(\mathbb{D})$ with $f(\alpha)=0$, consider $g=f\circ\varphi_{\alpha}^{-1}=f\circ\varphi_{-\alpha}$; $g(0)=0$, $\lvert g(z) \rvert<1$, by Schwarz lemma, $\lvert g(z) \rvert\leq \lvert z \rvert$. But the equality holds at $\alpha$, thus $g(z)=e^{ i\theta }z$ for some real $\theta$. i.e. $f(z)=e^{ i\theta }\varphi_{\alpha}(z)$.

@@ -1,0 +1,183 @@
+This is the Chapter 6 of All of Statistics.
+
+\section{Models, Statistical Inference and Learning}
+
+\subsection{Motivation}
+
+A typical statistical inference question: Given a sample $X_1,\dots,X_n\sim F$ how do we infer $F$?
+
+\subsection{What is statistical model}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Models, Statistical Inference and Learning-2025032722.png}
+% \caption{}
+\label{}
+\end{figure}
+
+In general, a parametric model takes the form
+\[
+\mathfrak{F}=\{f(x ; \theta): \theta \in \Theta\}
+\]
+where $\theta$ is an unknown parameter (or vector) taking values in the \textbf{parameter space} $\Theta$.
+
+\subsubsection{Nonparametric model}
+
+A nonparametric model is a set $\frak{F}$ that cannot be parmeterized by a finite number of parameters. For example, $\mathfrak{F}_{\text{ALL}}=\{ \text{all CDF's} \}$ is nonparametric.
+
+\subsection{Examples of parameter spaces}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Models, Statistical Inference and Learning-2025032722.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{remark}
+We first discuss nonparametric inference. Two dominant approaches to statistical inference are \textbf{frequentist inference}and \textbf{Bayesian inference}.
+\end{remark}
+\subsection{Notations}
+
+If $\mathfrak{ F}=\{ f(x;\theta):\theta\in\Theta \}$ is a parametric model, we write
+\[
+\mathbb{P}_{\theta}(X\in A)=\int_{A}^{} f(x;\theta) \, dx \quad \text{and}\quad \mathbb{E}_{\theta}(r(X))=\int r(x)f(x;\theta) \, dx
+\]
+The subscript $\theta$ indicates that the probability or expectation is w.r.t. $f(x;\theta)$; it does not mean we are averaging over $\theta$. Similarly, write $\mathbb{V}_{\theta}$ for the variance.
+
+\section{Fundamental Concepts in Inference}
+
+Many inferential problems can be identified as one of three types:
+
+\begin{itemize}
+	\item Estimation
+	\item Confidence sets
+	\item Hypothesis testing
+\end{itemize}
+
+\subsection{Point Estimation}
+
+Point estimation refers to provide a single "best guess" of some quantity of interest, such as cdf, pdf, regression function....
+
+Denote a point estimate of $\theta$ by $\widehat{\theta}$ or $\widehat{\theta}_n$.
+
+\begin{remark}
+Note that $\theta$ is fixed, unknown quantity, $\widehat{\theta}$ depens on the data so is a r.v.
+\end{remark}
+\[
+\text{bias}(\widehat{\theta}_n)=\mathbb{E}_{\theta}(\widehat{\theta}_n)-\theta
+\]
+Say $\widehat{\theta}_n$ \textbf{unbiased} if $\mathbb{E}(\widehat{\theta}_n)=\theta$.
+
+\begin{note}
+Unbiasedness is considered less important than before.
+\end{note}
+Say $\widehat{\theta}_n$ \textbf{consistent} if $\widehat{\theta}_n\overset{ P }{ \to }\theta$.
+
+The distribution of $\widehat{\theta}_n$ is called the \textbf{sampling distribution}. The standard deviation of $\widehat{\theta}_n$ is called the \textbf{standard error}, denoted by $\text{se}$:
+\[
+\text{se}=\text{se}(\widehat{\theta}_n)=\sqrt{ \mathbb{V}(\widehat{\theta}_n) }
+\]
+Often, $\text{se}$ depends on the unknown $F$. The estimated se is denoted by $\widehat{\text{se}}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Models, Statistical Inference and Learning-2025032723.png}
+% \caption{}
+\label{}
+\end{figure}
+
+The \textbf{mean squared error} (MSE) is defined by
+\[
+\text{MSE}\coloneqq \mathbb{E}_{\theta}(\widehat{\theta}_n-\theta)^2
+\]
+We have
+\[
+\text{MSE}=\text{bias}^2(\widehat{\theta}_n)+\mathbb{V}_{\theta}(\widehat{\theta}_n).
+\]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Models, Statistical Inference and Learning-2025032723.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Models, Statistical Inference and Learning-2025032723.png}
+% \caption{}
+\label{}
+\end{figure}
+Which means the estimator is not always asymptotically Normal. But point estimators often have this property.
+
+\subsection{Confidence Sets}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Models, Statistical Inference and Learning-2025032723.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{note}
+Note that $C_n$ is random and $\theta$ is fixed.
+\end{note}
+\begin{remark}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-Models, Statistical Inference and Learning-2025032723.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{remark}
+\subsubsection{Example}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-Models, Statistical Inference and Learning-2025032723.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Construct Normal-based Confidence Interval}
+
+Point estimators often have a limite Normal distribution, meaning that $\widehat{\theta}_n\sim N(\theta,\widehat{\text{se}}^2)$. In this case we can sonstruct (approximate) confidence intervals as follows.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-Models, Statistical Inference and Learning-2025032723.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsubsection{Examples}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-Models, Statistical Inference and Learning-2025032723.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-Models, Statistical Inference and Learning-2025032723.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\subsection{Hypothesis Testing}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{9-Models, Statistical Inference and Learning-2025032723.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{10-Models, Statistical Inference and Learning-2025032723.png}
+% \caption{}
+\label{}
+\end{figure}

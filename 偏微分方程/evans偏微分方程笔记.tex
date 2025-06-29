@@ -1,0 +1,266 @@
+\documentclass[10pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{hyperref}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\title{Notes on Partial Differential Equations}
+\author{John K. Hunter}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Preliminaries}
+In this section, we collect various definitions and theorems for future use.
+
+\subsection{Euclidean space}
+Let $\mathbb{R}^{n}$ be $n$-dimensional Euclidean space. We denote the Euclidean norm of a vector $x=\left(x_{1}, x_{2}, \ldots, x_{n}\right) \in \mathbb{R}^{n}$ by
+$$
+|x|=\left(x_{1}^{2}+x_{2}^{2}+\cdots+x_{n}^{2}\right)^{1 / 2}
+$$
+and the inner product of vectors $x=\left(x_{1}, x_{2}, \ldots, x_{n}\right), y=\left(y_{1}, y_{2}, \ldots, y_{n}\right)$ by
+$$
+x \cdot y=x_{1} y_{1}+x_{2} y_{2}+\cdots+x_{n} y_{n}
+$$
+
+We denote Lebesgue measure on $\mathbb{R}^{n}$ by $d x$, and the Lebesgue measure of a set $E \subset \mathbb{R}^{n}$ by $|E|$.
+
+If $E$ is a subset of $\mathbb{R}^{n}$, we denote the complement by $E^{c}=\mathbb{R}^{n} \backslash E$, the closure by $\bar{E}$, the interior by $E^{\circ}$ and the boundary by $\partial E=\bar{E} \backslash E^{\circ}$. The characteristic function $\chi_{E}: \mathbb{R}^{n} \rightarrow \mathbb{R}$ of $E$ is defined by
+$$
+\chi_{E}(x)= \begin{cases}1 & \text { if } x \in E \\ 0 & \text { if } x \notin E\end{cases}
+$$
+
+A set $E$ is bounded if $\{|x|: x \in E\}$ is bounded in $\mathbb{R}$. A set is connected if it is not the disjoint union of two nonempty relatively open subsets. We sometimes refer to a connected open set as a domain.
+
+We say that a (nonempty) open set $\Omega^{\prime}$ is compactly contained in an open set $\Omega$, written $\Omega^{\prime} \Subset \Omega$, if $\overline{\Omega^{\prime}} \subset \Omega$ and $\overline{\Omega^{\prime}}$ is compact. If $\Omega^{\prime} \Subset \Omega$, then
+$$
+\operatorname{dist}\left(\Omega^{\prime}, \partial \Omega\right)=\inf \left\{|x-y|: x \in \Omega^{\prime}, y \in \partial \Omega\right\}>0
+$$
+
+\subsection{Spaces of continuous functions}
+Let $\Omega$ be an open set in $\mathbb{R}^{n}$. We denote the space of continuous functions $u: \Omega \rightarrow \mathbb{R}$ by $C(\Omega)$; the space of functions with continuous partial derivatives in $\Omega$ of order less than or equal to $k \in \mathbb{N}$ by $C^{k}(\Omega)$; and the space of functions with continuous derivatives of all orders by $C^{\infty}(\Omega)$. Functions in these spaces need not be bounded even if $\Omega$ is bounded; for example, $(1/x) \in C^{\infty}(0,1)$.
+
+If $\Omega$ is a bounded open set in $\mathbb{R}^{n}$, we denote by $C(\bar{\Omega})$ the space of continuous functions $u: \bar{\Omega} \rightarrow \mathbb{R}$. This is a Banach space with respect to the maximum, or supremum, norm
+$$
+\|u\|_{\infty}=\sup _{x \in \Omega}|u(x)| .
+$$
+
+We denote the support of a continuous function $u: \Omega \rightarrow \mathbb{R}^{n}$ by
+$$
+\operatorname{supp} u=\overline{\{x \in \Omega: u(x) \neq 0\}}
+$$
+
+We denote by $C_{c}(\Omega)$ the space of continuous functions whose support is compactly contained in $\Omega$, and by $C_{c}^{\infty}(\Omega)$ the space of functions with continuous derivatives of all orders and compact support in $\Omega$. We will sometimes refer to such functions as test functions.
+
+The completion of $C_{c}\left(\mathbb{R}^{n}\right)$ with respect to the uniform norm is the space $C_{0}\left(\mathbb{R}^{n}\right)$ of continuous functions that approach zero at infinity.
+
+If $\Omega$ is bounded, then we say that a function $u: \bar{\Omega} \rightarrow \mathbb{R}$ belongs to $C^{k}(\bar{\Omega})$ if it is continuous and its partial derivatives of order less than or equal to $k$ are uniformly continuous in $\Omega$, in which case they extend to continuous functions on $\bar{\Omega}$. The space $C^{k}(\bar{\Omega})$ is a Banach space with respect to the norm
+$$
+\|u\|_{C^{k}(\bar{\Omega})}=\sum_{|\alpha| \leq k} \sup _{\Omega}\left|\partial^{\alpha} u\right|
+$$
+where we use the multi-index notation for partial derivatives explained in Section 1.8. This norm is finite because the derivatives $\partial^{\alpha} u$ are continuous functions on the compact set $\bar{\Omega}$.
+
+A vector field $X: \Omega \rightarrow \mathbb{R}^{m}$ belongs to $C^{k}(\bar{\Omega})$ if each of its components belongs to $C^{k}(\bar{\Omega})$.
+
+\subsection{Hölder spaces}
+The definition of continuity is not a quantitative one, because it does not say how rapidly the values $u(y)$ of a function approach its value $u(x)$ as $y \rightarrow x$. The modulus of continuity $\omega:[0, \infty] \rightarrow[0, \infty]$ of a general continuous function $u$, satisfying
+$$
+|u(x)-u(y)| \leq \omega(|x-y|)
+$$
+may decrease arbitrarily slowly. As a result, despite their simple and natural appearance, spaces of continuous functions are often not suitable for the analysis of PDEs, which is almost always based on quantitative estimates.
+
+A straightforward and useful way to strengthen the definition of continuity is to require that the modulus of continuity is proportional to a power $|x-y|^{\alpha}$ for some exponent $0<\alpha \leq 1$. Such functions are said to be Hölder continuous, or Lipschitz continuous if $\alpha=1$. Roughly speaking, one can think of Hölder continuous functions with exponent $\alpha$ as functions with bounded fractional derivatives of the the order $\alpha$.
+
+\begin{definition}
+Suppose that $\Omega$ is an open set in $\mathbb{R}^{n}$ and $0<\alpha \leq 1$. A function $u: \Omega \rightarrow \mathbb{R}$ is uniformly Hölder continuous with exponent $\alpha$ in $\Omega$ if the quantity
+\begin{equation}
+[u]_{\alpha, \Omega}=\sup_{\substack{x, y \in \Omega \\ x \neq y}} \frac{|u(x)-u(y)|}{|x-y|^{\alpha}}
+\end{equation}
+is finite. A function $u: \Omega \rightarrow \mathbb{R}$ is locally uniformly Hölder continuous with exponent $\alpha$ in $\Omega$ if $[u]_{\alpha, \Omega^{\prime}}$ is finite for every $\Omega^{\prime} \Subset \Omega$. We denote by $C^{0, \alpha}(\Omega)$ the space of locally uniformly Hölder continuous functions with exponent $\alpha$ in $\Omega$. If $\Omega$ is bounded, we denote by $C^{0, \alpha}(\bar{\Omega})$ the space of uniformly Hölder continuous functions with exponent $\alpha$ in $\Omega$.
+\end{definition}
+
+We typically use Greek letters such as $\alpha, \beta$ both for Hölder exponents and multi-indices; it should be clear from the context which they denote.
+
+When $\alpha$ and $\Omega$ are understood, we will abbreviate 'u is (locally) uniformly Hölder continuous with exponent $\alpha$ in $\Omega$' to 'u is (locally) Hölder continuous.' If $u$ is Hölder continuous with exponent one, then we say that $u$ is Lipschitz continuous. There is no purpose in considering Hölder continuous functions with exponent greater than one, since any such function is differentiable with zero derivative and therefore is constant.
+
+The quantity $[u]_{\alpha, \Omega}$ is a semi-norm, but it is not a norm since it is zero for constant functions. The space $C^{0, \alpha}(\bar{\Omega})$, where $\Omega$ is bounded, is a Banach space with respect to the norm
+$$
+\|u\|_{C^{0, \alpha}(\bar{\Omega})}=\sup_{\Omega}|u|+[u]_{\alpha, \Omega}
+$$
+
+\begin{example}
+For $0<\alpha<1$, define $u(x):(0,1) \rightarrow \mathbb{R}$ by $u(x)=|x|^{\alpha}$. Then $u \in C^{0, \alpha}([0,1])$, but $u \notin C^{0, \beta}([0,1])$ for $\alpha<\beta \leq 1$.
+\end{example}
+
+\begin{example}
+The function $u(x):(-1,1) \rightarrow \mathbb{R}$ given by $u(x)=|x|$ is Lipschitz continuous, but not continuously differentiable. Thus, $u \in C^{0,1}([-1,1])$, but $u \notin C^{1}([-1,1])$.
+\end{example}
+
+We may also define spaces of continuously differentiable functions whose $k$th derivative is Hölder continuous.
+
+\begin{definition}
+If $\Omega$ is an open set in $\mathbb{R}^{n}, k \in \mathbb{N}$, and $0<\alpha \leq 1$, then $C^{k, \alpha}(\Omega)$ consists of all functions $u: \Omega \rightarrow \mathbb{R}$ with continuous partial derivatives in $\Omega$ of order less than or equal to $k$ whose $k$th partial derivatives are locally uniformly Hölder continuous with exponent $\alpha$ in $\Omega$. If the open set $\Omega$ is bounded, then $C^{k, \alpha}(\bar{\Omega})$ consists of functions with uniformly continuous partial derivatives in $\Omega$ of order less than or equal to $k$ whose $k$th partial derivatives are uniformly Hölder continuous with exponent $\alpha$ in $\Omega$.
+\end{definition}
+
+The space $C^{k, \alpha}(\bar{\Omega})$ is a Banach space with respect to the norm
+$$
+\|u\|_{C^{k, \alpha}(\bar{\Omega})}=\sum_{|\beta| \leq k} \sup_{\Omega}\left|\partial^{\beta} u\right|+\sum_{|\beta|=k}\left[\partial^{\beta} u\right]_{\alpha, \Omega}
+$$
+
+\section{$L^{p}$ spaces}
+As before, let $\Omega$ be an open set in $\mathbb{R}^{n}$ (or, more generally, a Lebesgue-measurable set).
+
+\begin{definition}
+For $1 \leq p<\infty$, the space $L^{p}(\Omega)$ consists of the Lebesgue measurable functions $f: \Omega \rightarrow \mathbb{R}$ such that
+$$
+\int_{\Omega}|f|^{p} dx<\infty
+$$
+and $L^{\infty}(\Omega)$ consists of the essentially bounded functions.
+
+These spaces are Banach spaces with respect to the norms
+$$
+\|f\|_{p}=\left(\int_{\Omega}|f|^{p} dx\right)^{1/p}, \quad\|f\|_{\infty}=\sup_{\Omega}|f|
+$$
+where sup denotes the essential supremum,
+$$
+\sup_{\Omega} f=\inf \{M \in \mathbb{R}: f \leq M \text{ almost everywhere in } \Omega\}.
+$$
+\end{definition}
+
+Strictly speaking, elements of the Banach space $L^{p}$ are equivalence classes of functions that are equal almost everywhere, but we identify a function with its equivalence class unless we need to refer to the pointwise values of a specific representative. For example, we say that a function $f \in L^{p}(\Omega)$ is continuous if it is equal almost everywhere to a continuous function, and that it has compact support if it is equal almost everywhere to a function with compact support.
+
+Next we summarize some fundamental inequalities for integrals, in addition to Minkowski's inequality which is implicit in the statement that $\|\cdot\|_{L^{p}}$ is a norm for $p \geq 1$. First, we recall the definition of a convex function.
+
+\begin{definition}
+A set $C \subset \mathbb{R}^{n}$ is convex if $\lambda x+(1-\lambda) y \in C$ for every $x, y \in C$ and every $\lambda \in[0,1]$. A function $\phi: C \rightarrow \mathbb{R}$ is convex if its domain $C$ is convex and
+$$
+\phi(\lambda x+(1-\lambda) y) \leq \lambda \phi(x)+(1-\lambda) \phi(y)
+$$
+for every $x, y \in C$ and every $\lambda \in[0,1]$.
+\end{definition}
+
+Jensen's inequality states that the value of a convex function at a mean is less than or equal to the mean of the values of the convex function.
+
+\begin{theorem}
+Suppose that $\phi: \mathbb{R} \rightarrow \mathbb{R}$ is a convex function, $\Omega$ is a set in $\mathbb{R}^{n}$ with finite Lebesgue measure, and $f \in L^{1}(\Omega)$. Then
+$$
+\phi\left(\frac{1}{|\Omega|} \int_{\Omega} f dx\right) \leq \frac{1}{|\Omega|} \int_{\Omega} \phi \circ f dx.
+$$
+\end{theorem}
+
+To state the next inequality, we first define the Hölder conjugate of an exponent $p$. We denote it by $p^{\prime}$ to distinguish it from the Sobolev conjugate $p^{*}$ which we will introduce later on.
+
+\begin{definition}
+The Hölder conjugate of $p \in[1, \infty]$ is the quantity $p^{\prime} \in[1, \infty]$ such that
+$$
+\frac{1}{p}+\frac{1}{p^{\prime}}=1,
+$$
+with the convention that $1 / \infty=0$.
+\end{definition}
+
+The following result is called Hölder's inequality. The special case when $p=p^{\prime}=1/2$ is the Cauchy-Schwartz inequality.
+
+\begin{theorem}
+If $1 \leq p \leq \infty, f \in L^{p}(\Omega)$, and $g \in L^{p^{\prime}}(\Omega)$, then $f g \in L^{1}(\Omega)$ and
+$$
+\|f g\|_{1} \leq\|f\|_{p}\|g\|_{p^{\prime}}
+$$
+\end{theorem}
+
+Repeated application of this inequality gives the following generalization.
+
+\begin{theorem}
+If $1 \leq p_{i} \leq \infty$ for $1 \leq i \leq N$ satisfy
+$$
+\sum_{i=1}^{N} \frac{1}{p_{i}}=1
+$$
+and $f_{i} \in L^{p_{i}}(\Omega)$ for $1 \leq i \leq N$, then $f=\prod_{i=1}^{N} f_{i} \in L^{1}(\Omega)$ and
+$$
+\|f\|_{1} \leq \prod_{i=1}^{N}\left\|f_{i}\right\|_{p_{i}}
+$$
+\end{theorem}
+
+Suppose that $\Omega$ has finite measure and $1 \leq q \leq p$. If $f \in L^{p}(\Omega)$, an application of Hölder's inequality to $f=1 \cdot f$, shows that $f \in L^{q}(\Omega)$ and
+$$
+\|f\|_{q} \leq|\Omega|^{1/q-1/p}\|f\|_{p}
+$$
+
+Thus, the embedding $L^{p}(\Omega) \hookrightarrow L^{q}(\Omega)$ is continuous. This result is not true if the measure of $\Omega$ is infinite, but in general we have the following interpolation result.
+
+\begin{lemma}
+If $1 \leq p \leq q \leq r$, then $L^{p}(\Omega) \cap L^{r}(\Omega) \hookrightarrow L^{q}(\Omega)$ and
+$$
+\|f\|_{q} \leq\|f\|_{p}^{\theta}\|f\|_{r}^{1-\theta}
+$$
+where $0 \leq \theta \leq 1$ is given by
+$$
+\frac{1}{q}=\frac{\theta}{p}+\frac{1-\theta}{r}
+$$
+\end{lemma}
+
+\begin{proof}
+Assume without loss of generality that $f \geq 0$. Using Hölder's inequality with exponents $1 / \sigma$ and $1 /(1-\sigma)$, we get
+$$
+\int f^{q} dx=\int f^{\theta q} f^{(1-\theta) q} dx \leq\left(\int f^{\theta q / \sigma} dx\right)^{\sigma}\left(\int f^{(1-\theta) q /(1-\sigma)} dx\right)^{1-\sigma}
+$$
+Choosing $\sigma / \theta=q / p$, in which case $(1-\sigma) /(1-\theta)=q / r$, we get
+$$
+\int f^{q} dx \leq\left(\int f^{p} dx\right)^{q \theta / p}\left(\int f^{r} dx\right)^{q(1-\theta) / r}
+$$
+and the result follows.
+\end{proof}
+
+It is often useful to consider local $L^{p}$ spaces consisting of functions that have finite integral on compact sets.
+
+\begin{definition}
+The space $L_{\mathrm{loc}}^{p}(\Omega)$, where $1 \leq p \leq \infty$, consists of functions $f: \Omega \rightarrow \mathbb{R}$ such that $f \in L^{p}\left(\Omega^{\prime}\right)$ for every open set $\Omega^{\prime} \Subset \Omega$. A sequence of functions $\left\{f_{n}\right\}$ converges to $f$ in $L_{\mathrm{loc}}^{p}(\Omega)$ if $\left\{f_{n}\right\}$ converges to $f$ in $L^{p}\left(\Omega^{\prime}\right)$ for every open set $\Omega^{\prime} \Subset \Omega$.
+\end{definition}
+
+If $p<q$, then $L_{\mathrm{loc}}^{q}(\Omega) \hookrightarrow L_{\mathrm{loc}}^{p}(\Omega)$ even if the measure of $\Omega$ is infinite. Thus, $L_{\mathrm{loc}}^{1}(\Omega)$ is the 'largest' space of integrable functions on $\Omega$.
+
+\begin{example}
+Consider $f: \mathbb{R}^{n} \rightarrow \mathbb{R}$ defined by
+$$
+f(x)=\frac{1}{|x|^{a}}
+$$
+where $a \in \mathbb{R}$. Then $f \in L_{\text{loc}}^{1}\left(\mathbb{R}^{n}\right)$ if and only if $a<n$. To prove this, let
+$$
+f^{\epsilon}(x)= \begin{cases}f(x) & \text{ if }|x|>\epsilon \\ 0 & \text{ if }|x| \leq \epsilon\end{cases}
+$$
+Then $\left\{f^{\epsilon}\right\}$ is monotone increasing and converges pointwise almost everywhere to $f$ as $\epsilon \rightarrow 0^{+}$. For any $R>0$, the monotone convergence theorem implies that
+$$
+\begin{aligned}
+\int_{B_{R}(0)} f dx & =\lim_{\epsilon \rightarrow 0^{+}} \int_{B_{R}(0)} f^{\epsilon} dx \\
+& =\lim_{\epsilon \rightarrow 0^{+}} \int_{\epsilon}^{R} r^{n-a-1} dr \\
+& = \begin{cases}\infty & \text{ if } n-a \leq 0 \\
+(n-a)^{-1} R^{n-a} & \text{ if } n-a>0\end{cases}
+\end{aligned}
+$$
+which proves the result. The function $f$ does not belong to $L^{p}\left(\mathbb{R}^{n}\right)$ for $1 \leq p<\infty$ for any value of $a$, since the integral of $f^{p}$ diverges at infinity whenever it converges at zero.
+\end{example}
+
+\section{References}
+\begin{thebibliography}{99}
+\bibitem{evans} L. C. Evans, Partial Differential Equations, Amer. Math. Soc., Providence, RI, 1993.
+\bibitem{folland} G. Folland, Real Analysis: Modern Techniques and Applications, Wiley, New York, 1984.
+\end{thebibliography}
+
+\end{document}

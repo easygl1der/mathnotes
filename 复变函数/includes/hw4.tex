@@ -1,0 +1,84 @@
+\begin{lstlisting}
+p40 11 14 15 16    
+\end{lstlisting}
+\begin{exercise}
+11．试求出 $\mathrm{e}^{2+\mathrm{i}}, \operatorname{Ln}(1+\mathrm{i}), \mathrm{i}^{\mathrm{i}}, \mathrm{l}^{\sqrt{2}},(-2)^{\sqrt{2}}$ 的值．
+\end{exercise}
+\[
+e^{ 2+i }=e^{2}\cdot e^{ i }=e^{ 2 }\cos1+ie^{ 2 }\sin1
+\]
+\[
+\mathrm{Ln}(1+i)=\mathrm{Ln}(\sqrt{ 2 }e^{ i\pi/4 })=\mathrm{Ln}(\sqrt{ 2 })+i\frac{\pi}{4}+2k\pi i,\quad k\in \mathbb{Z}
+\]
+\[
+i^{i}=(e^{ i\pi/2 })^{i}=e^{ -\pi/2 }
+\]
+\[
+1^{\sqrt{ 2 }}=e^{ \sqrt{ 2 }\mathrm{Ln}(1) }=e^{ 2\sqrt{ 2 }k\pi i}=\cos(2\sqrt{ 2 }k\pi)+i\sin(2\sqrt{ 2 }k\pi),\quad k\in \mathbb{Z}
+\]
+\[
+(-2)^{\sqrt{ 2 }}=e^{ \sqrt{ 2 }\mathrm{Ln}(-2) }=e^{ \sqrt{ 2 }\cdot(2+\pi i+2k\pi i) }=e^{ 2\sqrt{ 2 } }\cos((2k+1)\sqrt{ 2 }\pi )+ie^{ 2\sqrt{ 2 } }\sin((2k+1)\sqrt{ 2 }\pi),\quad k\in \mathbb{Z}
+\]
+\begin{exercise}
+14．设函数 $f\left(\frac{1}{z}\right)$ 在 $z=0$ 解析，那么我们说 $f(z)$ 在 $z=\infty$ 解析．下列函数中，哪些在无穷远点解析？
+\[
+\mathrm{e}^z, \operatorname{Ln}\left(\frac{z+1}{z-1}\right), \frac{a_0+a_1 z+\cdots+a_m z^m}{b_0+b_1 z+\cdots+b_n z^n}, \frac{\sqrt{z}}{1+\sqrt{z}}
+\]
+\end{exercise}
+$e^{ 1/z  }$ 在 $z=0$ 无定义，故不解析，故 $e^{ z }$ 在 $z=\infty$ 不解析。
+
+$\mathrm{Ln}\left( \frac{1/z+1}{1/z-1} \right)=\mathrm{Ln}\left( -\frac{z+1}{z-1} \right)$ 在 $z=0$ 解析，故 $\mathrm{Ln}\left( \frac{z+1}{z-1} \right)$ 在 $z=\infty$ 解析。
+
+$\frac{a_0+a_1z^{-1}+\dots+a_mz^{-m}}{b_0+b_1z^{-1}+\dots+b_nz^{-n}}=\frac{a_0z^{m}+a_1z^{m-1}+\dots+a_m}{b_0z^{n}+b_1z^{n-1}+\dots+b_n}\cdot z^{n-m}$，当 $n\geq m$ 且 $b_n\neq0$ 时，在 $z=0$ 解析，故 $\frac{a_0+a_1z+\dots+a_mz^{m}}{b_0+b_1z+\dots+b_nz^{n}}$ 在 $z=\infty$ 解析，否则在 $z=\infty$ 不解析。
+
+$\frac{\sqrt{ z }}{1+\sqrt{ z }}=\frac{\sqrt{ 1/z  }}{1+\sqrt{ 1/z  }}=\frac{1}{\sqrt{ z }+1}$ 是多值函数，在 $z=0$ 的每个分支内解析，故 $\frac{\sqrt{ z }}{1+\sqrt{ z }}$ 是多值解析函数。
+
+\begin{exercise}
+15．在复平面上取上半虚轴作割线．试在所得区域内分别取定函数 $\sqrt{z}$ 与 $\operatorname{Ln} z$ 在正实轴取正实值的一个解析分支，并求它们在上半虚轴左沿的点及右沿的点 $z=\mathrm{i}$ 处的值．
+\end{exercise}
+对于 $\sqrt{ z }$，它有两个解析分支
+\[
+\sqrt{ z }=\lvert z \rvert \cdot e^{ \frac{i}{2}(\arg z) }\quad \text{和}\quad \sqrt{ z }=\lvert z \rvert \cdot e^{ \frac{i}{2}(\arg z+2\pi) }=\lvert z \rvert \cdot e^{ \frac{i}{2}(\arg z)+i\pi }
+\]
+令 $z$ 在正实轴取正实值，于是 $\sqrt{ z }$ 在 $\sqrt{ z }=\lvert z \rvert \cdot e^{ \frac{i}{2} (\arg z)}$ 的解析分支。在上半虚轴右沿，令 $z=i$，那么 $\arg z=\pi/2$，$\sqrt{ z }=1\cdot e^{ i\pi/4 }=\frac{\sqrt{ 2 }}{2}+i\frac{\sqrt{ 2 }}{2}$.
+
+在左沿 $\arg z=-3\pi/2$，$\sqrt{ z }=1\cdot e^{ -3\pi i/4  }=-\frac{\sqrt{ 2 }}{2}-i\frac{\sqrt{ 2 }}{2}$.
+
+对于 $\mathrm{Ln}z$，它有无穷多个解析分支
+\[
+\mathrm{Ln}z=\ln\lvert z \rvert +i\arg z+2k\pi i,\quad k\in \mathbb{Z}
+\]
+令 $z$ 在正实轴取正实值，于是 $\mathrm{Ln}z$ 在 $\mathrm{Ln}z=\ln\lvert z \rvert+i\arg z$ 的解析分支。在上半虚轴右沿，令 $z=i$，那么 $\arg z=\pi/2$，$\mathrm{Ln}z=\ln1+i\pi/2=i\pi/2$.
+
+在左沿，$\arg z=-3\pi/2$，$\mathrm{Ln}z=\ln1-3\pi i/2=-3\pi i/2$.
+
+\begin{exercise}
+16．在复平面上取正实轴作割线．试在所得的区域内：（1）取定函数 $z^\alpha(-1<\alpha<0)$ 在正实轴上沿取正实值的一个解析分支，并求这一分支在
+\[
+z=-1
+\]处的值；在正实轴下沿的值．（2）取定函数 $\mathrm{Ln} z$ 在正实轴上沿取实值的一个解析分支，并求这一分支在 $z=-1$ 处的值；在正实轴下沿的值．
+\end{exercise}
+(1)
+\[
+z^{\alpha}=e^{ \alpha \mathrm{Ln}z }=e^{ \alpha \ln \lvert z \rvert +\alpha \cdot i\arg z+2k\pi\alpha i },\quad k\in \mathbb{Z}
+\]
+在正实轴上沿取正实值的解析分支为 $z^{\alpha}=e^{ \alpha \ln \lvert z \rvert+\alpha \cdot i\arg z }$. 令 $z=-1$ 则
+\[
+z^{\alpha}=e^{ \alpha \cdot i\arg(-1) }=e^{ \alpha \cdot i\pi  }
+\]
+在正实轴下沿
+\[
+z^{\alpha}=\lvert z \rvert ^{\alpha}\cdot e^{ 2\pi\alpha i }=\lvert z \rvert ^{\alpha}(\cos(2\pi\alpha)+i\sin(2\pi\alpha))
+\]
+(2)
+\[
+\mathrm{Ln}z=\ln \lvert z \rvert +i\arg z+2k\pi i,\quad k\in \mathbb{Z}
+\]
+在正实轴上沿取正实值的解析分支为 $\mathrm{Ln}z=\ln \lvert z \rvert+i\arg z$，令 $z=-1$ 则
+\[
+\mathrm{Ln}z=i\pi
+\]
+在正实轴下沿
+\[
+\mathrm{Ln}z=\ln \lvert z \rvert +2\pi i
+\]

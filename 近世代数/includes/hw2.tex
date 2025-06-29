@@ -1,0 +1,148 @@
+\begin{lstlisting}
+习题1.2第17，19，24题
+习题1.3第8，9，13，16（1)(2)题
+\end{lstlisting}
+\begin{exercise}
+习题2．17．设 $A$ 和 $B$ 是有限群 $G$ 的两个非空子集．若 $|A|+|B|>|G|$ ，证明 $G=A B$ ．特别地，如果 $S$ 是 $G$ 的一个子集，$|S|>|G| / 2$ ．证明对任意 $g \in G$ ，存在 $a, b \in S$ 使得 $g=a b$ ．
+\end{exercise}
+Check: $\forall g\in G,\exists a\in A, b\in B$, s.t.$g=ab$.
+
+For any but fixed $g\in G$, let $E\coloneqq \{ a^{-1}g:a\in A \}$. If $E\cap B=\varnothing$. Then
+\[
+\#G\geq \#E+\#B=\#A+\#B>\#G
+\]
+Contradiction! Thus $E\cap B\neq \varnothing$, i.e. there exists $b\in B$, s.t.$b\in E$, i.e. $b=a^{-1}g$ for some $a\in A$, i.e. $g=ab$, i.e. $G=AB$.
+
+Let $A=B=S$, then $\lvert A \rvert+\lvert B \rvert=2\lvert S \rvert>\lvert G \rvert$. Therefore for any $g\in G$, $\exists a, b\in S$, s.t. $g=ab$.
+
+\begin{exercise}
+习题2．19．证明：映射 $f: G \rightarrow G, a \mapsto a^{-1}$ 是 $G$ 的自同构当且仅当 $G$ 是阿贝尔群。
+\end{exercise}
+($\Rightarrow$) If $f:G\to G,a\mapsto a^{-1}$ is automorphism in $G$, then for any $a, b\in G$, we have
+\[
+ab=f(a^{-1})f(b^{-1})=f(a^{-1}b^{-1})=(a^{-1}b^{-1})^{-1}=ba
+\]
+Therefore $G$ is Abel.
+
+($\Leftarrow$) If $G$ is Abel, then obviously $f:G\to G,a\mapsto a^{-1}$ is a bijection in $G$. It suffices to show that $f$ is homomorphism. For any $a, b\in G$,
+\[
+f(ab)=(ab)^{-1}=b^{-1}a^{-1}=a^{-1}b^{-1}=f(a)f(b)
+\]
+Hence $f\in \mathrm{Aut}(G)$.
+
+\begin{exercise}
+习题2．24．群 $G$ 的自同构 $\alpha$ 称为没有不动点，是指对 $G$ 的任意元素 $g \neq 1$ ， $\alpha(g) \neq g$ ．如果有限群 $G$ 具有一个没有不动点的自同构 $\alpha$ 且 $\alpha^2=1$ ，证明 $G$ 一定是奇数阶阿贝尔群。
+\end{exercise}
+Consider the pair $(g,\alpha(g))$, where $g\neq\alpha(g)$ for $g\neq1$ and $\alpha(g,\alpha(g))=(\alpha(g),\alpha^{2}(g))=(\alpha(g),1\cdot g)=(\alpha(g),g)$. Then $\lvert G \rvert=1+2\cdot\#\{ \{ g,\alpha(g) \}:g\neq1 \}$ is odd.
+
+Consider $H=\{ g^{-1}\alpha(g):g\in G \}$, claim that $H=G$. (othewise $g^{-1}\alpha(g)=h^{-1}\alpha(h)$ for some $g, h\in G,g\neq h$, then $\alpha(g^{-1}h)=g^{-1}h\Rightarrow g^{-1}h=e\Rightarrow h=g$) Thus for any $a\in G$, we have $a=g^{-1}\alpha(g)$ for some $g\in G$, then $a^{-1}=\alpha(g^{-1})g=\alpha(a)$. $\forall a, b\in G$, $ab=\alpha(a^{-1}b^{-1})=(\alpha(ba))^{-1}=ba$. Therefore $G$ is Abel.
+
+\begin{exercise}
+习题3．8．设 $a$ 和 $b$ 是群 $G$ 的元素，阶数分别是 $n$ 和 $m,(n, m)=1$ 且 $a b=b a$ ．试证 $\langle a b\rangle$ 是 $G$ 的 $m n$ 阶循环子群．
+\end{exercise}
+\[
+(ab)^{mn}=a^{mn}b^{mn}=e
+\]
+Denote $O (\left< ab \right>)=t=k_1 m+r_1=k_2 n+r_2$, $0\leq k_1\leq n-1,0\leq r_1\leq m-1$, $0\leq k_2\leq m-1,0\leq r_2\leq n-1$.
+\[
+(ab)^{t}=a^{k_2n+r_2}b^{k_1 m+r_1}=a^{r_2}b^{r_1}=e\Rightarrow b^{nr_1}=a^{nr_2}b^{nr_1}=e
+\]
+Therefore $m|nr_1$, since $(n,m)=1$, we have $m|r_1\Rightarrow r_1=0$. Similarly, $r_2=0$.  $mn|O(\left< ab \right>)$. Hence $mn=O(\left< ab \right>)$.
+
+\begin{exercise}
+习题3．9．设 $p$ 为奇素数，$X$ 是 $n$ 阶整系数方阵．如果 $I+p X \in \mathrm{SL}_n(\mathbb{Z})$ 的阶有限，证明 $X=0$ ．
+\end{exercise}
+\[
+\det(I+pX)=1
+\]
+\[
+(I+pX)^{m}=I\Rightarrow mpX+C^{2}_{m}p^{2}X^{2}+\dots+p^{m}X^{m} =0
+\]
+扩充数域到复数域 $\mathbb{C}$，我们有 Jordan 分解
+\[
+X=PJP^{-1}
+\]
+其中 $J=\mathrm{diag}(J_1,\dots,J_{s})$，显然这些若当块都是特征值为 0 的. 若不全是一阶若当块，必然有某个若当块 $J_{r}$ 使得
+\[
+mpJ_{r}+C^{2}_{m}p^{2}J_{r}+\dots+p^{m}J_{r}^{m}\neq O
+\]
+但这与
+\[
+mpJ+C^{2}_mp^{2}J+\dots+p^{m}J^{m}=0
+\]
+矛盾，故 $X=0$.
+
+\begin{exercise}
+习题3．13．（1）设 $G$ 是阿贝尔群，$H$ 是 $G$ 中所有有限阶元素构成的集合．证明 $H$ 是 $G$ 的子群．
+（2）＊举例说明上述结论对于一般群不正确．
+\end{exercise}
+(1)
+\[
+H\coloneqq \{ g\in G:O(g)\text{ finite} \}
+\]
+For any $g, h\in H$, we have
+\[
+O(gh^{-1})\leq O(g)O(h^{-1})<\infty
+\]
+Then $gh^{-1}\in H\Rightarrow H\leq G$.
+
+(2)
+反例：无穷二面体群 $D_{\infty}$
+考虑无穷二面体群 $D_{\infty}$ ，它由以下生成元和关系定义：
+\[
+D_{\infty}=\left\langle r, s \mid s^2=e, s r s=r^{-1}\right\rangle
+\]
+其中：
+
+\begin{itemize}
+	\item $s$ 的阶为 2 （即 $s^2=e$ ）。
+	\item $r$ 具有无穷阶（即 $r^n \neq e$ 对任何 $n>0$ ）。
+	\item 群的元素形如 $r^n$ 或 $s r^n$ ，其中 $n \in \mathbb{Z}$ 。
+\end{itemize}
+
+列出有限阶元素：
+
+\begin{itemize}
+	\item 所有 $r^n(n \neq 0)$ 都是无穷阶的。
+	\item 仅有 $s$ 和 $s r^n(n \in \mathbb{Z})$ 的阶为 2，因为
+\end{itemize}
+\[
+\left(s r^n\right)^2=s r^n s r^n=s\left(r^n s\right) r^n=s\left(s r^{-n}\right) r^n=\left(s^2\right) r^{-n} r^n=e
+\]
+所以，所有的有限阶元素集合为：
+\[
+H=\left\{e, s, s r, s r^2, s r^3, \ldots\right\}
+\]
+检查封闭性：
+
+\begin{itemize}
+	\item $s \cdot s=e$ ，在 $H$ 中。
+	\item $s \cdot s r^n=r^{-n}$ 可能是无穷阶的，不在 $H$ 中！这说明 $H$ 不是封闭的，因此它不是一个子群。
+\end{itemize}
+
+这个例子说明了：对于一般群，有限阶元素的集合不一定构成子群。
+
+\begin{exercise}
+习题3．16．回答下列问题：
+（1）设 $p$ 是素数，$p$ 方幂阶群是否一定含有 $p$ 阶元？
+（2） 35 阶群是否一定同时含有 5 阶和 7 阶元素？
+\end{exercise}
+(1)
+If $\lvert G \rvert=p^{2}\geq4$, for any $x\in G$,
+\[
+x^{p^{2}}=e\Rightarrow O(x)|p^{2}
+\]
+Then $O(x)=1,p\text{ or }p^{2}$. If $O(x)=1$, then $x=e$. If $x\neq e$ then $O(x)=p$ or $p^{2}$, thus either $x$ or $x^{p}$ has order $p$.
+
+(2)
+If $\lvert G \rvert=35$, for any $x\in G$,
+\[
+x^{35}=e\Rightarrow O(x)|35
+\]
+Then $O(x)=1,5,7$ or $35$. If $G$ contains an element $x$ with order 35, then $O(x^{7})=5,O(x^{5})=7$.
+
+Assume there is no elements with order 35, if $O (x)=1,5,\forall x\in G$, then there are 34 elements with order 5. If $O(x)=5$ then $x,x^{2},x^{3},x^{4}$ are distinct elements in $G$ with order 5, and $x^{5}=e$. But $4 \not\mid34$.
+
+If $O (x)=1,7,\forall x\in G$. Then $6|34$, which is not true.
+
+Hence $G$ contains element with order 5 and 7 at the same time.

@@ -1,0 +1,2517 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=red,urlcolor=red,bookmarks=true,bookmarksopen=true,bookmarksnumbered=true,bookmarksdepth=4]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{mathrsfs}
+
+
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\title{\textbf{Yau Competition in Mathematics\\Statistics Track: Advanced Review}}
+\author{PhD-Level Statistical Theory}
+\date{\today}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{problem}{Problem}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{note}{Note}[section]
+\newtheorem{solution}{Solution}[section]
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\leftmark}
+\fancyfoot[C]{\thepage}
+
+
+
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+
+\section*{Yau Competition in Mathematics: Examination Syllabus}
+
+\begin{center}
+\Large\textbf{Official Competition Syllabus - Probability \& Statistics Track}
+\end{center}
+
+\section*{Part I: Probability Theory}
+
+\subsection*{Core Probability Areas}
+
+\begin{enumerate}
+\item \textbf{Measure-Theoretic Foundations}
+   \begin{itemize}
+   \item Probability spaces and $\sigma$-algebras
+   \item Random variables and measurability
+   \item Distribution functions and their properties
+   \item Radon-Nikodym theorem and absolute continuity
+   \item Product measures and Fubini-Tonelli theorem
+   \end{itemize}
+
+\item \textbf{Random Variables and Expectation}
+   \begin{itemize}
+   \item Expectation and moment theory
+   \item Jensen's inequality and convexity
+   \item Variance, covariance, and correlation
+   \item Moment generating and characteristic functions
+   \item Transform methods and inversion formulas
+   \end{itemize}
+
+\item \textbf{Independence and Conditional Probability}
+   \begin{itemize}
+   \item Independence of events and random variables
+   \item Conditional probability and Bayes' theorem
+   \item Conditional expectation given $\sigma$-fields
+   \item Tower property and martingale connections
+   \item Regular conditional distributions
+   \end{itemize}
+
+\item \textbf{Multivariate Distributions}
+   \begin{itemize}
+   \item Joint, marginal, and conditional distributions
+   \item Transformations of random vectors
+   \item Jacobian methods and change of variables
+   \item Copulas and dependence structures
+   \item Multivariate normal distribution theory
+   \end{itemize}
+
+\item \textbf{Convergence Theory}
+   \begin{itemize}
+   \item Modes of convergence (a.s., in probability, in distribution, in $L^p$)
+   \item Relationships between convergence types
+   \item Convergence theorems (Monotone, Dominated, Fatou)
+   \item Uniform integrability and convergence
+   \item Skorokhod representation theorem
+   \end{itemize}
+
+\item \textbf{Laws of Large Numbers and Central Limit Theorems}
+   \begin{itemize}
+   \item Weak and strong laws of large numbers
+   \item Classical central limit theorem
+   \item Lindeberg-Lévy and Lyapunov conditions
+   \item Functional central limit theorem (Donsker)
+   \item Berry-Esseen bounds and rates of convergence
+   \end{itemize}
+
+\item \textbf{Probability Inequalities}
+   \begin{itemize}
+   \item Markov, Chebyshev, and Chernoff bounds
+   \item Hoeffding's and McDiarmid's inequalities
+   \item Azuma-Hoeffding for martingales
+   \item Bennett's and Bernstein's inequalities
+   \item Concentration of measure phenomena
+   \end{itemize}
+
+\item \textbf{Martingale Theory}
+   \begin{itemize}
+   \item Martingales, submartingales, supermartingales
+   \item Stopping times and optional stopping theorem
+   \item Martingale convergence theorems
+   \item Doob's maximal and $L^p$ inequalities
+   \item Martingale central limit theorem
+   \end{itemize}
+
+\item \textbf{Markov Chains}
+   \begin{itemize}
+   \item Markov property and transition probabilities
+   \item Classification of states (recurrent, transient, periodic)
+   \item Stationary distributions and ergodic theory
+   \item Convergence to equilibrium
+   \item Reversibility and detailed balance
+   \end{itemize}
+
+\item \textbf{Continuous-Time Stochastic Processes}
+   \begin{itemize}
+   \item Poisson processes and properties
+   \item Brownian motion and Wiener process
+   \item Lévy processes and infinitely divisible distributions
+   \item Stochastic integrals and Itô's formula
+   \item Girsanov's theorem and measure changes
+   \end{itemize}
+
+\item \textbf{Advanced Topics}
+   \begin{itemize}
+   \item Large deviations theory and Cramér's theorem
+   \item Empirical processes and Glivenko-Cantelli theorem
+   \item Extreme value theory and max-stable distributions
+   \item Lévy-Khintchine representation
+   \item Weak convergence in metric spaces
+   \end{itemize}
+\end{enumerate}
+
+\section*{Part II: Statistical Theory}
+
+\subsection*{Core Statistical Areas}
+
+\begin{enumerate}
+\item \textbf{Distribution Theory and Fundamental Statistics}
+   \begin{itemize}
+   \item Univariate and multivariate distributions (Normal, Chi-square, t, F)
+   \item Special distribution families (Gamma, Beta, Multinomial, Poisson)
+   \item Transformations of random variables
+   \item Sampling distributions and sample statistics
+   \item Order statistics and quantiles
+   \end{itemize}
+
+\item \textbf{Parameter Estimation Theory}
+   \begin{itemize}
+   \item Maximum likelihood estimation and properties
+   \item Method of moments estimation
+   \item Sufficient statistics and factorization theorem
+   \item Efficiency and Cramér-Rao lower bound
+   \item Fisher information and its applications
+   \item Confidence interval construction
+   \end{itemize}
+
+\item \textbf{Hypothesis Testing Theory}
+   \begin{itemize}
+   \item Neyman-Pearson paradigm and hypothesis testing framework
+   \item Simple vs. composite hypotheses
+   \item Likelihood ratio tests and Wilks' theorem
+   \item Power functions and optimality criteria
+   \item Common parametric tests (t-tests, F-tests, chi-square tests)
+   \end{itemize}
+
+\item \textbf{Bayesian Statistics}
+   \begin{itemize}
+   \item Bayesian inference framework
+   \item Prior and posterior distributions
+   \item Conjugate prior families
+   \item Bayesian point estimation and credible intervals
+   \item Bayesian decision theory
+   \end{itemize}
+
+\item \textbf{Large Sample Theory}
+   \begin{itemize}
+   \item Asymptotic properties of estimators
+   \item Delta method for parameter transformations
+   \item Asymptotic efficiency and optimality
+   \item Chi-square approximations for test statistics
+   \item Bootstrap and resampling methods
+   \end{itemize}
+
+\item \textbf{Advanced Statistical Topics}
+   \begin{itemize}
+   \item Exponential families and their properties
+   \item Generalized linear models
+   \item Robust statistics and M-estimators
+   \item Nonparametric statistics
+   \item Statistical decision theory
+   \end{itemize}
+\end{enumerate}
+
+\subsection*{Expected Level of Proficiency}
+
+Participants should demonstrate:
+\begin{itemize}
+\item Thorough understanding of theoretical foundations
+\item Ability to derive statistical properties and relationships
+\item Proficiency in applying appropriate methods to complex problems
+\item Capacity to justify statistical approaches with mathematical rigor
+\item Skill in interpreting results in context
+\end{itemize}
+
+\subsection*{Problem Format}
+
+The competition will include:
+\begin{itemize}
+\item Theoretical derivations
+\item Mathematical proofs of statistical properties
+\item Applications of statistical methods to real-world scenarios
+\item Multi-step problems requiring synthesis of multiple concepts
+\end{itemize}
+
+
+
+
+
+\part{Probability Theory}
+
+\section{Probability Theory Foundations}
+
+\subsection{Probability Space and Random Variables}
+
+\begin{definition}[Probability Space]
+A probability space is a triple $(\Omega, \mathcal{F}, P)$ where:
+\begin{itemize}
+\item $\Omega$ is the sample space (set of all possible outcomes)
+\item $\mathcal{F}$ is a $\sigma$-algebra on $\Omega$ (collection of events)
+\item $P: \mathcal{F} \to [0,1]$ is a probability measure satisfying:
+  \begin{enumerate}
+  \item $P(\Omega) = 1$
+  \item For disjoint events $A_1, A_2, \ldots$: $P(\bigcup_{i=1}^{\infty} A_i) = \sum_{i=1}^{\infty} P(A_i)$
+  \end{enumerate}
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Random Variable]
+A random variable $X$ on probability space $(\Omega, \mathcal{F}, P)$ is a measurable function $X: \Omega \to \mathbb{R}$, i.e., for all Borel sets $B \in \mathcal{B}(\mathbb{R})$:
+$$X^{-1}(B) = \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F}$$
+\end{definition}
+
+\begin{definition}[Distribution Function]
+The cumulative distribution function (CDF) of random variable $X$ is:
+$$F_X(x) = P(X \leq x) = P(\{\omega : X(\omega) \leq x\})$$
+
+\textbf{Properties of CDF:}
+\begin{enumerate}
+\item $F_X$ is non-decreasing
+\item $F_X$ is right-continuous
+\item $\lim_{x \to -\infty} F_X(x) = 0$ and $\lim_{x \to \infty} F_X(x) = 1$
+\item $P(a < X \leq b) = F_X(b) - F_X(a)$
+\end{enumerate}
+\end{definition}
+
+\subsection{Expectation and Moments}
+
+\begin{definition}[Expectation]
+For a random variable $X$ with distribution $\mu$, the expectation is:
+$$E[X] = \int_{\mathbb{R}} x \, d\mu(x) = \int_{\mathbb{R}} x \, dF_X(x)$$
+
+For discrete $X$: $E[X] = \sum_{x} x P(X = x)$
+
+For continuous $X$ with pdf $f_X$: $E[X] = \int_{-\infty}^{\infty} x f_X(x) dx$
+\end{definition}
+
+\begin{theorem}[Properties of Expectation]
+\begin{enumerate}
+\item \textbf{Linearity:} $E[aX + bY] = aE[X] + bE[Y]$
+\item \textbf{Monotonicity:} If $X \leq Y$ a.s., then $E[X] \leq E[Y]$
+\item \textbf{Jensen's Inequality:} If $g$ is convex, then $E[g(X)] \geq g(E[X])$
+\item \textbf{Cauchy-Schwarz:} $|E[XY]| \leq \sqrt{E[X^2]E[Y^2]}$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Moments]
+The $k$-th moment of $X$ is: $E[X^k]$ (if it exists)
+
+The $k$-th central moment is: $E[(X - E[X])^k]$
+
+\textbf{Important moments:}
+\begin{itemize}
+\item \textbf{Mean:} $\mu = E[X]$
+\item \textbf{Variance:} $\text{Var}(X) = E[(X-\mu)^2] = E[X^2] - (E[X])^2$
+\item \textbf{Skewness:} $\gamma_1 = \frac{E[(X-\mu)^3]}{\sigma^3}$
+\item \textbf{Kurtosis:} $\gamma_2 = \frac{E[(X-\mu)^4]}{\sigma^4} - 3$
+\end{itemize}
+\end{definition}
+
+\subsection{Independence and Conditional Probability}
+
+\begin{definition}[Independence of Events]
+Events $A$ and $B$ are independent if $P(A \cap B) = P(A)P(B)$.
+
+Events $A_1, A_2, \ldots, A_n$ are mutually independent if for any subset $I \subseteq \{1,2,\ldots,n\}$:
+$$P\left(\bigcap_{i \in I} A_i\right) = \prod_{i \in I} P(A_i)$$
+\end{definition}
+
+\begin{definition}[Independence of Random Variables]
+Random variables $X$ and $Y$ are independent if for all Borel sets $A, B$:
+$$P(X \in A, Y \in B) = P(X \in A)P(Y \in B)$$
+
+Equivalently: $F_{X,Y}(x,y) = F_X(x)F_Y(y)$ for all $x,y$.
+\end{definition}
+
+\begin{theorem}[Properties of Independent Random Variables]
+If $X$ and $Y$ are independent:
+\begin{enumerate}
+\item $E[XY] = E[X]E[Y]$
+\item $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y)$
+\item $M_{X+Y}(t) = M_X(t)M_Y(t)$ (MGF factorizes)
+\item $\phi_{X+Y}(t) = \phi_X(t)\phi_Y(t)$ (CF factorizes)
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Conditional Probability and Expectation]
+Given $\sigma$-algebra $\mathcal{G}$, the conditional expectation $E[X|\mathcal{G}]$ is the unique (a.s.) $\mathcal{G}$-measurable random variable such that:
+$$\int_G E[X|\mathcal{G}] dP = \int_G X dP \quad \text{for all } G \in \mathcal{G}$$
+
+\textbf{Properties:}
+\begin{enumerate}
+\item $E[E[X|\mathcal{G}]] = E[X]$ (Tower property)
+\item $E[X|\mathcal{G}] = X$ if $X$ is $\mathcal{G}$-measurable
+\item $E[g(Y)X|Y] = g(Y)E[X|Y]$ if $g(Y)$ is bounded
+\end{enumerate}
+\end{definition}
+
+\subsection{Variance, Covariance, and Correlation}
+
+\begin{definition}[Covariance and Correlation]
+The covariance between $X$ and $Y$ is:
+$$\text{Cov}(X,Y) = E[(X-E[X])(Y-E[Y])] = E[XY] - E[X]E[Y]$$
+
+The correlation coefficient is:
+$$\rho(X,Y) = \frac{\text{Cov}(X,Y)}{\sqrt{\text{Var}(X)\text{Var}(Y)}}$$
+
+\textbf{Properties:}
+\begin{enumerate}
+\item $-1 \leq \rho(X,Y) \leq 1$
+\item $|\rho(X,Y)| = 1$ iff $Y = aX + b$ for some constants $a \neq 0, b$
+\item $\rho(X,Y) = 0$ iff $X$ and $Y$ are uncorrelated
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Variance Properties]
+\begin{enumerate}
+\item $\text{Var}(aX + b) = a^2\text{Var}(X)$
+\item $\text{Var}(X + Y) = \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X,Y)$
+\item For independent $X_1, \ldots, X_n$: $\text{Var}\left(\sum_{i=1}^n X_i\right) = \sum_{i=1}^n \text{Var}(X_i)$
+\end{enumerate}
+\end{theorem}
+
+\subsection{Multivariate Distributions}
+
+\begin{definition}[Joint Distribution]
+For random vector $\mathbf{X} = (X_1, \ldots, X_n)$, the joint CDF is:
+$$F_{\mathbf{X}}(\mathbf{x}) = P(X_1 \leq x_1, \ldots, X_n \leq x_n)$$
+
+If a joint pdf $f_{\mathbf{X}}$ exists:
+$$F_{\mathbf{X}}(\mathbf{x}) = \int_{-\infty}^{x_1} \cdots \int_{-\infty}^{x_n} f_{\mathbf{X}}(\mathbf{t}) d\mathbf{t}$$
+\end{definition}
+
+\begin{definition}[Marginal and Conditional Distributions]
+\textbf{Marginal pdf:} $f_{X_i}(x_i) = \int_{-\infty}^{\infty} \cdots \int_{-\infty}^{\infty} f_{\mathbf{X}}(\mathbf{x}) dx_1 \cdots dx_{i-1} dx_{i+1} \cdots dx_n$
+
+\textbf{Conditional pdf:} $f_{X|Y}(x|y) = \frac{f_{X,Y}(x,y)}{f_Y(y)}$ (when $f_Y(y) > 0$)
+\end{definition}
+
+\begin{theorem}[Transformation of Random Variables]
+If $\mathbf{Y} = \mathbf{g}(\mathbf{X})$ where $\mathbf{g}$ is a bijection with Jacobian $J$, then:
+$$f_{\mathbf{Y}}(\mathbf{y}) = f_{\mathbf{X}}(\mathbf{g}^{-1}(\mathbf{y})) |J|^{-1}$$
+where $J = \det\left(\frac{\partial g_i^{-1}}{\partial y_j}\right)$.
+
+\textbf{Sketch of Proof:} Follows from the change of variables formula in multivariable calculus. The probability mass $f_{\mathbf{X}}(\mathbf{x})d\mathbf{x}$ must equal $f_{\mathbf{Y}}(\mathbf{y})d\mathbf{y}$. The Jacobian determinant $|J|$ accounts for the change in the differential volume element.
+\end{theorem}
+
+\subsection{Characteristic Functions and Moment Generating Functions}
+
+\begin{definition}[Characteristic Function]
+The characteristic function of random variable $X$ is:
+$$\phi_X(t) = E[e^{itX}] = \int_{-\infty}^{\infty} e^{itx} dF_X(x)$$
+
+\textbf{Properties:}
+\begin{enumerate}
+\item $\phi_X(0) = 1$ and $|\phi_X(t)| \leq 1$
+\item $\phi_X$ is uniformly continuous
+\item $\phi_X$ uniquely determines the distribution of $X$
+\item If $E[|X|^k] < \infty$, then $E[X^k] = \frac{1}{i^k}\phi_X^{(k)}(0)$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Moment Generating Function]
+The moment generating function of $X$ is:
+$$M_X(t) = E[e^{tX}]$$
+(when this expectation exists in a neighborhood of 0)
+
+\textbf{Properties:}
+\begin{enumerate}
+\item $M_X^{(k)}(0) = E[X^k]$
+\item $M_X$ uniquely determines the distribution (when it exists)
+\item For independent $X, Y$: $M_{X+Y}(t) = M_X(t)M_Y(t)$
+\end{enumerate}
+\end{definition}
+
+\subsection{Modes of Convergence}
+
+\begin{definition}[Types of Convergence]
+Let $\{X_n\}$ be a sequence of random variables and $X$ be a random variable.
+
+\begin{enumerate}
+\item \textbf{Almost Sure Convergence:} $X_n \stackrel{a.s.}{\to} X$ if
+   $$P(\lim_{n \to \infty} X_n = X) = 1$$
+
+\item \textbf{Convergence in Probability:} $X_n \stackrel{p}{\to} X$ if
+   $$\lim_{n \to \infty} P(|X_n - X| > \epsilon) = 0 \quad \forall \epsilon > 0$$
+
+\item \textbf{Convergence in Distribution:} $X_n \stackrel{d}{\to} X$ if
+   $$\lim_{n \to \infty} F_{X_n}(x) = F_X(x)$$
+   at all continuity points of $F_X$
+
+\item \textbf{Convergence in $L^p$:} $X_n \stackrel{L^p}{\to} X$ if
+   $$\lim_{n \to \infty} E[|X_n - X|^p] = 0$$
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Relationships Between Convergence Types]
+\begin{enumerate}
+\item $X_n \stackrel{a.s.}{\to} X \Rightarrow X_n \stackrel{p}{\to} X \Rightarrow X_n \stackrel{d}{\to} X$
+\item $X_n \stackrel{L^p}{\to} X \Rightarrow X_n \stackrel{p}{\to} X$
+\item If $X_n \stackrel{d}{\to} c$ (constant), then $X_n \stackrel{p}{\to} c$
+\end{enumerate}
+
+\textbf{Sketch of Proof:}
+\begin{enumerate}
+\item \textit{a.s. $\Rightarrow$ p:} Use the definition of the limit of a sequence of sets. The event $\{|X_n - X| > \epsilon \text{ i.o.}\}$ has probability 0.
+\item \textit{p $\Rightarrow$ d:} Bound $F_{X_n}(x)$ using probabilities like $P(|X_n - X| > \epsilon)$, which converge to 0.
+\item \textit{$L^p \Rightarrow$ p:} Apply Markov's inequality to $E[|X_n - X|^p]$.
+\item \textit{d $\to$ c $\Rightarrow$ p:} The CDF of a constant is a step function. Show that for any $\epsilon > 0$, $P(|X_n-c|>\epsilon) \to 0$.
+\end{enumerate}
+\end{theorem}
+
+\subsection{Bayes' Formula and Conditional Probability}
+
+\begin{theorem}[Bayes' Theorem]
+Let $A_1, A_2, \ldots, A_n$ be a partition of $\Omega$ with $P(A_i) > 0$. For any event $B$ with $P(B) > 0$:
+$$P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^n P(B|A_j)P(A_j)}$$
+
+\textbf{Continuous version:} If $X$ has pdf $f_X$ and $Y|X=x \sim f_{Y|X}(\cdot|x)$:
+$$f_{X|Y}(x|y) = \frac{f_{Y|X}(y|x)f_X(x)}{\int f_{Y|X}(y|t)f_X(t)dt}$$
+
+\textbf{Sketch of Proof:} Follows from the definition of conditional probability, $P(A_i|B) = P(A_i \cap B)/P(B)$, and the law of total probability, $P(B) = \sum_j P(B \cap A_j) = \sum_j P(B|A_j)P(A_j)$.
+\end{theorem}
+
+\subsection{Laws of Large Numbers}
+
+\begin{theorem}[Weak Law of Large Numbers (WLLN)]
+Let $X_1, X_2, \ldots$ be i.i.d. with $E[X_i] = \mu$ and $\text{Var}(X_i) = \sigma^2 < \infty$. Then:
+$$\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i \stackrel{p}{\to} \mu$$
+
+\textbf{Proof sketch:} By Chebyshev's inequality:
+$$P(|\bar{X}_n - \mu| > \epsilon) \leq \frac{\text{Var}(\bar{X}_n)}{\epsilon^2} = \frac{\sigma^2}{n\epsilon^2} \to 0$$
+\end{theorem}
+
+\begin{theorem}[Strong Law of Large Numbers (SLLN)]
+Let $X_1, X_2, \ldots$ be i.i.d. with $E[|X_i|] < \infty$ and $E[X_i] = \mu$. Then:
+$$\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i \stackrel{a.s.}{\to} \mu$$
+
+\textbf{Sketch of Proof:} A common proof (for finite fourth moments) truncates the variables and uses the Borel-Cantelli lemma on the tail probabilities $P(|\bar{X}_n - \mu| > \epsilon)$. The general proof is more technical and often relies on Kolmogorov's maximal inequality.
+\end{theorem}
+
+\subsection{Central Limit Theorems}
+
+\begin{theorem}[Classical Central Limit Theorem]
+Let $X_1, X_2, \ldots$ be i.i.d. with $E[X_i] = \mu$ and $0 < \text{Var}(X_i) = \sigma^2 < \infty$. Then:
+$$\frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \stackrel{d}{\to} \mathcal{N}(0,1)$$
+
+Equivalently: $\sqrt{n}(\bar{X}_n - \mu) \stackrel{d}{\to} \mathcal{N}(0, \sigma^2)$
+
+\textbf{Sketch of Proof:} Use characteristic functions (CFs). Taylor expand the CF of a single standardized variable around 0. The limit of the $n$-th power of this expansion converges to the CF of $\mathcal{N}(0,1)$, which is $e^{-t^2/2}$. Then apply the Lévy continuity theorem.
+\end{theorem}
+
+\begin{theorem}[Lindeberg-Lévy CLT]
+For independent (not necessarily identical) random variables $X_1, \ldots, X_n$ with $E[X_i] = \mu_i$, $\text{Var}(X_i) = \sigma_i^2$, define:
+$$S_n = \sum_{i=1}^n X_i, \quad s_n^2 = \sum_{i=1}^n \sigma_i^2$$
+
+If the Lindeberg condition holds:
+$$\lim_{n \to \infty} \frac{1}{s_n^2} \sum_{i=1}^n E[(X_i - \mu_i)^2 \mathbf{1}_{|X_i - \mu_i| > \epsilon s_n}] = 0$$
+for all $\epsilon > 0$, then:
+$$\frac{S_n - E[S_n]}{s_n} \stackrel{d}{\to} \mathcal{N}(0,1)$$
+
+\textbf{Sketch of Proof:} The Lindeberg condition is the key to ensuring that the individual variances are small relative to their sum, preventing any single variable from dominating. The proof involves showing that the characteristic function of the sum converges to that of a normal distribution, where the condition is used to control the error terms in the Taylor expansion.
+\end{theorem}
+
+\subsection{Martingales}
+
+\begin{definition}[Filtration]
+A filtration $\{\mathcal{F}_n\}_{n \geq 0}$ is an increasing sequence of $\sigma$-algebras:
+$$\mathcal{F}_0 \subseteq \mathcal{F}_1 \subseteq \mathcal{F}_2 \subseteq \cdots \subseteq \mathcal{F}$$
+
+The filtration represents the information available up to time $n$.
+\end{definition}
+
+\begin{definition}[Adapted Process]
+A stochastic process $\{X_n\}$ is adapted to filtration $\{\mathcal{F}_n\}$ if $X_n$ is $\mathcal{F}_n$-measurable for all $n$.
+\end{definition}
+
+\begin{definition}[Martingale]
+A sequence $\{X_n, \mathcal{F}_n\}$ is a martingale if:
+\begin{enumerate}
+\item $X_n$ is $\mathcal{F}_n$-measurable (adapted)
+\item $E[|X_n|] < \infty$ (integrable)
+\item $E[X_{n+1}|\mathcal{F}_n] = X_n$ a.s. (martingale property)
+\end{enumerate}
+
+\textbf{Variants:}
+\begin{itemize}
+\item \textbf{Submartingale:} $E[X_{n+1}|\mathcal{F}_n] \geq X_n$
+\item \textbf{Supermartingale:} $E[X_{n+1}|\mathcal{F}_n] \leq X_n$
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Stopping Time]
+A random variable $\tau: \Omega \to \{0, 1, 2, \ldots\} \cup \{\infty\}$ is a stopping time with respect to filtration $\{\mathcal{F}_n\}$ if:
+$$\{\tau = n\} \in \mathcal{F}_n \quad \text{for all } n \geq 0$$
+
+Equivalently: $\{\tau \leq n\} \in \mathcal{F}_n$ for all $n$.
+\end{definition}
+
+\begin{theorem}[Doob's Martingale Inequality]
+Let $\{X_n\}$ be a submartingale. Then for any $\lambda > 0$:
+$$P\left(\max_{0 \leq k \leq n} X_k \geq \lambda\right) \leq \frac{E[X_n^+]}{\lambda}$$
+
+where $X_n^+ = \max(X_n, 0)$.
+
+\textbf{Sketch of Proof:} Define a stopping time $\tau = \inf\{k: X_k \geq \lambda\}$. Then $X_n \geq X_{\tau \wedge n}$ on the set $\{\tau \leq n\}$. Taking expectations and using the optional stopping property $E[X_{\tau \wedge n}] \geq E[X_0]$ gives the result after some manipulation.
+\end{theorem}
+
+\begin{theorem}[Doob's $L^p$ Maximal Inequality]
+Let $\{X_n\}$ be a submartingale and $p > 1$. Then:
+$$\left\|S_n^*\right\|_p \leq \frac{p}{p-1} \|X_n\|_p$$
+
+where $S_n^* = \max_{0 \leq k \leq n} |X_k|$.
+
+\textbf{Sketch of Proof:} The proof is non-trivial. It often uses an integration-by-parts-style argument (the layer-cake representation) on the distribution of $S_n^*$ and applies the one-sided Doob's inequality to bound the resulting integral.
+\end{theorem}
+
+\begin{theorem}[Optional Stopping Theorem]
+Let $\{X_n, \mathcal{F}_n\}$ be a martingale and $\tau$ a stopping time. If one of the following holds:
+\begin{enumerate}
+\item $\tau$ is bounded: $\tau \leq N$ for some constant $N$
+\item $\tau$ has finite expectation and $\{X_n\}$ is uniformly bounded
+\item $E[\tau] < \infty$ and $E[|X_{n+1} - X_n||\mathcal{F}_n] \leq M$ for some constant $M$
+\end{enumerate}
+Then $E[X_\tau] = E[X_0]$.
+
+\textbf{Sketch of Proof:} Proof depends on the condition. For bounded $\tau$, it is shown by induction. For the other cases, it relies on applying the Dominated Convergence Theorem to the stopped process $X_{\tau \wedge n}$ to show that $\lim_{n \to \infty} E[X_{\tau \wedge n}] = E[X_\tau]$.
+\end{theorem}
+
+\begin{theorem}[Martingale Convergence Theorem]
+Let $\{X_n, \mathcal{F}_n\}$ be a submartingale with $\sup_n E[X_n^+] < \infty$. Then $X_n$ converges almost surely to an integrable random variable $X_\infty$.
+
+\textbf{Sketch of Proof:} The key is Doob's upcrossing inequality, which provides a bound on the expected number of times the sequence can cross an interval from below. The condition $\sup_n E[X_n^+] < \infty$ ensures this bound is finite, implying that the number of upcrossings is finite a.s., which forces the sequence to converge.
+\end{theorem}
+
+\begin{theorem}[Doob's Maximal Inequality]
+For a submartingale $\{X_n\}$ and $p > 1$:
+$$\left\|X_n^*\right\|_p \leq \frac{p}{p-1} \|X_n\|_p$$
+where $X_n^* = \max_{1 \leq k \leq n} |X_k|$.
+
+\textbf{Sketch of Proof:} This is a more general version of the $L^p$ inequality. The proof is technical and often involves a clever stopping time argument combined with Hölder's inequality.
+\end{theorem}
+
+\begin{theorem}[Doob's $L^p$ Inequality]
+For a martingale $\{X_n\}$ and $1 < p < \infty$:
+$$E[(X_n^*)^p] \leq \left(\frac{p}{p-1}\right)^p E[|X_n|^p]$$
+
+\textbf{Sketch of Proof:} A common approach uses the "good-lambda" inequality, which bounds the probability that the maximum is large while the final value is small. This is then integrated to obtain the $L^p$ bound.
+\end{theorem}
+
+\begin{theorem}[Martingale Central Limit Theorem]
+Let $\{X_n, \mathcal{F}_n\}$ be a martingale with $X_0 = 0$. Define $\langle X \rangle_n = \sum_{k=1}^n E[(X_k - X_{k-1})^2|\mathcal{F}_{k-1}]$. If:
+\begin{enumerate}
+\item $\langle X \rangle_n \stackrel{p}{\to} \sigma^2$
+\item $\sum_{k=1}^n E[(X_k - X_{k-1})^2 \mathbf{1}_{|X_k - X_{k-1}| > \epsilon}|\mathcal{F}_{k-1}] \stackrel{p}{\to} 0$ for all $\epsilon > 0$
+\end{enumerate}
+Then $X_n \stackrel{d}{\to} \mathcal{N}(0, \sigma^2)$.
+
+\textbf{Sketch of Proof:} The proof is analogous to the classical CLT proof using characteristic functions. The conditions ensure that the martingale differences are uniformly small and their conditional variances converge, allowing the characteristic function of $X_n$ to be approximated and shown to converge to that of a normal distribution.
+\end{theorem}
+
+\subsection{Markov Chains}
+
+\begin{definition}[Markov Property]
+A sequence $\{X_n\}$ satisfies the Markov property if:
+$$P(X_{n+1} = j | X_0 = i_0, X_1 = i_1, \ldots, X_n = i) = P(X_{n+1} = j | X_n = i)$$
+
+This means the future depends only on the present state, not the past.
+\end{definition}
+
+\begin{definition}[Markov Chain]
+A sequence $\{X_n\}$ is a Markov chain with state space $S$ if it satisfies the Markov property.
+
+The \textbf{transition probabilities} are: $p_{ij} = P(X_{n+1} = j | X_n = i)$
+
+The \textbf{transition matrix} is $\mathbf{P} = (p_{ij})$ where $\sum_j p_{ij} = 1$.
+
+The \textbf{$n$-step transition probabilities} are: $p_{ij}^{(n)} = P(X_n = j | X_0 = i)$
+\end{definition}
+
+\begin{theorem}[Chapman-Kolmogorov Equation]
+For any states $i, j$ and times $m, n \geq 0$:
+$$p_{ij}^{(m+n)} = \sum_{k \in S} p_{ik}^{(m)} p_{kj}^{(n)}$$
+
+In matrix form: $\mathbf{P}^{(m+n)} = \mathbf{P}^{(m)} \mathbf{P}^{(n)}$
+
+\textbf{Sketch of Proof:} Decompose the event $\{X_{m+n}=j | X_0=i\}$ by conditioning on the state at time $m$. Sum over all possible intermediate states $k$ using the law of total probability and the Markov property.
+\end{theorem}
+
+\begin{definition}[Classification of States]
+\begin{enumerate}
+\item State $i$ \textbf{leads to} state $j$ (written $i \to j$) if $p_{ij}^{(n)} > 0$ for some $n \geq 0$
+\item State $i$ \textbf{communicates} with state $j$ (written $i \leftrightarrow j$) if $i \to j$ and $j \to i$
+\item State $i$ is \textbf{accessible} from state $j$ if $j \to i$
+\item The chain is \textbf{irreducible} if all states communicate with each other
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Recurrence and Transience]
+Let $T_i = \inf\{n \geq 1: X_n = i\}$ be the first return time to state $i$.
+\begin{enumerate}
+\item State $i$ is \textbf{recurrent} if $P(T_i < \infty | X_0 = i) = 1$
+\item State $i$ is \textbf{transient} if $P(T_i < \infty | X_0 = i) < 1$
+\item State $i$ is \textbf{positive recurrent} if recurrent and $E[T_i | X_0 = i] < \infty$
+\item State $i$ is \textbf{null recurrent} if recurrent and $E[T_i | X_0 = i] = \infty$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Periodicity]
+The \textbf{period} of state $i$ is:
+$$d(i) = \gcd\{n \geq 1: p_{ii}^{(n)} > 0\}$$
+
+State $i$ is \textbf{aperiodic} if $d(i) = 1$.
+\end{definition}
+
+\begin{definition}[Stationary Distribution]
+A probability distribution $\boldsymbol{\pi} = (\pi_i)$ is \textbf{stationary} for Markov chain with transition matrix $\mathbf{P}$ if:
+$$\boldsymbol{\pi} = \boldsymbol{\pi} \mathbf{P}$$
+
+That is: $\pi_j = \sum_i \pi_i p_{ij}$ for all $j$.
+\end{definition}
+
+\begin{theorem}[Ergodic Theorem for Markov Chains]
+For an irreducible, aperiodic, finite Markov chain, there exists a unique stationary distribution $\boldsymbol{\pi}$ such that:
+$$\lim_{n \to \infty} p_{ij}^{(n)} = \pi_j$$
+for all $i,j$, and $\boldsymbol{\pi} = \boldsymbol{\pi} \mathbf{P}$.
+
+Moreover: $\pi_j = \frac{1}{E[T_j | X_0 = j]}$.
+
+\textbf{Sketch of Proof:} A common technique is coupling. Construct two independent copies of the chain, say $X_n$ and $Y_n$, starting in different states. Since the chain is irreducible and aperiodic, they will eventually meet ($X_N = Y_N$). From that time on, they evolve identically. This forces their distributions to converge to a common stationary distribution.
+\end{theorem}
+
+\begin{theorem}[Strong Law for Markov Chains]
+For an irreducible, positive recurrent Markov chain:
+$$\lim_{n \to \infty} \frac{1}{n} \sum_{k=1}^n \mathbf{1}_{\{X_k = j\}} = \pi_j \quad \text{a.s.}$$
+
+\textbf{Sketch of Proof:} The process regenerates each time it returns to state $j$. The time between visits to $j$ and the number of visits to other states between these returns form an i.i.d. sequence. The result follows by applying the Strong Law of Large Numbers to this renewal structure.
+\end{theorem}
+
+\subsection{Continuous-Time Stochastic Processes}
+
+\begin{definition}[Continuous-Time Markov Chain]
+A process $\{X(t), t \geq 0\}$ is a continuous-time Markov chain if:
+$$P(X(t+s) = j | X(u), 0 \leq u \leq t) = P(X(t+s) = j | X(t))$$
+
+The \textbf{transition function} is $P_{ij}(t) = P(X(t) = j | X(0) = i)$.
+\end{definition}
+
+\begin{definition}[Generator Matrix]
+For a continuous-time Markov chain, the \textbf{generator matrix} (or \textbf{intensity matrix}) $\mathbf{Q} = (q_{ij})$ is defined by:
+$$q_{ij} = \lim_{h \to 0^+} \frac{P_{ij}(h) - \delta_{ij}}{h}$$
+
+where $\delta_{ij}$ is the Kronecker delta. The diagonal elements are $q_{ii} = -\sum_{j \neq i} q_{ij}$.
+\end{definition}
+
+\begin{theorem}[Kolmogorov Forward/Backward Equations]
+The transition probabilities satisfy:
+\begin{align}
+\frac{d}{dt} P_{ij}(t) &= \sum_k P_{ik}(t) q_{kj} \quad \text{(forward)}\\
+\frac{d}{dt} P_{ij}(t) &= \sum_k q_{ik} P_{kj}(t) \quad \text{(backward)}
+\end{align}
+
+In matrix form: $\frac{d}{dt} \mathbf{P}(t) = \mathbf{P}(t) \mathbf{Q} = \mathbf{Q} \mathbf{P}(t)$
+
+\textbf{Sketch of Proof:} Derived by taking the limit as $h \to 0$ in the Chapman-Kolmogorov equation. For the forward equation, consider $P_{ij}(t+h) = \sum_k P_{ik}(t)P_{kj}(h)$. For the backward, consider $P_{ij}(t+h) = \sum_k P_{ik}(h)P_{kj}(t)$. Then use the definition of the generator matrix $\mathbf{Q}$.
+\end{theorem}
+
+\subsection{Poisson Processes}
+
+\begin{definition}[Counting Process]
+A stochastic process $\{N(t), t \geq 0\}$ is a counting process if:
+\begin{enumerate}
+\item $N(t) \geq 0$ and $N(t)$ is integer-valued
+\item $N(0) = 0$
+\item $N(t)$ is non-decreasing and right-continuous
+\item $N(t) - N(s)$ counts the number of events in $(s,t]$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Independent Increments]
+A process has \textbf{independent increments} if for any $0 \leq t_1 < t_2 < \cdots < t_n$, the random variables:
+$$N(t_2) - N(t_1), N(t_3) - N(t_2), \ldots, N(t_n) - N(t_{n-1})$$
+are independent.
+\end{definition}
+
+\begin{definition}[Stationary Increments]
+A process has \textbf{stationary increments} if the distribution of $N(t+s) - N(s)$ depends only on $t$, not on $s$.
+\end{definition}
+
+\begin{definition}[Poisson Process]
+A counting process $\{N(t), t \geq 0\}$ is a Poisson process with rate $\lambda > 0$ if:
+\begin{enumerate}
+\item $N(0) = 0$
+\item Independent increments
+\item Stationary increments
+\item $P(N(h) = 1) = \lambda h + o(h)$
+\item $P(N(h) \geq 2) = o(h)$
+\end{enumerate}
+
+Equivalently: $N(t) \sim \text{Poisson}(\lambda t)$ and increments are independent.
+\end{definition}
+
+\begin{theorem}[Properties of Poisson Processes]
+For a Poisson process $\{N(t)\}$ with rate $\lambda$:
+\begin{enumerate}
+\item Inter-arrival times $T_1, T_2, \ldots$ are i.i.d. $\text{Exp}(\lambda)$
+\item $E[N(t)] = \text{Var}(N(t)) = \lambda t$
+\item \textbf{Memoryless property:} $P(T > s+t | T > s) = P(T > t)$
+\item \textbf{Superposition:} Independent Poisson processes with rates $\lambda_1, \lambda_2$ combine to rate $\lambda_1 + \lambda_2$
+\item \textbf{Thinning:} Each event kept with probability $p$ gives rate $p\lambda$
+\item \textbf{Order statistics:} Given $N(t) = n$, the arrival times are distributed as order statistics of $n$ uniform random variables on $[0,t]$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Compound Poisson Process]
+Let $\{N(t)\}$ be a Poisson process with rate $\lambda$, and let $\{Y_i\}$ be i.i.d. random variables independent of $N(t)$. The compound Poisson process is:
+$$X(t) = \sum_{i=1}^{N(t)} Y_i$$
+
+with $E[X(t)] = \lambda t E[Y_1]$ and $\text{Var}(X(t)) = \lambda t E[Y_1^2]$.
+\end{definition}
+
+\subsection{Brownian Motion}
+
+\begin{definition}[Gaussian Process]
+A stochastic process $\{X(t), t \in T\}$ is a Gaussian process if for any finite collection $t_1, \ldots, t_n \in T$, the vector $(X(t_1), \ldots, X(t_n))$ has a multivariate normal distribution.
+\end{definition}
+
+\begin{definition}[Brownian Motion]
+A stochastic process $\{B(t), t \geq 0\}$ is standard Brownian motion (or Wiener process) if:
+\begin{enumerate}
+\item $B(0) = 0$
+\item Independent increments
+\item $B(t) - B(s) \sim \mathcal{N}(0, t-s)$ for $t > s$
+\item Sample paths are continuous
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Brownian Motion with Drift]
+Brownian motion with drift $\mu$ and diffusion coefficient $\sigma^2$ is:
+$$X(t) = \mu t + \sigma B(t)$$
+
+where $B(t)$ is standard Brownian motion.
+\end{definition}
+
+\begin{theorem}[Properties of Brownian Motion]
+\begin{enumerate}
+\item $E[B(t)] = 0$, $\text{Var}(B(t)) = t$
+\item $\text{Cov}(B(s), B(t)) = \min(s,t)$
+\item \textbf{Markov property:} $E[f(B(t)) | \mathcal{F}_s] = E[f(B(t)) | B(s)]$ for $t > s$
+\item \textbf{Strong Markov property:} Holds for stopping times
+\item \textbf{Quadratic variation:} $\langle B \rangle_t = t$
+\item \textbf{Reflection principle:} $P(\max_{0 \leq s \leq t} B(s) \geq a) = 2P(B(t) \geq a)$ for $a > 0$
+\item \textbf{Self-similarity:} $\{B(ct)\}$ and $\{\sqrt{c} B(t)\}$ have the same distribution
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[First Passage Time]
+For Brownian motion $B(t)$, the first passage time to level $a$ is:
+$$T_a = \inf\{t > 0: B(t) = a\}$$
+
+We have $T_a \sim \text{InverseGaussian}$ with density:
+$$f_{T_a}(t) = \frac{|a|}{\sqrt{2\pi t^3}} e^{-\frac{a^2}{2t}}$$
+\end{definition}
+
+\begin{theorem}[Brownian Bridge]
+Given $B(1) = 0$, the conditioned process $\{B(t) | B(1) = 0, 0 \leq t \leq 1\}$ is a Brownian bridge with:
+$$E[B(t) | B(1) = 0] = 0$$
+$$\text{Cov}(B(s), B(t) | B(1) = 0) = s(1-t) \quad \text{for } s \leq t$$
+
+\textbf{Sketch of Proof:} Define a process $X(t) = B(t) - tB(1)$. Verify that $X(t)$ is a Gaussian process with the correct mean and covariance structure. Conditioning on $B(1)=0$ gives the result directly.
+\end{theorem}
+
+\subsection{Example Problems and Solutions}
+
+\begin{example}[Moment Generating Function Application]
+Let $X \sim \mathcal{N}(\mu, \sigma^2)$. Find the MGF and use it to derive the mean and variance.
+
+\textbf{Solution:}
+\begin{align}
+M_X(t) &= E[e^{tX}] = \int_{-\infty}^{\infty} e^{tx} \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} dx\\
+&= e^{t\mu + \frac{\sigma^2 t^2}{2}}
+\end{align}
+
+Taking derivatives:
+\begin{align}
+M_X'(t) &= (\mu + \sigma^2 t) e^{t\mu + \frac{\sigma^2 t^2}{2}}\\
+M_X''(t) &= [\sigma^2 + (\mu + \sigma^2 t)^2] e^{t\mu + \frac{\sigma^2 t^2}{2}}
+\end{align}
+
+Therefore: $E[X] = M_X'(0) = \mu$ and $\text{Var}(X) = M_X''(0) - (M_X'(0))^2 = \sigma^2$
+\end{example}
+
+\begin{example}[Convergence in Probability]
+Let $X_n \sim \text{Binomial}(n, p_n)$ where $np_n \to \lambda$. Show that $X_n \stackrel{d}{\to} \text{Poisson}(\lambda)$.
+
+\textbf{Solution:}
+Using the MGF approach:
+$$M_{X_n}(t) = (1 + p_n(e^t - 1))^n$$
+
+As $n \to \infty$ with $np_n \to \lambda$:
+$$M_{X_n}(t) = \left(1 + \frac{\lambda}{n}(e^t - 1) + o(1/n)\right)^n \to e^{\lambda(e^t - 1)}$$
+
+This is the MGF of $\text{Poisson}(\lambda)$, so $X_n \stackrel{d}{\to} \text{Poisson}(\lambda)$.
+\end{example}
+
+\begin{example}[Conditional Expectation]
+Let $(X,Y)$ have joint pdf $f(x,y) = 2$ for $0 < x < y < 1$. Find $E[X|Y]$.
+
+\textbf{Solution:}
+First find marginal pdf of $Y$:
+$$f_Y(y) = \int_0^y 2 dx = 2y \quad \text{for } 0 < y < 1$$
+
+Then conditional pdf:
+$$f_{X|Y}(x|y) = \frac{f(x,y)}{f_Y(y)} = \frac{2}{2y} = \frac{1}{y} \quad \text{for } 0 < x < y$$
+
+Therefore:
+$$E[X|Y = y] = \int_0^y x \cdot \frac{1}{y} dx = \frac{1}{y} \cdot \frac{y^2}{2} = \frac{y}{2}$$
+
+So $E[X|Y] = \frac{Y}{2}$.
+\end{example}
+
+\subsection{Advanced Probability Inequalities}
+
+\begin{theorem}[Markov's Inequality]
+For any non-negative random variable $X$ and $a > 0$:
+$$P(X \geq a) \leq \frac{E[X]}{a}$$
+
+\textbf{Proof:} Let $I = \mathbf{1}_{X \geq a}$. Then $aI \leq X$, so $aE[I] \leq E[X]$, giving $aP(X \geq a) \leq E[X]$.
+\end{theorem}
+
+\begin{theorem}[Chebyshev's Inequality]
+For any random variable $X$ with finite variance and $k > 0$:
+$$P(|X - E[X]| \geq k) \leq \frac{\text{Var}(X)}{k^2}$$
+
+\textbf{Proof:} Apply Markov's inequality to $(X - E[X])^2$ with $a = k^2$.
+\end{theorem}
+
+\begin{theorem}[Hoeffding's Inequality]
+Let $X_1, \ldots, X_n$ be independent random variables with $X_i \in [a_i, b_i]$ almost surely. Then for $t > 0$:
+$$P\left(\sum_{i=1}^n (X_i - E[X_i]) \geq t\right) \leq \exp\left(-\frac{2t^2}{\sum_{i=1}^n (b_i - a_i)^2}\right)$$
+
+\textbf{Sketch of Proof:} Use the exponential moment method. Apply Markov's inequality to $e^{\lambda S_n}$ where $S_n = \sum_{i=1}^n (X_i - E[X_i])$. For bounded random variables, use Hoeffding's lemma to bound $E[e^{\lambda X_i}]$, then optimize over $\lambda$.
+\end{theorem}
+
+\begin{theorem}[Azuma's Inequality]
+Let $\{X_n, \mathcal{F}_n\}$ be a martingale with $|X_{n+1} - X_n| \leq c_n$ almost surely. Then:
+$$P(|X_n - X_0| \geq t) \leq 2\exp\left(-\frac{t^2}{2\sum_{i=1}^n c_i^2}\right)$$
+
+\textbf{Sketch of Proof:} Apply the exponential martingale inequality. For the martingale $Y_k = \exp(\lambda(X_k - X_0))$, use the bounded differences condition to control the moment generating function, then apply the optional stopping theorem.
+\end{theorem}
+
+\begin{theorem}[Bennett's Inequality]
+Let $X_1, \ldots, X_n$ be independent with $E[X_i] = 0$, $\text{Var}(X_i) = \sigma_i^2$, and $|X_i| \leq M$. Define $v = \sum_{i=1}^n \sigma_i^2$. Then:
+$$P\left(\sum_{i=1}^n X_i \geq t\right) \leq \exp\left(-\frac{v}{M^2}h\left(\frac{Mt}{v}\right)\right)$$
+where $h(x) = (1+x)\log(1+x) - x$.
+
+\textbf{Sketch of Proof:} Refine Hoeffding's approach by using the precise moment generating function bound for bounded random variables with known variance, leading to a tighter inequality that interpolates between Hoeffding's and Bernstein's inequalities.
+\end{theorem}
+
+\subsection{Advanced Problem Set}
+
+\begin{problem}[Martingale Convergence - PhD Level]
+Let $\{X_n, \mathcal{F}_n\}$ be a supermartingale with $\sup_n E[X_n^-] < \infty$. 
+\begin{enumerate}[label=(\alph*)]
+\item Prove that $X_n$ converges almost surely to some random variable $X_\infty$.
+\item Show that if additionally $\{X_n\}$ is uniformly integrable, then $X_n \to X_\infty$ in $L^1$.
+\item Give an example where $X_n$ converges a.s. but not in $L^1$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item By the supermartingale convergence theorem. Since $E[X_n^-] \leq C$, the supermartingale is bounded below in $L^1$. The key steps are:
+\begin{itemize}
+\item Show that for any $a < b$, the number of upcrossings of $[a,b]$ by $\{X_n\}$ is finite a.s.
+\item Use Doob's upcrossing inequality: $E[U_n[a,b]] \leq \frac{E[(X_n - a)^-]}{b-a}$
+\item Since this is bounded, $U_\infty[a,b] < \infty$ a.s. for all rational $a < b$
+\item This implies $\limsup X_n = \liminf X_n$ a.s., so $X_n$ converges a.s.
+\end{itemize}
+
+\item Use Vitali's convergence theorem. Uniform integrability plus a.s. convergence implies $L^1$ convergence. The uniform integrability condition ensures that the "tails" of the distributions are uniformly small.
+
+\item Let $X_n = n$ with probability $1/n^2$ and $X_n = 0$ otherwise, with appropriate filtration. Then $X_n \to 0$ a.s. but $E[X_n] = 1/n \not\to 0$.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[Concentration Inequalities - PhD Level]
+Let $X_1, \ldots, X_n$ be independent random variables with $X_i \in [0,1]$ and $E[X_i] = p_i$.
+\begin{enumerate}[label=(\alph*)]
+\item Prove a sharp concentration inequality for $S_n = \sum_{i=1}^n X_i$ around its mean $\mu = \sum_{i=1}^n p_i$.
+\item Show that your bound is optimal up to constants for the case where all $p_i = p$.
+\item Apply your result to analyze the tail behavior of the binomial distribution.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item Using Hoeffding's inequality: For $t > 0$,
+$$P(S_n - \mu \geq t) \leq \exp\left(-\frac{2t^2}{n}\right)$$
+The proof uses the exponential moment method with the fact that for $X \in [0,1]$ with $E[X] = p$:
+$$E[e^{\lambda X}] \leq e^{\lambda p + \frac{\lambda^2}{8}}$$
+
+\item For $p_i = p$, this gives the bound $\exp(-2t^2/n)$. This is optimal because the binomial distribution achieves this rate (up to constants) by the central limit theorem and large deviations theory.
+
+\item For $\text{Binomial}(n,p)$, we get $P(|S_n - np| \geq t) \leq 2\exp(-2t^2/n)$, which is much stronger than the normal approximation for moderate deviations.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[Empirical Process Theory - PhD Level]
+Let $X_1, \ldots, X_n$ be i.i.d. with distribution $F$. Define the empirical distribution function $F_n(x) = \frac{1}{n}\sum_{i=1}^n \mathbf{1}_{X_i \leq x}$.
+\begin{enumerate}[label=(\alph*)]
+\item Prove the Glivenko-Cantelli theorem: $\sup_x |F_n(x) - F(x)| \to 0$ a.s.
+\item Derive the rate of convergence using the Dvoretzky-Kiefer-Wolfowitz inequality.
+\item Establish the functional central limit theorem for the empirical process.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Sketch:} Use the fact that the empirical process has monotone sample paths. First prove convergence at finitely many points using the strong law of large numbers, then extend to uniform convergence using the monotonicity and the fact that $F$ is right-continuous.
+
+\item The DKW inequality states: $P(\sup_x |F_n(x) - F(x)| > \varepsilon) \leq 2e^{-2n\varepsilon^2}$. This gives the rate $O(\sqrt{\log n/n})$ for uniform convergence a.s.
+
+\item The functional CLT: $\sqrt{n}(F_n - F) \Rightarrow \mathbb{G}$ in $D[0,1]$, where $\mathbb{G}$ is a Gaussian process with covariance $\text{Cov}(\mathbb{G}(s), \mathbb{G}(t)) = F(s \wedge t) - F(s)F(t)$. The proof uses weak convergence of finite-dimensional distributions plus tightness.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[Stein's Method - PhD Level]
+Let $W$ be a random variable and $\mathcal{N}(0,1)$ a standard normal random variable.
+\begin{enumerate}[label=(\alph*)]
+\item State and prove Stein's characterization of the normal distribution.
+\item Use Stein's method to bound $|E[f(W)] - E[f(Z)]|$ where $Z \sim \mathcal{N}(0,1)$ and $f$ is smooth.
+\item Apply this to prove a Berry-Esseen type bound for the CLT.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item \textbf{Stein's Characterization:} $W \sim \mathcal{N}(0,1)$ if and only if $E[f'(W) - Wf(W)] = 0$ for all smooth functions $f$ with $E[|f'(W)|] < \infty$.
+
+\textbf{Proof:} If $W \sim \mathcal{N}(0,1)$, integration by parts gives the result. Conversely, taking $f(x) = e^{itx}$ shows that the characteristic function of $W$ is $e^{-t^2/2}$.
+
+\item For the Stein equation $f'(x) - xf(x) = h(x) - E[h(Z)]$, we have:
+$$|E[h(W)] - E[h(Z)]| = |E[f'(W) - Wf(W)]|$$
+The bound depends on smoothness properties of $h$ and moments of $W$.
+
+\item For $S_n = \frac{1}{\sqrt{n}}\sum_{i=1}^n X_i$ with $E[X_i] = 0$, $E[X_i^2] = 1$, the Berry-Esseen bound gives:
+$$\sup_x |P(S_n \leq x) - \Phi(x)| \leq \frac{C E[|X_1|^3]}{\sqrt{n}}$$
+where $C \approx 0.4748$.
+\end{enumerate}
+\end{solution}
+
+\begin{problem}[Large Deviations - PhD Level]
+Let $\{X_n\}$ be i.i.d. with moment generating function $M(t) = E[e^{tX_1}] < \infty$ in a neighborhood of 0.
+\begin{enumerate}[label=(\alph*)]
+\item Define the rate function $I(x)$ and prove Cramér's theorem.
+\item Show that $I(x)$ is convex and has unique minimum at $E[X_1]$.
+\item Apply this to analyze the probability $P(\bar{X}_n \geq a)$ where $a > E[X_1]$.
+\end{enumerate}
+\end{problem}
+
+\begin{solution}
+\begin{enumerate}[label=(\alph*)]
+\item The rate function is $I(x) = \sup_t (tx - \log M(t))$ (Legendre transform). 
+
+\textbf{Cramér's Theorem:} For $a > E[X_1]$:
+$$\lim_{n \to \infty} \frac{1}{n} \log P(\bar{X}_n \geq a) = -I(a)$$
+
+\textbf{Sketch:} Upper bound uses exponential moments and Markov's inequality. Lower bound uses tilting the measure and analyzing the tilted distribution.
+
+\item Convexity follows from the fact that $I$ is the supremum of linear functions. The minimum occurs where the derivative $\Lambda'(t^*) = a$ for the cumulant generating function $\Lambda(t) = \log M(t)$.
+
+\item We get $P(\bar{X}_n \geq a) \approx e^{-nI(a)}$ for large $n$, giving exponential decay at rate $I(a)$.
+\end{enumerate}
+\end{solution}
+
+\subsection{Measure-Theoretic Foundations}
+
+\begin{definition}[Measure Space]
+A measure space is a triple $(X, \mathcal{M}, \mu)$ where:
+\begin{itemize}
+\item $X$ is a set
+\item $\mathcal{M}$ is a $\sigma$-algebra on $X$
+\item $\mu: \mathcal{M} \to [0, \infty]$ is a measure satisfying:
+  \begin{enumerate}
+  \item $\mu(\emptyset) = 0$
+  \item For disjoint sets $A_1, A_2, \ldots \in \mathcal{M}$: $\mu\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} \mu(A_i)$
+  \end{enumerate}
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[Radon-Nikodym Theorem]
+Let $\mu$ and $\nu$ be $\sigma$-finite measures on $(X, \mathcal{M})$. If $\nu \ll \mu$ (i.e., $\nu$ is absolutely continuous with respect to $\mu$), then there exists a non-negative measurable function $f$ such that:
+$$\nu(A) = \int_A f \, d\mu$$
+for all $A \in \mathcal{M}$. The function $f$ is called the Radon-Nikodym derivative and is denoted $\frac{d\nu}{d\mu}$.
+
+\textbf{Sketch of Proof:} The proof for Hilbert spaces follows from the Riesz representation theorem. For general measure spaces, it is more technical. One constructs a set of functions whose integrals are bounded by $\nu$ and shows this set has a maximal element, which is the desired derivative.
+\end{theorem}
+
+\begin{theorem}[Fubini-Tonelli Theorem]
+Let $(X, \mathcal{M}, \mu)$ and $(Y, \mathcal{N}, \nu)$ be $\sigma$-finite measure spaces, and let $f$ be a measurable function on $X \times Y$.
+
+\textbf{Tonelli:} If $f \geq 0$, then:
+$$\int_{X \times Y} f \, d(\mu \times \nu) = \int_X \left(\int_Y f(x,y) \, d\nu(y)\right) d\mu(x) = \int_Y \left(\int_X f(x,y) \, d\mu(x)\right) d\nu(y)$$
+
+\textbf{Fubini:} If $\int_{X \times Y} |f| \, d(\mu \times \nu) < \infty$, then the above equality holds.
+
+\textbf{Sketch of Proof:} Tonelli's theorem is proven first by building up from indicator functions to simple functions, and then to general non-negative functions using the Monotone Convergence Theorem. Fubini's theorem then follows by decomposing a general function into its positive and negative parts, $f = f^+ - f^-$, and applying Tonelli's theorem to each.
+\end{theorem}
+
+\subsection{Advanced Convergence Theorems}
+
+\begin{theorem}[Monotone Convergence Theorem]
+Let $\{f_n\}$ be a sequence of non-negative measurable functions with $f_n \uparrow f$ pointwise. Then:
+$$\lim_{n \to \infty} \int f_n \, d\mu = \int f \, d\mu$$
+
+\textbf{Sketch of Proof:} The inequality $\lim \int f_n \leq \int f$ is clear since $f_n \leq f$. The reverse inequality, $\int f \leq \lim \int f_n$, is a consequence of Fatou's Lemma.
+\end{theorem}
+
+\begin{theorem}[Dominated Convergence Theorem]
+Let $\{f_n\}$ be a sequence of measurable functions converging pointwise to $f$. If there exists an integrable function $g$ such that $|f_n| \leq g$ for all $n$, then:
+$$\lim_{n \to \infty} \int f_n \, d\mu = \int f \, d\mu$$
+
+\textbf{Sketch of Proof:} Apply Fatou's Lemma to the non-negative sequences $g+f_n$ and $g-f_n$. This bounds $\int f$ from above by $\limsup \int f_n$ and from below by $\liminf \int f_n$, forcing the limit to exist and equal $\int f$.
+\end{theorem}
+
+\begin{theorem}[Fatou's Lemma]
+For non-negative measurable functions $\{f_n\}$:
+$$\int \liminf_{n \to \infty} f_n \, d\mu \leq \liminf_{n \to \infty} \int f_n \, d\mu$$
+
+\textbf{Sketch of Proof:} Define $g_n = \inf_{k \geq n} f_k$. Then $g_n \uparrow \liminf f_n$ pointwise. By the Monotone Convergence Theorem, $\int \liminf f_n = \lim \int g_n$. Since $g_n \leq f_k$ for $k \geq n$, we have $\int g_n \leq \inf_{k \geq n} \int f_k$, and the result follows.
+\end{theorem}
+
+\subsection{Conditional Expectation - Advanced Theory}
+
+\begin{theorem}[Existence and Uniqueness of Conditional Expectation]
+Let $X$ be an integrable random variable and $\mathcal{G}$ a sub-$\sigma$-algebra of $\mathcal{F}$. Then there exists a unique (up to sets of measure zero) $\mathcal{G}$-measurable random variable $Y$ such that:
+$$\int_G Y \, dP = \int_G X \, dP \quad \text{for all } G \in \mathcal{G}$$
+
+This $Y$ is denoted $E[X|\mathcal{G}]$.
+
+\textbf{Sketch of Proof:} Existence is a direct application of the Radon-Nikodym theorem. Define a signed measure $\nu(G) = \int_G X \, dP$ for $G \in \mathcal{G}$. Since $\nu$ is absolutely continuous with respect to the restriction of $P$ to $\mathcal{G}$, the derivative $\frac{d\nu}{dP}$ exists and is our desired $Y$. Uniqueness follows from the properties of integrals.
+\end{theorem}
+
+\begin{theorem}[Properties of Conditional Expectation]
+\begin{enumerate}
+\item \textbf{Linearity:} $E[aX + bY|\mathcal{G}] = aE[X|\mathcal{G}] + bE[Y|\mathcal{G}]$
+\item \textbf{Tower Property:} $E[E[X|\mathcal{G}]|\mathcal{H}] = E[X|\mathcal{H}]$ if $\mathcal{H} \subseteq \mathcal{G}$
+\item \textbf{Taking Out What is Known:} If $Y$ is $\mathcal{G}$-measurable and $XY$ is integrable, then $E[XY|\mathcal{G}] = YE[X|\mathcal{G}]$
+\item \textbf{Independence:} If $X$ is independent of $\mathcal{G}$, then $E[X|\mathcal{G}] = E[X]$
+\item \textbf{Jensen's Inequality:} If $\phi$ is convex, then $\phi(E[X|\mathcal{G}]) \leq E[\phi(X)|\mathcal{G}]$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Conditional Jensen's Inequality]
+Let $\phi: \mathbb{R} \to \mathbb{R}$ be convex and $X$ integrable with $\phi(X)$ integrable. Then:
+$$\phi(E[X|\mathcal{G}]) \leq E[\phi(X)|\mathcal{G}]$$
+
+\textbf{Sketch of Proof:} A convex function can be represented as the supremum of a countable collection of affine functions, $\phi(x) = \sup_i (a_i x + b_i)$. The inequality then follows from the linearity and monotonicity of conditional expectation applied to each affine function.
+\end{theorem}
+
+\subsection{Martingale Theory - Advanced Results}
+
+\begin{theorem}[Martingale Convergence Theorem]
+Let $\{X_n, \mathcal{F}_n\}$ be a submartingale with $\sup_n E[X_n^+] < \infty$. Then $X_n$ converges almost surely to an integrable random variable $X_\infty$.
+
+\textbf{Sketch of Proof:} The key is Doob's upcrossing inequality, which provides a bound on the expected number of times the sequence can cross an interval from below. The condition $\sup_n E[X_n^+] < \infty$ ensures this bound is finite, implying that the number of upcrossings is finite a.s., which forces the sequence to converge.
+\end{theorem}
+
+\begin{theorem}[Doob's Maximal Inequality]
+For a submartingale $\{X_n\}$ and $p > 1$:
+$$\left\|X_n^*\right\|_p \leq \frac{p}{p-1} \|X_n\|_p$$
+where $X_n^* = \max_{1 \leq k \leq n} |X_k|$.
+
+\textbf{Sketch of Proof:} This is a more general version of the $L^p$ inequality. The proof is technical and often involves a clever stopping time argument combined with Hölder's inequality.
+\end{theorem}
+
+\begin{theorem}[Doob's $L^p$ Inequality]
+For a martingale $\{X_n\}$ and $1 < p < \infty$:
+$$E[(X_n^*)^p] \leq \left(\frac{p}{p-1}\right)^p E[|X_n|^p]$$
+
+\textbf{Sketch of Proof:} A common approach uses the "good-lambda" inequality, which bounds the probability that the maximum is large while the final value is small. This is then integrated to obtain the $L^p$ bound.
+\end{theorem}
+
+\begin{theorem}[Martingale Central Limit Theorem]
+Let $\{X_n, \mathcal{F}_n\}$ be a martingale with $X_0 = 0$. Define $\langle X \rangle_n = \sum_{k=1}^n E[(X_k - X_{k-1})^2|\mathcal{F}_{k-1}]$. If:
+\begin{enumerate}
+\item $\langle X \rangle_n \stackrel{p}{\to} \sigma^2$
+\item $\sum_{k=1}^n E[(X_k - X_{k-1})^2 \mathbf{1}_{|X_k - X_{k-1}| > \epsilon}|\mathcal{F}_{k-1}] \stackrel{p}{\to} 0$ for all $\epsilon > 0$
+\end{enumerate}
+Then $X_n \stackrel{d}{\to} \mathcal{N}(0, \sigma^2)$.
+
+\textbf{Sketch of Proof:} The proof is analogous to the classical CLT proof using characteristic functions. The conditions ensure that the martingale differences are uniformly small and their conditional variances converge, allowing the characteristic function of $X_n$ to be approximated and shown to converge to that of a normal distribution.
+\end{theorem}
+
+\subsection{Stochastic Processes - Detailed Theory}
+
+\begin{definition}[Filtration and Adapted Process]
+A filtration $\{\mathcal{F}_t\}_{t \geq 0}$ is an increasing family of $\sigma$-algebras. A stochastic process $\{X_t\}$ is adapted to $\{\mathcal{F}_t\}$ if $X_t$ is $\mathcal{F}_t$-measurable for each $t$.
+
+A filtration satisfies the usual conditions if:
+\begin{enumerate}
+\item $\mathcal{F}_0$ contains all null sets
+\item $\mathcal{F}_t = \bigcap_{s > t} \mathcal{F}_s$ (right-continuous)
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Lévy's Characterization of Brownian Motion]
+A continuous martingale $\{M_t\}$ with $M_0 = 0$ and quadratic variation $\langle M \rangle_t = t$ is a Brownian motion.
+
+\textbf{Sketch of Proof:} One shows that $M_t$ has the same finite-dimensional distributions as Brownian motion. This is done by proving that $M_t^2-t$, $M_t^3 - 3\int_0^t M_s ds$, etc., are martingales, which implies the moments of $M_t$ match those of a normal distribution. The key is showing $\exp(i\theta M_t + \theta^2 t/2)$ is a martingale.
+\end{theorem}
+
+\begin{theorem}[Itô's Formula]
+Let $B_t$ be Brownian motion and $f \in C^2(\mathbb{R})$. Then:
+$$f(B_t) = f(B_0) + \int_0^t f'(B_s) dB_s + \frac{1}{2} \int_0^t f''(B_s) ds$$
+
+More generally, for $X_t = X_0 + \int_0^t \mu_s ds + \int_0^t \sigma_s dB_s$:
+$$f(t, X_t) = f(0, X_0) + \int_0^t \left(\frac{\partial f}{\partial t} + \mu_s \frac{\partial f}{\partial x} + \frac{1}{2}\sigma_s^2 \frac{\partial^2 f}{\partial x^2}\right) ds + \int_0^t \frac{\partial f}{\partial x} \sigma_s dB_s$$
+
+\textbf{Sketch of Proof:} The proof uses a Taylor expansion of $f(X_t)$ on a small time interval. The key insight is that the quadratic variation term $(\Delta B_s)^2$ does not vanish in the limit but converges to $ds$, leading to the second-derivative term in the formula.
+\end{theorem}
+
+\begin{theorem}[Girsanov's Theorem]
+Let $\{W_t\}$ be Brownian motion under measure $P$, and let $\{Z_t\}$ be a positive martingale with $E[Z_T] = 1$. Define $Q$ by $\frac{dQ}{dP} = Z_T$. If $Z_t = \exp\left(\int_0^t \theta_s dW_s - \frac{1}{2}\int_0^t \theta_s^2 ds\right)$, then under $Q$:
+$$\tilde{W}_t = W_t - \int_0^t \theta_s ds$$
+is Brownian motion.
+
+\textbf{Sketch of Proof:} The proof involves showing that the process $\tilde{W}_t$ satisfies Lévy's characterization of Brownian motion under the new measure $Q$. One uses Itô's formula to show that $\tilde{W}_t$ is a continuous local martingale under $Q$ and that its quadratic variation is $\langle \tilde{W} \rangle_t = t$.
+\end{theorem}
+
+\subsection{Advanced Distribution Theory}
+
+\begin{theorem}[Lévy Continuity Theorem]
+Let $\{\mu_n\}$ be a sequence of probability measures with characteristic functions $\{\phi_n\}$. Then $\mu_n \stackrel{w}{\to} \mu$ (weak convergence) if and only if $\phi_n(t) \to \phi(t)$ for all $t$, where $\phi$ is the characteristic function of $\mu$.
+
+\textbf{Sketch of Proof:} The "only if" part is straightforward from the definition of weak convergence. The "if" part is more difficult and relies on showing that the sequence of measures $\{\mu_n\}$ is tight (i.e., does not escape to infinity). Tightness allows the extraction of a weakly convergent subsequence, and the pointwise convergence of characteristic functions uniquely identifies the limit.
+\end{theorem}
+
+\begin{theorem}[Lévy-Khintchine Representation]
+A function $\phi: \mathbb{R} \to \mathbb{C}$ is the characteristic function of an infinitely divisible distribution if and only if:
+$$\phi(t) = \exp\left(iat - \frac{1}{2}\sigma^2 t^2 + \int_{\mathbb{R}} (e^{itx} - 1 - \frac{itx}{1+x^2}) \frac{1+x^2}{x^2} \nu(dx)\right)$$
+where $a \in \mathbb{R}$, $\sigma^2 \geq 0$, and $\nu$ is a measure on $\mathbb{R} \setminus \{0\}$ with $\int (1 \wedge x^2) \nu(dx) < \infty$.
+
+\textbf{Sketch of Proof:} The proof involves showing that the logarithm of an infinitely divisible characteristic function (the cumulant generating function) can be uniquely decomposed into three parts: a linear drift term, a quadratic Brownian motion term, and an integral term representing jumps, governed by the Lévy measure $\nu$.
+\end{theorem}
+
+\begin{theorem}[Skorokhod Representation Theorem]
+If $\mu_n \stackrel{w}{\to} \mu$, then there exist random variables $X_n, X$ on some probability space such that $X_n \sim \mu_n$, $X \sim \mu$, and $X_n \to X$ almost surely.
+
+\textbf{Sketch of Proof:} The construction uses the quantile transformation. If $U \sim \text{Uniform}(0,1)$, then $F^{-1}(U) \sim F$. The variables are constructed as $X_n = F_n^{-1}(U)$ and $X = F^{-1}(U)$ on the space $((0,1), \mathcal{B}, \text{Lebesgue})$. The convergence $F_n \to F$ implies the a.s. convergence of $X_n$ to $X$.
+\end{theorem}
+
+\subsection{Extreme Value Theory}
+
+\begin{theorem}[Fisher-Tippett-Gnedenko Theorem]
+Let $X_1, X_2, \ldots$ be i.i.d. with common CDF $F$. If there exist sequences $\{a_n > 0\}$ and $\{b_n\}$ such that:
+$$\lim_{n \to \infty} P\left(\frac{\max(X_1, \ldots, X_n) - b_n}{a_n} \leq x\right) = G(x)$$
+for some non-degenerate distribution $G$, then $G$ belongs to one of three types:
+
+\textbf{Type I (Gumbel):} $G(x) = \exp(-e^{-x})$
+
+\textbf{Type II (Fréchet):} $G(x) = \begin{cases} 0 & x \leq 0 \\ \exp(-x^{-\alpha}) & x > 0 \end{cases}$ for $\alpha > 0$
+
+\textbf{Type III (Weibull):} $G(x) = \begin{cases} \exp(-(-x)^{\alpha}) & x \leq 0 \\ 1 & x > 0 \end{cases}$ for $\alpha > 0$
+
+\textbf{Sketch of Proof:} The core idea is that the limiting distribution $G$ must satisfy a stability property: $G^n(a_n x + b_n) = G(x)$. Analyzing the solutions to this functional equation reveals that only these three families (up to location and scale) are possible. The type of limit depends on the tail behavior of the original distribution $F$.
+\end{theorem}
+
+\begin{theorem}[Generalized Extreme Value Distribution]
+The three extreme value types can be unified as:
+$$G(x; \mu, \sigma, \xi) = \exp\left(-\left(1 + \xi\frac{x-\mu}{\sigma}\right)^{-1/\xi}\right)$$
+where $\mu \in \mathbb{R}$, $\sigma > 0$, and $\xi \in \mathbb{R}$ with the convention that when $\xi = 0$:
+$$G(x; \mu, \sigma, 0) = \exp\left(-\exp\left(-\frac{x-\mu}{\sigma}\right)\right)$$
+\end{theorem}
+
+\subsection{Large Deviations Theory}
+
+\begin{definition}[Rate Function]
+A function $I: \mathbb{R} \to [0, \infty]$ is a rate function if it is lower semicontinuous. It is a good rate function if its level sets $\{x: I(x) \leq a\}$ are compact for all $a < \infty$.
+\end{definition}
+
+\begin{theorem}[Cramér's Theorem]
+Let $X_1, X_2, \ldots$ be i.i.d. with moment generating function $M(t) = E[e^{tX_1}] < \infty$ for $t$ in a neighborhood of 0. Define the cumulant generating function $\Lambda(t) = \log M(t)$ and its Legendre transform $\Lambda^*(x) = \sup_t (tx - \Lambda(t))$.
+
+Then $\{S_n/n\}$ satisfies a large deviation principle with rate function $\Lambda^*$:
+\begin{enumerate}
+\item For any closed set $F$: $\limsup_{n \to \infty} \frac{1}{n} \log P(S_n/n \in F) \leq -\inf_{x \in F} \Lambda^*(x)$
+\item For any open set $G$: $\liminf_{n \to \infty} \frac{1}{n} \log P(S_n/n \in G) \geq -\inf_{x \in G} \Lambda^*(x)$
+\end{enumerate}
+\end{theorem}
+
+\subsection{Empirical Processes}
+
+\begin{definition}[Empirical Process]
+Let $X_1, \ldots, X_n$ be i.i.d. with CDF $F$. The empirical CDF is:
+$$F_n(x) = \frac{1}{n} \sum_{i=1}^n \mathbf{1}_{X_i \leq x}$$
+
+The empirical process is:
+$$\alpha_n(x) = \sqrt{n}(F_n(x) - F(x))$$
+\end{definition}
+
+\begin{theorem}[Glivenko-Cantelli Theorem]
+$$\sup_{x \in \mathbb{R}} |F_n(x) - F(x)| \stackrel{a.s.}{\to} 0$$
+
+\textbf{Sketch of Proof:} First, use the SLLN to show pointwise convergence at any fixed $x$. Then, use the monotonicity of CDFs and the fact that $F$ is a continuous map from a compact space to show that the convergence is uniform. For a rigorous argument, one typically shows convergence on a dense set of points and then extends.
+\end{theorem}
+
+\begin{theorem}[Donsker's Theorem]
+The empirical process $\alpha_n$ converges in distribution to a Brownian bridge $B^0$ in the space $D[-\infty, \infty]$ of càdlàg functions, where $B^0(t) = B(F(t)) - tB(1)$ and $B$ is standard Brownian motion.
+
+\textbf{Sketch of Proof:} The proof involves two main steps: 1) showing convergence of the finite-dimensional distributions of $\alpha_n$ to those of a Brownian bridge (using the multivariate CLT), and 2) proving that the sequence of processes $\{\alpha_n\}$ is tight, meaning it does not oscillate too wildly.
+\end{theorem}
+
+\begin{theorem}[Kolmogorov-Smirnov Test]
+Under the null hypothesis that the data comes from CDF $F_0$:
+$$\sqrt{n} \sup_{x} |F_n(x) - F_0(x)| \stackrel{d}{\to} \sup_{0 \leq t \leq 1} |B^0(t)|$$
+where the limiting distribution has CDF:
+$$P\left(\sup_{0 \leq t \leq 1} |B^0(t)| \leq x\right) = 1 - 2\sum_{k=1}^{\infty} (-1)^{k-1} e^{-2k^2x^2}$$
+
+\textbf{Sketch of Proof:} The convergence in distribution follows from Donsker's theorem and the continuous mapping theorem, as the supremum is a continuous functional. The distribution of the supremum of a Brownian bridge is a classical result derived using the reflection principle.
+\end{theorem}
+
+\subsection{Functional Central Limit Theorem}
+
+\begin{theorem}[Donsker's Invariance Principle]
+Let $X_1, X_2, \ldots$ be i.i.d. with $E[X_i] = 0$ and $\text{Var}(X_i) = \sigma^2 < \infty$. Define the partial sum process:
+$$S_n(t) = \frac{1}{\sigma\sqrt{n}} \sum_{i=1}^{\lfloor nt \rfloor} X_i + \frac{nt - \lfloor nt \rfloor}{\sigma\sqrt{n}} X_{\lfloor nt \rfloor + 1}$$
+
+Then $S_n \stackrel{d}{\to} B$ in $D[0,1]$, where $B$ is standard Brownian motion.
+
+\textbf{Sketch of Proof:} Similar to Donsker's theorem for empirical processes. One proves convergence of the finite-dimensional distributions to those of Brownian motion and then establishes tightness of the sequence of processes $\{S_n(t)\}$.
+\end{theorem}
+
+\subsection{Detailed Examples and Applications}
+
+\begin{example}[Martingale Application: Optional Stopping]
+Let $\{S_n\}$ be a simple symmetric random walk with $S_0 = 0$. Define the stopping time $\tau = \inf\{n: S_n = 1 \text{ or } S_n = -a\}$ for $a > 0$. Find $P(\tau < \infty)$ and $E[\tau]$.
+
+\textbf{Solution:}
+Since $\{S_n\}$ is a martingale and $\tau$ is a.s. finite, by the optional stopping theorem:
+$$E[S_\tau] = E[S_0] = 0$$
+
+Also, $S_\tau \in \{1, -a\}$, so:
+$$E[S_\tau] = 1 \cdot P(S_\tau = 1) + (-a) \cdot P(S_\tau = -a) = 0$$
+
+Since $P(S_\tau = 1) + P(S_\tau = -a) = 1$, we obtain:
+$$P(S_\tau = 1) = \frac{a}{a+1}, \quad P(S_\tau = -a) = \frac{1}{a+1}$$
+
+For the expected stopping time, consider $\{S_n^2 - n\}$, which is also a martingale. By the optional stopping theorem:
+$$E[S_\tau^2 - \tau] = 0 \Rightarrow E[S_\tau^2] = E[\tau]$$
+
+Since $S_\tau^2 = 1$ with probability $\frac{a}{a+1}$ and $S_\tau^2 = a^2$ with probability $\frac{1}{a+1}$:
+$$E[\tau] = E[S_\tau^2] = \frac{a}{a+1} \cdot 1 + \frac{1}{a+1} \cdot a^2 = \frac{a + a^2}{a+1} = a$$
+\end{example}
+
+\begin{example}[Characteristic Function and Limit Theory]
+Let $X_n \sim \text{Gamma}(n, n)$. Investigate the limiting behavior of $X_n - 1$ and find the correct normalization.
+
+\textbf{Solution:}
+For $X \sim \text{Gamma}(\alpha, \beta)$, we have $E[X] = \alpha/\beta$ and $\text{Var}(X) = \alpha/\beta^2$.
+
+Therefore: $E[X_n] = n/n = 1$ and $\text{Var}(X_n) = n/n^2 = 1/n$.
+
+The characteristic function of $\text{Gamma}(\alpha, \beta)$ is:
+$$\phi_X(t) = \left(1 - \frac{it}{\beta}\right)^{-\alpha}$$
+
+For $X_n$:
+$$\phi_{X_n}(t) = \left(1 - \frac{it}{n}\right)^{-n}$$
+
+For $X_n - 1$:
+$$\phi_{X_n - 1}(t) = e^{-it}\phi_{X_n}(t) = e^{-it}\left(1 - \frac{it}{n}\right)^{-n}$$
+
+As $n \to \infty$:
+$$\left(1 - \frac{it}{n}\right)^{-n} \to e^{it}$$
+
+Therefore:
+$$\phi_{X_n - 1}(t) \to e^{-it} \cdot e^{it} = 1$$
+
+This is the characteristic function of the degenerate distribution at 0, so $X_n - 1 \stackrel{d}{\to} 0$.
+
+The correct scaling for a non-trivial limit is:
+$$\sqrt{n}(X_n - 1) \stackrel{d}{\to} \mathcal{N}(0, 1)$$
+by the Central Limit Theorem.
+\end{example}
+
+\begin{example}[Conditional Expectation with Continuous Distributions]
+Let $(X, Y)$ be uniformly distributed on the unit disk $D = \{(x,y): x^2 + y^2 \leq 1\}$. Find $E[X^2 + Y^2 | X]$.
+
+\textbf{Solution:}
+The joint pdf is:
+$$f_{X,Y}(x,y) = \frac{1}{\pi} \mathbf{1}_{x^2 + y^2 \leq 1}$$
+
+The marginal pdf of $X$ is:
+$$f_X(x) = \int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} \frac{1}{\pi} dy = \frac{2\sqrt{1-x^2}}{\pi}$$
+for $|x| \leq 1$.
+
+The conditional pdf of $Y$ given $X = x$ is:
+$$f_{Y|X}(y|x) = \frac{f_{X,Y}(x,y)}{f_X(x)} = \frac{1/\pi}{2\sqrt{1-x^2}/\pi} = \frac{1}{2\sqrt{1-x^2}}$$
+for $|y| \leq \sqrt{1-x^2}$.
+
+This means $Y|X = x$ is uniform on $[-\sqrt{1-x^2}, \sqrt{1-x^2}]$.
+
+Computing the conditional expectation:
+\begin{align}
+E[Y^2|X = x] &= \int_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}} y^2 \cdot \frac{1}{2\sqrt{1-x^2}} dy\\
+&= \frac{1}{2\sqrt{1-x^2}} \cdot \left[\frac{y^3}{3}\right]_{-\sqrt{1-x^2}}^{\sqrt{1-x^2}}\\
+&= \frac{1}{2\sqrt{1-x^2}} \cdot \frac{2(\sqrt{1-x^2})^3}{3} = \frac{1-x^2}{3}
+\end{align}
+
+Therefore:
+$$E[X^2 + Y^2 | X] = X^2 + E[Y^2|X] = X^2 + \frac{1-X^2}{3} = \frac{3X^2 + 1 - X^2}{3} = \frac{2X^2 + 1}{3}$$
+\end{example}
+
+\begin{example}[Large Deviations Application]
+Let $X_1, X_2, \ldots$ be i.i.d. $\text{Bernoulli}(p)$ with $p \in (0,1)$. Use Cramér's theorem to find the rate function for the sample mean and compute the large deviation probability.
+
+\textbf{Solution:}
+For $X \sim \text{Bernoulli}(p)$:
+$$M(t) = E[e^{tX}] = (1-p) + pe^t$$
+$$\Lambda(t) = \log M(t) = \log((1-p) + pe^t)$$
+
+The rate function is the Legendre transform:
+$$\Lambda^*(x) = \sup_t (tx - \Lambda(t))$$
+
+Taking the derivative: $\frac{d}{dt}(tx - \Lambda(t)) = x - \frac{pe^t}{(1-p) + pe^t} = 0$
+
+This gives: $\frac{pe^t}{(1-p) + pe^t} = x$, so $e^t = \frac{x(1-p)}{p(1-x)}$
+
+Substituting back:
+$$\Lambda^*(x) = x\log\left(\frac{x}{p}\right) + (1-x)\log\left(\frac{1-x}{1-p}\right)$$
+
+This is the Kullback-Leibler divergence between $\text{Bernoulli}(x)$ and $\text{Bernoulli}(p)$.
+
+For large deviations: if $a > p$, then
+$$P\left(\frac{1}{n}\sum_{i=1}^n X_i \geq a\right) \approx e^{-n\Lambda^*(a)}$$
+\end{example}
+
+\subsection{Additional Advanced Probability Topics}
+
+\begin{theorem}[Borel-Cantelli Lemmas]
+Let $\{A_n\}$ be a sequence of events.
+
+\textbf{First Lemma:} If $\sum_{n=1}^{\infty} P(A_n) < \infty$, then $P(\limsup A_n) = 0$.
+
+\textbf{Second Lemma:} If the events are independent and $\sum_{n=1}^{\infty} P(A_n) = \infty$, then $P(\limsup A_n) = 1$.
+
+where $\limsup A_n = \bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} A_k$ (infinitely many $A_n$ occur).
+
+\textbf{Sketch of Proof:}
+\begin{enumerate}
+\item \textbf{First Lemma:} The probability of the tail event $\bigcup_{k=n}^\infty A_k$ is bounded by $\sum_{k=n}^\infty P(A_k)$, which goes to 0 as $n \to \infty$. The result follows.
+\item \textbf{Second Lemma:} Consider the complement event (finitely many $A_n$ occur). The probability of not occurring in the tail, $P(\bigcap_{k=n}^\infty A_k^c)$, is $\prod_{k=n}^\infty (1-P(A_k))$, which is bounded by $\exp(-\sum_{k=n}^\infty P(A_k))$. Since the sum diverges, this product is 0 for any $n$.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Three Series Theorem]
+Let $\{X_n\}$ be independent random variables. The series $\sum_{n=1}^{\infty} X_n$ converges almost surely if and only if all three series converge:
+\begin{enumerate}
+\item $\sum_{n=1}^{\infty} P(|X_n| > 1)$
+\item $\sum_{n=1}^{\infty} E[X_n \mathbf{1}_{|X_n| \leq 1}]$
+\item $\sum_{n=1}^{\infty} \text{Var}(X_n \mathbf{1}_{|X_n| \leq 1})$
+\end{enumerate}
+
+\textbf{Sketch of Proof:} The proof uses truncation. The first condition, by Borel-Cantelli, ensures that large deviations are rare. The convergence of the sum of truncated variables is then established by Kolmogorov's convergence criterion, which is linked to the convergence of the second two series (mean and variance).
+\end{theorem}
+
+\begin{theorem}[Kolmogorov's Zero-One Law]
+Let $\{X_n\}$ be independent random variables and let $\mathcal{T}$ be the tail $\sigma$-field:
+$$\mathcal{T} = \bigcap_{n=1}^{\infty} \sigma(X_n, X_{n+1}, \ldots)$$
+
+Then for any $A \in \mathcal{T}$, either $P(A) = 0$ or $P(A) = 1$.
+
+\textbf{Sketch of Proof:} A tail event $A$ is in $\sigma(X_n, X_{n+1}, \ldots)$ for all $n$. It is also independent of the finite sigma-algebra $\sigma(X_1, \ldots, X_{n-1})$. By letting $n\to\infty$, we see $A$ is independent of $\sigma(X_1, X_2, \ldots)$, which contains $A$ itself. Thus $A$ is independent of itself, which implies $P(A) = P(A \cap A) = P(A)^2$, so $P(A)$ must be 0 or 1.
+\end{theorem}
+
+\begin{definition}[Exchangeability]
+Random variables $X_1, X_2, \ldots, X_n$ are exchangeable if their joint distribution is invariant under permutations:
+$$(X_{\pi(1)}, \ldots, X_{\pi(n)}) \stackrel{d}{=} (X_1, \ldots, X_n)$$
+for any permutation $\pi$.
+\end{definition}
+
+\begin{theorem}[De Finetti's Theorem]
+An infinite sequence $\{X_n\}$ of exchangeable random variables can be represented as:
+$$X_n | \Theta = \theta \stackrel{iid}{\sim} F_\theta$$
+where $\Theta$ is a random variable and $F_\theta$ is a distribution depending on $\theta$.
+
+\textbf{Sketch of Proof:} The theorem connects exchangeability to conditional independence. The key idea is that the empirical distribution of the variables converges to a random measure, which represents the mixing distribution. The parameter $\Theta$ can be seen as the limit of some function of the observations, e.g., the sample mean for Bernoulli variables.
+\end{theorem}
+
+\begin{theorem}[Portmanteau Theorem]
+For probability measures $\{\mu_n\}$ and $\mu$ on a metric space, the following are equivalent:
+\begin{enumerate}
+\item $\mu_n \stackrel{w}{\to} \mu$ (weak convergence)
+\item $\int f d\mu_n \to \int f d\mu$ for all bounded continuous functions $f$
+\item $\limsup \mu_n(F) \leq \mu(F)$ for all closed sets $F$
+\item $\liminf \mu_n(G) \geq \mu(G)$ for all open sets $G$
+\item $\mu_n(A) \to \mu(A)$ for all $\mu$-continuity sets $A$
+\end{enumerate}
+
+\textbf{Sketch of Proof:} The proof consists of showing a cycle of implications, e.g., (1) $\Rightarrow$ (2) $\Rightarrow$ (3) $\Rightarrow$ (4) $\Rightarrow$ (5) $\Rightarrow$ (1). Each step uses fundamental properties of measures, continuous functions, open/closed sets, and their boundaries. For example, (2) $\Rightarrow$ (3) is shown by approximating the indicator function of a closed set from above by continuous functions.
+\end{theorem}
+
+\begin{example}[Renewal Theory Application]
+Consider a renewal process where inter-arrival times $\{T_n\}$ are i.i.d. with mean $\mu$ and finite variance. Let $N(t)$ be the number of renewals by time $t$.
+
+\textbf{Elementary Renewal Theorem:} $\lim_{t \to \infty} \frac{N(t)}{t} = \frac{1}{\mu}$ a.s.
+
+\textbf{Renewal Theorem:} If the inter-arrival distribution is non-lattice, then:
+$$\lim_{t \to \infty} E[N(t+h) - N(t)] = \frac{h}{\mu}$$
+
+This has applications in queueing theory, reliability, and insurance.
+\end{example}
+
+\begin{example}[Branching Process]
+Let $Z_n$ denote the population size at generation $n$ in a Galton-Watson branching process. Each individual produces offspring according to distribution $\{p_k\}$ with mean $m = \sum k p_k$.
+
+\textbf{Extinction Probability:} If $m \leq 1$, then $P(\text{extinction}) = 1$. If $m > 1$, then $P(\text{extinction}) = q < 1$, where $q$ is the smallest root of $s = \sum_{k=0}^{\infty} p_k s^k$.
+
+\textbf{Growth Rate:} If $m > 1$ and the process survives, then $Z_n/m^n$ converges to a positive random variable.
+\end{example}
+
+\part{Statistical Theory}
+
+\section{Distribution Theory and Fundamental Statistics}
+
+\subsection{Continuous Distribution Families}
+
+\subsubsection{Normal Distribution Family}
+
+\begin{definition}[Univariate Normal Distribution]
+A random variable $X$ follows a normal distribution with location parameter $\mu \in \mathbb{R}$ and scale parameter $\sigma^2 > 0$, denoted $X \sim \mathcal{N}(\mu, \sigma^2)$, if its probability density function is:
+$$f_X(x; \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right), \quad x \in \mathbb{R}$$
+\end{definition}
+
+\textbf{Detailed Parameter Analysis:}
+\begin{itemize}
+\item $\mu$: Location parameter determining the center of the distribution
+\item $\sigma^2$: Scale parameter controlling the spread; $\sigma$ is the standard deviation
+\item Support: $\mathcal{S} = \mathbb{R}$
+\item Mode: $x^* = \mu$
+\item Median: $\text{Med}(X) = \mu$
+\end{itemize}
+
+\begin{theorem}[Fundamental Properties of Normal Distribution]
+Let $X \sim \mathcal{N}(\mu, \sigma^2)$. Then:
+\begin{enumerate}
+\item \textbf{Moments:} 
+   \begin{align}
+   E[X] &= \mu\\
+   \text{Var}(X) &= \sigma^2\\
+   E[X^k] &= \begin{cases}
+   0 & \text{if } k \text{ is odd and } \mu = 0\\
+   (k-1)!! \sigma^k & \text{if } k \text{ is even and } \mu = 0
+   \end{cases}
+   \end{align}
+\item \textbf{Moment Generating Function:} 
+   $$M_X(t) = \exp(\mu t + \frac{\sigma^2 t^2}{2})$$
+\item \textbf{Characteristic Function:} 
+   $$\phi_X(t) = \exp(i\mu t - \frac{\sigma^2 t^2}{2})$$
+\item \textbf{Cumulant Generating Function:} 
+   $$K_X(t) = \mu t + \frac{\sigma^2 t^2}{2}$$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Linear Transformation Properties]
+Let $X \sim \mathcal{N}(\mu, \sigma^2)$ and define $Y = aX + b$ where $a \neq 0$ and $b$ are constants. Then:
+$$Y \sim \mathcal{N}(a\mu + b, a^2\sigma^2)$$
+
+More generally, if $\mathbf{X} = (X_1, \ldots, X_n)^T$ where $X_i \sim \mathcal{N}(\mu_i, \sigma_i^2)$ independently, and $\mathbf{a} = (a_1, \ldots, a_n)^T$, then:
+$$\mathbf{a}^T\mathbf{X} \sim \mathcal{N}\left(\sum_{i=1}^n a_i\mu_i, \sum_{i=1}^n a_i^2\sigma_i^2\right)$$
+
+\textbf{Sketch of Proof:} The easiest proof uses moment generating functions (MGFs). Find the MGF of $Y$, $M_Y(t) = E[e^{t(aX+b)}] = e^{tb}M_X(at)$. Substitute the MGF of a normal distribution and show the result is the MGF of another normal distribution with the specified parameters. The multivariate case is analogous.
+\end{theorem}
+
+\begin{theorem}[Multivariate Normal Distribution]
+A random vector $\mathbf{X} = (X_1, \ldots, X_p)^T$ follows a $p$-dimensional multivariate normal distribution with mean vector $\boldsymbol{\mu} \in \mathbb{R}^p$ and covariance matrix $\boldsymbol{\Sigma} \in \mathbb{R}^{p \times p}$ (positive definite), denoted $\mathbf{X} \sim \mathcal{N}_p(\boldsymbol{\mu}, \boldsymbol{\Sigma})$, if its joint pdf is:
+$$f_{\mathbf{X}}(\mathbf{x}) = \frac{1}{(2\pi)^{p/2}|\boldsymbol{\Sigma}|^{1/2}} \exp\left(-\frac{1}{2}(\mathbf{x} - \boldsymbol{\mu})^T\boldsymbol{\Sigma}^{-1}(\mathbf{x} - \boldsymbol{\mu})\right)$$
+\end{theorem}
+
+\subsubsection{Chi-Square Distribution}
+
+\begin{definition}[Chi-Square Distribution]
+Let $Z_1, Z_2, \ldots, Z_\nu$ be independent standard normal random variables. Then the random variable
+$$\chi^2 = \sum_{i=1}^{\nu} Z_i^2$$
+follows a chi-square distribution with $\nu$ degrees of freedom, denoted $\chi^2 \sim \chi^2(\nu)$.
+
+The probability density function is:
+$$f_{\chi^2}(x; \nu) = \frac{1}{2^{\nu/2}\Gamma(\nu/2)} x^{\nu/2-1} e^{-x/2}, \quad x > 0$$
+\end{definition}
+
+\textbf{Parameter Analysis:}
+\begin{itemize}
+\item $\nu \in \mathbb{N}$: Degrees of freedom parameter
+\item Support: $\mathcal{S} = (0, \infty)$
+\item Mode: $\max(0, \nu - 2)$
+\end{itemize}
+
+\begin{theorem}[Properties of Chi-Square Distribution]
+Let $X \sim \chi^2(\nu)$. Then:
+\begin{enumerate}
+\item \textbf{Moments:}
+   \begin{align}
+   E[X] &= \nu\\
+   \text{Var}(X) &= 2\nu\\
+   E[X^k] &= 2^k \frac{\Gamma(\nu/2 + k)}{\Gamma(\nu/2)}
+   \end{align}
+\item \textbf{Moment Generating Function:}
+   $$M_X(t) = (1 - 2t)^{-\nu/2}, \quad t < \frac{1}{2}$$
+\item \textbf{Additivity Property:} If $X_1 \sim \chi^2(\nu_1)$ and $X_2 \sim \chi^2(\nu_2)$ independently, then
+   $$X_1 + X_2 \sim \chi^2(\nu_1 + \nu_2)$$
+\item \textbf{Asymptotic Normality:} As $\nu \to \infty$,
+   $$\frac{\chi^2(\nu) - \nu}{\sqrt{2\nu}} \stackrel{d}{\to} \mathcal{N}(0,1)$$
+\end{enumerate}
+\end{theorem}
+
+\begin{lemma}[Cochran's Theorem]
+Let $\mathbf{X} \sim \mathcal{N}_n(\boldsymbol{\mu}, \sigma^2\mathbf{I})$ and let $\mathbf{A}_1, \ldots, \mathbf{A}_k$ be symmetric matrices such that:
+\begin{enumerate}
+\item $\sum_{i=1}^k \mathbf{A}_i = \mathbf{I}_n$
+\item $\sum_{i=1}^k \text{rank}(\mathbf{A}_i) = n$
+\end{enumerate}
+Then the quadratic forms $\mathbf{X}^T\mathbf{A}_i\mathbf{X}$ are independent and 
+$$\frac{\mathbf{X}^T\mathbf{A}_i\mathbf{X}}{\sigma^2} \sim \chi^2(\text{rank}(\mathbf{A}_i))$$
+
+\textbf{Sketch of Proof:} The proof uses matrix algebra and properties of idempotent matrices. One shows that the conditions imply that the matrices $\mathbf{A}_i$ are projectors onto orthogonal subspaces. The result then follows from the properties of projections of normal vectors.
+\end{lemma}
+
+\subsubsection{Student's t-Distribution}
+
+\begin{definition}[Student's t-Distribution]
+Let $Z \sim \mathcal{N}(0,1)$ and $V \sim \chi^2(\nu)$ be independent. Then the random variable
+$$T = \frac{Z}{\sqrt{V/\nu}}$$
+follows a Student's t-distribution with $\nu$ degrees of freedom, denoted $T \sim t(\nu)$.
+
+The probability density function is:
+$$f_T(t; \nu) = \frac{\Gamma((\nu+1)/2)}{\sqrt{\nu\pi}\Gamma(\nu/2)} \left(1 + \frac{t^2}{\nu}\right)^{-(\nu+1)/2}, \quad t \in \mathbb{R}$$
+\end{definition}
+
+\begin{theorem}[Properties of t-Distribution]
+Let $T \sim t(\nu)$. Then:
+\begin{enumerate}
+\item \textbf{Moments:}
+   \begin{align}
+   E[T] &= 0 \quad \text{if } \nu > 1\\
+   \text{Var}(T) &= \frac{\nu}{\nu-2} \quad \text{if } \nu > 2\\
+   E[|T|^k] &< \infty \quad \text{if } k < \nu
+   \end{align}
+\item \textbf{Symmetry:} $f_T(t) = f_T(-t)$ (symmetric about 0)
+\item \textbf{Limiting Behavior:} As $\nu \to \infty$, $t(\nu) \stackrel{d}{\to} \mathcal{N}(0,1)$
+\item \textbf{Tail Behavior:} $f_T(t) \sim \frac{C}{t^{\nu+1}}$ as $|t| \to \infty$ for some constant $C$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Relationship between Beta and Gamma]
+If $Y_1 \sim \text{Gamma}(\alpha, \theta)$ and $Y_2 \sim \text{Gamma}(\beta, \theta)$ independently, then:
+$$\frac{Y_1}{Y_1 + Y_2} \sim \text{Beta}(\alpha, \beta)$$
+
+\textbf{Sketch of Proof:} Use a bivariate transformation of variables. Let $X_1 = Y_1 / (Y_1 + Y_2)$ and $X_2 = Y_1 + Y_2$. Compute the Jacobian of this transformation and integrate out the variable $X_2$ from the joint density of $(X_1, X_2)$ to find the marginal density of $X_1$.
+\end{theorem}
+
+\subsubsection{F-Distribution}
+
+\begin{definition}[F-Distribution]
+Let $U \sim \chi^2(m)$ and $V \sim \chi^2(n)$ be independent. Then the random variable
+$$F = \frac{U/m}{V/n}$$
+follows an F-distribution with $(m,n)$ degrees of freedom, denoted $F \sim F(m,n)$.
+
+The probability density function is:
+$$f_F(x; m,n) = \frac{\Gamma((m+n)/2)}{\Gamma(m/2)\Gamma(n/2)} \left(\frac{m}{n}\right)^{m/2} \frac{x^{m/2-1}}{(1 + mx/n)^{(m+n)/2}}, \quad x > 0$$
+\end{definition}
+
+\begin{theorem}[Properties of F-Distribution]
+Let $F \sim F(m,n)$. Then:
+\begin{enumerate}
+\item \textbf{Moments:}
+   \begin{align}
+   E[F] &= \frac{n}{n-2} \quad \text{if } n > 2\\
+   \text{Var}(F) &= \frac{2n^2(m+n-2)}{m(n-2)^2(n-4)} \quad \text{if } n > 4
+   \end{align}
+\item \textbf{Reciprocal Property:} If $F \sim F(m,n)$, then $\frac{1}{F} \sim F(n,m)$
+\item \textbf{Relationship to t-Distribution:} If $T \sim t(n)$, then $T^2 \sim F(1,n)$
+\item \textbf{Limiting Behavior:} As $n \to \infty$, $mF \stackrel{d}{\to} \chi^2(m)$
+\end{enumerate}
+\end{theorem}
+
+\subsubsection{Gamma Distribution Family}
+
+\begin{definition}[Gamma Distribution]
+A random variable $X$ follows a Gamma distribution with shape parameter $\alpha > 0$ and rate parameter $\beta > 0$, denoted $X \sim \text{Gamma}(\alpha, \beta)$, if its pdf is:
+$$f_X(x; \alpha, \beta) = \frac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}, \quad x > 0$$
+where $\Gamma(\alpha) = \int_0^\infty t^{\alpha-1} e^{-t} dt$ is the Gamma function.
+\end{definition}
+
+\textbf{Alternative Parameterizations:}
+\begin{itemize}
+\item \textbf{Scale Parameterization:} $X \sim \text{Gamma}(\alpha, \theta)$ with scale $\theta = 1/\beta$
+\item \textbf{Mean-Variance Parameterization:} Given $\mu = E[X]$ and $\sigma^2 = \text{Var}(X)$:
+  $$\alpha = \frac{\mu^2}{\sigma^2}, \quad \beta = \frac{\mu}{\sigma^2}$$
+\end{itemize}
+
+\begin{theorem}[Properties of Gamma Distribution]
+Let $X \sim \text{Gamma}(\alpha, \beta)$. Then:
+\begin{enumerate}
+\item \textbf{Moments:}
+   \begin{align}
+   E[X^k] &= \frac{\Gamma(\alpha + k)}{\beta^k \Gamma(\alpha)} = \frac{(\alpha)_k}{\beta^k}\\
+   E[X] &= \frac{\alpha}{\beta}\\
+   \text{Var}(X) &= \frac{\alpha}{\beta^2}
+   \end{align}
+   where $(\alpha)_k = \alpha(\alpha+1)\cdots(\alpha+k-1)$ is the Pochhammer symbol.
+\item \textbf{Moment Generating Function:}
+   $$M_X(t) = \left(1 - \frac{t}{\beta}\right)^{-\alpha}, \quad t < \beta$$
+\item \textbf{Additivity:} If $X_1 \sim \text{Gamma}(\alpha_1, \beta)$ and $X_2 \sim \text{Gamma}(\alpha_2, \beta)$ independently, then
+   $$X_1 + X_2 \sim \text{Gamma}(\alpha_1 + \alpha_2, \beta)$$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Special Cases and Relationships]
+\begin{enumerate}
+\item \textbf{Exponential Distribution:} $\text{Gamma}(1, \lambda) = \text{Exp}(\lambda)$
+\item \textbf{Chi-Square Distribution:} $\chi^2(\nu) = \text{Gamma}(\nu/2, 1/2)$
+\item \textbf{Erlang Distribution:} $\text{Gamma}(k, \lambda)$ where $k \in \mathbb{N}$
+\end{enumerate}
+\end{theorem}
+
+\subsubsection{Beta Distribution}
+
+\begin{definition}[Beta Distribution]
+A random variable $X$ follows a Beta distribution with shape parameters $\alpha > 0$ and $\beta > 0$, denoted $X \sim \text{Beta}(\alpha, \beta)$, if its pdf is:
+$$f_X(x; \alpha, \beta) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)\Gamma(\beta)} x^{\alpha-1} (1-x)^{\beta-1}, \quad x \in (0,1)$$
+where $B(\alpha, \beta) = \frac{\Gamma(\alpha)\Gamma(\beta)}{\Gamma(\alpha + \beta)}$ is the Beta function.
+\end{definition}
+
+\begin{theorem}[Properties of Beta Distribution]
+Let $X \sim \text{Beta}(\alpha, \beta)$. Then:
+\begin{enumerate}
+\item \textbf{Moments:}
+   \begin{align}
+   E[X^k] &= \frac{B(\alpha + k, \beta)}{B(\alpha, \beta)} = \frac{(\alpha)_k}{(\alpha + \beta)_k}\\
+   E[X] &= \frac{\alpha}{\alpha + \beta}\\
+   \text{Var}(X) &= \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta + 1)}
+   \end{align}
+\item \textbf{Mode:} 
+   $$\text{Mode}(X) = \begin{cases}
+   \frac{\alpha - 1}{\alpha + \beta - 2} & \text{if } \alpha, \beta > 1\\
+   \text{undefined} & \text{otherwise}
+   \end{cases}$$
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}[Relationship between Beta and Gamma]
+If $Y_1 \sim \text{Gamma}(\alpha, \theta)$ and $Y_2 \sim \text{Gamma}(\beta, \theta)$ independently, then:
+$$\frac{Y_1}{Y_1 + Y_2} \sim \text{Beta}(\alpha, \beta)$$
+\end{theorem}
+
+\subsection{Discrete Distribution Families}
+
+\subsubsection{Multinomial Distribution}
+
+\begin{definition}[Multinomial Distribution]
+Consider $n$ independent trials, each resulting in one of $k$ possible outcomes with probabilities $p_1, p_2, \ldots, p_k$ where $\sum_{i=1}^k p_i = 1$. Let $X_i$ denote the number of times outcome $i$ occurs. Then $\mathbf{X} = (X_1, \ldots, X_k)$ follows a multinomial distribution:
+$$P(X_1 = n_1, \ldots, X_k = n_k) = \frac{n!}{n_1! n_2! \cdots n_k!} p_1^{n_1} p_2^{n_2} \cdots p_k^{n_k}$$
+where $\sum_{i=1}^k n_i = n$. We write $\mathbf{X} \sim \text{Multinomial}(n; p_1, \ldots, p_k)$.
+\end{definition}
+
+\begin{theorem}[Properties of Multinomial Distribution]
+Let $\mathbf{X} = (X_1, \ldots, X_k) \sim \text{Multinomial}(n; p_1, \ldots, p_k)$. Then:
+\begin{enumerate}
+\item \textbf{Marginal Distributions:} $X_i \sim \text{Binomial}(n, p_i)$
+\item \textbf{Moments:}
+   \begin{align}
+   E[X_i] &= np_i\\
+   \text{Var}(X_i) &= np_i(1 - p_i)\\
+   \text{Cov}(X_i, X_j) &= -np_ip_j \quad \text{for } i \neq j
+   \end{align}
+\item \textbf{Moment Generating Function:}
+   $$M_{\mathbf{X}}(\mathbf{t}) = \left(\sum_{i=1}^k p_i e^{t_i}\right)^n$$
+\end{enumerate}
+\end{theorem}
+
+\subsubsection{Poisson Distribution}
+
+\begin{definition}[Poisson Distribution]
+A random variable $X$ follows a Poisson distribution with rate parameter $\lambda > 0$, denoted $X \sim \text{Poisson}(\lambda)$, if its probability mass function is:
+$$P(X = k) = \frac{\lambda^k e^{-\lambda}}{k!}, \quad k = 0, 1, 2, \ldots$$
+\end{definition}
+
+\begin{theorem}[Properties of Poisson Distribution]
+Let $X \sim \text{Poisson}(\lambda)$. Then:
+\begin{enumerate}
+\item \textbf{Moments:} $E[X] = \text{Var}(X) = \lambda$
+\item \textbf{Moment Generating Function:} $M_X(t) = e^{\lambda(e^t - 1)}$
+\item \textbf{Additivity:} If $X_1 \sim \text{Poisson}(\lambda_1)$ and $X_2 \sim \text{Poisson}(\lambda_2)$ independently, then
+   $$X_1 + X_2 \sim \text{Poisson}(\lambda_1 + \lambda_2)$$
+\item \textbf{Poisson Approximation to Binomial:} If $X_n \sim \text{Binomial}(n, p_n)$ where $np_n \to \lambda$ as $n \to \infty$, then
+   $$X_n \stackrel{d}{\to} \text{Poisson}(\lambda)$$
+\end{enumerate}
+\end{theorem}
+
+\subsubsection{Negative Binomial Distribution}
+
+\begin{definition}[Negative Binomial Distribution]
+A random variable $X$ follows a negative binomial distribution if it represents the number of failures before the $r$-th success in a sequence of independent Bernoulli trials with success probability $p$. The pmf is:
+$$P(X = k) = \binom{k + r - 1}{k} p^r (1-p)^k, \quad k = 0, 1, 2, \ldots$$
+We write $X \sim \text{NegBin}(r, p)$.
+\end{definition}
+
+\begin{theorem}[Properties of Negative Binomial Distribution]
+Let $X \sim \text{NegBin}(r, p)$. Then:
+\begin{enumerate}
+\item \textbf{Moments:}
+   \begin{align}
+   E[X] &= \frac{r(1-p)}{p}\\
+   \text{Var}(X) &= \frac{r(1-p)}{p^2}
+   \end{align}
+\item \textbf{Moment Generating Function:}
+   $$M_X(t) = \left(\frac{p}{1 - (1-p)e^t}\right)^r, \quad t < -\log(1-p)$$
+\item \textbf{Additivity:} If $X_1 \sim \text{NegBin}(r_1, p)$ and $X_2 \sim \text{NegBin}(r_2, p)$ independently, then
+   $$X_1 + X_2 \sim \text{NegBin}(r_1 + r_2, p)$$
+\end{enumerate}
+\end{theorem}
+
+\subsection{Fundamental Statistics and Sample Properties}
+
+\begin{definition}[Sample Statistics]
+Let $X_1, X_2, \ldots, X_n$ be a random sample from a population with cdf $F$. Define:
+\begin{enumerate}
+\item \textbf{Sample Mean:} $\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i$
+\item \textbf{Sample Variance:} $S_n^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar{X}_n)^2$
+\item \textbf{Sample Standard Deviation:} $S_n = \sqrt{S_n^2}$
+\item \textbf{Order Statistics:} $X_{(1)} \leq X_{(2)} \leq \cdots \leq X_{(n)}$
+\item \textbf{Sample Median:} $\text{Med}_n = \begin{cases} X_{((n+1)/2)} & \text{if } n \text{ is odd}\\ \frac{X_{(n/2)} + X_{(n/2+1)}}{2} & \text{if } n \text{ is even} \end{cases}$
+\item \textbf{Sample Quantiles:} $Q_p = X_{(\lceil np \rceil)}$ for $p \in (0,1)$
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Sampling Distribution for Normal Population]
+Let $X_1, \ldots, X_n \stackrel{iid}{\sim} \mathcal{N}(\mu, \sigma^2)$. Then:
+\begin{enumerate}
+\item $\bar{X}_n \sim \mathcal{N}\left(\mu, \frac{\sigma^2}{n}\right)$
+\item $\frac{(n-1)S_n^2}{\sigma^2} \sim \chi^2(n-1)$
+\item $\bar{X}_n$ and $S_n^2$ are independent
+\item $\frac{\bar{X}_n - \mu}{S_n/\sqrt{n}} \sim t(n-1)$
+\item $\frac{\bar{X}_n - \mu}{\sigma/\sqrt{n}} \sim \mathcal{N}(0,1)$
+\end{enumerate}
+
+\textbf{Sketch of Proof:}
+\begin{enumerate}
+\item Proven using MGFs or the fact that linear combinations of normals are normal.
+\item, 3. Use an orthogonal transformation (e.g., Helmert) to show that $S_n^2$ can be written as a sum of $n-1$ squared independent standard normals, which is independent of $\bar{X}_n$. This demonstrates both the distribution and the independence.
+\item, 5. Follow directly from (1), (2), (3) and the definitions of the $t$ and normal distributions.
+\end{enumerate}
+\end{theorem}
+
+\section{Testing Theory}
+
+\subsection{Neyman-Pearson Paradigm}
+
+\begin{definition}[Hypothesis Testing Framework]
+A statistical hypothesis test consists of:
+\begin{enumerate}
+\item \textbf{Null Hypothesis:} $H_0: \theta \in \Theta_0 \subset \Theta$
+\item \textbf{Alternative Hypothesis:} $H_1: \theta \in \Theta_1 = \Theta \setminus \Theta_0$
+\item \textbf{Test Statistic:} A function $T(\mathbf{X})$ of the data
+\item \textbf{Critical Region:} $\mathcal{C} \subset \mathcal{X}$ where we reject $H_0$
+\item \textbf{Decision Rule:} Reject $H_0$ if $T(\mathbf{X}) \in \mathcal{C}$
+\end{enumerate}
+
+\textbf{Types of Hypotheses:}
+\begin{itemize}
+\item \textbf{Simple Hypothesis:} Specifies the distribution completely (e.g., $H_0: \theta = \theta_0$)
+\item \textbf{Composite Hypothesis:} Does not specify the distribution completely (e.g., $H_0: \theta \leq \theta_0$)
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Error Types and Power]
+\begin{enumerate}
+\item \textbf{Type I Error:} Rejecting $H_0$ when $H_0$ is true
+   $$\alpha(\theta) = P_\theta(T(\mathbf{X}) \in \mathcal{C}) \quad \text{for } \theta \in \Theta_0$$
+\item \textbf{Type II Error:} Accepting $H_0$ when $H_1$ is true
+   $$\beta(\theta) = P_\theta(T(\mathbf{X}) \notin \mathcal{C}) \quad \text{for } \theta \in \Theta_1$$
+\item \textbf{Power Function:} Probability of rejecting $H_0$
+   $$\pi(\theta) = P_\theta(T(\mathbf{X}) \in \mathcal{C}) = 1 - \beta(\theta) \quad \text{for } \theta \in \Theta_1$$
+\item \textbf{Size of Test:} $\alpha = \sup_{\theta \in \Theta_0} \alpha(\theta)$
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Neyman-Pearson Lemma]
+Consider testing simple hypotheses $H_0: \theta = \theta_0$ versus $H_1: \theta = \theta_1$. For a given significance level $\alpha \in (0,1)$, the most powerful test of size $\alpha$ has the form:
+
+Reject $H_0$ if and only if $\frac{L(\theta_1|\mathbf{x})}{L(\theta_0|\mathbf{x})} > k$
+
+where $k$ is chosen such that $P_{\theta_0}\left(\frac{L(\theta_1|\mathbf{X})}{L(\theta_0|\mathbf{X})} > k\right) = \alpha$.
+
+Furthermore, if the likelihood ratio $\Lambda(\mathbf{x}) = \frac{L(\theta_1|\mathbf{x})}{L(\theta_0|\mathbf{x})}$ has a continuous distribution under $H_0$, then this test is the unique most powerful test of size $\alpha$.
+\end{theorem}
+
+\begin{definition}[Uniformly Most Powerful Test]
+A test with critical region $\mathcal{C}$ is uniformly most powerful (UMP) of size $\alpha$ for testing $H_0: \theta \in \Theta_0$ versus $H_1: \theta \in \Theta_1$ if:
+\begin{enumerate}
+\item $\sup_{\theta \in \Theta_0} P_\theta(\mathbf{X} \in \mathcal{C}) = \alpha$
+\item For any other test with critical region $\mathcal{C}'$ satisfying $\sup_{\theta \in \Theta_0} P_\theta(\mathbf{X} \in \mathcal{C}') \leq \alpha$, we have
+$$P_\theta(\mathbf{X} \in \mathcal{C}) \geq P_\theta(\mathbf{X} \in \mathcal{C}') \quad \text{for all } \theta \in \Theta_1$$
+\end{enumerate}
+\end{definition}
+
+\subsection{Likelihood Ratio Tests}
+
+\begin{definition}[Likelihood Ratio Test Statistic]
+For testing $H_0: \theta \in \Theta_0$ versus $H_1: \theta \in \Theta_1$, the likelihood ratio test statistic is:
+$$\Lambda(\mathbf{x}) = \frac{\sup_{\theta \in \Theta_0} L(\theta|\mathbf{x})}{\sup_{\theta \in \Theta} L(\theta|\mathbf{x})}$$
+where $\Theta = \Theta_0 \cup \Theta_1$.
+
+The likelihood ratio test rejects $H_0$ when $\Lambda(\mathbf{x}) \leq c$ for some critical value $c$.
+\end{definition}
+
+\begin{theorem}[Wilks' Theorem]
+Under regularity conditions, when $H_0$ is true and $n \to \infty$:
+$$-2\log\Lambda(\mathbf{X}) \stackrel{d}{\to} \chi^2(r)$$
+where $r = \dim(\Theta) - \dim(\Theta_0)$ is the difference in dimensions between the parameter spaces.
+
+\textbf{Regularity Conditions:}
+\begin{enumerate}
+\item The true parameter value $\theta_0$ is an interior point of $\Theta_0$
+\item The likelihood function is differentiable with respect to $\theta$
+\item Standard regularity conditions for MLE consistency and asymptotic normality hold
+\end{enumerate}
+\end{theorem}
+
+\begin{example}[Normal Mean Test with Known Variance]
+Let $X_1, \ldots, X_n \stackrel{iid}{\sim} \mathcal{N}(\mu, \sigma_0^2)$ where $\sigma_0^2$ is known. Test $H_0: \mu = \mu_0$ versus $H_1: \mu \neq \mu_0$.
+
+\textbf{Solution:}
+\begin{enumerate}
+\item Likelihood function: $L(\mu|\mathbf{x}) = (2\pi\sigma_0^2)^{-n/2} \exp\left(-\frac{\sum_{i=1}^n(x_i-\mu)^2}{2\sigma_0^2}\right)$
+\item MLE: $\hat{\mu} = \bar{x}$
+\item Under $H_0$: $L(\mu_0|\mathbf{x}) = (2\pi\sigma_0^2)^{-n/2} \exp\left(-\frac{\sum_{i=1}^n(x_i-\mu_0)^2}{2\sigma_0^2}\right)$
+\item Likelihood ratio: $\Lambda(\mathbf{x}) = \exp\left(-\frac{n(\bar{x}-\mu_0)^2}{2\sigma_0^2}\right)$
+\item Test statistic: $-2\log\Lambda(\mathbf{x}) = \frac{n(\bar{x}-\mu_0)^2}{\sigma_0^2}$
+\item Under $H_0$: $\frac{\sqrt{n}(\bar{X}-\mu_0)}{\sigma_0} \sim \mathcal{N}(0,1)$, so $\frac{n(\bar{X}-\mu_0)^2}{\sigma_0^2} \sim \chi^2(1)$
+\end{enumerate}
+\end{example}
+
+\subsection{Common Statistical Tests}
+
+\subsubsection{Tests for Normal Populations}
+
+\begin{theorem}[One-Sample t-Test]
+Let $X_1, \ldots, X_n \stackrel{iid}{\sim} \mathcal{N}(\mu, \sigma^2)$ with $\sigma^2$ unknown. To test $H_0: \mu = \mu_0$:
+
+Test statistic: $T = \frac{\bar{X} - \mu_0}{S/\sqrt{n}} \stackrel{H_0}{\sim} t(n-1)$
+
+Critical regions:
+\begin{itemize}
+\item Two-sided: $|T| > t_{\alpha/2}(n-1)$
+\item One-sided: $T > t_\alpha(n-1)$ or $T < -t_\alpha(n-1)$
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}[Two-Sample t-Test (Equal Variances)]
+Let $X_1, \ldots, X_{n_1} \stackrel{iid}{\sim} \mathcal{N}(\mu_1, \sigma^2)$ and $Y_1, \ldots, Y_{n_2} \stackrel{iid}{\sim} \mathcal{N}(\mu_2, \sigma^2)$ independently. To test $H_0: \mu_1 = \mu_2$:
+
+Pooled variance estimator: $S_p^2 = \frac{(n_1-1)S_1^2 + (n_2-1)S_2^2}{n_1 + n_2 - 2}$
+
+Test statistic: $T = \frac{\bar{X} - \bar{Y}}{S_p\sqrt{1/n_1 + 1/n_2}} \stackrel{H_0}{\sim} t(n_1 + n_2 - 2)$
+\end{theorem}
+
+\begin{theorem}[Welch's t-Test (Unequal Variances)]
+For the same setup but with $\sigma_1^2 \neq \sigma_2^2$:
+
+Test statistic: $T = \frac{\bar{X} - \bar{Y}}{\sqrt{S_1^2/n_1 + S_2^2/n_2}}$
+
+Degrees of freedom (Satterthwaite approximation):
+$$\nu = \frac{(S_1^2/n_1 + S_2^2/n_2)^2}{\frac{(S_1^2/n_1)^2}{n_1-1} + \frac{(S_2^2/n_2)^2}{n_2-1}}$$
+
+Under $H_0$: $T \stackrel{d}{\approx} t(\nu)$
+\end{theorem}
+
+\subsubsection{Chi-Square Tests}
+
+\begin{theorem}[Goodness-of-Fit Test]
+Let $X_1, \ldots, X_n$ be observations falling into $k$ categories with observed frequencies $O_1, \ldots, O_k$ and expected frequencies $E_1, \ldots, E_k$ under $H_0$.
+
+Test statistic: $\chi^2 = \sum_{i=1}^k \frac{(O_i - E_i)^2}{E_i}$
+
+Under $H_0$ and for large $n$: $\chi^2 \stackrel{d}{\approx} \chi^2(k - 1 - p)$
+
+where $p$ is the number of parameters estimated from the data.
+\end{theorem}
+
+\begin{theorem}[Test of Independence]
+Consider a contingency table with $r$ rows and $c$ columns. Let $O_{ij}$ be the observed frequency in cell $(i,j)$ and $E_{ij} = \frac{n_{i \cdot} n_{\cdot j}}{n}$ be the expected frequency under independence.
+
+Test statistic: $\chi^2 = \sum_{i=1}^r \sum_{j=1}^c \frac{(O_{ij} - E_{ij})^2}{E_{ij}}$
+
+Under $H_0$ (independence): $\chi^2 \stackrel{d}{\approx} \chi^2((r-1)(c-1))$
+\end{theorem}
+
+\section{Parameter Estimation Theory}
+
+\subsection{Maximum Likelihood Estimation}
+
+\begin{definition}[Likelihood Function]
+Let $X_1, X_2, \ldots, X_n$ be a random sample from a distribution with pdf/pmf $f(x; \theta)$, where $\theta \in \Theta$ is an unknown parameter. The likelihood function is:
+$$L(\theta; \mathbf{x}) = \prod_{i=1}^n f(x_i; \theta)$$
+
+The log-likelihood function is:
+$$\ell(\theta; \mathbf{x}) = \log L(\theta; \mathbf{x}) = \sum_{i=1}^n \log f(x_i; \theta)$$
+\end{definition}
+
+\begin{definition}[Maximum Likelihood Estimator]
+The Maximum Likelihood Estimator (MLE) of $\theta$ is:
+$$\hat{\theta}_{MLE} = \arg\max_{\theta \in \Theta} L(\theta; \mathbf{X})$$
+
+If the likelihood is differentiable, the MLE often satisfies the likelihood equation:
+$$\frac{\partial \ell(\theta; \mathbf{x})}{\partial \theta} = 0$$
+\end{definition}
+
+\begin{theorem}[Properties of MLEs]
+Under regularity conditions, the MLE $\hat{\theta}_n$ satisfies:
+\begin{enumerate}
+\item \textbf{Consistency:} $\hat{\theta}_n \stackrel{p}{\to} \theta_0$ as $n \to \infty$
+\item \textbf{Asymptotic Normality:} 
+   $$\sqrt{n}(\hat{\theta}_n - \theta_0) \stackrel{d}{\to} \mathcal{N}(0, I^{-1}(\theta_0))$$
+   where $I(\theta_0)$ is the Fisher information
+\item \textbf{Asymptotic Efficiency:} Achieves the Cramér-Rao lower bound asymptotically
+\item \textbf{Invariance:} If $\tau = g(\theta)$ is a one-to-one function, then $\hat{\tau}_{MLE} = g(\hat{\theta}_{MLE})$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Fisher Information]
+The Fisher Information for a single observation is:
+$$I(\theta) = E\left[\left(\frac{\partial \log f(X; \theta)}{\partial \theta}\right)^2\right] = -E\left[\frac{\partial^2 \log f(X; \theta)}{\partial \theta^2}\right]$$
+
+For a sample of size $n$, the Fisher Information is $I_n(\theta) = nI(\theta)$.
+
+For multivariate parameter $\boldsymbol{\theta} = (\theta_1, \ldots, \theta_k)^T$, the Fisher Information Matrix is:
+$$I_{ij}(\boldsymbol{\theta}) = E\left[\frac{\partial \log f(X; \boldsymbol{\theta})}{\partial \theta_i} \frac{\partial \log f(X; \boldsymbol{\theta})}{\partial \theta_j}\right]$$
+\end{definition}
+
+\begin{theorem}[Cramér-Rao Lower Bound]
+Let $\hat{\theta}$ be any unbiased estimator of $\theta$. Then:
+$$\text{Var}(\hat{\theta}) \geq \frac{1}{nI(\theta)}$$
+
+An estimator achieving this bound is called efficient.
+\end{theorem}
+
+\begin{example}[MLE for Normal Distribution]
+Let $X_1, \ldots, X_n \stackrel{iid}{\sim} \mathcal{N}(\mu, \sigma^2)$.
+
+\textbf{Log-likelihood:}
+$$\ell(\mu, \sigma^2) = -\frac{n}{2}\log(2\pi) - \frac{n}{2}\log(\sigma^2) - \frac{1}{2\sigma^2}\sum_{i=1}^n(x_i - \mu)^2$$
+
+\textbf{Likelihood equations:}
+\begin{align}
+\frac{\partial \ell}{\partial \mu} &= \frac{1}{\sigma^2}\sum_{i=1}^n(x_i - \mu) = 0\\
+\frac{\partial \ell}{\partial \sigma^2} &= -\frac{n}{2\sigma^2} + \frac{1}{2(\sigma^2)^2}\sum_{i=1}^n(x_i - \mu)^2 = 0
+\end{align}
+
+\textbf{MLEs:}
+\begin{align}
+\hat{\mu}_{MLE} &= \bar{X} = \frac{1}{n}\sum_{i=1}^n X_i\\
+\hat{\sigma}^2_{MLE} &= \frac{1}{n}\sum_{i=1}^n(X_i - \bar{X})^2
+\end{align}
+
+\textbf{Fisher Information Matrix:}
+$$I(\mu, \sigma^2) = \begin{pmatrix} \frac{1}{\sigma^2} & 0 \\ 0 & \frac{1}{2\sigma^4} \end{pmatrix}$$
+\end{example}
+
+\subsection{Method of Moments}
+
+\begin{definition}[Method of Moments Estimator]
+Let $X_1, \ldots, X_n$ be a random sample from a distribution with $k$ unknown parameters $\theta_1, \ldots, \theta_k$. The $j$-th population moment is:
+$$\mu_j(\boldsymbol{\theta}) = E[X^j] = \int x^j f(x; \boldsymbol{\theta}) dx$$
+
+The $j$-th sample moment is:
+$$M_j = \frac{1}{n}\sum_{i=1}^n X_i^j$$
+
+The Method of Moments estimators $\hat{\theta}_1, \ldots, \hat{\theta}_k$ are obtained by solving:
+$$M_j = \mu_j(\hat{\theta}_1, \ldots, \hat{\theta}_k) \quad \text{for } j = 1, 2, \ldots, k$$
+\end{definition}
+
+\begin{theorem}[Asymptotic Properties of MOM Estimators]
+Under regularity conditions, Method of Moments estimators are:
+\begin{enumerate}
+\item \textbf{Consistent:} $\hat{\boldsymbol{\theta}}_n \stackrel{p}{\to} \boldsymbol{\theta}_0$
+\item \textbf{Asymptotically Normal:} $\sqrt{n}(\hat{\boldsymbol{\theta}}_n - \boldsymbol{\theta}_0) \stackrel{d}{\to} \mathcal{N}(\mathbf{0}, \mathbf{V})$
+\end{enumerate}
+where $\mathbf{V}$ can be computed using the delta method.
+\end{theorem}
+
+\subsection{Sufficient Statistics}
+
+\begin{definition}[Sufficient Statistic]
+A statistic $T(\mathbf{X})$ is sufficient for parameter $\theta$ if the conditional distribution of $\mathbf{X}$ given $T(\mathbf{X}) = t$ does not depend on $\theta$.
+
+Equivalently, by the Factorization Theorem, $T(\mathbf{X})$ is sufficient if and only if:
+$$f(\mathbf{x}; \theta) = g(T(\mathbf{x}); \theta) \cdot h(\mathbf{x})$$
+where $g$ depends on $\mathbf{x}$ only through $T(\mathbf{x})$ and $h$ does not depend on $\theta$.
+\end{definition}
+
+\begin{theorem}[Rao-Blackwell Theorem]
+Let $\hat{\theta}$ be any unbiased estimator of $\theta$ with finite variance, and let $T$ be a sufficient statistic for $\theta$. Define:
+$$\hat{\theta}^* = E[\hat{\theta} | T]$$
+
+Then:
+\begin{enumerate}
+\item $\hat{\theta}^*$ is unbiased: $E[\hat{\theta}^*] = \theta$
+\item $\hat{\theta}^*$ has smaller variance: $\text{Var}(\hat{\theta}^*) \leq \text{Var}(\hat{\theta})$
+\item $\hat{\theta}^*$ depends on the data only through $T$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Minimal Sufficient Statistic]
+A sufficient statistic $T$ is minimal sufficient if, for any other sufficient statistic $T'$, there exists a function $f$ such that $T = f(T')$ almost everywhere.
+\end{definition}
+
+\begin{definition}[Complete Statistic]
+A statistic $T$ is complete for the family $\{P_\theta : \theta \in \Theta\}$ if:
+$$E_\theta[g(T)] = 0 \text{ for all } \theta \in \Theta \implies P_\theta(g(T) = 0) = 1 \text{ for all } \theta \in \Theta$$
+for any measurable function $g$ such that $E_\theta[|g(T)|] < \infty$.
+\end{definition}
+
+\begin{theorem}[Lehmann-Scheffé Theorem]
+If $T$ is a complete and sufficient statistic for $\theta$, then there exists a unique unbiased estimator of $\theta$ based on $T$, and this estimator is the Uniformly Minimum Variance Unbiased Estimator (UMVUE).
+\end{theorem}
+
+\subsection{Confidence Intervals}
+
+\begin{definition}[Confidence Interval]
+A $100(1-\alpha)\%$ confidence interval for parameter $\theta$ is an interval $[L(\mathbf{X}), U(\mathbf{X})]$ such that:
+$$P_\theta(L(\mathbf{X}) \leq \theta \leq U(\mathbf{X})) = 1 - \alpha$$
+for all $\theta \in \Theta$.
+
+The quantity $1-\alpha$ is called the confidence level or confidence coefficient.
+\end{definition}
+
+\begin{theorem}[Confidence Intervals for Normal Parameters]
+Let $X_1, \ldots, X_n \stackrel{iid}{\sim} \mathcal{N}(\mu, \sigma^2)$.
+
+\textbf{Case 1: $\sigma^2$ known}
+$$\left[\bar{X} - z_{\alpha/2}\frac{\sigma}{\sqrt{n}}, \bar{X} + z_{\alpha/2}\frac{\sigma}{\sqrt{n}}\right]$$
+
+\textbf{Case 2: $\sigma^2$ unknown}
+$$\left[\bar{X} - t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}, \bar{X} + t_{\alpha/2}(n-1)\frac{S}{\sqrt{n}}\right]$$
+
+\textbf{Case 3: CI for $\sigma^2$}
+$$\left[\frac{(n-1)S^2}{\chi^2_{\alpha/2}(n-1)}, \frac{(n-1)S^2}{\chi^2_{1-\alpha/2}(n-1)}\right]$$
+\end{theorem}
+
+\begin{theorem}[Asymptotic Confidence Intervals]
+If $\hat{\theta}_n$ is asymptotically normal with $\sqrt{n}(\hat{\theta}_n - \theta) \stackrel{d}{\to} \mathcal{N}(0, \sigma^2(\theta))$, then an approximate $100(1-\alpha)\%$ confidence interval is:
+$$\left[\hat{\theta}_n - z_{\alpha/2}\frac{\hat{\sigma}(\hat{\theta}_n)}{\sqrt{n}}, \hat{\theta}_n + z_{\alpha/2}\frac{\hat{\sigma}(\hat{\theta}_n)}{\sqrt{n}}\right]$$
+where $\hat{\sigma}^2(\hat{\theta}_n)$ is a consistent estimator of $\sigma^2(\theta)$.
+\end{theorem}
+
+\section{Bayesian Statistics}
+
+\subsection{Fundamental Concepts}
+
+\begin{definition}[Bayesian Framework]
+In Bayesian statistics, the parameter $\theta$ is treated as a random variable with a prior distribution $\pi(\theta)$. Given data $\mathbf{x}$, we update our belief about $\theta$ using Bayes' theorem:
+
+\textbf{Bayes' Theorem:}
+$$\pi(\theta | \mathbf{x}) = \frac{f(\mathbf{x} | \theta) \pi(\theta)}{m(\mathbf{x})}$$
+
+where:
+\begin{itemize}
+\item $\pi(\theta)$ is the prior distribution
+\item $f(\mathbf{x} | \theta)$ is the likelihood function
+\item $\pi(\theta | \mathbf{x})$ is the posterior distribution
+\item $m(\mathbf{x}) = \int f(\mathbf{x} | \theta) \pi(\theta) d\theta$ is the marginal likelihood
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Prior Types]
+\begin{enumerate}
+\item \textbf{Informative Prior:} Incorporates substantial prior knowledge about $\theta$
+\item \textbf{Non-informative/Vague Prior:} Represents minimal prior knowledge
+\item \textbf{Improper Prior:} $\int \pi(\theta) d\theta = \infty$ (may still lead to proper posterior)
+\item \textbf{Jeffreys Prior:} $\pi(\theta) \propto \sqrt{I(\theta)}$ where $I(\theta)$ is Fisher information
+\item \textbf{Reference Prior:} Maximizes expected information gain
+\end{enumerate}
+\end{definition}
+
+\subsection{Conjugate Priors}
+
+\begin{definition}[Conjugate Prior]
+A prior distribution $\pi(\theta)$ is conjugate to the likelihood $f(\mathbf{x} | \theta)$ if the posterior distribution $\pi(\theta | \mathbf{x})$ belongs to the same family as the prior.
+\end{definition}
+
+\begin{theorem}[Beta-Binomial Conjugacy]
+Let $X \sim \text{Binomial}(n, p)$ and $p \sim \text{Beta}(\alpha, \beta)$. Then:
+$$p | X = x \sim \text{Beta}(\alpha + x, \beta + n - x)$$
+
+\textbf{Posterior moments:}
+\begin{align}
+E[p | X = x] &= \frac{\alpha + x}{\alpha + \beta + n}\\
+\text{Var}(p | X = x) &= \frac{(\alpha + x)(\beta + n - x)}{(\alpha + \beta + n)^2(\alpha + \beta + n + 1)}
+\end{align}
+\end{theorem}
+
+\begin{theorem}[Gamma-Poisson Conjugacy]
+Let $X \sim \text{Poisson}(\lambda)$ and $\lambda \sim \text{Gamma}(\alpha, \beta)$. Then:
+$$\lambda | X = x \sim \text{Gamma}(\alpha + x, \beta + 1)$$
+
+For $n$ observations $x_1, \ldots, x_n$:
+$$\lambda | \mathbf{x} \sim \text{Gamma}\left(\alpha + \sum_{i=1}^n x_i, \beta + n\right)$$
+\end{theorem}
+
+\begin{theorem}[Normal-Normal Conjugacy (Known Variance)]
+Let $X_1, \ldots, X_n \stackrel{iid}{\sim} \mathcal{N}(\mu, \sigma^2)$ with $\sigma^2$ known, and $\mu \sim \mathcal{N}(\mu_0, \tau^2)$. Then:
+$$\mu | \mathbf{x} \sim \mathcal{N}\left(\frac{\frac{\mu_0}{\tau^2} + \frac{n\bar{x}}{\sigma^2}}{\frac{1}{\tau^2} + \frac{n}{\sigma^2}}, \frac{1}{\frac{1}{\tau^2} + \frac{n}{\sigma^2}}\right)$$
+
+The posterior mean is a weighted average of the prior mean and sample mean:
+$$E[\mu | \mathbf{x}] = \frac{\sigma^2\mu_0 + n\tau^2\bar{x}}{\sigma^2 + n\tau^2}$$
+\end{theorem}
+
+\begin{theorem}[Inverse-Gamma-Normal Conjugacy (Unknown Variance)]
+Let $X_1, \ldots, X_n \stackrel{iid}{\sim} \mathcal{N}(\mu, \sigma^2)$ with $\mu$ known, and $\sigma^2 \sim \text{InverseGamma}(\alpha, \beta)$. Then:
+$$\sigma^2 | \mathbf{x} \sim \text{InverseGamma}\left(\alpha + \frac{n}{2}, \beta + \frac{1}{2}\sum_{i=1}^n(x_i - \mu)^2\right)$$
+\end{theorem}
+
+\subsection{Bayesian Inference}
+
+\begin{definition}[Bayesian Point Estimation]
+Common Bayesian point estimators:
+\begin{enumerate}
+\item \textbf{Posterior Mean:} $\hat{\theta}_{PM} = E[\theta | \mathbf{x}] = \int \theta \pi(\theta | \mathbf{x}) d\theta$
+\item \textbf{Posterior Median:} The 50th percentile of the posterior distribution
+\item \textbf{Maximum A Posteriori (MAP):} $\hat{\theta}_{MAP} = \arg\max_\theta \pi(\theta | \mathbf{x})$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Credible Intervals]
+A $100(1-\alpha)\%$ credible interval for $\theta$ is an interval $[L, U]$ such that:
+$$P(\theta \in [L, U] | \mathbf{x}) = 1 - \alpha$$
+
+\textbf{Types of credible intervals:}
+\begin{enumerate}
+\item \textbf{Equal-tailed:} $P(\theta < L | \mathbf{x}) = P(\theta > U | \mathbf{x}) = \alpha/2$
+\item \textbf{Highest Posterior Density (HPD):} Shortest interval containing $100(1-\alpha)\%$ of posterior probability
+\end{enumerate}
+\end{definition}
+
+\begin{theorem}[Bayesian Decision Theory]
+Let $\delta(\mathbf{x})$ be a decision rule and $L(\theta, \delta)$ be a loss function. The Bayes risk is:
+$$r_\pi(\delta) = \int \rho(\pi, \delta(\mathbf{x})) m(\mathbf{x}) d\mathbf{x}$$
+where $\rho(\pi, \delta(\mathbf{x})) = \int L(\theta, \delta(\mathbf{x})) \pi(\theta | \mathbf{x}) d\theta$ is the posterior expected loss.
+
+The Bayes estimator minimizes the Bayes risk.
+
+\textbf{Common loss functions:}
+\begin{enumerate}
+\item \textbf{Squared Error Loss:} $L(\theta, \delta) = (\theta - \delta)^2$ $\Rightarrow$ Bayes estimator = Posterior mean
+\item \textbf{Absolute Error Loss:} $L(\theta, \delta) = |\theta - \delta|$ $\Rightarrow$ Bayes estimator = Posterior median
+\item \textbf{0-1 Loss:} $L(\theta, \delta) = \mathbf{1}_{\{\theta \neq \delta\}}$ $\Rightarrow$ Bayes estimator = Posterior mode
+\end{enumerate}
+\end{theorem}
+
+\section{Large Sample Theory}
+
+\subsection{Modes of Convergence}
+
+\begin{definition}[Types of Convergence]
+Let $\{X_n\}$ be a sequence of random variables and $X$ be a random variable.
+
+\begin{enumerate}
+\item \textbf{Convergence in Distribution:} $X_n \stackrel{d}{\to} X$ if $F_n(x) \to F(x)$ at all continuity points of $F$
+\item \textbf{Convergence in Probability:} $X_n \stackrel{p}{\to} X$ if $P(|X_n - X| > \epsilon) \to 0$ for all $\epsilon > 0$
+\item \textbf{Almost Sure Convergence:} $X_n \stackrel{a.s.}{\to} X$ if $P(\lim_{n \to \infty} X_n = X) = 1$
+\item \textbf{Convergence in $L^p$:} $X_n \stackrel{L^p}{\to} X$ if $E[|X_n - X|^p] \to 0$
+\end{enumerate}
+
+\textbf{Relationships:}
+$$\text{a.s.} \Rightarrow \text{probability} \Rightarrow \text{distribution}$$
+$$L^p \Rightarrow \text{probability} \Rightarrow \text{distribution}$$
+\end{definition}
+
+\subsection{Law of Large Numbers}
+
+\begin{theorem}[Weak Law of Large Numbers (WLLN)]
+Let $X_1, X_2, \ldots$ be i.i.d. random variables with $E[X_i] = \mu$ and $\text{Var}(X_i) = \sigma^2 < \infty$. Then:
+$$\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i \stackrel{p}{\to} \mu$$
+\end{theorem}
+
+\begin{theorem}[Strong Law of Large Numbers (SLLN)]
+Let $X_1, X_2, \ldots$ be i.i.d. random variables with $E[|X_i|] < \infty$ and $E[X_i] = \mu$. Then:
+$$\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i \stackrel{a.s.}{\to} \mu$$
+
+\textbf{Sketch of Proof:} A common proof (for finite fourth moments) truncates the variables and uses the Borel-Cantelli lemma on the tail probabilities $P(|\bar{X}_n - \mu| > \epsilon)$. The general proof is more technical and often relies on Kolmogorov's maximal inequality.
+\end{theorem}
+
+\subsection{Central Limit Theorem}
+
+\begin{theorem}[Classical Central Limit Theorem]
+Let $X_1, X_2, \ldots$ be i.i.d. random variables with $E[X_i] = \mu$ and $0 < \text{Var}(X_i) = \sigma^2 < \infty$. Then:
+$$\frac{\sqrt{n}(\bar{X}_n - \mu)}{\sigma} \stackrel{d}{\to} \mathcal{N}(0,1)$$
+
+Equivalently: $\sqrt{n}(\bar{X}_n - \mu) \stackrel{d}{\to} \mathcal{N}(0, \sigma^2)$
+
+\textbf{Sketch of Proof:} Use characteristic functions (CFs). Taylor expand the CF of a single standardized variable around 0. The limit of the $n$-th power of this expansion converges to the CF of $\mathcal{N}(0,1)$, which is $e^{-t^2/2}$. Then apply the Lévy continuity theorem.
+\end{theorem}
+
+
+\begin{theorem}[Lyapunov Central Limit Theorem]
+Let $X_1, X_2, \ldots$ be independent random variables with $E[X_i] = \mu_i$ and $\text{Var}(X_i) = \sigma_i^2$. Define $S_n = \sum_{i=1}^n X_i$ and $s_n^2 = \sum_{i=1}^n \sigma_i^2$.
+
+If for some $\delta > 0$:
+$$\lim_{n \to \infty} \frac{1}{s_n^{2+\delta}} \sum_{i=1}^n E[|X_i - \mu_i|^{2+\delta}] = 0$$
+
+Then: $\frac{S_n - E[S_n]}{s_n} \stackrel{d}{\to} \mathcal{N}(0, 1)$
+
+\textbf{Sketch of Proof:} This is a variant of the CLT for non-identical variables. The Lyapunov condition is stronger than the Lindeberg condition and is often easier to check. It ensures that the individual random variables are uniformly small enough not to disrupt the convergence to normality. The proof follows a similar path using characteristic functions.
+\end{theorem}
+
+\begin{theorem}[Multivariate Central Limit Theorem]
+Let $\mathbf{X}_1, \mathbf{X}_2, \ldots$ be i.i.d. $p$-dimensional random vectors with $E[\mathbf{X}_i] = \boldsymbol{\mu}$ and $\text{Cov}(\mathbf{X}_i) = \boldsymbol{\Sigma}$. Then:
+$$\sqrt{n}(\overline{\mathbf{X}}_n - \boldsymbol{\mu}) \stackrel{d}{\to} \mathcal{N}_p(\mathbf{0}, \boldsymbol{\Sigma})$$
+
+\textbf{Sketch of Proof:} Use the Cramér-Wold device. Show that for any constant vector $\mathbf{c}$, the linear combination $\mathbf{c}^T(\overline{\mathbf{X}}_n - \boldsymbol{\mu})$ converges in distribution to a univariate normal distribution using the classical CLT. This implies the joint convergence to a multivariate normal distribution.
+\end{theorem}
+\subsection{Delta Method}
+
+\begin{theorem}[Univariate Delta Method]
+Let $\{X_n\}$ be a sequence of random variables such that:
+$$\sqrt{n}(X_n - \theta) \stackrel{d}{\to} \mathcal{N}(0, \sigma^2)$$
+
+If $g$ is differentiable at $\theta$ with $g'(\theta) \neq 0$, then:
+$$\sqrt{n}(g(X_n) - g(\theta)) \stackrel{d}{\to} \mathcal{N}(0, [g'(\theta)]^2 \sigma^2)$$
+\end{theorem}
+
+\begin{theorem}[Multivariate Delta Method]
+Let $\{\mathbf{X}_n\}$ be a sequence of $k$-dimensional random vectors such that:
+$$\sqrt{n}(\mathbf{X}_n - \boldsymbol{\theta}) \stackrel{d}{\to} \mathcal{N}_k(\mathbf{0}, \boldsymbol{\Sigma})$$
+
+If $\mathbf{g}: \mathbb{R}^k \to \mathbb{R}^m$ is differentiable at $\boldsymbol{\theta}$ with Jacobian matrix $\mathbf{J} = \nabla\mathbf{g}(\boldsymbol{\theta})$, then:
+$$\sqrt{n}(\mathbf{g}(\mathbf{X}_n) - \mathbf{g}(\boldsymbol{\theta})) \stackrel{d}{\to} \mathcal{N}_m(\mathbf{0}, \mathbf{J}\boldsymbol{\Sigma}\mathbf{J}^T)$$
+\end{theorem}
+
+\subsection{Asymptotic Properties of Estimators}
+
+\begin{definition}[Consistency]
+An estimator $\hat{\theta}_n$ is:
+\begin{enumerate}
+\item \textbf{Weakly consistent} if $\hat{\theta}_n \stackrel{p}{\to} \theta$
+\item \textbf{Strongly consistent} if $\hat{\theta}_n \stackrel{a.s.}{\to} \theta$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[Asymptotic Normality]
+An estimator $\hat{\theta}_n$ is asymptotically normal if:
+$$\sqrt{n}(\hat{\theta}_n - \theta) \stackrel{d}{\to} \mathcal{N}(0, \sigma^2(\theta))$$
+
+The quantity $\sigma^2(\theta)$ is called the asymptotic variance.
+\end{definition}
+
+\begin{definition}[Asymptotic Efficiency]
+Among all asymptotically normal estimators, $\hat{\theta}_n$ is asymptotically efficient if its asymptotic variance achieves the Cramér-Rao lower bound:
+$$\sigma^2(\theta) = \frac{1}{I(\theta)}$$
+where $I(\theta)$ is the Fisher information.
+\end{definition}
+
+\begin{theorem}[Asymptotic Properties of MLE]
+Under regularity conditions, the MLE $\hat{\theta}_n$ satisfies:
+\begin{enumerate}
+\item \textbf{Consistency:} $\hat{\theta}_n \stackrel{p}{\to} \theta_0$
+\item \textbf{Asymptotic Normality:} $\sqrt{n}(\hat{\theta}_n - \theta_0) \stackrel{d}{\to} \mathcal{N}(0, I^{-1}(\theta_0))$
+\item \textbf{Asymptotic Efficiency:} Achieves the Cramér-Rao lower bound
+\item \textbf{Invariance:} If $\tau = g(\theta)$, then $g(\hat{\theta}_n)$ is the MLE of $\tau$
+\end{enumerate}
+\end{theorem}
+
+\subsection{Chi-Square Approximations}
+
+\begin{theorem}[Pearson's Chi-Square Test]
+Consider $k$ multinomial cells with observed frequencies $O_1, \ldots, O_k$ and expected frequencies $E_1, \ldots, E_k$. Under the null hypothesis:
+$$\chi^2 = \sum_{i=1}^k \frac{(O_i - E_i)^2}{E_i} \stackrel{d}{\to} \chi^2(k-1-p)$$
+where $p$ is the number of parameters estimated from the data.
+\end{theorem}
+
+\begin{theorem}[Likelihood Ratio Test Asymptotic Distribution]
+For testing $H_0: \theta \in \Theta_0$ versus $H_1: \theta \in \Theta_1$:
+$$-2\log\Lambda_n \stackrel{d}{\to} \chi^2(r)$$
+where $r = \dim(\Theta_1) - \dim(\Theta_0)$ under $H_0$.
+\end{theorem}
+
+\begin{theorem}[Wald Test]
+For testing $H_0: g(\theta) = 0$ where $g: \mathbb{R}^k \to \mathbb{R}^r$:
+$$W_n = n \cdot g(\hat{\theta}_n)^T [G(\hat{\theta}_n) I^{-1}(\hat{\theta}_n) G(\hat{\theta}_n)^T]^{-1} g(\hat{\theta}_n) \stackrel{d}{\to} \chi^2(r)$$
+where $G(\theta) = \nabla g(\theta)$ and $I(\theta)$ is the Fisher information matrix.
+\end{theorem}
+
+\begin{theorem}[Score Test (Lagrange Multiplier Test)]
+For testing $H_0: g(\theta) = 0$:
+$$LM_n = S(\tilde{\theta}_n)^T I^{-1}(\tilde{\theta}_n) S(\tilde{\theta}_n) \stackrel{d}{\to} \chi^2(r)$$
+where $S(\theta) = \nabla \ell(\theta)$ is the score function and $\tilde{\theta}_n$ is the constrained MLE under $H_0$.
+\end{theorem}
+
+\section{Advanced Topics and Applications}
+
+\subsection{Exponential Families}
+
+\begin{definition}[Exponential Family]
+A family of distributions belongs to the exponential family if the pdf/pmf can be written as:
+$$f(x; \theta) = h(x) \exp\left[\eta(\theta) \cdot T(x) - A(\theta)\right]$$
+where:
+\begin{itemize}
+\item $\eta(\theta)$ is the natural parameter
+\item $T(x)$ is the sufficient statistic
+\item $A(\theta)$ is the log-partition function
+\item $h(x)$ is the base measure
+\end{itemize}
+
+For the canonical form with $\eta(\theta) = \theta$:
+$$f(x; \theta) = h(x) \exp[\theta \cdot T(x) - A(\theta)]$$
+\end{definition}
+
+\begin{theorem}[Properties of Exponential Families]
+For an exponential family in canonical form:
+\begin{enumerate}
+\item \textbf{Mean:} $E[T(X)] = A'(\theta)$
+\item \textbf{Variance:} $\text{Var}(T(X)) = A''(\theta)$
+\item \textbf{Cumulant Generating Function:} $K_{T(X)}(t) = A(\theta + t) - A(\theta)$
+\item \textbf{Fisher Information:} $I(\theta) = A''(\theta)$
+\item \textbf{Sufficient Statistic:} $\sum_{i=1}^n T(X_i)$ is sufficient for $\theta$
+\end{enumerate}
+\end{theorem}
+
+\subsection{Generalized Linear Models}
+
+\begin{definition}[Generalized Linear Model]
+A GLM consists of three components:
+\begin{enumerate}
+\item \textbf{Random Component:} $Y_i \sim$ exponential family with mean $\mu_i$
+\item \textbf{Systematic Component:} Linear predictor $\eta_i = \mathbf{x}_i^T \boldsymbol{\beta}$
+\item \textbf{Link Function:} $g(\mu_i) = \eta_i$ where $g$ is monotonic and differentiable
+\end{enumerate}
+
+The canonical link function satisfies $g(\mu) = \eta$ where $\eta$ is the natural parameter.
+\end{definition}
+
+\begin{example}[Common GLMs]
+\begin{enumerate}
+\item \textbf{Linear Regression:} $Y_i \sim \mathcal{N}(\mu_i, \sigma^2)$, $g(\mu_i) = \mu_i$ (identity link)
+\item \textbf{Logistic Regression:} $Y_i \sim \text{Bernoulli}(\pi_i)$, $g(\pi_i) = \log\frac{\pi_i}{1-\pi_i}$ (logit link)
+\item \textbf{Poisson Regression:} $Y_i \sim \text{Poisson}(\lambda_i)$, $g(\lambda_i) = \log(\lambda_i)$ (log link)
+\item \textbf{Gamma Regression:} $Y_i \sim \text{Gamma}(\alpha, \beta_i)$, $g(\mu_i) = \frac{1}{\mu_i}$ (inverse link)
+\end{enumerate}
+\end{example}
+
+\subsection{Robust Statistics}
+
+\begin{definition}[Breakdown Point]
+The breakdown point of an estimator is the maximum fraction of outliers that the estimator can handle before giving a completely unreliable result.
+
+Classical estimators:
+\begin{itemize}
+\item Sample mean: breakdown point = 0
+\item Sample median: breakdown point = 0.5
+\item Trimmed mean: breakdown point = trimming fraction
+\end{itemize}
+\end{definition}
+
+\begin{definition}[M-Estimators]
+M-estimators are defined as solutions to:
+$$\sum_{i=1}^n \psi\left(\frac{x_i - T}{\sigma}\right) = 0$$
+where $\psi$ is chosen to reduce the influence of outliers.
+
+Common choices:
+\begin{enumerate}
+\item \textbf{Huber:} $\psi(x) = \begin{cases} x & |x| \leq k \\ k \cdot \text{sign}(x) & |x| > k \end{cases}$
+\item \textbf{Tukey bisquare:} $\psi(x) = \begin{cases} x[1-(x/k)^2]^2 & |x| \leq k \\ 0 & |x| > k \end{cases}$
+\end{enumerate}
+\end{definition}
+
+\section{Competition Problem-Solving Strategies}
+
+\subsection{Common Problem Types}
+
+\begin{enumerate}
+\item \textbf{Distribution Recognition and Properties}
+   \begin{itemize}
+   \item Identify distribution families from MGF/characteristic functions
+   \item Calculate moments using recursion relations
+   \item Use transformation techniques for derived distributions
+   \end{itemize}
+
+\item \textbf{Maximum Likelihood Estimation}
+   \begin{itemize}
+   \item Set up likelihood equations systematically
+   \item Check second-order conditions for maxima
+   \item Use invariance property for parameter transformations
+   \item Apply Fisher information for asymptotic properties
+   \end{itemize}
+
+\item \textbf{Hypothesis Testing}
+   \begin{itemize}
+   \item Identify appropriate test statistics
+   \item Apply Neyman-Pearson lemma for simple vs. simple
+   \item Use likelihood ratio tests for composite hypotheses
+   \item Calculate power functions explicitly
+   \end{itemize}
+
+\item \textbf{Confidence Intervals}
+   \begin{itemize}
+   \item Pivot method for exact intervals
+   \item Delta method for transformed parameters
+   \item Bootstrap methods for complex statistics
+   \end{itemize}
+
+\item \textbf{Bayesian Analysis}
+   \begin{itemize}
+   \item Recognize conjugate prior families
+   \item Calculate posterior predictive distributions
+   \item Compare Bayesian and frequentist approaches
+   \end{itemize}
+
+\item \textbf{Asymptotic Theory}
+   \begin{itemize}
+   \item Apply appropriate convergence theorems
+   \item Use delta method for nonlinear transformations
+   \item Recognize when CLT conditions are satisfied
+   \end{itemize}
+\end{enumerate}
+
+\subsection{Key Formulas and Results}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Concept} & \textbf{Formula} \\
+\hline
+Fisher Information & $I(\theta) = -E\left[\frac{\partial^2 \log f(X;\theta)}{\partial \theta^2}\right]$ \\
+\hline
+Cramér-Rao Bound & $\text{Var}(\hat{\theta}) \geq \frac{1}{nI(\theta)}$ \\
+\hline
+MLE Asymptotic Dist. & $\sqrt{n}(\hat{\theta} - \theta) \stackrel{d}{\to} \mathcal{N}(0, I^{-1}(\theta))$ \\
+\hline
+Likelihood Ratio & $-2\log\Lambda \stackrel{d}{\to} \chi^2(r)$ \\
+\hline
+Delta Method & $\sqrt{n}(g(\hat{\theta}) - g(\theta)) \stackrel{d}{\to} \mathcal{N}(0, [g'(\theta)]^2/I(\theta))$ \\
+\hline
+Bayes Formula & $\pi(\theta|\mathbf{x}) \propto f(\mathbf{x}|\theta)\pi(\theta)$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Problem-Solving Checklist}
+
+\begin{enumerate}
+\item \textbf{Read Carefully:} Identify what is given and what needs to be found
+\item \textbf{Recognize Patterns:} Match the problem to standard statistical procedures
+\item \textbf{Check Assumptions:} Verify that conditions for theorems are satisfied
+\item \textbf{Calculate Systematically:} Show all intermediate steps clearly
+\item \textbf{Verify Results:} Check that answers make intuitive sense
+\item \textbf{Consider Alternatives:} Be aware of multiple solution approaches
+\end{enumerate}
+
+\end{document}

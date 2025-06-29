@@ -1,0 +1,49 @@
+\section{Bootstrap}
+
+The bootstrap method estimates standard errors and computes confidence intervals for a statistic $T_n=g(X_1, \ldots, X_n)$. It aims to estimate $\mathbb{V}_F(T_n)$, the variance of $T_n$, which depends on the unknown distribution function $F$. The method involves two steps:
+
+\begin{itemize}
+	\item Step 1: Estimate $\mathbb{V}_F(T_n)$ with $\mathbb{V}_{\widehat{F}_n}(T_n)$.
+	\item Step 2: Approximate $\mathbb{V}_{\widehat{F}_n}(T_n)$ using simulation.
+\end{itemize}
+
+For $T_n=\overline{X}_n$, Step 1 gives $\mathbb{V}_{\widehat{F}_n}(T_n) = \widehat{\sigma}^2 / n$. In more complex cases, Step 2 is needed to approximate $\mathbb{V}_{\widehat{F}_n}(T_n)$ because a simple formula cannot be derived.
+
+\subsection{Simulation}
+
+\begin{theorem}[Law of Large Numbers]
+Let $X_1, X_2, \ldots$ be i.i.d. with $\mathbb{E}\left(X_i\right)=\mu$ and $\mathbb{V}\left(X_i\right)=\sigma^2<\infty$. Let $\overline{X}_n=n^{-1} \sum_{i=1}^n X_i$. Then, for every $\epsilon>0$,
+\[
+\mathbb{P}\left(\left|\overline{X}_n-\mu\right|>\epsilon\right) \rightarrow 0
+\]as $n \rightarrow \infty$. We say that $\overline{X}_n$ converges in probability to $\mu$ and write $\overline{X}_n \xrightarrow{P} \mu$.
+\end{theorem}
+Let $Y_1,\dots,Y_n$ i.i.d. then by law of large numbers, $\overline{h(Y_i)}_n\to \mathbb{E}(h(Y))$. Let $h(y)=(y-\overline{Y})^2$, then
+\[
+\frac{1}{n}\sum_{j=1}^{n} (Y_j-\overline{Y})^2\overset{ P }{ \to }\mathbb{V}(Y)
+\]
+Hence, we can use the sample variance of the simulated values to approximate $\mathbb{V}(Y)$.
+
+\subsection{Bootstrap Variance Estimation}
+
+We can approximate $\mathbb{V}_{\widehat{F}_n}\left(T_n\right)$ by simulation. To simulate from the distribution of $T_n$ when the data are assumed to have distribution $\widehat{F}_n$, we simulate $X_1^*, \ldots, X_n^*$ from $\widehat{F}_n$ and then compute $T_n^*=g\left(X_1^*, \ldots, X_n^*\right)$. Drawing an observation from $\widehat{F}_n$ is equivalent to drawing one point at random from the original data set. Thus, to simulate $X_1^*, \ldots, X_n^* \sim \widehat{F}_n$ it suffices to draw $n$ observations with replacement from $X_1, \ldots, X_n$.
+
+Bootstrap Variance Estimation
+
+\begin{enumerate}
+	\item Draw $X_1^*, \ldots, X_n^* \sim \widehat{F}_n$.
+	\item Compute $T_n^*=g\left(X_1^*, \ldots, X_n^*\right)$.
+	\item Repeat steps 1 and $2, B$ times, to get $T_{n, 1}^*, \ldots, T_{n, B}^*$.
+	\item Let
+\end{enumerate}
+\[
+v_{\text {boot }}=\frac{1}{B} \sum_{b=1}^B\left(T_{n, b}^*-\frac{1}{B} \sum_{r=1}^B T_{n, r}^*\right)^2
+\]
+\subsection{Bootstrap Confidence Intervals}
+
+There are three methods to construct bootstrap confidence intervals.
+
+See All of Statistic p 111
+
+\begin{note}
+主要通过程序计算.
+\end{note}

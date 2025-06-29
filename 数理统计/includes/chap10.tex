@@ -1,0 +1,277 @@
+\section{Chapter 10 Summary: Nonparametric and Robust Statistics}
+
+This chapter introduces nonparametric procedures for location problems, emphasizing distribution-free tests and rank-based estimation. It covers asymptotic relative efficiencies (AREs) for comparing methods and aims for asymptotically efficient estimators.
+
+\subsection{10.1 Location Models}
+
+\begin{itemize}
+	\item \textbf{Functionals:} Parameters like mean ($\mu_X = \mathbb{E}(X)$) or median ($\xi = F_X^{-1}(1/2)$) are treated as functionals $T(F_X)$ of the cdf/pdf.
+	\item \textbf{Natural Nonparametric Estimators:}
+	\begin{itemize}
+		\item \textbf{Empirical Distribution Function (EDF):} $\widehat{F}_n(x) = n^{-1}[\#\{x_i \le x\}]$.
+		\item Induced estimator of $T(F)$ is $T(\widehat{F}_n)$.
+		\begin{itemize}
+			\item e.g., Sample mean $\overline{x}$ for $T(F_X)=\mathbb{E}(X)$.
+			\item e.g., Sample median $Q_2$ for $T(F_X)=F_X^{-1}(1/2)$.
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{Location Functional:} A functional $T(F_X)$ is a \textbf{location functional} if: 1. $Y=X+a \implies T(F_Y) = T(F_X)+a$; 2. $Y=aX \implies T(F_Y) = aT(F_X)$ for $a \neq 0$.
+	\item Mean and median are location functionals. Only the median among percentiles is a location functional.
+	\item \textbf{Location Model:} $X_i = \theta_X + \varepsilon_i$, where $\theta_X = T(F_X)$ is a chosen location functional, and $\varepsilon_i$ are iid with $T(F_\varepsilon)=0$. The pdf of $X_i$ is $f_X(x) = f(x - \theta_X)$, where $f$ is the pdf of $\varepsilon_i$.
+	\item \textbf{Symmetry:} If $X$ is symmetric about $a$, then any location functional $T(F_X) = a$.
+	\item \textbf{Scale Functional:} A functional $T(F_X)$ is a \textbf{scale functional} if: 1. $T(F_{aX}) = aT(F_X)$ for $a > 0$; 2. $T(F_{X+b}) = T(F_X)$ for all $b$; 3. $T(F_{-X}) = T(F_X)$.
+	\item Standard deviation and interquartile range are scale functionals.
+\end{itemize}
+
+\subsection{10.2 Sample Median and the Sign Test}
+
+Considers inference for the median $\theta$ using the location model $X_i = \theta + \varepsilon_i$, where $\varepsilon_i$ are iid with median 0.
+
+\begin{itemize}
+	\item \textbf{Sign Statistic:} For $H_0: \theta = \theta_0$ vs $H_1: \theta > \theta_0$.
+	\begin{itemize}
+		\item $S(\theta_0) = \#\{X_i > \theta_0\} = \sum I(X_i > \theta_0)$.
+		\item Null distribution: $S(\theta_0) \sim \text{Binomial}(n, 1/2)$ (distribution-free).
+		\item Test: Reject $H_0$ if $S(\theta_0) \ge c_\alpha$.
+		\item Large sample test: Standardized $S(\theta_0)$ is approx. $N(0,1)$.
+	\end{itemize}
+	\item \textbf{Two-sided test:} $H_0: \theta = \theta_0$ vs $H_1: \theta \neq \theta_0$. Reject if $S(\theta_0) \le c_1$ or $S(\theta_0) \ge n-c_1$.
+	\item \textbf{Properties:}
+	\begin{itemize}
+		\item The function $S(\theta) = \#\{X_i > \theta\}$ is a decreasing step function of $\theta$.
+		\item $P_{\theta}[S(0) \geq k] = P_{0}[S(-\theta) \geq k]$.
+		\item Power function $\gamma(\theta)$ for $H_1: \theta > \theta_0$ is nondecreasing. Test is unbiased. Allows $H_0: \theta \leq \theta_0$.
+		\item Under alternative $\theta_1$, $S(\theta_0) \sim \text{Binomial}(n, p_1)$ where $p_1 = P_{\theta_1}(X>\theta_0)$, not distribution-free.
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{10.2.1 Asymptotic Relative Efficiency (ARE)}
+
+\begin{itemize}
+	\item Sequence of local alternatives: $H_{1n}: \theta_n = \delta/\sqrt{n}$ (for $H_0: \theta=0$).
+	\item Asymptotic power: $\lim_{n \to \infty} \gamma(\theta_n) = 1 - \Phi(z_\alpha - \delta \tau_S^{-1})$, where $\tau_S = 1/[2f(0)]$.
+	\item \textbf{Efficacy $c_S$:} $c_S = 2f(0) = \tau_S^{-1}$. Asymptotic power is $1 - \Phi(z_\alpha - \delta c_S)$.
+	\item \textbf{Efficacy of $t$-test $c_t$:} $c_t = 1/\sigma$ (assuming symmetric errors, $\theta=$ mean, variance $\sigma^2$).
+	\item \textbf{ARE(Sign, $t$-test):} $\text{ARE}(S, t) = \sigma^2/\tau_S^2 = c_S^2/c_t^2$.
+	\begin{itemize}
+		\item \textbf{Normal data:} $\text{ARE}(S,t) = 2/\pi \approx 0.637$.
+		\item \textbf{Laplace data:} $\text{ARE}(S,t) = 2$.
+		\item \textbf{Contaminated normals:} $\text{ARE}(S,t)$ increases with contamination (heavier tails).
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{10.2.2 Estimating Equations Based on the Sign Test}
+
+\begin{itemize}
+	\item Estimator $\widehat{\theta}$ for median $\theta$ by minimizing $L_1$ norm: $\widehat{\theta} = \text{Argmin} \sum |X_i - \theta|$.
+	\item Leads to estimating equation $\sum \text{sgn}(X_i - \theta) = 0$, solved by sample median $Q_2$.
+	\item Also solves $S(\theta) \approx n/2$ (estimation by test inversion).
+	\item Asymptotic distribution of sample median: $\sqrt{n}(Q_2 - \theta) \to N(0, \tau_S^2)$, where $\tau_S = (2f(0))^{-1}$.
+\end{itemize}
+
+\subsubsection{10.2.3 Confidence Interval for the Median}
+
+\begin{itemize}
+	\item Invert sign test: $1-\alpha = P_\theta[c_1 < S(\theta) < n-c_1]$.
+	\item $c_1 < S(\theta) < n-c_1 \iff Y_{c_1+1} \le \theta < Y_{n-c_1}$.
+	\item \textbf{CI for $\theta$:} $[Y_{c_1+1}, Y_{n-c_1})$.
+	\item \textbf{Large sample approximation for $c_1$:} $c_1 \approx n/2 - z_{\alpha/2}\sqrt{n}/2 - 1/2$.
+\end{itemize}
+
+\subsection{10.3 Signed-Rank Wilcoxon Test}
+
+Assumes Model (10.2.1) and symmetric pdf $f(x)$ for errors $\varepsilon_i$. $\theta$ is the center of symmetry.
+Aims for higher efficiency than sign test, especially for near-normal data.
+
+\begin{itemize}
+	\item \textbf{Hypotheses (WLOG):} $H_0: \theta=0$ vs $H_1: \theta > 0$.
+	\item \textbf{Wilcoxon Signed-Rank Statistic $T$:} $T = \sum_{i=1}^n \text{sgn}(X_i) R(|X_i|)$, where $R(|X_i|)$ is rank of $|X_i|$ among absolute values.
+	\item \textbf{Alternative form $T^+$:} Sum of ranks of positive $X_i$. $T = 2T^+ - n(n+1)/2$.
+	\item \textbf{Null Distribution Properties:}
+	\begin{itemize}
+		\item $T$ (and $T^+$) is distribution-free under $H_0$.
+		\item $\mathbb{E}_{H_0}(T) = 0$, $\text{Var}_{H_0}(T) = n(n+1)(2n+1)/6$.
+		\item $\mathbb{E}_{H_0}(T^+) = n(n+1)/4$, $\text{Var}_{H_0}(T^+) = n(n+1)(2n+1)/24$.
+		\item Standardized $T$ (or $T^+$) is asymptotically $N(0,1)$. Distribution is symmetric.
+	\end{itemize}
+	\item \textbf{Walsh Averages:} $T^+ = \#_{i \le j} \{ (X_i+X_j)/2 > 0 \}$.
+	\item \textbf{Process $T^+(\theta)$:} $T^+(\theta) = \#_{i \le j} \{ (X_j+X_i)/2 > \theta \}$. Decreasing step function of $\theta$.
+	\item Power function is nondecreasing; test is unbiased.
+\end{itemize}
+
+\subsubsection{10.3.1 Asymptotic Relative Efficiency (Wilcoxon)}
+
+\begin{itemize}
+	\item For local alternatives $\theta_n = \delta/\sqrt{n}$, asymptotic power is $\lim_{n \to \infty} \gamma_{SR}(\theta_n) = 1 - \Phi(z_\alpha - \delta \tau_W^{-1})$, where $\tau_W = 1/[\sqrt{12}\int f^2(x)dx]$.
+	\item Efficacy $c_{T^+} = \tau_W^{-1} = \sqrt{12} \int f^2(x)dx$.
+	\item \textbf{ARE(Wilcoxon, $t$-test):} $\text{ARE}(W,t) = \sigma^2/\tau_W^2$.
+	\begin{itemize}
+		\item \textbf{Normal data:} $\text{ARE}(W,t) = 3/\pi \approx 0.955$. Highly efficient.
+		\item \textbf{Contaminated normals:} $\text{ARE}(W,t)$ often $>1$, increases with contamination.
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{10.3.2 Estimating Equations (Wilcoxon)}
+
+\begin{itemize}
+	\item \textbf{Hodges-Lehmann Estimator $\widehat{\theta}_W$:} Solves $T^+(\widehat{\theta}_W) = n(n+1)/4$.
+	\begin{itemize}
+		\item $\widehat{\theta}_W = \text{median}\{(X_i+X_j)/2\}$ (median of Walsh averages).
+	\end{itemize}
+	\item Asymptotic distribution of $\widehat{\theta}_W$: $\sqrt{n}(\widehat{\theta}_W - \theta) \to N(0, \tau_W^2)$.
+\end{itemize}
+
+\subsubsection{10.3.3 Confidence Interval for Median (Wilcoxon)}
+
+\begin{itemize}
+	\item Invert $T^+(\theta)$ test: $P_\theta[W_{c_{W1}+1} \le \theta < W_{m-c_{W1}}] = 1-\alpha$.
+	\item \textbf{CI for $\theta$:} $[W_{c_{W1}+1}, W_{m-c_{W1}})$, where $W_k$ is $k$-th ordered Walsh average, $m=n(n+1)/2$.
+	\item \textbf{Approx. for $c_{W1}$:} $c_{W1} \approx n(n+1)/4 - z_{\alpha/2}\sqrt{n(n+1)(2n+1)/24} - 1/2$.
+\end{itemize}
+
+\subsubsection{10.3.4 Monte Carlo Investigation}
+
+\begin{itemize}
+	\item Method to estimate finite sample relative efficiency (RE) of estimators.
+	\item $\widehat{\text{RE}}_n(\widehat{\theta}_1, \widehat{\theta}_2) = \text{MSE}_2 / \text{MSE}_1$.
+	\item \textbf{Example:} HL vs sample mean for contaminated normals shows simulation RE close to asymptotic ARE.
+\end{itemize}
+
+\subsection{10.4 Mann-Whitney-Wilcoxon (MWW) Procedure}
+
+Two independent samples: $X_1, ..., X_{n_1} \sim F(x)$ and $Y_1, ..., Y_{n_2} \sim G(x)$.
+Focus on shift model: $G(x) = F(x-\Delta)$. $H_0: \Delta=0$.
+
+\begin{itemize}
+	\item \textbf{MWW Statistic $W$:} $W = \sum_{j=1}^{n_2} R(Y_j)$, where $R(Y_j)$ is rank of $Y_j$ in combined sample ($n=n_1+n_2$).
+	\item Test for $H_1: \Delta > 0$: Reject $H_0$ if $W \ge c$.
+	\item \textbf{Null Distribution Properties:}
+	\begin{itemize}
+		\item $W$ is distribution-free under $H_0$.
+		\item $\mathbb{E}_{H_0}(W) = n_2(n+1)/2$.
+		\item $\text{Var}_{H_0}(W) = n_1 n_2 (n+1)/12$.
+		\item Standardized $W$ is asymptotically $N(0,1)$. Distribution is symmetric.
+	\end{itemize}
+	\item \textbf{Equivalent Statistic $U$:} $U = \#_{i,j}\{Y_j > X_i\}$. Then $W = U + n_2(n_2+1)/2$.
+	\begin{itemize}
+		\item $\mathbb{E}_{H_0}(U) = n_1n_2/2$. $\text{Var}_{H_0}(U) = n_1n_2(n+1)/12$.
+	\end{itemize}
+	\item \textbf{Process $U(\Delta)$:} $U(\Delta) = \#_{i,j}\{Y_j-X_i > \Delta\}$. Decreasing step function of $\Delta$.
+	\item Power function is nondecreasing; test is unbiased.
+\end{itemize}
+
+\subsubsection{10.4.1 Asymptotic Relative Efficiency (MWW)}
+
+\begin{itemize}
+	\item Local alternatives $\Delta_n = \delta/\sqrt{n}$. Assume $n_1/n \to \lambda_1, n_2/n \to \lambda_2$.
+	\item Efficacy $c_U = \sqrt{12\lambda_1\lambda_2} \int f^2(x)dx = \sqrt{\lambda_1\lambda_2}\tau_W^{-1}$.
+	\item Asymptotic power for MWW: $\lim_{n \to \infty} \gamma_U(\Delta_n) = 1 - \Phi(z_\alpha - c_U \delta)$.
+	\item \textbf{ARE(MWW, Two-Sample $t$-test):} $\text{ARE}(\text{MWW}, \text{LS}) = \sigma^2/\tau_W^2$.
+	\begin{itemize}
+		\item Same as one-sample Wilcoxon vs one-sample $t$-test.
+		\item \textbf{Normal data:} $\approx 0.955$.
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{10.4.2 Estimating Equations (MWW)}
+
+\begin{itemize}
+	\item \textbf{Hodges-Lehmann type estimator $\widehat{\Delta}_U$:} Solves $U(\widehat{\Delta}_U) = n_1n_2/2$.
+	\begin{itemize}
+		\item $\widehat{\Delta}_U = \text{median}_{i,j}\{Y_j-X_i\}$.
+	\end{itemize}
+	\item Asymptotic distribution of $\widehat{\Delta}_U$: Approx. $N(\Delta, \tau_W^2(1/n_1+1/n_2))$.
+\end{itemize}
+
+\subsubsection{10.4.3 Confidence Interval for Shift \texorpdfstring{$\Delta$}{Delta} (MWW)}
+
+\begin{itemize}
+	\item Invert $U(\Delta)$ test. \textbf{CI:} $[D_{c+1}, D_{n_1n_2-c})$, where $D_k$ is $k$-th ordered difference $Y_j-X_i$.
+	\item \textbf{Approx. for $c$:} $c \approx n_1n_2/2 - z_{\alpha/2}\sqrt{n_1n_2(n+1)/12} - 1/2$.
+\end{itemize}
+
+\subsubsection{10.4.4 Monte Carlo Investigation of Power}
+
+\begin{itemize}
+	\item Compares power of MWW and two-sample $t$-test for finite samples.
+	\item \textbf{Example:} Contaminated normal errors, MWW much more powerful than $t$-test.
+\end{itemize}
+
+\subsection{10.5 General Rank Scores}
+
+Addresses finding optimal distribution-free procedures. Focus on two-sample location problem.
+
+\begin{itemize}
+	\item \textbf{Score function $\varphi(u)$:} Nondecreasing on $(0,1)$, standardized ($\int\varphi du=0, \int\varphi^2 du=1$).
+	\item Scores $a_\varphi(i) = \varphi[i/(n+1)]$.
+	\item \textbf{Test Statistic $W_\varphi$:} $W_\varphi = \sum_{j=1}^{n_2} a_\varphi(R(Y_j))$. Reject $H_0: \Delta=0$ if $W_\varphi \ge c$.
+	\begin{itemize}
+		\item MWW is special case with $\varphi(u)=\sqrt{12}(u-1/2)$.
+	\end{itemize}
+	\item \textbf{Null Distribution:} $W_\varphi$ is distribution-free. $\mathbb{E}_{H_0}(W_\varphi)=0$. $\text{Var}_{H_0}(W_\varphi) = \frac{n_1n_2}{n(n-1)}s_a^2$, where $s_a^2 = \sum a_\varphi^2(i) \approx n$. Asymptotically normal.
+	\item Process $W_\varphi(\Delta) = \sum a_\varphi(R(Y_j-\Delta))$ is decreasing step function. Test is unbiased.
+\end{itemize}
+
+\subsubsection{10.5.1 Efficacy (General Scores)}
+
+\begin{itemize}
+	\item Efficacy $c_\varphi = \sqrt{\lambda_1\lambda_2} \int \varphi'[F(y)]f^2(y)dy$.
+	\item Asymptotic power: $\lim \gamma_\varphi(\Delta_n) = 1 - \Phi(z_\alpha - c_\varphi \delta)$.
+\end{itemize}
+
+\subsubsection{10.5.2 Estimating Equations (General Scores)}
+
+\begin{itemize}
+	\item Estimator $\widehat{\Delta}_\varphi$ solves $W_\varphi(\widehat{\Delta}_\varphi) \approx 0$.
+	\item Asymptotic distribution: Approx. $N(\Delta, \tau_\varphi^2(1/n_1+1/n_2))$, with $\tau_\varphi = [\int \varphi'[F(y)]f^2(y)dy]^{-1}$.
+	\item $c_\varphi = \sqrt{\lambda_1\lambda_2}\tau_\varphi^{-1}$.
+\end{itemize}
+
+\subsubsection{10.5.3 Optimization: Best Estimates}
+
+\begin{itemize}
+	\item \textbf{Goal:} Choose $\varphi$ to maximize $c_\varphi$.
+	\item \textbf{Optimal score function $\varphi_f(u)$:} $\varphi_f(u) = -\kappa \frac{f'(F^{-1}(u))}{f(F^{-1}(u))}$.
+	\item Max efficacy $c_{\varphi_f}$ corresponds to $\tau_{\varphi_f}^{-2} = I(f)$ (Fisher Information for location).
+	\item Estimator $\widehat{\Delta}_{\varphi_f}$ is asymptotically efficient (ARE=1 with MLE).
+	\item \textbf{Examples:}
+	\begin{itemize}
+		\item \textbf{Normal Scores:} For normal $f$, $\varphi_N(u) = \Phi^{-1}(u)$. Fully efficient at normal. $\text{ARE}(\widehat{\Delta}_N, \overline{Y}-\overline{X}) \ge 1$ for all symmetric dist.
+		\item \textbf{Wilcoxon Scores:} For logistic $f$, $\varphi_W(u) = \sqrt{12}(u-1/2)$. $\text{ARE}(\widehat{\Delta}_W, \overline{Y}-\overline{X}) \ge 0.864$ for symmetric dist.
+		\item \textbf{Sign Scores:} For Laplace $f$, $\varphi_S(u) = \text{sgn}(u-1/2)$. Estimator $\widehat{\Delta}_S = \text{median}\{Y_j\} - \text{median}\{X_i\}$. (Related to Mood's Median Test).
+	\end{itemize}
+\end{itemize}
+
+\subsection{10.6 Adaptive Procedures}
+
+Selects score function based on data, aiming to maintain $\alpha$ and improve power.
+
+\begin{itemize}
+	\item \textbf{Method:} Selector statistic $Q$ (function of order statistics, independent of test statistics $W_i$) chooses which $W_i$ to use. Overall significance level remains $\alpha$.
+	\item \textbf{Hogg's Adaptive Procedure for two samples:}
+	\begin{itemize}
+		\item Uses $Q_1$ (skewness) and $Q_2$ (tail weight) based on combined order statistics.
+		\item Selects one of four score functions: Wilcoxon, Sign, short-tailed, right-skewed.
+		\item R function \lstinline{hogg.test} in package \lstinline{npsm}.
+	\end{itemize}
+	\item Adaptive estimation is more complex, often uses residuals from an initial estimate.
+\end{itemize}
+
+\subsection{10.7 Simple Linear Model}
+
+Rank-based procedures for $Y_i = \alpha + \beta(x_i-\overline{x}) + \varepsilon_i$.
+
+\begin{itemize}
+	\item $H_0: \beta=0$.
+	\item \textbf{Test statistic} $T_\varphi = \sum (x_i-\overline{x})a_\varphi(R(Y_i))$.
+	\item \textbf{Null Distribution:} $\mathbb{E}_{H_0}(T_\varphi)=0$. $\text{Var}_{H_0}(T_\varphi) = \frac{s_a^2}{n-1}\sum(x_i-\overline{x})^2$. Asymptotically normal.
+	\item \textbf{Estimator} $\widehat{\beta}_\varphi$ solves $T_\varphi(\widehat{\beta}_\varphi) \approx 0$, where $T_\varphi(\beta) = \sum (x_i-\overline{x})a_\varphi(R(Y_i-x_i\beta))$.
+	\begin{itemize}
+		\item $T_\varphi(\beta)$ is decreasing step function of $\beta$.
+	\end{itemize}
+	\item \textbf{Intercept estimate:} $\widehat{\alpha} = \text{median}\{Y_i - \widehat{\beta}_\varphi(x_i-\overline{x})\}$.
+	\item \textbf{Efficacy} $c_T = \sigma_x \int \varphi'(F(y))f^2(y)dy$, where $\sigma_x^2 = \lim n^{-1}\sum(x_i-\overline{x})^2$.
+	\item \textbf{Asymptotic distribution of $\widehat{\beta}_\varphi$:} Approx. $N(\beta, \tau_\varphi^2/\sum(x_i-\overline{x})^2)$, with $\tau_\varphi = (\int \varphi'(F(y))f^2(y)dy)^{-1}$.
+	\item $\text{ARE}(\widehat{\beta}_\varphi, \widehat{\beta}_{LS}) = \sigma^2/\tau_\varphi^2$. Same as in location models.
+	\item \textbf{Computation} via \lstinline{Rfit} package.
+\end{itemize}

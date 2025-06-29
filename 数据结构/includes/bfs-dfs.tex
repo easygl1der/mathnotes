@@ -1,0 +1,122 @@
+\section{广度优先遍历和深度优先遍历}
+
+好的，我们再来通过一个例子介绍图论中的广度优先遍历 (BFS) 和深度优先遍历 (DFS)。
+
+假设我们有下面这样一个无向图：
+
+\begin{lstlisting}
+      A --- B
+      |   / | \
+      |  /  |  E
+      | /   | /
+      C --- D
+        \ /
+         F
+\end{lstlisting}
+\textbf{顶点 (Nodes):} A, B, C, D, E, F
+\textbf{边 (Edges):} (A,B), (A,C), (B,C), (B,D), (B,E), (C,D), (C,F), (D,E), (D,F)
+
+\subsection{广度优先遍历 (BFS - Breadth-First Search)}
+
+广度优先遍历从一个起始顶点开始，首先访问所有与起始顶点直接相邻的顶点，然后是与这些顶点相邻的未访问顶点，以此类推，像水波纹一样逐层向外扩展。它通常使用队列 (Queue) 来实现。
+
+\textbf{遍历步骤 (假设从顶点 A 开始，邻接点按字母顺序访问):}
+
+\begin{enumerate}
+	\item \textbf{访问 A}。将 A 标记为已访问，并将 A 入队。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A}
+		\item 队列: \lstinline{[A]}
+	\end{itemize}
+	\item \textbf{A 出队}。访问 A 所有未被访问的邻居：B 和 C。将它们标记为已访问，并按字母顺序入队。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A, B, C}
+		\item 队列: \lstinline{[B, C]}
+	\end{itemize}
+	\item \textbf{B 出队}。访问 B 所有未被访问的邻居 (A 已访问，C 已访问)：D 和 E。将它们标记为已访问，并按字母顺序入队。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A, B, C, D, E}
+		\item 队列: \lstinline{[C, D, E]}
+	\end{itemize}
+	\item \textbf{C 出队}。访问 C 所有未被访问的邻居 (A 已访问，B 已访问，D 已在队列中或已访问)：F。将 F 标记为已访问，并入队。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A, B, C, D, E, F}
+		\item 队列: \lstinline{[D, E, F]}
+	\end{itemize}
+	\item \textbf{D 出队}。访问 D 所有未被访问的邻居 (B 已访问，C 已访问，E 已在队列中或已访问，F 已在队列中或已访问)。没有新的未访问邻居。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A, B, C, D, E, F}
+		\item 队列: \lstinline{[E, F]}
+	\end{itemize}
+	\item \textbf{E 出队}。访问 E 所有未被访问的邻居 (B 已访问，D 已访问)。没有新的未访问邻居。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A, B, C, D, E, F}
+		\item 队列: \lstinline{[F]}
+	\end{itemize}
+	\item \textbf{F 出队}。访问 F 所有未被访问的邻居 (C 已访问，D 已访问)。没有新的未访问邻居。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A, B, C, D, E, F}
+		\item 队列: \lstinline{[]}
+	\end{itemize}
+\end{enumerate}
+
+队列为空，遍历结束。
+
+\textbf{BFS 最终访问顺序 (从 A 开始，邻接点按字母顺序):} \lstinline{A -> B -> C -> D -> E -> F}
+
+\subsection{深度优先遍历 (DFS - Depth-First Search)}
+
+深度优先遍历从一个起始顶点开始，沿着一条路径尽可能深地访问图中的顶点，直到到达末端（没有未访问的邻接点），然后回溯到上一个顶点，尝试访问其他未被探索的分支。它通常使用递归或栈 (Stack) 来实现。
+
+\textbf{遍历步骤 (假设从顶点 A 开始，邻接点按字母顺序选择进行深入):}
+
+\begin{enumerate}
+	\item \textbf{访问 A}。将 A 标记为已访问。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A}
+	\end{itemize}
+	\item 从 A 的未访问邻居中选择第一个 (B)。\textbf{递归访问 B}。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A, B}
+	\end{itemize}
+	\item 从 B 的未访问邻居中选择第一个 (A 已访问，C 未访问)。\textbf{递归访问 C}。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A, B, C}
+	\end{itemize}
+	\item 从 C 的未访问邻居中选择第一个 (A 已访问，B 已访问，D 未访问)。\textbf{递归访问 D}。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A, B, C, D}
+	\end{itemize}
+	\item 从 D 的未访问邻居中选择第一个 (B 已访问，C 已访问，E 未访问)。\textbf{递归访问 E}。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A, B, C, D, E}
+	\end{itemize}
+	\item E 没有未访问的邻居 (B 已访问，D 已访问)。\textbf{回溯到 D}。
+	\item 从 D 的其他未访问邻居中选择 (F 未访问)。\textbf{递归访问 F}。
+	\begin{itemize}
+		\item 访问顺序: \lstinline{A, B, C, D, E, F}
+	\end{itemize}
+	\item F 没有未访问的邻居 (C 已访问，D 已访问)。\textbf{回溯到 D}。
+	\item D 没有其他未访问的邻居。\textbf{回溯到 C}。
+	\item C 没有其他未访问的邻居。\textbf{回溯到 B}。
+	\item B 没有其他未访问的邻居。\textbf{回溯到 A}。
+	\item A 没有其他未访问的邻居。遍历结束。
+\end{enumerate}
+
+\textbf{DFS 最终访问顺序 (从 A 开始，邻接点按字母顺序优先深入):} \lstinline{A -> B -> C -> D -> E -> F}
+
+\textbf{注意：} 对于同一个图，DFS 的访问顺序可能会因为选择邻接点的顺序不同而有所不同。例如，如果在第 3 步，从 B 的邻居中先选择 D 而不是 C，那么 DFS 顺序就会改变：
+
+\begin{itemize}
+	\item A -> B -> D -> C -> F -> E (一种可能的顺序)
+	\item A -> B -> D -> E -> C -> F (另一种可能的顺序，取决于D之后先E还是先C，以及C之后先F)
+\end{itemize}
+
+\textbf{总结:}
+
+\begin{itemize}
+	\item \textbf{BFS} 像是在湖中扔石头，波纹逐圈扩散，它会先访问完所有距离起点为1的节点，再访问距离为2的节点，以此类推。
+	\item \textbf{DFS} 像是在走迷宫，会沿着一条路一直走到底，直到无路可走再返回上一个路口换条路继续。
+\end{itemize}
+
+希望这个例子能帮助您更好地理解这两种遍历方法！

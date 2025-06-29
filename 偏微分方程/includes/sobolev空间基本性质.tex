@@ -1,0 +1,325 @@
+\section{Sobolev空间基本性质}
+
+参见于品数学分析讲义
+
+\subsection{分布理论与 Fourier 变换的应用：Sobolev 空间及应用}
+
+在后面的课程中，我们会经常用所谓的 Planchrel 公式：对任意的 $f \in L^2\left(\mathbb{R}^n\right)$ ，我们有
+\[
+\|\widehat{f}\|_{L^2}^2=(2 \pi)^n\|f\|_{L^2}^2 \quad \Leftrightarrow \quad \int_{\mathbb{R}^n}|f(x)|^2 d x=\frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n}|\widehat{f}(\xi)|^2 d \xi .
+\]
+它的另外一个版本是说对任意的 $f, g \in L^2\left(\mathbb{R}^n\right)$ ，我们有
+\[
+(\widehat{f}, \widehat{g})_{L^2}=(2 \pi)^n(f, g)_{L^2} \Leftrightarrow \int_{\mathbb{R}^n} f(x) \overline{g(x)} d x=\frac{1}{(2 \pi)^n} \int_{\mathbb{R}^n} \widehat{f}(\xi) \overline{\bar{g}(\xi)} d \xi .
+\]
+这个公式我们之前已经证明过。
+
+我们现在引入 $\mathbb{R}^n$ 上的 Sobolev 空间的定义。
+
+\begin{definition}[指标为 $s$ 的 Sobolev 空间]
+给定 $s \in \mathbb{R}$，我们将把这个数称为是 \textbf{Sobolev 空间}的\textbf{指标}。我们考虑满足如下性质的缓增分布 $u \in \mathcal{S}^{\prime}\left(\mathbb{R}^n\right)$：
+	\begin{enumerate}
+		\item $\widehat{u} \in L_{\mathrm{loc}}^1\left(\mathbb{R}^n\right)$ 是局部可积的函数；
+		\item $\left(1+|\xi|^2\right)^{\frac{s}{2}} \widehat{u}(\xi)$ 是平方可积的函数。
+	\end{enumerate}
+对于这样的函数，我们定义其 Sobolev 范数为：
+\[
+\|u\|_{H^s}=\left(\int_{\mathbb{R}^n}\left(1+|\xi|^2\right)^s|\widehat{u}(\xi)|^2 d \xi\right)^{\frac{1}{2}}
+\]我们把所有满足上述条件的缓增分布的集合称作是一个\textbf{指标为 $s$ 的 Sobolev 空间}，这显然是一个复线性空间，我们用 $H^s\left(\mathbb{R}^n\right)$ 来表示。
+在 $H^s\left(\mathbb{R}^n\right)$ 上所赋予的范数与下面的内积是相容的：对任意的 $u, v \in H^s\left(\mathbb{R}^n\right)$，令
+\[
+(u, v)_{H^s}=\int_{\mathbb{R}^n}\left(1+|\xi|^2\right)^s \widehat{u}(\xi) \overline{\widehat{v}(\xi)} d \xi
+\]所以，$\left(H^s\left(\mathbb{R}^n\right),(\cdot, \cdot)_{H^s}\right)$ 是内积空间。
+\end{definition}
+我们注意到，当 $s=0$ 时，我们 $H^0(\mathbb{R}^n)$ 实际上就是 $L^2(\mathbb{R}^n)$ ，这由 Plancherel 公式立即就可以得到：
+\[
+u \in L^2\left(\mathbb{R}^n\right) \Leftrightarrow \widehat{u} \in L^2\left(\mathbb{R}^n\right)
+\]
+所以，
+\[
+H^0\left(\mathbb{R}^n\right)=L^2\left(\mathbb{R}^n\right)
+\]
+类似的，如果我们在频率空间 $\mathbb{R}_{\xi}^n$ 上考虑测度
+\[
+\mu_s=\left(1+|\xi|^2\right)^s d \xi
+\]
+那么，$u \in H^s\left(\mathbb{R}^n\right)$ 当且仅当 $\widehat{u} \in L^2\left(\mathbb{R}^n, d \mu_s\right)$ 。利用这个观察，我们现在证明：
+
+\begin{theorem}
+对任意的 $s \in \mathbb{R},\left(H^s\left(\mathbb{R}^n\right),(\cdot, \cdot)_{H^s}\right)$ 是 \textbf{Hilbert 空间}（即完备的内积空间）。
+\end{theorem}
+\begin{proof}
+假设 $\left\{u_k\right\}_{k \geqslant 1} \subset H^s\left(\mathbb{R}^n\right)$ 是 Cauchy 列，那么，根据定义，$\left\{\widehat{u_k}\right\}_{k \geqslant 1} \subset L^2\left(\mathbb{R}^n, d \mu_s\right)$ 是 Cauchy 列。利用 $L^2$ －空间的完备性，存在 $v(\xi) \in L^2\left(\mathbb{R}^n, d \mu_s\right)$ 作为上述序列的极限。我们用 $u(x) \in \mathcal{S}^{\prime}\left(\mathbb{R}^n\right)$ 表示它的 Fourier 逆变换，即
+\[
+\widehat{u}=v .
+\]
+那么，
+\[
+\lim _{k \rightarrow \infty}\left\|\widehat{u_k}-\widehat{u}\right\|_{L^2\left(\mathbb{R}^n, d \mu_s\right)}^2=0 \Leftrightarrow \lim _{k \rightarrow \infty}\left\|u_k-u\right\|_{H^s\left(\mathbb{R}^n\right)}^2=0
+\]
+这就证明了完备性。
+\end{proof}
+
+根据Sobolev空间的定义，我们知道$\left\{H^s\left(\mathbb{R}^n\right)\right\}_{s \in \mathbb{R}}$构成了一个下降的链，即对任意的$s, s^{\prime} \in \mathbb{R}$
+\[
+s \geqslant s^{\prime} \Rightarrow H^{s^{\prime}}\left(\mathbb{R}^n\right) \subset H^s\left(\mathbb{R}^n\right)
+\]
+我们观察到，Schwartz 函数生活在所有的Sobolev空间中：
+\[
+\mathcal{S}\left(\mathbb{R}^n\right) \subset \bigcap_{s \in \mathbb{R}} H^s\left(\mathbb{R}^n\right)
+\]
+\begin{proposition}
+假设 $m \in \mathbb{Z}_{\geqslant 1}$ 为正整数，那么，$H^m\left(\mathbb{R}^n\right)$ 有如下的等价刻画：
+\[
+H^m\left(\mathbb{R}^n\right)=\left\{u \in \mathcal{S}^{\prime}(\mathbb{R}) \mid \text { 对任意的多重指标 } \alpha,|\alpha| \leqslant m, \partial^\alpha u \in L^2\left(\mathbb{R}^n\right)\right\} \text {. }
+\]
+\end{proposition}
+这个证明是初等的.
+
+\subsection{Sobolev 空间的映射性质：定义 Fourier 乘子}
+
+受到 $\widehat{\frac{1}{i}\partial _ku}(\xi)=\xi \widehat{u}(\xi),\forall k\leq n$ 的启发，我们定义算子 $D_k=\frac{1}{i}\partial _k=-i\partial _k$，简记为 $D=\frac{1}{i}\partial$. 形式上，$D$ 对一个分布的作用在频率空间上看来就是乘以 $\xi$.
+
+\begin{definition}[Fourier 乘子]
+给定频率空间上的函数 $m(\xi)$，我们假设它是多项式增长的。对于任意的缓增分布 $u \in S^{\prime}\left(\mathbb{R}^n\right)$，我们定义
+\[
+m(D) u=\mathcal{F}^{-1}(m(\xi) \widehat{u}(\xi)) \quad \Leftrightarrow \quad \widehat{m(D) u}=m(\xi) \widehat{u}(\xi) .
+\]由于 $m(\xi)$ 是多项式增长的，所以，$m(\xi) \widehat{u}(\xi)$ 仍然是缓增分布，所以，如下的算子是良好定义的：
+\[
+m(D): \delta^{\prime}\left(\mathbb{R}^n\right) \rightarrow \delta^{\prime}\left(\mathbb{R}^n\right)
+\]
+\end{definition}
+\begin{example}
+我们先看几个简单的例子：
+	\begin{enumerate}
+		\item 当 $m(\xi)=\xi_k$ 时，其中 $k=1,2, \cdots, n$，我们有
+\[
+m(D)=\frac{1}{i} \partial_k=D_k .
+\]		\item 当 $m(\xi)=|\xi|^2$ 时，我们有
+\[
+m(D)=-\triangle .
+\]		\item 给定线性微分算子
+\[
+P=\sum_{|\alpha| \leqslant m} a_\alpha \partial^\alpha,
+\]它可以被视作是一个 Fourier 乘子 $m(D)$，其中
+\[
+m(\xi)=\sum_{|\alpha| \leqslant m} i^{|\alpha|} a_\alpha \xi^\alpha,
+\]		\item 算子 $(1-\triangle)^s$ 表示的是函数 $\left(1+|\xi|^2\right)^s$ 所对应的 Fourier 乘子。
+	\end{enumerate}
+\end{example}
+\begin{example}
+下面的Sobolev空间都定义在 $\mathbb{R}^n$ 上。
+	\begin{enumerate}
+		\item 对任意的$s<-\frac{n}{2}$，我们有
+	\end{enumerate}
+\[
+\delta_0 \in H^s\left(\mathbb{R}^n\right)
+\]实际上，我们只要说明下面的积分有限即可：
+\[
+\int_{\mathbb{R}^n}\left(1+|\xi|^2\right)^s \cdot 1 d \xi
+\]这在$s<-\frac{n}{2}$时是成立的。同样的推理表明，当$s \geqslant-\frac{n}{2}$时，$\delta_0 \notin H^s\left(\mathbb{R}^n\right)$。
+2.  常数值函数1不在任何的$H^s\left(\mathbb{R}^n\right)$中。特别地，这表明
+\[
+\bigcup_{s \in \mathbb{R}} H^s\left(\mathbb{R}^n\right) \varsubsetneqq \mathcal{S}^{\prime}\left(\mathbb{R}^n\right)
+\]
+\end{example}
+\subsection{Sobolev 空间在 Fourier 乘子下的映射性质}
+
+\begin{proposition}
+给定多项式增长的乘子函数 $m(\xi)$ ，其中，我们假设存在常数 $C$ 和 $p$ ，使得对任意的 $\xi \in \mathbb{R}^n$ ，我们都有
+\[
+|m(\xi)| \leqslant C(1+|\xi|)^p
+\]那么，对任意的 $s \in \mathbb{R}$ ，对任意的 $u \in H^s\left(\mathbb{R}^n\right), m(D) u \in H^{s-p}\left(\mathbb{R}^n\right)$ 。这就定义出有界（连续）线性映射：
+\[
+m(D): H^s\left(\mathbb{R}^n\right) \rightarrow H^{s-p}\left(\mathbb{R}^n\right)
+\]特别地，对任意的 $d$－阶的微分算子 $P$ ，对任意的 $s \in \mathbb{R}$ ，我们有连续线性映射
+\[
+P: H^s\left(\mathbb{R}^n\right) \rightarrow H^{s-d}\left(\mathbb{R}^n\right), \quad \forall s
+\]另外，对任意的 $s$ ，我们还有连续的线性同构：
+\[
+(1+\triangle)^{\frac{p}{2}}: H^s\left(\mathbb{R}^n\right) \rightarrow H^{s-p}\left(\mathbb{R}^n\right)
+\]其中，上述映射的逆映射是 $(1+\triangle)^{-\frac{p}{2}}$ 。\label{e86d38}
+\end{proposition}
+
+\begin{proof}
+对任意的 $u \in H^s\left(\mathbb{R}^n\right)$ ，我们首先证明 $m(D) u \in H^{s-p}\left(\mathbb{R}^n\right)$ ，其中 $m(\xi)$ 具有命题中所要求的多项式增长。根据 Planchrel 公式，我们有
+\[
+\begin{aligned}
+\|m(D) u\|_{H^{s-p}}^2 & =\int_{\mathbb{R}^n}\left(1+|\xi|^2\right)^{s-p}|m(\xi) \widehat{u}(\xi)|^2 d \xi \\
+& \leqslant C \int_{\mathbb{R}^n}\left(1+|\xi|^2\right)^{s-p}(1+|\xi|)^{2 p}|\widehat{u}(\xi)|^2 d \xi \\
+& \leqslant C^{\prime} \int_{\mathbb{R}^n}\left(1+|\xi|^2\right)^s|\widehat{u}(\xi)|^2 d \xi
+\end{aligned}
+\]
+所以，存在常数 $C_1$ ，使得
+\[
+\|m(D) u\|_{H^{s-p}} \leqslant C_1\|u\|_{H^s}
+\]
+这表明 $m(D)$ 是从 $H^s\left(\mathbb{R}^n\right)$ 到 $H^{s-p}\left(\mathbb{R}^n\right)$ 的连续线性映射。
+
+微分算子的情形是一个特例。为了说明 $m(D)=(1+\triangle)^{\frac{p}{2}}$ 有逆，我们用
+\[
+n(\xi)=(1+|\xi|)^{-\frac{p}{2}}
+\]
+作为乘子即可，这是因为
+\[
+\widehat{m(D) n(D)} u=(1+|\xi|)^{\frac{p}{2}}(1+|\xi|)^{-\frac{p}{2}} \widehat{u}(\xi)=\widehat{u}(\xi).
+\]
+命题得证。
+\end{proof}
+
+\subsection{稠密性定理}
+
+\begin{proposition}
+对每个指标 $s \in \mathbb{R}^n$，光滑有紧支集的函数 $C_0^{\infty}\left(\mathbb{R}^n\right)$ 在 $H^s\left(\mathbb{R}^n\right)$ 中是稠密的。
+\end{proposition}
+\begin{proof}
+我们首先证明 $\mathcal{S}\left(\mathbb{R}^n\right) \subset H^s\left(\mathbb{R}^n\right)$ 是稠密的，其中 $s \in \mathbb{R}$：这个论断对 $s=0$ 是正确的，因为 $C_0^{\infty}\left(\mathbb{R}^n\right)\subset \mathcal{S}(\mathbb{R}^{n})$ 在 $H^0\left(\mathbb{R}^n\right)=L^2\left(\mathbb{R}^n\right)$ 中是稠密的。由于
+\[
+(1-\triangle)^{-\frac{s}{2}}: H^0\left(\mathbb{R}^n\right) \rightarrow H^s\left(\mathbb{R}^n\right)
+\]
+是连续可逆的线性映射（是同胚）（因为 \cref{e86d38} ），所以 $\mathcal{S}\left(\mathbb{R}^n\right)$ 在这个算子下的像也是稠密的，然而，
+\[
+(1-\triangle)^{-\frac{s}{2}}\left(\mathcal{S}\left(\mathbb{R}^n\right)\right) \subset \mathcal{S}\left(\mathbb{R}^n\right)
+\]
+所以， $\mathcal{S}\left(\mathbb{R}^n\right) \subset H^s\left(\mathbb{R}^n\right)$ 是稠密的。
+
+\begin{note}
+在上面的论证中，$(1-\triangle)^{-\frac{s}{2}}$ 不一定把有紧支集的函数映射为有紧支集的函数，所以，我们的推理是对 $\mathcal{S}\left(\mathbb{R}^n\right)$ 进行的。
+\end{note}
+为了证明命题，我们只要说明在 $H^s\left(\mathbb{R}^n\right)$ 的意义下， $\mathcal{S}\left(\mathbb{R}^n\right)$ 中的任意一个函数 $f$ 都可以被 $C_0^{\infty}\left(\mathbb{R}^n\right)$ 的函数逼近。我们上次证明了存在常数 $C$，使得对任意的 $\psi \in \mathcal{S}\left(\mathbb{R}^n\right)$，我们有不等式
+\[
+\|\psi\|_{H^s} \leqslant C N_{s+n+1}(\psi)
+\]
+所以，对任意的 $f \in H^s\left(\mathbb{R}^n\right)$，我们先选取 $\psi \in \mathcal{S}\left(\mathbb{R}^n\right)$，使得
+\[
+\|f-\psi\|_{H^s}<\frac{\varepsilon}{2}
+\]
+再利用 $C_0^{\infty}\left(\mathbb{R}^n\right) \subset \mathcal{S}\left(\mathbb{R}^n\right)$ 的稠密性，选取 $\varphi \in C_0^{\infty}\left(\mathbb{R}^n\right)$，使得
+\[
+N_{s+n+1}(\psi-\varphi)<\frac{\varepsilon}{2 C}
+\]
+此时，我们有
+\[
+\|f-\varphi\|_{H^s}<\varepsilon
+\]
+这就证明了命题。
+\end{proof}
+我们下⾯证明著名的 Sobolev 嵌⼊定理（的⼀种形式）：
+
+\begin{theorem}[Sobolev 嵌入定理]
+假设指标 $s>\frac{n}{2}$ ，那么，每个 $u \in H^s\left(\mathbb{R}^n\right)$ 都落在 $L^{\infty}\left(\mathbb{R}^n\right)$ 中。进一步，我们有连续的线性嵌入
+\[
+\iota: H^s\left(\mathbb{R}^n\right) \hookrightarrow L^{\infty}\left(\mathbb{R}^n\right), \quad u \mapsto u
+\]即存在 $C_s$ ，使得对任意 $u \in H^s\left(\mathbb{R}^n\right)$ ，我们都有
+\[
+\|u\|_{L^{\infty}} \leqslant C_s\|u\|_{H^s}
+\]进一步，$u$ 是连续函数（可以在它的代表类中选到一个连续函数）并且在无穷远处的极限为零，即 $u \in C_{\circ}\left(\mathbb{R}^n\right)$。
+\end{theorem}
+\begin{remark}
+证明的想法比较简单：我们只要说明 $\widehat{u}$ 是一个 $L^1$ 函数即可，因为 Fourier 逆变换就把它还原成一个在 $\infty$ 处衰减的连续函数，从而是 $L^{\infty}$ 的函数。
+\end{remark}
+\begin{proof}
+根据 $u=\mathcal{F}^{-1}(\widehat{u})$ ，我们知道
+\[
+\|u\|_{L^{\infty}} \leqslant \frac{1}{(2 \pi)^n}\|\widehat{u}\|_{L^1}
+\]
+我们现在说明 $\|\widehat{u}(\xi)\|_{L^1}$ 被 $\|u\|_{H^s}$ 所控制。根据 $s>\frac{n}{2}$ ，我们可以 $\widehat{u}$ 写成两个平方可积的函数的乘积：
+\[
+\widehat{u}(\xi)=\underbrace{\left(1+|\xi|^2\right)^{\frac{s}{2}} \widehat{u}(\xi)}_{L^2} \cdot \underbrace{\left(1+|\xi|^2\right)^{-\frac{s}{2}}}_{L^2}
+\]
+前一部分根据 $u \in H^s\left(\mathbb{R}^n\right)$ 所以是 $L^2$ 的；后一部分根据 $s>\frac{n}{2}$ 所以是 $L^2$ 的。利用 Cauchy-Schwarz 不等式，我们有
+\[
+\|\widehat{u}(\xi)\|_{L^1} \leqslant\|u\|_{H^s}\left\|\left(1+|\xi|^2\right)^{-\frac{s}{2}}\right\|_{L^2}=C\|u\|_{H^s}
+\]
+所以，
+\[
+\|u\|_{L^{\infty}} \leqslant \frac{C}{(2 \pi)^n}\|u\|_{H^s}
+\]
+连续性的部分是明显的，因为
+\[
+\mathcal{F}^{-1}: L^1\left(\mathbb{R}_{\xi}^n\right) \longrightarrow C_{\circ}\left(\mathbb{R}_x^n\right)
+\]
+证明完毕。
+\end{proof}
+
+\begin{corollary}
+假设 $s>\frac{n}{2}+k$，其中 $k$ 为非负整数，那么，对任意的 $u \in H^s\left(\mathbb{R}^n\right)$，我们都有 $u \in C^k\left(\mathbb{R}^n\right)$。
+\end{corollary}
+\begin{proof}
+对任意的多重指标 $\alpha$，如果 $|\alpha| \leqslant k$，那么 $\partial^\alpha u \in H^{s-|\alpha|}\left(\mathbb{R}^n\right)$ 是连续函数，从而，$u \in C^k\left(\mathbb{R}^n\right)$ (用归纳法来证明会更严格一点)。
+\end{proof}
+
+\begin{remark}
+这个版本的 Sobolev 嵌入定理说的是，如果指标 $s$ 足够大，那么，函数 $u$ 就会非常光滑。
+\end{remark}
+\begin{remark}
+我们在作业中将构造函数局部可积的 $u \in H^{\frac{n}{2}}\left(\mathbb{R}^n\right)$ ，使得 $u \notin L^{\infty}\left(\mathbb{R}^n\right)$ 。换句话说，如下的嵌入并不成立：
+\[
+H^{\frac{n}{2}}\left(\mathbb{R}^n\right) \nrightarrow L^{\infty}\left(\mathbb{R}^n\right)
+\]这表明 Sobolev 嵌入的指标至少是 $\frac{n}{2}+\varepsilon$ ，其中 $\varepsilon>0$ 可以任意小。
+\end{remark}
+\subsection{Sobolev 空间的代数性质}
+
+下一个定理说的是如果指标 $s$ 足够大，那么，两个 $H^s$ 的函数的乘积也是 $H^s$ 的。这个定理在证明非线性偏微分方程的解的局部存在性时很有用。
+
+\begin{theorem}
+如果 $s>\frac{n}{2}$ ，那么，$H^s\left(\mathbb{R}^n\right)$ 是一个代数，即对任意的 $u, v \in H^s\left(\mathbb{R}^n\right)$ ，我们有 $u \cdot v \in$ $H^s\left(\mathbb{R}^n\right):$
+\[
+H^s\left(\mathbb{R}^n\right) \times H^s\left(\mathbb{R}^n\right) \xrightarrow{\times} H^s\left(\mathbb{R}^n\right)
+\]实际上，存在常数 $C_s$ ，使得对任意的 $u, v \in H^s\left(\mathbb{R}^n\right)$ ，我们有
+\[
+\|u \cdot v\|_{H^s} \leqslant C_s\|u\|_{H^s}\|v\|_{H^s}
+\]
+\end{theorem}
+\begin{note}
+Sobolev 不等式的⼀个重要的观点就是⽤函数以及它的导数的积分来控制函数的最⼤值.
+\end{note}
+\begin{proof}
+我们来计算 $u \cdot v$ 的 $H^s$－范数。由于在 Fourier 变换下，乘积变化为卷积，所以按照定义，我们有
+\[
+\begin{aligned}
+\|\overline{u} \cdot v\|_{H^s}^2 & =\int_{\mathbb{R}^n}\left(1+|\xi|^2\right)^s\left|\int_{\mathbb{R}^n} \widehat{u}(\xi-\eta) \widehat{v}(\eta) d \eta\right|^2 d \xi \\
+& \leqslant \int_{\mathbb{R}^n}\left(1+|\xi|^2\right)^s\left(\int_{\mathbb{R}^n}|\widehat{u}(\xi-\eta)||\widehat{v}(\eta)| d \eta\right)^2 d \xi
+\end{aligned}
+\]
+我们要把因子 $\left(1+|\xi|^2\right)^s$ 进行拆分。首先，对任意的 $s>0, a, b \geqslant 0$ ，我们显然有
+\[
+(a+b)^s \leqslant 2^s\left(a^s+b^s\right)
+\]
+所以，对任意的 $\xi, \eta \in \mathbb{R}^n$ ，我们有如下的不等式
+\[
+\begin{aligned}
+\left(1+|\xi|^2\right)^{\frac{s}{2}} & \leqslant\left(1+2|\xi-\eta|^2+2|\eta|^2\right)^{\frac{s}{2}} \leqslant 2^{\frac{s}{2}}\left(\left(1+|\xi-\eta|^2\right)+\left(1+|\eta|^2\right)\right)^{\frac{s}{2}} \\
+& \leqslant 2^{2 s}\left(\left(1+|\xi-\eta|^2\right)^{\frac{s}{2}}+\left(1+|\eta|^2\right)^{\frac{s}{2}}\right)
+\end{aligned}
+\]
+所以，我们就得到了
+\[
+\begin{aligned}
+\|\overline{u} \cdot v\|_{H^s}^2 & \left.\leqslant 2^{2 s} \int_{\mathbb{R}^n}\left(\int_{\mathbb{R}^n}\left(1+|\xi-\eta|^2\right)^{\frac{s}{2}}\left|\widehat{u}(\xi-\eta)\left\|\widehat{v}(\eta)\left|+\left(1+|\eta|^2\right)^{\frac{s}{2}}\right| \widehat{v}(\eta)\right\| \widehat{u}(\xi-\eta)\right|\right) d \eta\right)^2 d \xi \\
+& \leqslant 2^{2 s} \int_{\mathbb{R}^n}(\int_{\mathbb{R}^n} \underbrace{\left(1+|\xi-\eta|^2\right)^{\frac{s}{2}}|\widehat{u}(\xi-\eta)|}_{f(\xi-\eta)} \underbrace{|\widehat{v}(\eta)|}_{g(\eta)})^2+\left(\int_{\mathbb{R}^n}\left(1+|\eta|^2\right)^{\frac{s}{2}}|\widehat{v}(\eta)||\widehat{u}(\xi-\eta)|\right) d \eta)^2 d \xi
+\end{aligned}
+\]
+上面的表达式中本质上是两项，它们的结构是类似的，我们只要处理一项就好。我们现在利用第一项中的卷积结构来控制它。根据 $H^s$ 的定义，我们有
+\[
+f(\xi)=\left(1+|\xi|^2\right)^{\frac{s}{2}}|\widehat{u}(\xi)| \in L^2\left(\mathbb{R}_{\xi}^n\right)
+\]
+根据 $s>\frac{n}{2}$ ，我们在 Sobolev 不等式的证明中已经证明了 $g(\xi)=\widehat{v} \in L^1\left(\mathbb{R}^n\right)$ 。特别地，存在常数 $C_1$ 和 $C_2$ ，使得
+\[
+\|f\|_{L^2} \leqslant C_1\|\overline{u}\|_{H^s}, \quad\|g\|_{L^2} \leqslant C_2\|v\|_{H^s}
+\]
+我们观察到，上面就是控制 $f * g$ 的 $L^2$ 范数的大小。我们回忆上学期（5月 9 日的课程，利用 Fubini 定理）已经证明了
+\[
+L^1\left(\mathbb{R}^n\right) \times L^2\left(\mathbb{R}^n\right) \xrightarrow{*} L^2\left(\mathbb{R}^n\right)
+\]
+其中对任意的 $\varphi \in L^1\left(\mathbb{R}^n\right), \psi \in L^2\left(\mathbb{R}^n\right)$ ，我们有
+\[
+\|\varphi * \psi\|_{L^2} \leqslant\|\varphi\|_{L^1}\|\psi\|_{L^2}
+\]
+我们对 $\varphi=g$ 和 $\psi=f$ 运用这个不等式，就得到
+\[
+\|f * g\|_{L^2} \leqslant\|g\|_{L^1}\|f\|_{L^2} \leqslant C_1 C_2\|\overline{u}\|_{H^s}\|v\|_{H^s}
+\]
+\end{proof}
+
+实际上，我们还可以证明更强的结论：对任意的 $s>0, H^s\left(\mathbb{R}^n\right) \cap L^{\infty}\left(\mathbb{R}^n\right)$ 是一个代数。我们之后将利用频率空间的二进分解进行证明。

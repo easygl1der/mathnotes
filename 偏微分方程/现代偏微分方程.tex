@@ -1,0 +1,83 @@
+\documentclass{mynote}
+
+
+\begin{document}
+
+% \pagenumbering{Roman} % 设置页码格式为罗马数字
+% \setcounter{page}{1} % 将页码计数器设置为1
+% \tableofcontents % 生成目录
+\newpage % 插入新页
+\setcounter{page}{1} % 将页码计数器重置为1
+\pagenumbering{arabic} % 设置页码格式为阿拉伯数字
+
+\begin{definition}{广义函数（分布）}
+    开集$\Omega\subset \mathbb{R}^n$上的\textbf{广义函数（分布）}是拓扑线性空间$C^\infty_0(\Omega)$上所有连续线性泛函的集合。
+\end{definition}
+
+对 $\Omega$ 上的任意局部可积函数 $u \in L_{\mathrm{loc}}^1(\Omega)$ ，用同一记号 $u$ 表示由它所定义的 $C_0^{\infty}(\Omega)$ 上的下述泛函：
+\[
+    \langle u, \varphi\rangle=\int_{\Omega} u(x) \varphi(x) \mathrm{d} x, \quad \forall \varphi \in C_0^{\infty}(\Omega)
+\]
+
+设 $u$ 是 $\mathbf{R}^n$ 上的局部可积函数．如果存在非负整数 $m$ 和正数 $C, M$ 使成立
+\[
+    |u(x)| \leqslant C(1+|x|)^m, \quad \forall x \in \mathbf{R}^n, \quad|x| \geqslant M
+\]
+就称 $u$ 为\textbf{缓增函数}；如果存在正数 $M$ 使对任意正整数 $m$ 存在相应的常数 $C_m>0$使成立
+\[
+    |u(x)| \leqslant C_m(1+|x|)^{-m}, \quad \forall x \in \mathbf{R}^n, \quad|x| \geqslant M
+\]
+就称 $u$ 为\textbf{急降函数}．
+
+\begin{definition}{缓增分布}
+    对 $\mathbf{R}^n$ 上的分布 $u$ ，如果存在一组缓增的局部可积函数 $\left\{f_\alpha\right.$ ： $\left.\alpha \in \mathbf{Z}_{+}^n,|\alpha| \leqslant m\right\}$ 使成立
+$$
+u=\sum_{|\alpha| \leqslant m} \partial^\alpha f_\alpha \quad \text { (在 } \mathbf{R}^n \text { 上) },
+$$
+    就称 $u$ 为缓增广义函数，简称缓增广函． $\mathbf{R}^n$ 上的全体缓增广函组成的集合记作 $\cal{S}^{\prime}\left(\mathbf{R}^n\right)$ ．
+\end{definition}
+\begin{definition}{Schwartz空间}
+    对 $\varphi \in C^{\infty}\left(\mathbf{R}^n\right)$ ，如果它本身以及它的各阶偏导数都是急降函数，就称 $\varphi$ 为急降 $C^{\infty}$ 函数或 Schwartz 函数，其全体组成的集合记作 $\cal{S}\left(\mathbf{R}^n\right)$ ．
+\end{definition}
+\begin{lemma}
+    $C_0^{\infty}\left(\mathbf{R}^n\right)$ 在 $\cal{S}\left(\mathbf{R}^n\right)$ 中稠密．
+\end{lemma}
+
+\begin{proposition}
+    假设 $u \in \mathcal{S}^{\prime}\left(\mathbb{R}^n\right)$ 是调和的\textbf{缓增分布}，那么，$u$ 必然是 $\left(x_1, \cdots, x_n\right.$ 的）多项式函数。
+\end{proposition}
+
+\begin{proof}
+    由于 $u \in \mathcal{S}^{\prime}\left(\mathbb{R}^n\right)$ ，所以我们可以对它做 Fourier 变换。从而，
+$$
+\Delta u=0 \quad \Rightarrow \quad-|\xi|^2 \widehat{u}=0
+$$
+这表明(why?) $\operatorname{supp}(\widehat{u}) \subset\{0\}$ ，从而，
+$$
+\widehat{u}=\sum_{|\alpha| \leqslant m} c_\alpha \partial^\alpha \delta_0(\xi)
+$$
+对上式作 Fourier 逆变换：
+$$
+u=\sum_{|\alpha| \leqslant m} c_\alpha\left(\frac{\xi}{i}\right)^\alpha
+$$
+这就得到了要证明的结论。
+\end{proof}
+
+\begin{remark}
+    我们通常把$\operatorname{supp}(\widehat{u})$ 称为 $u$ 的\textbf{谱}并记作 $\operatorname{spec}(u)$ ．
+\end{remark}
+
+
+数学思想：在找到问题的解答之前，我们总是可以做各种（相对合理的）假设。这些额外的假设可能给出问题的一类解。通过做这样的假设得到的解有时候恰好是问题的所有解，也有可能不是所有的解，但是总是比没有找到解更令人欣慰。在英文的文献中，这种假设叫做 ansatz。在分析问题中，所谓的分离变量法就是这样的一种方法。我们将会看到，利用另一种预设，我们也可以得到 $\Delta$ 的基本解。
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

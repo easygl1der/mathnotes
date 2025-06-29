@@ -1,0 +1,287 @@
+\section{Chapter 8 Summary: Optimal Tests of Hypotheses}
+
+This chapter develops the theory of optimal hypothesis testing, building from the most powerful tests for simple hypotheses to uniformly most powerful tests, likelihood ratio tests, sequential tests, and minimax decision procedures.
+
+\subsection{8.1 Most Powerful Tests}
+
+\begin{itemize}
+	\item \textbf{Goal:} Find the "best" test for simple hypothesis $H_0: \theta = \theta'$ versus simple alternative $H_1: \theta = \theta''$.
+	\item \textbf{Critical Region:} A test is defined by its critical region $C$. The decision rule is:
+	\begin{itemize}
+		\item Reject $H_0$ if $\mathbf{X} \in C$
+		\item Retain $H_0$ if $\mathbf{X} \in C^c$
+	\end{itemize}
+	\item \textbf{Error Types:}
+	\begin{itemize}
+		\item Type I Error: Reject $H_0$ when $H_0$ is true, probability = $\alpha = \max_{\theta \in \omega_0} P_\theta(\mathbf{X} \in C)$
+		\item Type II Error: Accept $H_0$ when $H_1$ is true, probability = $\beta$
+		\item Power Function: $\gamma_C(\theta) = P_\theta(\mathbf{X} \in C)$ for $\theta \in \omega_1$
+	\end{itemize}
+\end{itemize}
+
+\begin{definition}[Best Critical Region]
+A critical region $C$ is a \textbf{best critical region} of size $\alpha$ for testing $H_0: \theta = \theta'$ against $H_1: \theta = \theta''$ if:
+	\begin{enumerate}
+		\item $P_{\theta'}[\mathbf{X} \in C] = \alpha$
+		\item For every other region $A$ with $P_{\theta'}[\mathbf{X} \in A] = \alpha$: $P_{\theta''}[\mathbf{X} \in C] \geq P_{\theta''}[\mathbf{X} \in A]$
+	\end{enumerate}
+\end{definition}
+\begin{theorem}[Neyman-Pearson Theorem]
+Let $C$ be a subset of the sample space such that:
+	\begin{enumerate}
+		\item $\frac{L(\theta'; \mathbf{x})}{L(\theta''; \mathbf{x})} \leq k$ for each $\mathbf{x} \in C$
+		\item $\frac{L(\theta'; \mathbf{x})}{L(\theta''; \mathbf{x})} \geq k$ for each $\mathbf{x} \in C^c$
+		\item $\alpha = P_{H_0}[\mathbf{X} \in C]$
+	\end{enumerate}
+Then $C$ is a best critical region of size $\alpha$ for testing $H_0: \theta = \theta'$ against $H_1: \theta = \theta''$.
+\end{theorem}
+\begin{itemize}
+	\item \textbf{Significant level}: the probability of rejecting $H_0$ when $H_0$ is true, denoted by $\alpha$.
+	\item \textbf{Power:} the probability of rejecting $H_0$, when $H_0$ is false, is the \textbf{power} of the test at $H_1$, i.e. $\mathbb{P}_{H_1}(\mathbf{X}\in C)$, which forms the \textbf{power function} $\gamma(\theta)$.
+	\item \textbf{Unbiased Tests:}
+\end{itemize}
+
+\begin{definition}[Unbiased Test]
+A test with critical region $C$ and level $\alpha$ is \textbf{unbiased} if $P_\theta(\mathbf{X} \in C) \geq \alpha$ for all $\theta \in \omega_1$.
+\end{definition}
+\begin{itemize}
+	\item \textbf{Example (Normal Mean):} $X_1, \ldots, X_n \sim N(\theta, 1)$, test $H_0: \theta = 0$ vs $H_1: \theta = 1$.
+	\begin{itemize}
+		\item Likelihood ratio: $\frac{L(0)}{L(1)} = \exp(-\sum x_i + n/2)$
+		\item Best test: Reject $H_0$ if $\sum X_i \geq c$ or equivalently $\bar{X} \geq c/n$
+		\item Critical value determined by $P_{H_0}(\bar{X} \geq c/n) = \alpha$
+	\end{itemize}
+	\item \textbf{Example (Binomial):} $X \sim \text{Binomial}(5, \theta)$, test $H_0: \theta = 1/2$ vs $H_1: \theta = 3/4$.
+	\begin{itemize}
+		\item For $\alpha = 1/32$, best critical region is $C = \{x: x = 5\}$
+		\item Power = $P_{H_1}(X = 5) = (3/4)^5 = 243/1024$
+	\end{itemize}
+\end{itemize}
+
+\subsection{8.2 Uniformly Most Powerful Tests}
+
+\begin{itemize}
+	\item \textbf{Extension:} Testing simple $H_0$ against composite alternative $H_1$.
+\end{itemize}
+
+\begin{definition}[Uniformly Most Powerful (UMP) Test]
+A critical region $C$ is \textbf{uniformly most powerful} of size $\alpha$ for testing $H_0: \theta = \theta'$ against $H_1: \theta \in \omega_1$ if $C$ is a best critical region of size $\alpha$ for testing $H_0$ against each simple hypothesis in $H_1$.
+\end{definition}
+\begin{itemize}
+	\item \textbf{Monotone Likelihood Ratio (MLR):}
+\end{itemize}
+
+\begin{definition}[Monotone Likelihood Ratio]
+The likelihood $L(\theta, \mathbf{x})$ has \textbf{monotone likelihood ratio} in statistic $Y = u(\mathbf{x})$ if, for $\theta_1 < \theta_2$, the ratio $\frac{L(\theta_1, \mathbf{x})}{L(\theta_2, \mathbf{x})}$ is a monotone function of $Y$.
+\end{definition}
+\begin{theorem}[UMP Test for MLR Families]
+If the likelihood has monotone decreasing likelihood ratio in $Y$, then for testing $H_0: \theta \leq \theta'$ vs $H_1: \theta > \theta'$, the UMP level $\alpha$ test is:
+\textbf{Reject $H_0$ if $Y \geq c_Y$}
+where $c_Y$ is determined by $\alpha = P_{\theta'}[Y \geq c_Y]$.
+\end{theorem}
+\begin{itemize}
+	\item \textbf{Exponential Family Result:} For regular exponential family $f(x; \theta) = \exp[p(\theta)K(x) + H(x) + q(\theta)]$ with $p(\theta)$ increasing:
+	\begin{itemize}
+		\item Likelihood has MLR in $\sum K(X_i)$
+		\item UMP test for $H_0: \theta \leq \theta'$ vs $H_1: \theta > \theta'$: Reject $H_0$ if $\sum K(X_i) \geq c$
+	\end{itemize}
+	\item \textbf{Example (Normal Variance):} $X_1, \ldots, X_n \sim N(0, \theta)$, test $H_0: \theta = \theta'$ vs $H_1: \theta > \theta'$.
+	\begin{itemize}
+		\item UMP test: Reject $H_0$ if $\sum X_i^2 \geq c$
+		\item Under $H_0$: $\sum X_i^2/\theta' \sim \chi^2(n)$
+	\end{itemize}
+	\item \textbf{Example (Bernoulli):} $X_1, \ldots, X_n \sim \text{Bernoulli}(p)$, test $H_0: p \leq p_0$ vs $H_1: p > p_0$.
+	\begin{itemize}
+		\item UMP test: Reject $H_0$ if $\sum X_i \geq c$
+	\end{itemize}
+	\item \textbf{No UMP for Two-Sided Tests:} For $H_0: \theta = \theta_0$ vs $H_1: \theta \neq \theta_0$, generally no UMP test exists.
+\end{itemize}
+
+\subsection{8.3 Likelihood Ratio Tests}
+
+\begin{itemize}
+	\item \textbf{General Framework:} For testing $H_0: \boldsymbol{\theta} \in \omega$ vs $H_1: \boldsymbol{\theta} \in \Omega \cap \omega^c$.
+	\item \textbf{Likelihood Ratio Statistic:}
+\[
+\Lambda = \frac{L(\hat{\omega})}{L(\hat{\Omega})} = \frac{\max_{\boldsymbol{\theta} \in \omega} L(\boldsymbol{\theta})}{\max_{\boldsymbol{\theta} \in \Omega} L(\boldsymbol{\theta})}
+\]
+	\item \textbf{Decision Rule:} Reject $H_0$ if $\Lambda \leq \lambda_0$ (or equivalently if $-2\log\Lambda \geq c$).
+\end{itemize}
+
+\subsubsection{8.3.1 Tests for Normal Means}
+
+\begin{itemize}
+	\item \textbf{One-Sample t-test:} For $X_1, \ldots, X_n \sim N(\mu, \sigma^2)$, testing $H_0: \mu = \mu_0$ vs $H_1: \mu \neq \mu_0$.
+	\begin{itemize}
+		\item Test statistic: $T = \frac{\sqrt{n}(\bar{X} - \mu_0)}{S}$
+		\item Under $H_0$: $T \sim t_{n-1}$
+		\item Reject $H_0$ if $|T| \geq t_{\alpha/2, n-1}$
+	\end{itemize}
+	\item \textbf{Two-Sample t-test:} For independent samples from $N(\mu_1, \sigma^2)$ and $N(\mu_2, \sigma^2)$, testing $H_0: \mu_1 = \mu_2$.
+	\begin{itemize}
+		\item Test statistic: $T = \frac{\sqrt{nm/(n+m)}(\bar{X} - \bar{Y})}{S_p}$
+		\item Pooled variance: $S_p^2 = \frac{(n-1)S_X^2 + (m-1)S_Y^2}{n+m-2}$
+		\item Under $H_0$: $T \sim t_{n+m-2}$
+	\end{itemize}
+	\item \textbf{Power Analysis with Noncentral t-distribution:}
+\end{itemize}
+
+\begin{definition}[Noncentral t-distribution]
+If $W \sim N(\delta, 1)$, $V \sim \chi^2(r)$, and $W$, $V$ independent, then $T = \frac{W}{\sqrt{V/r}}$ has a \textbf{noncentral t-distribution} with $r$ degrees of freedom and noncentrality parameter $\delta$.
+\end{definition}
+\begin{itemize}
+	\item \textbf{One-sample test power:} Noncentrality parameter $\delta = \frac{\sqrt{n}(\mu_1 - \mu_0)}{\sigma}$
+	\item \textbf{Two-sample test power:} Noncentrality parameter $\delta = \frac{\sqrt{nm/(n+m)}(\mu_1 - \mu_2)}{\sigma}$
+\end{itemize}
+
+\subsubsection{8.3.2 Tests for Normal Variances}
+
+\begin{itemize}
+	\item \textbf{Two-Sample F-test:} For testing $H_0: \sigma_1^2 = \sigma_2^2$ vs $H_1: \sigma_1^2 \neq \sigma_2^2$.
+	\begin{itemize}
+		\item Test statistic: $F = \frac{S_1^2}{S_2^2}$
+		\item Under $H_0$: $F \sim F_{n_1-1, n_2-1}$
+		\item \textbf{Warning:} F-test is not robust to non-normality!
+	\end{itemize}
+	\item \textbf{Robustness Considerations:}
+	\begin{itemize}
+		\item t-tests are asymptotically valid for non-normal distributions with finite variance
+		\item F-tests for variances are not robust and can have severely inflated Type I error rates
+	\end{itemize}
+\end{itemize}
+
+\subsection{8.4 Sequential Probability Ratio Test}
+
+\begin{itemize}
+	\item \textbf{Motivation:} Sample size is not fixed in advance; continue sampling until a decision can be made.
+	\item \textbf{Procedure:} Given constants $k_0 < k_1$:
+	\begin{itemize}
+		\item Continue sampling while $k_0 < \frac{L(\theta', n)}{L(\theta'', n)} < k_1$
+		\item Reject $H_0$ if $\frac{L(\theta', n)}{L(\theta'', n)} \leq k_0$
+		\item Accept $H_0$ if $\frac{L(\theta', n)}{L(\theta'', n)} \geq k_1$
+	\end{itemize}
+	\item \textbf{Error Control:} Choose $k_0 = \frac{\alpha_a}{1-\beta_a}$ and $k_1 = \frac{1-\alpha_a}{\beta_a}$ for desired error probabilities $\alpha_a$, $\beta_a$.
+	\item \textbf{Bounds on Actual Errors:}
+\[
+\frac{\alpha}{1-\beta} \leq k_0, \quad k_1 \leq \frac{1-\alpha}{\beta}
+\]
+	\item \textbf{Example (Bernoulli):} Test $H_0: p = 1/3$ vs $H_1: p = 2/3$.
+	\begin{itemize}
+		\item Continue while $\frac{n}{2} - \frac{1}{2}\log_2 k_1 < \sum X_i < \frac{n}{2} - \frac{1}{2}\log_2 k_0$
+	\end{itemize}
+	\item \textbf{Example (Normal):} Test $H_0: \mu = 75$ vs $H_1: \mu = 78$ with $\sigma^2 = 100$.
+	\begin{itemize}
+		\item Continue while $\frac{153n}{2} - \frac{100}{3}\log 9 < \sum X_i < \frac{153n}{2} + \frac{100}{3}\log 9$
+	\end{itemize}
+	\item \textbf{Advantages:} Expected sample size is typically smaller than fixed-sample tests with same error probabilities.
+\end{itemize}
+
+\subsection{8.5 Minimax and Classification Procedures}
+
+\subsubsection{8.5.1 Minimax Procedures}
+
+\begin{itemize}
+	\item \textbf{Decision Theory Framework:}
+	\begin{itemize}
+		\item Loss function $\mathcal{L}(\theta, \delta)$ measures cost of decision $\delta$ when true parameter is $\theta$
+		\item Risk function $R(\theta, \delta) = E[\mathcal{L}(\theta, \delta)]$
+	\end{itemize}
+	\item \textbf{Minimax Solution:} Choose critical region $C$ to minimize $\max[R(\theta', C), R(\theta'', C)]$.
+\end{itemize}
+
+\begin{theorem}[Minimax Test]
+The critical region $C = \{\mathbf{x}: \frac{L(\theta')}{L(\theta'')} \leq k\}$ provides a minimax solution if $k$ is chosen so that $R(\theta', C) = R(\theta'', C)$.
+\end{theorem}
+\subsubsection{8.5.2 Classification Problems}
+
+\begin{itemize}
+	\item \textbf{Setup:} Observe $(X, Y)$ and classify into one of two populations with parameters $\theta'$ or $\theta''$.
+	\item \textbf{Optimal Classification Rule:}
+\[
+\frac{f(x, y; \theta')}{f(x, y; \theta'')} \leq k \Rightarrow \text{classify as } \theta''
+\]
+	\item \textbf{Choice of $k$:}
+	\begin{itemize}
+		\item Equal prior probabilities: $k = 1$
+		\item General case: $k = \frac{\pi''}{\pi'}$ (ratio of prior probabilities)
+	\end{itemize}
+	\item \textbf{Example (Bivariate Normal):} For bivariate normal distributions with different means but same covariance structure, the classification boundary is linear: $ax + by \leq c$.
+	\item \textbf{Fisher's Linear Discriminant:} When parameters are unknown, replace with sample estimates to get practical classification rule.
+\end{itemize}
+
+\subsection{Problem-Solving Techniques}
+
+\subsubsection{1. Identifying Test Type}
+
+\begin{itemize}
+	\item \textbf{Simple vs Simple} → Use Neyman-Pearson Theorem
+	\item \textbf{Simple vs Composite (One-sided)} → Check for MLR, use UMP theory
+	\item \textbf{Composite vs Composite} → Use Likelihood Ratio Test
+\end{itemize}
+
+\subsubsection{2. Working with Exponential Families}
+
+\begin{itemize}
+	\item For exponential family, sufficient statistic $\sum K(X_i)$ often provides the test statistic
+	\item MLR property is automatic if $p(\theta)$ is monotone
+\end{itemize}
+
+\subsubsection{3. Normal Distribution Patterns}
+
+\begin{itemize}
+	\item \textbf{Mean tests (known variance)} → Z-tests
+	\item \textbf{Mean tests (unknown variance)} → t-tests
+	\item \textbf{Variance tests} → F-tests or $\chi^2$-tests
+\end{itemize}
+
+\subsubsection{4. Power Calculations}
+
+\begin{itemize}
+	\item Use noncentral distributions when available
+	\item One-sided tests generally more powerful than two-sided
+	\item Power increases with: larger sample size, larger effect size, higher significance level
+\end{itemize}
+
+\subsubsection{5. Sequential Testing Strategy}
+
+\begin{itemize}
+	\item Useful when early stopping is desired
+	\item Average sample size typically smaller than fixed-sample tests
+	\item Important in clinical trials and quality control
+\end{itemize}
+
+\subsection{Key Formulas and Inequalities}
+
+\subsubsection{Neyman-Pearson Inequality}
+\[
+\frac{L(\theta')}{L(\theta'')} \leq k \Leftrightarrow \text{Reject } H_0
+\]
+
+\subsubsection{Exponential Family Likelihood Ratio}
+\[
+\log\frac{L(\theta')}{L(\theta'')} = [p(\theta') - p(\theta'')]\sum K(X_i) + n[q(\theta') - q(\theta'')]
+\]
+
+\subsubsection{Noncentrality Parameters}
+
+\begin{itemize}
+	\item One-sample: $\delta = \frac{\sqrt{n}(\mu_1 - \mu_0)}{\sigma}$
+	\item Two-sample: $\delta = \frac{\sqrt{nm/(n+m)}(\mu_1 - \mu_2)}{\sigma}$
+\end{itemize}
+
+\subsubsection{Sequential Test Boundaries}
+\[
+k_0 = \frac{\alpha_a}{1-\beta_a}, \quad k_1 = \frac{1-\alpha_a}{\beta_a}
+\]
+
+\subsection{Practical Considerations}
+
+\begin{enumerate}
+	\item \textbf{Robustness:} t-tests are robust to non-normality; F-tests are not
+	\item \textbf{Sample Size Planning:} Use power analysis to determine required sample sizes
+	\item \textbf{Multiple Testing:} Adjust significance levels when performing multiple tests
+	\item \textbf{Sequential Methods:} Valuable in applications requiring early stopping
+	\item \textbf{Classification:} Prior information is crucial for optimal performance
+\end{enumerate}
+
+This chapter establishes the theoretical foundation for hypothesis testing, providing the framework for understanding modern statistical inference procedures.

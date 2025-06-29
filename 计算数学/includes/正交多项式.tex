@@ -1,0 +1,40 @@
+\section{正交多项式}
+
+\begin{itemize}
+	\item Legendre多项式：$P_n(x)$
+\end{itemize}
+\[
+P_n(x) = \frac{1}{2^n n!} \frac{d^n}{dx^n} \left[(x^2 - 1)^n\right]
+\]
+\begin{itemize}
+	\item Laguerre多项式：$L_n(x)$
+\end{itemize}
+\[
+L_n(x) = \frac{e^x}{n!} \frac{d^n}{dx^n} \left(e^{-x} x^n\right)
+\]
+\begin{itemize}
+	\item Hermite多项式：$H_n(x)$
+\end{itemize}
+\[
+H_n(x) = (-1)^n e^{x^2} \frac{d^n}{dx^n} \left(e^{-x^2}\right)
+\]
+\begin{itemize}
+	\item Chebyshev多项式：$T_n(x)$
+\end{itemize}
+\[
+T_n(x) = \cos(n \arccos(x))
+\]
+我们关心的是 Legendre 多项式和 Chebyshev 多项式.
+
+\subsection{Legendre多项式}
+
+Legendre多项式是以 $[-1,1]$ 为定义域，以 $1$ 为权函数的正交多项式。满足递推关系
+\[
+(n+1)P_{n+1}(x)=(2n+1)xP_n(x)-nP_{n-1}(x),\quad P_0(x)=1,P_1(x)=x
+\]
+\subsection{Chebyshev多项式}
+
+Chebyshev多项式是以$[-1,1]$为定义域，以$1/\sqrt{1-x^2}$为权函数的正交多项式。满足递推关系
+\[
+T_{n+1}(x)=2xT_n(x)-T_{n-1}(x),\quad T_0(x)=1,T_1(x)=x
+\]

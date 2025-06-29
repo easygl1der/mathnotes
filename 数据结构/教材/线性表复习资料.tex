@@ -1,0 +1,795 @@
+\documentclass[12pt,a4paper]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage[hidelinks,bookmarksnumbered,bookmarksopen]{hyperref}
+\usepackage{xeCJK}
+\setCJKmainfont{LXGW WenKai}
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+% 代码高亮设置
+\lstset{
+    language=C++,
+    basicstyle=\ttfamily\small,
+    keywordstyle=\color{blue}\bfseries,
+    commentstyle=\color{green!60!black},
+    stringstyle=\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    stepnumber=1,
+    numbersep=10pt,
+    backgroundcolor=\color{gray!10},
+    frame=single,
+    tabsize=4,
+    captionpos=b,
+    breaklines=true,
+    breakatwhitespace=false,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false
+}
+
+% 定理环境
+\newtheorem{definition}{定义}[section]
+\newtheorem{theorem}{定理}[section]
+\newtheorem{example}{例题}[section]
+\newtheorem{property}{性质}[section]
+
+% TikZ库
+\usetikzlibrary{positioning,arrows,automata,calc,shapes}
+
+\title{\textbf{数据结构 - 线性表复习资料}}
+\author{详细版本}
+\date{\today}
+
+\begin{document}
+
+% \maketitle
+
+% % 目录设置
+% \tableofcontents
+% \newpage
+
+\section{线性表的基本概念}
+
+\subsection{线性表的定义和特点}
+
+\begin{definition}[线性表]
+线性表（linear list）简称表，是$n(n \geq 0)$个数据元素的有限序列，线性表中数据元素的个数称为线性表的长度。长度等于零的线性表称为空表，一个非空表通常记为：
+$$L = (a_1, a_2, \ldots, a_n)$$
+\end{definition}
+
+其中，$a_i(1 \leq i \leq n)$称为数据元素，下角标$i$表示该元素在线性表中的位置或序号，称元素$a_i$位于表的第$i$个位置，或称$a_i$是表中的第$i$个元素。
+
+\subsection{线性表的逻辑结构特点}
+
+\begin{enumerate}
+\item 有且仅有一个开始结点$a_1$，它没有直接前趋；
+\item 有且仅有一个终端结点$a_n$，它没有直接后继；
+\item 除开始结点外，其余每个结点有且仅有一个直接前趋；
+\item 除终端结点外，其余每个结点有且仅有一个直接后继。
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm]
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm] (a1) {$a_1$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=a1] (a2) {$a_2$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=a2] (dots1) {$\cdots$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=dots1] (ai-1) {$a_{i-1}$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=ai-1] (ai) {$a_i$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=ai] (dots2) {$\cdots$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=dots2] (an) {$a_n$};
+
+\draw[->] (a1) -- (a2);
+\draw[->] (a2) -- (dots1);
+\draw[->] (dots1) -- (ai-1);
+\draw[->] (ai-1) -- (ai);
+\draw[->] (ai) -- (dots2);
+\draw[->] (dots2) -- (an);
+
+\node[above=0.5cm of a1] {表头元素};
+\node[above=0.5cm of an] {表尾元素};
+\end{tikzpicture}
+\end{center}
+
+\subsection{线性表的抽象数据类型}
+
+\indent
+\begin{lstlisting}[caption=线性表抽象数据类型定义]
+ADT List
+DataModel
+    数据元素具有相同类型，相邻元素具有前驱和后继关系
+Operation
+    InitList
+        输入：无
+        功能：线性表的初始化
+        输出：空的线性表
+    CreateList
+        输入：n个数据元素
+        功能：建立一个线性表
+        输出：具有n个元素的线性表
+    DestroyList
+        输入：无
+        功能：销毁线性表
+        输出：释放线性表的存储空间
+    Length
+        输入：无
+        功能：求线性表的长度
+        输出：线性表中数据元素的个数
+    Get
+        输入：元素的序号i
+        功能：按位查找，在线性表中查找序号为i的数据元素
+        输出：如果查找成功，返回序号为i的元素值，否则返回查找失败信息
+    Locate
+        输入：数据元素x
+        功能：按值查找，在线性表中查找值等于x的元素
+        输出：如果查找成功，返回元素x在线性表中的序号，否则返回0
+    Insert
+        输入：插入位置i，待插元素x
+        功能：插入操作，在线性表的第i个位置处插入一个新元素x
+        输出：如果插入成功，返回新的线性表，否则返回插入失败信息
+    Delete
+        输入：删除位置i
+        功能：删除操作，删除线性表中的第i个元素
+        输出：如果删除成功，返回被删元素，否则返回删除失败信息
+    Empty
+        输入：无
+        功能：判空操作，判断线性表是否为空表
+        输出：如果是空表，返回1，否则返回0
+    PrintList
+        输入：无
+        功能：遍历操作，按序号依次输出线性表中的元素
+        输出：线性表的各个数据元素
+endADT
+\end{lstlisting}
+
+\section{线性表的顺序存储结构}
+
+\subsection{顺序表的定义}
+
+\begin{definition}[顺序表]
+线性表的顺序存储结构称为顺序表（sequential list），其基本思想是用一段地址连续的存储单元依次存储线性表的数据元素。
+\end{definition}
+
+\subsection{顺序表的存储结构}
+
+设顺序表的每个元素占用$c$个存储单元，则第$i$个元素的存储地址为：
+$$\text{Loc}(a_i) = \text{Loc}(a_1) + (i-1) \times c$$
+
+\begin{center}
+\begin{tikzpicture}[node distance=1.2cm]
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm] (base) at (0,0) {$a_1$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=base] (a2) {$a_2$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=a2] (a3) {$a_3$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=a3] (dots) {$\cdots$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=dots] (ai) {$a_i$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=ai] (dots2) {$\cdots$};
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm, right of=dots2] (an) {$a_n$};
+
+\node[below=0.5cm of base] {0};
+\node[below=0.5cm of a2] {1};
+\node[below=0.5cm of a3] {2};
+\node[below=0.5cm of ai] {$i-1$};
+\node[below=0.5cm of an] {$n-1$};
+
+\node[above=0.5cm of base] {基地址};
+\node[above=1.2cm of dots] {数组下标};
+\end{tikzpicture}
+\end{center}
+
+\subsection{顺序表的类定义}
+
+\indent
+
+\begin{lstlisting}[caption=顺序表类定义]
+const int MaxSize = 100;
+template <typename DataType>
+class SeqList {
+public:
+    SeqList();                          // 建立空的顺序表
+    SeqList(DataType a[], int n);       // 建立长度为n的顺序表
+    ~SeqList();                         // 析构函数
+    int Length();                       // 求线性表的长度
+    DataType Get(int i);                // 按位查找，查找第i个元素的值
+    int Locate(DataType x);             // 按值查找，查找值为x的元素序号
+    void Insert(int i, DataType x);     // 插入操作，在第i个位置插入值为x的元素
+    DataType Delete(int i);             // 删除操作，删除第i个元素
+    int Empty();                        // 判断线性表是否为空
+    void PrintList();                   // 遍历操作，按序号依次输出各元素
+private:
+    DataType data[MaxSize];             // 存放数据元素的数组
+    int length;                         // 线性表的长度
+};
+\end{lstlisting}
+
+\subsection{顺序表的基本操作}
+
+\subsubsection{插入操作}
+
+插入操作是在表的第$i(1 \leq i \leq n+1)$个位置插入一个新元素$x$，使长度为$n$的线性表$(a_1, \ldots, a_{i-1}, a_i, \ldots, a_n)$变成长度为$n+1$的线性表$(a_1, \ldots, a_{i-1}, x, a_i, \ldots, a_n)$。
+
+\begin{algorithm}[H]
+\caption{顺序表插入算法}
+\begin{algorithmic}[1]
+\REQUIRE 插入位置$i$，待插入的元素值$x$
+\ENSURE 如果插入成功，返回新的顺序表，否则返回插入失败信息
+\IF{表满了}
+    \STATE 输出上溢错误信息，插入失败
+\ENDIF
+\IF{元素的插入位置不合理}
+    \STATE 输出位置错误信息，插入失败
+\ENDIF
+\FOR{$j = length$ \TO $i$}
+    \STATE $data[j] = data[j-1]$ \COMMENT{元素后移}
+\ENDFOR
+\STATE $data[i-1] = x$ \COMMENT{插入新元素}
+\STATE $length++$ \COMMENT{表长加1}
+\end{algorithmic}
+\end{algorithm}
+
+\begin{lstlisting}[caption=顺序表插入操作实现]
+template <typename DataType>
+void SeqList<DataType>::Insert(int i, DataType x) {
+    if (length == MaxSize) throw "上溢";
+    if (i < 1 || i > length + 1) throw "插入位置错误";
+    for (int j = length; j >= i; j--)
+        data[j] = data[j-1];    // 第j个元素存在数组下标为j-1处
+    data[i-1] = x;
+    length++;
+}
+\end{lstlisting}
+
+\textbf{时间复杂度分析：}
+\begin{itemize}
+\item 最好情况：在表尾插入，时间复杂度为$O(1)$
+\item 最坏情况：在表头插入，时间复杂度为$O(n)$
+\item 平均情况：假设等概率插入，平均时间复杂度为$O(n)$
+\end{itemize}
+
+\subsubsection{删除操作}
+
+删除操作是将表的第$i(1 \leq i \leq n)$个元素删除，使长度为$n$的线性表$(a_1, \ldots, a_{i-1}, a_i, a_{i+1}, \ldots, a_n)$变成长度为$n-1$的线性表$(a_1, \ldots, a_{i-1}, a_{i+1}, \ldots, a_n)$。
+
+\begin{algorithm}[H]
+\caption{顺序表删除算法}
+\begin{algorithmic}[1]
+\REQUIRE 删除位置$i$
+\ENSURE 如果删除成功，返回被删除的元素值，否则返回删除失败信息
+\IF{表空}
+    \STATE 输出下溢错误信息，删除失败
+\ENDIF
+\IF{删除位置不合理}
+    \STATE 输出位置错误信息，删除失败
+\ENDIF
+\STATE $x = data[i-1]$ \COMMENT{取出被删元素}
+\FOR{$j = i$ \TO $length-1$}
+    \STATE $data[j-1] = data[j]$ \COMMENT{元素前移}
+\ENDFOR
+\STATE $length--$ \COMMENT{表长减1}
+\RETURN $x$
+\end{algorithmic}
+\end{algorithm}
+
+\begin{lstlisting}[caption=顺序表删除操作实现]
+template <typename DataType>
+DataType SeqList<DataType>::Delete(int i) {
+    DataType x;
+    if (length == 0) throw "下溢";
+    if (i < 1 || i > length) throw "删除位置错误";
+    x = data[i-1];              // 取出位置i的元素
+    for (int j = i; j < length; j++)
+        data[j-1] = data[j];    // 此处j已经是元素所在的数组下标
+    length--;
+    return x;
+}
+\end{lstlisting}
+
+\section{线性表的链式存储结构}
+
+\subsection{单链表的定义}
+
+\begin{definition}[单链表]
+单链表（singly linked list）是用一组任意的存储单元存放线性表的元素，这组存储单元可以连续也可以不连续。为了能正确表示元素之间的逻辑关系，每个存储单元除了存储数据元素外，还必须存储其后继元素所在的地址信息，这个地址信息称为指针。
+\end{definition}
+
+\subsection{单链表的结点结构}
+
+\begin{center}
+\begin{tikzpicture}
+\node[draw, rectangle, minimum width=2cm, minimum height=1cm] at (0,0) {data};
+\node[draw, rectangle, minimum width=2cm, minimum height=1cm] at (2,0) {next};
+\node[below] at (0,-0.8) {数据域};
+\node[below] at (2,-0.8) {指针域};
+\end{tikzpicture}
+\end{center}
+
+\begin{lstlisting}[caption=单链表结点定义]
+template <typename DataType>
+struct Node {
+    DataType data;          // 数据域
+    Node<DataType> *next;   // 指针域
+};
+\end{lstlisting}
+
+\subsection{单链表的表示}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2.5cm]
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm] (head) {first};
+\node[draw, rectangle split, rectangle split parts=2, right of=head] (node1) {$a_1$ \nodepart{second} $\rightarrow$};
+\node[draw, rectangle split, rectangle split parts=2, right of=node1] (node2) {$a_2$ \nodepart{second} $\rightarrow$};
+\node[draw, rectangle split, rectangle split parts=2, right of=node2] (node3) {$a_3$ \nodepart{second} $\wedge$};
+
+\draw[->] (head) -- (node1);
+\draw[->] (node1) -- (node2);
+\draw[->] (node2) -- (node3);
+
+\node[above=0.5cm of head] {头指针};
+\node[above=0.5cm of node1] {开始结点};
+\node[above=0.5cm of node3] {终端结点};
+\end{tikzpicture}
+\end{center}
+
+\subsection{带头结点的单链表}
+
+为了统一处理，通常在单链表的开始结点之前附设一个类型相同的结点，称为头结点（head node）。
+
+\begin{center}
+\begin{tikzpicture}[node distance=2cm]
+\node[draw, rectangle, minimum width=1.2cm, minimum height=0.8cm] (head) {first};
+\node[draw, rectangle split, rectangle split parts=2, right of=head] (headnode) {\nodepart{second} $\rightarrow$};
+\node[draw, rectangle split, rectangle split parts=2, right of=headnode] (node1) {$a_1$ \nodepart{second} $\rightarrow$};
+\node[draw, rectangle split, rectangle split parts=2, right of=node1] (node2) {$a_2$ \nodepart{second} $\rightarrow$};
+\node[draw, rectangle split, rectangle split parts=2, right of=node2] (node3) {$a_3$ \nodepart{second} $\wedge$};
+
+\draw[->] (head) -- (headnode);
+\draw[->] (headnode) -- (node1);
+\draw[->] (node1) -- (node2);
+\draw[->] (node2) -- (node3);
+
+\node[above=0.5cm of head] {头指针};
+\node[above=0.5cm of headnode] {头结点};
+\node[above=0.5cm of node1] {开始结点};
+\end{tikzpicture}
+\end{center}
+
+\subsection{单链表的类定义}
+
+\indent
+
+\begin{lstlisting}[caption=单链表类定义]
+template <typename DataType>
+class LinkList {
+public:
+    LinkList();                         // 建立空的单链表
+    LinkList(DataType a[], int n);      // 建立长度为n的单链表
+    ~LinkList();                        // 析构函数
+    int Length();                       // 求单链表的长度
+    DataType Get(int i);                // 按位查找，查找第i个元素的值
+    int Locate(DataType x);             // 按值查找，查找值为x的元素序号
+    void Insert(int i, DataType x);     // 插入操作，在第i个位置插入值为x的元素
+    DataType Delete(int i);             // 删除操作，删除第i个元素
+    int Empty();                        // 判断单链表是否为空
+    void PrintList();                   // 遍历操作，按序号依次输出各元素
+private:
+    Node<DataType> *first;              // 单链表的头指针
+};
+\end{lstlisting}
+
+\subsection{单链表的基本操作}
+
+\subsubsection{单链表的插入操作}
+
+在单链表的第$i$个位置插入值为$x$的新结点，即插入到$a_{i-1}$与$a_i$之间。
+
+\begin{algorithm}[H]
+\caption{单链表插入算法}
+\begin{algorithmic}[1]
+\REQUIRE 单链表的头指针first，插入位置$i$，待插值$x$
+\ENSURE 如果插入成功，返回新的单链表，否则返回插入失败信息
+\STATE 工作指针$p$初始化为指向头结点
+\STATE 查找第$i-1$个结点并使工作指针$p$指向该结点
+\IF{查找不成功}
+    \STATE 说明插入位置不合理，返回插入失败信息
+\ELSE
+    \STATE 生成一个元素值为$x$的新结点$s$
+    \STATE $s \rightarrow next = p \rightarrow next$
+    \STATE $p \rightarrow next = s$
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2.5cm]
+% 插入前的状态
+\node[draw, rectangle split, rectangle split parts=2] (p) at (0,2.5) {$a_{i-1}$ \nodepart{second} $\rightarrow$};
+\node[draw, rectangle split, rectangle split parts=2] (next) at (4,2.5) {$a_i$ \nodepart{second} $\rightarrow$};
+\node[draw, rectangle split, rectangle split parts=2] (s) at (2,0.5) {$x$ \nodepart{second} $\rightarrow$};
+
+\draw[->] (p) -- (next);
+\draw[->, red, thick] (s) -- (next) node[midway, above, red] {(1)};
+\draw[->, red, thick] (p) -- (s) node[midway, above left, red] {(2)};
+
+\node[below=0.5cm of p] {结点p};
+\node[below=0.5cm of s] {新结点s};
+\node[above=0.5cm] at (2,3.5) {插入操作示意图};
+\end{tikzpicture}
+\end{center}
+
+\begin{lstlisting}[caption=单链表插入操作实现]
+template <typename DataType>
+void LinkList<DataType>::Insert(int i, DataType x) {
+    Node<DataType> *p = first, *s = nullptr;
+    int count = 0;
+    while (p != nullptr && count < i-1) {  // 查找第i-1个结点
+        p = p->next;    // 工作指针p后移
+        count++;
+    }
+    if (p == nullptr) throw "插入位置错误";  // 没有找到第i-1个结点
+    else {
+        s = new Node<DataType>;
+        s->data = x;
+        s->next = p->next;      // (1)
+        p->next = s;            // (2)
+    }
+}
+\end{lstlisting}
+
+\subsubsection{单链表的删除操作}
+
+删除单链表的第$i$个结点。因为在单链表中结点$a_i$的存储地址在其前驱结点$a_{i-1}$的指针域中，所以必须首先找到$a_{i-1}$的存储地址$p$。
+
+\begin{algorithm}[H]
+\caption{单链表删除算法}
+\begin{algorithmic}[1]
+\REQUIRE 单链表的头指针first，删除位置$i$
+\ENSURE 如果删除成功，返回被删除的元素值，否则返回删除失败信息
+\STATE 工作指针$p$初始化，累加器count初始化
+\STATE 查找第$i-1$个结点并使工作指针$p$指向该结点
+\IF{$p$不存在或$p$的后继结点不存在}
+    \STATE 出现删除位置错误，删除失败
+\ELSE
+    \STATE 存储被删结点和被删元素值
+    \STATE 摘链，将结点$p$的后继结点从链表上摘下
+    \STATE 释放被删结点
+\ENDIF
+\end{algorithmic}
+\end{algorithm}
+
+\begin{center}
+\begin{tikzpicture}[node distance=2.5cm]
+% 删除操作示意图
+\node[draw, rectangle split, rectangle split parts=2] (p) at (0,1.5) {$a_{i-1}$ \nodepart{second} $\rightarrow$};
+\node[draw, rectangle split, rectangle split parts=2] (q) at (3,1.5) {$a_i$ \nodepart{second} $\rightarrow$};
+\node[draw, rectangle split, rectangle split parts=2] (next) at (6,1.5) {$a_{i+1}$ \nodepart{second} $\rightarrow$};
+
+\draw[->] (p) -- (q);
+\draw[->] (q) -- (next);
+\draw[->, red, thick, bend left=45] (p) to (next);
+
+\node[below=0.5cm of p] {结点p};
+\node[below=0.5cm of q] {被删结点q};
+\node[above=0.5cm] at (3,2.5) {删除操作示意图};
+\end{tikzpicture}
+\end{center}
+
+\begin{lstlisting}[caption=单链表删除操作实现]
+template <typename DataType>
+DataType LinkList<DataType>::Delete(int i) {
+    DataType x;
+    Node<DataType> *p = first, *q = nullptr;
+    int count = 0;
+    while (p != nullptr && count < i-1) {  // 查找第i-1个结点
+        p = p->next;
+        count++;
+    }
+    if (p == nullptr || p->next == nullptr)  // 结点p不存在或p的后继结点不存在
+        throw "删除位置错误";
+    else {
+        q = p->next; x = q->data;   // 暂存被删结点
+        p->next = q->next;          // 摘链
+        delete q;
+        return x;
+    }
+}
+\end{lstlisting}
+
+\begin{description}
+    \item[\textit{return x} 的原因：] 如果这个函数不返回任何值 (void)，那么调用者删除了一个节点后，就无法得知那个节点里到底存的是什么数据了。如果想知道，就必须在调用 Delete 函数之前，自己先遍历一遍链表找到那个数据，这无疑是低效和冗余的。
+\end{description}
+
+\section{双链表和循环链表}
+
+\subsection{双链表}
+
+\begin{definition}[双链表]
+双链表（double linked list）是在单链表的每个结点中再设置一个指向其前驱结点的指针域，这样就形成了双链表。
+\end{definition}
+
+\subsubsection{双链表的结点结构}
+
+\begin{center}
+\begin{tikzpicture}
+\node[draw, rectangle, minimum width=1.8cm, minimum height=1cm] at (0,0) {prior};
+\node[draw, rectangle, minimum width=1.8cm, minimum height=1cm] at (1.8,0) {data};
+\node[draw, rectangle, minimum width=1.8cm, minimum height=1cm] at (3.6,0) {next};
+\node[below=0.5cm] at (0,0) {前驱指针域};
+\node[below=0.5cm] at (1.8,0) {数据域};
+\node[below=0.5cm] at (3.6,0) {后继指针域};
+\end{tikzpicture}
+\end{center}
+
+\begin{lstlisting}[caption=双链表结点定义]
+template <typename DataType>
+struct DulNode {
+    DataType data;
+    DulNode<DataType> *prior, *next;
+};
+\end{lstlisting}
+
+\subsubsection{双链表的插入操作}
+
+在结点$p$的后面插入一个新结点$s$，需要修改4个指针：
+
+\begin{enumerate}
+\item $s \rightarrow prior = p$
+\item $s \rightarrow next = p \rightarrow next$
+\item $p \rightarrow next \rightarrow prior = s$
+\item $p \rightarrow next = s$
+\end{enumerate}
+
+\subsubsection{双链表的删除操作}
+
+设指针$p$指向待删除结点，删除操作可通过下述两条语句完成：
+\begin{enumerate}
+\item $(p \rightarrow prior) \rightarrow next = p \rightarrow next$
+\item $(p \rightarrow next) \rightarrow prior = p \rightarrow prior$
+\end{enumerate}
+
+\subsection{循环链表}
+
+\begin{definition}[循环单链表]
+在单链表中，如果将终端结点的指针由空指针改为指向头结点，就使整个单链表形成一个环，这种头尾相接的单链表称为循环单链表（circular singly linked list）。
+\end{definition}
+
+\begin{definition}[循环双链表]
+在双链表中，如果将终端结点的后继指针由空指针改为指向头结点，将头结点的前驱指针由空指针改为指向终端结点，就使整个双链表形成一个头尾相接的循环双链表（circular double linked list）。
+\end{definition}
+
+\section{顺序表与链表的比较}
+
+\subsection{时间性能比较}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{操作} & \textbf{顺序表} & \textbf{链表} \\
+\hline
+按位查找 & $O(1)$ & $O(n)$ \\
+\hline
+按值查找 & $O(n)$ & $O(n)$ \\
+\hline
+插入操作 & $O(n)$ & $O(1)$（已知插入位置） \\
+\hline
+删除操作 & $O(n)$ & $O(1)$（已知删除位置） \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{空间性能比较}
+
+\begin{itemize}
+\item \textbf{存储密度}：顺序表的存储密度高，链表需要额外的指针空间
+\item \textbf{存储空间分配}：顺序表需要预先分配固定大小的空间，链表可以动态分配
+\item \textbf{内存利用}：链表能更好地利用内存碎片，顺序表要求连续存储空间
+\end{itemize}
+
+\subsection{使用场景}
+
+\textbf{选择顺序表的情况：}
+\begin{itemize}
+\item 需要频繁进行随机访问操作
+\item 存储空间要求较高的场合
+\item 线性表长度相对稳定
+\item 很少进行插入和删除操作
+\end{itemize}
+
+\textbf{选择链表的情况：}
+\begin{itemize}
+\item 需要频繁进行插入和删除操作
+\item 线性表长度变化较大
+\item 事先不知道线性表的长度
+\item 不需要频繁进行随机访问
+\end{itemize}
+
+\section{线性表的应用实例}
+
+\subsection{约瑟夫环问题}
+
+\begin{example}[约瑟夫环问题]
+约瑟夫环问题：$n$个人围成一圈，从第1个人开始报数，报到$m$时停止报数，报$m$的人出环。再从他的下一个人起重新报数，报到$m$时停止报数，报$m$的人出环。如此下去，直到所有人全部出环为止。求$n$个人出环的次序。
+\end{example}
+
+\textbf{解决方案：}使用循环单链表来解决约瑟夫环问题。
+
+\begin{algorithm}[H]
+\caption{约瑟夫环算法}
+\begin{algorithmic}[1]
+\REQUIRE 尾指针指示的循环单链表rear，密码$m$
+\ENSURE 约瑟夫环的出环顺序
+\STATE 初始化：$pre = rear$；$p = rear \rightarrow next$；$count = 1$
+\WHILE{链表中结点数大于1}
+    \IF{$count < m$}
+        \STATE 工作指针$pre$和$p$后移
+        \STATE $count++$
+    \ELSE
+        \STATE 输出结点$p$的数据域
+        \STATE 删除结点$p$
+        \STATE $p$指向$pre$的后继结点；$count = 1$重新开始计数
+    \ENDIF
+\ENDWHILE
+\STATE 输出结点$p$的数据域，删除结点$p$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{一元多项式求和}
+
+\begin{example}[一元多项式求和]
+设$A(x) = a_0 + a_1x + a_2x^2 + \cdots + a_nx^n$，$B(x) = b_0 + b_1x + b_2x^2 + \cdots + b_mx^m$，求两个一元多项式的和$A(x) + B(x)$。
+\end{example}
+
+\textbf{数据结构设计：}
+用单链表存储多项式，每个结点包含系数和指数两个数据域：
+
+\begin{center}
+\begin{tikzpicture}
+\node[draw, rectangle, minimum width=1.6cm, minimum height=1cm] at (0,0) {coef};
+\node[draw, rectangle, minimum width=1.6cm, minimum height=1cm] at (1.6,0) {exp};
+\node[draw, rectangle, minimum width=1.6cm, minimum height=1cm] at (3.2,0) {next};
+\node[below=0.5cm] at (0,0) {系数域};
+\node[below=0.5cm] at (1.6,0) {指数域};
+\node[below=0.5cm] at (3.2,0) {指针域};
+\end{tikzpicture}
+\end{center}
+
+\textbf{算法思想：}
+\begin{enumerate}
+\item 设两个工作指针$p$和$q$分别指向两个单链表的开始结点
+\item 比较结点$p$的指数域和结点$q$的指数域：
+    \begin{itemize}
+    \item 若$p \rightarrow exp < q \rightarrow exp$，则将指针$p$后移
+    \item 若$p \rightarrow exp > q \rightarrow exp$，则将$q$插入到第一个单链表中结点$p$之前
+    \item 若$p \rightarrow exp = q \rightarrow exp$，则$p \rightarrow coef = p \rightarrow coef + q \rightarrow coef$
+    \end{itemize}
+\end{enumerate}
+
+\section{静态链表}
+
+\subsection{静态链表的概念}
+
+\begin{definition}[静态链表]
+静态链表（static linked list）用数组来表示链表，用数组元素的下标来模拟链表的指针。
+\end{definition}
+
+\subsection{静态链表的结点结构}
+
+\indent
+
+\begin{lstlisting}[caption=静态链表结点定义]
+template <typename DataType>
+struct SNode {
+    DataType data;      // 数据域
+    int next;          // 指针域（游标），注意不是指针类型
+};
+\end{lstlisting}
+
+\subsection{静态链表的特点}
+
+\begin{itemize}
+\item 用数组来存储线性表，但在执行插入和删除操作时，只需修改游标，无须移动表中的元素
+\item 改进了在顺序表中插入和删除操作需要移动大量元素的缺点
+\item 适用于不支持指针的语言环境
+\end{itemize}
+
+\section{线性表的动态分配}
+
+\subsection{动态顺序表}
+
+动态顺序表是在程序执行过程中通过动态存储分配来扩充数组空间的顺序表。
+
+\begin{lstlisting}[caption=动态顺序表类定义]
+const int InitSize = 10;    // 初始长度
+const int IncreSize = 5;    // 增量长度
+
+template <typename DataType>
+class SeqList {
+public:
+    SeqList();
+    SeqList(DataType a[], int n);
+    ~SeqList();
+    // 其他成员函数与静态顺序表相同
+private:
+    DataType *data;         // 动态分配的数组指针
+    int maxSize;           // 当前最大长度
+    int length;            // 当前长度
+};
+\end{lstlisting}
+
+\subsection{动态分配的优点}
+
+\begin{itemize}
+\item 可以根据需要动态扩展存储空间
+\item 避免了静态分配中可能出现的空间浪费或不足问题
+\item 提高了内存利用率
+\end{itemize}
+
+\section{总结}
+
+\subsection{线性表的知识框架}
+
+\begin{center}
+\begin{tikzpicture}[
+    level distance=3cm, 
+    level 1/.style={sibling distance=6.5cm}, 
+    level 2/.style={sibling distance=2.1cm},
+    every node/.style={
+        draw, 
+        rectangle, 
+        rounded corners=3pt,
+        text centered, 
+        minimum width=2.0cm,
+        minimum height=1cm,
+        font=\small
+    },
+    edge from parent/.style={draw, thick}
+]
+\node[fill=blue!20] {\textbf{线性表}}
+    child {
+        node[fill=green!20] {\textbf{顺序存储}}
+        child {node[fill=yellow!20] {静态分配}}
+        child {node[fill=yellow!20] {动态分配}}
+    }
+    child {
+        node[fill=green!20] {\textbf{链式存储}}
+        child {node[fill=orange!20] {单链表}}
+        child {node[fill=orange!20] {双链表}}
+        child {node[fill=orange!20] {循环链表}}
+        child {node[fill=orange!20] {静态链表}}
+    };
+\end{tikzpicture}
+\end{center}
+
+\subsection{重点掌握内容}
+
+\begin{enumerate}
+\item 线性表的逻辑结构特点和抽象数据类型定义
+\item 顺序表和链表的存储结构及其基本操作的实现
+\item 顺序表和链表的时间复杂度分析
+\item 顺序表和链表的优缺点比较及适用场景
+\item 双链表、循环链表的基本操作
+\item 线性表在实际问题中的应用
+\end{enumerate}
+
+\subsection{常见考试题型}
+
+\begin{enumerate}
+\item 线性表基本概念的选择题
+\item 顺序表和链表基本操作的算法设计
+\item 时间复杂度和空间复杂度的计算
+\item 综合应用题（如约瑟夫环、多项式运算等）
+\item 程序阅读和程序填空题
+\end{enumerate}
+
+\end{document} 

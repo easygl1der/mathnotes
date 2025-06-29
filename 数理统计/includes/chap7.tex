@@ -1,0 +1,245 @@
+\section{Chapter 7 Summary: Sufficiency}
+
+This chapter focuses on finding "optimal" point estimators, particularly Minimum Variance Unbiased Estimators (MVUEs), by leveraging the concept of sufficiency.
+
+\subsection{7.1 Measures of Quality of Estimators}
+
+\begin{itemize}
+	\item \textbf{Goal:} Find estimators that are close to the true parameter value.
+	\item \textbf{Properties Reviewed:}
+	\begin{itemize}
+		\item Consistency: Estimator converges in probability to the parameter as sample size increases.
+		\item Unbiasedness: Expected value of the estimator equals the parameter.
+	\end{itemize}
+	\item \textbf{Minimum Variance Unbiased Estimator (MVUE):}
+\end{itemize}
+
+\begin{definition}
+An estimator $Y = u(X_1, \dots, X_n)$ is an MVUE of $\theta$ if:
+	\begin{enumerate}
+		\item It is unbiased: $E(Y) = \theta$.
+		\item Its variance is less than or equal to the variance of \textit{every} other unbiased estimator of $\theta$.
+	\end{enumerate}
+\end{definition}
+\begin{itemize}
+	\item \textbf{Loss Functions and Risk:}
+	\begin{itemize}
+		\item \textbf{Decision function}\footnote{or decision rule} $\delta$: $\delta (y)$ is the function of the observed value of the statistic $Y$ which is the point estimate of $\theta$. One value of the decision function, say $\delta(y)$, is called a \textbf{decision}.
+		\item \textbf{Loss Function $\mathcal{L}[\theta, \delta(y)]$:} Measures the "cost" of estimating $\theta$ with $\delta(y)$. Common example: Squared Error Loss $\mathcal{L}[\theta, \delta(y)] = (\theta - \delta(y))^2$.
+		\item \textbf{Risk Function $R(\theta, \delta)$:} Expected value of the loss function, $R(\theta, \delta) = E\{\mathcal{L}[\theta, \delta(Y)]\}$.
+		\item Minimizing risk uniformly is usually impossible.
+	\end{itemize}
+	\item \textbf{Minimax Principle:} Choose the decision rule $\delta_0$ that minimizes the maximum risk: $\max_{\theta} R[\theta, \delta_{0}(y)] \leq \max_{\theta} R[\theta, \delta(y)]$ for all other rules $\delta$.
+	\item \textbf{Likelihood Principle:} If two experiments yield likelihood functions $L_1(\theta)$ and $L_2(\theta)$ that are proportional ($L_1 \propto L_2$), they contain the same information about $\theta$, and the inference should be the same.
+\end{itemize}
+
+\subsection{7.2 A Sufficient Statistic for a Parameter}
+
+\begin{itemize}
+	\item \textbf{Idea:} A statistic $Y_1 = u_1(X_1, \dots, X_n)$ is sufficient if it captures all the information about $\theta$ contained in the sample. Knowing the value of $Y_1$ is equivalent to knowing the original sample for the purpose of inference about $\theta$.
+	\item \textbf{Formal Definition:}
+\end{itemize}
+
+\begin{definition}
+A statistic $Y_1=u_1(X_1, \dots, X_n)$ with pdf/pmf $f_{Y_1}(y_1; \theta)$ is \textbf{sufficient} for $\theta$ if and only if the ratio
+\[
+\frac{f(x_1; \theta) \cdots f(x_n; \theta)}{f_{Y_1}(u_1(x_1, \dots, x_n); \theta)} = H(x_1, \dots, x_n)
+\]does not depend on $\theta$. (This means the conditional distribution of the sample given $Y_1=y_1$ does not depend on $\theta$).
+\end{definition}
+\begin{itemize}
+	\item \textbf{Neyman Factorization Theorem:} A much easier way to find sufficient statistics.
+\end{itemize}
+
+\begin{theorem}[Neyman]
+$Y_1=u_1(X_1, \dots, X_n)$ is sufficient for $\theta$ if and only if the joint pdf/pmf can be factored as:
+\[
+f(x_1; \theta) \cdots f(x_n; \theta) = k_1[u_1(x_1, \dots, x_n); \theta] \times k_2(x_1, \dots, x_n)
+\]where $k_2$ does not depend on $\theta$. The function $k_1$ depends on the data \textit{only} through the statistic $Y_1$.
+\end{theorem}
+\begin{itemize}
+	\item \textbf{Example (Normal Mean, Known Variance):} Let $X_1, \dots, X_n \sim N(\theta, \sigma^2)$ with $\sigma^2$ known. The joint pdf is:
+\end{itemize}
+\[
+\left(\frac{1}{\sigma \sqrt{2\pi}}\right)^n \exp\left[-\frac{\sum(x_i - \theta)^2}{2\sigma^2}\right] = \left\{\exp\left[-\frac{n(\overline{x}-\theta)^2}{2\sigma^2}\right]\right\} \times \left\{\frac{\exp\left[-\frac{\sum(x_i-\overline{x})^2}{2\sigma^2}\right]}{(\sigma\sqrt{2\pi})^n}\right\}
+\]
+Here, $k_1[\overline{x}; \theta] = \exp\left[-\frac{n(\overline{x}-\theta)^2}{2\sigma^2}\right]$ and $k_2(x_1, \dots, x_n)$ is the second term, which does not involve $\theta$. Thus, $\overline{X}$ is a sufficient statistic for $\theta$.
+
+\begin{itemize}
+	\item \textbf{Example (Poisson):} Let $X_1, \dots, X_n \sim \text{Poisson}(\theta)$. Joint pmf:
+\end{itemize}
+\[
+\prod_{i=1}^n \frac{e^{-\theta} \theta^{x_i}}{x_i!} = \frac{e^{-n\theta} \theta^{\sum x_i}}{\prod x_i!} = \left( e^{-n\theta} \theta^{\sum x_i} \right) \times \left( \frac{1}{\prod x_i!} \right)
+\]
+Here $k_1[\sum x_i; \theta] = e^{-n\theta} \theta^{\sum x_i}$ and $k_2(x_1, \dots, x_n) = 1 / \prod x_i!$. Thus, $Y_1 = \sum X_i$ is sufficient for $\theta$.
+
+\subsection{7.3 Properties of a Sufficient Statistic}
+
+\begin{itemize}
+	\item \textbf{Rao-Blackwell Theorem:} Provides a method to improve any unbiased estimator by conditioning on a sufficient statistic.
+\end{itemize}
+
+\begin{theorem}[Rao-Blackwell]
+Let $Y_1$ be a sufficient statistic for $\theta$, and let $Y_2$ be any unbiased estimator of $\theta$. Define $\varphi(y_1) = E(Y_2 | Y_1 = y_1)$. Then:
+	\begin{enumerate}
+		\item $\varphi(Y_1)$ is a statistic (does not depend on $\theta$).
+		\item $E[\varphi(Y_1)] = \theta$ (it's unbiased).
+		\item $\text{Var}[\varphi(Y_1)] \leq \text{Var}(Y_2)$. Equality holds iff $Y_2$ is already a function of $Y_1$.
+	\end{enumerate}
+\end{theorem}
+\begin{itemize}
+	\item \textbf{Implication:} To find an MVUE, we only need to consider functions of a sufficient statistic.
+	\item \textbf{Sufficiency and MLEs:}
+\end{itemize}
+
+\begin{theorem}
+If a sufficient statistic $Y_1$ exists and a unique Maximum Likelihood Estimator (MLE) $\widehat{\theta}$ exists, then $\widehat{\theta}$ must be a function of $Y_1$.
+\end{theorem}
+\begin{itemize}
+	\item Often, the MLE is a good starting point to find an MVUE. It might be biased, but we can adjust it (if necessary) to make it unbiased, and it will still be a function of the sufficient statistic.
+	\item \textbf{Example (Exponential):} $X_1, \dots, X_n \sim \text{Exp}(\theta)$ (mean $1/\theta$). Pdf is $f(x;\theta) = \theta e^{-\theta x}$.
+	\begin{itemize}
+		\item $Y_1 = \sum X_i$ is sufficient.
+		\item MLE is $\widehat{\theta} = 1/\overline{X} = n/Y_1$.
+		\item $E(n/Y_1) = \theta \frac{n}{n-1}$ (biased).
+		\item MVUE is $\frac{n-1}{n} \widehat{\theta} = \frac{n-1}{Y_1}$.
+	\end{itemize}
+\end{itemize}
+
+\subsection{7.4 Completeness and Uniqueness}
+
+\begin{itemize}
+	\item \textbf{Completeness:} A property of the \textit{family} of distributions of a statistic.
+\end{itemize}
+
+\begin{definition}
+A family of pdfs/pmfs $\{h(z; \theta): \theta \in \Omega\}$ for a statistic $Z$ is \textbf{complete} if $E[u(Z)] = 0$ for all $\theta \in \Omega$ implies $u(z) = 0$ (almost everywhere w.r.t. the distributions in the family).
+\end{definition}
+\begin{itemize}
+	\item \textbf{Intuition:} If a family is complete, the only unbiased estimator of 0 that is a function of $Z$ is the function $u(z)=0$.
+	\item \textbf{Lehmann-Scheffé Theorem:} Connects sufficiency, completeness, and MVUEs.
+\end{itemize}
+
+\begin{theorem}[Lehmann-Scheffé]
+If $Y_1$ is a \textbf{complete sufficient statistic} for $\theta$, and a function $\varphi(Y_1)$ is an unbiased estimator of $\theta$, then $\varphi(Y_1)$ is the \textbf{unique MVUE} of $\theta$. (Uniqueness means any other MVUE must be equal to $\varphi(Y_1)$ almost everywhere).
+\end{theorem}
+\begin{itemize}
+	\item \textbf{Complete Sufficient Statistic:} A statistic $Y_1$ that is both sufficient for $\theta$ and whose family of distributions $\{f_{Y_1}(y_1; \theta): \theta \in \Omega\}$ is complete.
+	\item \textbf{Example (Uniform):} $X_1, \dots, X_n \sim U(0, \theta)$.
+	\begin{itemize}
+		\item $Y_n = \max(X_i)$ is sufficient.
+		\item The family of pdfs for $Y_n$ is $g(y_n; \theta) = n y_n^{n-1} / \theta^n$ for $0 < y_n < \theta$. This family can be shown to be complete.
+		\item $E(Y_n) = \frac{n}{n+1}\theta$.
+		\item Therefore, $\frac{n+1}{n} Y_n$ is the unique MVUE of $\theta$.
+	\end{itemize}
+\end{itemize}
+
+\subsection{7.5 The Exponential Class of Distributions}
+
+\begin{itemize}
+	\item A large class of common distributions where finding complete sufficient statistics is straightforward.
+	\item \textbf{Definition (Regular Exponential Class):} A family $\{f(x; \theta): \theta \in \Omega\}$ is a regular exponential class if:
+	\begin{enumerate}
+		\item $f(x; \theta) = \exp[p(\theta) K(x) + H(x) + q(\theta)]$ for $x \in \mathcal{S}$.
+		\item The support $\mathcal{S}$ does not depend on $\theta$.
+		\item $p(\theta)$ is a nontrivial continuous function of $\theta$.
+		\item $K'(x) \not\equiv 0$ and $H(x)$ are continuous (continuous case) or $K(x)$ is nontrivial (discrete case).
+	\end{enumerate}
+	\item \textbf{Key Result:} For a random sample $X_1, \dots, X_n$ from a regular exponential class distribution:
+\end{itemize}
+
+\begin{theorem}
+The statistic $Y_1 = \sum_{i=1}^n K(X_i)$ is a \textbf{complete sufficient statistic} for $\theta$.
+\end{theorem}
+\begin{itemize}
+	\item \textbf{Implication:} If you can write the pdf/pmf in the exponential form, you can immediately identify the complete sufficient statistic. Then, if you find \textit{any} function of that statistic which is unbiased for $\theta$, it is automatically the unique MVUE by Lehmann-Scheffé.
+	\item \textbf{Example (Normal Mean, Known Variance):} $N(\theta, \sigma^2)$, $\sigma^2$ known.
+$f(x; \theta) = \exp\left[ \frac{\theta}{\sigma^2} x - \frac{x^2}{2\sigma^2} - \log\sqrt{2\pi\sigma^2} - \frac{\theta^2}{2\sigma^2} \right]$.
+Here $K(x) = x$. So $Y_1 = \sum X_i = n\overline{X}$ is complete sufficient.
+Since $E(\overline{X}) = E(Y_1/n) = \theta$, $\overline{X}$ is the unique MVUE.
+\end{itemize}
+
+\subsection{7.6 Functions of a Parameter}
+
+\begin{itemize}
+	\item Often interested in estimating $g(\theta)$, not just $\theta$.
+	\item If $Y_1$ is a complete sufficient statistic for $\theta$, we seek a function $\psi(Y_1)$ such that $E[\psi(Y_1)] = g(\theta)$. If found, $\psi(Y_1)$ is the unique MVUE of $g(\theta)$.
+	\item \textbf{Techniques:}
+	\begin{enumerate}
+		\item Find an unbiased estimator $T$ (perhaps not a function of $Y_1$) and compute $E(T|Y_1)$. (Rao-Blackwell).
+		\item Guess a function $\psi(Y_1)$ (often related to the MLE of $g(\theta)$) and check if $E[\psi(Y_1)] = g(\theta)$. Adjust if necessary.
+	\end{enumerate}
+	\item \textbf{Example (Bernoulli Variance):} $X_1, \dots, X_n \sim b(1, \theta)$. Estimate $\delta = \theta(1-\theta)$.
+	\begin{itemize}
+		\item $Y = \sum X_i$ is complete sufficient. $\overline{X} = Y/n$ is MVUE of $\theta$.
+		\item MLE of $\delta$ is $\widetilde{\delta} = \overline{X}(1-\overline{X}) = (Y/n)(1 - Y/n)$.
+		\item $E(\widetilde{\delta}) = \frac{n-1}{n} \theta(1-\theta) = \frac{n-1}{n} \delta$.
+		\item MVUE of $\delta$ is $\widehat{\delta} = \frac{n}{n-1}\widetilde{\delta} = \frac{n}{n-1} \frac{Y}{n} (1 - \frac{Y}{n})$.
+	\end{itemize}
+	\item \textbf{Bootstrap Standard Errors:} Can compute standard errors for MVUEs using bootstrap resampling (nonparametric or parametric).
+\end{itemize}
+
+\subsection{7.7 The Case of Several Parameters}
+
+\begin{itemize}
+	\item Concepts extend to vector parameters $\boldsymbol{\theta} = (\theta_1, \dots, \theta_p)'$.
+	\item \textbf{Joint Sufficiency:} A vector of statistics $\mathbf{Y} = (Y_1, \dots, Y_m)'$ is jointly sufficient if the definition or factorization theorem holds.
+\end{itemize}
+\[
+\prod f(x_i; \boldsymbol{\theta}) = k_1(\mathbf{y}; \boldsymbol{\theta}) k_2(x_1, \dots, x_n)
+\]
+\begin{itemize}
+	\item \textbf{Completeness:} $E[u(\mathbf{Y})] = 0$ for all $\boldsymbol{\theta} \in \Omega$ implies $u(\mathbf{y}) = 0$.
+	\item \textbf{Rao-Blackwell \& Lehmann-Scheffé:} Apply similarly. If $\mathbf{Y}$ is jointly complete sufficient for $\boldsymbol{\theta}$, and $T(\mathbf{Y})$ is unbiased for $g(\boldsymbol{\theta})$, then $T(\mathbf{Y})$ is the unique MVUE of $g(\boldsymbol{\theta})$.
+	\item \textbf{Exponential Class (Multiparameter):}
+\end{itemize}
+\[
+f(x; \boldsymbol{\theta}) = \exp\left[ \sum_{j=1}^m p_j(\boldsymbol{\theta}) K_j(x) + H(x) + q(\boldsymbol{\theta}) \right]
+\]
+If regular, then $Y_j = \sum_{i=1}^n K_j(X_i)$ for $j=1, \dots, m$ are \textbf{jointly complete sufficient statistics} for $\boldsymbol{\theta}$.
+
+\begin{itemize}
+	\item \textbf{Example (Normal):} $X_1, \dots, X_n \sim N(\theta_1, \theta_2)$.
+$f(x; \theta_1, \theta_2) = \exp\left[ \frac{\theta_1}{\theta_2} x - \frac{1}{2\theta_2} x^2 - \frac{\theta_1^2}{2\theta_2} - \ln\sqrt{2\pi\theta_2} \right]$.
+$K_1(x) = x$, $K_2(x) = x^2$.
+$Y_1 = \sum X_i$, $Y_2 = \sum X_i^2$ are jointly complete sufficient.
+Equivalently, $\overline{X} = Y_1/n$ and $S^2 = (\sum X_i^2 - (\sum X_i)^2/n)/(n-1)$ are jointly complete sufficient.
+Since $E(\overline{X}) = \theta_1$ and $E(S^2) = \theta_2$, $\overline{X}$ and $S^2$ are the unique MVUEs of $\theta_1$ and $\theta_2$.
+\end{itemize}
+
+\subsection{7.8 Minimal Sufficiency and Ancillary Statistics}
+
+\begin{itemize}
+	\item \textbf{Minimal Sufficient Statistic:} A sufficient statistic that is a function of every other sufficient statistic. It achieves the maximum possible data reduction while retaining sufficiency.
+	\item \textbf{Lehmann-Scheffe criterion:} A statistic $T(\mathbf{X})$ is minimal sufficient if for any two data points $\mathbf{x}$ and $\mathbf{z}$, the ratio $K(\mathbf{x}, \mathbf{z}; \theta) = \frac{L(\theta; \mathbf{x})}{L(\theta; \mathbf{z})}$ is independent of $\theta$ if and only if $T(\mathbf{x}) = T(\mathbf{z})$.
+	\begin{itemize}
+		\item Complete sufficient statistics are minimal. (See \href{https://stat210a.berkeley.edu/fall-2024/reader/completeness.html#complete-sufficient-statistics-are-minimal}{Completeness, Ancillarity, and Basu’s Theorem})
+		\item Sufficient MLE is also minimal.
+	\end{itemize}
+	\item \textbf{Ancillary Statistic:} A statistic $Z$ whose distribution does \textit{not} depend on the parameter $\theta$.
+	\begin{itemize}
+		\item \textbf{Location-Invariant:} If $X_i = \theta + W_i$, a statistic $Z=u(X_1, \dots, X_n)$ is location-invariant if $u(x_1+d, \dots, x_n+d) = u(x_1, \dots, x_n)$. Such statistics are ancillary for $\theta$. Ex: $S^2$, Range.
+		\item \textbf{Scale-Invariant:} If $X_i = \theta W_i$, a statistic $Z=u(X_1, \dots, X_n)$ is scale-invariant if $u(cx_1, \dots, cx_n) = u(x_1, \dots, x_n)$ for $c>0$. Such statistics are ancillary for $\theta$. Ex: $X_1/(X_1+X_2)$.
+		\item \textbf{Location- and Scale-Invariant:} Combination of the above. Ex: $(X_i-\overline{X})/S$.
+	\end{itemize}
+\end{itemize}
+
+\subsection{7.9 Sufficiency, Completeness, and Independence}
+
+\begin{itemize}
+	\item \textbf{Key Relationship (Basu's Theorem):}
+\end{itemize}
+
+\begin{theorem}[Basu]
+If $Y_1$ is a \textbf{complete sufficient statistic} for $\theta$, then $Y_1$ is independent of any \textbf{ancillary statistic} $Z$.
+\end{theorem}
+\begin{itemize}
+	\item The converse also holds: If $Y_1$ is sufficient and is independent of an ancillary statistic $Z$, then $Y_1$ must be complete.
+	\item This provides a powerful tool for proving independence.
+	\item \textbf{Example (Normal $\overline{X}$ and $S^2$):}
+	\begin{itemize}
+		\item Let the model be $N(\mu, \sigma^2)$.
+		\item If $\sigma^2$ is known, $\overline{X}$ is complete sufficient for $\mu$. $S^2$ is location-invariant, hence ancillary for $\mu$. By Basu's Theorem, $\overline{X}$ and $S^2$ are independent.
+		\item If $\mu$ is known, $\sum(X_i-\mu)^2$ is complete sufficient for $\sigma^2$. $\overline{X}$ is not ancillary for $\sigma^2$ (its distribution depends on $\sigma^2$). We cannot use Basu's theorem here (though they are still independent).
+	\end{itemize}
+	\item \textbf{If Sufficiency is Not Complete:} An ancillary statistic might still provide information about the precision of an estimator based on the sufficient statistic (e.g., Example 7.9.5).
+\end{itemize}

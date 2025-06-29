@@ -1,0 +1,186 @@
+\section{邻接矩阵与邻接表}
+
+好的，我们来介绍图论中两种常用的图存储结构：\textbf{邻接矩阵 (Adjacency Matrix)} 和 \textbf{邻接表 (Adjacency List)}。
+
+这两种结构都是用来描述图中顶点与顶点之间的连接关系的。选择哪种结构取决于图的特性（比如边的数量）以及我们希望对图进行的操作的效率。
+
+让我们用一个具体的例子来说明。假设我们有以下这个\textbf{无向图 G1}：
+
+\begin{lstlisting}
+      A --- B
+      |   /
+      |  /
+      C --- D
+\end{lstlisting}
+顶点 (Vertices): A, B, C, D
+
+边 (Edges): (A,B), (A,C), (B,C), (C,D)
+
+再假设一个\textbf{有向图 G2}：
+
+\begin{lstlisting}
+      1 ---> 2
+      ^      |
+      |      |
+      4 <--- 3 <--- 2 (重复边，简化为 2->3)
+      |      ^
+      |______|
+\end{lstlisting}
+顶点 (Vertices): 1, 2, 3, 4
+
+边 (Edges): (1,2), (2,3), (3,4), (4,1), (4,3)
+
+
+\subsection{邻接矩阵 (Adjacency Matrix)}
+
+邻接矩阵是一个二维数组（通常是方阵），用 \lstinline{matrix[i][j]} 的值来表示顶点 \lstinline{i} 和顶点 \lstinline{j} 之间是否存在边。
+
+\begin{itemize}
+	\item \textbf{大小：} 如果图中有 \lstinline{V} 个顶点，邻接矩阵就是一个 \lstinline{V x V} 的方阵。
+	\item \textbf{表示方法：}
+	\begin{itemize}
+		\item \textbf{无权图：} 如果顶点 \lstinline{i} 和顶点 \lstinline{j} 之间有边，则 \lstinline{matrix[i][j] = 1}；否则为 \lstinline{0}。
+		\item \textbf{加权图：} 如果顶点 \lstinline{i} 和顶点 \lstinline{j} 之间有边，则 \lstinline{matrix[i][j]} 等于该边的权重；如果不存在边，可以是 \lstinline{0}、无穷大 (∞) 或一个特殊值（取决于具体应用，0 可能也是一个有效的权重）。
+		\item \textbf{无向图：} 邻接矩阵是对称的，即 \lstinline{matrix[i][j] = matrix[j][i]}。
+		\item \textbf{有向图：} 如果存在从顶点 \lstinline{i} 到顶点 \lstinline{j} 的边，则 \lstinline{matrix[i][j] = 1} (或权重)；\lstinline{matrix[j][i]} 则表示从 \lstinline{j} 到 \lstinline{i} 的边，两者不一定相同。
+	\end{itemize}
+\end{itemize}
+
+\textbf{示例 G1 (无向无权图):}
+
+为了方便表示，我们将顶点 A, B, C, D 映射为索引 0, 1, 2, 3。
+
+(A=0, B=1, C=2, D=3)
+
+\begin{lstlisting}
+  A B C D
+A[0,1,1,0]
+B[1,0,1,0]
+C[1,1,0,1]
+D[0,0,1,0]
+\end{lstlisting}
+\begin{itemize}
+	\item \lstinline{matrix[0][1] = 1} 表示 A 和 B 之间有边。由于是无向图，\lstinline{matrix[1][0]} 也为 \lstinline{1}。
+	\item \lstinline{matrix[0][3] = 0} 表示 A 和 D 之间没有边。
+\end{itemize}
+
+\textbf{示例 G2 (有向无权图):}
+
+(1=0, 2=1, 3=2, 4=3)
+
+\begin{lstlisting}
+  1 2 3 4
+1[0,1,0,0]  (1->2)
+2[0,0,1,0]  (2->3)
+3[0,0,0,1]  (3->4)
+4[1,0,1,0]  (4->1, 4->3)
+\end{lstlisting}
+\textbf{优点：}
+
+\begin{enumerate}
+	\item \textbf{判断边是否存在效率高：} 检查任意两个顶点 \lstinline{i} 和 \lstinline{j} 之间是否有边（或者获取边的权重）只需要 O(1) 的时间复杂度，即直接访问 \lstinline{matrix[i][j]}。
+	\item \textbf{添加或删除边操作简单：} 对于无权图，只需修改 \lstinline{matrix[i][j]} 的值为 1 或 0。对于加权图，修改为对应的权重或表示无边的值。
+	\item \textbf{结构简单直观：} 易于理解和实现。
+\end{enumerate}
+
+\textbf{缺点：}
+
+\begin{enumerate}
+	\item \textbf{空间复杂度高：} 无论图中有多少条边，邻接矩阵都需要 \lstinline{V*V} 的空间（\lstinline{V} 是顶点数）。对于稀疏图（边的数量远小于 \lstinline{V*V}），这会造成大量的空间浪费。例如，一个有10000个顶点但只有几千条边的图，邻接矩阵仍然需要 10000 * 10000 的空间。
+	\item \textbf{遍历一个顶点的所有邻接点效率低：} 要找到顶点 \lstinline{i} 的所有邻接点，需要遍历矩阵的第 \lstinline{i} 行（或第 \lstinline{i} 列），时间复杂度为 O(V)。对于稀疏图来说，这很慢，因为大部分检查都是针对不存在的边。
+	\item \textbf{添加或删除顶点操作复杂：} 因为需要重建整个矩阵，或者至少动态调整二维数组的大小，这通常很麻烦。
+\end{enumerate}
+
+
+\subsection{邻接表 (Adjacency List)}
+
+邻接表是一种更节省空间的图存储结构，尤其适用于稀疏图。它由一个包含所有顶点的列表（或数组）组成，对于列表中的每个顶点，都有一个与之关联的链表（或其他动态数据结构，如动态数组），该链表存储了该顶点的所有邻接点。
+
+\begin{itemize}
+	\item \textbf{结构：} 通常是一个数组，数组的每个元素代表一个顶点。数组的第 \lstinline{i} 个元素指向一个链表，该链表包含了所有与顶点 \lstinline{i} 相邻的顶点。
+	\item \textbf{表示方法：}
+	\begin{itemize}
+		\item \textbf{无权图：} 链表中只存储邻接顶点的编号。
+		\item \textbf{加权图：} 链表中的每个节点不仅存储邻接顶点的编号，还存储边的权重。通常用一个 (邻接点, 权重) 的序对来表示。
+		\item \textbf{无向图：} 如果顶点 \lstinline{u} 和 \lstinline{v} 之间有一条边，那么 \lstinline{v} 会出现在 \lstinline{u} 的邻接表中，同时 \lstinline{u} 也会出现在 \lstinline{v} 的邻接表中。
+		\item \textbf{有向图：} 如果存在从顶点 \lstinline{u} 到顶点 \lstinline{v} 的边，那么 \lstinline{v} 会出现在 \lstinline{u} 的邻接表中，但 \lstinline{u} 不一定会出现在 \lstinline{v} 的邻接表中（除非也存在从 \lstinline{v} 到 \lstinline{u} 的边）。
+	\end{itemize}
+\end{itemize}
+
+\textbf{示例 G1 (无向无权图):}
+
+(A=0, B=1, C=2, D=3)
+
+\begin{lstlisting}
+A (0) -> [B(1), C(2)]
+B (1) -> [A(0), C(2)]
+C (2) -> [A(0), B(1), D(3)]
+D (3) -> [C(2)]
+\end{lstlisting}
+或者更常见的表示形式是一个数组，每个索引对应一个顶点，其值为指向邻接点链表的指针/引用：
+
+\begin{lstlisting}
+0 (A): -> B -> C -> NULL
+1 (B): -> A -> C -> NULL
+2 (C): -> A -> B -> D -> NULL
+3 (D): -> C -> NULL
+\end{lstlisting}
+\textbf{示例 G2 (有向无权图):}
+
+(1=0, 2=1, 3=2, 4=3)
+
+\begin{lstlisting}
+0 (1): -> 2 -> NULL
+1 (2): -> 3 -> NULL
+2 (3): -> 4 -> NULL
+3 (4): -> 1 -> 3 -> NULL
+\end{lstlisting}
+如果是有向加权图，例如从 4 到 3 的权重是 5，那么 \lstinline{3 (4): -> (1, w_41) -> (3, 5) -> NULL}。
+
+\textbf{优点：}
+
+\begin{enumerate}
+	\item \textbf{空间效率高：} 特别是对于稀疏图。邻接表的空间复杂度为 O(V + E)，其中 \lstinline{V} 是顶点数，\lstinline{E} 是边数。因为它只存储实际存在的边。
+	\item \textbf{遍历一个顶点的所有邻接点效率高：} 找到顶点 \lstinline{i} 的所有邻接点，只需要遍历其对应的链表即可。对于度数（邻接点数量）为 \lstinline{k} 的顶点，时间复杂度为 O(k)。
+	\item \textbf{添加顶点相对容易：} 只需在主列表中添加一个新条目。
+	\item \textbf{添加边也相对高效：} 对于无向图，在两个顶点的链表中各添加一个节点；对于有向图，在一个顶点的链表中添加一个节点。
+\end{enumerate}
+
+\textbf{缺点：}
+
+\begin{enumerate}
+	\item \textbf{判断边是否存在效率较低：} 检查顶点 \lstinline{i} 和 \lstinline{j} 之间是否存在边，需要遍历顶点 \lstinline{i}（或 \lstinline{j}）的邻接链表，最坏情况下时间复杂度为 O(V) (在一个完全图中，一个顶点的度可以是 V-1)。
+	\item \textbf{删除边操作可能稍复杂：} 需要在对应的链表中找到并删除节点。
+	\item \textbf{实现上比邻接矩阵稍复杂一些：} 因为涉及到链表或其他动态数据结构的操作。
+\end{enumerate}
+
+
+\textbf{总结对比：}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|}
+		\hline
+		 &  &  \\
+		\hline
+		\textbf{特性} & \textbf{邻接矩阵} & \textbf{邻接表} \\
+		\hline
+		\textbf{空间复杂度} & O(V²) & O(V + E) \\
+		\hline
+		\textbf{判断边 (u,v) 是否存在} & O(1) & O(degree(u)) 或 O(V) 最坏情况 \\
+		\hline
+		\textbf{列出顶点的所有邻居} & O(V) & O(degree(u)) \\
+		\hline
+		\textbf{添加边} & O(1) & O(1) (如果链表头插) 或 O(degree(u)) 防止重复 \\
+		\hline
+		\textbf{删除边} & O(1) & O(degree(u)) \\
+		\hline
+		\textbf{添加顶点} & O(V²) (重建或扩展) & O(1) (主列表) \\
+		\hline
+		\textbf{删除顶点} & O(V²) (重建或标记) & O(V+E) (需要更新所有相关邻接表) \\
+		\hline
+		\textbf{适用于} & 稠密图 (边数接近 V²) & 稀疏图 (边数远小于 V²) \\
+		\hline
+	\end{tabular}
+\end{table}
+选择哪种表示方法通常取决于图的密度和需要执行的主要操作类型。如果需要频繁检查边的存在性，且图比较小或者是稠密图，邻接矩阵可能更好。如果图是稀疏的，并且经常需要遍历顶点的邻居，邻接表通常是更优的选择。

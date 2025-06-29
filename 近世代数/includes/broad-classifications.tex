@@ -1,0 +1,77 @@
+\section{Broad classifications}
+
+Let $G$ be a group. The letter $p$, $q$, and $r$ are used for primes. Moreover, they are assumed to be distinct. $n$ is a positive integer.
+
+\subsection{Order \texorpdfstring{$p$}{p}}
+
+$G$ is simple.
+
+\subsection{Order \texorpdfstring{$p^{n}$}{p^n}}
+
+$n\geq2$. $G$ has nontrivial center due to the class equation. Assume $Z(G)=\{ 1 \}$ then
+\[
+\underbrace{ \lvert G \rvert }_{ =p^{n} } =\underbrace{ \lvert Z(G) \rvert }_{ =1 } +\sum_{i}\underbrace{ [G:C_{G}(x_i)] }_{ p\text{ power} }
+\]
+which is a contradiction. Then $Z(G)$ is a nontrivial normal subgroup of $G$.
+
+\subsection{Order \texorpdfstring{$mp^{n}$}{mp^n}}
+
+$1<m<p$. $G$ is not simple since $n_{p}\equiv1(\mathrm{mod}\ p),n_{p}|m\implies n_{p}=1$ by Sylow III theorem.
+
+\subsection{Order \texorpdfstring{$p^2q$}{p^2q}}
+
+Claim $G$ is not simple.
+
+\subsubsection{Case 1: \texorpdfstring{$p>q$}{p>q}}
+
+By Sylow III, we know $n_{p}|q,n_{p}\equiv1(\mathrm{mod}\ p)$. Then $n_{p}=1$. The Sylow $p$ -subgroups is normal, thus $G$ is not simple.
+
+\subsubsection{Case 2: \texorpdfstring{$p<q$}{p<q}}
+
+By Sylow III, $n_{q}\in \{ 1,p,p^2 \}$. If $n_{q}=1$ then we are done. As $p<q$, $n_{q}\equiv1(\mathrm{mod}\ p)$, this cannot happen for $q>3$. Now we consider the case $n_{q}=p^2$.
+
+Since each Sylow- $q$ subgroup has order $q$, the intersection of two distinct Sylow- $q$ subgroups must be trivial. Thus there are $(q-1)p^2$ elements of order $q$. There left $p^2$ elements. Since $n_{p}\geq1$ by Sylow I, the remaining elements must form the unique Sylow- $p$ subgroup and we get $n_{p}=1$. Thus $G$ is not simple.
+
+\subsection{Order \texorpdfstring{$pqr$}{pqr}}
+
+$G$ is not simple.
+
+Assume $G$ is simple, then $n_{p}>1,n_{q}>1,n_{r}>1$. Since $n_{p}|qr,n_{q}|pr,n_{r}|pq$, and $r>q>p$, then $n_{r}=pq, n_{q}\geq p,n_{p}\geq q$. Then there exists $pq(r-1)$ elements of order $r$, $p(q-1)$ of order $q$ and $q(p-1)$ of order $p$.
+\[
+n\geq pq(r-1)+p(q-1)+q(p-1)+\underbrace{ 1 }_{ \{ 1 \} }=pqr+\underbrace{ (p-1)(q-1) }_{ > 0 }>n
+\]
+which is a contradiction.
+
+\subsection{Order \texorpdfstring{$2^{n}\cdot3$}{2^ncdot3}}
+
+$n>1$.
+
+Claim $G$ is not simple.
+
+$n_{2}\equiv1 (\mathrm{mod}\ 2), n_{p}|3\implies n_2\in \{ 1,3 \}$. If $n_2=1$ then we are done.
+
+If $n_2=3$ then consider the action
+\[
+\phi:G\to \mathrm{Aut}(\mathrm{Syl}_{2}(G))=\mathrm{Aut}\{ P_1,P_2,P_3 \}\cong S_3\qquad g\mapsto \mathrm{Ad}_{g}
+\]
+\[
+\mathrm{Ad}_{g}:G\to G\qquad x\mapsto gxg^{-1}
+\]
+Then $[G:\ker \phi]|\lvert S_3 \rvert=6$. Since the action is transitive, $\ker \phi\neq G$. Since $n>1$ then $\ker \phi\neq \{ 1 \}$, otherwise $12\leq[G:\ker \phi]=\lvert G \rvert\leq6$. Therefore $\ker \phi$ is a proper nontrivial normal\footnote{The kernel is always normal.} subgroup of $G$.
+
+\subsection{Order \texorpdfstring{$3^{n}\cdot4$}{3^ncdot4}}
+
+$n>1$.
+
+Claim $G$ is not simple.
+
+$n_{3}\in \{ 1,4 \}$. If $n_3=1$ then we are done.
+
+If $n_3=4$, consider the action
+\[
+\phi:G\to \mathrm{Aut}(\mathrm{Syl}_{3}(G))=\mathrm{Aut}\{ P_1,P_2,P_3,P_4 \}\cong S_4\qquad g\mapsto \mathrm{Ad}_{g}
+\]
+\[
+\mathrm{Ad}_{g}:G\to G\qquad x\mapsto gxg^{-1}
+\]
+$[G:\ker \phi]|\lvert S_4 \rvert=24$. $\ker \phi\neq G$ as the action is transitive. $\ker \phi\neq1$ as $\lvert G \rvert\geq36>24$. Thus $\ker \phi$ is proper nontrivial normal subgroup of $G$.
