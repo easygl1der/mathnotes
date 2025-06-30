@@ -1,3 +1,3 @@
 This is a README.md
 
-[Home](https://easygl1der.github.io/notes/vim.html)
+[Home](https://easygl1der.github.io/mathnotes/vim.html)
