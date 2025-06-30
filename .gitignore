@@ -1,0 +1,13 @@
+# 忽略超过GitHub 100MB限制的大文件
+mathnotes.pdf
+数据结构/教材/数据结构辅导第2版.pdf
+数理统计/教材/数理统计学导论（原书第7版）introduction-to-mathematical-statistics-(-etc.)-(z-library).pdf
+
+# 忽略编译生成的文件
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fdb_latexmk
+*.fls 
